@@ -10,6 +10,6 @@
 	<%
 	response.sendRedirect(request.getContextPath() + "/home.do");
 	%> 
-	
+	git test
 </body>
 </html>
