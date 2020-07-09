@@ -7,5 +7,10 @@
 </head>
 <body>
 
+
+<P>  The time on the server is ${serverTime}. </P>
+
+우정 머지test
+
 </body>
 </html>
