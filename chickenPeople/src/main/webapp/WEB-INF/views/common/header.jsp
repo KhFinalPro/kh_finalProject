@@ -15,19 +15,19 @@
 		#header_brandName #brandName a{color: white; text-decoration: none;}
 		#header_brandName #brandName a:hover{color: black;}
 		
-		#header_address{width: 69%; height: 100%; text-align: center; vertical-align: middle;}
+		#header_address{width: 63%; height: 100%; text-align: center; vertical-align: middle;}
 		#header_address #address{width: 50%; height: 50px; border-radius: 20px;}
 		
-		#header_userArea{width: 15%; height: 80%;}
+		#header_userArea{width: 20%; height: 80%;}
 		#header_userArea ul {margin: 0 auto; padding: 0;}
-		#header_userArea ul li{margin: auto; width: 33.33%; list-style: none; background-color: #2ac1bc; float: left; line-height: 100px; vertical-align: middle; text-align: center;}
+		#header_userArea ul li{margin: auto; width: 19%; list-style: none; background-color: #2ac1bc; float: left; line-height: 100px; vertical-align: middle; text-align: center;}
 		#header_userArea ul li a{margin: auto; width: 100%; text-decoration: none; color: white; display: block; font-size: 18px; font-weight: bold;}
 		#header_userArea ul li a:hover{color:black;}
 		
 		#header_nav {height: 80px; margin: auto; width: 100%;}
 		#header_nav ul{margin: 0 auto; padding: 0;}
 		#header_nav ul li{margin: auto; width: 25%; list-style: none; color: white; background-color: #2ac1bc; float: left; line-height: 80px; vertical-align: middle; text-align: center;}
-		#header_nav ul li a{margin: auto; width: 100%; text-decoration: none; color: white; display: block; width: 150px; font-size: 30px; font-weight: bold;}
+		#header_nav ul li a{margin: auto; width: 100%; text-decoration: none; color: white; display: block; font-size: 20px; font-weight: bold;}
 		#header_nav ul li a:hover{color: black;}
 	
 	           
@@ -50,6 +50,8 @@
 	                <li><a href="#">Join</a></li>
 	                <li><a href="#">Login </a></li>
 	                <li><a href="#">MyPage</a></li>
+	                <li><a href="#">Store</a>
+	                <li><a href="#">System</a>
 	            </ul>
 	        </div>
 	        <br clear="both">
