@@ -225,7 +225,7 @@ body{
         </div>
             <div class="sidebar">
                 <ul>
-                    <li><a href-"#">
+                    <li><a href="storeOrder.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
@@ -243,7 +243,7 @@ body{
                         </span>
                         <span class="title">메뉴관리</span>
                     </a></li>
-                    <li><a href-"#">
+                    <li><a href="storeReview.do">
                         <span class="icon">
                             <i class="far fa-edit" aria-hidden="true"></i>
                         </span>

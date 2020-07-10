@@ -3,10 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 
-
-<%-- <jsp:include page="storeAdmin/storeReview.jsp"/> --%>
-<jsp:include page="storeAdmin/storeOrder.jsp"/>
-<body>
 <html>
 <head>
    <title>Home</title>
@@ -41,7 +37,7 @@
    </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-</body>
+<body>
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
