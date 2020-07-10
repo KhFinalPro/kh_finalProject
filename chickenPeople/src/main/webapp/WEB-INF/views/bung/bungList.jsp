@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	response.sendRedirect(request.getContextPath() + "/home.do");
-	%> 
 
 </body>
 </html>
