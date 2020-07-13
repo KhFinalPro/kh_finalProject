@@ -10,7 +10,7 @@
 <style>
 	 /*main_section*/
      #main_section{margin: auto; clear: both; margin-top:200px;} 
-     #main_section>.bungae_area{display: inline-block; margin: 0; width: 49.6%; height: 280px;}
+     #main_section>.bungae_area{display: inline-block; margin: 0; margin-bottom:10px; width: 49.6%; height: 280px; border:1px solid black;}
      #main_section>.bungae_area>.brand_logo{width: 31%; height: 210px;}
      #main_section>.bungae_area>.brand_logo>a>img{width: 100%; height: 100%;}
 
@@ -35,7 +35,7 @@
 			    </div>
 			    <div class="first_line bungae_title">
 			        <h2>치킨 번개 모집합니다~</h2>
-			        <h3>7월 4일 이번 주토요일 오후 7시 강남역 1번 출구</h3>
+			        <h3>7월 4일 이번 주 토요일 오후 7시 강남역 1번 출구</h3>
 			        <h4>20세 ~ 99세 8명까지</h4>
 			    </div>
 			    <br clear="both">
@@ -50,4 +50,12 @@
     </div>
     <%@ include file="../common/footer.jsp" %>
 </body>
+
+<script>
+	$(function(){
+		$(".bungae_area").on("click",function(){
+			location.href="bungDetail.do"
+		})
+	})
+</script>
 </html>
