@@ -66,10 +66,10 @@
 	                <a href="#">치킨번개</a>
 	            </li>
 	            <li>
-	                <a href="#">맛잘알</a>
+	                <a href="board.do">맛잘알</a>
 	            </li>
 	            <li>
-	                <a href="#">공지사항</a>
+	                <a href="nlist.do">공지사항</a>
 	            </li>
 	        </ul>
 	
