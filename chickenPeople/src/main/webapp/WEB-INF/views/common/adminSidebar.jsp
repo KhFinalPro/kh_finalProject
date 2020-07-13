@@ -160,12 +160,12 @@ body{
 }
 
 .wrapper .main_container .item{
-   
+
     background:#fff;
     margin-bottom: 10px;
     padding:15px;
     font-size: 14px;
-    height: 550px;
+    height: 510px;
     border-bottom-right-radius: 20px;
     overflow-y: scroll;
    
@@ -237,7 +237,7 @@ body{
                         </span>
                         <span class="title">매출관리</span>
                     </a></li>
-                    <li><a href-"#">
+                    <li><a href="storeMenu.do">
                         <span class="icon">
                             <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
                         </span>
@@ -249,7 +249,7 @@ body{
                         </span>
                         <span class="title">리뷰관리</span>
                     </a></li>
-                    <li><a href-"#">
+                    <li><a href="storeProgress.do">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
