@@ -37,7 +37,7 @@
 	<header>
 	    <div id="header">
 	        <div id="header_brandName">
-	            <h1 id="brandName"><a href="#">치킨의민족</a></h1>
+	            <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
 	        </div>
 	        <div id="header_address">
 	            <select name="address" id="address">
@@ -50,7 +50,7 @@
 	                <li><a href="#">Join</a></li>
 	                <li><a href="#">Login </a></li>
 	                <li><a href="#">MyPage</a></li>
-	                <li><a href="#">Store</a>
+					<li><a href="storeOrder.do">store</a><li>
 	                <li><a href="#">System</a>
 	            </ul>
 	        </div>

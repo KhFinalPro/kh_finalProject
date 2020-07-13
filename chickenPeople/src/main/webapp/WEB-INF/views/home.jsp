@@ -1,11 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+
 <html>
 <head>
-	<title>Home</title>
-	<style>
-		.contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
+   <title>Home</title>
+   <style>
+      .contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
         .banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
         .banner ul {position: absolute; margin: 0px; padding:0; width: 100%; list-style: none; }
         .banner ul li {float: left; width: 1200px; height: 300px; margin:0; padding:0;}
@@ -31,14 +33,12 @@
         .main_area .tree_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
         .main_area .tree_area .place_area .start{width: 15px; height: 15px;}
 
-		
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      
+   </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
 
-=======
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
@@ -52,15 +52,12 @@
                 </ul>
             </div>
         </div>
->>>>>>> refs/heads/master
+
 
         <br clear="both"><br><br>
 
-<<<<<<< HEAD
-우정 머지test
-
 </body>
-=======
+
         <h2 align="center" id="first_title"> 나와 가까운 치킨집</h2>
 
         <section class="main_area">
@@ -68,7 +65,7 @@
             <div class="first_area">
             	<%for(int i = 0; i<10; i++) { %>
                 <div class="place_area" style="margin-right: 10px;">
-                    <a href="#">
+                    <a href="orderMain.do">
                         <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
                     </a>
                     <div align="center">
@@ -160,5 +157,5 @@
         }); 
     //-->  
     </script>
->>>>>>> refs/heads/master
+
 </html>
