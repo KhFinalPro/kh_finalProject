@@ -7,22 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<div id="side_nav">
-		<table id="side_nav_table">
-		    <tr><th>MY PAGE</th></tr>
-		    <tr><td><a href="#">회원정보 수정</a></td></tr>
-		    <tr><td><a href="#">배송지 추가</a></td></tr>
-		    <tr><td><a href="#">1:1 문의</a></td></tr>
-		    <tr><td><a href="#">포인트</a></td></tr>
-		    <tr><td><a href="#">쿠폰함</a></td></tr>
-		    <tr><td><a href="#">메세지</a></td></tr>
-		    <tr><td><a href="#">주문내역</a></td></tr>
-		    <tr><td><a href="#">주문현황</a></td></tr>
-		    <tr><td><a href="#">주문달력</a></td></tr>
-		    <tr><td style="border-bottom: 3px solid #735949;"><a href="#">리뷰관리</a></td></tr>
-		</table>
-	</div>
+<div class="mypageTitle"><h2>MY PAGE</h2></div>
+    <nav>
+        <a href="#">회원정보</a>
+        <a href="#">포인트</a>
+        <a href="#">주문현황</a>
+        <a href="#">주문달력/리뷰</a>
+        <a href="#">메세지</a>
+        <a href="#">찜한가게/글</a>
+        <a href="#">1:1 문의</a>
+        <div class="animation start-home"></div>
+    </nav>
 </body>
 </html>
