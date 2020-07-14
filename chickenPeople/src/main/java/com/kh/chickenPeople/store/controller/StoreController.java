@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StoreController {
 	
-	@RequestMapping("/orderMain.do")
-	
+@RequestMapping("/orderMain.do")
 public String storeOrderMain() {
 		
 		System.out.println("storeOrderMain 페이지 뿌리기!");
@@ -16,4 +15,16 @@ public String storeOrderMain() {
 		
 		
 	} 
+	
+
+@RequestMapping("/order.do")
+	public String orderPayController(){
+			
+			System.out.println("orderPaymentView 페이지 뿌리기!");
+			return "store/orderPaymentView";
+			
+			
+			
+			
+		}
 }

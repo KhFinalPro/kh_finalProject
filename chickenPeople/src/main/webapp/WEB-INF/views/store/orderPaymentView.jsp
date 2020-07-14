@@ -118,10 +118,15 @@
 				            <td colspan="2" height="50"  style="background:gray; color:white;">결제수단 선택</td>
 				        </tr>
 				         <tr>
-				            <td height="50">온라인결제</td>
+				            <td height="50">온라인결제  <button>카카오페이</button></td>
+				        
 				        </tr>
 				         <tr>
-				            <td colspan="2" height="50">현장결제</td>
+				            <td colspan="2" height="50">현장결제
+				            <button>현금</button>
+				           <button>카드</button>
+				            </td>
+				          
 				        </tr>
 				         <tr>
 				            <td colspan="2" height="50" style="background:gray; color:white;">할인방법 선택</td>

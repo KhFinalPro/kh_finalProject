@@ -54,7 +54,11 @@
 			  border-top: none;
 			}
 			
-			
+			<!-- 메뉴 카테고리-->
+			.menu a{cursor:pointer;}
+		    .menu .hide{display:none;}
+
+
 			<!--좋아요 버튼 -->
 	
         </style>
@@ -87,6 +91,24 @@
 		
 			
 			</script>
+			
+			<!-- 메뉴 카테고리 -->
+			<script>
+		    // html dom 이 다 로딩된 후 실행된다.
+		    $(document).ready(function(){
+		        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+		        $(".menu>a").click(function(){
+		            var submenu = $(this).next("ul");
+		 
+		            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+		            if( submenu.is(":visible") ){
+		                submenu.slideUp();
+		            }else{
+		                submenu.slideDown();
+		            }
+		        });
+		    });
+			</script>
     </head>
     <body>
 
@@ -96,7 +118,7 @@
     <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
   
     <div id= "section">
-        <div style="width:60%;height:1500px;  margin:0 auto; border:1px solid black;">
+        <div style="width:60%;  margin:0 auto;">
    
             <div id="order" style="width:56%; height:auto;float:left;margin-left:15px; ">
             <!--  가게 간단한 정보  -->
@@ -150,8 +172,79 @@
 					  <h3>여긴 메뉴판</h3>
 					  <p>London is the capital city of England.</p>
 					  <p>여기에 메뉴판이랑 div 넣어서 적용해야한다아아~</p>
-					  <br><br><br><br><br><br><br><br><br><br>
-					  <br><br><br><br><br><br><br><br><br><br>
+					  
+					<ul>
+			        <li class="menu">
+			            <a><img src="" alt="뼈치킨"/></a>
+			            <ul class="hide">
+			                <li>메뉴1-1</li>
+			                <li>메뉴1-2</li>
+			                <li>메뉴1-3</li>
+			                <li>메뉴1-4</li>
+			                <li>메뉴1-5</li>
+			                <li>메뉴1-6</li>
+			            </ul>
+			        </li>
+			 
+			        <li class="menu">
+			            <a><img src="" alt="순살치킨"/></a>
+			            <ul class="hide">
+			                <li>메뉴2-1</li>
+			                <li>메뉴2-2</li>
+			                <li>메뉴2-3</li>
+			                <li>메뉴2-4</li>
+			                <li>메뉴2-5</li>
+			                <li>메뉴2-6</li>
+			            </ul>
+			        </li>
+			         <li class="menu">
+			            <a><img src="" alt="세트메뉴"/></a>
+			            <ul class="hide">
+			                <li>메뉴2-1</li>
+			                <li>메뉴2-2</li>
+			                <li>메뉴2-3</li>
+			                <li>메뉴2-4</li>
+			                <li>메뉴2-5</li>
+			                <li>메뉴2-6</li>
+			            </ul>
+			        </li>
+			         <li class="menu">
+			            <a><img src="" alt="사이드메뉴"/></a>
+			            <ul class="hide">
+			                <li>메뉴2-1</li>
+			                <li>메뉴2-2</li>
+			                <li>메뉴2-3</li>
+			                <li>메뉴2-4</li>
+			                <li>메뉴2-5</li>
+			                <li>메뉴2-6</li>
+			            </ul>
+			        </li>
+			         <li class="menu">
+			            <a><img src="" alt="음료"/></a>
+			            <ul class="hide">
+			                <li>메뉴2-1</li>
+			                <li>메뉴2-2</li>
+			                <li>메뉴2-3</li>
+			                <li>메뉴2-4</li>
+			                <li>메뉴2-5</li>
+			                <li>메뉴2-6</li>
+			            </ul>
+			        </li>
+			          <li class="menu">
+			            <a><img src="" alt="소스"/></a>
+			            <ul class="hide">
+			                <li>메뉴2-1</li>
+			                <li>메뉴2-2</li>
+			                <li>메뉴2-3</li>
+			                <li>메뉴2-4</li>
+			                <li>메뉴2-5</li>
+			                <li>메뉴2-6</li>
+			            </ul>
+			        </li>
+			    </ul>
+								  
+				
+					  
 					</div>
 					
 					<div id="Paris" class="tabcontent">
@@ -216,7 +309,7 @@
    					 <p><a href="#">이용약관</a>,<a href="#">개인정보 수집 동의</a>,<a href="#">개인정보 제 3자 제공</a>,<a href="#">전자금융거래 이용약관</a>
    					 	 만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
    					 <br><br><br>
-                     <button style="float:right; width:330px; height:70px; "><a href="payment.do">결제하기</a></button>
+                     <button style="float:right; width:330px; height:70px; "><a href="order.do">주문하기</a></button>
 
             </div><!-- orderCheck end-->
             
