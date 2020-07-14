@@ -49,9 +49,9 @@
 	            <ul>
 	                <li><a href="#">Join</a></li>
 	                <li><a href="#">Login </a></li>
-	                <li><a href="#">MyPage</a></li>
+	                <li><a href="mypageMain.do">MyPage</a></li>
 					<li><a href="storeOrder.do">store</a><li>
-	                <li><a href="#">System</a>
+	                <li><a href="systemAdmin.do">System</a>
 	            </ul>
 	        </div>
 	        <br clear="both">

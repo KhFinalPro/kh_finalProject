@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SystemController {
 	
-	@RequestMapping(value="admin/selectReport", method=RequestMethod.GET)
-	public ModelAndView selectReportList(ModelAndView mv) {
-		return mv;
+	@RequestMapping(value="systemAdmin.do", method=RequestMethod.GET)
+	public String selectReportList() {
+		return "systemAdmin/systemAdminMain";
 	}
 
 }
