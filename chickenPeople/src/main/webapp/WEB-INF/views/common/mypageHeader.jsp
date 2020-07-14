@@ -36,7 +36,7 @@
 
 		    .mypageTitle{
             text-align: center;
-            margin-top: 110px;
+            margin-top: 120px;
         }
         body{
             font-family: 'Montserrat', sans-serif; ;
@@ -145,7 +145,7 @@
 	            <ul>
 	                <li><a href="#">Join</a></li>
 	                <li><a href="#">Login </a></li>
-	                <li><a href="mypageMain.do">MyPage</a></li>
+	                <li><a href="msgList.do">MyPage</a></li>
 					<li><a href="storeOrder.do">store</a><li>
 	                <li><a href="#">System</a>
 	            </ul>
@@ -160,9 +160,9 @@
         <a href="#">포인트</a>
         <a href="#">주문현황</a>
         <a href="#">주문달력/리뷰</a>
-        <a href="#">메세지</a>
-        <a href="#">찜한가게/글</a>
-        <a href="#">1:1 문의</a>
+        <a href="msgList.do">메세지</a>
+        <a href="mypageLikes.do">찜한매장/글</a>
+        <a href="#">번개</a>
         <div class="animation start-home"></div>
     </nav>
 </body>

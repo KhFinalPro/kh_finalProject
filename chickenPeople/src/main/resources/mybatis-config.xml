@@ -7,10 +7,12 @@
 	</settings>
 	
 	<typeAliases>
-	   
+	   <typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.chickenPeople.message.model.vo.Message" alias="Message"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/message-mapper.xml"/>
 	</mappers>
 </configuration>
