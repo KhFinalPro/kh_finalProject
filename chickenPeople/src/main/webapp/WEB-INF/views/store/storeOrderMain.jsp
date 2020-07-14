@@ -132,9 +132,7 @@
 				        </tr><tr>
 				            <td width="150">가게 사진</td>
 				            <td>가게 정보</td>
-				        	<td>
-				        	<button>♡</button>
-							</td>
+				        	
 				        </tr>
 				  		
 				        <tr>
@@ -148,13 +146,13 @@
                 <h1>메뉴판</h1>
                 <div class="noborder" style="overflow: auto; width: 500px; height: 130px;">
 				    <div class="noborder" id="test" style="width:0px;"> 
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="<%=request.getContextPath() %>/resources/images/city1.PNG" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a> 
-				      
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				       
 				    </div>
 				</div>
 		
@@ -175,7 +173,7 @@
 					  
 					<ul>
 			        <li class="menu">
-			            <a><img src="" alt="뼈치킨"/></a>
+			            <a>뼈치킨</a>
 			            <ul class="hide">
 			                <li>메뉴1-1</li>
 			                <li>메뉴1-2</li>
@@ -187,7 +185,7 @@
 			        </li>
 			 
 			        <li class="menu">
-			            <a><img src="" alt="순살치킨"/></a>
+			            <a>순살치킨</a>
 			            <ul class="hide">
 			                <li>메뉴2-1</li>
 			                <li>메뉴2-2</li>
@@ -198,7 +196,7 @@
 			            </ul>
 			        </li>
 			         <li class="menu">
-			            <a><img src="" alt="세트메뉴"/></a>
+			            <a>새트메뉴</a>
 			            <ul class="hide">
 			                <li>메뉴2-1</li>
 			                <li>메뉴2-2</li>
@@ -209,7 +207,7 @@
 			            </ul>
 			        </li>
 			         <li class="menu">
-			            <a><img src="" alt="사이드메뉴"/></a>
+			            <a>사이드메뉴</a>
 			            <ul class="hide">
 			                <li>메뉴2-1</li>
 			                <li>메뉴2-2</li>
@@ -220,7 +218,7 @@
 			            </ul>
 			        </li>
 			         <li class="menu">
-			            <a><img src="" alt="음료"/></a>
+			            <a>음료</a>
 			            <ul class="hide">
 			                <li>메뉴2-1</li>
 			                <li>메뉴2-2</li>
@@ -231,7 +229,7 @@
 			            </ul>
 			        </li>
 			          <li class="menu">
-			            <a><img src="" alt="소스"/></a>
+			            <a>소스</a>
 			            <ul class="hide">
 			                <li>메뉴2-1</li>
 			                <li>메뉴2-2</li>
