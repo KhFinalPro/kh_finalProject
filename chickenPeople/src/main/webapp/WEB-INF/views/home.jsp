@@ -8,30 +8,30 @@
    <title>Home</title>
    <style>
       .contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
-        .banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
-        .banner ul {position: absolute; margin: 0px; padding:0; width: 100%; list-style: none; }
-        .banner ul li {float: left; width: 1200px; height: 300px; margin:0; padding:0;}
-        
-        
-        /*main body*/
-        #first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
-        .first_area{text-align: center;}
-        .second_area{text-align: center;}
-        .tree_area{text-align: center;}
-        .title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
-        .main_area{margin: 0 auto; width: 90%;}
+      .banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
+      .banner ul {position: absolute; margin: 0px; padding:0; width: 100%; list-style: none; }
+      .banner ul li {float: left; width: 1200px; height: 300px; margin:0; padding:0;}
+      
+      
+      /*main body*/
+      #first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
+      .first_area{text-align: center;}
+      .second_area{text-align: center;}
+      .tree_area{text-align: center;}
+      .title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
+      .main_area{margin: 0 auto; width: 90%;}
 
-        .main_area>.first_area>.place_area{width: 240px; height: 320px; border: 1px solid black; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
-        .main_area .first_area .place_area a .logo {margin: 0 auto; width: 100%; height: 150px; margin-top: 10px;}
-        .main_area .first_area .place_area .start{width: 15px; height: 15px;}
+      .main_area>.first_area>.place_area{width: 19%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
+      .main_area .first_area .place_area a .logo {margin: 0 auto; width: 100%; height: 150px; margin-top: 10px;}
+      .main_area .first_area .place_area .start{width: 15px; height: 15px;}
 
-        .main_area>.second_area>.place_area{width: 240px; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
-        .main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
-        .main_area .second_area .place_area .start{width: 15px; height: 15px;}
+      .main_area>.second_area>.place_area{width: 19%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
+      .main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
+      .main_area .second_area .place_area .start{width: 15px; height: 15px;}
 
-        .main_area>.tree_area>.place_area{width: 240px; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
-        .main_area .tree_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
-        .main_area .tree_area .place_area .start{width: 15px; height: 15px;}
+      .main_area>.tree_area>.place_area{width: 19%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
+      .main_area .tree_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
+      .main_area .tree_area .place_area .start{width: 15px; height: 15px;}
 
       
    </style>
@@ -154,8 +154,7 @@
                     //이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
                 });
             }
-        }); 
-    //-->  
+        });  
     </script>
 
 </html>

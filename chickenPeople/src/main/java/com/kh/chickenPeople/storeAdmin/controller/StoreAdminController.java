@@ -17,4 +17,14 @@ public class StoreAdminController {
 	      return "storeAdmin/storeReview";
 	   }
 	  
+	  @RequestMapping("storeMenu.do")
+	   public String storeMenu() {
+	      return "storeAdmin/storeMenu";
+	   }
+	  
+	  @RequestMapping("storeProgress.do")
+	  public String storeProgress() {
+		  return "storeAdmin/storeProgress";
+	  }
+	  
 }
