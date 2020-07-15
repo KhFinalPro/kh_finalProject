@@ -34,8 +34,8 @@ body{ background:#e1ecf2; overflow: hidden; }
 .wrapper .sidebar ul li a.active{ background:#4360b5; color:#fff;}
 .wrapper .sidebar ul li a:hover:before,
 .wrapper .sidebar ul li a.active:before{ display: block; }
-.wrapper .main_container{ width:calc(100% - 120px); margin-top:70px; margin-left: 130px; padding:15px; transition: all 0.3s ease; overflow: hidden;}
-.wrapper .main_container .item{ background:#fff; margin-bottom: 10px; padding:15px; font-size: 14px; height: 510px; border-bottom-right-radius: 20px; overflow-y: scroll; }
+.wrapper .main_container{ width:calc(100% - 120px); margin-top:70px; margin-left: 130px; padding:15px; transition: all 0.3s ease; }
+.wrapper .main_container .item{ background:#fff; margin-bottom: 10px; padding:15px; font-size: 14px; height: 510px; border-bottom-right-radius: 20px;  }
 .wrapper.collapse .sidebar{ width:70px; }
 .wrapper.collapse .sidebar ul li a{ text-align:center; }
 /* .wrapper.collapse .sidebar ul li a span.icon{
