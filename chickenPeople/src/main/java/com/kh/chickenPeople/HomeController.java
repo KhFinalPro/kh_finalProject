@@ -68,7 +68,7 @@ public class HomeController {
 		{
 			mv.addObject("msg", "검색결과가 없습니다.");
 			mv.setViewName("common/header");
-//			throw new MainException("검색 실패");
+//			throw new MainException("검색 실패"); ASD
 		}
 		return mv;
 	}
