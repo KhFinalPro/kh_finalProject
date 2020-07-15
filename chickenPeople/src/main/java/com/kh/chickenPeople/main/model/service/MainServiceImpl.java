@@ -19,4 +19,10 @@ public class MainServiceImpl implements MainService {
 		// TODO Auto-generated method stub
 		return mainDao.search(search_input);
 	}
+
+	@Override
+	public ArrayList<Store> bestListSelect() {
+		// TODO Auto-generated method stub
+		return mainDao.bestListSelect();
+	}
 }

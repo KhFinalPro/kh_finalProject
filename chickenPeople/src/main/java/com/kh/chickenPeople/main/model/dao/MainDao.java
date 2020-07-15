@@ -19,4 +19,9 @@ public class MainDao {
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.searchList", search_input);
 	}
 
+	public ArrayList<Store> bestListSelect() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.bestList");
+	}
+
 }

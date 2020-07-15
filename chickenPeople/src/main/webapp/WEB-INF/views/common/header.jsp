@@ -44,8 +44,8 @@
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<body>
-	<header>
+	<body>
+		<header>
             <div id="header">
                 <div id="header_brandName">
                     <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
@@ -98,19 +98,36 @@
             <br clear="both">
         </header>
 
-        <div id="modal" >
-            <!-- <input type="button" id="search_cancel" > -->
-            <img id="search_cancel" src="resources/images/cancel.png" alt="">
-            <form action="homeSearch.do" method="post">
-                <br clear="both">
-                <select name="option">
-                	<option value="sto_name">매장이름 검색</option>
-                	<option value="brand_name">브랜드 검색</option>
-                </select>
-                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
-                <input type="submit" id="submit" value="검색">
-            </form>
-        </div>
+		<c:if test="${msg != null }">
+	        <div id="modal" style="display: block;">
+	            <!-- <input type="button" id="search_cancel" > -->
+	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
+	            <form action="homeSearch.do" method="post">
+	                <br clear="both">
+	                <!-- <select name="option">
+	                	<option value="sto_name">매장이름 검색</option>
+	                	<option value="brand_name">브랜드 검색</option>
+	                </select> -->
+	                <input type="text" id="search_input" name="search_input" placeholder="잘 입력해주세요">
+	                <input type="submit" id="submit" value="검색">
+	            </form>
+	        </div>
+        </c:if>
+        <c:if test="${msg == null }">
+	        <div id="modal" >
+	            <!-- <input type="button" id="search_cancel" > -->
+	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
+	            <form action="homeSearch.do" method="post">
+	                <br clear="both">
+	                <!-- <select name="option">
+	                	<option value="sto_name">매장이름 검색</option>
+	                	<option value="brand_name">브랜드 검색</option>
+	                </select> -->
+	                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
+	                <input type="submit" id="submit" value="검색">
+	            </form>
+	        </div>
+        </c:if>
        
         
     </body>
@@ -123,9 +140,9 @@
                 // $("#modal").css('display','none');
                 $("#modal").toggle(
 
-                    function(){$modal.addClass('show')}, //클릭하면 show클래스 적용되서 보이기
+                    function(){$modal.addClass('hide')}, //클릭하면 show클래스 적용되서 보이기
 
-                    function(){$modal.addClass('hide')} //한 번 더 클릭하면 hide클래스가 숨기기
+                    function(){$modal.addClass('show')} //한 번 더 클릭하면 hide클래스가 숨기기
 
                 );
             })
@@ -134,4 +151,5 @@
             })
         })
     </script>
+
 </html>

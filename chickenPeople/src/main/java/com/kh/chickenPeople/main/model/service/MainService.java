@@ -11,4 +11,6 @@ public interface MainService {
 
 	ArrayList<Store> search(String search_input);
 
+	ArrayList<Store> bestListSelect();
+
 }

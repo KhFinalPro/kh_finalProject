@@ -31,4 +31,19 @@
 		WHERE STO_NAME LIKE '%' || #{search_input} || '%'
 				AND OPEN_YN = 'Y'
 	</select>
+	
+	<select id="bestList" resultMap="storeResultSet">
+		<![CDATA[
+		SELECT STO_NUM, BRAND_PIC, STO_NAME, STO_BRAND
+		FROM(
+			SELECT S.STO_NUM, BRAND_PIC, STO_NAME, STO_BRAND, SUM(ORD_PRICE)
+			FROM STORE_INFO S
+			JOIN ORDER_PRO O ON S.STO_NUM = O.STO_NUM
+			JOIN BRAND B ON S.BRAND_CODE = B.BRAND_CODE
+			GROUP BY S.STO_NUM, BRAND_PIC, STO_NAME, STO_BRAND
+			ORDER BY SUM(ORD_PRICE) DESC		
+			)
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
 </mapper>

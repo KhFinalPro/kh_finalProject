@@ -38,6 +38,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
@@ -52,7 +53,9 @@
             </div>
         </div>
 
+
         <br clear="both"><br><br>
+
 
 		<!-- 비로그인 -->
 	    <c:if test="${empty sessionScope.loginUser }">
@@ -84,24 +87,25 @@
 	        </section>
 	    </c:if>
 
+
         <h2 align="center" class="title">베스트 치킨집 Top5</h2>
 
         <section class="main_area">
             
             <div class="second_area">
-            	<%for(int i =0; i<5; i++) { %>
-                <div class="place_area" style="margin-right: 10px;">
-                    <a href="#">
-                        <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
-                    </a>
-                    <div align="center">
-                        <h3>BBQ</h3>
-                        <h3>강남 역상동 지점</h3>
-                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
-                        40~50분 소요예정
-                    </div>
-                </div>
-                <%} %>
+            	<c:forEach var="b" items="${bestList }">
+	                <div class="place_area" style="margin-right: 10px;">
+	                    <a href="#">
+	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
+	                    </a>
+	                    <div align="center">
+	                        <h3>${b.sto_brand }</h3>
+	                        <h3>${b.sto_name }</h3>
+	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        40~50분 소요예정
+	                    </div>
+	                </div>
+                </c:forEach>
                 
                 
             </div>
@@ -170,5 +174,15 @@
             }
         });  
     </script>
+    
+    <!-- 완성되면 매장 상세페이지와 연결할 script -->
+    <!-- <script>
+	    $(function(){
+			$(".place_area").on("click",function(){
+				$sto_num = $(this).children("#sto_num").val();
+				alert($sto_num);
+			})
+		})
+    </script> -->
 
 </html>
