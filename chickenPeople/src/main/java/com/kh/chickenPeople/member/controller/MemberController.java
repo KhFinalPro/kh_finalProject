@@ -26,6 +26,8 @@ public class MemberController {
 //		request 
 //		page
 		
+	System.out.println("");
+		
 		return "home";
 	}
 }
