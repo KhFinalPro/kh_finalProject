@@ -22,6 +22,8 @@
 	      </repository>
 	</repositories>
 	
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -125,6 +127,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency> 
+
 		
 		<!-- DB -->
       
