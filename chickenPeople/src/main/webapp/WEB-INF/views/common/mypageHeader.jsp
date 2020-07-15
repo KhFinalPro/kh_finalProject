@@ -161,7 +161,7 @@
         <a href="#">주문현황</a>
         <a href="#">주문달력/리뷰</a>
         <a href="msgList.do">메세지</a>
-        <a href="mypageLikes.do">찜한매장/글</a>
+        <a href="storeLikeList.do">찜한매장/글</a>
         <a href="#">번개</a>
         <div class="animation start-home"></div>
     </nav>

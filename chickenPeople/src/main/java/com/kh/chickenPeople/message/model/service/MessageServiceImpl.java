@@ -16,6 +16,7 @@ public class MessageServiceImpl implements MessageService {
 	
 	@Override
 	public ArrayList<Message> selectList(){
+	
 		return msgDao.selectList();
 	}
 }

@@ -1,5 +1,8 @@
 package com.kh.chickenPeople.main.model.service;
 
-public class MainService {
+import org.springframework.stereotype.Service;
+
+@Service
+public interface MainService {
 
 }

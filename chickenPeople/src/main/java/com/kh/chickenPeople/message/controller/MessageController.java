@@ -18,16 +18,12 @@ public class MessageController {
 	MessageService msgService;
 	
 
-//	@RequestMapping("mypageMessage.do")
-//	 public String mypageMessage() {
-//	     return "mypage/mypageMessage";
-//	  }
 	
 	@RequestMapping("msgList.do")
 	public ModelAndView msgList(ModelAndView mv) {
 		
 		ArrayList<Message> list = msgService.selectList();
-		System.out.println("메세지 리스트 :"+list);
+		//System.out.println("메세지 리스트 :"+list);
 		
 		if(!list.isEmpty()) {
 			mv.addObject("list",list);

@@ -138,26 +138,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="l" items="${list }">
                                 <tr>
                                     <th></th>
                                     <th>1</th>
-                                    <td>썸네일(매장사진)</td>
-                                    <td>교촌치킨 역삼점</td>
-                                    <td>4.8</td>
-                                    <td>17000원</td>
+                                    <td>${l.brandPic }</td>
+                                    <td>${l.stoName }</td>
+                                    <td>${l.dailyTReview }</td>
+                                    <td>${l.ordLimit }</td>
                                     <th><i class="fas fa-heart"></i></th>
                                     <th></th>
                                 </tr>
-                                 <tr>
-                                    <th></th>
-                                    <th>2</th>
-                                    <td>썸네일(매장사진)</td>
-                                    <td>네네 강남점</td>
-                                    <td>4.3</td>
-                                    <td>16000원</td>
-                                    <th><i class="fas fa-heart"></i></th>
-                                    <th></th>
-                                </tr>
+                            </c:forEach>
                         
                             </tbody>
                         </table>

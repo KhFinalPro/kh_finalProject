@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="likeMapper">
+
+
+	<resultMap id="likeResultSet" type="Like">
+		<id property="storeNo" column="STORE_NO"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="brandPic" column="BRAND_PIC"/>
+		<result property="stoBrand" column="STO_BRAND"/>
+		<result property="stoName" column="STO_NAME"/>
+		<result property="ordLimit" column="ORD_LIMIT"/>
+		<result property="revRate" column="REV_RATE"/>
+		<result property="dailyTReview" column="DAILY_T_REVIEW"/>
+		<result property="brandCode" column="BRAND_CODE"/>
+	</resultMap>
+ 
+ 
+	<select id="selectList" resultMap="likeResultSet">
+		SELECT BRD.BRAND_PIC, SI.STO_NAME, DAILY_T_REVIEW, SI.ORD_LIMIT 
+		FROM (SELECT * FROM MEMBER WHERE USER_ID ='rngus3698') M
+		LEFT JOIN STORE_LIKE SL ON M.USER_ID=SL.USER_ID
+		LEFT JOIN STORE_INFO SI ON SL.STO_NUM= SI.STO_NUM
+		LEFT JOIN BRAND BRD ON SI.BRAND_CODE = BRD.BRAND_CODE
+		LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
+			
+	</select>
+</mapper>

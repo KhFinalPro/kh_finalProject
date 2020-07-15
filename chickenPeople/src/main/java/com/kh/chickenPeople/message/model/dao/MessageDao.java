@@ -20,6 +20,7 @@ public class MessageDao {
 		
 		list = (ArrayList)sqlSessionTemplate.selectList("messageMapper.selectList");
 		
+		
 		return list;
 	}
 	
