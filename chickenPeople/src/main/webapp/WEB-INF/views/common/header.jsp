@@ -40,7 +40,7 @@
             #modal{position: fixed; display: none; opacity: 0.5; left: 0; top: 0px; width: 100%; height: 100%; text-align: center; background-color: rgb(199, 197, 197); border: 1px solid black; z-index: 2;}
             #modal #search_cancel{margin-right: 0px; margin-left: 1300px; margin-top: 200px; width: 100px; height: 100px;}
             #modal #search_input{margin: auto; width: 50%; height: 50px; margin-top: 100px; border:2px solid black;}
-           
+            #modal #submit{height: 50px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -101,9 +101,14 @@
         <div id="modal" >
             <!-- <input type="button" id="search_cancel" > -->
             <img id="search_cancel" src="resources/images/cancel.png" alt="">
-            <form action="" method="post">
+            <form action="homeSearch.do" method="post">
                 <br clear="both">
-                <input type="text" id="search_input" name="search_input">
+                <select name="option">
+                	<option value="sto_name">매장이름 검색</option>
+                	<option value="brand_name">브랜드 검색</option>
+                </select>
+                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
+                <input type="submit" id="submit" value="검색">
             </form>
         </div>
        
