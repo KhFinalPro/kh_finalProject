@@ -7,10 +7,11 @@
 	</settings>
 	
 	<typeAliases>
-	   
+	   <typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/bung-mapper.xml"/>
 	</mappers>
 </configuration>

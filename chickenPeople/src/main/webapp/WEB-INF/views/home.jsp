@@ -54,28 +54,35 @@
 
         <br clear="both"><br><br>
 
-        <h2 align="center" id="first_title"> 나와 가까운 치킨집</h2>
-
-        <section class="main_area">
-            
-            <div class="first_area">
-            	<%for(int i = 0; i<10; i++) { %>
-                <div class="place_area" style="margin-right: 10px;">
-                    <a href="#">
-                        <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
-                    </a>
-                    <div align="center">
-                        <h3>BBQ</h3>
-                        <h3>강남 역상동 지점</h3>
-                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
-                        40~50분 소요예정
-                    </div>
-                </div>
-                <%} %>
-                <!------------------------------------------------------------------------------------------------------>
-                
-            </div>
-        </section>
+		<!-- 비로그인 -->
+	    <c:if test="${empty sessionScope.loginUser }">
+	    
+	    </c:if>
+	    
+	    <!-- 로그인 -->
+	    <c:if test="${!empty sessionScope.loginUser }">
+	        <h2 align="center" id="first_title"> 나와 가까운 치킨집</h2>
+	
+	        <section class="main_area">
+	            
+	            <div class="first_area">
+	            	<%for(int i = 0; i<10; i++) { %>
+	                <div class="place_area" style="margin-right: 10px;">
+	                    <a href="#">
+	                        <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
+	                    </a>
+	                    <div align="center">
+	                        <h3>BBQ</h3>
+	                        <h3>강남 역상동 지점</h3>
+	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        40~50분 소요예정
+	                    </div>
+	                </div>
+	                <%} %>
+	                
+	            </div>
+	        </section>
+	    </c:if>
 
         <h2 align="center" class="title">베스트 치킨집 Top5</h2>
 
@@ -95,31 +102,42 @@
                     </div>
                 </div>
                 <%} %>
-                <!------------------------------------------------------------------------------------------------------>
                 
                 
             </div>
         </section>
         
-        <h2 align="center" class="title">내가 찜한 치킨집</h2>
-
-        <section class="main_area">
-            
-            <div class="tree_area">
-                <div class="place_area" style="margin-right: 10px;">
-                    <a href="#">
-                        <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
-                    </a>
-                    <div align="center">
-                        <h3>BBQ</h3>
-                        <h3>강남 역상동 지점</h3>
-                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
-                        40~50분 소요예정
-                    </div>
-                </div>
-                <!------------------------------------------------------------------------------------------------------>
-            </div>
-        </section>
+        <!-- 비로그인 -->
+	    <c:if test="${empty sessionScope.loginUser }">
+	    
+	    </c:if>
+        
+        <!-- 로그인 -->
+        <c:if test="${!empty sessionScope.loginUser }">
+        
+	        <h2 align="center" class="title">내가 찜한 치킨집</h2>
+	
+	        <section class="main_area">
+	            
+	            <div class="tree_area">
+	                <div class="place_area" style="margin-right: 10px;">
+	                    <a href="#">
+	                        <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
+	                    </a>
+	                    <div align="center">
+	                        <h3>BBQ</h3>
+	                        <h3>강남 역상동 지점</h3>
+	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        40~50분 소요예정
+	                    </div>
+	                </div>
+	
+	            </div>
+	        </section>
+	        
+	    </c:if>
+	    
+	    
         <%@ include file="../views/common/footer.jsp" %>
     </body>
     <script language="JavaScript">

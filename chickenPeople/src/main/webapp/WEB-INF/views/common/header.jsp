@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		 header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 1;}
+		 header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 6;}
             #header{margin: auto; width: 100%; height: 100px; background-color: #2ac1bc;}
             #header>div{ display: inline-block;}
 
@@ -84,7 +84,7 @@
                         <a href="#">딜리버리</a>
                     </li>
                     <li>
-                        <a href="#">치킨번개</a>
+                        <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
                         <a href="#">맛잘알</a>
