@@ -66,8 +66,8 @@
                             <ul>
                                 <li><a href="#">Join</a></li>
                                 <li><a href="#">Login </a></li>
-                                <li><a href="#">MyPage</a></li>
-                                <li><a href="#">Store</a></li>
+                                <li><a href="mypageMain.do">MyPage</a></li>
+                                <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="#">System</a></li>
                             </ul>
                         </li>
@@ -129,5 +129,4 @@
             })
         })
     </script>
->>>>>>> refs/remotes/origin/master
 </html>
