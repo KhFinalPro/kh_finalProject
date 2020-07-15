@@ -41,4 +41,8 @@
 	<select id="selectBungLike" parameterType="_int" resultType="_int">
 		SELECT BUNG_LIKE FROM BUNG WHERE BUNG_NUM = #{bung_num}
 	</select>
+	
+	<select id="selectBungHit" parameterType="_int" resultType="_int">
+		SELECT BUNG_HIT FROM BUNG WHERE BUNG_NUM = #{bung_num}
+	</select>
 </mapper>

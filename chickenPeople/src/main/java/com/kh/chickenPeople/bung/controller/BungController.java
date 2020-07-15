@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,14 +73,29 @@ public class BungController {
 		int result = bungService.updateBungLike(bung_num);
 		
 		int bungLike = bungService.selectBungLike(bung_num);
+		int bungHit = bungService.selectBungHit(bung_num);
 		
-		System.out.println("result : " + result + "bungLike : " + bungLike);
+//		ArrayList<Integer> list = new ArrayList<>();
+//		list.add(bungLike);
+//		list.add(bungHit);
+		
+		JSONArray jarr = new JSONArray();
+		
+		JSONObject jobj = new JSONObject();
+		jobj.put("bungLike", bungLike);
+		jobj.put("bungHit", bungHit);
+		
+		jarr.add(jobj);
+		
+		JSONObject sendJson = new JSONObject();
+		
+		sendJson.put("list", jarr);
 		
 		PrintWriter out = response.getWriter();
 		
 		if(result > 0 & bungLike != 0)
 		{
-			out.print(bungLike);
+			out.print(sendJson);			
 			out.flush();
 		}
 		else

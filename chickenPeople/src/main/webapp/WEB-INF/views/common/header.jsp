@@ -48,7 +48,7 @@
 	<header>
             <div id="header">
                 <div id="header_brandName">
-                    <h1 id="brandName"><a href="#">치킨의민족</a></h1>
+                    <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
@@ -101,7 +101,7 @@
         <div id="modal" >
             <!-- <input type="button" id="search_cancel" > -->
             <img id="search_cancel" src="resources/images/cancel.png" alt="">
-            <form action="">
+            <form action="" method="post">
                 <br clear="both">
                 <input type="text" id="search_input" name="search_input">
             </form>

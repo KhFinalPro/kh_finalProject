@@ -19,6 +19,8 @@ public interface BungService {
 
 	int selectBungLike(int bung_num);
 
+	int selectBungHit(int bung_num);
+
 	
 
 }

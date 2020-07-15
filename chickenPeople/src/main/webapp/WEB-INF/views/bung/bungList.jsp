@@ -20,9 +20,9 @@
 	display: inline-block;
 	margin: 0;
 	margin-bottom: 10px;
-	width: 49.6%;
+	width: 49.4%;
 	height: 230px;
-	border: 1px solid black;
+	border: 2px solid black;
 }
 
 #main_section>.bungae_area>.brand_logo {

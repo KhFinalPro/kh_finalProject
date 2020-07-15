@@ -39,4 +39,9 @@ public class BungDao {
 		return sqlSessionTemplate.selectOne("bungMapper.selectBungLike", bung_num);
 	}
 
+	public int selectBungHit(int bung_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("bungMapper.selectBungHit", bung_num);
+	}
+
 }

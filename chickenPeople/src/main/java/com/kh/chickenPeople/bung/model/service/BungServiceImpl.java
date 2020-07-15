@@ -44,6 +44,12 @@ public class BungServiceImpl implements BungService {
 		return bungDao.selectBungLike(bung_num);
 	}
 
+	@Override
+	public int selectBungHit(int bung_num) {
+		// TODO Auto-generated method stub
+		return bungDao.selectBungHit(bung_num);
+	}
+
 	
 	
 }
