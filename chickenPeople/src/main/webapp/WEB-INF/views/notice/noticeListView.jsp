@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +47,8 @@
 	  transition:800ms ease all;
 	}
 </style>
+
+
 <body style="background:#e9ecef;">
   <jsp:include page="../common/header.jsp"/>
   
@@ -57,6 +62,10 @@
 		    <br><br>
 	  <h1 align="center">공지사항</h1>
 	    <br><br><br>
+	    
+	  <%--   <c:if test="${!empty loginUser }"></c:if> --%>
+	   
+	    
 				  <tr>
 				  	<th>번호</th>
 				  	<th>분류</th>

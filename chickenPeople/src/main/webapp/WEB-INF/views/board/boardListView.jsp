@@ -89,7 +89,7 @@
 		 
 		  
 		 <div style="float:right">
-		  	<button onclick ="" style="">글쓰기</button>
+		  	<button onclick ="">글쓰기</button>
 		  	<button onclick ="">목록</button>
 		  
 		  </div>
