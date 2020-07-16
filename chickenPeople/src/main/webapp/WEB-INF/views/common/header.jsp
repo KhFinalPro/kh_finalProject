@@ -46,53 +46,10 @@
 </head>
 <body>
 	<header>
-<<<<<<< HEAD
-	    <div id="header">
-	        <div id="header_brandName">
-	            <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
-	        </div>
-	        <div id="header_address">
-	            <select name="address" id="address">
-	                <option value="서울특별시 구로구 가마산로 231 보광아파트 6동 404호">서울특별시 구로구 가마산로 231 보광아파트 6동 404호</option>
-	                <option value="서울특별시 구로구 가마산로 231 보광아파트 6동 404호">서울특별시 구로구 가마산로 231 보광아파트 5동 401호</option>
-	            </select>
-	        </div>
-	        <div id="header_userArea">
-	            <ul>
-	                <li><a href="#">Join</a></li>
-	                <li><a href="#">Login </a></li>
-	                <li><a href="#">MyPage</a></li>
-					<li><a href="storeOrder.do">store</a><li>
-	                <li><a href="#">System</a>
-	            </ul>
-	        </div>
-	        <br clear="both">
-	    </div>
-	
-	    <div id="header_nav">
-	        <ul>
-	            <li>
-	                <a href="#">딜리버리</a>
-	            </li>
-	            <li>
-	                <a href="#">치킨번개</a>
-	            </li>
-	            <li>
-	                <a href="board.do">맛잘알</a>
-	            </li>
-	            <li>
-	                <a href="nlist.do">공지사항</a>
-	            </li>
-	        </ul>
-	
-	    </div>
-	    <br clear="both">
-	</header>
-</body>
-=======
+
             <div id="header">
                 <div id="header_brandName">
-                    <h1 id="brandName"><a href="#">치킨의민족</a></h1>
+                    <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
@@ -109,9 +66,9 @@
                             <img src="resources/images/user.png" alt="">
                             <ul>
                                 <li><a href="#">Join</a></li>
-                                <li><a href="#">Login </a></li>
+                                <li><a href="home.do">Login </a></li>
                                 <li><a href="#">MyPage</a></li>
-                                <li><a href="#">Store</a></li>
+                                <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="#">System</a></li>
                             </ul>
                         </li>
@@ -131,10 +88,10 @@
                         <a href="#">치킨번개</a>
                     </li>
                     <li>
-                        <a href="#">맛잘알</a>
+                        <a href="board.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="#">공지사항</a>
+                        <a href="nlist.do">공지사항</a>
                     </li>
                 </ul>
 
@@ -173,5 +130,5 @@
             })
         })
     </script>
->>>>>>> refs/remotes/origin/master
+
 </html>

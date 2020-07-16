@@ -39,6 +39,9 @@
 </head>
 <body>
 
+
+
+
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
