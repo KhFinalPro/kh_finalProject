@@ -38,6 +38,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
@@ -52,7 +53,10 @@
             </div>
         </div>
 
+
         <br clear="both"><br><br>
+
+</body>
 
         <h2 align="center" id="first_title"> 나와 가까운 치킨집</h2>
 
@@ -61,7 +65,7 @@
             <div class="first_area">
             	<%for(int i = 0; i<10; i++) { %>
                 <div class="place_area" style="margin-right: 10px;">
-                    <a href="#">
+                    <a href="orderMain.do">
                         <img class="logo" src="resources/images/bbqLogo.png" alt="logo">
                     </a>
                     <div align="center">
