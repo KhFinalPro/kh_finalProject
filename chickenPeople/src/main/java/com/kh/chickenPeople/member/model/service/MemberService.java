@@ -1,5 +1,7 @@
 package com.kh.chickenPeople.member.model.service;
 
-public interface MemberService {
+import com.kh.chickenPeople.member.model.vo.Member;
 
+public interface MemberService {
+	Member loginMember(Member m);
 }
