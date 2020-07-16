@@ -44,8 +44,13 @@
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+<<<<<<< HEAD
 <body>
 	<header>
+=======
+	<body>
+		<header>
+>>>>>>> refs/remotes/origin/master
             <div id="header">
                 <div id="header_brandName">
                     <h1 id="brandName"><a href="#">치킨의민족</a></h1>
