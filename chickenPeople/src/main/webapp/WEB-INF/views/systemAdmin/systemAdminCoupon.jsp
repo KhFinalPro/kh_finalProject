@@ -6,16 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 _ 쿠폰</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </head>
 <body>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
 <div class="wrapper">
 	<div class="main_container">
-		<div class="item"> <!-- 지정된 영역으로 돌아와주는  -->
-		
+		<div class="item"> 
+			<!-- 상원오빠 화이팅! -->
 		</div>
 	</div>
 </div>
 </body>
+<script>
+$(function(){
+	$("#coupon").children().addClass('active');
+})
+</script>
 </html>

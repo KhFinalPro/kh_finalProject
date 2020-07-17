@@ -35,7 +35,7 @@ body{ background:#e1ecf2; overflow: hidden; }
 .wrapper .sidebar ul li a:hover:before,
 .wrapper .sidebar ul li a.active:before{ display: block; }
 .wrapper .main_container{ width:calc(100% - 120px); margin-top:70px; margin-left: 130px; padding:15px; transition: all 0.3s ease; }
-.wrapper .main_container .item{ background:#fff; margin-bottom: 10px; padding:15px; font-size: 14px; height: 510px; border-bottom-right-radius: 20px;  }
+.wrapper .main_container .item{ background:#fff; margin-bottom: 10px; padding:15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;  }
 .wrapper.collapse .sidebar{ width:70px; }
 .wrapper.collapse .sidebar ul li a{ text-align:center; }
 /* .wrapper.collapse .sidebar ul li a span.icon{
@@ -73,35 +73,41 @@ body{ background:#e1ecf2; overflow: hidden; }
         </div>
             <div class="sidebar">
                 <ul>
-                    <li><a href="#">
+                    <li id="main"><a href="systemAdmin.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
                         <span class="title">관리자 메인</span>
                     </a></li>
-                    <li><a href-"#" class="active">
+                    <li id="brand" ><a href="systemAdminBrand.do" >
                         <span class="icon">
                             <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>
                         <span class="title">브랜드 관리</span>
                     </a></li>
-                    <li><a href="#">
+                    <li id="store"><a href="systemAdminStore.do">
                         <span class="icon">
                             <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
                         </span>
-                        <span class="title">입점 관리</span>
+                        <span class="title">점포 관리</span>
                     </a></li>
-                    <li><a href="#">
+                    <li id="menu" ><a href="systemAdminMenu.do">
                         <span class="icon">
                             <i class="far fa-edit" aria-hidden="true"></i>
                         </span>
-                        <span class="title">메뉴관리</span>
+                        <span class="title">메뉴 관리</span>
                     </a></li>
-                    <li><a href="#">
+                    <li id="coupon"><a href="systemAdminCoupon.do">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
                         <span class="title">쿠폰발행</span>
+                    </a></li>
+                    <li id="report"><a href="systemAdminReport.do">
+                        <span class="icon">
+                            <i class="fas fa-store" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">신고 관리</span>
                     </a></li>
                 </ul>
             </div>

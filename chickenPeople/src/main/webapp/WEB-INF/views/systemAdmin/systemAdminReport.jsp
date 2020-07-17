@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 _ 신고 페이지</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <style>
             #subnav{text-align:center;}
             div.vertical-line{ width: 5px; /* Line width */ background-color:#1abc9c; /* Line color */ height: 10px; /* Override in-line if you want specific height. */ display:inline-block; padding-top:10px; }
@@ -29,123 +31,136 @@
 </style>
 </head>
 <body>
-        <div id="subnav">
-            <h3 style="display:inline-block;">게시글 신고</h3>&nbsp; 
-            <div  class="vertical-line"></div>&nbsp; 
-            <h3 class="replyReport"style="display:inline-block; color:gray" >댓글 신고</h3> 
-        </div>
-
-        <table id="boardContent">
-            <thead>
-                <th>게시글 번호</th>
-                <th>게시글 내용</th>
-                <th>신고 내용</th>
-                <th>신고일자</th>
-                <th>처리상태</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr> 
-               <!--  <tr>
-                    <td>1</td>
-                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td><button id="deleteContent">삭제</button></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>은밀한 동용상 속닥속닥 얼른들어왕 금방 펑한당</td>
-                    <td>음란물 게시</td>
-                    <td>2020-07-03</td>
-                    <td><button id="deleteContent">삭제</button></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>아까부터 물흐리던 색기 누구야 개짜증나게하네</td>
-                    <td>분란 조장</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td><button id="deleteContent">삭제</button></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
-                    <td>광고글 게시</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>은밀한 동용상 속닥속닥 얼른들어왕 금방 펑한당</td>
-                    <td>음란물 게시</td>
-                    <td>2020-07-03</td>
-                    <td><button id="deleteContent">삭제</button></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>아까부터 물흐리던 색기 누구야 개짜증나게하네</td>
-                    <td>분란 조장</td>
-                    <td>2020-07-03</td>
-                    <td>Y</td>
-                </tr>
- -->            </tbody>
-
-        </table>
-        <div class = "p-parents" style="margin:0 auto">
-            <div class="pppp">
-                    <a style = "color:#9c9c9c; "  disabled>Previous</a>
-                    <ol>
-                      <li class = "page-list1"><button disabled class = "page-cur" >1</button></li>
-                      <li class = "page-list2" ><button class = "page-nocur">2</button></li>
-                    </ol>
-                    <a style = "color:#9c9c9c; "  disabled>Next</a>
-           </div>
-        </div>
+<jsp:include page="../common/systemAdminHeader.jsp"/>
+	<div class="wrapper">
+		<div class="main_container">
+			<div class="item">
+			
+	        <div id="subnav">
+	            <h3 style="display:inline-block;">게시글 신고</h3>&nbsp; 
+	            <div  class="vertical-line"></div>&nbsp; 
+	            <h3 class="replyReport"style="display:inline-block; color:gray" >댓글 신고</h3> 
+	        </div>
+	
+	        <table id="boardContent">
+	            <thead>
+	                <th>게시글 번호</th>
+	                <th>게시글 내용</th>
+	                <th>신고 내용</th>
+	                <th>신고일자</th>
+	                <th>처리상태</th>
+	            </thead>
+	            <tbody>
+	                <tr>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr> 
+	                <tr>
+	                    <td>1</td>
+	                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>2</td>
+	                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>3</td>
+	                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>4</td>
+	                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>5</td>
+	                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td><button id="deleteContent">삭제</button></td>
+	                </tr>
+	                <tr>
+	                    <td>6</td>
+	                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>7</td>
+	                    <td>은밀한 동용상 속닥속닥 얼른들어왕 금방 펑한당</td>
+	                    <td>음란물 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td><button id="deleteContent">삭제</button></td>
+	                </tr>
+	                <tr>
+	                    <td>8</td>
+	                    <td>아까부터 물흐리던 색기 누구야 개짜증나게하네</td>
+	                    <td>분란 조장</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>9</td>
+	                    <td>$5분내 바로 환급$토토리$ $안정보장수익보장$</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td><button id="deleteContent">삭제</button></td>
+	                </tr>
+	                <tr>
+	                    <td>10</td>
+	                    <td>Nㅔ이버\Dㅏ음웹툰 실시간 웹툰 bbam토kki</td>
+	                    <td>광고글 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	                <tr>
+	                    <td>11</td>
+	                    <td>은밀한 동용상 속닥속닥 얼른들어왕 금방 펑한당</td>
+	                    <td>음란물 게시</td>
+	                    <td>2020-07-03</td>
+	                    <td><button id="deleteContent">삭제</button></td>
+	                </tr>
+	                <tr>
+	                    <td>12</td>
+	                    <td>아까부터 물흐리던 색기 누구야 개짜증나게하네</td>
+	                    <td>분란 조장</td>
+	                    <td>2020-07-03</td>
+	                    <td>Y</td>
+	                </tr>
+	            </tbody>
+	
+	        </table>
+	        <div class = "p-parents" style="margin:0 auto">
+	            <div class="pppp">
+	                    <a style = "color:#9c9c9c; "  disabled>Previous</a>
+	                    <ol>
+	                      <li class = "page-list1"><button disabled class = "page-cur" >1</button></li>
+	                      <li class = "page-list2" ><button class = "page-nocur">2</button></li>
+	                    </ol>
+	                    <a style = "color:#9c9c9c; "  disabled>Next</a>
+	           </div>
+	        </div>
+			</div>
+		</div>
+	</div>
     </body>
+    <script>
+    $(function(){
+		$("#report").children().addClass('active');
+	})
+    </script>
 </html>

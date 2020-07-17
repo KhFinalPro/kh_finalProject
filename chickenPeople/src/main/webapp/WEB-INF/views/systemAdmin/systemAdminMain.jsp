@@ -6,67 +6,80 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 _ 메인</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <style>
- 			#searchArea{background-color:white; width:100%; height:300px; }
-            select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
-            select { width: 200px; background-color:white; padding:7px 25px;  font-family: inherit; background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
-            select::-ms-expand { /* for IE 11 */ display: none; }
-            .brand {padding:5px 25px;}
-            .storeName {padding:7px 25px; width:400px;}
-            .storeNameSearch {padding:5px 25px; width:100px;}
-            table{width:100%; border-top:1px solid #444444; border-collapse: collapse;}
-            th{border-bottom:2px solid #444444; padding:10px;}
-            td{border-bottom:1px solid #444444; padding:10px;}
-            .item{height:100%}
-            .myAdminPage{height:100%}
+	.leftArea{background-color:yellow; width:30%; height:100%; float:left}
+	.rightArea{background-color:red; width:100%; height:100%; }
+	.top{background-color:orange; height:50%; }
+	#bar_chart_div{width:80%; margin:0 auto;  margin-top:50px; margin-left:100px; z-index:1;}
+	
 </style>
 </head>
-<body>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
-	<div class="wrapper">
-		<div class="main_container">
-			<div class="item">
-				<div class="myAdminPage">
-				 <div id="searchArea">
-			            <h1 style="text-align:center; padding-top:30px;">점포관리</h1>
-			            <div style="text-align: center;">
-			                <select name="brandName">
-			                    <option value="" clase="brand" selected>-------선택-------</option>
-			                    <option value="" clase="brand">굽네</option>
-			                    <option value="" clase="brand">네네</option>
-			                    <option value="" clase="brand">BBQ</option>
-			                    <option value="" clase="brand">깐부</option>
-			
-			                </select>
-			                <input type="text" class="storeName" placeholder="매장명을 입력해주세요 . . ">
-			                <button type="submit" class="storeNameSearch">검색</button>
-			            </div>
-			        </div>
-			
-			        <div>
-			            <table>
-			                <thead>
-			                    <th>번호</th>
-			                    <th>브랜드명</th>
-			                    <th>점포명</th>
-			                    <th>대표명</th>
-			                    <th>연락처</th>
-			                    <th>입점날짜</th>
-			                    <th>입점 유무</th>
-			                    <th>변경</th>
-			                </thead>
-			                <tbody>
-			                	
-			                    
-			                </tbody>
-			
-			            </table>
-			
-			        </div>
-			     </div>
+<body>
+<div class="wrapper">
+	<div class="main_container">
+		<div class="item"> 
+			<div class="leftArea">
 			</div>
+
+			<div class="rightArea">
+				<div class="top">
+					<div id="bar_chart_div" class="top"></div>
+				</div>
+				
+				<div class="bot">
+				</div>
+			</div>
+			
 		</div>
 	</div>
+</div>
 </body>
+<script>
+	google.charts.load('current', {'packages':['bar','corechart']});
+ 
+    function schedulerSuccessAndFailChart() {
+        var data = google.visualization.arrayToDataTable([
+        		["",
+        	    
+        			"굽네","굽네"
+        		 	
+                ],
+               ["이번 달 매출량",
+						24,24
+                ] //앞에있는 숫자가 마우스 오버시 나타나는 데이터, 뒤에 있는 숫자가 화면 로드시 바로 보여지는 데이터 
+        ]);
+ 
+       var barChartOption = {
+               bars: 'vertical',
+               height :700,
+               width :'100%',
+               legend: { position: "top" },
+               isStacked: false,
+               tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+               animation: { //차트가 뿌려질때 실행될 애니메이션 효과
+                 startup: true,
+                 duration: 1000,
+                 easing: 'linear' },
+               annotations: {
+                   textStyle: {
+                     fontSize: 15,
+                     bold: true,
+                     italic: true,
+                     color: '#871b47',
+                     auraColor: '#d799ae',
+                     opacity: 0.8
+                   }
+              }
+        };
+       var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_div'));
+ 	  chart.draw(data, barChartOption);
+    }
+    google.charts.setOnLoadCallback(schedulerSuccessAndFailChart); 
+</script>
+
 </html>
