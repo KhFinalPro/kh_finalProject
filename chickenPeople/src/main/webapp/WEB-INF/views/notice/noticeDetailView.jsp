@@ -84,7 +84,7 @@
 				 </tr>
 				  <tr align="center">
 				 	<td height="">내용</td>
-				 	<td>${notice.nCont }<br><br><br><br><br><br><br><br><br><br><br></td>
+				 	<td><textarea style="width:100%; height:500px;">${notice.nCont }</textarea></td>
 				 </tr>
 				 
 				  <!--  insert 완료후 작성 -->
