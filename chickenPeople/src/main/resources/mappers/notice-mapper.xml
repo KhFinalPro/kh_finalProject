@@ -2,22 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="noticeMapper">
   	<resultMap id="noticeResultSet" type="Notice">
-  		<id property="userId" column="USER_ID"/>
+  		<id property="userId" column ="USER_ID"/>
+  		<result property="nNum" column="N_NUM"/>
   		<result property="nTitle" column ="N_TITLE"/>
   		<result property="nCont" column ="N_CONT"/>
-  		<result property="nWriter" column ="N_WRITER"/>
   		<result property="nCount" column ="N_COUNT"/>
   		<result property="nDate" column ="N_DATE"/>
   		<result property="nDelDate" column ="N_DEL_DATE"/>
   		<result property="nUpDate" column ="N_UP_DATE"/>
   		<result property="nStatus" column ="N_STATUS"/>
   	</resultMap>
-  	
+ 
   	<select id ="selectList" resultMap="noticeResultSet">
   		SELECT *
   		FROM NOTICE
-  		ORDER BY N_UP_DATE DESC
+  		ORDER BY N_DATE DESC 
+  		<!-- 최신 순 내림차순 -->
   	</select>
   	
+  	<select id="selectOne" parameterType="_int" resultMap="noticeResultSet">
+  		SELECT *
+  		FROM NOTICE
+  		WHERE N_NUM=#{nNum}
+  	</select>
   	
 </mapper>

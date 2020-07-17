@@ -4,16 +4,18 @@ import java.sql.Date;
 
 public class Board {
 	
-	public int bNum; 
-	public String bWriter; 
-	public String bCate; 
-	public String bTitle; 
-	public String bCont; 
-	public int bHit; 
-	public Date bDate; 
-	public Date bDelDate; 
-	public Date bUpDate; 
-	public String bStatus;
+	public int bNum;      	//게시판번호
+	public String bWriter; 	//작성자
+	public String bCate; 	//게시판 카테고리
+	public String bTitle; 	//게시판 제목
+	public String bCont; 	//게시판 내용
+	public int bHit; 		//조회수            //추천수  추가하기
+	public Date bDate; 		//게시날짜
+	public Date bDelDate; 	//삭제날짜
+	public Date bUpDate; 	//수정날짜
+	public String bStatus;	//삭제여부
+	
+	
 	
 	public Board() {
 		super();
