@@ -16,5 +16,6 @@
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/bung-mapper.xml"/>
 		<mapper resource="/mappers/store-mapper.xml"/>
+		
 	</mappers>
 </configuration>

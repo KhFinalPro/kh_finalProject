@@ -44,6 +44,7 @@
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+
 	<body>
 		<header>
             <div id="header">
@@ -68,7 +69,7 @@
                                 <li><a href="#">Login </a></li>
                                 <li><a href="mypageMain.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
-                                <li><a href="#">System</a></li>
+                                <li><a href="systemAdmin.do">System</a></li>
                             </ul>
                         </li>
                     </ul>
