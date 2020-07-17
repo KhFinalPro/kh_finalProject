@@ -14,7 +14,8 @@
 	.leftArea{background-color:yellow; width:30%; height:100%; float:left}
 	.rightArea{background-color:red; width:100%; height:100%; }
 	.top{background-color:orange; height:50%; }
-	#bar_chart_div{width:80%; margin:0 auto;  margin-top:50px; margin-left:100px; z-index:1;}
+	.bot{background-color:green;}
+	#bar_chart_div{width:80%; margin:0 auto;}
 	
 </style>
 </head>
