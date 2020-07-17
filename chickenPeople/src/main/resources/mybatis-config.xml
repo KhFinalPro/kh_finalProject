@@ -7,12 +7,21 @@
 	</settings>
 	
 	<typeAliases>
+
 	   <typeAlias type="com.kh.chickenPeople.notice.model.vo.Notice" alias="Notice"/>
 	   
+
+	   <typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
+	   <typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
+	   <typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/notice-mapper.xml"/>
+		<mapper resource="/mappers/bung-mapper.xml"/>
+		<mapper resource="/mappers/store-mapper.xml"/>
+		
+
 	</mappers>
 </configuration>
