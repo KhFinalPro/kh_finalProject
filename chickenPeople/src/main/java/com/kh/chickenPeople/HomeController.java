@@ -32,12 +32,13 @@ public class HomeController {
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session){
-		
+
 		Member m = new Member("wj", "우정");
 
 		session.setAttribute("loginUser", m);
 
 		System.out.println("login :"+m);
+
 		return "home";
 	}
 }

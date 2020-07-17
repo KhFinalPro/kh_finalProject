@@ -44,8 +44,9 @@
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<body>
-	<header>
+
+	<body>
+		<header>
 
             <div id="header">
                 <div id="header_brandName">
