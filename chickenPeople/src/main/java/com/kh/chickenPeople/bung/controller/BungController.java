@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.service.BungService;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 
@@ -104,6 +105,17 @@ public class BungController {
 		}
 		
 		out.close();
+	}
+	
+	@RequestMapping("bungCreatePageMove.do")
+	public ModelAndView bungCreatePageMove(ModelAndView mv) {
+		
+		//브랜드 사진과 이름 가져오기
+		ArrayList<Brand> brandList = bungService.brandListSelect();
+		
+		
+		
+		return mv;
 	}
 	
 }

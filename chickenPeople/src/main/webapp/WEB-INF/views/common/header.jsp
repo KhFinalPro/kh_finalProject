@@ -98,7 +98,7 @@
             <br clear="both">
         </header>
 
-		<c:if test="${msg != null }">
+		<c:if test="${!empty msg }">
 	        <div id="modal" style="display: block;">
 	            <!-- <input type="button" id="search_cancel" > -->
 	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
@@ -113,8 +113,8 @@
 	            </form>
 	        </div>
         </c:if>
-        <c:if test="${msg == null }">
-	        <div id="modal" >
+        <c:if test="${empty msg}">
+	        <div id="modal" style="display: none">
 	            <!-- <input type="button" id="search_cancel" > -->
 	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
 	            <form action="homeSearch.do" method="post">
@@ -140,14 +140,15 @@
                 // $("#modal").css('display','none');
                 $("#modal").toggle(
 
-                    function(){$modal.addClass('hide')}, //클릭하면 show클래스 적용되서 보이기
+                    function(){$modal.addClass('show')}, //클릭하면 show클래스 적용되서 보이기
 
-                    function(){$modal.addClass('show')} //한 번 더 클릭하면 hide클래스가 숨기기
+                    function(){$modal.addClass('hide')} //한 번 더 클릭하면 hide클래스가 숨기기
 
                 );
             })
             $("#search_cancel").on("click",function(){
                 $modal.css('display','none');
+                location.href="home.do";
             })
         })
     </script>

@@ -25,6 +25,8 @@
 	border: 2px solid black;
 }
 
+#main_section>.bungae_area:hover{border:2px solid #2ac1bc;}
+
 #main_section>.bungae_area>.brand_logo {
 	text-align:center;
 	width: 30%;
@@ -72,14 +74,21 @@
 #main_section>.bungae_area>.second_line {
 	float: left;
 }
+#create_bung_area{margin: auto; width: 90%; text-align: right;}
+#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black;}
 </style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<br clear="both">
-
+	
+	
+	
 	<div id="main_section">
-
+		<div id="create_bung_area">
+			<input type="button" id="create_bung" value="번개 계설하기"/>	
+		</div>
+		<br>
 		<c:forEach var="b" items="${list }">
 			<div class="bungae_area">
 				<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
@@ -109,6 +118,10 @@
 		$(".bungae_area").on("click", function() {
 			$bung_num = $(this).children("#bung_num").val();
 			location.href = "bungDetail.do?bung_num="+$bung_num;
+		})
+		
+		$("#create_bung_area").on("click",function(){
+			location.href="bungCreatePageMove.do";
 		})
 	})
 </script>
