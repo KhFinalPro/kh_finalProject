@@ -22,4 +22,11 @@ public class NoticeDao {
 		return list;
 	}
 
+	public Notice selectOne(int nNum) {
+		
+		
+		return sqlSessionTemplate.selectOne("noticeMapper.selectOne",nNum);
+	}
+
+
 }

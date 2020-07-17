@@ -20,5 +20,10 @@
   		<!-- 최신 순 내림차순 -->
   	</select>
   	
+  	<select id="selectOne" parameterType="_int" resultMap="noticeResultSet">
+  		SELECT *
+  		FROM NOTICE
+  		WHERE N_NUM=#{nNum}
+  	</select>
   	
 </mapper>

@@ -9,7 +9,7 @@ import com.kh.chickenPeople.notice.model.dao.NoticeDao;
 import com.kh.chickenPeople.notice.model.vo.Notice;
 
 @Service("nService")
-public class NoticeSeriviceImpl implements NoticeService {
+public class NoticeServiceImpl implements NoticeService {
 
 	
 	@Autowired
@@ -19,6 +19,14 @@ public class NoticeSeriviceImpl implements NoticeService {
 	public ArrayList<Notice> selectList() {
 
 		return nDao.selectList();
+	}
+
+
+
+	@Override
+	public Notice selectOne(int nNum) {
+		// TODO Auto-generated method stub
+		return  nDao.selectOne(nNum);
 	}
 
 }

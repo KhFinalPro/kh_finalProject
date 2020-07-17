@@ -6,15 +6,15 @@ public class Notice {
 
 	
 	
-	public int nNum; 
-	public String nTitle; 
-	public String nCont; 
-	public String userId; 
-	public int nCount; 
-	public Date nDate; 
-	public Date nDelDate; 
-	public Date nUpDate; 
-	public String nStatus;
+	public int nNum;      //공지사항번호
+	public String nTitle; //제목
+	public String nCont;  //게시판내용
+	public String userId; //작성자
+	public int nCount; 	  //조회수
+	public Date nDate; 	  //게시날짜
+	public Date nDelDate; //삭제날짜
+	public Date nUpDate;  //수정날짜
+	public String nStatus;//삭제여부
 	
 	public Notice() {
 		super();

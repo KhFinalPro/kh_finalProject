@@ -75,10 +75,10 @@
 						<td>${n.nNum} </td>
 					  	<td width="45%">
 					  	<c:if test="${!empty loginUser }">
-					  			<c:url var="ndetail" value="ndetil.do">
-					  				<c:param name="nId" value="${n.userId }"/>
+					  			<c:url var="ndetail" value="ndetail.do">
+					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
-					  			<a href="${ndetail}">${n.nTitle}</a>
+					  			<a href="${ndetail }">${n.nTitle}</a>
 					  		</c:if>
 					  		<c:if test="${empty loginUser }">
 					  			${n.nTitle }
@@ -96,7 +96,7 @@
 		 
 	 <div style="float:right">
 	 <c:if test="${!empty loginUser }">
-		  	<button onclick ="#">글쓰기</button>
+		  	<button onclick ="nInsertView.do">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>
 	<button>home</button>

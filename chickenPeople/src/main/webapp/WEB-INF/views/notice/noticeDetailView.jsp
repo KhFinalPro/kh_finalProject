@@ -58,41 +58,41 @@
 	  <div style="width:80%; height: 1000px; margin:0 auto; ">
 
 		  <br><br><br><br><br>
-		  <table align="center"  cellspacing="0" width="100%"> 
+		  <table align="center"  cellspacing="" width="80%" border="1"> 
 		    <br><br>
-	  <h1 align="center">공지사항</h1>
+	  <h1 align="center">${notice.nNum} 공지사항 상세보기</h1>
 	    <br><br><br>
-				 <tr>
+				 <tr align="center">
 				 	<td>번호</td>
-				 	<td>${notice.userId }</td>
+				 	<td>${notice.nNum }</td>
 				 </tr>
-				  <tr>
+				  <tr align="center">
 				 	<td>제목</td>
 				 	<td>${notice.nTitle }</td>
 				 </tr>
-				  <tr>
+				  <tr align="center">
 				 	<td>작성자</td>
-				 	<td>${notice.nWriter }</td>
+				 	<td>${notice.userId }</td>
 				 </tr>
-				  <tr>
+				  <tr align="center">
 				 	<td>날짜</td>
 				 	<td>${notice.nDate }</td>
 				 </tr>
-				  <tr>
+				  <tr align="center">
 				 	<td>조회수</td>
 				 	<td>${notice.nCount }</td>
 				 </tr>
-				  <tr>
-				 	<td>내용</td>
-				 	<td>${notice.nCont }</td>
+				  <tr align="center">
+				 	<td height="">내용</td>
+				 	<td>${notice.nCont }<br><br><br><br><br><br><br><br><br><br><br></td>
 				 </tr>
 				 
 				  <!--  insert 완료후 작성 -->
 		 </table>
 			 
 	 <div style="float:right">
-	 <c:if test="${loginUser.id eq notice.nWriter }">
-		  	<button onclick ="#">글쓰기</button>
+	 <c:if test="${loginUser.userId eq notice.userId }">
+		  	<button onclick ="#">수정하기</button>
 	 </c:if>
 		  	<button onclick ="nlist" value="nlist.do">목록</button>
 	</div>
