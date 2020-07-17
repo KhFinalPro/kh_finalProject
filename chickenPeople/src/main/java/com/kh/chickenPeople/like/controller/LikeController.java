@@ -24,14 +24,21 @@ public class LikeController {
 		public ModelAndView storeLikeList(ModelAndView mv) {
 			
 			ArrayList<Like> list = likeService.selectList();
+			//ArrayList<Like> list2 = likeService.selectList();
+			
 			System.out.println("찜한 매장 리스트 :"+list);
+			//System.out.println("찜한 글 리스트 :"+list2);
 			
 			if(!list.isEmpty()) {
 				mv.addObject("list",list);
+				//mv.addObject("list2",list2);
 				mv.setViewName("mypage/mypageLikes");
+				
 			}else {
 				throw new LikeException("메세지 불러오기 실패!");
 			}
+			
+			
 			
 			return mv;
 			

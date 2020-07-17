@@ -25,4 +25,6 @@
 		LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
 	</select>
 	
+	
+	
 </mapper>

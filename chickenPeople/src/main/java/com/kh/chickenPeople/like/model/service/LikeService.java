@@ -7,5 +7,5 @@ import com.kh.chickenPeople.like.model.vo.Like;
 public interface LikeService {
 
 	ArrayList<Like> selectList();
-
+	
 }

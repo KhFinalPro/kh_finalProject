@@ -144,4 +144,9 @@
 	    </div>
 	    </div>
 </body>
+<script>
+$(function(){
+	$(".storeBar").children().addClass('active');
+})
+</script>
 </html>

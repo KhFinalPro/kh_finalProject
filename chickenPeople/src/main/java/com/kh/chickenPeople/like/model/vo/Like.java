@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.like.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Like implements Serializable{
 
@@ -8,8 +9,8 @@ public class Like implements Serializable{
 	private static final long serialVersionUID = 3174541755977138276L;
 	
 	
-	/****************************************/
-	private String userId;  	//회원아이디
+	//찜한매장
+	private String userId;  	//회원아이디 or 
 	private int storeNo;  		//매장번호
 	private String brandPic;	//매장사진
 	private String stoBrand; 	//브랜드명
@@ -19,8 +20,18 @@ public class Like implements Serializable{
 	private double dailyTReview;   //1일평점합계
 	private String brandCode; 	//브랜드코드
 	
+	//찜한글
+	private int bNum;			//맛잘알 번호
+	private String bWriter;		//맛잘알 작성자
+	private String bTitle;		//맛잘알 타이틀
+	private String bCont;		//맛잘알 내용
+	private Date bDate;			//작성날짜
+	
 	
 	/****************************************/
+	
+	
+	
 	
 	public Like(String userId, int storeNo, String brandPic, String stoBrand, String stoName, String ordLimit,
 			int revRate, double dailyTReview, String brandCode) {
@@ -35,6 +46,20 @@ public class Like implements Serializable{
 		this.dailyTReview = dailyTReview;
 		this.brandCode = brandCode;
 	}
+
+	
+	
+
+	public Like(int bNum, String bWriter, String bTitle, String bCont, Date bDate) {
+		super();
+		this.bNum = bNum;
+		this.bWriter = bWriter;
+		this.bTitle = bTitle;
+		this.bCont = bCont;
+		this.bDate = bDate;
+	}
+
+
 
 
 	public Like() {
@@ -135,14 +160,91 @@ public class Like implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
+
+
+	public int getbNum() {
+		return bNum;
+	}
+
+
+
+
+	public void setbNum(int bNum) {
+		this.bNum = bNum;
+	}
+
+
+
+
+	public String getbWriter() {
+		return bWriter;
+	}
+
+
+
+
+	public void setbWriter(String bWriter) {
+		this.bWriter = bWriter;
+	}
+
+
+
+
+	public String getbTitle() {
+		return bTitle;
+	}
+
+
+
+
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
+	}
+
+
+
+
+	public String getbCont() {
+		return bCont;
+	}
+
+
+
+
+	public void setbCont(String bCont) {
+		this.bCont = bCont;
+	}
+
+
+
+
+	public Date getbDate() {
+		return bDate;
+	}
+
+
+
+
+	public void setbDate(Date bDate) {
+		this.bDate = bDate;
+	}
+
+
 
 
 	@Override
 	public String toString() {
 		return "Like [userId=" + userId + ", storeNo=" + storeNo + ", brandPic=" + brandPic + ", stoBrand=" + stoBrand
 				+ ", stoName=" + stoName + ", ordLimit=" + ordLimit + ", revRate=" + revRate + ", dailyTReview="
-				+ dailyTReview + ", brandCode=" + brandCode + "]";
+				+ dailyTReview + ", brandCode=" + brandCode + ", bNum=" + bNum + ", bWriter=" + bWriter + ", bTitle="
+				+ bTitle + ", bCont=" + bCont + ", bDate=" + bDate + "]";
 	}
+
+
+
+
 	
 	
 	

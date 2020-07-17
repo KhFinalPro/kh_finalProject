@@ -75,15 +75,15 @@
 
 
 </style>
-	
+   
 </head>
 <body>
 
-	<jsp:include page="../common/mypageHeader.jsp"/>
-	<br>
-	<br>
-	<br>
-	 <div class="main_container">
+   <jsp:include page="../common/mypageHeader.jsp"/>
+   <br>
+   <br>
+   <br>
+    <div class="main_container">
                 <div class="item">
                     <div class="wrapper1">
                         <div class="clickButtons">
@@ -164,28 +164,38 @@
             </div>
             
             <script>
-		      $(function(){
-		    	  $("#selectType").change(function(){
-		        	var v = this.value;
-		        	if(v=="lContent"){
-		        		 $("#likeContent").show();
-		        		 $("#likeStore").hide();
-		        	}else if(v=="lStore"){
-		        		 $("#likeContent").hide();
-		        		 $("#likeStore").show();
-		        	}
-		    		  
-		    	  });
-		      });
-		    		  
-		    
-		    </script>
-	
-	
-	
-	
-	<jsp:include page="../common/footer.jsp"/>
-	
+            $(function(){
+               $("#selectType").change(function(){
+                 var v = this.value;
+                 if(v=="lContent"){
+                	 $.ajax({
+                		 url:"",
+                		 dataType:"json",
+                		 success:function(data){
+                			 $("#likeContent").html(""); //div 초기화
+                			 $("#likeContent").appendTo("#likeContent");
+                			 
+                		 }
+                		 
+                	 })
+                     $("#likeContent").show();
+                     $("#likeStore").hide();
+                 }else if(v=="lStore"){
+                     $("#likeContent").hide();
+                     $("#likeStore").show();
+                 }
+                  
+               });
+            });
+                  
+          
+          </script>
+   
+   
+   
+   
+   <jsp:include page="../common/footer.jsp"/>
+   
 </body>
 </html>
 </body>

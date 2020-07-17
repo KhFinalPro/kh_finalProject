@@ -16,9 +16,11 @@ public class LikeDao {
 
 	public ArrayList<Like> selectList() {
 		
-		ArrayList list = new ArrayList();
+		ArrayList list = new ArrayList<Like>();
+		//ArrayList list2 = new ArrayList();
 		
 		list = (ArrayList)sqlSessionTemplate.selectList("likeMapper.selectList");
+		//list2 = (ArrayList)sqlSessionTemplate.selectList("likeMapper.selectList");
 		
 		return list;
 	}

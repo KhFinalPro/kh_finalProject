@@ -217,39 +217,39 @@ body{
             <div class="top_menu">
                 <div class="logo">Admin page</div>
                 <ul>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i></a></li>
                     <li><a href="#"><i class="fas fa-user"></i></a></li>
+                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                    <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
                 </ul>
             </div>
         </div>
             <div class="sidebar">
                 <ul>
-                    <li><a href="storeOrder.do">
+                    <li class="orderBar"><a href="storeOrder.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
                         <span class="title">주문확인</span>
                     </a></li>
-                    <li><a href-"#" class="active">
+                    <li class="salesBar"><a href="#">
                         <span class="icon">
                             <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>
                         <span class="title">매출관리</span>
                     </a></li>
-                    <li><a href="storeMenu.do">
+                    <li class="menuBar"><a href="storeMenu.do">
                         <span class="icon">
                             <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
                         </span>
                         <span class="title">메뉴관리</span>
                     </a></li>
-                    <li><a href="storeReview.do">
+                    <li class="reviewBar"><a href="storeReview.do">
                         <span class="icon">
                             <i class="far fa-edit" aria-hidden="true"></i>
                         </span>
                         <span class="title">리뷰관리</span>
                     </a></li>
-                    <li><a href="storeProgress.do">
+                    <li class="storeBar"><a href="storeProgress.do">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>

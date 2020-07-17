@@ -211,4 +211,9 @@
             </div>
           </div>
 </body>
+<script>
+$(function(){
+	$(".orderBar").children().addClass('active');
+})
+</script>
 </html>
