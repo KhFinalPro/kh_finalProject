@@ -47,6 +47,7 @@
 
 	<body>
 		<header>
+
             <div id="header">
                 <div id="header_brandName">
                     <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
@@ -67,7 +68,7 @@
                             <ul>
                                 <li><a href="#">Join</a></li>
                                 <li><a href="#">Login </a></li>
-                                <li><a href="mypageMain.do">MyPage</a></li>
+                                <li><a href="msgList.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="systemAdmin.do">System</a></li>
                             </ul>
@@ -99,7 +100,7 @@
             <br clear="both">
         </header>
 
-		<c:if test="${!empty msg }">
+		<%-- <c:if test="${!empty msg }">
 	        <div id="modal" style="display: block;">
 	            <!-- <input type="button" id="search_cancel" > -->
 	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
@@ -113,7 +114,7 @@
 	                <input type="submit" id="submit" value="검색">
 	            </form>
 	        </div>
-        </c:if>
+        </c:if> --%>
         <c:if test="${empty msg}">
 	        <div id="modal" style="display: none">
 	            <!-- <input type="button" id="search_cancel" > -->
@@ -153,4 +154,5 @@
             })
         })
     </script>
+
 </html>
