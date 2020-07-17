@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		 header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 1;}
+		 header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 6;}
             #header{margin: auto; width: 100%; height: 100px; background-color: #2ac1bc;}
             #header>div{ display: inline-block;}
 
@@ -40,7 +40,7 @@
             #modal{position: fixed; display: none; opacity: 0.5; left: 0; top: 0px; width: 100%; height: 100%; text-align: center; background-color: rgb(199, 197, 197); border: 1px solid black; z-index: 2;}
             #modal #search_cancel{margin-right: 0px; margin-left: 1300px; margin-top: 200px; width: 100px; height: 100px;}
             #modal #search_input{margin: auto; width: 50%; height: 50px; margin-top: 100px; border:2px solid black;}
-           
+            #modal #submit{height: 50px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -49,7 +49,7 @@
 		<header>
             <div id="header">
                 <div id="header_brandName">
-                    <h1 id="brandName"><a href="#">치킨의민족</a></h1>
+                    <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
@@ -67,7 +67,7 @@
                             <ul>
                                 <li><a href="#">Join</a></li>
                                 <li><a href="#">Login </a></li>
-                                <li><a href="#">MyPage</a></li>
+                                <li><a href="mypageMain.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="systemAdmin.do">System</a></li>
                             </ul>
@@ -85,7 +85,7 @@
                         <a href="#">딜리버리</a>
                     </li>
                     <li>
-                        <a href="#">치킨번개</a>
+                        <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
                         <a href="#">맛잘알</a>
@@ -99,14 +99,36 @@
             <br clear="both">
         </header>
 
-        <div id="modal" >
-            <!-- <input type="button" id="search_cancel" > -->
-            <img id="search_cancel" src="resources/images/cancel.png" alt="">
-            <form action="">
-                <br clear="both">
-                <input type="text" id="search_input" name="search_input">
-            </form>
-        </div>
+		<c:if test="${!empty msg }">
+	        <div id="modal" style="display: block;">
+	            <!-- <input type="button" id="search_cancel" > -->
+	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
+	            <form action="homeSearch.do" method="post">
+	                <br clear="both">
+	                <!-- <select name="option">
+	                	<option value="sto_name">매장이름 검색</option>
+	                	<option value="brand_name">브랜드 검색</option>
+	                </select> -->
+	                <input type="text" id="search_input" name="search_input" placeholder="잘 입력해주세요">
+	                <input type="submit" id="submit" value="검색">
+	            </form>
+	        </div>
+        </c:if>
+        <c:if test="${empty msg}">
+	        <div id="modal" style="display: none">
+	            <!-- <input type="button" id="search_cancel" > -->
+	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
+	            <form action="homeSearch.do" method="post">
+	                <br clear="both">
+	                <!-- <select name="option">
+	                	<option value="sto_name">매장이름 검색</option>
+	                	<option value="brand_name">브랜드 검색</option>
+	                </select> -->
+	                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
+	                <input type="submit" id="submit" value="검색">
+	            </form>
+	        </div>
+        </c:if>
        
         
     </body>
@@ -127,8 +149,8 @@
             })
             $("#search_cancel").on("click",function(){
                 $modal.css('display','none');
+                location.href="home.do";
             })
         })
     </script>
->>>>>>> refs/remotes/origin/master
 </html>
