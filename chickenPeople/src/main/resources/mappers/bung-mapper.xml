@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bungMapper">
+
+	<resultMap type="Bung" id="bungResultSet">
+		<id property="bung_num" column="BUNG_NUM"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="bung_title" column="BUNG_TITLE"/>
+		<result property="bung_date" column="BUNG_DATE"/>
+		<result property="bung_addr" column="BUNG_ADDR"/>
+		<result property="bung_p_no" column="BUNG_P_NO"/>
+		<result property="bung_int" column="BUNG_INT"/>
+		<result property="bung_hit" column="BUNG_HIT"/>
+		<result property="bung_like" column="BUNG_LIKE"/>
+		<result property="bung_chat" column="BUNG_CHAT"/>
+		<result property="bung_img" column="BUNG_IMG"/>
+		<result property="bung_brd" column="BUNG_BRD"/>
+		<result property="bung_status" column="BUNG_STATUS"/>
+	</resultMap>
+	<resultMap type="Brand" id="brandResultSet">
+		<id property="brand_code" column="BRAND_CODE"/>
+		<result property="brand_pic" column="BRAND_PIC"/>
+		<result property="sto_brand" column="STO_BRAND"/>
+	</resultMap>
+	
+	<select id="bungList" resultMap="bungResultSet">
+		SELECT *
+		FROM BUNG
+		ORDER BY BUNG_NUM DESC
+	</select>
+	
+	<select id="selectBung" parameterType="_int" resultMap="bungResultSet">
+		SELECT BUNG_NUM, USER_ID, BUNG_TITLE, TO_CHAR(BUNG_DATE,'YYYY/MM/DD HH24:MM') AS BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
+		FROM BUNG
+		WHERE BUNG_NUM = #{bung_num}
+	</select>
+	
+	<update id="updateHit" parameterType="_int">
+		UPDATE BUNG SET BUNG_HIT = BUNG_HIT + 1 WHERE BUNG_NUM = #{bung_num}
+	</update>
+	
+	<update id="updateBungLike" parameterType="_int">
+		UPDATE BUNG SET BUNG_LIKE = BUNG_LIKE + 1 WHERE BUNG_NUM = #{bung_num}
+	</update>
+	
+	<select id="selectBungLike" parameterType="_int" resultType="_int">
+		SELECT BUNG_LIKE FROM BUNG WHERE BUNG_NUM = #{bung_num}
+	</select>
+	
+	<select id="selectBungHit" parameterType="_int" resultType="_int">
+		SELECT BUNG_HIT FROM BUNG WHERE BUNG_NUM = #{bung_num}
+	</select>
+	
+	<select id="selectBrandList" resultMap="brandResultSet">
+		SELECT * FROM BRAND
+	</select>
+</mapper>
