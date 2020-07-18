@@ -51,7 +51,7 @@
 		SELECT BUNG_HIT FROM BUNG WHERE BUNG_NUM = #{bung_num}
 	</select>
 	
-	<select id="selectBrandList" resultType="brandResultSet">
+	<select id="selectBrandList" resultMap="brandResultSet">
 		SELECT * FROM BRAND
 	</select>
 </mapper>
