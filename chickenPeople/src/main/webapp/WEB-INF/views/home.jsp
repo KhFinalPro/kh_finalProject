@@ -22,23 +22,19 @@
 		.main_area{margin: 0 auto; width: 90%;}
 		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
 		
-		.main_area>.first_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
-		.main_area .first_area .place_area a .logo {margin: 0 auto; width: 100%; height: 150px; margin-top: 10px;}
-		.main_area .first_area .place_area .start{width: 15px; height: 15px;}
 		
 		.main_area>.second_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
 		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
 		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
 		
-		.main_area>.tree_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
-		.main_area .tree_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
-		.main_area .tree_area .place_area .start{width: 15px; height: 15px;}
-
-      
+		
    </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
+
+
 
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
@@ -126,13 +122,13 @@
 </script>
 
 <!-- 완성되면 매장 상세페이지와 연결할 script -->
-<!-- <script>
+<!--  <script>
 	$(function(){
 		$(".place_area").on("click",function(){
 			$sto_num = $(this).children("#sto_num").val();
 			alert($sto_num);
 		})
 	})
-</script> -->
+</script>  -->
 
 </html>

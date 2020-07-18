@@ -17,7 +17,7 @@
 		<result property="bung_brd" column="BUNG_BRD"/>
 		<result property="bung_status" column="BUNG_STATUS"/>
 	</resultMap>
-	<resultMap id="brandResultSet" type="Brand">
+	<resultMap type="Brand" id="brandResultSet">
 		<id property="brand_code" column="BRAND_CODE"/>
 		<result property="brand_pic" column="BRAND_PIC"/>
 		<result property="sto_brand" column="STO_BRAND"/>

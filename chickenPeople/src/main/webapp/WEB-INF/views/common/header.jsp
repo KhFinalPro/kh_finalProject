@@ -44,8 +44,10 @@
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+
 	<body>
 		<header>
+
             <div id="header">
                 <div id="header_brandName">
                     <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
@@ -64,11 +66,12 @@
                         <li>
                             <img src="resources/images/user.png" alt="">
                             <ul>
-                                <li><a href="#">Join</a></li>
+								<li><a href="#">Join </a></li>
                                 <li><a href="#">Login </a></li>
-                                <li><a href="#">MyPage</a></li>
-                                <li><a href="#">Store</a></li>
-                                <li><a href="#">System</a></li>
+                                <li><a href="msgList.do">MyPage</a></li>
+                                <li><a href="storeOrder.do">Store</a></li>
+                                <li><a href="systemAdmin.do">System</a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -87,10 +90,10 @@
                         <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
-                        <a href="#">맛잘알</a>
+                        <a href="board.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="#">공지사항</a>
+                        <a href="nlist.do">공지사항</a>
                     </li>
                 </ul>
 
@@ -98,7 +101,7 @@
             <br clear="both">
         </header>
 
-		<c:if test="${!empty msg }">
+		<%-- <c:if test="${!empty msg }">
 	        <div id="modal" style="display: block;">
 	            <!-- <input type="button" id="search_cancel" > -->
 	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
@@ -112,7 +115,7 @@
 	                <input type="submit" id="submit" value="검색">
 	            </form>
 	        </div>
-        </c:if>
+        </c:if> --%>
         <c:if test="${empty msg}">
 	        <div id="modal" style="display: none">
 	            <!-- <input type="button" id="search_cancel" > -->

@@ -20,8 +20,9 @@
    .tree_area{text-align: center;}
    .title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
    .main_area{margin: 0 auto; width: 90%;}
+   .main_area .place_area:hover{border: 2px solid #2ac1bc;}
 
-   .main_area>.first_area>.place_area{width: 19%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
+   .main_area>.first_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
    .main_area .first_area .place_area a .logo {margin: 0 auto; width: 100%; height: 150px; margin-top: 10px;}
    .main_area .first_area .place_area .start{width: 15px; height: 15px;}
 

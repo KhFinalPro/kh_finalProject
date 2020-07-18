@@ -4,30 +4,29 @@ import java.sql.Date;
 
 public class Notice {
 
-	public int nNum;	   //공지번호
-	public String userId;  //아이디
-	public String nTitle;  //공지제목
-	public String nCont;   //공지사항내용
-	public String nWriter; //작성자
-	public int nCount; 	   //조회수
-	public Date nDate; 	   //작성날짜
-	public Date nDelDate;  //삭제날짜
-	public Date nUpDate;   //수정날짜
-	public String nStatus; //삭제 여부
-
+	
+	
+	public int nNum;      //공지사항번호
+	public String nTitle; //제목
+	public String nCont;  //게시판내용
+	public String userId; //작성자
+	public int nCount; 	  //조회수
+	public Date nDate; 	  //게시날짜
+	public Date nDelDate; //삭제날짜
+	public Date nUpDate;  //수정날짜
+	public String nStatus;//삭제여부
 	
 	public Notice() {
 		super();
 	}
 
-	public Notice(int nNum, String userId, String nTitle, String nCont, String nWriter, int nCount, Date nDate,
-			Date nDelDate, Date nUpDate, String nStatus) {
+	public Notice(int nNum, String nTitle, String nCont, String userId, int nCount, Date nDate, Date nDelDate,
+			Date nUpDate, String nStatus) {
 		super();
 		this.nNum = nNum;
-		this.userId = userId;
 		this.nTitle = nTitle;
 		this.nCont = nCont;
-		this.nWriter = nWriter;
+		this.userId = userId;
 		this.nCount = nCount;
 		this.nDate = nDate;
 		this.nDelDate = nDelDate;
@@ -41,14 +40,6 @@ public class Notice {
 
 	public void setnNum(int nNum) {
 		this.nNum = nNum;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getnTitle() {
@@ -67,12 +58,12 @@ public class Notice {
 		this.nCont = nCont;
 	}
 
-	public String getnWriter() {
-		return nWriter;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setnWriter(String nWriter) {
-		this.nWriter = nWriter;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getnCount() {
@@ -117,11 +108,11 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return "Notice [nNum=" + nNum + ", userId=" + userId + ", nTitle=" + nTitle + ", nCont=" + nCont + ", nWriter="
-				+ nWriter + ", nCount=" + nCount + ", nDate=" + nDate + ", nDelDate=" + nDelDate + ", nUpDate="
-				+ nUpDate + ", nStatus=" + nStatus + "]";
+		return "Notice [nNum=" + nNum + ", nTitle=" + nTitle + ", nCont=" + nCont + ", userId=" + userId + ", nCount="
+				+ nCount + ", nDate=" + nDate + ", nDelDate=" + nDelDate + ", nUpDate=" + nUpDate + ", nStatus="
+				+ nStatus + "]";
 	}
-	
+
 	
 	
 }

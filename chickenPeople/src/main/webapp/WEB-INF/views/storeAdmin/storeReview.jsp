@@ -142,4 +142,9 @@
 
 
 </body>
+<script>
+$(function(){
+	$(".reviewBar").children().addClass('active');
+})
+</script>
 </html>
