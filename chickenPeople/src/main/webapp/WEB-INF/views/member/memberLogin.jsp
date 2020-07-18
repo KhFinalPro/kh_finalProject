@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,6 +71,7 @@
             #loginform{
 				width: 600px;
 				margin: 0 auto;
+				margin-top: 200px;
 				/* border: 1px solid black; */
 				text-align: center;
             }
@@ -78,14 +81,16 @@
     </style>
 </head>
 <body>
-<form id="loginform">
+<%@ include file="../common/header.jsp"%>
+	<c:if test="${empty sessionScope.loginUser }">
+	<form id="loginform" action="doLogin.do" method="post">
             <h1 id="h2">회원 로그인</h1>
             <hr>
             <br>
             <table id="logintable">
                 <tr class="p">
                     <td class = "p">
-                        <input type="text" class="log1" name="userId" id="userId" placeholder="이름을 입력해주세요">
+                        <input type="text" class="log1" name="id" id="id" placeholder="아이디를 입력해주세요">
                     </td>
                     <td rowspan="2">
                         <input type="submit" id="btn" value="LOGIN">
@@ -94,7 +99,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="password" class="log1" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요">
+                        <input type="password" class="log1" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
                     </td>
                 </tr>
             </table>
@@ -126,6 +131,8 @@
             </div>
 
         </form>
-
+        </c:if>
+	<%@ include file="../common/footer.jsp"%>
 </body>
+<
 </html>

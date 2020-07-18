@@ -90,7 +90,7 @@
         </style>
     </head>
     <body>
-        <form id="joinForm" method="post" action="<%=request.getContextPath()%>/join.me">
+        <form id="joinForm" method="post" action="">
             <h2 id="h2">회원가입</h2>
             <table id="logintable">
                 <tr>
