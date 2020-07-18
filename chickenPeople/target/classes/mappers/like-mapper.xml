@@ -37,5 +37,6 @@
 		SELECT B_NUM,B_WRITER,B_TITLE,B_CONT,B_DATE
 		FROM BOARD B
 	</select>
+	<!-- 푸쉬용 -->
 	
 </mapper>
