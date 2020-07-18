@@ -9,23 +9,23 @@ public class Like implements Serializable{
 	private static final long serialVersionUID = 3174541755977138276L;
 	
 	
-	//ÂòÇÑ¸ÅÀå
-	private String userId;  	//È¸¿ø¾ÆÀÌµğ or 
-	private int storeNo;  		//¸ÅÀå¹øÈ£
-	private String brandPic;	//¸ÅÀå»çÁø
-	private String stoBrand; 	//ºê·£µå¸í
-	private String stoName;		//¸ÅÀåÀÌ¸§
-	private String ordLimit; 	//ÃÖ¼ÒÁÖ¹®±İ¾×
-	private int revRate;		//¸®ºäº°Á¡
-	private double dailyTReview;   //1ÀÏÆòÁ¡ÇÕ°è
-	private String brandCode; 	//ºê·£µåÄÚµå
+	//ì°œí•œë§¤ì¥
+	private String userId;  	//íšŒì› or ë§¤ì¥(?)
+	private int storeNo;  		//ë§¤ì¥ë„˜ë²„
+	private String brandPic;	//ë¸Œëœë“œì‚¬ì§„
+	private String stoBrand; 	//ë¸Œëœë“œ
+	private String stoName;		//ë§¤ì¥ì´ë¦„
+	private String ordLimit; 	//ìµœì†Œê¸ˆì•¡
+	private int revRate;		//ë³„ì 
+	private double dailyTReview;   //1ì¼í‰ì 
+	private String brandCode; 	//ë¸Œëœë“œì½”ë“œ
 	
-	//ÂòÇÑ±Û
-	private int bNum;			//¸ÀÀß¾Ë ¹øÈ£
-	private String bWriter;		//¸ÀÀß¾Ë ÀÛ¼ºÀÚ
-	private String bTitle;		//¸ÀÀß¾Ë Å¸ÀÌÆ²
-	private String bCont;		//¸ÀÀß¾Ë ³»¿ë
-	private Date bDate;			//ÀÛ¼º³¯Â¥
+	//ì°œí•œ ê¸€
+	private int bNum;			//ë§›ì˜ì•Œë²ˆí˜¸
+	private String bWriter;		//ì‘ì„±ì
+	private String bTitle;		//ë§›ì˜ì•Œ ì œëª©
+	private String bCont;		//ë§›ì˜ì•Œ ë‚´ìš©
+	private Date bDate;			//ì‘ì„±ì¼
 	
 	
 	/****************************************/

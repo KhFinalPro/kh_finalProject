@@ -112,15 +112,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="wl" items="${writeList }">
                                 <tr>
                                     <td></td>
-                                    <td>1</td>
-                                    <td>mama1</td>
-                                    <td>허니콤보 꿀조합</td>
-                                    <td>허니콤보는 엽떡에 먹어야하구용~ 방법 소개 ..</td>
-                                    <td>2020-07-08</td>
+                                    <td>${wl.bNum }</td>
+                                    <td>${wl.bWriter }</td>
+                                    <td>${wl.bTitle }</td>
+                                    <td>${wl.bCont }</td>
+                                    <td>${wl.bDate }</td>
                                     <th><i class="fas fa-heart"></i></th>
                                 </tr>
+                             </c:forEach>
                         
                             </tbody>
                         </table>
@@ -139,14 +141,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="l" items="${list }">
+                            <c:forEach var="sl" items="${storelist }">
                                 <tr>
                                     <th></th>
                                     <th>1</th>
-                                    <td>${l.brandPic }</td>
-                                    <td>${l.stoName }</td>
-                                    <td>${l.dailyTReview }</td>
-                                    <td>${l.ordLimit }</td>
+                                    <td>${sl.brandPic }</td>
+                                    <td>${sl.stoName }</td>
+                                    <td>${sl.dailyTReview }</td>
+                                    <td>${sl.ordLimit }</td>
                                     <th><i class="fas fa-heart"></i></th>
                                     <th></th>
                                 </tr>
@@ -169,16 +171,6 @@
                $("#selectType").change(function(){
                  var v = this.value;
                  if(v=="lContent"){
-                	 $.ajax({
-                		 url:"",
-                		 dataType:"json",
-                		 success:function(data){
-                			 $("#likeContent").html(""); //div 초기화
-                			 $("#likeContent").appendTo("#likeContent");
-                			 
-                		 }
-                		 
-                	 })
                      $("#likeContent").show();
                      $("#likeStore").hide();
                  }else if(v=="lStore"){

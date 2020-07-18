@@ -15,8 +15,16 @@ public class LikeServiceImpl implements LikeService{
 	LikeDao likeDao;
 	
 	@Override
-	public ArrayList<Like> selectList(){
+	public ArrayList<Like> likeStoreList(){
 	
-		return likeDao.selectList();
+		return likeDao.likeStoreList();
+	}
+
+	@Override
+	public ArrayList<Like> likeWriteList() throws Exception {
+
+		//ArrayList<Like> writeList = likeDao.likeWriteList();
+		
+		return likeDao.likeWriteList();
 	}
 }

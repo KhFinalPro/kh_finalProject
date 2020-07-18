@@ -21,27 +21,19 @@ public class LikeController {
 	
 	 
 		@RequestMapping("storeLikeList.do")
-		public ModelAndView storeLikeList(ModelAndView mv) {
+		public ModelAndView storeLikeList(ModelAndView mv) throws Exception {
 			
-			ArrayList<Like> list = likeService.selectList();
-			//ArrayList<Like> list2 = likeService.selectList();
+			// ë‚´ê°€ ì°œí•œ ë§¤ìž¥
+			ArrayList<Like> storelist = likeService.likeStoreList();
+			// ë‚´ê°€ ì°œí•œ ê¸€
+			ArrayList<Like> writeList = likeService.likeWriteList();
 			
-			System.out.println("ÂòÇÑ ¸ÅÀå ¸®½ºÆ® :"+list);
-			//System.out.println("ÂòÇÑ ±Û ¸®½ºÆ® :"+list2);
+			mv.addObject("storelist",storelist);
+			mv.addObject("writeList", writeList);
 			
-			if(!list.isEmpty()) {
-				mv.addObject("list",list);
-				//mv.addObject("list2",list2);
-				mv.setViewName("mypage/mypageLikes");
-				
-			}else {
-				throw new LikeException("¸Þ¼¼Áö ºÒ·¯¿À±â ½ÇÆÐ!");
-			}
-			
-			
+			mv.setViewName("mypage/mypageLikes");
 			
 			return mv;
-			
 		}
 	 
 }

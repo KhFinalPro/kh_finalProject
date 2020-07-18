@@ -3,7 +3,7 @@
 <mapper namespace="likeMapper">
 
 
-	<resultMap id="likeResultSet" type="Like">
+	<resultMap id="storelikeResult" type="Like">
 		<id property="storeNo" column="STORE_NO"/>
 		<result property="userId" column="USER_ID"/>
 		<result property="brandPic" column="BRAND_PIC"/>
@@ -14,9 +14,17 @@
 		<result property="dailyTReview" column="DAILY_T_REVIEW"/>
 		<result property="brandCode" column="BRAND_CODE"/>
 	</resultMap>
+	
+	<resultMap id="writelikeResult" type="Like">
+		<result property="bNum" column="B_NUM"/>
+		<result property="bWriter" column="B_WRITER"/>
+		<result property="bTitle" column="B_TITLE"/>
+		<result property="bCont" column="B_CONT"/>
+		<result property="bDate" column="B_DATE"/>
+	</resultMap>
  
  
-	<select id="selectList" resultMap="likeResultSet">
+	<select id="likeStoreList" resultMap="storelikeResult">
 		SELECT BRD.BRAND_PIC, SI.STO_NAME, DAILY_T_REVIEW, SI.ORD_LIMIT 
 		FROM (SELECT * FROM MEMBER WHERE USER_ID ='rngus3698') M
 		LEFT JOIN STORE_LIKE SL ON M.USER_ID=SL.USER_ID
@@ -25,6 +33,9 @@
 		LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
 	</select>
 	
-	
+	<select id="likeWriteList" resultMap="writelikeResult">
+		SELECT B_NUM,B_WRITER,B_TITLE,B_CONT,B_DATE
+		FROM BOARD B
+	</select>
 	
 </mapper>

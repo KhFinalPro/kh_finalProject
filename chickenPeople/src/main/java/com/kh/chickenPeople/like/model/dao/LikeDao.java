@@ -14,14 +14,26 @@ public class LikeDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public ArrayList<Like> selectList() {
+	// 찜한 매장 목록
+	public ArrayList<Like> likeStoreList() {
 		
-		ArrayList list = new ArrayList<Like>();
-		//ArrayList list2 = new ArrayList();
+		ArrayList<Like> storelist = new ArrayList<Like>();
+		storelist = (ArrayList)sqlSessionTemplate.selectList("likeMapper.likeStoreList");
+	
 		
-		list = (ArrayList)sqlSessionTemplate.selectList("likeMapper.selectList");
-		//list2 = (ArrayList)sqlSessionTemplate.selectList("likeMapper.selectList");
+		if(storelist == null) {
+			storelist = new ArrayList<Like>();
+		}
+	
+		return storelist;
+	}
+	
+	// 찜한 글 목록 
+	public ArrayList<Like> likeWriteList(){
 		
-		return list;
+		ArrayList<Like> writeList = new ArrayList<Like>();
+		writeList = (ArrayList)sqlSessionTemplate.selectList("likeMapper.likeWriteList");
+		
+		return writeList;
 	}
 }

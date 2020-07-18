@@ -6,6 +6,9 @@ import com.kh.chickenPeople.like.model.vo.Like;
 
 public interface LikeService {
 
-	ArrayList<Like> selectList();
+	ArrayList<Like> likeStoreList() throws Exception;
+	
+	
+	ArrayList<Like> likeWriteList() throws Exception;
 	
 }
