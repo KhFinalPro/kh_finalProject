@@ -53,6 +53,15 @@ public class NoticeController {
 }
 
 //공지사항 글쓰기 
+@RequestMapping(value="nInsert.do",method=RequestMethod.GET)
+public String nInsertView() {
+
+	
+	return "notice/noticeInsertForm";
+	
+	
+	
+}
 /**/
 	
 	

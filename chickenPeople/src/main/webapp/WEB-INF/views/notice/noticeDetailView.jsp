@@ -46,6 +46,16 @@
 	  width:100%;
 	  transition:800ms ease all;
 	}
+	
+	 table {
+	    width: 100%;
+	    border-top: 1px solid #444444;
+	    border-collapse: collapse;
+		  }
+	  th, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	  }
 </style>
 
 
@@ -55,13 +65,21 @@
   <div  style=" width:70%;background:white; margin:0 auto;">
   <br><br><br>
 	  
-	  <div style="width:80%; height: 1000px; margin:0 auto; ">
+	  <div style="width:80%; height: 1500px; margin:0 auto; ">
 
 		  <br><br><br><br><br>
-		  <table align="center"  cellspacing="" width="80%" border="1"> 
+		  <table align="center"  cellspacing="" width="80%" > 
 		    <br><br>
 	  <h1 align="center">${notice.nNum} 공지사항 상세보기</h1>
 	    <br><br><br>
+		    	 <tr style="background:#dee2e6">
+				  	<th>${notice.nNum }</th>
+				  	<th width="45%">${notice.nTitle }</th>
+				  	<th>${notice.userId }</th>
+				  	<th width="20%">${notice.nDate }</th>
+				  	<th >${notice.nCount }</th>
+				  </tr>
+			<%-- 	  
 				 <tr align="center">
 				 	<td>번호</td>
 				 	<td>${notice.nNum }</td>
@@ -81,28 +99,57 @@
 				  <tr align="center">
 				 	<td>조회수</td>
 				 	<td>${notice.nCount }</td>
-				 </tr>
+				 </tr> --%>
 				  <tr align="center">
-				 	<td height="">내용</td>
-				 	<td><textarea style="width:100%; height:500px;">${notice.nCont }</textarea></td>
+				 	<td colspan="5">
+				 	${notice.nCont }
+				 	<br><br><br><br><br><br><br>
+				 	<br><br><br><br><br><br><br><br>
+				 	<br><br><br><br><br><br><br><br>
+				 	<td>
 				 </tr>
 				 
 				  <!--  insert 완료후 작성 -->
 		 </table>
-			 
+		 
+		 <!-- 댓글 등록 -->
+		 <table align="center" width="500" >
+		 	<tr>
+				<td><textarea cols="80" rows="7" id="rContent"></textarea></td>		 	
+				<td>
+					<button id ="rSubmit">등록하기</button>
+				</td>		 	
+		 	</tr>
+		 </table>
+		 
+		 <!-- 댓글 목록 -->
+		 <table align="center" width="500" >
+		 	<thead>
+		 		<tr>
+		 			<td colspan="2"><b id="rCount"></b></td>
+		 		</tr>
+		 	</thead>
+		 </table>
+
+			 <br><br> <br><br> <br><br>
 	 <div style="float:right">
 	 <c:if test="${loginUser.userId eq notice.userId }">
 		  	<button onclick ="#">수정하기</button>
 	 </c:if>
-		  	<button onclick ="nlist" value="nlist.do">목록</button>
+		  	<button onclick ="toNlist()" value="nlist.do">목록</button> <!-- 왜 안되지? -->
 	</div>
-
+	<script>
+		function toNlist (){
+			location.href="nlist.do"; 
+		}
+	</script>
 		  
 <!-- 페이징 처리 기능이랑 같이하기.  -->
 		  
 		  
 	 </div> 
   </div>
+   <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
     <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

@@ -66,9 +66,9 @@
                         <li>
                             <img src="resources/images/user.png" alt="">
                             <ul>
-
+								<li><a href="#">Join </a></li>
                                 <li><a href="#">Login </a></li>
-                                <li><a href="mypageMain.do">MyPage</a></li>
+                                <li><a href="msgList.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="systemAdmin.do">System</a></li>
 
@@ -101,7 +101,7 @@
             <br clear="both">
         </header>
 
-		<c:if test="${!empty msg }">
+		<%-- <c:if test="${!empty msg }">
 	        <div id="modal" style="display: block;">
 	            <!-- <input type="button" id="search_cancel" > -->
 	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
@@ -115,7 +115,7 @@
 	                <input type="submit" id="submit" value="검색">
 	            </form>
 	        </div>
-        </c:if>
+        </c:if> --%>
         <c:if test="${empty msg}">
 	        <div id="modal" style="display: none">
 	            <!-- <input type="button" id="search_cancel" > -->

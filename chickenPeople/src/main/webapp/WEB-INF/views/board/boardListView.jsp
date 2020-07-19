@@ -43,7 +43,17 @@
 	  width:100%;
 	  transition:800ms ease all;
 	}
-
+	
+	 table {
+	    width: 100%;
+	    border-top: 1px solid #444444;
+	    border-collapse: collapse;
+		  }
+	  th, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	    font-size:15px;
+	  }
 </style>
 <body style="background:#e9ecef;">
  <jsp:include page="../common/header.jsp"/>
@@ -63,29 +73,13 @@
 				  	<th>분류</th>
 				  	<th width="45%">제목</th>
 				  	<th>글쓴이</th>
-				  	<th width="20%">날짜</th>
+				  	<th width="15%">날짜</th>
 				  	<th >조회수</th>
 				  	<th >추천수</th>
 				  	
 				  </tr>
 			 </table>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  
-		  
+
 		 
 		  
 		 <div style="float:right">

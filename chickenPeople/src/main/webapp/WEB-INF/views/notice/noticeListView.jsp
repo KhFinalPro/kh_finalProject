@@ -46,6 +46,16 @@
 	  width:100%;
 	  transition:800ms ease all;
 	}
+	
+	 table {
+	    width: 100%;
+	    border-top: 1px solid #444444;
+	    border-collapse: collapse;
+		  }
+	  th, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	  }
 </style>
 
 
@@ -58,11 +68,11 @@
 	  <div style="width:80%; height: 1000px; margin:0 auto; ">
 
 		  <br><br><br><br><br>
-		  <table align="center"  width="100%" border="1" > 
+		  <table align="center"  width="100%"> 
 		    <br><br>
 	  <h1 align="center">공지사항</h1>
 	    <br><br><br>
-				  <tr>
+				  <tr style="background:#dee2e6">
 				  	<th>번호</th>
 				  	<th width="45%">제목</th>
 				  	<th>글쓴이</th>
@@ -96,13 +106,24 @@
 		 
 	 <div style="float:right">
 	 <c:if test="${!empty loginUser }">
-		  	<button onclick ="nInsertView.do">글쓰기</button>
+		  	<button onclick ="nWrite()">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>
-	<button>home</button>
+	<button onclick="goHome()">home</button>
 
 	</div>
 
+	<script>
+		function goHome(){
+			location.href="home.do";
+			
+		}
+		
+		function nWrite(){
+			location.href="nInsert.do";
+		}
+	</script>
+	
 		  
 <!-- 페이징 처리 기능이랑 같이하기.  -->
 		  

@@ -156,4 +156,9 @@
             </div>
          </div>
 </body>
+<script>
+$(function(){
+	$(".menuBar").children().addClass('active');
+})
+</script>
 </html>
