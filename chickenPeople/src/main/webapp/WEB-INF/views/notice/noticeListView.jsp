@@ -58,44 +58,49 @@
 	  <div style="width:80%; height: 1000px; margin:0 auto; ">
 
 		  <br><br><br><br><br>
-		  <table align="center"  width="100%"> 
+		  <table align="center"  width="100%" border="1" > 
 		    <br><br>
 	  <h1 align="center">공지사항</h1>
 	    <br><br><br>
-	    
-	  <%--   <c:if test="${!empty loginUser }"></c:if> --%>
-	   
-	    
 				  <tr>
 				  	<th>번호</th>
-				  	<th>분류</th>
 				  	<th width="45%">제목</th>
 				  	<th>글쓴이</th>
 				  	<th width="20%">날짜</th>
 				  	<th >조회수</th>
 				  </tr>
-			 </table>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  <hr><br>
-		  
-		  
+				  
+			<c:forEach var="n" items="${list }">
+					<tr align="center">
+						<td>${n.nNum} </td>
+					  	<td width="45%">
+					  	<c:if test="${!empty loginUser }">
+					  			<c:url var="ndetail" value="ndetail.do">
+					  				<c:param name="nNum" value="${n.nNum }"/>
+					  			</c:url>
+					  			<a href="${ndetail }">${n.nTitle}</a>
+					  		</c:if>
+					  		<c:if test="${empty loginUser }">
+					  			${n.nTitle }
+					  		</c:if>
+					  	</td>
+					  	<td>${n.userId }</td>
+					  	<td width="20%">${n.nDate}</td>
+					  	<td>${n.nCount}</td>
+					</tr>
+			</c:forEach>
+		 </table>
+			 
+			 
+
 		 
 	 <div style="float:right">
-		  	<button onclick ="">글쓰기</button>
-		  	<button onclick ="">목록</button>
+	 <c:if test="${!empty loginUser }">
+		  	<button onclick ="nInsertView.do">글쓰기</button>
+	 </c:if>
+	 <c:url var="home" value="home.do"/>
+	<button>home</button>
+
 	</div>
 
 		  

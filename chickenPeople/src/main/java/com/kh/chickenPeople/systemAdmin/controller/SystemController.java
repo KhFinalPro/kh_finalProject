@@ -1,12 +1,24 @@
 package com.kh.chickenPeople.systemAdmin.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.chickenPeople.common.Pagination;
+import com.kh.chickenPeople.systemAdmin.model.service.SystemService;
+import com.kh.chickenPeople.systemAdmin.model.vo.Menu;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Controller
 public class SystemController {
+	
+	@Autowired
+	SystemService sService;
 	
 	@RequestMapping(value="systemAdmin.do", method=RequestMethod.GET)
 	public String goSystemAdminMain() {
@@ -24,8 +36,33 @@ public class SystemController {
 	}
 	
 	@RequestMapping(value="systemAdminMenu.do", method=RequestMethod.GET)
-	public String goMenuList() {
-		return "systemAdmin/systemAdminMenu";
+	public ModelAndView goMenuList(ModelAndView mv,
+								   @RequestParam(value="page",required=false)Integer page) {
+		int currentPage=1;
+		System.out.println("page:"+page);
+		if(page!=null) {
+			currentPage=page;
+		}
+		
+		int listCount = sService.getListCount();
+		System.out.println("listCount:"+listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		System.out.println("PageInfo pi:"+pi);
+		
+		ArrayList<Menu> selectMenuList = sService.selectMenuList(pi);
+		for(int i = 0; i<selectMenuList.size();i++) {
+			System.out.println(selectMenuList.get(i));
+		}
+		if(selectMenuList!=null) {
+			mv.addObject("menuList",selectMenuList);
+			mv.addObject("pi",pi);
+			mv.setViewName("systemAdmin/systemAdminMenu");			
+//		}else {
+//			mv.addObject("menuList","메뉴 조회를 실패했습니다.");
+//			mv.setViewName("systemAdmin/systemAdminMenu");			
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value="systemAdminCoupon.do", method=RequestMethod.GET)

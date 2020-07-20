@@ -66,11 +66,12 @@
                         <li>
                             <img src="resources/images/user.png" alt="">
                             <ul>
-                                <li><a href="#">Join</a></li>
+								<li><a href="#">Join </a></li>
                                 <li><a href="#">Login </a></li>
                                 <li><a href="msgList.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="systemAdmin.do">System</a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -89,10 +90,10 @@
                         <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
-                        <a href="#">맛잘알</a>
+                        <a href="board.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="#">공지사항</a>
+                        <a href="nlist.do">공지사항</a>
                     </li>
                 </ul>
 

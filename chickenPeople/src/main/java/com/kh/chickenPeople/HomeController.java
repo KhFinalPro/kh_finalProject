@@ -1,7 +1,10 @@
 package com.kh.chickenPeople;
 
+
 import java.util.ArrayList;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,25 +17,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.main.model.exception.MainException;
 import com.kh.chickenPeople.main.model.service.MainService;
+import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.store.model.vo.Store;
+
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
+
 	@Autowired
 	MainService mainService;
-	
-	
+
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
+
+
 	public ModelAndView home(Locale locale, ModelAndView mv) {
 		
 		//베스트 치킨집 top5
@@ -72,5 +78,4 @@ public class HomeController {
 		}
 		return mv;
 	}
-	
 }

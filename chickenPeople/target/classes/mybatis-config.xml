@@ -7,19 +7,24 @@
 	</settings>
 	
 	<typeAliases>
-	   <typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
-	   <typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
-	   <typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
-	    <typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
+
+		<typeAlias type="com.kh.chickenPeople.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
+		<typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
+		<typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
+		<typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.chickenPeople.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.Menu" alias="Menu"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/notice-mapper.xml"/>
 		<mapper resource="/mappers/bung-mapper.xml"/>
 		<mapper resource="/mappers/store-mapper.xml"/>
 		<mapper resource="/mappers/message-mapper.xml"/>
 		<mapper resource="/mappers/like-mapper.xml"/>
+		<mapper resource="/mappers/system-mapper.xml"/>
 	</mappers>
 </configuration>

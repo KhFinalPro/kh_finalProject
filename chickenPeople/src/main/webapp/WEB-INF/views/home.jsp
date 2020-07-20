@@ -33,6 +33,9 @@
 </head>
 <body>
 
+
+
+
 	<%@ include file="../views/common/header.jsp" %>
 	<br clear="both">
         <div class="contents">
@@ -119,13 +122,13 @@
 </script>
 
 <!-- 완성되면 매장 상세페이지와 연결할 script -->
-<!-- <script>
+<!--  <script>
 	$(function(){
 		$(".place_area").on("click",function(){
 			$sto_num = $(this).children("#sto_num").val();
 			alert($sto_num);
 		})
 	})
-</script> -->
+</script>  -->
 
 </html>

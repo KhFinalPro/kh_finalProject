@@ -1,5 +1,12 @@
 package com.kh.chickenPeople.notice.model.service;
 
-public class NoticeService {
+import java.util.ArrayList;
 
+import com.kh.chickenPeople.notice.model.vo.Notice;
+
+public interface NoticeService {
+
+	public ArrayList<Notice> selectList();
+
+	public Notice selectOne(int nNum);
 }
