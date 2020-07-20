@@ -38,7 +38,20 @@ public class HomeController {
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 
+	// woojung 임시 로그인
+	public String home(Locale locale, Model model, HttpSession session){
 
+		Member m = new Member("Admin", "관리자");
+
+		session.setAttribute("loginUser", m);
+
+		System.out.println("login :"+m);
+
+		return "home";
+	}
+	
+	
+	
 	public ModelAndView home(Locale locale, ModelAndView mv) {
 		
 		//베스트 치킨집 top5
