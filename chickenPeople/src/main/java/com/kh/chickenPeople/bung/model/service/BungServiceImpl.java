@@ -18,6 +18,7 @@ public class BungServiceImpl implements BungService {
 	@Override
 	public ArrayList<Bung> bungList() {
 		
+		System.out.println("bungListService.do");
 		return bungDao.bungList();
 	}
 

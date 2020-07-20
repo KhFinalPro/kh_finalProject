@@ -17,6 +17,7 @@ public class BungDao {
 
 	public ArrayList<Bung> bungList() {
 		// TODO Auto-generated method stub
+		System.out.println("bungListDao.do");
 		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.bungList");
 	}
 

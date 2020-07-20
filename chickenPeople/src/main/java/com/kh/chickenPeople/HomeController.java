@@ -4,20 +4,16 @@ package com.kh.chickenPeople;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.main.model.exception.MainException;
 import com.kh.chickenPeople.main.model.service.MainService;
-import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 
@@ -37,29 +33,12 @@ public class HomeController {
 	MainService mainService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-
-	// woojung 임시 로그인
-	public String home(Locale locale, Model model, HttpSession session){
-
-		Member m = new Member("Admin", "관리자");
-
-		session.setAttribute("loginUser", m);
-
-		System.out.println("login :"+m);
-
-		return "home";
-	}
-	
 	
 	
 	public ModelAndView home(Locale locale, ModelAndView mv) {
 		
 		//베스트 치킨집 top5
 		ArrayList<Store> bestList = mainService.bestListSelect();
-		for(Store s : bestList)
-		{
-			System.out.println(s);
-		}
 		if(!bestList.isEmpty())
 		{
 			mv.addObject("bestList", bestList);

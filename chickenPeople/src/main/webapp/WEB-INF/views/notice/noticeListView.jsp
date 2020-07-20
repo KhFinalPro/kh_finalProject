@@ -84,15 +84,12 @@
 					<tr align="center">
 						<td>${n.nNum} </td>
 					  	<td width="45%">
-					  	<c:if test="${!empty loginUser }">
+					  	
 					  			<c:url var="ndetail" value="ndetail.do">
 					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
 					  			<a href="${ndetail }">${n.nTitle}</a>
-					  		</c:if>
-					  		<c:if test="${empty loginUser }">
-					  			${n.nTitle }
-					  		</c:if>
+					  		
 					  	</td>
 					  	<td>${n.userId }</td>
 					  	<td width="20%">${n.nDate}</td>
@@ -105,7 +102,7 @@
 
 		 <bra><br><br><br><br>
 	 <div style="float:right">
-	 <c:if test="${loginUser.userId eq 'Admin' }">
+	 <c:if test="${loginUser.id eq 'Admin' }">
 		  	<button onclick ="nWrite()">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>

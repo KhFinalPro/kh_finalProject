@@ -151,7 +151,7 @@
 				  <!--  insert 완료후 작성 -->
 		 </table>
 		 <div style="float:right;">
-			   <c:if test="${loginUser.userId eq 'Admin' }">
+			   <c:if test="${loginUser.id eq 'Admin' }">
 				  	<button onclick ="#">수정하기</button>
 				  	<button onclick ="#">삭제하기</button>
 			 </c:if>
