@@ -47,6 +47,7 @@
                 border-radius: 8px; 
                 background: #2ac1bc;
                 font-weight: bold;
+                border:none;
             }
             #check1{
                 float: left;
@@ -75,7 +76,9 @@
 				/* border: 1px solid black; */
 				text-align: center;
             }
-            
+            #memberJoin{
+            	border:none;
+            }
             
             
     </style>
