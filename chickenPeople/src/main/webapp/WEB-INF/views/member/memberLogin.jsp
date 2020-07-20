@@ -84,7 +84,7 @@
     </style>
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
+<jsp:include page="../common/header.jsp"/>
 	<c:if test="${empty sessionScope.loginUser }">
 	<form id="loginform" action="doLogin.do" method="post">
             <h1 id="h2">회원 로그인</h1>
@@ -137,5 +137,5 @@
         </c:if>
 	<%@ include file="../common/footer.jsp"%>
 </body>
-<
+
 </html>
