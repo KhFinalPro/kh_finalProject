@@ -37,7 +37,7 @@
 
 
 
-	<%@ include file="../views/common/header.jsp" %>
+	<jsp:include page="common/header.jsp"/>
 	<br clear="both">
         <div class="contents">
             <div class="banner">

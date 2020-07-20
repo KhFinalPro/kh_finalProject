@@ -58,8 +58,8 @@
 	#bungCreate_area table .date{height: 50px; font-size: 20px; font-weight: 600;}
 	#bungCreate_area table #bung_int{font: 15px; font-weight: 500;}
 	#bungCreate_area table #bung_p_no{height: 30px; width: 50px; font-size: 20px; font-weight: 600;}
-	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; font-size: 25px; font-weight: 600;}
-	
+	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
+	#bungCreate_btn:hover{color:white;}
 	.map{border:1px solid black;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>

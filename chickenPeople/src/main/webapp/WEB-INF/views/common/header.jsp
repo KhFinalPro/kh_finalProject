@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,12 +66,21 @@
                         </li>
                         <li>
                             <img src="resources/images/user.png" alt="">
+                            
                             <ul>
-								<li><a href="#">Join </a></li>
-                                <li><a href="login.do">Login </a></li>
-                                <li><a href="msgList.do">MyPage</a></li>
-                                <li><a href="storeOrder.do">Store</a></li>
-                                <li><a href="systemAdmin.do">System</a></li>
+								<c:if test="${empty sessionScope.loginUser}">
+									<li><a href="#">Join </a></li>
+                                	<li><a href="login.do">Login </a></li>
+                                </c:if>
+                                
+                                <c:if test="${!empty sessionScope.loginUser}">
+                                	<li><a href="logout.do">Logout </a></li>
+	                                <li><a href="msgList.do">MyPage</a></li>
+	                                <li><a href="storeOrder.do">Store</a></li>
+	                                <c:if test="${sessionScope.loginUser.uLvl eq '관리자' }">
+	                                	<li><a href="systemAdmin.do">System</a></li>
+	                                </c:if>
+                                </c:if>
 
                             </ul>
                         </li>

@@ -43,10 +43,6 @@ public class HomeController {
 		
 		//베스트 치킨집 top5
 		ArrayList<Store> bestList = mainService.bestListSelect();
-		for(Store s : bestList)
-		{
-			System.out.println(s);
-		}
 		if(!bestList.isEmpty())
 		{
 			mv.addObject("bestList", bestList);
