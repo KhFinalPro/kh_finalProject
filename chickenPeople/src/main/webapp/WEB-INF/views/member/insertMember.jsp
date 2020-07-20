@@ -5,10 +5,13 @@
     <head>
         <title></title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="/resources/js/addressapi.js"></script>
         <style>
-            #joinForm{
+            #memberJoin{
                 width: 700px;
                 margin: 0 auto;
+                margin-top: 200px;
             }
             #logintable{
                 margin: 0;
@@ -87,10 +90,12 @@
             input::-webkit-input-placeholder { 
                 color: lightgray; 
             }
+            
         </style>
     </head>
     <body>
-        <form id="joinForm" method="post" action="">
+    <jsp:include page="../common/header.jsp"/>
+        <form id="memberJoin" method="post" action="memberJoin.do">
             <h2 id="h2">회원가입</h2>
             <table id="logintable">
                 <tr>
@@ -99,7 +104,7 @@
                     </td>
                     <td id="inp" class="ltd">
                         <input type="text" id="userId" name="userId" required placeholder="4글자 이상 12글자 이하 영문자(소문자)와 숫자">
-                        <input type="button" id="idCheck" value="중복확인" style="width: 70px; background: #2ac1bc; color: white;" onclick="idCheck();">
+                        <input type="button" id="idCheck" value="중복확인" style="width: 70px; background: #2ac1bc; color: white; border: none;" onclick="idCheck();">
                         <input type="hidden" value="N" id="checkCheck">
                     </td>
                 </tr>
@@ -148,22 +153,8 @@
                     <label>우편번호</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <div id="birth">
-                            <select id="year" name="year" required>
-                                <option value="년">년</option>
-                                
-                            </select>
-                            <select id="mon" name="mon" required>
-                                <option value="월">월</option>
-                                <option value="01">01</option>
-                               
-                            </select>
-                            <select id="day" name="day" required>
-                                <option value="일">일</option>
-                                <option value="01">01</option>
-                               
-                            </select>
-                        </div>
+                        <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+    					<button type="button" style="height: 30px; border-radius: 4px; width: 100px; background: #2ac1bc; color: white; border: none;" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>   
                     </td>
                 </tr>
                 <tr>
@@ -171,7 +162,7 @@
                         <label>도로명 주소</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="reference" name="reference">
+                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
                     </td>
                 </tr>
                 <tr>
@@ -179,7 +170,7 @@
                         <label>상세 주소</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="reference" name="reference">
+                        <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
                     </td>
                 </tr>
             </table>
@@ -506,7 +497,55 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
+            
         </form>
-
+        <%@ include file="../common/footer.jsp"%>
     </body>
+    
+    <script>
+	    function execPostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+	
+	               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	               if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                   extraRoadAddr += data.bname;
+	               }
+	               // 건물명이 있고, 공동주택일 경우 추가한다.
+	               if(data.buildingName !== '' && data.apartment === 'Y'){
+	                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	               }
+	               // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	               if(extraRoadAddr !== ''){
+	                   extraRoadAddr = ' (' + extraRoadAddr + ')';
+	               }
+	               // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	               if(fullRoadAddr !== ''){
+	                   fullRoadAddr += extraRoadAddr;
+	               }
+	
+	               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	               console.log(data.zonecode);
+	               console.log(fullRoadAddr);
+	               
+	               
+	               $("[name=addr1]").val(data.zonecode);
+	               $("[name=addr2]").val(fullRoadAddr);
+	               
+	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+	               document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+	           }
+	        }).open();
+	    }
+
+    </script>
+    
 </html>

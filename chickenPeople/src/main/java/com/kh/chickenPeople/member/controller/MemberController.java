@@ -40,18 +40,43 @@ public class MemberController {
 			System.out.println(member.getId());
 			session.setAttribute("loginUser",member);
 			
+			return "redirect:/home.do";
 		}
 		
-		return "redirect:/home.do";
+		return null;
 	}
 	
 	
 	
-	@RequestMapping("logout.do")
+	@RequestMapping("logout.do")	// 로그아웃
 	public String logout(SessionStatus session) {
 		session.setComplete();
 		
 		return "redirect:/home.do";
+	}
+	
+	@RequestMapping("memberJoin.do")	// 회원가입
+	public ModelAndView memberJoin(ModelAndView mv) {
+//		System.out.println("memberJoin.do");
+		mv.setViewName("member/insertMember");
+		
+		return mv;
+	}
+	
+	@RequestMapping("findId.do")	// 아이디찾기
+	public ModelAndView findId(ModelAndView mv) {
+//		System.out.println("findId.do");
+		mv.setViewName("member/findId");
+		
+		return mv;
+	}
+	
+	@RequestMapping("findPwd.do")	// 비번찾기
+	public ModelAndView findPwd(ModelAndView mv) {
+//		System.out.println("findPwd.do");
+		mv.setViewName("member/findPwd");
+		
+		return mv;
 	}
 
 }

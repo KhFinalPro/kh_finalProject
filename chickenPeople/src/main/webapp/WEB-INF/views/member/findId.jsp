@@ -82,7 +82,7 @@
         <div class="loginbox">
             <img src="avatar.png" class="avatar">
             <h1>아이디를 잊어버렸니?</h1>
-            <form>
+            <form id="findId" method="post" action="findId.do">
                 <p>이름을 써라!</p>
                 <input type="text" name="" placeholder="이름을 입력하여라">
                 <p>이메일을 써라!</p>

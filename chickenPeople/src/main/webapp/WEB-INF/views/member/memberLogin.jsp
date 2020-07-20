@@ -22,7 +22,7 @@
             }
             a{
                 text-decoration:none;
-                color:  lightgray;
+                color: black;
             }
             input::-webkit-input-placeholder { 
                 color: lightgray; 
@@ -110,14 +110,15 @@
                 <input type="checkbox" id="check1">
                 <label id="idsave">아이디 저장</label>
                 
-                <label style="float: right;">비밀번호찾기</label>
-                <label style="float: right; text-decoration: none">아이디찾기 /&nbsp;</label>
+                <a href="findPwd.do" style="float: right;">비밀번호찾기 </a>
+                <a href="findId.do" style="float: right; text-decoration: none">아이디찾기/&nbsp; </a>
                 
             </div>
             <br>
             <hr>
             <br>
-            <input type="button" id="memberJoin" value="회원가입">
+            <input type="button" id="memberJoin" value="회원가입" onclick="location.href='memberJoin.do'">
+            
             <br>
             <br>
             <hr>

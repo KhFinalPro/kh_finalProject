@@ -69,7 +69,7 @@
                             
                             <ul>
 								<c:if test="${empty sessionScope.loginUser}">
-									<li><a href="#">Join </a></li>
+									<li><a href="memberJoin.do">Join </a></li>
                                 	<li><a href="login.do">Login </a></li>
                                 </c:if>
                                 
