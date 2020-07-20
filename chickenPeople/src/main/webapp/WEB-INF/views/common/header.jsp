@@ -67,7 +67,7 @@
                             <img src="resources/images/user.png" alt="">
                             <ul>
 								<li><a href="#">Join </a></li>
-                                <li><a href="#">Login </a></li>
+                                <li><a href="login.do">Login </a></li>
                                 <li><a href="msgList.do">MyPage</a></li>
                                 <li><a href="storeOrder.do">Store</a></li>
                                 <li><a href="systemAdmin.do">System</a></li>
