@@ -65,6 +65,17 @@ public class SystemController {
 		return mv;
 	}
 	
+	@RequestMapping(value="menuSearch.do", method=RequestMethod.GET)
+	public String menuSearch(@RequestParam(value="menuName",required=false) String menuName,
+							 @RequestParam(value="menuCategory",required=false) String menuCategory,
+							 @RequestParam(value="status",required=false)String status,
+							 @RequestParam(value="page",required=false)Integer page){
+		System.out.println("menuName:"+menuName+"\nmenuCategory:"+menuCategory+"\nstatus:"+status);
+		
+		ArrayList<Menu> resultMenuList = sService.searchMenuList();
+		return null;
+	}
+	
 	@RequestMapping(value="systemAdminCoupon.do", method=RequestMethod.GET)
 	public String goCouponList() {
 		return "systemAdmin/systemAdminCoupon";

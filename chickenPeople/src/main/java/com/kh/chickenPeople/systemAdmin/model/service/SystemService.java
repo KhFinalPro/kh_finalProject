@@ -7,9 +7,11 @@ import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 public interface SystemService {
 
-	int getListCount();						//관리자 _ 메뉴리스트 갯수 count
+	int getListCount();									//관리자 _ 메뉴리스트 갯수 count
 
 	ArrayList<Menu> selectMenuList(PageInfo pi);		//관리자_ 메뉴리스트 select
+
+	ArrayList<Menu> searchMenuList();					//관리자_ 메뉴 검색 select
 
 	
 

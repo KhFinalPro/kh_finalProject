@@ -44,35 +44,38 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">메뉴 관리</p>
 				<br><hr><br>
-				<table class="searchTable">
-					<tr>
-						<td><b>메뉴 검색</b></td>
-						<td><input class="menuSearch" type="text" placeholder="메뉴명을 입력해주세요."></td>
-					</tr>
-					<tr>
-						<td><b>카테고리</b></td>
-						<td>
-							<select name="menuCategory">
-								<option value="">전체</option>
-								<option value="">뼈 치킨</option>
-								<option value="">순살 치킨</option>
-								<option value="">세트</option>
-								<option value="">사이드메뉴</option>
-								<optino value="">음료</optino>
-								<option value="">소스</option>
-							</select>
-						</td>
-						<td><b>판매 상태</b></td>
-						<td>
-							<label><input type="radio" name="status" value="Y"/> 판매 중</label>
-							<label><input type="radio" name="status" value="N"/> 판매 종료</label>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button>검색</button></td>
-					</tr>
-				</table>
+				<form action="menuSearch.do" method="get">
+					<table class="searchTable">
+						<tr>
+							<td><b>메뉴 검색</b></td>
+							<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+						</tr>
+						<tr>
+							<td><b>카테고리</b></td>
+							<td>
+								<select id="menuCategory" class="menuCategory" name="menuCategory">
+									<option value="total">전체</option>
+									<option value="category1">뼈 치킨</option>
+									<option value="category2">순살 치킨</option>
+									<option value="category3">세트</option>
+									<option value="category4">사이드메뉴</option>
+									<optino value="category5">음료</optino>
+									<option value="category6">소스</option>
+								</select>
+							</td>
+							<td><b>판매 상태</b></td>
+							<td>
+								<label><input type="radio" name="status" value="Y" checked/> 판매 중</label>
+								<label><input type="radio" name="status" value="N"/> 판매 종료</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4"><button type="submit">검색</button></td>
+						</tr>
+					</table>
+				</form>
 			</div><!-- menuHeader end -->
+		
 			<div class="menuResultTable">
 				<br><hr><br>
 				<table class="resultTable">
