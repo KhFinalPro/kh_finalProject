@@ -20,10 +20,11 @@
 		.tree_area{text-align: center;}
 		.title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
 		.main_area{margin: 0 auto; width: 90%;}
+		
+		
+		
+		.main_area>.second_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block; transition: border 0.3s;}
 		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
-		
-		
-		.main_area>.second_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block;}
 		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
 		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
 		
@@ -67,7 +68,7 @@
 	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
 	                    </a>
 	                    <div align="center">
-	                        <h3>${b.sto_brand }</h3>
+	                        <h3>${b.brand_name }</h3>
 	                        <h3>${b.sto_name }</h3>
 	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
 	                        40~50분 소요예정

@@ -14,7 +14,7 @@ public class Bung implements Serializable {
 	private int bung_num; 		//번개번호
 	private String user_id;		//등록자아이디
 	private String bung_title;	//번개제목
-	private String bung_date;		//번개일시
+	private String bung_date;	//번개일시
 	private String bung_addr;	//번개주소
 	private int bung_p_no;		//인원수
 	private String bung_int;	//소개글
