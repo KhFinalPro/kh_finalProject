@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <style>
-	button{
+  /* 최종버튼 */
+ 	button{
 	  background:#1AAB8A;
 	  color:#fff;
 	  border:none;
@@ -56,6 +57,44 @@
 	    border-bottom: 1px solid #444444;
 	    padding: 10px;
 	  }
+	  
+	  	html, body {
+		  height: 100%;
+		}
+		
+		.wrap {
+		  height: 100%;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		} 
+		
+		
+		/* 댓글 버튼 */
+		.button {
+		  width: 140px;
+		  height: 45px;
+		  font-family: 'Roboto', sans-serif;
+		  font-size: 11px;
+		  text-transform: uppercase;
+		  letter-spacing: 2.5px;
+		  font-weight: 500;
+		  color: #000;
+		  background-color: #fff;
+		  border: none;
+		  border-radius: 45px;
+		  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+		  transition: all 0.3s ease 0s;
+		  cursor: pointer;
+		  outline: none;
+		  }
+		
+		.button:hover {
+		  background-color: #2ac1bc;
+		  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+		  color: #fff;
+		  transform: translateY(-7px);
+		}
 </style>
 
 
@@ -100,8 +139,8 @@
 				 	<td>조회수</td>
 				 	<td>${notice.nCount }</td>
 				 </tr> --%>
-				  <tr align="center">
-				 	<td colspan="5">
+				  <tr>
+				 	<td colspan="5" >
 				 	${notice.nCont }
 				 	<br><br><br><br><br><br><br>
 				 	<br><br><br><br><br><br><br><br>
@@ -111,13 +150,20 @@
 				 
 				  <!--  insert 완료후 작성 -->
 		 </table>
+		 <div style="float:right;">
+			   <c:if test="${loginUser.userId eq 'Admin' }">
+				  	<button onclick ="#">수정하기</button>
+				  	<button onclick ="#">삭제하기</button>
+			 </c:if>
+		 </div>
+		 <br><br> <br><br> <br><br>
 		 
 		 <!-- 댓글 등록 -->
 		 <table align="center" width="500" >
 		 	<tr>
 				<td><textarea cols="80" rows="7" id="rContent"></textarea></td>		 	
 				<td>
-					<button id ="rSubmit">등록하기</button>
+					<input type="button" id ="rSubmit" class="button" value="등록하기">
 				</td>		 	
 		 	</tr>
 		 </table>
@@ -132,19 +178,24 @@
 		 </table>
 
 			 <br><br> <br><br> <br><br>
-	 <div style="float:right">
-	 <c:if test="${loginUser.userId eq notice.userId }">
-		  	<button onclick ="#">수정하기</button>
-	 </c:if>
-		  	<button onclick ="toNlist()" value="nlist.do">목록</button> <!-- 왜 안되지? -->
+	 <div align="center">
+		  	<button onclick ="toNlist()" value="nlist.do" >목록</button> <!-- 왜 안되지? -->
+			<br>
 	</div>
+	
+	
+
+
+
+
+<!-- 목록으로~ -->
 	<script>
 		function toNlist (){
 			location.href="nlist.do"; 
 		}
 	</script>
 		  
-<!-- 페이징 처리 기능이랑 같이하기.  -->
+
 		  
 		  
 	 </div> 

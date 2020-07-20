@@ -9,4 +9,9 @@ public interface NoticeService {
 	public ArrayList<Notice> selectList();
 
 	public Notice selectOne(int nNum);
+
+	public int insertNotice(Notice n);
+
+	public int addReadCount(int nNum);
+
 }

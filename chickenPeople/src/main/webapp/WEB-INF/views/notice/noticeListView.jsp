@@ -103,9 +103,9 @@
 			 
 			 
 
-		 
+		 <bra><br><br><br><br>
 	 <div style="float:right">
-	 <c:if test="${!empty loginUser }">
+	 <c:if test="${loginUser.userId eq 'Admin' }">
 		  	<button onclick ="nWrite()">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>
@@ -120,7 +120,7 @@
 		}
 		
 		function nWrite(){
-			location.href="nInsert.do";
+			location.href="nInsertView.do";
 		}
 	</script>
 	

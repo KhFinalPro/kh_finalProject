@@ -26,4 +26,24 @@
   		WHERE N_NUM=#{nNum}
   	</select>
   	
+  	<insert id ="insertNotice" parameterType="Notice">
+  		INSERT INTO NOTICE VALUES(
+			SEQ_N_NUM.NEXTVAL
+			, #{nTitle}
+			, #{nCont}
+            , #{userId}
+			, #{nCount}
+			, SYSDATE
+			, SYSDATE
+			, SYSDATE
+			, 'N'
+)
+  	</insert>
+  	
+  	<update id="updateCount" parameterType="_int">
+  		UPDATE NOTICE
+  		SET N_COUNT = N_COUNT +1
+  		WHERE N_NUM =#{nNum}
+  	</update>
+  	
 </mapper>

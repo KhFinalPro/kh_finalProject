@@ -29,4 +29,20 @@ public class NoticeServiceImpl implements NoticeService {
 		return  nDao.selectOne(nNum);
 	}
 
+
+
+	@Override
+	public int insertNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return nDao.insertNotice(n);
+	}
+
+
+
+	@Override
+	public int addReadCount(int nNum) {
+		// TODO Auto-generated method stub
+		return nDao.addReadCount(nNum);
+	}
+
 }
