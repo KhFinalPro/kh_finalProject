@@ -176,6 +176,11 @@
 		 		</tr>
 		 	</thead>
 		 </table>
+		 
+		 <!-- 댓글 ajax -->
+		 <script>
+		 
+		 </script>
 
 			 <br><br> <br><br> <br><br>
 	 <div align="center">
