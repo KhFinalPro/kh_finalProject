@@ -5,4 +5,6 @@ import com.kh.chickenPeople.member.model.vo.Member;
 
 public interface MemberService {
 	Member loginMember(Member m);
+
+	void insertMember(Member m);
 }
