@@ -22,7 +22,7 @@
             }
             a{
                 text-decoration:none;
-                color:  lightgray;
+                color: black;
             }
             input::-webkit-input-placeholder { 
                 color: lightgray; 
@@ -47,6 +47,7 @@
                 border-radius: 8px; 
                 background: #2ac1bc;
                 font-weight: bold;
+                border:none;
             }
             #check1{
                 float: left;
@@ -75,7 +76,9 @@
 				/* border: 1px solid black; */
 				text-align: center;
             }
-            
+            #memberJoin{
+            	border:none;
+            }
             
             
     </style>
@@ -83,7 +86,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 	<c:if test="${empty sessionScope.loginUser }">
-	<form id="loginform" action="doLogin.do" method="post">
+	<form id="loginform" action="doLoginView.do" method="post">
             <h1 id="h2">회원 로그인</h1>
             <hr>
             <br>
@@ -107,14 +110,15 @@
                 <input type="checkbox" id="check1">
                 <label id="idsave">아이디 저장</label>
                 
-                <label style="float: right;">비밀번호찾기</label>
-                <label style="float: right; text-decoration: none">아이디찾기 /&nbsp;</label>
+                <a href="findPwdView.do" style="float: right;">비밀번호찾기 </a>
+                <a href="findIdView.do" style="float: right; text-decoration: none">아이디찾기/&nbsp; </a>
                 
             </div>
             <br>
             <hr>
             <br>
-            <input type="button" id="memberJoin" value="회원가입">
+            <input type="button" id="memberJoin" value="회원가입" onclick="location.href='memberJoinView.do'">
+            
             <br>
             <br>
             <hr>
