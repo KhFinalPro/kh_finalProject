@@ -24,9 +24,12 @@
 	</resultMap>
 	
 	<select id="bungList" resultMap="bungResultSet">
+		<![CDATA[
 		SELECT BUNG_NUM, USER_ID, BUNG_TITLE, BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
 		FROM BUNG
+        WHERE SYSDATE <= BUNG_DATE
 		ORDER BY BUNG_NUM DESC
+		]]>
 	</select>
 	
 	<select id="selectBung" parameterType="_int" resultMap="bungResultSet">
@@ -82,11 +85,13 @@
 	</insert>
 	
 	<select id="bungTagList" parameterType="_int" resultMap="bungResultSet">
+		<![CDATA[
 		SELECT BT.BUNG_NUM, BT.USER_ID, BUNG_TITLE, BUNG_DATE, BUNG_ADDR, BUNG_P_NO,
         BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
 		FROM BUNG_TAG BT
 		JOIN BUNG B ON BT.BUNG_NUM = B.BUNG_NUM
-		WHERE TAG_NUM = #{tag_num}
+		WHERE TAG_NUM = #{tag_num} AND SYSDATE <= BUNG_DATE
+		]]>
 	</select>
 	
 	<select id="selectBrand" parameterType="string" resultMap="brandResultSet">
