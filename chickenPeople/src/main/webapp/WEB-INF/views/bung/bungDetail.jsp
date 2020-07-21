@@ -127,10 +127,9 @@
         <br clear="both">
 
         <div id="tag_area">
-            <a href="#">#치킨번개</a>&nbsp;
-            <a href="#">#교촌치킨</a>&nbsp;
-            <a href="#">#강남역</a>&nbsp;
-            <a href="#">#맥주</a>&nbsp;
+        	<c:forEach var="t" items="${tagList }">
+            	<a class="tagBtn" value="${t.tag_num }">#${t.tag_name }</a>&nbsp;
+            </c:forEach>
         </div>
 
         <div id="text_area">
@@ -202,6 +201,12 @@
 	                          +"error: " + errorData);
 				}
 			})
+		})
+		
+		$(".tagBtn").on("click",function(){
+			$tag_num = $(this).attr('value');
+			
+			location.href="bungTagList.do?tag_num=" + $tag_num;
 		})
 	})
 </script>
