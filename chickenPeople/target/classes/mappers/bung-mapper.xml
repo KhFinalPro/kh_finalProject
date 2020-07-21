@@ -54,4 +54,30 @@
 	<select id="selectBrandList" resultMap="brandResultSet">
 		SELECT * FROM BRAND
 	</select>
+	<insert id="insertBung" parameterType="Bung">
+		INSERT INTO BUNG VALUES(SEQ_BUNGNUM.NEXTVAL, 
+								#{user_id}, 
+								#{bung_title}, 
+								TO_DATE(#{bung_date}, 'yyyy/mm/dd hh24:mi'),
+								NULL,
+								#{bung_p_no}, 
+								#{bung_int}, 
+								DEFAULT, 
+								DEFAULT, 
+								DEFAULT, 
+								NULL, 
+								#{bung_brd}, 
+								'Y')
+	</insert>
+	
+	<select id="selectBungNum" parameterType="string" resultMap="bungResultSet">
+		SELECT BUNG_NUM
+		FROM BUNG
+		WHERE USER_ID = #{user_id} AND ROWNUM = 1
+        ORDER BY 1 DESC
+	</select>
+	
+	<insert id="insertBungTag" parameterType="BungTag">
+		INSERT INTO BUNG_TAG VALUES(SEQ_BUNGTAG.NEXTVAL, #{bung_num}, #{user_id}, #{tag_num})
+	</insert>
 </mapper>

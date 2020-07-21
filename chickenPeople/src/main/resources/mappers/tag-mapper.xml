@@ -10,4 +10,8 @@
 		SELECT * FROM TAG
 		WHERE TAG_NAME = #{tag}
 	</select>
+	
+	<insert id="insertTag" parameterType="string">
+		INSERT INTO TAG VALUES(SEQ_TAGNUM.NEXTVAL, #{tag})
+	</insert>
 </mapper>

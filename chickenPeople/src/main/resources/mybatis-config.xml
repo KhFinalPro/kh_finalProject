@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.chickenPeople.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>
 		<typeAlias type="com.kh.chickenPeople.tag.model.vo.Tag" alias="Tag"/>
+		<typeAlias type="com.kh.chickenPeople.bung.model.vo.BungTag" alias="BungTag"/>
 	</typeAliases>
 	
 	<mappers>

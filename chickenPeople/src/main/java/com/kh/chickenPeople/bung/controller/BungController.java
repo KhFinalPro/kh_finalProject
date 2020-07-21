@@ -19,12 +19,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.service.BungService;
 import com.kh.chickenPeople.bung.model.vo.Bung;
+import com.kh.chickenPeople.bung.model.vo.BungTag;
 
 @Controller
 public class BungController {
 
 	@Autowired
 	BungService bungService;
+	
+	
+	
 	
 	
 	@RequestMapping("bungList.do")
@@ -114,10 +118,7 @@ public class BungController {
 		
 		//브랜드 사진과 이름 가져오기
 		ArrayList<Brand> brandList = bungService.brandListSelect();
-		for(Brand b : brandList)
-		{
-			System.out.println(b);
-		}
+		
 		mv.addObject("brandList", brandList);
 		mv.setViewName("bung/bungCreate");
 		
@@ -127,10 +128,26 @@ public class BungController {
 
 	
 	@RequestMapping(value="bungCreate.do", method=RequestMethod.GET)
-	public ModelAndView bungCreate(ModelAndView mv, @ModelAttribute Bung b) {
+	public ModelAndView bungCreate(ModelAndView mv, @ModelAttribute Bung b, int[] tag_num) {
+		
 		
 		System.out.println("tag.do");
-		System.out.println(b.getBung_date());
+		
+		//번개 등록하기
+		int insertBung = bungService.insertBung(b);
+		
+		Bung bung = bungService.selectBungNum(b.getUser_id());
+		// 번개번호를 가져와서 tag_num이랑 list로 조합을해서 tag insert하기
+		
+		//bung_tag insert
+		for(int i = 0; i<tag_num.length; i++)
+		{
+			BungTag bungTag = new BungTag(bung.getBung_num(), b.getUser_id(), tag_num[i]);
+			
+			int insertBungTag = bungService.insertBungTag(bungTag);
+		}
+		
+		
 		
 		
 		
@@ -138,7 +155,6 @@ public class BungController {
 		
 	}
 	
-
 	
 	
 	
