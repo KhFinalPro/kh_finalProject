@@ -34,9 +34,6 @@
 </head>
 <body>
 
-
-
-
 	<jsp:include page="common/header.jsp"/>
 	<br clear="both">
         <div class="contents">

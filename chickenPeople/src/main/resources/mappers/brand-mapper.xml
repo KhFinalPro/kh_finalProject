@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brandMapper">
+  <resultMap type="brand" id="brandResultSet">
+  	<id property="brand_code" column="BRAND_CODE"/>
+  	<result property="brand_pic" column="BRAND_PIC"/>
+  	<result property="brand_name" column="BRAND_NAME"/>
+  	<result property="brand_yn"	column="BRAND_YN"/>
+  </resultMap>
+  <select id="getListCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM BRAND
+  </select>
+  <select id="selectBrand" resultMap="brandResultSet">
+  	SELECT * FROM BRAND
+  </select>
+</mapper>

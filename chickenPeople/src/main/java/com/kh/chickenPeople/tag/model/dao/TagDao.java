@@ -17,4 +17,9 @@ public class TagDao {
 		return sqlSessionTemplate.selectOne("tagMapper.selectOneTag", tag);
 	}
 
+	public int insertTag(String tag) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("tagMapper.insertTag", tag);
+	}
+
 }

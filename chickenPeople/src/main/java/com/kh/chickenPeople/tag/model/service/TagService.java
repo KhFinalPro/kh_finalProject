@@ -9,4 +9,6 @@ public interface TagService {
 
 	Tag selectTagNum(String tag);
 
+	int insertTag(String trim);
+
 }

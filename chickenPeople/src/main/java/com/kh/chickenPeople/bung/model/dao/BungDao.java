@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.vo.Bung;
+import com.kh.chickenPeople.bung.model.vo.BungTag;
 
 @Repository("bungDao")
 public class BungDao {
@@ -49,6 +50,21 @@ public class BungDao {
 	public ArrayList<Brand> brandListSelect() {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.selectBrandList");
+	}
+
+	public int insertBung(Bung b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("bungMapper.insertBung",b);
+	}
+
+	public Bung selectBungNum(String user_id) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("bungMapper.selectBungNum", user_id);
+	}
+
+	public int insertBungTag(BungTag bungTag) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("bungMapper.insertBungTag", bungTag);
 	}
 
 }
