@@ -97,15 +97,8 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <!-- <label for="">번개 장소 : </label>
-                    <input type="text" id="sample6_postcode" placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="sample6_address" placeholder="주소"><br>
-                    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                    <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
+                <td>                    
                     <label for="">소개글</label>
-
                 </td>
                 <td>
                     <textarea name="bung_int" id="bung_int" cols="70" rows="5"></textarea>
