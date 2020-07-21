@@ -86,7 +86,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 	<c:if test="${empty sessionScope.loginUser }">
-	<form id="loginform" action="doLogin.do" method="post">
+	<form id="loginform" action="doLoginView.do" method="post">
             <h1 id="h2">회원 로그인</h1>
             <hr>
             <br>
@@ -110,14 +110,14 @@
                 <input type="checkbox" id="check1">
                 <label id="idsave">아이디 저장</label>
                 
-                <a href="findPwd.do" style="float: right;">비밀번호찾기 </a>
-                <a href="findId.do" style="float: right; text-decoration: none">아이디찾기/&nbsp; </a>
+                <a href="findPwdView.do" style="float: right;">비밀번호찾기 </a>
+                <a href="findIdView.do" style="float: right; text-decoration: none">아이디찾기/&nbsp; </a>
                 
             </div>
             <br>
             <hr>
             <br>
-            <input type="button" id="memberJoin" value="회원가입" onclick="location.href='memberJoin.do'">
+            <input type="button" id="memberJoin" value="회원가입" onclick="location.href='memberJoinView.do'">
             
             <br>
             <br>

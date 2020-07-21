@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,15 +24,13 @@ import com.kh.chickenPeople.member.model.vo.Member;
 @Controller
 public class MemberController { 
 	
-//	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-//	
-//	@Inject
-//	BCryptPasswordEncoder pwdEncoder;
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Autowired
 	MemberService mService;
 	
-	@RequestMapping("login.do")
+	@RequestMapping("loginView.do")
 	public ModelAndView loginMember(ModelAndView mv) {
 		System.out.println("login.do");
 		mv.setViewName("member/memberLogin");
@@ -58,14 +57,14 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping("logout.do")	// 로그아웃
+	@RequestMapping("logoutView.do")	// 로그아웃
 	public String logout(SessionStatus session) {
 		session.setComplete();
 		
 		return "redirect:/home.do";
 	}
 	
-	@RequestMapping("memberJoin.do")	// 회원가입
+	@RequestMapping("memberJoinView.do")	// 회원가입 화면
 	public ModelAndView memberJoin(ModelAndView mv) {
 //		System.out.println("memberJoin.do");
 		mv.setViewName("member/insertMember");
@@ -73,7 +72,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("findId.do")	// 아이디찾기
+	@RequestMapping("findIdView.do")	// 아이디찾기
 	public ModelAndView findId(ModelAndView mv) {
 //		System.out.println("findId.do");
 		mv.setViewName("member/findId");
@@ -81,13 +80,24 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("findPwd.do")	// 비번찾기
+	@RequestMapping("findPwdView.do")	// 비번찾기
 	public ModelAndView findPwd(ModelAndView mv) {
 //		System.out.println("findPwd.do");
 		mv.setViewName("member/findPwd");
 		
 		return mv;
 	}
+	
+	// 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="idChk.do", method=RequestMethod.POST)
+	public int idChk(Member m) throws Exception{
+		int result = mService.idChk(m);
+		
+		return result;
+	}
+	
+	
 	// 회원가입post
 //	@RequestMapping(value = "/register", method= RequestMethod.POST)
 //	public String postRegister(Member m) throws Exception{

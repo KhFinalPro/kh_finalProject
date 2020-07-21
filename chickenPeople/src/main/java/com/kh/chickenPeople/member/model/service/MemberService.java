@@ -7,4 +7,6 @@ public interface MemberService {
 	Member loginMember(Member m);
 
 	void insertMember(Member m);
+
+	int idChk(Member m);
 }

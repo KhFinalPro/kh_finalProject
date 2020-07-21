@@ -95,7 +95,7 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-        <form id="memberJoin" method="post" action="memberJoin.do">
+        <form id="memberJoin" method="post" action="memberJoinView.do">
             <h2 id="h2">회원가입</h2>
             <table id="logintable">
                 <tr>
@@ -104,7 +104,7 @@
                     </td>
                     <td id="inp" class="ltd">
                         <input type="text" id="userId" name="userId" required placeholder="4글자 이상 12글자 이하 영문자(소문자)와 숫자">
-                        <input type="button" id="idCheck" value="중복확인" style="width: 70px; background: #2ac1bc; color: white; border: none;" onclick="idCheck();">
+                        <input type="button" id="idChk" value="중복확인" style="width: 70px; background: #2ac1bc; color: white; border: none;">
                         <input type="hidden" value="N" id="checkCheck">
                     </td>
                 </tr>
@@ -545,7 +545,29 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	           }
 	        }).open();
 	    }
+	    
+	    
 
+	    $("#idChk").on("click",function(){
+	    	if($("#userId").val()==""){
+	    		alert("아이디를 입력해주세요");
+	    	}else{
+	    	$.ajax({
+	    		url : "idChk.do",
+	    		type : "post",
+	    		dataType:"json",
+	    		data : {"id" : $("#userId").val()},
+	    		success : function(data){
+	    			if(data == 1){
+	    				alert("중복된 아이디입니다.");
+	    			}else if(data==0){
+	    				$("#idChk").attr("value", "중복확인");
+	    				alert("사용가능한 아이디입니다.");
+	    			}
+	    		}
+	    	})
+	    	}
+	    })
     </script>
     
 </html>

@@ -18,4 +18,15 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.loginMember(m);
 	}
 
+	@Override
+	public void insertMember(Member m) {
+		
+	}
+
+	@Override
+	public int idChk(Member m) {
+		
+		return mDao.idChk(m);
+	}
+
 }

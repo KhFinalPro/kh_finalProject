@@ -18,4 +18,10 @@ public class TagServiceImpl implements TagService{
 		return tagDao.selectTagNum(tag);
 	}
 
+	@Override
+	public int insertTag(String tag) {
+		// TODO Auto-generated method stub
+		return tagDao.insertTag(tag);
+	}
+
 }

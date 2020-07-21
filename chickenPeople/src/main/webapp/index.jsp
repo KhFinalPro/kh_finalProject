@@ -6,13 +6,14 @@
 
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 
 <body>
 	<%
-	response.sendRedirect(request.getContextPath() + "/home.do");
+		response.sendRedirect(request.getContextPath() + "/home.do");
 	%> 
 
 

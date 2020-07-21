@@ -69,12 +69,12 @@
                             
                             <ul>
 								<c:if test="${empty sessionScope.loginUser}">
-									<li><a href="memberJoin.do">Join </a></li>
-                                	<li><a href="login.do">Login </a></li>
+									<li><a href="memberJoinView.do">Join </a></li>
+                                	<li><a href="loginView.do">Login </a></li>
                                 </c:if>
                                 
                                 <c:if test="${!empty sessionScope.loginUser}">
-                                	<li><a href="logout.do">Logout </a></li>
+                                	<li><a href="logoutView.do">Logout </a></li>
 	                                <li><a href="msgList.do">MyPage</a></li>
 	                                <li><a href="storeOrder.do">Store</a></li>
 	                                <c:if test="${sessionScope.loginUser.uLvl eq '관리자' }">

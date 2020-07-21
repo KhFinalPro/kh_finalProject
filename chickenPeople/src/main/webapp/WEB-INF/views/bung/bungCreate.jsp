@@ -70,7 +70,7 @@
 	<%@ include file="../common/header.jsp" %>
 	
 	<section id="bungCreate_area">
-		
+		<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
         <table>
             <tr>
                 <td><label>번개 제목</label></td>
@@ -130,7 +130,7 @@
             <tr>
                 <td colspan="2" >
                     
-                    <div id="tag" name="tag">
+                    <div id="tagArea" class="tag">
 
                     </div>
                 </td>
@@ -168,7 +168,7 @@
 	<script>
         //태그관련 jquery
         $(function(){
-            
+            alert($("#bung_brand").val());
             $(".tag_area").on("keydown", function(key) {
                 
                 $tag_area = $(".tag_area");
@@ -183,19 +183,21 @@
                     	dataType: "json",
                     	type: "post",
                     	success:function(data){
-                    		
+                    		console.log(data);
+                    		var tag="<a href='mainSection.html' id='tag'>#"+data.tag_name+"</a>"+"," 
+                    				+ "<input type='hidden' id='tagNum' name='tag_num' value='"+ data.tag_num +"'/>";
+                            $("#tagArea").append(tag);
+                            
+                            $tag_area.val("");
                     	},
-                    	error:function(data){
+                    	error:function(request, status, errorData){
                     		alert("error code: " + request.status + "\n"
       	                          +"message: " + request.responseText
       	                          +"error: " + errorData);
                     	}
                     })
                     
-                    var tag="<a href='mainSection.html' id='tag'>#"+$tag_area.val()+"</a>"+",";
-                    $("#tag").append(tag);
                     
-                    $tag_area.val("");
                     // $tag_area.remove();
                     // $("#tag_area_td").append("<textarea id='tag_area' cols='30' rows='1' style='resize: none; height: 25px; font-size: 20px; font-weight: 600;'></textarea>");
                 }
@@ -209,8 +211,16 @@
             	$bung_int = $("#bung_int").val();
             	$bung_p_no = $("#bung_p_no").val();
             	$bung_date = $bungDate +" "+ $bungTime;
+            	$user_id = $("#user_id").val();
+            	console.log($user_id);
             	
-            	location.href="bungCreate.do?bung_title="+$bung_title+"&bung_brand="+$bung_brand+"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no;
+            	$tagNumArr = new Array();
+            	$(".tag input").each(function(index, item){
+	            	$tagNumArr.push($("#tagArea").children("#tagNum").eq(index).val());            		
+            	})
+            	
+            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+
+            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;
             })
             
             
