@@ -67,4 +67,14 @@ public class BungDao {
 		return sqlSessionTemplate.insert("bungMapper.insertBungTag", bungTag);
 	}
 
+	public ArrayList<Bung> bungTagList(int tag_num) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.bungTagList", tag_num);
+	}
+
+	public Brand selectBrand(String bung_brd) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("bungMapper.selectBrand", bung_brd);
+	}
+
 }

@@ -31,6 +31,10 @@ public interface BungService {
 
 	int insertBungTag(BungTag bungTag);
 
+	ArrayList<Bung> bungTagList(int tag_num);
+
+	Brand selectBrand(String bung_brd);
+
 	
 
 }

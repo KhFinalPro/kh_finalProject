@@ -59,15 +59,15 @@
 								#{user_id}, 
 								#{bung_title}, 
 								TO_DATE(#{bung_date}, 'yyyy/mm/dd hh24:mi'),
-								NULL,
+								#{bung_addr},
 								#{bung_p_no}, 
 								#{bung_int}, 
 								DEFAULT, 
 								DEFAULT, 
 								DEFAULT, 
-								NULL, 
+								#{bung_img}, 
 								#{bung_brd}, 
-								'Y')
+								'모집중')
 	</insert>
 	
 	<select id="selectBungNum" parameterType="string" resultMap="bungResultSet">
@@ -80,4 +80,18 @@
 	<insert id="insertBungTag" parameterType="BungTag">
 		INSERT INTO BUNG_TAG VALUES(SEQ_BUNGTAG.NEXTVAL, #{bung_num}, #{user_id}, #{tag_num})
 	</insert>
+	
+	<select id="bungTagList" parameterType="_int" resultMap="bungResultSet">
+		SELECT BT.BUNG_NUM, BT.USER_ID, BUNG_TITLE, BUNG_DATE, BUNG_ADDR, BUNG_P_NO,
+        BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
+		FROM BUNG_TAG BT
+		JOIN BUNG B ON BT.BUNG_NUM = B.BUNG_NUM
+		WHERE TAG_NUM = #{tag_num}
+	</select>
+	
+	<select id="selectBrand" parameterType="string" resultMap="brandResultSet">
+		SELECT *
+		FROM BRAND
+		WHERE BRAND_NAME = #{bung_brd}
+	</select>
 </mapper>

@@ -77,6 +77,18 @@ public class BungServiceImpl implements BungService {
 		return bungDao.insertBungTag(bungTag);
 	}
 
+	@Override
+	public ArrayList<Bung> bungTagList(int tag_num) {
+		// TODO Auto-generated method stub
+		return bungDao.bungTagList(tag_num);
+	}
+
+	@Override
+	public Brand selectBrand(String bung_brd) {
+		// TODO Auto-generated method stub
+		return bungDao.selectBrand(bung_brd);
+	}
+
 	
 	
 }

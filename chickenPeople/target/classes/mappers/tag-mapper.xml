@@ -14,4 +14,17 @@
 	<insert id="insertTag" parameterType="string">
 		INSERT INTO TAG VALUES(SEQ_TAGNUM.NEXTVAL, #{tag})
 	</insert>
+	
+	<select id="selectTag" parameterType="_int" resultMap="tagResultSet">
+		SELECT BT.TAG_NUM, TAG_NAME
+		FROM BUNG_TAG BT
+		JOIN TAG T ON BT.TAG_NUM = T.TAG_NUM
+		WHERE BUNG_NUM = #{bung_num}
+	</select>
+	
+	<select id="selectTagName" parameterType="_int" resultMap="tagResultSet">
+		SELECT TAG_NAME
+		FROM TAG
+		WHERE TAG_NUM = #{tag_num}
+	</select>
 </mapper>
