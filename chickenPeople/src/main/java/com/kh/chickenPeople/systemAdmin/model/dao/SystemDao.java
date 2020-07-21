@@ -15,16 +15,6 @@ public class SystemDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public int getListCount() {
-		return sqlSessionTemplate.selectOne("systemMapper.getListCount");
-	}
-	
-	public ArrayList<Menu> selectMenuList(PageInfo pi) {
-		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		System.out.println("offset:"+rowBounds);
-		return (ArrayList)sqlSessionTemplate.selectList("systemMapper.selectMenu", null, rowBounds);
-	}
 
 
 }

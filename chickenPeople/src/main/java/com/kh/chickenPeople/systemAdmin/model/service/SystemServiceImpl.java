@@ -15,14 +15,6 @@ public class SystemServiceImpl implements SystemService{
 	@Autowired
 	SystemDao sDao;
 	
-	@Override
-	public ArrayList<Menu> selectMenuList(PageInfo pi) {
-		return sDao.selectMenuList(pi);
-	}
 
-	@Override
-	public int getListCount() {
-		return sDao.getListCount();
-	}
 
 }

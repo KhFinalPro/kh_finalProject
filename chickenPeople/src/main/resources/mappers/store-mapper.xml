@@ -21,7 +21,7 @@
 		<result property="brand_code" column="BRAND_CODE"/>
 		<result property="user_id" column="USER_ID"/>
 		<result property="brand_pic" column="BRAND_PIC"/>
-		<result property="sto_brand" column="BRAND_NAME"/>
+		<result property="brand_name" column="BRAND_NAME"/>
 	</resultMap>
 	
 	<select id="searchList" parameterType="String" resultMap="storeResultSet">

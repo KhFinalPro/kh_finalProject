@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ public class BungController {
 
 	@Autowired
 	BungService bungService;
+	
 	
 	@RequestMapping("bungList.do")
 	public ModelAndView bungList(ModelAndView mv) {
@@ -112,10 +114,32 @@ public class BungController {
 		
 		//브랜드 사진과 이름 가져오기
 		ArrayList<Brand> brandList = bungService.brandListSelect();
+		for(Brand b : brandList)
+		{
+			System.out.println(b);
+		}
+		mv.addObject("brandList", brandList);
+		mv.setViewName("bung/bungCreate");
+		
+		return mv;
+	}
+	
+
+	
+	@RequestMapping(value="bungCreate.do", method=RequestMethod.GET)
+	public ModelAndView bungCreate(ModelAndView mv, @ModelAttribute Bung b) {
+		
+		System.out.println("tag.do");
+		System.out.println(b.getBung_date());
 		
 		
 		
 		return mv;
+		
 	}
+	
+
+	
+	
 	
 }

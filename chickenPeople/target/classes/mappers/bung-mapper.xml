@@ -4,7 +4,7 @@
 
 	<resultMap type="Bung" id="bungResultSet">
 		<id property="bung_num" column="BUNG_NUM"/>
-		<result property="user_id" column="USER_ID"/>
+		<id property="user_id" column="USER_ID"/>
 		<result property="bung_title" column="BUNG_TITLE"/>
 		<result property="bung_date" column="BUNG_DATE"/>
 		<result property="bung_addr" column="BUNG_ADDR"/>
@@ -24,7 +24,7 @@
 	</resultMap>
 	
 	<select id="bungList" resultMap="bungResultSet">
-		SELECT *
+		SELECT BUNG_NUM, USER_ID, BUNG_TITLE, BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
 		FROM BUNG
 		ORDER BY BUNG_NUM DESC
 	</select>

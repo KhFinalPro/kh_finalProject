@@ -1,4 +1,4 @@
-package com.kh.chickenPeople.systemAdmin.model.vo;
+package com.kh.chickenPeople.menu.model.vo;
 
 import java.io.Serializable;
 

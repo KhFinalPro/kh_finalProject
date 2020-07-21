@@ -99,7 +99,7 @@
 					<h2>${b.bung_title }</h2>
 					<h3>${b.bung_addr }</h3>
 					<h3>${b.bung_date }</h3>
-					<h4>${b.bung_p_no }명까지</h4>
+					<h4>${b.bung_p_no }명까지</h4>	
 				</div>
 				<br clear="both">
 				<div class="brand_name second_line ">${b.bung_brd }</div>

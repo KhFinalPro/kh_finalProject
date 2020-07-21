@@ -51,16 +51,13 @@
 							<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
 						</tr>
 						<tr>
-							<td><b>카테고리</b></td>
+							<td><b>브랜드 검색</b></td>
 							<td>
 								<select id="menuCategory" class="menuCategory" name="menuCategory">
 									<option value="total">전체</option>
-									<option value="category1">뼈 치킨</option>
-									<option value="category2">순살 치킨</option>
-									<option value="category3">세트</option>
-									<option value="category4">사이드메뉴</option>
-									<optino value="category5">음료</optino>
-									<option value="category6">소스</option>
+									<c:forEach var="m" items="${brandList}">
+										<option value="${m.brand_name }">${m.brand_name }</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td><b>판매 상태</b></td>

@@ -30,13 +30,13 @@ public class Store implements Serializable{
 	
 	//브랜드관련
 	private String brand_pic;
-	private String sto_brand;
+	private String brand_name;
 	public Store() {
 	}
 	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
 			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,
 			String delivery, String sto_email, String aprv_status, String brand_code, String user_id, String brand_pic,
-			String sto_brand) {
+			String brand_name) {
 		this.sto_num = sto_num;
 		this.sto_name = sto_name;
 		this.sto_tel = sto_tel;
@@ -55,7 +55,7 @@ public class Store implements Serializable{
 		this.brand_code = brand_code;
 		this.user_id = user_id;
 		this.brand_pic = brand_pic;
-		this.sto_brand = sto_brand;
+		this.brand_name = brand_name;
 	}
 	public int getSto_num() {
 		return sto_num;
@@ -165,11 +165,11 @@ public class Store implements Serializable{
 	public void setBrand_pic(String brand_pic) {
 		this.brand_pic = brand_pic;
 	}
-	public String getSto_brand() {
-		return sto_brand;
+	public String getBrand_name() {
+		return brand_name;
 	}
-	public void setSto_brand(String sto_brand) {
-		this.sto_brand = sto_brand;
+	public void setBrand_name(String brand_name) {
+		this.brand_name = brand_name;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -181,6 +181,7 @@ public class Store implements Serializable{
 				+ ", ord_limit=" + ord_limit + ", deli_time=" + deli_time + ", enter_yn=" + enter_yn + ", open_yn="
 				+ open_yn + ", ceo_name=" + ceo_name + ", delivery=" + delivery + ", sto_email=" + sto_email
 				+ ", aprv_status=" + aprv_status + ", brand_code=" + brand_code + ", user_id=" + user_id
-				+ ", brand_pic=" + brand_pic + ", sto_brand=" + sto_brand + "]";
+				+ ", brand_pic=" + brand_pic + ", brand_name=" + brand_name + "]";
 	}
+	
 }
