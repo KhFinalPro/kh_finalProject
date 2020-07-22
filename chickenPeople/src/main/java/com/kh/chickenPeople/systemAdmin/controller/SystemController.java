@@ -103,6 +103,26 @@ public class SystemController {
 		return mv;
 	}
 	
+	@RequestMapping(value="couponUpdate.do")
+	public String couponUpdate(HttpServletRequest request, @ModelAttribute Coupon coupon,
+			@RequestParam(value="uploadFile", required=false) MultipartFile file) {
+		
+		if(!file.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
+			
+			System.out.println("오리진 파일 : " + file.getOriginalFilename());
+			
+			String renameFileName =  SaveFile.saveFile(file, request);
+			
+			coupon.setCoup_pic(renameFileName);
+			
+		}
+		
+		int result = sService.updateCoupon(coupon);
+		
+		
+		return "redirect:/systemAdminCoupon.do";
+	}
+	
 	
 	
 	

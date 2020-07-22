@@ -17,6 +17,8 @@ public interface SystemService {
 
 	int insertCoupon(Coupon coupon);
 
+	int updateCoupon(Coupon coupon);
+
 
 	
 
