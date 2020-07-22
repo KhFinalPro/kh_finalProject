@@ -21,5 +21,11 @@
 		FROM MEMBER 
 		WHERE USER_ID=#{id} AND USER_PWD=#{pwd} AND USER_STATUS='N'
 	</select>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE USER_ID =#{id}
+	</select>
   
 </mapper>

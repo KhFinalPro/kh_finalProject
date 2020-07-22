@@ -31,7 +31,7 @@
 			  AND BRAND_NAME=#{searchCategory}
 			  </if>
 			  <if test="searchName!=null">
-			  AND MENU_NAME=#{searchName}
+			  AND MENU_NAME LIKE '%'||#{searchName}||'%'
 			  </if>)
  	</select>
  	
@@ -51,8 +51,24 @@
 			AND BRAND_NAME=#{searchCategory}
 		</if>		
 		<if test="searchName!=null">
-			AND MENU_NAME=#{searchName}
+			AND MENU_NAME LIKE '%'||#{searchName}||'%'
 		</if>
 	</select>
+	<select id="selectOneMenu" resultMap="menuResultSet" parameterType="_int">
+		SELECT * 
+		FROM ADMIN_MENU
+		WHERE MENU_NUM=#{menu_Num}
+	</select>
+	
+	<update id="changeMenuY" parameterType="_int">
+		UPDATE MENU
+		SET MENU_YN='Y'
+		WHERE MENU_NUM=#{menu_Num}
+	</update>
+	<update id="changeMenuN" parameterType="_int">
+		UPDATE MENU
+		SET MENU_YN='N'
+		WHERE MENU_NUM=#{menu_Num}
+	</update>
   
 </mapper>

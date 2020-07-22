@@ -40,6 +40,15 @@ public class MenuDao {
 	public int getSearchListCount(SearchStatus menuSearch) {
 		return sqlSessionTemplate.selectOne("menuMapper.getSearchListCount",menuSearch);
 	}
+	public Menu selectOneMenu(int menuNum) {
+		return sqlSessionTemplate.selectOne("menuMapper.selectOneMenu", menuNum);
+	}
+	public int changeMenuY(int menuNum) {
+		return sqlSessionTemplate.update("menuMapper.changeMenuY",menuNum);
+	}
+	public int changeMenuN(int menuNum) {
+		return sqlSessionTemplate.update("menuMapper.changeMenuN",menuNum);
+	}
 
 
 }

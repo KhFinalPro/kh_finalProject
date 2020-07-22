@@ -39,6 +39,18 @@ public class MenuServiceImpl implements MenuService{
 	public int getSearchListCount(SearchStatus menuSearch) {
 		return menuDao.getSearchListCount(menuSearch);
 	}
+	@Override
+	public Menu selectOneMenu(int menuNum) {
+		return menuDao.selectOneMenu(menuNum);
+	}
+	@Override
+	public int changeMenuY(int menuNum) {
+		return menuDao.changeMenuY(menuNum);
+	}
+	@Override
+	public int changeMenuN(int menuNum) {
+		return menuDao.changeMenuN(menuNum);
+	}
 
 
 }

@@ -12,12 +12,16 @@ public interface MenuService {
 	ArrayList<Brand> selectBrandList();					//관리자_ 브랜드리스트 select
 	
 	int getListCount();									//관리자 _ 메뉴리스트 갯수 count
+	int getSearchListCount(SearchStatus menuSearch);	//관리자 _ 검색 후 메뉴 리스트 갯수 count
 
 	ArrayList<Menu> selectMenuList(PageInfo pi);		//관리자_ 메뉴리스트 select
+	ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch, PageInfo pi);		//관리자_ 메뉴 검색결과 select
 
-	ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch, PageInfo pi);		//관리자_ 메뉴 검색결과 select (no paging)
+	Menu selectOneMenu(int menuNum);					//관리자 _ 메뉴 디테일
 
-	int getSearchListCount(SearchStatus menuSearch);
+	int changeMenuY(int menuNum);					//관리자 _ 메뉴 상태 변경
+
+	int changeMenuN(int menuNum);
 
 
 }

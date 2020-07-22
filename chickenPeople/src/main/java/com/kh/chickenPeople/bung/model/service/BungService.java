@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.vo.Bung;
+import com.kh.chickenPeople.bung.model.vo.BungTag;
 
 @Service
 public interface BungService {
@@ -23,6 +24,16 @@ public interface BungService {
 	int selectBungHit(int bung_num);
 
 	ArrayList<Brand> brandListSelect();
+
+	int insertBung(Bung b);
+
+	Bung selectBungNum(String user_id);
+
+	int insertBungTag(BungTag bungTag);
+
+	ArrayList<Bung> bungTagList(int tag_num);
+
+	Brand selectBrand(String bung_brd);
 
 	
 

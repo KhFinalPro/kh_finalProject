@@ -79,18 +79,20 @@
         </style>
     </head>
     <body>
+   <%--  <jsp:include page="../common/header.jsp"/> --%>
         <div class="loginbox">
-            <img src="avatar.png" class="avatar">
+            <img src="resources/images/avatar.png" class="avatar">
             <h1>아이디를 잊어버렸니?</h1>
-            <form>
+            <form id="findId" method="post" action="findIdView.do">
                 <p>이름을 써라!</p>
                 <input type="text" name="" placeholder="이름을 입력하여라">
                 <p>이메일을 써라!</p>
                 <input type="password" name="" placeholder="이메일을 입력하여라">
                 <input type="submit" name="" value="아이디 보내주세요">
-                <a href="#">비밀번호를 까먹었니?</a><br>
-                <a href="#">치민이 처음이니?</a>
+                <a href="findPwdView.do">비밀번호를 까먹었니?</a><br>
+                <a href="memberJoinView.do">치민이 처음이니?</a>
             </form>
         </div>
+       <%-- <%@ include file="../common/footer.jsp"%> --%>
     </body>
 </html>

@@ -9,10 +9,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+section{margin-top: 200px;}
 #main_section {
 	margin: auto;
 	clear: both;
-	margin-top: 200px;
+	
 }
 
 #main_section>.bungae_area {
@@ -76,39 +77,47 @@
 }
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
 #create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black;}
+
+#tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
 </style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<br clear="both">
 	
+	<section>
+		<c:if test="${tagName != null}">
+			<h2 id="tag_name">#${tagName.tag_name }</h2>
+		</c:if>
+		
+		<div id="main_section">
+			<c:if test="${!empty sessionScope.loginUser }">
+				<div id="create_bung_area">
+					<input type="button" id="create_bung" value="번개 계설하기"/>	
+				</div>
+			</c:if>
+			<br>
+			<c:forEach var="b" items="${list }">
+				<div class="bungae_area">
+					<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
+					<div class="brand_logo first_line">
+						<img src="resources/images/${b.bung_img }.png" alt="logo">
+					</div>
+					<div class="first_line bungae_title">
+						<h2>${b.bung_title }</h2>
+						<h3>${b.bung_addr }</h3>
+						<h3>${b.bung_date }</h3>
+						<h4>${b.bung_p_no }명까지</h4>	
+					</div>
+					<br clear="both">
+					<div class="brand_name second_line ">${b.bung_brd }</div>
+					<div class="status second_line">${b.bung_status }</div>
+				</div>
+			</c:forEach>
 	
 	
-	<div id="main_section">
-		<div id="create_bung_area">
-			<input type="button" id="create_bung" value="번개 계설하기"/>	
 		</div>
-		<br>
-		<c:forEach var="b" items="${list }">
-			<div class="bungae_area">
-				<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
-				<div class="brand_logo first_line">
-					<img src="resources/images/${b.bung_img }.png" alt="logo">
-				</div>
-				<div class="first_line bungae_title">
-					<h2>${b.bung_title }</h2>
-					<h3>${b.bung_addr }</h3>
-					<h3>${b.bung_date }</h3>
-					<h4>${b.bung_p_no }명까지</h4>	
-				</div>
-				<br clear="both">
-				<div class="brand_name second_line ">${b.bung_brd }</div>
-				<div class="status second_line">${b.bung_status }</div>
-			</div>
-		</c:forEach>
-
-
-	</div>
+	</section>
 	<%@ include file="../common/footer.jsp"%>
 </body>
 

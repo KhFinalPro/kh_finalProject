@@ -1,11 +1,13 @@
 package com.kh.chickenPeople.menu.controller;
 
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,11 +33,11 @@ public class MenuController {
 							 @RequestParam(value="page",required=false)Integer page,
 							 SearchStatus menuSearch, HttpSession session,
 							 ModelAndView mv){
-		System.out.println("---------------------------------");
-		System.out.println("menuName:"+menuName);
-		System.out.println("menuCategory:"+menuCategory);
-		System.out.println("menuStatus:"+status_s);
-		System.out.println("page:"+page);
+//		System.out.println("---------------------------------");
+//		System.out.println("menuName:"+menuName);
+//		System.out.println("menuCategory:"+menuCategory);
+//		System.out.println("menuStatus:"+status_s);
+//		System.out.println("page:"+page);
 		
 		//초기값 
 		int currentPage=1;
@@ -49,7 +51,6 @@ public class MenuController {
 			currentPage=page;
 		}
 		
-		
 		if(menuCategory!=null) {							//menuCategory가 존재할 때
 			if(menuName.equals("")) {
 				menuName=null;
@@ -62,20 +63,81 @@ public class MenuController {
 			listCount = menuService.getSearchListCount(menuSearch);
 			pi = Pagination.getPageInfo(currentPage, listCount);
 			resultMenuList = menuService.selectMenuSearchList(menuSearch,pi);
+			
 			mv.addObject("searchStatus",menuSearch);
+			mv.addObject("listCount",listCount);
 
 		}else {
 			listCount=menuService.getListCount();
 			pi = Pagination.getPageInfo(currentPage, listCount);
 			resultMenuList = menuService.selectMenuList(pi);
 			mv.addObject("searchStatus",menuSearch);
+			mv.addObject("listCount",listCount);
 		}
 		
 		mv.addObject("brandList",selectBrandList);
 		mv.addObject("menuList",resultMenuList);
 		mv.addObject("pi",pi);
-		mv.setViewName("systemAdmin/systemAdminMenu");
+		mv.setViewName("systemAdmin/menu/systemAdminMenu");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="systemAdminMenuDeatil.do", method=RequestMethod.GET)
+	public ModelAndView goMenuDetail(ModelAndView mv, SearchStatus searchStatus,
+									 @RequestParam(value="menuNum") int menuNum,
+									 @RequestParam(value="page",required=false) Integer page,
+									 @RequestParam(value="menuName") String menuName,
+									 @RequestParam(value="menuCategory") String menuCategory,
+									 @RequestParam(value="status_s") String status_s) {
+//		System.out.println("menuNum:"+menuNum);
+//		System.out.println("page:"+page);
+//		System.out.println("menuName:"+menuName);
+//		System.out.println("menuCategory:"+menuCategory);
+//		System.out.println("menuStatus:"+status_s);
+//		System.out.println("-------------------------");
+//		
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		searchStatus.setSearchCategory(menuCategory);
+		searchStatus.setSearchName(menuName);
+		searchStatus.setSearchStatus(status_s);
+		
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		Menu m = menuService.selectOneMenu(menuNum);
+		
+		if(m!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("menu",m);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/menu/systemAdminMenuDetail");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="deleteMenu.do",method=RequestMethod.GET)
+	public String goDeleteMenu(Model mv,
+							   @RequestParam(value="menuNum",required=false)int menuNum,
+							   @RequestParam(value="menuYN", required=false)String menuYN) {
+		
+		int result=0;
+		System.out.println("상태:"+menuYN);
+		if(menuYN.equals("N")){
+			System.out.println("NN");
+			result = menuService.changeMenuY(menuNum);
+		}
+		if(menuYN.equals("Y")) {
+			System.out.println("YY");
+			result = menuService.changeMenuN(menuNum);			
+		}
+		System.out.println(result);
+		mv.addAttribute("menuName","");
+		mv.addAttribute("menuCategory","total");
+		mv.addAttribute("status_s","N");
+		
+		return "redirect:systemAdminMenu.do";
 	}
 }
