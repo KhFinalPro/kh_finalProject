@@ -55,8 +55,14 @@
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
-                        <option value="서울특별시 구로구 가마산로 231 보광아파트 6동 404호">서울특별시 구로구 가마산로 231 보광아파트 6동 404호</option>
-                        <option value="서울특별시 구로구 가마산로 231 보광아파트 6동 404호">서울특별시 구로구 가마산로 231 보광아파트 5동 401호</option>
+                    	<c:if test="${!empty sessionScope.loginUser }">
+                    		<c:forEach var="addr" items="${sessionScope.address }">
+		                        <option value="${addr.address }">${addr.address }</option>
+                        	</c:forEach>
+                        </c:if>
+                        <c:if test="${empty sessionScope.loginUser }">
+                        	<option value=""></option>
+                        </c:if>
                     </select>
                 </div>
                 <div id="header_userArea">
