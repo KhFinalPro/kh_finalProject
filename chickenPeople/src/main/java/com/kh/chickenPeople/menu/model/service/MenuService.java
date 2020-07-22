@@ -15,7 +15,9 @@ public interface MenuService {
 
 	ArrayList<Menu> selectMenuList(PageInfo pi);		//관리자_ 메뉴리스트 select
 
-	ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch);		//관리자_ 메뉴 검색결과 select (no paging)
+	ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch, PageInfo pi);		//관리자_ 메뉴 검색결과 select (no paging)
+
+	int getSearchListCount(SearchStatus menuSearch);
 
 
 }

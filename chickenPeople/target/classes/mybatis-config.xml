@@ -17,6 +17,8 @@
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Menu" alias="Menu"/>
 		<typeAlias type="com.kh.chickenPeople.tag.model.vo.Tag" alias="Tag"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus" alias="SearchStatus"/>
+	
 	</typeAliases>
 	
 	<mappers>

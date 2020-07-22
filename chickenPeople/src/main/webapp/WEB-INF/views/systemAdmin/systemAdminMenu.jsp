@@ -44,11 +44,16 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">메뉴 관리</p>
 				<br><hr><br>
-				<form action="menuSearch.do" method="get">
+				<form action="systemAdminMenu.do" method="get">
 					<table class="searchTable">
 						<tr>
 							<td><b>메뉴 검색</b></td>
-							<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+							<c:if test="${empty searchStatus}">
+								<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus }">
+								<td><input class="menuSearch" name="menuName" type="text" value="${searchName}"></td>
+							</c:if>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -62,8 +67,8 @@
 							</td>
 							<td><b>판매 상태</b></td>
 							<td>
-								<label><input type="radio" name="status" value="Y" checked/> 판매 중</label>
-								<label><input type="radio" name="status" value="N"/> 판매 종료</label>
+								<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
+								<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
 							</td>
 						</tr>
 						<tr>
@@ -112,6 +117,7 @@
 	                    <c:if test="${pi.currentPage gt 1}">
 	                    	<c:url var="blistBack" value="systemAdminMenu.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    		<c:param name="searchStatus" value="${searchStatus }"/>
 	                    	</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
 	                    </c:if>
@@ -123,6 +129,9 @@
 	                    	<c:if test="${p ne pi.currentPage }">
 	                    		<c:url var="blistCheck" value="systemAdminMenu.do">
 	                    			<c:param name="page" value="${p }"/>
+	                    			<c:param name="menuName" value="${searchStatus.searchName }"/>
+	                    			<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
+	                    			<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
 	                    	</c:if>
@@ -134,6 +143,7 @@
 						<c:if test="${pi.currentPage lt pi.maxPage }">
 							<c:url var="blistAfter" value="systemAdminMenu.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
+								<c:param name="searchStatus" value="${searchStatus }"/>
 							</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 						</c:if>

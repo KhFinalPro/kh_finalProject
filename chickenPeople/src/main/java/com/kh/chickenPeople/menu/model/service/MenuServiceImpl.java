@@ -32,9 +32,12 @@ public class MenuServiceImpl implements MenuService{
 	}
 
 	@Override
-	public ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch) {
-		System.out.println("service"+menuSearch);
-		return menuDao.selectMenuSearchList(menuSearch);
+	public ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch,PageInfo pi) {
+		return menuDao.selectMenuSearchList(menuSearch, pi);
+	}
+	@Override
+	public int getSearchListCount(SearchStatus menuSearch) {
+		return menuDao.getSearchListCount(menuSearch);
 	}
 
 

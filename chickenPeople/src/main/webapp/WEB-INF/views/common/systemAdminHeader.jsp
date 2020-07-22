@@ -91,7 +91,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">점포 관리</span>
                     </a></li>
-                    <li id="menu" ><a href="systemAdminMenu.do">
+                    <li id="menu" ><a href="systemAdminMenu.do?menuName=&menuCategory=total&status_s=N">
                         <span class="icon">
                             <i class="far fa-edit" aria-hidden="true"></i>
                         </span>

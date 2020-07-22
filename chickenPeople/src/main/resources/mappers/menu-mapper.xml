@@ -22,6 +22,18 @@
  		SELECT COUNT(*) 
  		FROM ADMIN_MENU
  	</select>
+ 	<select id="getSearchListCount" resultType="_int">
+ 		SELECT COUNT(*)
+		FROM (SELECT *
+			  FROM ADMIN_MENU
+			  WHERE MENU_YN=#{searchStatus}
+			  <if test="searchCategory!='total'">
+			  AND BRAND_NAME=#{searchCategory}
+			  </if>
+			  <if test="searchName!=null">
+			  AND MENU_NAME=#{searchName}
+			  </if>)
+ 	</select>
  	
 	<select id="selectMenu" resultMap="menuResultSet">
 		SELECT * FROM ADMIN_MENU
@@ -32,20 +44,15 @@
 		SELECT * FROM BRAND
 	</select>
 	
-	<select id="selectSearchMenu" resultMap="menuResultSet">
-		SELECT * FROM ADMIN_MENU
-		<where>
-			<if test="searchStatus.searchName!=null">
-				MENU_NAME=#{searchName}
-			</if>
-			<if test="searchStatus.searchStatus!=null">
-				AND MENU_YN=#{searchStatus}
-			</if>
-			<if test="searchStatus.searchCategory!=null">
-				AND BRAND_NAME=#{searchCategory}
-			</if>
-		</where>
-		
+	<select id="selectSearchMenu" parameterType="SearchStatus" resultMap="menuResultSet">
+			SELECT * FROM ADMIN_MENU
+			WHERE MENU_YN=#{searchStatus}
+		<if test="searchCategory!='total'">	
+			AND BRAND_NAME=#{searchCategory}
+		</if>		
+		<if test="searchName!=null">
+			AND MENU_NAME=#{searchName}
+		</if>
 	</select>
   
 </mapper>

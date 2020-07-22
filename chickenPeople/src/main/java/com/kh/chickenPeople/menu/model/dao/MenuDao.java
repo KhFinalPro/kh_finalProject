@@ -32,9 +32,13 @@ public class MenuDao {
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectMenu", null, rowBounds);
 	}
 
-	public ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch) {
-		System.out.println("dao"+menuSearch);
-		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectSearchMenu",menuSearch);
+	public ArrayList<Menu> selectMenuSearchList(SearchStatus menuSearch, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectSearchMenu",menuSearch, rowBounds);
+	}
+	public int getSearchListCount(SearchStatus menuSearch) {
+		return sqlSessionTemplate.selectOne("menuMapper.getSearchListCount",menuSearch);
 	}
 
 

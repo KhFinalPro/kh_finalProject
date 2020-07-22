@@ -62,8 +62,8 @@
 							</td>
 							<td><b>판매 상태</b></td>
 							<td>
-								<label><input type="radio" name="status" value="Y" checked/> 판매 중</label>
-								<label><input type="radio" name="status" value="N"/> 판매 종료</label>
+								<label><input type="radio" name="status" value="N" checked/> 판매 중</label>
+								<label><input type="radio" name="status" value="Y"/> 판매 종료</label>
 							</td>
 						</tr>
 						<tr>
