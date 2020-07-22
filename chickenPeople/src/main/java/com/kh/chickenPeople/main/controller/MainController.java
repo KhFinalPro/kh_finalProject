@@ -19,12 +19,10 @@ public class MainController {
 	@RequestMapping("searchStore.do")
 	public ModelAndView searchStore(ModelAndView mv, String brand_code, String menu_name) {
 		
-		System.out.println("searchStore.do");
 		ArrayList<Store> storeList = mainService.searchStore(brand_code);
 		
 		if(!storeList.isEmpty())
 		{
-			System.out.println(storeList);
 			mv.addObject("storeList", storeList);
 			mv.addObject("menu_name", menu_name);
 			mv.setViewName("main/mainSearch");
