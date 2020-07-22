@@ -19,6 +19,7 @@
 		<typeAlias type="com.kh.chickenPeople.tag.model.vo.Tag" alias="Tag"/>
 		<typeAlias type="com.kh.chickenPeople.bung.model.vo.BungTag" alias="BungTag"/>
 		<typeAlias type="com.kh.chickenPeople.member.model.vo.Address" alias="Address"/>
+		<typeAlias type="com.kh.chickenPeople.main.model.vo.BestMenu" alias="BestMenu"/>
 	</typeAliases>
 	
 	<mappers>
@@ -32,5 +33,6 @@
 		<mapper resource="/mappers/tag-mapper.xml"/>
 		<mapper resource="/mappers/menu-mapper.xml"/>
 		<mapper resource="/mappers/brand-mapper.xml"/>
+		<mapper resource="/mappers/main-mapper.xml"/>
 	</mappers>
 </configuration>

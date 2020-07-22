@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mainMapper">
+	<resultMap id="bestMenuResultSet" type="BestMenu">
+		<id property="menu_name" column="MENU_NAME"/>
+		<result property="menu_pic" column="MENU_PIC"/>
+		<result property="brand_name" column="BRAND_NAME"/>
+		<result property="mord_num" column="MORD_NUM"/>
+		<result property="brand_code" column="BRAND_CODE"/>
+	</resultMap>
+	
+	<select id="selectBestMenu" resultMap="bestMenuResultSet">
+		SELECT MENU_NAME, MENU_PIC, BRAND_NAME, B.BRAND_CODE, MORD_NUM 
+		FROM MENU M
+		JOIN JUMUN_DETAIL JD ON M.MENU_NUM = JD.MENU_NUM
+		JOIN BRAND B ON M.BRAND_CODE = B.BRAND_CODE
+		WHERE CAT_CODE = 1 OR CAT_CODE = 2 
+		ORDER BY MORD_NUM DESC
+	</select>
+</mapper>
