@@ -99,4 +99,10 @@
 		FROM BRAND
 		WHERE BRAND_NAME = #{bung_brd}
 	</select>
+	
+	<select id="selectMyBung" parameterType="string" resultMap="bungResultSet">
+		SELECT *
+		FROM BUNG
+		WHERE USER_ID = #{id}
+	</select>
 </mapper>
