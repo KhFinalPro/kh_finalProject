@@ -59,12 +59,13 @@
 		FROM ADMIN_MENU
 		WHERE MENU_NUM=#{menu_Num}
 	</select>
+	
 	<update id="changeMenuY" parameterType="_int">
 		UPDATE MENU
 		SET MENU_YN='Y'
 		WHERE MENU_NUM=#{menu_Num}
 	</update>
-		<update id="changeMenuN" parameterType="_int">
+	<update id="changeMenuN" parameterType="_int">
 		UPDATE MENU
 		SET MENU_YN='N'
 		WHERE MENU_NUM=#{menu_Num}

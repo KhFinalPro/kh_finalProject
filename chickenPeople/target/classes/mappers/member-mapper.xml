@@ -16,6 +16,13 @@
 		<result property="status" column="USER_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="Address" id="addressResultSet">
+		<id property="addr_num" column="ADDR_NUM"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="post_code" column="POST_CODE"/>
+		<result property="address" column="ADDRESS"/>
+	</resultMap>
+	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER 
@@ -26,6 +33,10 @@
 	<select id="idChk" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		WHERE USER_ID =#{id}
+	</select>
+	
+	<select id="selectAddress" parameterType="Member" resultMap="addressResultSet">
+		SELECT * FROM ADDRESS WHERE USER_ID = #{id}
 	</select>
   
 </mapper>

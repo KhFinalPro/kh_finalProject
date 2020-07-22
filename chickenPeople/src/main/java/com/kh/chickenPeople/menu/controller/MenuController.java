@@ -51,7 +51,7 @@ public class MenuController {
 			currentPage=page;
 		}
 		
-		if(menuCategory!=null) {							//menuCategory가 존재할 때
+		if(menuCategory!=null) {										//menuCategory가 존재할 때
 			if(menuName.equals("")) {
 				menuName=null;
 				menuSearch.setSearchName(menuName);
@@ -59,24 +59,27 @@ public class MenuController {
 				menuSearch.setSearchName(menuName);
 			}
 			menuSearch.setSearchCategory(menuCategory);
-			menuSearch.setSearchStatus(status_s);
-			listCount = menuService.getSearchListCount(menuSearch);
-			pi = Pagination.getPageInfo(currentPage, listCount);
+			menuSearch.setSearchStatus(status_s);						//검색상태를 menuSearch객체에 저장해서 보관
+			
+			listCount = menuService.getSearchListCount(menuSearch);		//검색 결과의 갯수 count
+			pi = Pagination.getPageInfo(currentPage, listCount,5);		
 			resultMenuList = menuService.selectMenuSearchList(menuSearch,pi);
 			
 			mv.addObject("searchStatus",menuSearch);
 			mv.addObject("listCount",listCount);
+			mv.addObject("menuList",resultMenuList);
 
 		}else {
-			listCount=menuService.getListCount();
-			pi = Pagination.getPageInfo(currentPage, listCount);
+		
+			listCount=menuService.getListCount();						//전체 게시글 갯수 count
+			pi = Pagination.getPageInfo(currentPage, listCount,5);
 			resultMenuList = menuService.selectMenuList(pi);
 			mv.addObject("searchStatus",menuSearch);
 			mv.addObject("listCount",listCount);
+			mv.addObject("menuList",resultMenuList);
+				
 		}
-		
 		mv.addObject("brandList",selectBrandList);
-		mv.addObject("menuList",resultMenuList);
 		mv.addObject("pi",pi);
 		mv.setViewName("systemAdmin/menu/systemAdminMenu");
 		

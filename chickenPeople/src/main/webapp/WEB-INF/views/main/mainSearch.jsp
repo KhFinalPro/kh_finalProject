@@ -46,19 +46,19 @@
         </div>
     <br clear="both"><br><br>
     
-	<h2 align="center" id="first_title">${search } 검색결과</h2>
+	<h2 align="center" id="first_title">"${menu_name }"를 판매하는 매장</h2>
 	
 	<section class="main_area">
 	    
 	    <div class="first_area">
-	    	<c:forEach var="s" items="${searchList }">
+	    	<c:forEach var="s" items="${storeList }">
 		        <div class="place_area" style="margin-right: 10px;">
 		        	<input type="hidden" id="sto_num" name="sto_num" value="${s.sto_num }"/>
 		            <a href="#">
 		                <img class="logo" src="resources/images/${s.brand_pic }.png" alt="logo">
 		            </a>
 		            <div align="center">
-		                <h3>${s.sto_brand }</h3>
+		                <h3>${s.brand_name }</h3>
 		                <h3>${s.sto_name }</h3>
 		                <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
 		                40~50분 소요예정

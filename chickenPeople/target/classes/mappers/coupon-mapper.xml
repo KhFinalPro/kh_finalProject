@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="couponMapper">
+	<resultMap id="couponResultSet" type="Coupon">
+		<id property="coup_serial" column="COUP_SERIAL"/>
+		<result property="coup_name" column="COUP_NAME"/>
+		<result property="coup_cont" column="COUP_CONT"/>
+		<result property="coup_term" column="COUP_TERM"/>
+		<result property="coup_disc" column="COUP_DISC"/>
+		<result property="coup_pic" column="COUP_PIC"/>
+	</resultMap>
+	
+	<select id="selectCouponList" resultMap="couponResultSet">
+		SELECT * FROM MAKE_COUP
+	</select>
+	
+	<select id="selectCoupon" resultMap="couponResultSet">
+		SELECT * FROM MAKE_COUP
+		WHERE COUP_SERIAL = #{coup_serial}
+	</select>
+	
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*) FROM MAKE_COUP
+	</select>
+	
+	<insert id="insertCoupon" parameterType="Coupon">
+		INSERT INTO MAKE_COUP VALUES(SEQ_MAKECOUP.NEXTVAL, #{coup_name}, #{coup_cont}, #{coup_term}, #{coup_disc}, #{coup_pic})
+	</insert>
+	
+</mapper>
