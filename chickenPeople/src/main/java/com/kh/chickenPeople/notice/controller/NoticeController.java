@@ -19,6 +19,7 @@ import com.kh.chickenPeople.notice.model.vo.Notice;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 
+
 @Controller
 public class NoticeController {
 	

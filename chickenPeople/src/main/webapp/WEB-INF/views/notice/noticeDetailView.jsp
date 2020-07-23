@@ -198,7 +198,7 @@
 
 			 <br><br> <br><br> <br><br>
 	 <div align="center">
-		  	<button onclick ="toNlist()" value="nlist.do" >목록</button> <!-- 왜 안되지? -->
+		  	<button onclick ="toNlist()"  >목록</button> <!-- 왜 안되지? -->
 			<br>
 	</div>
 	
@@ -207,7 +207,7 @@
 <!-- 목록으로~ -->
 	<script>
 		function toNlist (){
-			location.href="nlist.do"; 
+			location.href="noticeList.do"; 
 		}
 	</script>
 		  
