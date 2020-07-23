@@ -38,7 +38,8 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("doLogin.do")
+	@RequestMapping("doLogin"
+			+ ".do")
 	public String doLoginMember(HttpServletRequest request, Member m, ModelAndView mv, HttpSession session) {
 		System.out.println("doLogin.do");
 		Member member = mService.loginMember(m);

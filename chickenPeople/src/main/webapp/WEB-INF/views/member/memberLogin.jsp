@@ -86,7 +86,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 	<c:if test="${empty sessionScope.loginUser }">
-	<form id="loginform" action="doLoginView.do" method="post">
+	<form id="loginform" action="doLogin.do" method="post">
             <h1 id="h2">회원 로그인</h1>
             <hr>
             <br>
