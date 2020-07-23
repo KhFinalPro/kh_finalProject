@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의 민족</title>
 <style>
 	.contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
 	.banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}

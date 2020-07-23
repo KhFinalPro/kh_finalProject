@@ -1,11 +1,10 @@
 package com.kh.chickenPeople.member.controller;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.member.model.service.MemberService;
+import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
@@ -38,17 +38,24 @@ public class MemberController {
 		return mv;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("doLogin"
 			+ ".do")
+=======
+	@RequestMapping(value="doLoginView.do")
+>>>>>>> refs/remotes/origin/master
 	public String doLoginMember(HttpServletRequest request, Member m, ModelAndView mv, HttpSession session) {
 		System.out.println("doLogin.do");
 		Member member = mService.loginMember(m);
+		//로그인한 회원의 주소
+		ArrayList<Address> addrList = mService.selectAddress(member);
 		session = request.getSession();
 		if(member != null)
 		{
 			System.out.println("로그인 성공!!");
 			System.out.println(member.getId());
 			session.setAttribute("loginUser",member);
+			session.setAttribute("address", addrList);			
 			
 			return "redirect:/home.do";
 		}

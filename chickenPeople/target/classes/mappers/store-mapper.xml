@@ -46,4 +46,11 @@
 		WHERE ROWNUM <= 5
 		]]>
 	</select>
+	
+	<select id="searchStore" parameterType="string" resultMap="storeResultSet">
+		SELECT STO_NUM, STO_NAME, BRAND_PIC, BRAND_NAME
+		FROM BRAND B
+		JOIN STORE_INFO SI ON B.BRAND_CODE = SI.BRAND_CODE
+		WHERE B.BRAND_CODE = #{brand_code}
+	</select>
 </mapper>
