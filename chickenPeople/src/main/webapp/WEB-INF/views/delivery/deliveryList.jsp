@@ -22,6 +22,11 @@
 		.store_area .store li ul .store_minPrice a{font-size: 15px; color: gray;}
 		.store_area .store li ul .store_delivery_time a{font-size: 15px; color: gray;}
 		.store_area .store li ul .store_minPrice img{width: 15px; height: 15px;}
+		
+		#move_area{position:fixed; bottom:100px; right:10px;}
+		.move_btn{width:80px; height:50px; border-radius: 10px; border:0px; font-size:20px; font-weight:600; color:white; background-color:#2ac1bc;}
+		.move_btn:hover{color:black;}		
+		#top{margin-bottom: 10px;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -60,8 +65,14 @@
         
         
     </section>
+    
+    <div id="move_area">
+    	<button id="top" class="move_btn">Top</button><br>
+    	<button id="bottom" class="move_btn">Bottom</button>
+    </div>
 	
 	<jsp:include page="../common/footer.jsp"/>
+	<div id="scrollbottom"></div>
 </body>
 
 <script>
@@ -77,6 +88,18 @@
 			alert("카테고리 변화");
 			
 		})
+		$("#top").on("click",function(){
+			location.href="#";
+		})
+		$("#bottom").on("click",function(){
+			location.href="#scrollbottom";
+		})
+		
+		$(".move_btn").on("mouseenter",function(){
+			$(this).css('cursor','pointer');
+		})
+		
+		
 	})
 </script>
 
