@@ -22,11 +22,12 @@ import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 @Controller
 public class NoticeController {
 	
-	  @Autowired NoticeService nService;
+	  @Autowired 
+	  NoticeService noticeService;
 	 
 	
 //공지사항 목록 
-	@RequestMapping(value="nlist.do")
+	@RequestMapping("noticeList.do") 
 	public ModelAndView noticeList(ModelAndView mv,
 					@RequestParam(value="page",required=false) Integer page){
 		
@@ -34,10 +35,10 @@ public class NoticeController {
 		if(page!=null) {
 			currentPage=page;
 		}
-		int listCount = nService.getListCount();
+		int listCount = noticeService.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount,5);
-		ArrayList<Notice> selectTotalNoticeList = nService.selectNoticeList(pi);
+		ArrayList<Notice> selectTotalNoticeList = noticeService.selectNoticeList(pi);
 		
 		System.out.println("selectTotalNoticeList"+selectTotalNoticeList);
 		
@@ -55,15 +56,15 @@ public class NoticeController {
 	
 	
 //공지사항 상세
-@RequestMapping(value="ndetail.do", method=RequestMethod.GET)
+@RequestMapping(value="nDetail.do", method=RequestMethod.GET)
 
 public ModelAndView boardDetail(ModelAndView mv, int nNum) {
 
 	
-	int result =nService.addReadCount(nNum);
+	int result =noticeService.addReadCount(nNum);
 	
 	if(result >0) {
-		Notice notice =nService.selectOne(nNum);
+		Notice notice =noticeService.selectOne(nNum);
 		System.out.println("조회수"+notice);
 		
 		if(notice !=null) {
@@ -93,7 +94,7 @@ public String nInsertView() {
 @RequestMapping(value="ninsert.do",method=RequestMethod.POST)
 public String noticeInsert(Notice n, HttpServletRequest request) {
 
-	int result = nService.insertNotice(n);
+	int result = noticeService.insertNotice(n);
 	
 	if(result >0) {
 		return "redirect:nlist.do";
@@ -109,7 +110,7 @@ public String noticeInsert(Notice n, HttpServletRequest request) {
 //공지사항 수정 확인
 @RequestMapping("nupView.do")
 public String noticeUpdate(Model model,int nNum) { //이걸 보내려면 	location.href="nupView.do?nNum=${notice.nNum}";
-	model.addAttribute("notice",nService.selectOne(nNum));
+	model.addAttribute("notice",noticeService.selectOne(nNum));
 	
 	return "notice/noticeUpdateView";
 }
@@ -118,7 +119,7 @@ public String noticeUpdate(Model model,int nNum) { //이걸 보내려면 	locati
 public String noticeUpdate(HttpServletRequest request,Notice n) {
 	System.out.println("업데이트"+n);
 	
-	int result = nService.updateNotice(n);
+	int result = noticeService.updateNotice(n);
 
 	if(result>0) {
 		return "redirect:nlist.do";
@@ -132,9 +133,9 @@ public String noticeUpdate(HttpServletRequest request,Notice n) {
 
 @RequestMapping("ndelete.do")
 	public String noticeDelete(int nNum) {
-		Notice n = nService.selectOne(nNum);
+		Notice n = noticeService.selectOne(nNum);
 		
-		int result =nService.deleteNotice(nNum);
+		int result =noticeService.deleteNotice(nNum);
 		System.out.println("삭제"+nNum);
 		if(result>0) {
 			return "redirect:nlist.do"; 

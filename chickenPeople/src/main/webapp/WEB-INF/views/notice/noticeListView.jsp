@@ -120,7 +120,7 @@
 		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
 	                    </c:if>
 	                    <c:if test="${pi.currentPage gt 1}">
-	                    	<c:url var="blistBack" value="nlist.do">
+	                    	<c:url var="blistBack" value="noticeList.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
 	                    	</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
@@ -131,7 +131,7 @@
 	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
 	                    	</c:if>
 	                    	<c:if test="${p ne pi.currentPage }">
-	                    		<c:url var="blistCheck" value="nlist.do">
+	                    		<c:url var="blistCheck" value="noticeList.do">
 	                    			<c:param name="page" value="${p }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
@@ -142,7 +142,7 @@
 		                    <a style = "color:#9c9c9c"  disabled>Next</a>
 	                    </c:if>
 						<c:if test="${pi.currentPage lt pi.maxPage }">
-							<c:url var="blistAfter" value="nlist.do">
+							<c:url var="blistAfter" value="noticeList.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
 							</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
