@@ -13,12 +13,23 @@
 	</resultMap>
 
 	
-	
-	<select id="selectList" resultMap="messageResultSet">
-		SELECT MSG_NO,SEND_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
+	<!-- 발신메세지 -->
+	<select id="sendMessageList" resultMap="messageResultSet">
+		SELECT MSG_NO,RCV_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
 		FROM MESSAGE
+		WHERE SEND_ID=#{userId}
 		ORDER BY SEND_DATE DESC
 	</select>
+	
+	<!-- 수신메세지 -->
+	<select id="receiveMessageList" resultMap="messageResultSet">
+		SELECT MSG_NO,SEND_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
+		FROM MESSAGE
+		WHERE RCV_ID=#{userId}
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+	
 	 
  
  

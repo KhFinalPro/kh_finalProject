@@ -24,7 +24,7 @@
 .content-table{
     /* position: absolute; */
     /* align-items: center; */
-    width:80%;
+    width:60%;
     border-collapse: collapse;
     margin: 0 auto;
     /* margin:25px 0; */
@@ -54,7 +54,7 @@
     width:100%;
     float:right; 
     /* margin:0 auto; */
-    margin-right: 120px;
+    margin-right: 370px;
     margin-bottom: 7px;
     
 }
@@ -92,23 +92,23 @@
                         <div class="clickButtons">
                             <ul>
                                 
-                                <li><button id="mDelete">삭제하기</button></li>
+                                <li><button id="mDelete" onclick="deleteMessageList()">삭제하기</button></li>
                                 <li><button id="mAnswer">답변하기</button></li>
                                 <li>
                                     <select  id="selectType">
-                                    <option value="rM">받은 쪽지함</option>
                                     <option value="sM">보낸 쪽지함</option>
+                                    <option value="rM">받은 쪽지함</option>
                                     </select>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                        <table id="sMessage" class="content-table">
+                        <table id="sendMessage" class="content-table">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>쪽지번호</th>
-                                    <th>수신인</th>
+                                    <th>번호</th>
+                                    <th>받는사람</th>
                                     <th>제목</th>
                                     <th>내용</th>
                                     <th>보낸날짜</th>
@@ -116,7 +116,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="m" items="${list }">
+                           <%--  <c:forEach var="m" items="${list }">
                                 <tr>
                               		
                                     <td><input type="checkbox"></td>
@@ -131,16 +131,16 @@
                                     </td>
                                 </tr>
                         
-                            </c:forEach>
+                            </c:forEach> --%>
                             </tbody>
                         </table>
 
-                        <table id="rMessage" class="content-table" style="display:none;"  >
+                        <table id="recieveMessage" class="content-table" style="display:none;"  >
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>쪽지번호</th>
-                                    <th>발신인</th>
+                                    <th>번호</th>
+                                    <th>보낸사람</th>
                                     <th>제목</th>
                                     <th>내용</th>
                                     <th>보낸날짜</th>
@@ -148,7 +148,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="m" items="${list }">
+                           <%--  <c:forEach var="m" items="${list }">
                                 <tr>
                                     <td><input type="checkbox"></td>
                                     <td>${m.msgNo }</td>
@@ -158,7 +158,7 @@
                                     <td>${m.sendDate }</td>
                                     <td>N</td>
                                 </tr>
-                             </c:forEach>
+                             </c:forEach> --%>
                             </tbody>
                         </table>
                         <br>
@@ -170,8 +170,149 @@
                 </div>
 
             </div>
+            
+            
+            
+            
+            
       <script>
-      $(function(){
+      //selectMessageList
+       $( document ).ready(function() {
+			    init();
+			    
+			     
+			    $("input[name='msgNo']").change(function(){
+			    	console.log(this);
+            	});
+	       		
+			/*     $('#recieveMessage').on('click', 'img.like', function(){ */
+			    
+	           /*  $('#recieveMessage').$('input[type=checkbox]').click(function(){
+	            	deleteReceiveMessageList(this);
+	            });  */
+	            
+	            $("#selectType").change(function(){
+	            	var v = this.value;
+	            	if(v=="rM"){
+	            		 $("#recieveMessage").show();
+	            		 $("#sendMessage").hide();
+	            	}else if(v=="sM"){
+	            		 $("#recieveMessage").hide();
+	            		 $("#sendMessage").show();
+	            	}
+	        		  
+	        	 });
+			});
+      
+      	
+       function init(){
+       	searchData();
+       }
+       
+       function test(obj){
+    	   console.log(obj.value);
+    	   deleteMessageList(obj.value);
+       }
+       
+       
+       //데이터 조회
+       function searchData(){
+    	   var param = {
+    			   'type' : $("#selectType").val(),
+    	   }
+    	   
+    	   $.ajax({
+    		   type:'POST',
+    		   url:"selectMessageList.do",
+    		   data:param,
+    		   dataType:'JSON',
+    		   success:function(data){
+    			   
+    			   //발신 메세지 목록
+    			   var sendMessageList = data.sendMessageList;
+    			   
+    			   var sendMessageAppendStr = '';
+    			   
+    			   //발신 목록 개수만큼 반복문
+    			   for(var i=0; i<sendMessageList.length; i++){
+    				   //내 발신메세지 목록 append할 문자열 생성
+    				   sendMessageAppendStr += '<tr>' +
+    				   							'<td><input type="checkbox" value="' + sendMessageList[i].msgNo + '" name="msgNo" onclick="test(this)" ></td>' +
+    				   							'<td>' + (i+1) + '</td>' +
+    				   							/* '<td>' + sendMessageList[i].msgNo + '</td>'+ */
+    				   							'<td>' + sendMessageList[i].rcvId + '</td>'+
+    				   							'<td>' + sendMessageList[i].msgTitle + '</td>'+
+    				   							'<td>' + sendMessageList[i].msgContents + '</td>'+
+    				   							'<td>' + sendMessageList[i].sendDate + '</td>'+
+    				   							'<td>' + sendMessageList[i].msgStatus + '</td>'+
+    				   							'</tr>'
+    			   }
+    			   
+    			   $("#sendMessage").find('tbody').empty();
+    			   $("#sendMessage").find('tbody').append(sendMessageAppendStr);
+    			   
+    			   /***************************************************************************************************/
+    			   
+    			   //수신 메세지 목록
+    			   var receiveMessageList =data.receiveMessageList;
+    			   
+    			   var receiveMessageAppendStr = '';
+    			   
+    			   //수신 목록 개수 만큼 반복문
+    			   for(var i=0; i<receiveMessageList.length; i++){
+    				   //내 수신메세지 목록  append할 문자열 생성
+    				   receiveMessageAppendStr += '<tr>' +
+													'<td><input type="checkbox"  value="' + receiveMessageList[i].msgNo + '" name="msgNo"></td>' +
+						   							'<td>' + (i+1) + '</td>' +
+						   							/* '<td>' + receiveMessageList[i].msgNo + '</td>'+ */
+						   							'<td>' + receiveMessageList[i].sendId + '</td>' +
+						   							'<td>' + receiveMessageList[i].msgTitle + '</td>' +
+						   							'<td>' + receiveMessageList[i].msgContents + '</td>' +
+						   							'<td>' + receiveMessageList[i].sendDate+ '</td>' +
+						   							'<td>' + receiveMessageList[i].msgStatus+ '</td>' +
+						   							'</tr>'
+						   							
+    			   }
+    			   $("#recieveMessage").find('tbody').empty();
+    			   $("#recieveMessage").find('tbody').append(receiveMessageAppendStr);
+    		  
+    		   },error:function(request, status, errorData){
+                   alert("error code: " + request.status + "\n"
+                           +"message: " + request.responseText
+                           +"error: " + errorData);
+               } 
+    			   
+    	   });
+    	   
+    	   
+       }
+       
+       function deleteMessageList(obj){
+    	 
+    	   alert("delete : " + obj);
+    	   
+    	   
+       		
+    	   /* console.log(param);
+	       if(!confirm('메세지를 삭제하시겠습니까?')){
+	       		return false;
+	       	} */
+	       
+	       
+    	   
+    	   
+       }
+       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  /*     $(function(){
     	  $("#selectType").change(function(){
         	var v = this.value;
         	if(v=="rM"){
@@ -183,7 +324,7 @@
         	}
     		  
     	  });
-      });
+      }); */
     		  
     
     </script>
