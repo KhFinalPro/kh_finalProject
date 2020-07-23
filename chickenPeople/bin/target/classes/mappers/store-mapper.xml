@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="storeMapper">
+  
+	<resultMap type="Store" id="storeResultSet">
+		<id property="sto_num" column="STO_NUM"/>
+		<result property="sto_name" column="STO_NAME"/>
+		<result property="sto_tel" column="STO_TEL"/>
+		<result property="sto_open" column="STO_OPEN"/>
+		<result property="sto_close" column="STO_CLOSE"/>
+		<result property="sto_addr" column="STO_ADDR"/>
+		<result property="sto_intro" column="STO_INTRO"/>
+		<result property="ord_limit" column="ORD_LIMIT"/>
+		<result property="deli_time" column="DELI_TIME"/>
+		<result property="enter_yn" column="ENTER_YN"/>
+		<result property="open_yn" column="OPEN_YN"/>
+		<result property="ceo_name" column="CEO_NAME"/>
+		<result property="delivery" column="DELIVERY"/>
+		<result property="sto_email" column="STO_EMAIL"/>
+		<result property="aprv_status" column="APRV_STATUS"/>
+		<result property="brand_code" column="BRAND_CODE"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="brand_pic" column="BRAND_PIC"/>
+		<result property="brand_name" column="BRAND_NAME"/>
+	</resultMap>
+	
+	<select id="searchList" parameterType="String" resultMap="storeResultSet">
+		SELECT STO_NUM, STO_NAME, STO_TEL, STO_OPEN, STO_CLOSE, STO_ADDR, STO_INTRO, ORD_LIMIT, DELI_TIME, ENTER_YN, OPEN_YN, CEO_NAME, DELIVERY, STO_EMAIL, APRV_STATUS, SI.BRAND_CODE, USER_ID, B.BRAND_PIC, BRAND_NAME
+		FROM STORE_INFO SI
+		JOIN BRAND B ON SI.BRAND_CODE = B.BRAND_CODE
+		WHERE BRAND_NAME LIKE '%' || #{search_input} || '%'
+				AND OPEN_YN = 'Y'
+	</select>
+	
+	<select id="bestList" resultMap="storeResultSet">
+		<![CDATA[
+		SELECT STO_NUM, STO_NAME, BRAND_PIC, BRAND_NAME
+		FROM(
+			SELECT S.STO_NUM, STO_NAME, BRAND_PIC, BRAND_NAME, SUM(ORD_PRICE)
+			FROM STORE_INFO S
+			JOIN ORDER_PRO O ON S.STO_NUM = O.STO_NUM
+			JOIN BRAND B ON S.BRAND_CODE = B.BRAND_CODE
+			GROUP BY S.STO_NUM, BRAND_PIC, STO_NAME, BRAND_NAME
+			ORDER BY SUM(ORD_PRICE) DESC		
+			)
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
+</mapper>

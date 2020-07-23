@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+
+	<resultMap type="Member" id="memberResultSet">
+		<id property="id" column="USER_ID"/>
+		<result property="name" column="USER_NAME"/>
+		<result property="pwd" column="USER_PWD"/>
+		<result property="tel" column="USER_TEL"/>
+		<result property="email" column="USER_EMAIL"/>
+		<result property="lBrand" column="LIKE_BRAND"/>
+		<result property="pic" column="PROPIC"/>
+		<result property="uGrd" column="USER_GRADE"/>
+		<result property="uLvl" column="USER_LEVEL"/>
+		<result property="oCnt" column="ORD_CNT"/>
+		<result property="status" column="USER_STATUS"/>
+	</resultMap>
+	
+	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER 
+		WHERE USER_ID=#{id} AND USER_PWD=#{pwd} AND USER_STATUS='N'
+	</select>
+  
+</mapper>
