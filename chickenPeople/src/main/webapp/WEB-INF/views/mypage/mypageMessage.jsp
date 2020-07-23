@@ -184,13 +184,7 @@
 			    $("input[name='msgNo']").change(function(){
 			    	console.log(this);
             	});
-	       		
-			/*     $('#recieveMessage').on('click', 'img.like', function(){ */
-			    
-	           /*  $('#recieveMessage').$('input[type=checkbox]').click(function(){
-	            	deleteReceiveMessageList(this);
-	            });  */
-	            
+	       			            
 	            $("#selectType").change(function(){
 	            	var v = this.value;
 	            	if(v=="rM"){
