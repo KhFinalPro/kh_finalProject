@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 	<style>
 		#storeList{margin: 0 auto; width: 90%; margin-top: 200px; text-align: center;}
-		#store_category{float: right; width: 200px; height: 30px; border: 1px solid black; margin-bottom: 10px;}
+		#store_category{float: right; width: 160px; height: 50px; font-size: 25px; font-weight: 600; border: 2px solid black; margin-bottom: 10px;}
 		
-		.store_area{margin: 0 auto; margin-bottom: 10px; width: 19.0%; border: 2px solid rgb(177, 175, 175); display: inline-block;}
+		.store_area{margin: 0 auto; margin-bottom: 10px; width: 19.0%; border-radius: 10px; border: 2px solid rgb(177, 175, 175); display: inline-block;}
 		.store_area:hover{border: 2px solid #2ac1bc;}
 		.store_area .store{padding: 0; text-align: left;}
 		.store_area .store b{font-size:20px;}
