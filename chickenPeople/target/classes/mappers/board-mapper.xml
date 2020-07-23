@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	<resultMap id="boardResultSet" type="Board">
+		<id property="bNum" column="B_NUM"/>
+		<result property="bWriter" column="B_WRITER"/>
+		<result property="bCate" column="B_CATE"/>
+		<result property="bTitle" column="B_TITLE"/>
+		<result property="bCont" column="B_CONT"/>
+		<result property="bCount" column="B_COUNT"/>
+		<result property="bHit" column="B_HIT"/>
+		<result property="bDate" column="B_DATE"/>
+		<result property="bDelDate" column="B_DEL_DATE"/>
+		<result property="bUpDate" column="B_UP_DATE"/>
+		<result property="bStatus" column="B_STATUS"/>
+	</resultMap>
+	
+	<select id ="selectBoardList" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD
+		ORDER BY B_NUM DESC
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+	</select>
+	
+	
+	
+</mapper>

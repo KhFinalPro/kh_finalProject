@@ -107,10 +107,10 @@
                         <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
-                        <a href="board.do">맛잘알</a>
+                        <a href="boardList.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="nlist.do">공지사항</a>
+                        <a href="noticeList.do">공지사항</a>
                     </li>
                 </ul>
 

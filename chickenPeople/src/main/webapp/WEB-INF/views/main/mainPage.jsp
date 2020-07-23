@@ -175,6 +175,6 @@
 			alert($sto_num);
 		})
 	})
-	  </script> -->
+	  </script>  -->
 
 </html>

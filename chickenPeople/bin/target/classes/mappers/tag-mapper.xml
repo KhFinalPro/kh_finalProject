@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tagMapper">
+	<resultMap id="tagResultSet" type="Tag">
+		<id property="tag_num" column="TAG_NUM"/>
+		<result property="tag_name" column="TAG_NAME"/>
+	</resultMap>
+	
+	<select id="selectOneTag" parameterType="string" resultMap="tagResultSet">
+		SELECT * FROM TAG
+		WHERE TAG_NAME = #{tag}
+	</select>
+</mapper>
