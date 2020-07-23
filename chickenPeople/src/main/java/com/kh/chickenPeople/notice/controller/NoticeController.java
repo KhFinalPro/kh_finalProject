@@ -98,7 +98,7 @@ public String noticeInsert(Notice n, HttpServletRequest request) {
 	int result = noticeService.insertNotice(n);
 	
 	if(result >0) {
-		return "redirect:nlist.do";
+		return "redirect:noticeList.do";
 	}else {
 		throw new NoticeException("공지사항 등록 실패");
 	}
@@ -123,7 +123,7 @@ public String noticeUpdate(HttpServletRequest request,Notice n) {
 	int result = noticeService.updateNotice(n);
 
 	if(result>0) {
-		return "redirect:nlist.do";
+		return "redirect:noticeList.do";
 	}else {
 		throw new NoticeException("공지사항 수정 실패");
 		
@@ -139,7 +139,7 @@ public String noticeUpdate(HttpServletRequest request,Notice n) {
 		int result =noticeService.deleteNotice(nNum);
 		System.out.println("삭제"+nNum);
 		if(result>0) {
-			return "redirect:nlist.do"; 
+			return "redirect:noticeList.do"; 
 		}else {
 			throw new NoticeException("공지사항 삭제 실패");
 		}

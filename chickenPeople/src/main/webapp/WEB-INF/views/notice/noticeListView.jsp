@@ -104,9 +104,7 @@
 					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
 					  			<a href="${ndetail }">${n.nTitle}</a>
-					  		<c:if test="${empty loginUser }">
-						${n.nTitle }
-					</c:if>
+					  	
 					  	</td>
 					  	<td>${n.userId }</td>
 					  	<td width="20%">${n.nDate}</td>
