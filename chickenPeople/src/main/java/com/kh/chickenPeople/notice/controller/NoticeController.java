@@ -56,7 +56,7 @@ public class NoticeController {
 	
 	
 //공지사항 상세
-@RequestMapping(value="nDetail.do", method=RequestMethod.GET)
+@RequestMapping(value="ndetail.do", method=RequestMethod.GET)
 
 public ModelAndView boardDetail(ModelAndView mv, int nNum) {
 
@@ -68,8 +68,9 @@ public ModelAndView boardDetail(ModelAndView mv, int nNum) {
 		System.out.println("조회수"+notice);
 		
 		if(notice !=null) {
-			mv.addObject("notice",notice)
-			.setViewName("notice/noticeDetailView");
+			mv.addObject("notice",notice);
+			
+			mv.setViewName("notice/noticeDetailView");
 		}else {
 			throw new NoticeException("공지사항 조회 실패");
 		}

@@ -108,6 +108,7 @@
             left:724px;
         }
 	</style>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <div id="mypage_nav">
@@ -119,7 +120,7 @@
 	        <a href="#">주문달력/리뷰</a>
 	        <a href="msgList.do">메세지</a>
 	        <a href="storeLikeList.do">찜한매장/글</a>
-	        <a href="#">번개</a>
+	        <a href="myBung.do?id=${sessionScope.loginUser.id }">번개</a>
 	        <div class="animation start-home"></div>
 	    </nav>
 </div>

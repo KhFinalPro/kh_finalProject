@@ -77,4 +77,9 @@ public class BungDao {
 		return sqlSessionTemplate.selectOne("bungMapper.selectBrand", bung_brd);
 	}
 
+	public ArrayList<Bung> selectMyBung(String id) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.selectMyBung", id);
+	}
+
 }

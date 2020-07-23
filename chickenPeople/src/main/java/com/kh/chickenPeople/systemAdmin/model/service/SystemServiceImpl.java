@@ -39,6 +39,12 @@ public class SystemServiceImpl implements SystemService{
 		// TODO Auto-generated method stub
 		return sDao.insertCoupon(coupon);
 	}
+
+	@Override
+	public int updateCoupon(Coupon coupon) {
+		// TODO Auto-generated method stub
+		return sDao.updateCoupon(coupon);
+	}
 	
 
 

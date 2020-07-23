@@ -10,71 +10,25 @@
 <title>Insert title here</title>
 <style>
 section{margin-top: 200px;}
-#main_section {
-	margin: auto;
-	clear: both;
-	
-}
+#main_section {margin: auto;clear: both;}
 
-#main_section>.bungae_area {
-	border-radius: 10px;
-	display: inline-block;
-	margin: 0;
-	margin-bottom: 10px;
-	width: 49.4%;
-	height: 230px;
-	border: 2px solid black;
-}
+#main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
 
 #main_section>.bungae_area:hover{border:2px solid #2ac1bc;}
 
-#main_section>.bungae_area>.brand_logo {
-	text-align:center;
-	width: 30%;
-	height: 180px;
-	margin-left:30px
-}
+#main_section>.bungae_area>.brand_logo {text-align:center; width: 30%; height: 180px; margin-left:30px;}
 
-#main_section>.bungae_area>.brand_logo>img {
-	width: 100%;
-	height: 100%;
-}
+#main_section>.bungae_area>.brand_logo>img {width: 100%; height: 100%;}
 
-#main_section>.bungae_area>.first_line {
-	float: left;
-	height: 150px;
-}
+#main_section>.bungae_area>.first_line {float: left; height: 150px;}
 
-#main_section>.bungae_area>.bungae_title {
-	width: 60%;
-	margin-left: 20px;
-	margin-top: 15px;
-	text-align: center;
-}
+#main_section>.bungae_area>.bungae_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
 
-#main_section>.bungae_area>.brand_name {
-	text-align: center;
-	font-size: 30px;
-	font-weight: 600;
-	line-height: 50px;
-	width: 31%;
-	height: 50px;
-	border-radius: 15px;
-	color: white;
-	background-color: #2ac1bc;
-	margin-left: 20px;
-}
+#main_section>.bungae_area>.brand_name {text-align: center; font-size: 30px; font-weight: 600; line-height: 50px; width: 31%; height: 50px; border-radius: 15px; color: white; background-color: #2ac1bc; margin-left: 20px;}
 
-#main_section>.bungae_area>.status {
-	width: 100px;
-	margin-left: 20px;
-	height: 50;
-	line-height: 50px;
-}
+#main_section>.bungae_area>.status {width: 100px; margin-left: 20px; height: 50; line-height: 50px;}
 
-#main_section>.bungae_area>.second_line {
-	float: left;
-}
+#main_section>.bungae_area>.second_line {float: left;}
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
 #create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black;}
 
