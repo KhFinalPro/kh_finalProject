@@ -55,28 +55,5 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value="homeSearch.do")
-	public ModelAndView homeSearch(ModelAndView mv, String search_input) throws MainException
-	{
-		System.out.println(search_input);
-		ArrayList<Store> list = mainService.search(search_input);
-		for(Store s: list)
-		{
-			System.out.println(s);
-		}
-		
-		if(!list.isEmpty())
-		{
-			mv.addObject("search", search_input);
-			mv.addObject("searchList", list);
-			mv.setViewName("main/mainSearch");
-		}
-		else
-		{
-			mv.addObject("msg", "검색결과가 없습니다.");
-			mv.setViewName("common/header");
-//			throw new MainException("검색 실패"); ASD
-		}
-		return mv;
-	}
+	
 }
