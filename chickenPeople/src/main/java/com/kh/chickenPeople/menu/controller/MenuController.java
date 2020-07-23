@@ -32,7 +32,7 @@ public class MenuController {
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
 		int listCount = menuService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
 		ArrayList<Menu> selectMenuList = menuService.selectMenuList(pi);
 		
 		if(selectMenuList!=null) {

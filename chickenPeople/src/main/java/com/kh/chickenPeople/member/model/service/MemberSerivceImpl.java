@@ -1,9 +1,12 @@
 package com.kh.chickenPeople.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.member.model.dao.MemberDao;
+import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
 
 @Service("mService")
@@ -16,6 +19,23 @@ public class MemberSerivceImpl implements MemberService {
 	public Member loginMember(Member m) {
 		
 		return mDao.loginMember(m);
+	}
+
+	@Override
+	public void insertMember(Member m) {
+		
+	}
+
+	@Override
+	public int idChk(Member m) {
+		
+		return mDao.idChk(m);
+	}
+
+	@Override
+	public ArrayList<Address> selectAddress(Member member) {
+		// TODO Auto-generated method stub
+		return mDao.selectAddress(member);
 	}
 
 }

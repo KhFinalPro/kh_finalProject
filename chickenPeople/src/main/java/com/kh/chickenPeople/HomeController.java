@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.main.model.exception.MainException;
 import com.kh.chickenPeople.main.model.service.MainService;
+import com.kh.chickenPeople.main.model.vo.BestMenu;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 
@@ -38,10 +39,14 @@ public class HomeController {
 	public ModelAndView home(Locale locale, ModelAndView mv) {
 		
 		//베스트 치킨집 top5
-		ArrayList<Store> bestList = mainService.bestListSelect();
-		if(!bestList.isEmpty())
+		ArrayList<Store> bestStoreList = mainService.bestListSelect();
+		//베스트 치킨
+		ArrayList<BestMenu> bestMenuList = mainService.selectBestMenu();
+		if(!bestStoreList.isEmpty())
 		{
-			mv.addObject("bestList", bestList);
+			mv.addObject("bestList", bestStoreList);
+			mv.addObject("bestMenuList", bestMenuList);
+			mv.setViewName("home");
 		}
 		return mv;
 	}

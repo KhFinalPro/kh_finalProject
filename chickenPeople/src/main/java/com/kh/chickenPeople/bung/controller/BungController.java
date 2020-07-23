@@ -20,6 +20,8 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.service.BungService;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 import com.kh.chickenPeople.bung.model.vo.BungTag;
+import com.kh.chickenPeople.tag.model.service.TagService;
+import com.kh.chickenPeople.tag.model.vo.Tag;
 
 @Controller
 public class BungController {
@@ -27,22 +29,19 @@ public class BungController {
 	@Autowired
 	BungService bungService;
 	
+	@Autowired
+	TagService tagService;
 	
 	
 	
 	
 	@RequestMapping("bungList.do")
 	public ModelAndView bungList(ModelAndView mv) {
-		System.out.println("bungList.do");
 		
 		ArrayList<Bung> list = bungService.bungList();
 		
 		if(list != null)
 		{
-			for(Bung  b : list)
-			{
-				System.out.println(b);
-			}
 			mv.addObject("list", list);
 			mv.setViewName("bung/bungList");
 		}
@@ -55,14 +54,14 @@ public class BungController {
 	
 	@RequestMapping("bungDetail.do")
 	public ModelAndView bungDetail(ModelAndView mv, @RequestParam(value="bung_num", required=false) Integer bung_num) {
-//		System.out.println("bungDetail.do");
-//		System.out.println("bung_num : " + bung_num);
 		
 		Bung b = bungService.selectBung(bung_num);
+		ArrayList<Tag> t = tagService.selectTag(bung_num);
 		int result = bungService.updateHit(bung_num);
 		if(b != null)
 		{
 			mv.addObject("bung", b);
+			mv.addObject("tagList", t);
 			mv.setViewName("bung/bungDetail");
 		}
 		else
@@ -75,16 +74,11 @@ public class BungController {
 	
 	@RequestMapping(value="bungLike.do", method=RequestMethod.POST)
 	public void bungLike(HttpServletResponse response, int bung_num ) throws IOException {
-//		System.out.println("bung_num : " + bung_num);
 		
 		int result = bungService.updateBungLike(bung_num);
-		
 		int bungLike = bungService.selectBungLike(bung_num);
 		int bungHit = bungService.selectBungHit(bung_num);
 		
-//		ArrayList<Integer> list = new ArrayList<>();
-//		list.add(bungLike);
-//		list.add(bungHit);
 		
 		JSONArray jarr = new JSONArray();
 		
@@ -128,16 +122,15 @@ public class BungController {
 
 	
 	@RequestMapping(value="bungCreate.do", method=RequestMethod.GET)
-	public ModelAndView bungCreate(ModelAndView mv, @ModelAttribute Bung b, int[] tag_num) {
-		
-		
-		System.out.println("tag.do");
-		
+	public String bungCreate(@ModelAttribute Bung b, int[] tag_num) {
+		//브랜드 사진가져오기
+		Brand brand = bungService.selectBrand(b.getBung_brd());
+
 		//번개 등록하기
+		b.setBung_img(brand.getBrand_pic());
 		int insertBung = bungService.insertBung(b);
-		
 		Bung bung = bungService.selectBungNum(b.getUser_id());
-		// 번개번호를 가져와서 tag_num이랑 list로 조합을해서 tag insert하기
+		
 		
 		//bung_tag insert
 		for(int i = 0; i<tag_num.length; i++)
@@ -146,13 +139,28 @@ public class BungController {
 			
 			int insertBungTag = bungService.insertBungTag(bungTag);
 		}
+
+		return "redirect:/bungList.do";
 		
+	}
+	
+	@RequestMapping("bungTagList.do")
+	public ModelAndView bungTagList(ModelAndView mv, int tag_num) {
 		
+		ArrayList<Bung> bList = bungService.bungTagList(tag_num);
 		
-		
-		
+		Tag t = tagService.selectTagName(tag_num);
+		if(!bList.isEmpty())
+		{
+			mv.addObject("list", bList);
+			mv.addObject("tagName", t);
+			mv.setViewName("bung/bungList");
+		}
+		else
+		{
+			
+		}
 		return mv;
-		
 	}
 	
 	

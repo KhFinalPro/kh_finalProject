@@ -5,7 +5,7 @@
 
 <html>
 <head>
-   <title>Home</title>
+   <title>치킨의 민족</title>
    <style>
 		.contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
 		.banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
@@ -52,15 +52,15 @@
        <br clear="both"><br><br>
 
 
-	<!-- 비로그인 -->
-    <c:if test="${empty sessionScope.loginUser }">
+	
         <h2 align="center" class="title">베스트 치킨집 Top5</h2>
 
         <section class="main_area">
             
             <div class="second_area">
             	<c:forEach var="b" items="${bestList }">
-	                <div class="place_area" style="margin-right: 10px;">
+	                <div class="place_area bestSto_area" style="margin-right: 10px;">
+	                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
 	                    <a href="#">
 	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
 	                    </a>
@@ -72,12 +72,36 @@
 	                    </div>
 	                </div>
                 </c:forEach>
-                
-                
             </div>
+            
+            
+        </section>
+        
+        <h2 align="center" class="title">베스트 메뉴 Top5</h2>
+
+        <section class="main_area">
+            
+            <div class="second_area">
+            	<c:forEach var="m" items="${bestMenuList }" begin="0" end="4" step="1">
+	                <div class="place_area menu_area" style="margin-right: 10px;">
+	                	<input type="hidden" id="brand_code" value="${m.brand_code }"/>
+	                    <a href="#">
+	                        <img class="logo" src="resources/menu/${m.menu_pic }.jpg" alt="logo">
+	                    </a>
+	                    <div align="center">
+	                        <h3>${m.brand_name }</h3>
+	                        <h3 id="menu_name">${m.menu_name }</h3>
+	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div>
+            
+            
         </section>
     
-    </c:if>
+    
 	    
 	
 	    
@@ -116,13 +140,20 @@
 </script>
 
 <!-- 완성되면 매장 상세페이지와 연결할 script -->
-<!--  <script>
+<script>
 	$(function(){
-		$(".place_area").on("click",function(){
+		$(".bestSto_area").on("click",function(){
 			$sto_num = $(this).children("#sto_num").val();
 			alert($sto_num);
 		})
+		
+		$(".menu_area").on("click",function(){
+			$brand_code = $(this).children("#brand_code").val();
+			$menu_name = $(this).children("div").children("#menu_name").html();
+			
+			location.href="searchStore.do?brand_code="+$brand_code + "&menu_name=" + $menu_name;
+		})
 	})
-</script>  -->
+</script>
 
 </html>

@@ -97,15 +97,8 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <!-- <label for="">번개 장소 : </label>
-                    <input type="text" id="sample6_postcode" placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="sample6_address" placeholder="주소"><br>
-                    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                    <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
+                <td>                    
                     <label for="">소개글</label>
-
                 </td>
                 <td>
                     <textarea name="bung_int" id="bung_int" cols="70" rows="5"></textarea>
@@ -165,10 +158,23 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 </body>
+
+	<script type="text/javascript">
+    	
+    	function myFunction(item){
+    		$bung_addr = $(item).children(".info").children(".gray").text();
+    		
+    		var addr = "<input type='hidden' id='bung_addr' value='"+$bung_addr+"'/>";
+    		$("#bung_addr").remove();
+    		$("#bungCreate_area").append(addr);
+    	}
+    	
+    </script>
+    
 	<script>
         //태그관련 jquery
         $(function(){
-            alert($("#bung_brand").val());
+            
             $(".tag_area").on("keydown", function(key) {
                 
                 $tag_area = $(".tag_area");
@@ -212,6 +218,7 @@
             	$bung_p_no = $("#bung_p_no").val();
             	$bung_date = $bungDate +" "+ $bungTime;
             	$user_id = $("#user_id").val();
+            	$bung_addr = $("#bung_addr").val();
             	console.log($user_id);
             	
             	$tagNumArr = new Array();
@@ -219,14 +226,14 @@
 	            	$tagNumArr.push($("#tagArea").children("#tagNum").eq(index).val());            		
             	})
             	
-            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+
+            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
             								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;
             })
             
             
         })
     </script>
-    <script>
+    <!-- <script>
         function sample6_execDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -271,7 +278,7 @@
                 }
             }).open();
         }
-    </script>
+    </script> -->
 
     <script>
         // 마커를 담을 배열입니다
@@ -411,6 +418,7 @@
 
             el.innerHTML = itemStr;
             el.className = 'item';
+            el.setAttribute("onclick","myFunction(this)");
 
             return el;
         }
@@ -491,13 +499,6 @@
             }
         }
     </script>
-    <script>
-    	$(function(){
-		    $(".item").on("click",function(){
-		    	alert("asdasd");
-		    	console.log("item");
-		    })
-    		
-    	})
-    </script>
+    
+    
 </html>

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.notice.model.exception.NoticeException;
 import com.kh.chickenPeople.notice.model.service.NoticeService;
@@ -37,7 +36,7 @@ public class NoticeController {
 		}
 		int listCount = nService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount,5);
 		ArrayList<Notice> selectTotalNoticeList = nService.selectNoticeList(pi);
 		
 		System.out.println("selectTotalNoticeList"+selectTotalNoticeList);
