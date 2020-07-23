@@ -38,12 +38,7 @@ public class MemberController {
 		return mv;
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping("doLogin"
-			+ ".do")
-=======
-	@RequestMapping(value="doLoginView.do")
->>>>>>> refs/remotes/origin/master
+	@RequestMapping("doLogin.do")
 	public String doLoginMember(HttpServletRequest request, Member m, ModelAndView mv, HttpSession session) {
 		System.out.println("doLogin.do");
 		Member member = mService.loginMember(m);
