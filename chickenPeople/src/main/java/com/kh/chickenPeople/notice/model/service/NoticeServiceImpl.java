@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.notice.model.dao.NoticeDao;
 import com.kh.chickenPeople.notice.model.vo.Notice;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {
@@ -16,11 +17,16 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeDao nDao; 
 	
 	@Override
-	public ArrayList<Notice> selectList() {
+	public ArrayList<Notice> selectNoticeList(PageInfo pi){
 
-		return nDao.selectList();
+		return nDao.selectNoticeList(pi);
 	}
 
+	@Override
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		return nDao.getListCount();
+	}
 
 
 	@Override
@@ -33,7 +39,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insertNotice(Notice n) {
-		// TODO Auto-generated method stub
+		System.out.println("insertService :" +n);
 		return nDao.insertNotice(n);
 	}
 
@@ -44,5 +50,25 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return nDao.addReadCount(nNum);
 	}
+
+
+
+	@Override
+	public int updateNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return nDao.updateNotice(n);
+	}
+
+
+
+	@Override
+	public int deleteNotice(int nNum) {
+		// TODO Auto-generated method stub
+		return nDao.deleteNotice(nNum);
+	}
+
+
+
+
 
 }

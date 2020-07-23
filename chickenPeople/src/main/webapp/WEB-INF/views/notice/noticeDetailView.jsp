@@ -150,13 +150,27 @@
 				 
 				  <!--  insert 완료후 작성 -->
 		 </table>
+		 
 		 <div style="float:right;">
 			   <c:if test="${loginUser.id eq 'Admin' }">
-				  	<button onclick ="#">수정하기</button>
-				  	<button onclick ="#">삭제하기</button>
+				  	<button onclick ="UpNotice()">수정하기</button>
+				  	<button onclick ="DelNotice()">삭제하기</button>
 			 </c:if>
 		 </div>
 		 <br><br> <br><br> <br><br>
+		 <!-- 수정하기 -->
+		 <script>
+		 	function UpNotice(){
+		 		location.href="nupView.do?nNum=${notice.nNum}";
+		 	}
+		 </script>
+		 
+		 <!-- 삭제하기 -->
+		 <script>
+		 	function DelNotice(){
+		 		location.href="ndelete.do?nNum=${notice.nNum}";
+		 	}
+		 </script>
 		 
 		 <!-- 댓글 등록 -->
 		 <table align="center" width="500" >
@@ -189,9 +203,6 @@
 	</div>
 	
 	
-
-
-
 
 <!-- 목록으로~ -->
 	<script>

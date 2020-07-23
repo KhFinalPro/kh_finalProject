@@ -76,7 +76,7 @@
 			</tr>
 			<tr align="right">
 				<td>
-					<input type="text" style="background-color:transparent;border:0 solid black;text-align:right;" name="userId" readonly value="${loginUser.userId}" > <!-- 로그인 유저중에 관리자만 글쓰게끔! -->
+					<input type="text" style="background-color:transparent;border:0 solid black;text-align:right;" name="userId" readonly value="${loginUser.id}" > <!-- 로그인 유저중에 관리자만 글쓰게끔! -->
 				</td>
 			</tr>
 			
