@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -49,9 +48,6 @@ public class MessageController {
 		
 		//수신 메세지 목록
 		ArrayList<Message> receiveMessageList = msgService.receiveMessageList(userId);
-		
-	
-		
 		
 		mv.addObject("sendMessageList",sendMessageList);
 		mv.addObject("recieveMessageList",receiveMessageList);
@@ -130,13 +126,19 @@ public class MessageController {
 			
 	}
 	
-	@RequestMapping(value="deleteMessage.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public void deleteMessage(@RequestParam(value="msgNoArr") List<String> msgNoArr) {
+	
+	
+	@RequestMapping(value="deleteMessage.do",method =  RequestMethod.POST)
+	public void deleteMessage( HttpServletResponse response,
+								String[] noArr) {
+		response.setContentType("application/json;charset=utf-8");
 		
-		for(String msgNo:msgNoArr) {
-            System.out.println(msgNo);
-            /**********깃테스트 ***********/
-        }
+		//System.out.println(noArr[0]);
+		
+		for(String msgNo : noArr) {
+			System.out.println(msgNo);
+			
+		}
 	}
 }
 

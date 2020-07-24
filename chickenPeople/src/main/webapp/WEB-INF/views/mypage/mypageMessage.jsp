@@ -92,7 +92,7 @@
                         <div class="clickButtons">
                             <ul>
                                 
-                                <li><button id="mDelete" onclick="deleteMessageList()">삭제하기</button></li>
+                                <li><button type="button" id="mDelete">삭제하기</button></li>
                                 <li><button id="mAnswer">답변하기</button></li>
                                 <li>
                                     <select  id="selectType">
@@ -182,7 +182,6 @@
              
               
              $('#mDelete').click(function(){
-                //console.log(this);
                 deleteMessageList();
                });
                                
@@ -210,6 +209,7 @@
        function searchData(){
           var param = {
                 'type' : $("#selectType").val(),
+                 //console.log("테이블 값 조회"+ $("#selectType").val());
           }
           
           $.ajax({
@@ -236,7 +236,7 @@
                                         '<td>' + sendMessageList[i].msgContents + '</td>'+
                                         '<td>' + sendMessageList[i].sendDate + '</td>'+
                                         '<td>' + sendMessageList[i].msgStatus + '</td>'+
-                                        '<input type="hidden" value="' + sendMessageList[i].msgNo + '" name="msgNo">' +
+                                        '<input type="hidden" value="' + sendMessageList[i].msgNo + '" name="msgNo">' + 
                                         '</tr>'
                 }
                 
@@ -254,14 +254,14 @@
                 for(var i=0; i<receiveMessageList.length; i++){
                    //내 수신메세지 목록  append할 문자열 생성
                    receiveMessageAppendStr += '<tr>' +
-                                       '<td><input type="checkbox"></td>' +
+                                       '<td><input type="checkbox" name="check"></td>' +
                                           '<td>' + (i+1) + '</td>' +
                                           '<td>' + receiveMessageList[i].sendId + '</td>' +
                                           '<td>' + receiveMessageList[i].msgTitle + '</td>' +
                                           '<td>' + receiveMessageList[i].msgContents + '</td>' +
                                           '<td>' + receiveMessageList[i].sendDate+ '</td>' +
                                           '<td>' + receiveMessageList[i].msgStatus+ '</td>' +
-                                          '<input type="hidden" value="' + receiveMessageList[i].msgNo + '" name="msgNo">' +
+                                          '<input type="hidden" value="' + receiveMessageList[i].msgNo + '" name="msgNo">' + 
                                           '</tr>'
                                           
                 }
@@ -287,16 +287,18 @@
           
          
           var noArr = [];
-          var test=$("#sendMessage").find('input[type=checkbox]:checked').parents('tr');
+          var test = $("#sendMessage").find('input[type=checkbox]:checked').parents('tr');
+          console.log('testttttttttttt:'+test);
           
-         
+       
           if(!confirm('메세지를 삭제하시겠습니까?')){
              return false;
           }
+          
           for(var i=0; i<test.length; i++){
           
              //console.log($(test[i]).find('input[name=msgNo]').val());
-             var noObj = { 'msgNo' : $(test[i]).find('input[name=msgNo]').val() };
+             var noObj = $(test[i]).find('input[name=msgNo]').val();
             
              noArr.push(noObj);
              }
@@ -306,7 +308,8 @@
            $.ajax({
               type:'POST',
               url:"deleteMessage.do",
-              data: noArr,
+              traditional : true,
+              data: {noArr:noArr},
               dataType:'JSON',
               success:function(data){
                  searchData();
@@ -318,15 +321,9 @@
               
               
            })
-       }
+       } 
        
-       
-      
-      
-      
-  
-            
-    
+
     </script>
    
    
