@@ -162,8 +162,8 @@
             })
             
             $("#delivery").on("click",function(){
-            	$("#address option:selected").val();
-            	location.href="deliveryList.do";
+            	
+            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
             })
         })
     </script>
