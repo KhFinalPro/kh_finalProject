@@ -135,6 +135,7 @@ public class MessageController {
 		
 		for(String msgNo:msgNoArr) {
             System.out.println(msgNo);
+            /**********깃테스트 ***********/
         }
 	}
 }
