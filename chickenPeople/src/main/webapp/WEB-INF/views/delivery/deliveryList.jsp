@@ -29,6 +29,9 @@
 		.move_btn{width:80px; height:50px; border-radius: 10px; border:0px; font-size:20px; font-weight:600; color:white; background-color:#2ac1bc;}
 		.move_btn:hover{color:black;}		
 		#top{margin-bottom: 10px;}
+		
+		#store_count{font-size: 30px;}
+		#store_count>b{font-size:50px;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -36,7 +39,8 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="storeList">
-            
+		<input type="hidden" id="select_address" value="${address }">
+        <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
         <select name="store_category" id="store_category">
             <option value="">거리순</option>
             <option value="">인기순</option>
@@ -78,7 +82,11 @@
 </body>
 
 <script>
-	$(function(){
+	$(function(){		
+
+		$address = $("#select_address").val();
+		$("#address").val($address).prop("selected",true);
+		
 		//매장 상세 페이지이동
 		$(".store_area").on("click",function(){
 			$(this).children("#sto_num").val();
@@ -88,7 +96,6 @@
 		
 		$("#store_category").on("change",function(){
 			alert("카테고리 변화");
-			
 		})
 		$("#top").on("click",function(){
 			location.href="#";
@@ -99,6 +106,14 @@
 		
 		$(".move_btn").on("mouseenter",function(){
 			$(this).css('cursor','pointer');
+		})
+		
+		//header.jsp 의 주소창 변경시 딜리버리에 뿌려줄 매장 가져오기
+		$("#address").on("change",function(){
+			
+			location.href="deliveryList.do?address=" + $("#address option:selected").val();
+		
+			
 		})
 		
 		

@@ -12,14 +12,16 @@
 		<result property="brand_pic" column="BRAND_PIC"/>
 		<result property="rev_rate" column="REV_RATE"/>
 		<result property="menu_name" column="MENU_NAME"/>
+		<result property="sto_lat" column="STO_LAT"/>
+		<result property="sto_lng" column="STO_LNG"/>
 	</resultMap>
 	
 	<select id="selectList" resultMap="deliveryResultSet">
-		SELECT SI.STO_NUM, STO_NAME, STO_ADDR, ORD_LIMIT, OPEN_YN, DELIVERY, BRAND_PIC, AVG(REV_RATE)
+		SELECT SI.STO_NUM, STO_NAME, STO_ADDR, ORD_LIMIT, OPEN_YN, DELIVERY, BRAND_PIC, STO_LAT, STO_LNG, AVG(REV_RATE)
 		FROM STORE_INFO SI
 		LEFT OUTER JOIN STORE_REVIEW SR ON SI.STO_NUM = SR.STO_NUM
 		JOIN BRAND B ON SI.BRAND_CODE = B.BRAND_CODE
-		GROUP BY SI.STO_NUM, STO_NAME, STO_ADDR, ORD_LIMIT, OPEN_YN, DELIVERY, BRAND_PIC
+		GROUP BY SI.STO_NUM, STO_NAME, STO_ADDR, ORD_LIMIT, OPEN_YN, DELIVERY, BRAND_PIC, STO_LAT, STO_LNG
 		ORDER BY STO_NUM
 	</select>
 	
