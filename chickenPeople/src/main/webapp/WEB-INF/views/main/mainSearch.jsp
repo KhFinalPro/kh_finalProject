@@ -33,20 +33,21 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<br clear="both">
-        <div class="contents">
-            <div class="banner">
-                <ul>
-                    <li><a href="#"><img src="resources/images/benu1.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu2.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu3.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu4.png" width="1200px" height="300px"></a></li>
-                    
-                </ul>
-            </div>
+    <div class="contents">
+        <div class="banner">
+            <ul>
+                <li><a href="#"><img src="resources/images/benu1.png" width="1200px" height="300px"></a></li>
+                <li><a href="#"><img src="resources/images/benu2.png" width="1200px" height="300px"></a></li>
+                <li><a href="#"><img src="resources/images/benu3.png" width="1200px" height="300px"></a></li>
+                <li><a href="#"><img src="resources/images/benu4.png" width="1200px" height="300px"></a></li>
+                
+            </ul>
         </div>
+    </div>
     <br clear="both"><br><br>
     
-	<h2 align="center" id="first_title">"${menu_name }"를 판매하는 매장</h2>
+    <c:if test="${!empty storeList }">
+	<h2 align="center" id="first_title">"${search_input }" 검색 결과</h2>
 	
 	<section class="main_area">
 	    
@@ -68,6 +69,16 @@
 	        
 	    </div>
 	</section>
+	</c:if>
+	
+	<c:if test="${empty storeList }">
+	<h2 align="center" id="first_title">"${search_input }" 검색 결과가 없습니다.</h2>
+	
+	<section class="main_area">
+	   
+	</section>
+	</c:if>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 
 <script language="JavaScript">

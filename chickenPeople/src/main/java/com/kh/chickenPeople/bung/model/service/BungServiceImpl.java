@@ -89,6 +89,12 @@ public class BungServiceImpl implements BungService {
 		return bungDao.selectBrand(bung_brd);
 	}
 
+	@Override
+	public ArrayList<Bung> selectMyBung(String id) {
+		// TODO Auto-generated method stub
+		return bungDao.selectMyBung(id);
+	}
+
 	
 	
 }

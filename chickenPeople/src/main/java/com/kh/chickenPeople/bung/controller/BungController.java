@@ -163,6 +163,25 @@ public class BungController {
 		return mv;
 	}
 	
+	@RequestMapping("myBung")
+	public ModelAndView myBung(ModelAndView mv, String id)
+	{
+		System.out.println("myBung");
+		ArrayList<Bung> bungList = bungService.selectMyBung(id);
+		
+		if(!bungList.isEmpty())
+		{
+			mv.addObject("bungList", bungList);
+			mv.setViewName("mypage/mypageBung");
+		}
+		else
+		{
+			
+		}
+		return mv;
+	}
+	
+	
 	
 	
 	

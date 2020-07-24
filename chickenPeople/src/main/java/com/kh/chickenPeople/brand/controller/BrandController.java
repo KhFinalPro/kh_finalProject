@@ -28,7 +28,7 @@ public class BrandController {
 			currentPage=page;
 		}
 		int listCount = brandService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount,5);
 		ArrayList<Brand> selectTotalBrandList = brandService.selectBrandList(pi);
 		
 		System.out.println(selectTotalBrandList);

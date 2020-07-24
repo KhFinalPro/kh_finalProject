@@ -27,4 +27,9 @@
 		INSERT INTO MAKE_COUP VALUES(SEQ_MAKECOUP.NEXTVAL, #{coup_name}, #{coup_cont}, #{coup_term}, #{coup_disc}, #{coup_pic})
 	</insert>
 	
+	<update id="updateCoupon" parameterType="Coupon">
+		UPDATE MAKE_COUP SET COUP_NAME = #{coup_name}, COUP_CONT = #{coup_cont}, COUP_TERM = #{coup_term}, COUP_DISC = #{coup_disc}, COUP_PIC = #{coup_pic}
+		WHERE COUP_SERIAL = #{coup_serial}
+	</update>
+	
 </mapper>

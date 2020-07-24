@@ -24,12 +24,18 @@
 		<result property="brand_name" column="BRAND_NAME"/>
 	</resultMap>
 	
-	<select id="searchList" parameterType="String" resultMap="storeResultSet">
+	<select id="searchList" parameterType="Search" resultMap="storeResultSet">
 		SELECT STO_NUM, STO_NAME, STO_TEL, STO_OPEN, STO_CLOSE, STO_ADDR, STO_INTRO, ORD_LIMIT, DELI_TIME, ENTER_YN, OPEN_YN, CEO_NAME, DELIVERY, STO_EMAIL, APRV_STATUS, SI.BRAND_CODE, USER_ID, B.BRAND_PIC, BRAND_NAME
 		FROM STORE_INFO SI
 		JOIN BRAND B ON SI.BRAND_CODE = B.BRAND_CODE
-		WHERE BRAND_NAME LIKE '%' || #{search_input} || '%'
-				AND OPEN_YN = 'Y'
+		WHERE OPEN_YN='Y'
+		<if test="search_category == 'brand'">
+			AND BRAND_NAME LIKE '%' || #{search_input} || '%'
+		</if>
+		<if test="search_category == 'store'">
+			AND STO_NAME LIKE '%' || #{search_input} || '%'
+		</if>
+		
 	</select>
 	
 	<select id="bestList" resultMap="storeResultSet">
@@ -53,4 +59,6 @@
 		JOIN STORE_INFO SI ON B.BRAND_CODE = SI.BRAND_CODE
 		WHERE B.BRAND_CODE = #{brand_code}
 	</select>
+	
+	
 </mapper>

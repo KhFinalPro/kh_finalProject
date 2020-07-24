@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+  	<resultMap id="noticeResultSet" type="Notice">
+  		<id property="userId" column ="USER_ID"/>
+  		<result property="nNum" column="N_NUM"/>
+  		<result property="nTitle" column ="N_TITLE"/>
+  		<result property="nCont" column ="N_CONT"/>
+  		<result property="nCount" column ="N_COUNT"/>
+  		<result property="nDate" column ="N_DATE"/>
+  		<result property="nDelDate" column ="N_DEL_DATE"/>
+  		<result property="nUpDate" column ="N_UP_DATE"/>
+  		<result property="nStatus" column ="N_STATUS"/>
+  	</resultMap>
+ 
+  	<select id ="selectList" resultMap="noticeResultSet">
+  		SELECT *
+  		FROM NOTICE
+  		ORDER BY N_DATE DESC 
+  		<!-- 최신 순 내림차순 -->
+  	</select>
+  	
+  	<select id="selectOne" parameterType="_int" resultMap="noticeResultSet">
+  		SELECT *
+  		FROM NOTICE
+  		WHERE N_NUM=#{nNum}
+  	</select>
+  	
+  	<insert id ="insertNotice" parameterType="Notice">
+  		INSERT INTO NOTICE VALUES(
+			SEQ_N_NUM.NEXTVAL
+			, #{nTitle}
+			, #{nCont}
+            , #{userId}
+			, #{nCount}
+			, SYSDATE
+			, SYSDATE
+			, SYSDATE
+			, 'N'
+)
+  	</insert>
+  	
+  	<update id="updateCount" parameterType="_int">
+  		UPDATE NOTICE
+  		SET N_COUNT = N_COUNT +1
+  		WHERE N_NUM =#{nNum}
+  	</update>
+  	
+</mapper>
