@@ -14,14 +14,23 @@ public class MessageDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public ArrayList<Message> selectList() {
+	
+
+	public ArrayList<Message> sendMessageList(String userId) {
+	
+		ArrayList<Message> sendMessageList = new ArrayList<Message>();
+		sendMessageList = (ArrayList)sqlSessionTemplate.selectList("messageMapper.sendMessageList",userId);
 		
-		ArrayList list = new ArrayList();
 		
-		list = (ArrayList)sqlSessionTemplate.selectList("messageMapper.selectList");
+		return sendMessageList;
+	}
+
+	public ArrayList<Message> receiveMessageList(String userId) {
 		
+		ArrayList<Message> receiveMessageList = new ArrayList<Message>();
+		receiveMessageList = (ArrayList)sqlSessionTemplate.selectList("messageMapper.receiveMessageList",userId);
 		
-		return list;
+		return receiveMessageList;
 	}
 	
 	

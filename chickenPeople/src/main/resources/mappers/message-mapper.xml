@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="messageMapper">
-	<resultMap id="messageResultSet" type="Message">
-		<id property="msgNo" column="MSG_NO"/>
-		<result property="sendId" column="SEND_ID"/>
-		<result property="rcvId" column="RCV_ID"/>
-		<result property="sendDate" column="SEND_DATE"/>
-		<result property="msgTitle" column="MSG_TITLE"/>
-		<result property="msgContents" column="MSG_CONTENTS"/>
-		<result property="msgStatus" column="MSG_STATUS"/>
-		
-	</resultMap>
+   <resultMap id="messageResultSet" type="Message">
+      <id property="msgNo" column="MSG_NO"/>
+      <result property="sendId" column="SEND_ID"/>
+      <result property="rcvId" column="RCV_ID"/>
+      <result property="sendDate" column="SEND_DATE"/>
+      <result property="msgTitle" column="MSG_TITLE"/>
+      <result property="msgContents" column="MSG_CONTENTS"/>
+      <result property="msgStatus" column="MSG_STATUS"/>
+      
+   </resultMap>
 
-	
-	
-	<select id="selectList" resultMap="messageResultSet">
-		SELECT MSG_NO,SEND_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
-		FROM MESSAGE
-		ORDER BY SEND_DATE DESC
-	</select>
-	 
+   
+   <!-- 발신메세지 -->
+   <select id="sendMessageList" resultMap="messageResultSet">
+      SELECT MSG_NO,RCV_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
+      FROM MESSAGE
+      WHERE SEND_ID=#{userId}
+      ORDER BY SEND_DATE DESC
+   </select>
+   
+   <!-- 수신메세지 -->
+   <select id="receiveMessageList" resultMap="messageResultSet">
+      SELECT MSG_NO,SEND_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
+      FROM MESSAGE
+      WHERE RCV_ID=#{userId}
+      ORDER BY SEND_DATE DESC
+   </select>
+   
+   
+    
  
  
  

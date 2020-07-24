@@ -9,32 +9,34 @@ public class Like implements Serializable{
 	private static final long serialVersionUID = 3174541755977138276L;
 	
 	
-	//ÂòÇÑ¸ÅÀå
-	private String userId;  	//È¸¿ø¾ÆÀÌµğ or 
-	private int storeNo;  		//¸ÅÀå¹øÈ£
-	private String brandPic;	//¸ÅÀå»çÁø
-	private String stoBrand; 	//ºê·£µå¸í
-	private String stoName;		//¸ÅÀåÀÌ¸§
-	private String ordLimit; 	//ÃÖ¼ÒÁÖ¹®±İ¾×
-	private int revRate;		//¸®ºäº°Á¡
-	private double dailyTReview;   //1ÀÏÆòÁ¡ÇÕ°è
-	private String brandCode; 	//ºê·£µåÄÚµå
+	//ì°œí•œë§¤ì¥
+	private String userId;  	//íšŒì› or ë§¤ì¥(?)
+	private int storeNo;  		//ë§¤ì¥ë„˜ë²„
+	private String brandPic;	//ë¸Œëœë“œì‚¬ì§„
+	private String stoBrand; 	//ë¸Œëœë“œ
+	private String stoName;		//ë§¤ì¥ì´ë¦„
+	private String ordLimit; 	//ìµœì†Œê¸ˆì•¡
+	private int revRate;		//ë³„ì 
+	private double dailyTReview;   //1ì¼í‰ì 
+	private String brandCode; 	//ë¸Œëœë“œì½”ë“œ
 	
-	//ÂòÇÑ±Û
-	private int bNum;			//¸ÀÀß¾Ë ¹øÈ£
-	private String bWriter;		//¸ÀÀß¾Ë ÀÛ¼ºÀÚ
-	private String bTitle;		//¸ÀÀß¾Ë Å¸ÀÌÆ²
-	private String bCont;		//¸ÀÀß¾Ë ³»¿ë
-	private Date bDate;			//ÀÛ¼º³¯Â¥
+	//ì°œí•œ ê¸€
+	private String bNum;		//ë§›ì˜ì•Œë²ˆí˜¸
+	private String bWriter;		//ì‘ì„±ì
+	private String bTitle;		//ë§›ì˜ì•Œ ì œëª©
+	private String bCont;		//ë§›ì˜ì•Œ ë‚´ìš©
+	private String bDate;			//ì‘ì„±ì¼  ë°ì´íŠ¸í˜• ê³ ì³¤ë‹¤ì‰?
 	
 	
 	/****************************************/
-	
-	
-	
-	
+	public Like() {
+		
+	}
+
+
 	public Like(String userId, int storeNo, String brandPic, String stoBrand, String stoName, String ordLimit,
-			int revRate, double dailyTReview, String brandCode) {
+			int revRate, double dailyTReview, String brandCode, String bNum, String bWriter, String bTitle,
+			String bCont, String bDate) {
 		super();
 		this.userId = userId;
 		this.storeNo = storeNo;
@@ -45,25 +47,11 @@ public class Like implements Serializable{
 		this.revRate = revRate;
 		this.dailyTReview = dailyTReview;
 		this.brandCode = brandCode;
-	}
-
-	
-	
-
-	public Like(int bNum, String bWriter, String bTitle, String bCont, Date bDate) {
-		super();
 		this.bNum = bNum;
 		this.bWriter = bWriter;
 		this.bTitle = bTitle;
 		this.bCont = bCont;
 		this.bDate = bDate;
-	}
-
-
-
-
-	public Like() {
-		super();
 	}
 
 
@@ -157,25 +145,14 @@ public class Like implements Serializable{
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
-
-	public int getbNum() {
+	public String getbNum() {
 		return bNum;
 	}
 
 
-
-
-	public void setbNum(int bNum) {
+	public void setbNum(String bNum) {
 		this.bNum = bNum;
 	}
-
-
 
 
 	public String getbWriter() {
@@ -183,13 +160,9 @@ public class Like implements Serializable{
 	}
 
 
-
-
 	public void setbWriter(String bWriter) {
 		this.bWriter = bWriter;
 	}
-
-
 
 
 	public String getbTitle() {
@@ -197,13 +170,9 @@ public class Like implements Serializable{
 	}
 
 
-
-
 	public void setbTitle(String bTitle) {
 		this.bTitle = bTitle;
 	}
-
-
 
 
 	public String getbCont() {
@@ -211,27 +180,24 @@ public class Like implements Serializable{
 	}
 
 
-
-
 	public void setbCont(String bCont) {
 		this.bCont = bCont;
 	}
 
 
-
-
-	public Date getbDate() {
+	public String getbDate() {
 		return bDate;
 	}
 
 
-
-
-	public void setbDate(Date bDate) {
+	public void setbDate(String bDate) {
 		this.bDate = bDate;
 	}
 
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 
 	@Override
@@ -241,25 +207,11 @@ public class Like implements Serializable{
 				+ dailyTReview + ", brandCode=" + brandCode + ", bNum=" + bNum + ", bWriter=" + bWriter + ", bTitle="
 				+ bTitle + ", bCont=" + bCont + ", bDate=" + bDate + "]";
 	}
-
-
-
-
 	
 	
 	
 	
 	
-	
-	
-	
-
-
-
-
-
-
-
 	
  
 	
