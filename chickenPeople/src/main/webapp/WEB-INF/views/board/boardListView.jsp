@@ -79,7 +79,7 @@
 	  <div style="width:80%; height: 1000px; margin:0 auto; ">
 		  <br><br><br><br><br><br>
 	  
-		  <table align="center"  width="100%"> 
+		  <table align="center"  width="100%" id="listArea"> 
 		  <br><br>
 	  <h1 align="center">맛잘알 리뷰 게시판</h1>
 		  <br><br><br>
@@ -96,9 +96,19 @@
 				  
 				<c:forEach var="b" items="${boardList }">
 					<tr align="center">
-						 	<td>${b.bNum}</td>
+						 	<td>	
+								<c:url var="bdetail" value="bdetail.do">
+						  		<c:param name="bNum" value="${b.bNum }"/>
+						  		</c:url>
+						  		<a href="${bdetail }">${b.bNum}</a>
+						  	</td>
 						  	<td>${b.bCate}</td>
-						  	<td width="45%">${b.bTitle}</td>
+						  	<td width="45%">
+						  		<c:url var="bdetail" value="bdetail.do">
+						  			<c:param name="bNum" value="${b.bNum }"/>
+						  		</c:url>
+						  		<a href="${bdetail }">${b.bTitle}</a>
+					  	</td>
 						  	<td>${b.bWriter}</td>
 						  	<td width="15%">${b.bDate}</td>
 						  	<td >${b.bCount}</td>
@@ -106,6 +116,25 @@
 					</tr>
 				</c:forEach>
 			 </table>
+			 
+			 		 <!-- 커서 올렸을때  -->
+		 <script>
+		 		$(function() {
+			$("#listArea td").mouseenter(function() {
+				$(this).parent().css({
+					"background" : "darkgray",
+					"cursor" : "pointer"
+				});
+			}).mouseout(function() {
+				$(this).parent().css({
+					"background" : "white"});
+				}).click(function(){
+					var nid=$(this).parent().children("input").val();
+	
+				});
+			});
+		 
+		</script>	 
 
 		 <div class = "p-parents" style="margin:0 auto">
 	            <div class="pppp">

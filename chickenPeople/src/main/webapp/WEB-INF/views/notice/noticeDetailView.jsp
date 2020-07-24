@@ -11,7 +11,7 @@
 </head>
 <style>
   /* 최종버튼 */
- 	button{
+ 	.button{
 	  background:#1AAB8A;
 	  color:#fff;
 	  border:none;
@@ -23,11 +23,11 @@
 	  transition:800ms ease all;
 	  outline:none;
 	}
-	button:hover{
+	.button:hover{
 	  background:#fff;
 	  color:#1AAB8A;
 	}
-	button:before,button:after{
+	.button:before,button:after{
 	  content:'';
 	  position:absolute;
 	  top:0;
@@ -37,13 +37,13 @@
 	  background: #1AAB8A;
 	  transition:400ms ease all;
 	}
-	button:after{
+	.button:after{
 	  right:inherit;
 	  top:inherit;
 	  left:0;
 	  bottom:0;
 	}
-	button:hover:before,button:hover:after{
+	.button:hover:before,button:hover:after{
 	  width:100%;
 	  transition:800ms ease all;
 	}
@@ -153,8 +153,8 @@
 		 
 		 <div style="float:right;">
 			   <c:if test="${loginUser.id eq 'Admin' }">
-				  	<button onclick ="UpNotice()">수정하기</button>
-				  	<button onclick ="DelNotice()">삭제하기</button>
+				  	<button class="button" onclick ="UpNotice()">수정하기</button>
+				  	<button class="button" onclick ="DelNotice()">삭제하기</button>
 			 </c:if>
 		 </div>
 		 <br><br> <br><br> <br><br>
