@@ -29,5 +29,10 @@ public  class MemberDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSessionTemplate.selectList("memberMapper.selectAddress", member);
 	}
+
+	public int memberJoin(Member m) {
+		
+		return sqlSessionTemplate.insert("memberMapper.memberJoin", m);
+	}
 	
 }

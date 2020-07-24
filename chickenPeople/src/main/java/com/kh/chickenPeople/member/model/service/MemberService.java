@@ -14,4 +14,6 @@ public interface MemberService {
 	int idChk(Member m);
 
 	ArrayList<Address> selectAddress(Member member);
+
+	int memberJoin(Member m);
 }

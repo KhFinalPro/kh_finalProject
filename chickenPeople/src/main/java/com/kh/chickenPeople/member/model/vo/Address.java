@@ -21,6 +21,13 @@ public class Address implements Serializable{
 		this.post_code = post_code;
 		this.address = address;
 	}
+	
+	public Address(String user_id, String post_code, String address) {
+		super();
+		this.user_id = user_id;
+		this.post_code = post_code;
+		this.address = address;
+	}
 	public int getAddr_num() {
 		return addr_num;
 	}

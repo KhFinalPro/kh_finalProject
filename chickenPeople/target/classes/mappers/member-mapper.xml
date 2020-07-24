@@ -23,6 +23,13 @@
 		<result property="address" column="ADDRESS"/>
 	</resultMap>
 	
+	<insert id="memberJoin" parameterType="Member">
+		INSERT ALL
+		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, NULL, NULL, NULL, NULL, NULL)
+		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address})
+		SELECT * FROM DUAL
+	</insert>
+	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER 

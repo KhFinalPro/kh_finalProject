@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -98,6 +100,34 @@ public class MemberController {
 		int result = mService.idChk(m);
 		
 		return result;
+	}
+	
+	@RequestMapping("memberJoin.do")
+	public String memberJoin(Member m, Model model,
+							@RequestParam("post") String post,
+							@RequestParam("addr1") String address1,
+							@RequestParam("addr2") String address2) {
+		
+		Address addr = new Address(m.getId(), post, address1 + " " +address2);
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		
+		System.out.println(encPwd);
+		
+		
+		
+		m.setPwd(encPwd);
+		
+		int result = mService.memberJoin(m);
+		
+		if(result > 0) {
+			return "redirect:/home.do";
+		}else {
+			
+		}
+		
+		
+		return "redirect:/home.do";
 	}
 	
 	

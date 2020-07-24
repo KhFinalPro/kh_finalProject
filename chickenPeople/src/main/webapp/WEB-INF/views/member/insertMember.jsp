@@ -95,7 +95,7 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-        <form id="memberJoin" method="post" action="memberJoinView.do">
+        <form id="memberJoin" method="post" action="memberJoin.do">
             <h2 id="h2">회원가입</h2>
             <table id="logintable">
                 <tr>
@@ -103,7 +103,7 @@
                         <label>아이디</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="userId" name="userId" required placeholder="4글자 이상 12글자 이하 영문자(소문자)와 숫자">
+                        <input type="text" id="id" name="id" required placeholder="4글자 이상 12글자 이하 영문자(소문자)와 숫자">
                         <input type="button" id="idChk" value="중복확인" style="width: 70px; background: #2ac1bc; color: white; border: none;">
                         <input type="hidden" value="N" id="checkCheck">
                     </td>
@@ -113,7 +113,7 @@
                         <label>비밀번호</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="userPwd" name="userPwd" required placeholder="6글자 이상 18글자 이하 영문자(소문자)와 숫자">
+                        <input type="password" id="pwd" name="pwd" required placeholder="6글자 이상 18글자 이하 영문자(소문자)와 숫자">
                     </td>
                 </tr>
                 <tr>
@@ -129,7 +129,7 @@
                         <label>이름</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="userName" name="userName" required placeholder="한글로 2글자 이상">
+                        <input type="text" id="name" name="name" required placeholder="한글로 2글자 이상">
                     </td>
                 </tr>
                 <tr>
@@ -145,7 +145,7 @@
                         <label>휴대폰</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="phone" name="phone" required placeholder="-제외 하고 입력">
+                        <input type="tel" id="tel" name="tel" required placeholder="-제외 하고 입력">
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                     <label>우편번호</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+                        <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="post" id="post" type="text" readonly="readonly" >
     					<button type="button" style="height: 30px; border-radius: 4px; width: 100px; background: #2ac1bc; color: white; border: none;" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>   
                     </td>
                 </tr>
@@ -162,7 +162,7 @@
                         <label>도로명 주소</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
+                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr1" id="addr1" type="text" readonly="readonly" />
                     </td>
                 </tr>
                 <tr>
@@ -170,7 +170,7 @@
                         <label>상세 주소</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+                        <input class="form-control" placeholder="상세주소" name="addr2" id="addr2" type="text"  />
                     </td>
                 </tr>
             </table>
@@ -493,7 +493,7 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
             </ul>
             <br><br><br><br><br>
             <div style="text-align: center;">
-                <input type="button" value="회원가입" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
+                <input type="submit" value="회원가입" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
@@ -536,8 +536,8 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	               console.log(fullRoadAddr);
 	               
 	               
-	               $("[name=addr1]").val(data.zonecode);
-	               $("[name=addr2]").val(fullRoadAddr);
+	               $("[name=post]").val(data.zonecode);
+	               $("[name=addr1]").val(fullRoadAddr);
 	               
 	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
 	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
@@ -549,14 +549,14 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    
 
 	    $("#idChk").on("click",function(){
-	    	if($("#userId").val()==""){
+	    	if($("#id").val()==""){
 	    		alert("아이디를 입력해주세요");
 	    	}else{
 	    	$.ajax({
 	    		url : "idChk.do",
 	    		type : "post",
 	    		dataType:"json",
-	    		data : {"id" : $("#userId").val()},
+	    		data : {"id" : $("#id").val()},
 	    		success : function(data){
 	    			if(data == 1){
 	    				alert("중복된 아이디입니다.");
