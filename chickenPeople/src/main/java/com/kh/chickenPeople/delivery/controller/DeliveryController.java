@@ -18,7 +18,8 @@ public class DeliveryController {
 	
 	
 	@RequestMapping("deliveryList.do")
-	public ModelAndView selectDelivery(ModelAndView mv) {
+	public ModelAndView selectDelivery(ModelAndView mv, String address) {
+		System.out.println("address : " + address);
 		//매장 정보 별점 포함
 		ArrayList<Delivery> deliveryList = deliveryService.selectDelivery();
 		
