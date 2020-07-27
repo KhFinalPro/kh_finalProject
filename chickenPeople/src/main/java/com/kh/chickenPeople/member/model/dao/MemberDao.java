@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -26,7 +27,7 @@ public  class MemberDao {
 	}
 
 	public ArrayList<Address> selectAddress(Member member) {
-		// TODO Auto-generated method stub
+		
 		return (ArrayList)sqlSessionTemplate.selectList("memberMapper.selectAddress", member);
 	}
 
@@ -34,5 +35,10 @@ public  class MemberDao {
 		
 		return sqlSessionTemplate.insert("memberMapper.memberJoin", m);
 	}
+	
+//	@Transactional
+//	public int updatePwd(Member m) throws Exception{
+//		return sqlSessionTemplate.update("member.updatePwd", m);
+//	}
 	
 }

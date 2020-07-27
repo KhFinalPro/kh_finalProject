@@ -131,10 +131,11 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value="deleteMessage.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public void deleteMessage(@RequestParam(value="msgNoArr") List<String> msgNoArr) {
-		
-		for(String msgNo:msgNoArr) {
+	public void deleteMessage(HttpServletRequest request, @RequestParam(value="noArr") List<String> noArr) {
+		System.out.println("deleteMessage.do");
+		for(String msgNo:noArr) {
             System.out.println(msgNo);
+            /**********깃테스트 ***********/
         }
 	}
 }

@@ -503,6 +503,14 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
     </body>
     
     <script>
+        $( document ).ready( function() {
+          $( '#checkAll' ).click( function() {
+            $( '.infoBox' ).prop( 'checked', this.checked );
+          } );
+        } );
+      </script>
+    
+    <script>
 	    function execPostCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {

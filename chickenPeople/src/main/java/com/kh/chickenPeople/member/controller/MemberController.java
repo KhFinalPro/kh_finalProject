@@ -131,26 +131,7 @@ public class MemberController {
 	}
 	
 	
-	// 회원가입post
-//	@RequestMapping(value = "/register", method= RequestMethod.POST)
-//	public String postRegister(Member m) throws Exception{
-//		Logger.info("post register");
-//		int result = mService.idChk(m);
-//		try {
-//			if(result ==1 ) {
-//				return "/member/insertMember";
-//			}else if(result==0) {
-//				String inputPass = m.getUserPass();
-//				String pwd = pwdEncoder.encode(inputPass);
-//				m.setUserPass(pwd);
-//				
-//				mService.insertMember(m);
-//			}
-//				
-//		}
-//		
-//	}
+	
 	
 
 }
-
