@@ -14,9 +14,17 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	MessageDao msgDao;
 	
-	@Override
-	public ArrayList<Message> selectList(){
 	
-		return msgDao.selectList();
+
+	@Override
+	public ArrayList<Message> sendMessageList(String userId) throws Exception{
+		
+		return msgDao.sendMessageList(userId);
+	}
+
+	@Override
+	public ArrayList<Message> receiveMessageList(String userId) throws Exception {
+		
+		return msgDao.receiveMessageList(userId);
 	}
 }

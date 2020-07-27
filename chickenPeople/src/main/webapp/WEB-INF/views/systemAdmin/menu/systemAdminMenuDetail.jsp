@@ -74,10 +74,19 @@
 								</select>
 							</td>
 							<td><b>판매 상태</b></td>
-							<td>
-								<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
-								<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
-							</td>
+							<c:if test="${searchStatus.searchStatus eq 'N' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
+										
+									</td>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq 'Y' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" /> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y" checked/> 판매 종료</label>
+									</td>
+								</c:if>
 						</tr>
 						<tr>
 							<td colspan="4"><button type="submit">검색</button></td>
@@ -87,6 +96,9 @@
 			</div><!-- menuHeader end -->
 			<div class="menuResultTable">
 				<br><hr><br>
+				<div >
+					<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
+				</div>
 				<table class="resultTable">
 					<tr>
 						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="500px" height="500px"></td>

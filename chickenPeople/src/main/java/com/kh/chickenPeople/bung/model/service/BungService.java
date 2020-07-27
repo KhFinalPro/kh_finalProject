@@ -35,6 +35,8 @@ public interface BungService {
 
 	Brand selectBrand(String bung_brd);
 
+	ArrayList<Bung> selectMyBung(String id);
+
 	
 
 }

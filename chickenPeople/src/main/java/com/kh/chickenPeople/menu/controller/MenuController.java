@@ -86,7 +86,7 @@ public class MenuController {
 		return mv;
 	}
 	
-	@RequestMapping(value="systemAdminMenuDeatil.do", method=RequestMethod.GET)
+	@RequestMapping(value="systemAdminMenuDetail.do", method=RequestMethod.GET)
 	public ModelAndView goMenuDetail(ModelAndView mv, SearchStatus searchStatus,
 									 @RequestParam(value="menuNum") int menuNum,
 									 @RequestParam(value="page",required=false) Integer page,
@@ -142,5 +142,18 @@ public class MenuController {
 		mv.addAttribute("status_s","N");
 		
 		return "redirect:systemAdminMenu.do";
+	}
+	@RequestMapping(value="menuInsert.do", method=RequestMethod.GET)
+	public ModelAndView goInsertMenuPage(ModelAndView mv) {
+		
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		mv.addObject("brandList",selectBrandList);
+		mv.setViewName("systemAdmin/menu/systemAdminMenuInsert");
+		return mv;
+	}
+	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)
+	public ModelAndView goInsertMenu(ModelAndView mv) {
+		
+		return mv;
 	}
 }

@@ -73,7 +73,7 @@ public class BungController {
 	}
 	
 	@RequestMapping(value="bungLike.do", method=RequestMethod.POST)
-	public void bungLike(HttpServletResponse response, int bung_num ) throws IOException {
+	public void bungLike(HttpServletResponse response, int bung_num) throws IOException {
 		
 		int result = bungService.updateBungLike(bung_num);
 		int bungLike = bungService.selectBungLike(bung_num);
@@ -162,6 +162,25 @@ public class BungController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("myBung")
+	public ModelAndView myBung(ModelAndView mv, String id)
+	{
+		System.out.println("myBung");
+		ArrayList<Bung> bungList = bungService.selectMyBung(id);
+		
+		if(!bungList.isEmpty())
+		{
+			mv.addObject("bungList", bungList);
+			mv.setViewName("mypage/mypageBung");
+		}
+		else
+		{
+			
+		}
+		return mv;
+	}
+	
 	
 	
 	

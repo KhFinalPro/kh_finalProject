@@ -38,10 +38,11 @@
             #header_nav ul li a{margin: auto; width: 100%; text-decoration: none; color: white; display: block; width: 150px; font-size: 30px; font-weight: bold;}
             #header_nav ul li a:hover{color: black;}
 
-            #modal{position: fixed; display: none; opacity: 0.5; left: 0; top: 0px; width: 100%; height: 100%; text-align: center; background-color: rgb(199, 197, 197); border: 1px solid black; z-index: 2;}
-            #modal #search_cancel{margin-right: 0px; margin-left: 1300px; margin-top: 200px; width: 100px; height: 100px;}
-            #modal #search_input{margin: auto; width: 50%; height: 50px; margin-top: 100px; border:2px solid black;}
-            #modal #submit{height: 50px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
+            #modal{position: fixed; display: none; opacity: 0.9; left: 0; top: 0px; width: 100%; height: 100%; text-align: center; background-color: rgb(199, 197, 197); border: 1px solid black; z-index: 2;}
+            #modal #search_cancel{margin-right: 0px; margin-left: 1800px; margin-top: 200px; width: 70px; height: 70px;}
+            #modal #search_input{margin: auto; width: 50%; height: 60px; margin-top: 100px; border:2px solid black;}
+            #modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
+        	#modal #search_category{height: 60px;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -57,7 +58,7 @@
                     <select name="address" id="address">
                     	<c:if test="${!empty sessionScope.loginUser }">
                     		<c:forEach var="addr" items="${sessionScope.address }">
-		                        <option value="${addr.address }">${addr.address }</option>
+		                        <option value="${addr.lat }+${addr.lng}">${addr.address }</option>
                         	</c:forEach>
                         </c:if>
                         <c:if test="${empty sessionScope.loginUser }">
@@ -100,16 +101,16 @@
                 
                 <ul>
                     <li>
-                        <a href="#">딜리버리</a>
+                        <a id="delivery">딜리버리</a>
                     </li>
                     <li>
                         <a href="bungList.do">치킨번개</a>
                     </li>
                     <li>
-                        <a href="board.do">맛잘알</a>
+                        <a href="boardList.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="nlist.do">공지사항</a>
+                        <a href="noticeList.do">공지사항</a>
                     </li>
                 </ul>
 
@@ -117,21 +118,7 @@
             <br clear="both">
         </header>
 
-		<%-- <c:if test="${!empty msg }">
-	        <div id="modal" style="display: block;">
-	            <!-- <input type="button" id="search_cancel" > -->
-	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
-	            <form action="homeSearch.do" method="post">
-	                <br clear="both">
-	                <!-- <select name="option">
-	                	<option value="sto_name">매장이름 검색</option>
-	                	<option value="brand_name">브랜드 검색</option>
-	                </select> -->
-	                <input type="text" id="search_input" name="search_input" placeholder="잘 입력해주세요">
-	                <input type="submit" id="submit" value="검색">
-	            </form>
-	        </div>
-        </c:if> --%>
+	
         <c:if test="${empty msg}">
 	        <div id="modal" style="display: none">
 	            <!-- <input type="button" id="search_cancel" > -->
@@ -142,6 +129,10 @@
 	                	<option value="sto_name">매장이름 검색</option>
 	                	<option value="brand_name">브랜드 검색</option>
 	                </select> -->
+	                <select name="search_category" id="search_category">
+	                	<option value="brand">브랜드</option>
+	                	<option value="store">매장</option>
+	                </select>
 	                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
 	                <input type="submit" id="submit" value="검색">
 	            </form>
@@ -168,6 +159,11 @@
             $("#search_cancel").on("click",function(){
                 $modal.css('display','none');
                 location.href="home.do";
+            })
+            
+            $("#delivery").on("click",function(){
+            	
+            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
             })
         })
     </script>

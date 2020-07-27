@@ -75,24 +75,35 @@
 								</select>
 							</td>
 							<td><b>판매 상태</b></td>
-							<td>
-								<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
-								<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
-							</td>
+								<c:if test="${searchStatus.searchStatus eq 'N' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
+										
+									</td>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq 'Y' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" /> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y" checked/> 판매 종료</label>
+									</td>
+								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
+							<td colspan="4">
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
 			<c:url var="goMenuInsert" value="menuInsert.do"></c:url>
 			
-			<div>
-				<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
-			</div>
 			<div class="menuResultTable">
 				<br><hr><br>
+				<div style="text-align:right;">
+					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
+				</div>
 				<c:if test="${listCount ne 300 }">
 					<p>게시글 검색 결과가 총 ${listCount }건 존재합니다.</p>
 				</c:if>
@@ -109,7 +120,7 @@
 					</thead>
 					<tbody>
 					<c:forEach var="i" items="${menuList }">
-							<c:url var="menuDetail" value="systemAdminMenuDeatil.do">
+							<c:url var="menuDetail" value="systemAdminMenuDetail.do">
 								<c:param name="menuNum" value="${i.menu_Num }"/>
 								<c:param name="page" value="${pi.currentPage }"/>
 								<c:param name="menuName" value="${searchStatus.searchName }"/>

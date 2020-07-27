@@ -24,7 +24,7 @@
 .content-table{
     /* position: absolute; */
     /* align-items: center; */
-    width:80%;
+    width:60%;
     border-collapse: collapse;
     margin: 0 auto;
     /* margin:25px 0; */
@@ -55,7 +55,7 @@
     width:100%;
     float:right; 
     /* margin:0 auto; */
-    margin-right: 120px;
+    margin-right: 370px;
     margin-bottom: 7px;
     
 }
@@ -73,6 +73,16 @@
 
 }
 
+.logo{
+   width:50px;
+   height:50px;
+}
+
+.like{
+   width:13px;
+   height:13px;
+}
+
 
 </style>
    
@@ -80,7 +90,7 @@
 <body>
 
    <jsp:include page="../common/header.jsp"/>
-	<jsp:include page="../common/sidebar.jsp"/>
+   <jsp:include page="../common/sidebar.jsp"/>
    <br>
    <br>
    <br>
@@ -112,45 +122,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>1</td>
-                                    <td>mama1</td>
-                                    <td>허니콤보 꿀조합</td>
-                                    <td>허니콤보는 엽떡에 먹어야하구용~ 방법 소개 ..</td>
-                                    <td>2020-07-08</td>
-                                    <th><i class="fas fa-heart"></i></th>
-                                </tr>
-                        
+                         
                             </tbody>
                         </table>
 
                         <table class="content-table" id="likeStore"  style="display:none;" >
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>개수</th>
+                                    <th>번호</th>
                                     <th>사진</th>
                                     <th>매장명</th>
                                     <th>평균 평점</th>
                                     <th>최소주문</th>
                                     <th>취소</th>
-                                    <th></th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="l" items="${list }">
-                                <tr>
-                                    <th></th>
-                                    <th>1</th>
-                                    <td>${l.brandPic }</td>
-                                    <td>${l.stoName }</td>
-                                    <td>${l.dailyTReview }</td>
-                                    <td>${l.ordLimit }</td>
-                                    <th><i class="fas fa-heart"></i></th>
-                                    <th></th>
-                                </tr>
-                            </c:forEach>
+                           
                         
                             </tbody>
                         </table>
@@ -159,38 +148,172 @@
                         <br>
                         <br>
                         
-                      
                 </div>
 
             </div>
             
             <script>
-            $(function(){
+            //selectLikeList
+            $( document ).ready(function() {
+             init();
+             
+              
+               $('#likeStore').on('click', 'img.like', function(){
+                  deleteStoreList(this);
+               });
+                
+               $('#likeContent').on('click', 'img.like', function(){
+                  deleteWriteLike(this);
+               });
+               
                $("#selectType").change(function(){
-                 var v = this.value;
-                 if(v=="lContent"){
-                	 $.ajax({
-                		 url:"",
-                		 dataType:"json",
-                		 success:function(data){
-                			 $("#likeContent").html(""); //div 초기화
-                			 $("#likeContent").appendTo("#likeContent");
-                			 
-                		 }
-                		 
-                	 })
-                     $("#likeContent").show();
-                     $("#likeStore").hide();
-                 }else if(v=="lStore"){
-                     $("#likeContent").hide();
-                     $("#likeStore").show();
-                 }
+                    var v = this.value;
+                    if(v=="lContent"){
+                        $("#likeContent").show();
+                        $("#likeStore").hide();
+                    }else if(v=="lStore"){
+                        $("#likeContent").hide();
+                        $("#likeStore").show();
+                    }
                   
                });
-            });
-                  
-          
+         });
+            
+            function init(){
+               searchData();
+            }
+            
+            // 데이터 조회
+            function searchData(){
+               var param = {
+                     'type' : $("#selectType").val(),
+               }
+               
+               $.ajax({
+                  type:'POST',
+                 url:"selectLikeList.do",
+                 data:param,
+                 dataType:'JSON',
+                 success:function(data){
+                    
+                    // 내가 찜한 매장 목록
+                     var storeList = data.storeList;
+                    
+                    var storeAppendStr = '';
+                    // 내가 찜한 매장 목록 개수만큼 반복문
+                    for(var i=0; i<storeList.length; i++){
+                       // 내가 찜한 매장 목록에 append할 문자열 생성
+                       storeAppendStr += '<tr>' +
+                                           '<td>' + (i+1) + '</td>' +
+                                           '<td><img class="logo" src="resources/images/' + storeList[i].brandPic + '.png"></td>' +
+                                           '<td>' + storeList[i].stoName + '</td>' + 
+                                           '<td>' + storeList[i].dailyTReview + '</td>' + 
+                                           '<td>' + storeList[i].ordLimit + '</td>' + 
+                                           '<td><img class="like" name="storeLike" src="resources/images/blackHeart.png">' +
+                                              '<input type="hidden" value="' + storeList[i].storeNo + '" name="storeNo">' +
+                                           '</td>' +
+                                       '</tr>';
+                    }
+                    
+                    $('#likeStore').find('tbody').empty();
+                    $('#likeStore').find('tbody').append(storeAppendStr);
+                    
+                    
+                    
+                    /***************************************************************************************************/
+                    
+                     // 내가 찜한 글 목록
+                     var writeList = data.writeList;
+              
+                     var writeAppendStr = '';
+                     // 내가 찜한 글 목록 개수만큼 반복문
+                     for(var i=0; i<writeList.length; i++){
+                        // 내가 찜한 글 목록에 append 할 내용 만들기 
+                        writeAppendStr += '<tr>' +
+                                           '<td></td>' +
+                                           '<td>' + (i+1) + '</td>' +
+                                           '<td>' + writeList[i].bWriter + '</td>' +
+                                           '<td>' + writeList[i].bTitle + '</td>' +
+                                           '<td>' + writeList[i].bCont + '</td>' + 
+                                           '<td>' + writeList[i].bDate + '</td>' +
+                                           '<th><img class="like" name="writeLike" src="resources/images/blackHeart.png">' +
+                                              '<input type="hidden" value="' + writeList[i].bNum + '" name="bNum">' +
+                                           '</th>' +
+                                       '</tr>';    
+                                       
+                     }
+                     
+                     $('#likeContent').find('tbody').empty();
+                     $('#likeContent').find('tbody').append(writeAppendStr);
+                     
+                    
+                 },error:function(request, status, errorData){
+                        alert("error code: " + request.status + "\n"
+                                +"message: " + request.responseText
+                                +"error: " + errorData);
+                    } 
+                 
+              }) ;
+           
+            }
+            
+            // 내가 찜한 글 삭제
+            function deleteWriteLike(obj){
+               var param = {
+                     'b_Num' : $(obj).parents('tr').find('input[name=bNum]').val(),
+               }
+               
+               if(!confirm('찜하기를 취소하시겠습니까?')){
+                  return false;
+               }
+               
+               $.ajax({
+                 url:"deleteBoard.do",
+                 data:param,
+                 dataType:'JSON',
+                 success:function(data){
+                     searchData();
+                    
+                 },error:function(request, status, errorData){
+                        alert("error code: " + request.status + "\n"
+                                +"message: " + request.responseText
+                                +"error: " + errorData);
+                    } 
+                 
+              });
+            }
+            
+            // 내가 찜한 매장 삭제
+            function deleteStoreList(obj){
+               var param = {
+                     'storeNo' : $(obj).parents('tr').find('input[name=storeNo]').val(),
+               }
+               console.log(param);
+               if(!confirm('찜하기를 취소하시겠습니까?')){
+                  return false;
+               }
+               
+               $.ajax({
+                 url:"deleteStore.do",
+                 data:param,
+                 dataType:'JSON',
+                 success:function(data){
+                     searchData();
+                    
+                 },error:function(request, status, errorData){
+                        alert("error code: " + request.status + "\n"
+                                +"message: " + request.responseText
+                                +"error: " + errorData);
+                    } 
+                 
+              });
+            }
+            
+            
+            
           </script>
+          
+          
    
    
    

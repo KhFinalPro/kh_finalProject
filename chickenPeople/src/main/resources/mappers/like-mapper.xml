@@ -3,28 +3,65 @@
 <mapper namespace="likeMapper">
 
 
-	<resultMap id="likeResultSet" type="Like">
-		<id property="storeNo" column="STORE_NO"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="brandPic" column="BRAND_PIC"/>
-		<result property="stoBrand" column="STO_BRAND"/>
-		<result property="stoName" column="STO_NAME"/>
-		<result property="ordLimit" column="ORD_LIMIT"/>
-		<result property="revRate" column="REV_RATE"/>
-		<result property="dailyTReview" column="DAILY_T_REVIEW"/>
-		<result property="brandCode" column="BRAND_CODE"/>
-	</resultMap>
+   <resultMap id="storelikeResult" type="Like">
+      <id property="storeNo" column="STO_NUM"/>
+      <result property="userId" column="USER_ID"/>
+      <result property="brandPic" column="BRAND_PIC"/>
+      <result property="stoBrand" column="STO_BRAND"/>
+      <result property="stoName" column="STO_NAME"/>
+      <result property="ordLimit" column="ORD_LIMIT"/>
+      <result property="revRate" column="REV_RATE"/>
+      <result property="dailyTReview" column="DAILY_T_REVIEW"/>
+      <result property="brandCode" column="BRAND_CODE"/>
+   </resultMap>
+   
+   <resultMap id="writelikeResult" type="Like">
+      <result property="bNum" column="B_NUM"/>
+      <result property="bWriter" column="B_WRITER"/>
+      <result property="bTitle" column="B_TITLE"/>
+      <result property="bCont" column="B_CONT"/>
+      <result property="bDate" column="B_DATE"/>
+   </resultMap>
  
  
-	<select id="selectList" resultMap="likeResultSet">
-		SELECT BRD.BRAND_PIC, SI.STO_NAME, DAILY_T_REVIEW, SI.ORD_LIMIT 
-		FROM (SELECT * FROM MEMBER WHERE USER_ID ='rngus3698') M
-		LEFT JOIN STORE_LIKE SL ON M.USER_ID=SL.USER_ID
-		LEFT JOIN STORE_INFO SI ON SL.STO_NUM= SI.STO_NUM
-		LEFT JOIN BRAND BRD ON SI.BRAND_CODE = BRD.BRAND_CODE
-		LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
-	</select>
-	
-	
-	
+    <!-- 찜한 매장 -->
+   <select id="likeStoreList" resultMap="storelikeResult">
+      SELECT BRD.BRAND_PIC, SI.STO_NAME, DAILY_T_REVIEW, SI.ORD_LIMIT, SI.STO_NUM  
+      FROM (SELECT * FROM MEMBER WHERE USER_ID =#{userId}) M
+      LEFT JOIN STORE_LIKE SL ON M.USER_ID=SL.USER_ID
+      LEFT JOIN STORE_INFO SI ON SL.STO_NUM= SI.STO_NUM
+      LEFT JOIN BRAND BRD ON SI.BRAND_CODE = BRD.BRAND_CODE
+      LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
+   </select>
+   
+   <!-- 찜한 글 -->
+   <select id="likeWriteList" resultMap="writelikeResult">
+      SELECT B.B_NUM,B.B_WRITER,B.B_TITLE,B.B_CONT,B.B_DATE
+      FROM BOARD B
+      LEFT JOIN BOARD_LIKE BL ON B.B_NUM = BL.B_NUM
+      LEFT JOIN MEMBER M ON BL.USER_ID=M.USER_ID
+      WHERE BL.USER_ID=#{userId}
+   </select>
+   
+   <!-- 찜한 매장 삭제 -->
+   <delete id="deleteStore" parameterType="hashmap">
+      DELETE 
+      FROM STORE_LIKE
+      WHERE USER_ID=#{Id} AND STO_NUM=#{storeNo}
+   </delete>
+   
+   
+   
+   <!-- 찜한글 삭제 -->
+   <delete id="deleteWrite" parameterType="hashmap">
+      delete FROM BOARD_LIKE
+      where B_NUM=#{bNum} AND USER_ID=#{Id}  
+   </delete>
+   
+   
+   
+   
+   
+   <!-- 푸쉬용 -->
+   
 </mapper>

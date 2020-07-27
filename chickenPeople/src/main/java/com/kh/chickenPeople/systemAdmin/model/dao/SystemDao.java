@@ -39,6 +39,11 @@ public class SystemDao {
 		return sqlSessionTemplate.insert("couponMapper.insertCoupon", coupon);
 	}
 
+	public int updateCoupon(Coupon coupon) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("couponMapper.updateCoupon", coupon);
+	}
+
 
 
 }
