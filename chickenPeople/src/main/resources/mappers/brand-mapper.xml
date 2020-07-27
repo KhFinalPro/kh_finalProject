@@ -6,12 +6,17 @@
   	<result property="brand_pic" column="BRAND_PIC"/>
   	<result property="brand_name" column="BRAND_NAME"/>
   	<result property="brand_yn"	column="BRAND_YN"/>
+  	<result property="brand_count" column="BRAND_COUNT"/>
   </resultMap>
   <select id="getListCount" resultType="_int">
   	SELECT COUNT(*)
   	FROM BRAND
   </select>
   <select id="selectBrand" resultMap="brandResultSet">
-  	SELECT * FROM BRAND
+	SELECT B.BRAND_CODE AS "BRAND_CODE", BRAND_PIC, BRAND_NAME, COUNT(*) AS "BRAND_COUNT"
+	FROM BRAND B
+	JOIN STORE_INFO SI ON B.BRAND_CODE = SI.BRAND_CODE
+	WHERE BRAND_YN='입점'
+	GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME
   </select>
 </mapper>

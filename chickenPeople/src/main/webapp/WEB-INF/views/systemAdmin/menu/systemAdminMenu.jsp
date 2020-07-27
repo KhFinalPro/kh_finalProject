@@ -86,7 +86,11 @@
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
-		
+			<c:url var="goMenuInsert" value="menuInsert.do"></c:url>
+			
+			<div>
+				<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
+			</div>
 			<div class="menuResultTable">
 				<br><hr><br>
 				<c:if test="${listCount ne 300 }">

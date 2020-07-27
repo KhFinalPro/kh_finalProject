@@ -42,7 +42,7 @@
 		<div class="item"> 
 		<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">메뉴 관리</p>
+				<p style="font-size:20px;">브랜드 관리</p>
 				<br><hr><br>
 				<form action="menuSearch.do" method="get">
 					<table class="searchTable">
@@ -62,8 +62,9 @@
 							</td>
 							<td><b>판매 상태</b></td>
 							<td>
-								<label><input type="radio" name="status" value="N" checked/> 판매 중</label>
-								<label><input type="radio" name="status" value="Y"/> 판매 종료</label>
+								<label><input type="radio" name="status" value="입점" checked/> 입점</label>&nbsp;
+								<label><input type="radio" name="status" value="계약종료"/> 계약종료</label>&nbsp;
+								<label><input type="radio" name="status" value="입점대기"/> 입점대기</label>
 							</td>
 						</tr>
 						<tr>
@@ -82,14 +83,17 @@
 						<th></th>
 						<th>브랜드 명</th>
 						<th>입점 상태</th>
+						<th>입점 매장 수</th>
 					</thead>
 					<tbody>
+					
 					<c:forEach var="i" items="${brandList }">
 						<tr>
 							<td>${i.brand_code }</td>
 							<td><img src="resources/images/${i.brand_pic }.png" width="40px" height="40px"></td>
 							<td>${i.brand_name }</td>
-							<td>${i.brand_yn }</td>
+							<td>입점</td>
+							<td>${i.brand_count }</td>
 						</tr>					
 					</c:forEach>
 					</tbody>

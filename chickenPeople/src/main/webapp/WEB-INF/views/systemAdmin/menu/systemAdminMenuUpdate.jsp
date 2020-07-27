@@ -37,6 +37,101 @@
 </style>
 </head>
 <body>
-
+<div class="wrapper">
+	<div class="main_container">
+		<div class="item">
+			<br clear="both">
+			<div class="menuHeader">
+				<p style="font-size:20px;">메뉴 관리</p>
+				<br><hr><br>
+				<form action="systemAdminMenu.do" method="get">
+					<table class="searchTable">
+						<tr>
+							<td><b>메뉴 검색</b></td>
+							<c:if test="${empty searchStatus.searchName}">
+								<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
+							</c:if>
+						</tr>
+						<tr>
+							<td><b>브랜드 검색</b></td>
+							<td>
+								<select id="menuCategory" class="menuCategory" name="menuCategory">
+									<option value="total">전체</option>
+									<c:forEach var="m" items="${brandList}">
+										<c:if test="${searchStatus.searchCategory eq m.brand_name }">
+											<option value="${m.brand_name }" selected>${m.brand_name }</option>
+										</c:if>
+										<c:if test="${searchStatus.searchCategory ne m.brand_name }">
+											<option value="${m.brand_name }">${m.brand_name }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</td>
+							<td><b>판매 상태</b></td>
+							<td>
+								<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
+								<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4"><button type="submit">검색</button></td>
+						</tr>
+					</table>
+				</form>
+			</div><!-- menuHeader end -->
+			<div class="menuResultTable">
+				<br><hr><br>
+				<table class="resultTable">
+					<tr>
+						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="500px" height="500px"></td>
+						<td><b>메뉴번호</b>&nbsp;${menu.menu_Num }</td>
+						<td><b>${menu.brand_Name }</b></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<b>분류</b>
+							&nbsp;${menu.cat_Name}</td>
+					</tr>
+					<tr>
+						<td><b>메뉴 이름 </b>&nbsp;${menu.menu_Name }</td>
+						<td><b>메뉴 가격 </b>&nbsp;${menu.menu_Price } &nbsp;원</td>
+					</tr>
+					<tr>
+						<td colspan="2"><b>메뉴 설명</b><br>&nbsp;${menu.menu_Exp }</td>
+					</tr>
+					<tr>
+						<c:url var="delete" value="deleteMenu.do">
+							<c:param name="menuNum" value="${menu.menu_Num }"/>
+							<c:param name="menuYN" value="${menu.menu_Yn }"/>
+						</c:url>
+						<td colspan="2"><b>판매여부</b>&nbsp;
+							<c:if test="${menu.menu_Yn eq 'Y'}"> 판매중지 </c:if>
+							<c:if test="${menu.menu_Yn eq 'N'}"> 판매중 </c:if>
+						</td>
+							
+						<td>
+							<button id="update"><b>수정하기</b></button>&nbsp;
+							<c:if test="${menu.menu_Yn eq'N' }">
+								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
+							</c:if>
+							<c:if test="${menu.menu_Yn eq'Y' }">
+								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매처리</b></button>
+							</c:if>
+						</td>
+					</tr>
+					
+				</table>
+			</div>
+		</div><!-- class item end -->
+	</div><!-- class main_container end -->
+</div><!-- class wrapper end-->
+<script>
+$(function(){
+	$("#menu").children().addClass('active');
+})
+</script> 
 </body>
 </html>
