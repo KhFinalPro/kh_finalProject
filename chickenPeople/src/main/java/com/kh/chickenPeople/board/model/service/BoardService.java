@@ -12,6 +12,12 @@ public interface BoardService {
 
 	ArrayList<Board> selectTotalBoardList(PageInfo pi);
 
+	int addReadCount(int bNum);
+
+	Board selectOne(int bNum);
+
+	int insertBoard(Board b);
+
 	
 
 }

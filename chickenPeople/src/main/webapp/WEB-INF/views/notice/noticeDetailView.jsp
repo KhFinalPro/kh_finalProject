@@ -11,7 +11,7 @@
 </head>
 <style>
   /* 최종버튼 */
- 	.button{
+ 	button{
 	  background:#1AAB8A;
 	  color:#fff;
 	  border:none;
@@ -23,11 +23,11 @@
 	  transition:800ms ease all;
 	  outline:none;
 	}
-	.button:hover{
+	button:hover{
 	  background:#fff;
 	  color:#1AAB8A;
 	}
-	.button:before,button:after{
+	button:before,button:after{
 	  content:'';
 	  position:absolute;
 	  top:0;
@@ -37,13 +37,13 @@
 	  background: #1AAB8A;
 	  transition:400ms ease all;
 	}
-	.button:after{
+	button:after{
 	  right:inherit;
 	  top:inherit;
 	  left:0;
 	  bottom:0;
 	}
-	.button:hover:before,button:hover:after{
+	button:hover:before,button:hover:after{
 	  width:100%;
 	  transition:800ms ease all;
 	}
@@ -153,8 +153,8 @@
 		 
 		 <div style="float:right;">
 			   <c:if test="${loginUser.id eq 'Admin' }">
-				  	<button class="button" onclick ="UpNotice()">수정하기</button>
-				  	<button class="button" onclick ="DelNotice()">삭제하기</button>
+				  	<button onclick ="UpNotice()">수정하기</button>
+				  	<button onclick ="DelNotice()">삭제하기</button>
 			 </c:if>
 		 </div>
 		 <br><br> <br><br> <br><br>
@@ -198,7 +198,7 @@
 
 			 <br><br> <br><br> <br><br>
 	 <div align="center">
-		  	<button onclick ="toNlist()"  >목록</button> <!-- 왜 안되지? -->
+		  	<button onclick ="toNlist()" value="nlist.do" >목록</button> <!-- 왜 안되지? -->
 			<br>
 	</div>
 	
@@ -207,7 +207,7 @@
 <!-- 목록으로~ -->
 	<script>
 		function toNlist (){
-			location.href="noticeList.do"; 
+			location.href="nlist.do"; 
 		}
 	</script>
 		  

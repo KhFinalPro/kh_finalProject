@@ -26,6 +26,20 @@
 		FROM BOARD
 	</select>
 	
+	<select id ="selectOne" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE B_NUM=#{bNUM}
+	</select>
+	
+	<update id = "updateCount" parameterType="_int">
+		UPDATE BOARD
+		SET B_COUNT = B_COUNT +1
+		WHERE B_NUM =#{bNum}
+	</update>
+	
+	
+	
 	
 	
 </mapper>

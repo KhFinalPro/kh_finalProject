@@ -28,6 +28,24 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.selectNoticeList(pi);
 	}
 
+	@Override
+	public int addReadCount(int bNum) {
+		// TODO Auto-generated method stub
+		return bDao.addReadCount(bNum);
+	}
+
+	@Override
+	public Board selectOne(int bNum) {
+		// TODO Auto-generated method stub
+		return bDao.selectOne(bNum);
+	}
+
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.insertBoard(b);
+	}
+
 	
 
 

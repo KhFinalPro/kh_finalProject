@@ -10,8 +10,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-  /* 최종버튼 */
- 	.button{
+   	.button{
 	  background:#1AAB8A;
 	  color:#fff;
 	  border:none;
@@ -58,43 +57,18 @@
 	    padding: 10px;
 	  }
 	  
-	  	html, body {
-		  height: 100%;
-		}
-		
-		.wrap {
-		  height: 100%;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		} 
-		
-		
-		/* 댓글 버튼 */
-		.button {
-		  width: 140px;
-		  height: 45px;
-		  font-family: 'Roboto', sans-serif;
-		  font-size: 11px;
-		  text-transform: uppercase;
-		  letter-spacing: 2.5px;
-		  font-weight: 500;
-		  color: #000;
-		  background-color: #fff;
-		  border: none;
-		  border-radius: 45px;
-		  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-		  transition: all 0.3s ease 0s;
-		  cursor: pointer;
-		  outline: none;
-		  }
-		
-		.button:hover {
-		  background-color: #2ac1bc;
-		  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-		  color: #fff;
-		  transform: translateY(-7px);
-		}
+	  /* 페이징 처리 */
+	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
+    .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
+    .pppp > ol > li:first-child { border-left : 1px solid black; }
+    .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
+    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
+    .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
+    .page-list1 { background-color:#1AAB8A; }
+    .page-cur { font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
+    .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
+    .page-a:hover { color: black; text-decoration:none; }
+    
 </style>
 
 
@@ -111,14 +85,14 @@
 		    <br><br>
 	  <h1 align="center">${board.bNum} 맛잘알 게시판 상세보기</h1>
 	    <br><br><br>
-		    	 <tr>
-				  	<th>번호</th>
-				  	<th>분류</th>
-				  	<th width="45%">제목</th>
-				  	<th>글쓴이</th>
-				  	<th width="15%">날짜</th>
-				  	<th >조회수</th>
-				  	<th >추천수</th>
+		    	 <tr style="background:#dee2e6">
+				  	<th>${board.bNum}</th> <!-- 나중에 DB갔다온 후 $붙이기 -->
+				  	<th>${board.bCate}</th>
+				  	<th width="45%">${board.bTitle}</th>
+				  	<th>${board.bWriter}</th>
+				  	<th width="15%">${board.bDate}</th>
+				  	<th>${board.bCount}</th>
+				  	<th>${board.bHit}</th>
 				  	
 				  </tr>
 			
@@ -135,24 +109,24 @@
 		 </table>
 		 
 		 <div style="float:right;">
-			   <c:if test="${loginUser.id eq 'Admin' }">
-				  	<button class="button" onclick ="UpNotice()">수정하기</button>
-				  	<button class="button" onclick ="DelNotice()">삭제하기</button>
+			   <c:if test="${loginUser.id eq board.bWriter }">
+				  	<button class="button" onclick ="UpBoard()">수정하기</button>
+				  	<button class="button" onclick ="DelBoard()">삭제하기</button>
 			 </c:if>
 		 </div>
 		 <br><br> <br><br> <br><br>
 		 <!-- 수정하기 -->
 		 <script>
-		 	function UpNotice(){
+		/*  	function UpBoard(){
 		 		location.href="nupView.do?nNum=${notice.nNum}";
-		 	}
+		 	} */
 		 </script>
 		 
 		 <!-- 삭제하기 -->
 		 <script>
-		 	function DelNotice(){
+		 	/* function DelBoard(){
 		 		location.href="ndelete.do?nNum=${notice.nNum}";
-		 	}
+		 	} */
 		 </script>
 		 
 		 <!-- 댓글 등록 -->
@@ -181,7 +155,7 @@
 
 			 <br><br> <br><br> <br><br>
 	 <div align="center">
-		  	<button onclick ="toNlist()"  >목록</button> <!-- 왜 안되지? -->
+		  	<button class="button" onclick ="toBlist()" value="boardList.do" >목록</button> <!-- 왜 안되지? -->
 			<br>
 	</div>
 	
@@ -189,8 +163,8 @@
 
 <!-- 목록으로~ -->
 	<script>
-		function toNlist (){
-			location.href="noticeList.do"; 
+		function toBlist (){
+			location.href="boardList.do"; 
 		}
 	</script>
 		  

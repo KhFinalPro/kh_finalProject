@@ -83,6 +83,10 @@
 		  <br><br>
 	  <h1 align="center">맛잘알 리뷰 게시판</h1>
 		  <br><br><br>
+		  
+		  	<c:if test="${empty loginUser }">
+			 	회원가입이 필요한 서비스 입니다.
+			</c:if>
 				  <tr>
 				  	<th>번호</th>
 				  	<th>분류</th>
@@ -91,23 +95,30 @@
 				  	<th width="15%">날짜</th>
 				  	<th >조회수</th>
 				  	<th >추천수</th>
-				  	
 				  </tr>
-				  
+	
 				<c:forEach var="b" items="${boardList }">
 					<tr align="center">
 						 	<td>	
+						 	<c:if test="${!empty loginUser }">
 								<c:url var="bdetail" value="bdetail.do">
-						  		<c:param name="bNum" value="${b.bNum }"/>
+						  			<c:param name="bNum" value="${b.bNum }"/>
 						  		</c:url>
-						  		<a href="${bdetail }">${b.bNum}</a>
+						  		<a href="${bdetail }"style="text-decoration:none;">${b.bNum}</a>
+						  	</c:if>
+						  	<c:if test="${empty loginUser }">${b.bNum }</c:if>
 						  	</td>
 						  	<td>${b.bCate}</td>
 						  	<td width="45%">
-						  		<c:url var="bdetail" value="bdetail.do">
-						  			<c:param name="bNum" value="${b.bNum }"/>
-						  		</c:url>
-						  		<a href="${bdetail }">${b.bTitle}</a>
+						  		<c:if test ="${!empty loginUser }">
+							  		<c:url var="bdetail" value="bdetail.do">
+							  			<c:param name="bNum" value="${b.bNum }"/>
+							  		</c:url>
+							  		<a href="${bdetail }" style="text-decoration:none;">${b.bTitle}</a>
+						  		</c:if>
+						  		<c:if test ="${empty loginUser }">
+						  			${b.bTitle }
+						  		</c:if>
 					  	</td>
 						  	<td>${b.bWriter}</td>
 						  	<td width="15%">${b.bDate}</td>
@@ -117,7 +128,11 @@
 				</c:forEach>
 			 </table>
 			 
-			 		 <!-- 커서 올렸을때  -->
+			 <!-- 시간 될때  로그인하면 사진 미리보기처럼! -->
+			  
+			 
+			 
+		<!-- cursor click script -->
 		 <script>
 		 		$(function() {
 			$("#listArea td").mouseenter(function() {
@@ -133,9 +148,10 @@
 	
 				});
 			});
-		 
 		</script>	 
-
+		<!-- cursor click script end -->
+		
+		
 		 <div class = "p-parents" style="margin:0 auto">
 	            <div class="pppp">
 	                    <c:if test="${pi.currentPage eq 1}">
@@ -173,14 +189,25 @@
 	        </div><!-- pagination class p-parents end --> 
 	
 		  
-		 <div style="float:right">
-		  	<button class="button" onclick ="">글쓰기</button>
-		  	<button class="button" onclick ="">목록</button>
 		  
-		  </div>
-<!-- 페이징 처리 기능이랑 같이하기.  -->
-		  
-		  
+			 <div style="float:right">
+			<c:if test ="${!empty loginUser }">
+			  	<button class="button" onclick ="bWrite()">글쓰기</button>
+			  </c:if>
+			  	<button class="button" onclick ="goHome()">home</button>
+			  
+			  </div> <!-- [bWrite/goHome]button end-->
+	
+			<script>
+				function goHome(){
+					location.href="home.do";
+				}
+				
+				function bWrite(){
+					location.href="bInsertView.do"
+				}
+			</script>
+		 
 	 </div> 
   </div>
     <jsp:include page="../common/footer.jsp"/>

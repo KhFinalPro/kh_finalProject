@@ -62,7 +62,7 @@ public class NoticeController {
 public ModelAndView boardDetail(ModelAndView mv, int nNum) {
 
 	
-	int result =noticeService.addReadCount(nNum);
+	int result =noticeService.addReadCount(nNum); //조회수증가
 	
 	if(result >0) {
 		Notice notice =noticeService.selectOne(nNum);
@@ -94,7 +94,7 @@ public String nInsertView() {
 }
 
 @RequestMapping(value="ninsert.do",method=RequestMethod.POST)
-public String noticeInsert(Notice n, HttpServletRequest request) {
+public String noticeInsert(Notice n) {
 
 	int result = noticeService.insertNotice(n);
 	

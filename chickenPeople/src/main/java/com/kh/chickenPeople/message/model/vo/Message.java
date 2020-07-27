@@ -11,7 +11,7 @@ public class Message implements Serializable{
 	private int msgNo;
 	private String sendId;
 	private String rcvId;
-	private Date sendDate;
+	private String sendDate;
 	private String msgTitle;
 	private String msgContents;
 	private String msgStatus;
@@ -28,7 +28,7 @@ public class Message implements Serializable{
 
 
 
-	public Message(int msgNo, String sendId, String rcvId, Date sendDate, String msgTitle, String msgContents,
+	public Message(int msgNo, String sendId, String rcvId, String sendDate, String msgTitle, String msgContents,
 			String msgStatus) {
 		super();
 		this.msgNo = msgNo;
@@ -92,7 +92,7 @@ public class Message implements Serializable{
 
 
 
-	public Date getSendDate() {
+	public String getSendDate() {
 		return sendDate;
 	}
 
@@ -100,7 +100,7 @@ public class Message implements Serializable{
 
 
 
-	public void setSendDate(Date sendDate) {
+	public void setSendDate(String sendDate) {
 		this.sendDate = sendDate;
 	}
 
@@ -169,6 +169,11 @@ public class Message implements Serializable{
 		return "Message [msgNo=" + msgNo + ", sendId=" + sendId + ", rcvId=" + rcvId + ", sendDate=" + sendDate
 				+ ", msgTitle=" + msgTitle + ", msgContents=" + msgContents + ", msgStatus=" + msgStatus + "]";
 	}
+
+
+
+
+
 	
 	
 	

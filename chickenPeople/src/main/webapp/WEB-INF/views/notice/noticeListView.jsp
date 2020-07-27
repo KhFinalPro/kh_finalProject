@@ -177,15 +177,15 @@
 	
 			 
 
-		 <bra><br><br><br><br>
+ <bra><br><br><br><br>
 	 <div style="float:right">
 	 <c:if test="${loginUser.id eq 'Admin' }">
 		  	<button class="button" onclick ="nWrite()">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>
 	<button class="button" onclick="goHome()">home</button>
-
 	</div>
+	<!-- [bWrite/goHome]button end-->
 
 	<script>
 		function goHome(){
@@ -198,9 +198,6 @@
 		}
 	</script>
 	
-		  
-<!-- 페이징 처리 기능이랑 같이하기.  -->
-		  
 		  
 	 </div> 
   </div>
