@@ -21,6 +21,8 @@
 		<result property="user_id" column="USER_ID"/>
 		<result property="post_code" column="POST_CODE"/>
 		<result property="address" column="ADDRESS"/>
+		<result property="lat" column="LAT"/>
+		<result property="lng" column="LNG"/>
 	</resultMap>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">

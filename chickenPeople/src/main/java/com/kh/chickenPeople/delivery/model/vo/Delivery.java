@@ -19,10 +19,15 @@ public class Delivery implements Serializable{
 	private String brand_pic;
 	private int rev_rate;
 	private String menu_name;
+	private double sto_lat;
+	private double sto_lng;
+	private double distance_user;
 	public Delivery() {
 	}
 	public Delivery(int sto_num, String sto_name, String sto_addr, String ord_limit, String open_yn, String delivery,
-			String user_id, String brand_pic, int rev_rate, String menu_name) {
+			String user_id, String brand_pic, int rev_rate, String menu_name, double sto_lat, double sto_lng,
+			double distance_user) {
+		super();
 		this.sto_num = sto_num;
 		this.sto_name = sto_name;
 		this.sto_addr = sto_addr;
@@ -33,6 +38,9 @@ public class Delivery implements Serializable{
 		this.brand_pic = brand_pic;
 		this.rev_rate = rev_rate;
 		this.menu_name = menu_name;
+		this.sto_lat = sto_lat;
+		this.sto_lng = sto_lng;
+		this.distance_user = distance_user;
 	}
 	public int getSto_num() {
 		return sto_num;
@@ -94,6 +102,24 @@ public class Delivery implements Serializable{
 	public void setMenu_name(String menu_name) {
 		this.menu_name = menu_name;
 	}
+	public double getSto_lat() {
+		return sto_lat;
+	}
+	public void setSto_lat(double sto_lat) {
+		this.sto_lat = sto_lat;
+	}
+	public double getSto_lng() {
+		return sto_lng;
+	}
+	public void setSto_lng(double sto_lng) {
+		this.sto_lng = sto_lng;
+	}
+	public double getDistance_user() {
+		return distance_user;
+	}
+	public void setDistance_user(double distance_user) {
+		this.distance_user = distance_user;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -101,7 +127,10 @@ public class Delivery implements Serializable{
 	public String toString() {
 		return "Delivery [sto_num=" + sto_num + ", sto_name=" + sto_name + ", sto_addr=" + sto_addr + ", ord_limit="
 				+ ord_limit + ", open_yn=" + open_yn + ", delivery=" + delivery + ", user_id=" + user_id
-				+ ", brand_pic=" + brand_pic + ", rev_rate=" + rev_rate + ", menu_name=" + menu_name + "]";
+				+ ", brand_pic=" + brand_pic + ", rev_rate=" + rev_rate + ", menu_name=" + menu_name + ", sto_lat="
+				+ sto_lat + ", sto_lng=" + sto_lng + ", distance_user=" + distance_user + "]";
 	}
+	
+	
 	
 }

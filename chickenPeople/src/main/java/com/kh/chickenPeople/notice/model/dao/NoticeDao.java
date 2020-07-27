@@ -1,3 +1,4 @@
+
 package com.kh.chickenPeople.notice.model.dao;
 
 import java.util.ArrayList;
@@ -33,12 +34,7 @@ public class NoticeDao {
 	}
 	
 	
-	public int addReadCount(int nNum) {
-		
-		return sqlSessionTemplate.update("noticeMapper.updateCount",nNum);
-	}
 
-	
 	public int insertNotice(Notice n) {
 		
 		System.out.println("insert DAO 출력:"+n);
@@ -48,6 +44,10 @@ public class NoticeDao {
 	
 	
 
+	public int addReadCount(int nNum) {
+		
+		return sqlSessionTemplate.update("noticeMapper.updateCount",nNum);
+	}
 
 	
 	

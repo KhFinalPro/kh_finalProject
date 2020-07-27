@@ -58,7 +58,7 @@
                     <select name="address" id="address">
                     	<c:if test="${!empty sessionScope.loginUser }">
                     		<c:forEach var="addr" items="${sessionScope.address }">
-		                        <option value="${addr.address }">${addr.address }</option>
+		                        <option value="${addr.lat }+${addr.lng}">${addr.address }</option>
                         	</c:forEach>
                         </c:if>
                         <c:if test="${empty sessionScope.loginUser }">
@@ -162,8 +162,8 @@
             })
             
             $("#delivery").on("click",function(){
-            	$("#address option:selected").val();
-            	location.href="deliveryList.do";
+            	
+            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
             })
         })
     </script>

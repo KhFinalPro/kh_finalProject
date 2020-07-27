@@ -43,7 +43,7 @@ public class BoradContoller {
 			mv.addObject("boardList",selectTotalBoardList);
 			mv.addObject("pi",pi);
 			mv.setViewName("board/boardListView");
-			System.out.println(mv);
+			
 		}else {
 			throw new NoticeException("게시판 목록보기 실패");
 		}
@@ -53,45 +53,45 @@ public class BoradContoller {
 	
 	
 
-	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
-	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
-		
-		
-		//조회수
-		int result= boardService.addReadCount(bNum);
-		
-		if(result>0) {
-			Board board = boardService.selectOne(bNum);
-			System.out.println("b조회수"+board);
-			if(board !=null) {
-				mv.addObject("board",board);
-				mv.setViewName("board/boardDetailView");
-			}else {
-				throw new BoardException("게시판 조회 실패");
-			}
-		}else {
-			throw new BoardException(" 공지사항 조회수 증가 실패");
-		}
-		
-		return mv;
-		
-	}
-	
-	@RequestMapping("bInsertView.do")
-	public String boardInsertView () {
-		
-		return "board/boardInsertForm";
-	}
-
-	@RequestMapping(value="ninsert.do",method=RequestMethod.POST)
-	public String boardInsert(Board b, HttpServletRequest request) {
-		
-		int result = boardService.insertBoard(b);
-		
-		if(result>0) {
-			return "redirect:boardList.do";
-		}else {
-			throw new BoardException("게시판 등록 실패");
-		}
-	}
+//	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
+//	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
+//		
+//		
+//		//조회수
+//		int result= boardService.addReadCount(bNum);
+//		
+//		if(result>0) {
+//			Board board = boardService.selectOne(bNum);
+//			System.out.println("b조회수"+board);
+//			if(board !=null) {
+//				mv.addObject("board",board);
+//				mv.setViewName("board/boardDetailView");
+//			}else {
+//				throw new BoardException("게시판 조회 실패");
+//			}
+//		}else {
+//			throw new BoardException(" 공지사항 조회수 증가 실패");
+//		}
+//		
+//		return mv;
+//		
+//	}
+//	
+//	@RequestMapping("bInsertView.do")
+//	public String boardInsertView () {
+//		
+//		return "board/boardInsertForm";
+//	}
+//
+//	@RequestMapping(value="ninsert.do",method=RequestMethod.POST)
+//	public String boardInsert(Board b, HttpServletRequest request) {
+//		
+//		int result = boardService.insertBoard(b);
+//		
+//		if(result>0) {
+//			return "redirect:boardList.do";
+//		}else {
+//			throw new BoardException("게시판 등록 실패");
+//		}
+//	}
 }
