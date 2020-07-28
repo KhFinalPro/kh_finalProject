@@ -141,8 +141,9 @@
 	        </div>
         </c:if>
        
+       <c:if test="${!empty sessionScope.loginUser}">
        <img id="message" src="resources/images/message.png" alt="">
-        
+       </c:if>
     </body>
 
     <script>
