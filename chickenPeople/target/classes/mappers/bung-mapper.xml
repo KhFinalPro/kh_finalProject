@@ -73,6 +73,20 @@
 								'모집중')
 	</insert>
 	
+	<update id="updateBung" parameterType="Bung">
+		UPDATE BUNG SET BUNG_TITLE = #{bung_title},
+						BUNG_DATE = TO_DATE(#{bung_date}, 'yyyy/mm/dd hh24:mi'),
+						BUNG_ADDR = #{bung_addr}, 
+						BUNG_P_NO = #{bung_p_no}, 
+						BUNG_INT = #{bung_int}, 
+						BUNG_HIT = DEFAULT, 
+						BUNG_LIKE = DEFAULT,
+						BUNG_CHAT = DEFAULT,
+						BUNG_IMG = #{bung_img},
+						BUNG_BRD = #{bung_brd}
+		WHERE BUNG_NUM = #{bung_num}
+	</update>
+	
 	<select id="selectBungNum" parameterType="string" resultMap="bungResultSet">
 		SELECT BUNG_NUM
 		FROM BUNG
@@ -105,4 +119,6 @@
 		FROM BUNG
 		WHERE USER_ID = #{id}
 	</select>
+	
+	
 </mapper>

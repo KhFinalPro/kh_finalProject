@@ -17,4 +17,6 @@ public interface TagService {
 
 	Tag selectTagName(int tag_num);
 
+	int deleteTag(int bung_num);
+
 }

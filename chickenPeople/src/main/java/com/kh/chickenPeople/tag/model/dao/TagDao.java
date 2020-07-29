@@ -34,4 +34,9 @@ public class TagDao {
 		return sqlSessionTemplate.selectOne("tagMapper.selectTagName", tag_num);
 	}
 
+	public int deleteTag(int bung_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("tagMapper.deleteTag", bung_num);
+	}
+
 }

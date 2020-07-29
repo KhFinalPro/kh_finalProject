@@ -60,9 +60,9 @@
 	#bungCreate_area table #bung_p_no{height: 30px; width: 50px; font-size: 20px; font-weight: 600;}
 	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
 	#bungCreate_btn:hover{color:white;}
-	.map{border:1px solid black;}
 	#detail_address{width:100%;}
 	#bung_addr{heigth:50px; width:50%; text-align:center; border:0px; font-size:25px; font-weight:600;}
+	.map{border:1px solid black;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -73,29 +73,33 @@
 	
 	<section id="bungCreate_area">
 		<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
+		<input type="hidden" id="bung_num" value="${bung.bung_num }"/>
         <table>
             <tr>
                 <td><label>번개 제목</label></td>
-                <td><input type="text" id="bung_title" name="bung_title" placeholder="제목을 입력해주세요"></td>
+                <td><input type="text" id="bung_title" name="bung_title" placeholder="제목을 입력해주세요" value="${bung.bung_title }"></td>
             </tr>
             <tr>
                 <td>
                     <label for="">번개 브랜드</label>
                 </td>
                 <td>
-                    <select name="bung_brand" id="bung_brand">                    
+               	
+                    <select name="bung_brand" id="bung_brand">
+                    	                    
                     	<c:forEach var="brand" items="${brandList }">
 	                        <option value="${brand.brand_name }">${brand.brand_name }</option>
                         </c:forEach>
                     </select>
+                   
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="">번개 시간</label>
+                	<label for="">번개 시간</label>
                 </td>
                 <td>
-                    <input type="date" name="bung_date" id="bung_date" class="date">&nbsp;<input type="time" name="bung_time" id="bung_time" class="date">
+                    <input type="date" name="bung_date" id="bung_date" class="date" value="${bung.bung_date }">&nbsp;<input type="time" name="bung_time" id="bung_time" class="date">
                 </td>
             </tr>
             <tr>
@@ -103,7 +107,7 @@
                     <label for="">소개글</label>
                 </td>
                 <td>
-                    <textarea name="bung_int" id="bung_int" cols="70" rows="5"></textarea>
+                    <textarea name="bung_int" id="bung_int" cols="70" rows="5">${bung.bung_int }</textarea>
                 </td>
             </tr>
             <tr>
@@ -111,7 +115,7 @@
                     <label for="">인원수</label>
                 </td>
                 <td>
-                    <input type="number" name="bung_p_no" id="bung_p_no" min="0" value="0">
+                    <input type="number" name="bung_p_no" id="bung_p_no" min="0" value="${bung.bung_p_no }">
                 </td>
             </tr>
             <tr>
@@ -157,7 +161,7 @@
             </tr>
         </table>
 
-        <input type="submit" id="bungCreate_btn" value="치킨번개 만들기">
+        <input type="submit" id="bungUpdate_btn" value="치킨번개 수정하기">
 	    
 	</section>
 	
@@ -214,7 +218,7 @@
                 }
             });
             
-            $("#bungCreate_btn").on("click",function(){
+            $("#bungUpdate_btn").on("click",function(){
             	$bung_title = $("#bung_title").val();
             	$bung_brand = $("#bung_brand").val();
             	$bungDate = $("#bung_date").val();
@@ -224,6 +228,7 @@
             	$bung_date = $bungDate +" "+ $bungTime;
             	$user_id = $("#user_id").val();
             	$bung_addr = $("#bung_addr").val();
+            	$bung_num = $("#bung_num").val();
             	console.log($user_id);
             	
             	$tagNumArr = new Array();
@@ -231,15 +236,14 @@
 	            	$tagNumArr.push($("#tagArea").children("#tagNum").eq(index).val());            		
             	})
             	
-            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
-            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;
+            	location.href="bungUpdate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
+            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr + "&bung_num=" + $bung_num;
             })
             
             
         })
     </script>
-    
-
+   
     <script>
         // 마커를 담을 배열입니다
         var markers = [];

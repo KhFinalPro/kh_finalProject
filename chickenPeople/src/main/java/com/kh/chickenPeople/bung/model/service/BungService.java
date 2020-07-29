@@ -37,6 +37,10 @@ public interface BungService {
 
 	ArrayList<Bung> selectMyBung(String id);
 
+	int updateBung(Bung b);
+
+
+
 	
 
 }

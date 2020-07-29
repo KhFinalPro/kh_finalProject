@@ -59,6 +59,10 @@
 		/*번개 내용 / 소개 */
 		#main_section>#text_area{margin: auto; width: 90%;}
 		#main_section>#text_area>textarea{margin: auto; width: 100%;}
+		
+		/*번개 수정하기 버튼*/
+		#UpdateBung{float:right; height: 50px; width: 200px; font-size:25px; font-weight:600; border: 0px;}
+		#UpdateBung:hover{color:#2ac1bc; background-color: white;}
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -71,6 +75,11 @@
 	<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
 	
     <section id="main_section">
+    	<c:if test="${myPageStatus == 'y' }">
+    		<button id="UpdateBung">번개 수정하기</button>
+        </c:if>
+        
+        
         <div id="head_area">
             <div id="brand_logo" class="head_line">
                 <img src="resources/images/${bung.bung_img }.png">
@@ -208,6 +217,12 @@
 			$tag_num = $(this).attr('value');
 			
 			location.href="bungTagList.do?tag_num=" + $tag_num;
+		})
+		
+		$("#UpdateBung").on("click",function(){
+			$bung_num = $("#bung_num").val();
+			alert($bung_num);
+			location.href="bungUpdateView.do?bung_num=" + $bung_num;
 		})
 	})
 </script>

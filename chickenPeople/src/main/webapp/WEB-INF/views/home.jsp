@@ -28,6 +28,7 @@
 		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
 		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
 		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
+		.place_area div #menu_name{margin:0 auto; width:90%;}
 		
 		
    </style>

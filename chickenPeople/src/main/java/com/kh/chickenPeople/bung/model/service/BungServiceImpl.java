@@ -95,6 +95,13 @@ public class BungServiceImpl implements BungService {
 		return bungDao.selectMyBung(id);
 	}
 
+	@Override
+	public int updateBung(Bung b) {
+		// TODO Auto-generated method stub
+		return bungDao.updateBung(b);
+	}
+
+	
 	
 	
 }
