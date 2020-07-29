@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-	    footer{margin-top: 50px; margin-left: 0px; padding-left: 0px; width: 100%; background-color: #2ac1bc; }
-	    footer>#footer_nav{margin: auto; width: 80%; height: 50px;}
+	    footer{margin: 0; padding: 0; margin-top: 50px; width: 100%; background-color: #2ac1bc; }
+	    footer>#footer_nav{margin:0 auto; padding: 0; width: 80%; height: 50px;}
 	    footer>#footer_nav ul{margin: 0 auto; list-style: none; height: 50px;}
 	    footer>#footer_nav ul li{float: left; margin-right: 20px; color: white; line-height: 50px;}
 	    footer>#footer_nav ul li a{text-decoration: none; color: white;}

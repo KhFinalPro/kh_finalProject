@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 		#storeList{margin: 0 auto; width: 100%; margin-top: 200px; text-align: center;}
 		#store_category{float: right; width: 200px; height: 30px; border: 1px solid black; margin-bottom: 10px;}
 
-		.store_area{margin: 0 auto; margin-left:10px;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; display: inline-block;}
+		.store_area{margin: 0 auto;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; display: inline-block;}
 
 		.store_area:hover{border: 2px solid #2ac1bc;}
 		.store_area .store{padding: 0; text-align: left;}
@@ -60,7 +61,7 @@
 	                    </div>
 	                    <ul>
 	                        <li class="store_name"><b>${d.sto_name }</b></li>
-	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start">${d.rev_rate } 최소주문 ${d.ord_limit }원</li>
+	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" pattern=".00"/> 최소주문 ${d.ord_limit }원</li>
 	                        <li class="store_delivery_time">40~50분</li>
 	                    </ul>
 	                </li>

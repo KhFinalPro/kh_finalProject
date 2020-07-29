@@ -17,7 +17,7 @@ public class Delivery implements Serializable{
 	private String delivery;		//배달 여부
 	private String user_id;			//매장 교유 아이디
 	private String brand_pic;		//브랜드 사진
-	private int rev_rate;			//별점
+	private double rev_rate;			//별점
 	private String menu_name;		//메뉴명
 	private double sto_lat;			//매장 위도
 	private double sto_lng;			//매장 경도
@@ -90,7 +90,7 @@ public class Delivery implements Serializable{
 	public void setBrand_pic(String brand_pic) {
 		this.brand_pic = brand_pic;
 	}
-	public int getRev_rate() {
+	public double getRev_rate() {
 		return rev_rate;
 	}
 	public void setRev_rate(int rev_rate) {

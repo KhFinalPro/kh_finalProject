@@ -1,6 +1,7 @@
 <%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 
 <html>
@@ -16,7 +17,7 @@
 		/*main body*/
 		#first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
 		.first_area{text-align: center;}
-		.second_area{text-align: center;}
+		.second_area{text-align: center; vertical-align:middle;}
 		.tree_area{text-align: center;}
 		.title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
 		.main_area{margin: 0 auto; width: 90%;}
@@ -67,7 +68,7 @@
 	                    <div align="center">
 	                        <h3>${b.brand_name }</h3>
 	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" pattern=".00"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	                        40~50분 소요예정
 	                    </div>
 	                </div>
@@ -91,7 +92,7 @@
 	                    <div align="center">
 	                        <h3>${m.brand_name }</h3>
 	                        <h3 id="menu_name">${m.menu_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <!-- <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp; -->
 	                        
 	                    </div>
 	                </div>
