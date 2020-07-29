@@ -73,7 +73,7 @@ public class BungController {
 	}
 	
 	@RequestMapping(value="bungLike.do", method=RequestMethod.POST)
-	public void bungLike(HttpServletResponse response, int bung_num ) throws IOException {
+	public void bungLike(HttpServletResponse response, int bung_num) throws IOException {
 		
 		int result = bungService.updateBungLike(bung_num);
 		int bungLike = bungService.selectBungLike(bung_num);

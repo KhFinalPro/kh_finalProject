@@ -44,13 +44,20 @@ public class MemberController {
 		Member member = mService.loginMember(m);
 		//로그인한 회원의 주소
 		ArrayList<Address> addrList = mService.selectAddress(member);
+		
+		for(Address a : addrList)
+		{
+			System.out.println("address : " + a);
+		}
 		session = request.getSession();
 		if(member != null)
 		{
 			System.out.println("로그인 성공!!");
 			System.out.println(member.getId());
 			session.setAttribute("loginUser",member);
-			session.setAttribute("address", addrList);			
+			session.setAttribute("address", addrList);
+			
+			
 			
 			return "redirect:/home.do";
 		}
