@@ -87,6 +87,7 @@ public class BungDao {
 		return sqlSessionTemplate.update("bungMapper.updateBung", b);
 	}
 
+
 	
 
 }

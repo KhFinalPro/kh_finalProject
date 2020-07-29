@@ -39,7 +39,8 @@ public class BungController {
 	public ModelAndView bungList(ModelAndView mv) {
 		
 		ArrayList<Bung> list = bungService.bungList();
-		
+//		//기간 지난 번개 종료
+//		int result = bungService.updateCloseBung(list);
 		if(list != null)
 		{
 			mv.addObject("list", list);
