@@ -43,6 +43,8 @@
             #modal #search_input{margin: auto; width: 50%; height: 60px; margin-top: 100px; border:2px solid black;}
             #modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         	#modal #search_category{height: 60px;}
+        	
+        	#message{position:fixed; top:200px; right:10px; width:50px; height:50px;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -58,7 +60,7 @@
                     <select name="address" id="address">
                     	<c:if test="${!empty sessionScope.loginUser }">
                     		<c:forEach var="addr" items="${sessionScope.address }">
-		                        <option value="${addr.lat }+${addr.lng}">${addr.address }</option>
+		                        <option value="${addr.lat } ${addr.lng}">${addr.address }</option>
                         	</c:forEach>
                         </c:if>
                         <c:if test="${empty sessionScope.loginUser }">
@@ -139,7 +141,9 @@
 	        </div>
         </c:if>
        
-        
+       <c:if test="${!empty sessionScope.loginUser}">
+       <img id="message" src="resources/images/message.png" alt="">
+       </c:if>
     </body>
 
     <script>
@@ -164,6 +168,11 @@
             $("#delivery").on("click",function(){
             	
             	location.href="deliveryList.do?address=" + $("#address option:selected").val();
+            })
+            
+            //계연이 채팅 연결
+            $("#message").on("click",function(){
+            	alert("채팅 클릭!!");
             })
         })
     </script>

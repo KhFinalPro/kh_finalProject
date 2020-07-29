@@ -9,19 +9,19 @@ public class Delivery implements Serializable{
 	 */
 	private static final long serialVersionUID = -902266985304354073L;
 
-	private int sto_num;
-	private String sto_name;
-	private String sto_addr;
-	private String ord_limit;
-	private String open_yn;
-	private String delivery;
-	private String user_id;
-	private String brand_pic;
-	private int rev_rate;
-	private String menu_name;
-	private double sto_lat;
-	private double sto_lng;
-	private double distance_user;
+	private int sto_num;			//매장번호
+	private String sto_name;		//매장 이름
+	private String sto_addr;		//매장 주소
+	private String ord_limit;		//매장 최소 주문금액
+	private String open_yn;			//영업 상태
+	private String delivery;		//배달 여부
+	private String user_id;			//매장 교유 아이디
+	private String brand_pic;		//브랜드 사진
+	private int rev_rate;			//별점
+	private String menu_name;		//메뉴명
+	private double sto_lat;			//매장 위도
+	private double sto_lng;			//매장 경도
+	private double distance_user;	//유저와의 거리
 	public Delivery() {
 	}
 	public Delivery(int sto_num, String sto_name, String sto_addr, String ord_limit, String open_yn, String delivery,

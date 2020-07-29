@@ -11,7 +11,7 @@
 		#storeList{margin: 0 auto; width: 100%; margin-top: 200px; text-align: center;}
 		#store_category{float: right; width: 200px; height: 30px; border: 1px solid black; margin-bottom: 10px;}
 
-		.store_area{margin: 0 auto; margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; display: inline-block;}
+		.store_area{margin: 0 auto; margin-left:10px;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; display: inline-block;}
 
 		.store_area:hover{border: 2px solid #2ac1bc;}
 		.store_area .store{padding: 0; text-align: left;}
@@ -42,9 +42,9 @@
 		<input type="hidden" id="select_address" value="${address }">
         <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
         <select name="store_category" id="store_category">
-            <option value="">거리순</option>
-            <option value="">인기순</option>
-            <option value="">찜한목록순</option>
+            <option value="distance">거리순</option>
+            <option value="good">인기순</option>
+            <option value="like">찜한목록순</option>
         </select>
     
         <br clear="both">
@@ -61,7 +61,6 @@
 	                    <ul>
 	                        <li class="store_name"><b>${d.sto_name }</b></li>
 	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start">${d.rev_rate } 최소주문 ${d.ord_limit }원</li>
-	                        <!-- <li class="store_bestMenu"><a href="#">(BEST)후라이드치킨</a></li> -->
 	                        <li class="store_delivery_time">40~50분</li>
 	                    </ul>
 	                </li>
@@ -84,19 +83,53 @@
 <script>
 	$(function(){		
 
-		$address = $("#select_address").val();
-		$("#address").val($address).prop("selected",true);
 		
-		//매장 상세 페이지이동
-		$(".store_area").on("click",function(){
-			$(this).children("#sto_num").val();
-			//location.href="";
-			alert($(this).children("#sto_num").val());
-		})
+		//$address = $("#select_address").val();
+		//$("#address").val($address).prop("select",true);
 		
+		
+		//카테고리별 ajax
 		$("#store_category").on("change",function(){
-			alert("카테고리 변화");
+
+			$address = $("#select_address").val();
+			
+			$store_category = $(this).val();
+
+			$.ajax({
+				url:"ajaxDeliveryList.do",
+				data:{address:$address, store_category:$store_category},
+				dataType:"json",
+				type:"post",
+				success:function(data){
+
+					$(".store_area").remove();
+					$("#store_count").children("b").text(data.count);
+					
+					for(var i = 0; i < data.deliveryList.length; i++){
+						var store_area = $("<div class='store_area'></div>");
+						var store = $("<ul class='store'></ul>");
+						
+						
+						store_area.append("<input type='hidden' id='sto_num' name='sto_num' value='"+ data.deliveryList[i].sto_num +"'/>");
+						
+						store.append("<li><div class='store_img'><img src='resources/images/"+ data.deliveryList[i].brand_pic +".png' alt='"+ data.deliveryList[i].brand_pic +"'></div><ul><li class='store_name'><b>" + data.deliveryList[i].sto_name +"</b></li><li class='store_minPrice'><img src='resources/images/start.png' alt='start'>" + data.deliveryList[i].rev_rate + " 최소주문" + data.deliveryList[i].ord_limit + "원</li><li class='store_delivery_time'>40~50분</li></ul></li>")
+						
+						store_area.append(store);
+						
+						$("#storeList").append(store_area);
+						
+						
+					}
+				},
+				error:function(request, status, errorData){
+					alert("error code: " + request.status + "\n"
+	                          +"message: " + request.responseText
+	                          +"error: " + errorData);
+				}
+			})
 		})
+		
+		//top bottom 버튼 함수
 		$("#top").on("click",function(){
 			location.href="#";
 		})
@@ -112,11 +145,17 @@
 		$("#address").on("change",function(){
 			
 			location.href="deliveryList.do?address=" + $("#address option:selected").val();
-		
-			
+			//사용자의 위도 경도를 hidden으로 담고있기
+			$("#select_address").val($("#address option:selected").val());
 		})
 		
-		
+		//매장 상세 페이지이동		
+		$(document).on("click",".store_area",function(){
+			console.log("매장 상세 페이지이동");
+			/* $(this).children("#sto_num").val();
+			//location.href="";
+			alert($(this).children("#sto_num").val()); */
+		})
 	})
 </script>
 </html>
