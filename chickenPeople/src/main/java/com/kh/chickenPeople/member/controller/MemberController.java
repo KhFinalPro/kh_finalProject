@@ -45,10 +45,7 @@ public class MemberController {
 		//로그인한 회원의 주소
 		ArrayList<Address> addrList = mService.selectAddress(member);
 		
-		for(Address a : addrList)
-		{
-			System.out.println("address : " + a);
-		}
+		
 		session = request.getSession();
 		if(member != null)
 		{
@@ -59,7 +56,7 @@ public class MemberController {
 			
 			
 			
-			return "redirect:/home.do";
+			return "redirect:/loginHome.do?id="+member.getId();
 		}
 		
 		return null;

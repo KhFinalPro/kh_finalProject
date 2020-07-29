@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.chickenPeople.main.model.exception.MainException;
 import com.kh.chickenPeople.main.model.service.MainService;
 import com.kh.chickenPeople.main.model.vo.BestMenu;
+import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 
@@ -36,7 +36,7 @@ public class HomeController {
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	
 	
-	public ModelAndView home(Locale locale, ModelAndView mv) {
+	public ModelAndView home(Locale locale, ModelAndView mv, Member member) {
 		
 		//베스트 치킨집 top5
 		ArrayList<Store> bestStoreList = mainService.bestListSelect();
@@ -52,6 +52,29 @@ public class HomeController {
 			mv.setViewName("home");
 		}
 		return mv;
+	}
+	
+	@RequestMapping("loginHome.do")
+	public ModelAndView loginHome(ModelAndView mv, String id)
+	{
+//		System.out.println("loginHome.do : " + member.getId());
+		//베스트 치킨집 top5
+		ArrayList<Store> bestStoreList = mainService.bestListSelect();
+		//베스트 치킨
+		ArrayList<BestMenu> bestMenuList = mainService.selectBestMenu();
+		//로그인시 찜한 매장
+		ArrayList<Store> likeStoreList = mainService.likeStoreList(id);
+		
+		System.out.println(likeStoreList);
+		if(!bestStoreList.isEmpty())
+		{
+			mv.addObject("bestList", bestStoreList);
+			mv.addObject("bestMenuList", bestMenuList);
+			mv.addObject("likeStoreList", likeStoreList);
+			mv.setViewName("home");
+		}
+		return mv;
+		
 	}
 	
 	
