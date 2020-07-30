@@ -58,7 +58,7 @@
 		
 		/*번개 내용 / 소개 */
 		#main_section>#text_area{margin: auto; width: 90%;}
-		#main_section>#text_area>textarea{margin: auto; width: 100%;}
+		#main_section>#text_area>textarea{margin: auto; width: 100%; font-size: 20px; font-weight: 600; resize:none;}
 		
 		/*번개 수정하기 버튼*/
 		#UpdateBung{float:right; height: 50px; width: 200px; font-size:25px; font-weight:600; border: 0px;}
@@ -143,7 +143,7 @@
 
         <div id="text_area">
             <h4>치킨번개 모집 내용 / 소개</h4>
-            <textarea name="contents" id="contents" cols="127" rows="10">${bung.bung_int }</textarea>
+            <textarea name="contents" id="contents" cols="127" rows="10" readonly>${bung.bung_int }</textarea>
         </div>
     </section>
 

@@ -69,7 +69,7 @@
 	                    <div align="center">
 	                        <h3>${b.brand_name }</h3>
 	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" pattern=".00"/>&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	                        40~50분 소요예정
 	                    </div>
 	                </div>
@@ -118,7 +118,7 @@
 	                    <div align="center">
 	                        <h3>${b.brand_name }</h3>
 	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" pattern=".00"/>&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	                        40~50분 소요예정
 	                    </div>
 	                </div>

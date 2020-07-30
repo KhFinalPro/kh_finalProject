@@ -61,7 +61,7 @@
 	                    </div>
 	                    <ul>
 	                        <li class="store_name"><b>${d.sto_name }</b></li>
-	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" pattern=".00"/> 최소주문 ${d.ord_limit }원</li>
+	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
 	                        <li class="store_delivery_time">40~50분</li>
 	                    </ul>
 	                </li>

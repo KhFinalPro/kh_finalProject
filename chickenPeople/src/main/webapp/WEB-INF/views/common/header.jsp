@@ -54,7 +54,13 @@
 
             <div id="header">
                 <div id="header_brandName">
-                    <h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
+                	<c:if test="${!empty sessionScope.loginUser }">
+                		<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
+                    	<h1 id="brandName"><a id="home">치킨의민족</a></h1>
+                    </c:if>
+                    <c:if test="${empty sessionScope.loginUser }">
+                    	<h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
+                    </c:if>
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
@@ -181,6 +187,11 @@
             
             $("#noneLogin").on("click",function(){
             	alert("로그인시 이용가능합니다")
+            })
+            
+            //로그인시 home버튼 클릭
+            $("#home").on("click", function(){
+            	location.href="loginHome.do?id="+$("#id").val();
             })
         })
     </script>
