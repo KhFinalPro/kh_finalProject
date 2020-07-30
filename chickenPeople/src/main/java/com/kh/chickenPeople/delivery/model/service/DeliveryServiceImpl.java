@@ -20,4 +20,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryDao.selectDelivery();
 	}
 
+	@Override
+	public ArrayList<Delivery> selectBestDelivery() {
+		// TODO Auto-generated method stub
+		return deliveryDao.selectBestDelivery();
+	}
+
+	
+
 }

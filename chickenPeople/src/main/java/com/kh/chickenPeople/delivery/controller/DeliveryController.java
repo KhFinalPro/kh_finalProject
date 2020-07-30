@@ -1,11 +1,18 @@
 package com.kh.chickenPeople.delivery.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.delivery.model.service.DeliveryService;
@@ -21,6 +28,7 @@ public class DeliveryController {
 	@RequestMapping("deliveryList.do")
 	public ModelAndView selectDelivery(ModelAndView mv, String address) {
 		int store_count = 0;
+		System.out.println(address);
 		//사용자의 좌표를 split를 활용하여 위도와 경도롤 나눔
 		String lat = address.split(" ")[0];
 		String lng = address.split(" ")[1];
@@ -41,7 +49,7 @@ public class DeliveryController {
 			if(distance < 2000.0)
 			{
 				d.setDistance_user(distance);
-				unRemove.add(d);	
+				unRemove.add(d);
 				store_count++;
 			}
 			
@@ -61,6 +69,102 @@ public class DeliveryController {
 		
 		
 		return mv;
+	}
+	
+	//딜리버리 카테고리 ajax
+	@RequestMapping(value="ajaxDeliveryList.do", method=RequestMethod.POST)
+	public void ajaxDeliveryList(HttpServletResponse  response, String address, String store_category) throws IOException
+	{
+		response.setContentType("application/json;charset=utf-8");
+		int store_count = 0;
+		System.out.println(address + " , " + store_category);
+		String lat = address.split(" ")[0];
+		String lng = address.split(" ")[1];
+		double user_lat = Double.parseDouble(lat);
+		double user_lng = Double.parseDouble(lng);
+		
+		ArrayList<Delivery> unRemove = new ArrayList<>();
+		
+		JSONArray jarr = new JSONArray();
+		
+		JSONObject sendJson = new JSONObject();
+		
+		PrintWriter out = response.getWriter();
+		
+		//거리
+		if(store_category.equals("distance"))
+		{
+			
+		}
+		//인기 매장 정보 별점 포함 
+		else if(store_category.equals("good"))
+		{
+			
+			ArrayList<Delivery> deliveryList = deliveryService.selectBestDelivery();
+			Iterator<Delivery> iter = deliveryList.iterator();
+			while (iter.hasNext()) {
+				
+				JSONObject jobj = new JSONObject();
+				Delivery d = iter.next();
+			 
+				double distance = distance(user_lat, user_lng, d.getSto_lat(), d.getSto_lng());
+				//사용자와 매장의 거리가 2000m 미만이면 list에 담음
+				if(distance < 2000.0)
+				{
+					d.setDistance_user(distance);
+					store_count++;
+					jobj.put("sto_num",d.getSto_num());
+					jobj.put("sto_name", d.getSto_name());
+					jobj.put("brand_pic", d.getBrand_pic());
+					jobj.put("rev_rate", d.getRev_rate());
+					jobj.put("ord_limit", d.getOrd_limit());
+					jarr.add(jobj);
+				}
+			}
+			sendJson.put("address", address);
+			sendJson.put("count", store_count);
+			sendJson.put("deliveryList", jarr);
+
+			out.print(sendJson);
+			out.flush();
+			out.close();
+		}
+		
+		//찜한 목록 기준
+		else if(store_category.equals("like"))
+		{
+			ArrayList<Delivery> deliveryList = deliveryService.selectBestDelivery();
+			Iterator<Delivery> iter = deliveryList.iterator();
+			while (iter.hasNext()) {
+				
+				JSONObject jobj = new JSONObject();
+				Delivery d = iter.next();
+			 
+				double distance = distance(user_lat, user_lng, d.getSto_lat(), d.getSto_lng());
+				//사용자와 매장의 거리가 2000m 미만이면 list에 담음
+				if(distance < 2000.0)
+				{
+					d.setDistance_user(distance);
+					store_count++;
+					jobj.put("sto_num",d.getSto_num());
+					jobj.put("sto_name", d.getSto_name());
+					jobj.put("brand_pic", d.getBrand_pic());
+					jobj.put("rev_rate", d.getRev_rate());
+					jobj.put("ord_limit", d.getOrd_limit());
+					jarr.add(jobj);
+				}
+			}
+			sendJson.put("address", address);
+			sendJson.put("count", store_count);
+			sendJson.put("deliveryList", jarr);
+
+			out.print(sendJson);
+			out.flush();
+			out.close();
+		}
+			
+		
+		
 	}
 	
 	private static double distance(double user_lat, double user_lng, double sto_lat, double sto_lng) {

@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.message.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,32 @@ public class MessageDao {
 		
 		return receiveMessageList;
 	}
+
+	public int deleteMessage(HashMap<String, String> map) {
+		
+		return sqlSessionTemplate.delete("messageMapper.deleteMessage",map);
+	}
+
+	public int deleteRcvMessage(HashMap<String, String> map) {
+		
+		return sqlSessionTemplate.delete("messageMapper.deleteRcvMessage",map);
+	}
+
+	public ArrayList<Message> receiveMessageDetail(HashMap<String, String> map) {
+		
+		
+		ArrayList<Message> receiveMessageDetail = new ArrayList<Message>();
+		receiveMessageDetail = (ArrayList)sqlSessionTemplate.selectList("messageMapper.receiveMessageDetail",map);
+		
+		
+		return receiveMessageDetail;
+	}
+
+	public int insertMessageDetail(HashMap<String, String> map) {
+		
+		return sqlSessionTemplate.insert("messageMapper.insertMessageDetail",map);
+	}
+	
 	
 	
 }
