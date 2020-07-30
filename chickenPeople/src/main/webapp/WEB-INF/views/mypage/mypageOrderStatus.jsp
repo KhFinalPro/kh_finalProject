@@ -38,6 +38,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
 	<input type="hidden" id="brand_code" value="${menuList.get(0).brand_code }"/>
 	<input type="hidden" id="sto_addr" value="${menuList.get(0).sto_addr }"/>
 	<jsp:include page="../common/header.jsp"/>
@@ -69,6 +70,7 @@
                 <h2 class="delivery_info_title">메뉴정보</h2>
                 <c:forEach var="m" items="${menuList }">
 	                <div class="menu_area">
+	                	<input type="hidden" id="menu_num" value="${m.menu_num }">
 	                    <p class="menu_num menu_info">${m.mord_num }</p>
 	                    <img class="menu_pic menu_info" src="resources/menu/${m.menu_pic }.jpg">
 	                    <p class="menu_name menu_info">핫 후라이드<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
@@ -76,8 +78,6 @@
 	                <br clear="both">
 	                <br>
                 </c:forEach>
-                
-                
             </div>
         </div>
     </div>
@@ -95,7 +95,24 @@
 	    	location.href="searchStore.do?brand_code="+$("#brand_code").val();
 	    })
 	    
+	    //새로고침
+	    setInterval(function(){
+	    	location.href="orderStatus.do?id="+ $("#id").val();
+	    }, 5000);
+	    
+	    
+	    //메뉴 사진 hover시 ajax
+	    /* $(".menu_pic").hover(function(){
+	    	$.ajax({
+	    		
+	    	})
+	    }) */
+	    
 	})
+	
+	
+	
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(37.516186, 127.059691), // 지도의 중심좌표
