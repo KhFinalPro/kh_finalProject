@@ -1,8 +1,9 @@
 package com.kh.chickenPeople.message.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -130,14 +129,174 @@ public class MessageController {
 			
 	}
 	
-	@RequestMapping(value="deleteMessage.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public void deleteMessage(HttpServletRequest request, @RequestParam(value="noArr") List<String> noArr) {
-		System.out.println("deleteMessage.do");
-		for(String msgNo:noArr) {
-            System.out.println(msgNo);
-            /**********깃테스트 ***********/
-        }
+	
+	
+	@RequestMapping(value="deleteMessage.do",method =  RequestMethod.POST)
+	public void deleteMessage(HttpServletRequest request, HttpServletResponse response,
+								String[] noArr) throws Exception {
+		response.setContentType("application/json;charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		String userId = loginUser.getId();
+		
+		
+		//배열로 받은 에이작스 for문 돌려서 각 값 저장하기
+		String deleteMsgNo = null;
+		if(noArr!=null) {
+			for(String msgNo : noArr) {
+				System.out.println(msgNo);
+				deleteMsgNo = msgNo;
+				
+				HashMap<String,String> map = new HashMap<>();
+				map.put("Id", userId);
+				map.put("deleteMsgNo", deleteMsgNo);
+				
+				
+				//메세지 삭제하기
+				int result = msgService.deleteMessage(map);
+				deleteMsgNo="";
+			}
+		}
+		
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("gg", "서엉공");
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(resultObj);
+		out.flush();
+		out.close();
+		
 	}
+	
+	
+	
+		
+	@RequestMapping(value="deleteRcvMessage.do",method =  RequestMethod.POST)
+	public void deleteRcvMessage(HttpServletRequest request, HttpServletResponse response,
+								String[] noArr) throws Exception {
+		response.setContentType("application/json;charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		String userId = loginUser.getId();
+		
+		
+		
+		System.out.println("잘 받은거니?"+noArr[0]);
+		//배열로 받은 에이작스 for문 돌려서 각 값 저장하기
+		String deleteMsgNo = null;
+		if(noArr!=null) {
+			for(String msgNo : noArr) {
+				System.out.println(msgNo);
+				deleteMsgNo = msgNo;
+				
+				HashMap<String,String> map = new HashMap<>();
+				map.put("Id", userId);
+				map.put("deleteMsgNo", deleteMsgNo);
+				
+				
+				//메세지 삭제하기
+				int result = msgService.deleteRcvMessage(map);
+				deleteMsgNo="";
+			}
+		}
+		
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("gg", "서엉공");
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(resultObj);
+		out.flush();
+		out.close();
+		
+	}
+	
+	
+	@RequestMapping(value="receiveMessageDetail.do",method=RequestMethod.POST)
+	public void messageDetail(HttpServletRequest request, HttpServletResponse response, int msgNo) throws Exception  {
+		response.setContentType("application/json;charset=utf-8");
+
+		HttpSession session = request.getSession();
+
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		String userId = loginUser.getId();
+		JSONObject obj = new JSONObject();
+		
+		//System.out.println("에이작스 받았니?"+msgNo);
+		
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("Id", userId);
+		map.put("msgNo", String.valueOf(msgNo));
+		
+		ArrayList<Message> receiveMessageDetail = msgService.receiveMessageDetail(map);
+		
+		//System.out.println("모달 수신ㅁㅔ세지 쯀르륵"+receiveMessageDetail);
+		
+		JSONArray rDetailArr = new JSONArray();
+		for(int i=0; i<receiveMessageDetail.size(); i++) {
+			JSONObject rDetail = new JSONObject();
+			rDetail.put("sendId", receiveMessageDetail.get(i).getSendId());
+			rDetail.put("msgTitle", receiveMessageDetail.get(i).getMsgTitle());
+			rDetail.put("msgContents",receiveMessageDetail.get(i).getMsgContents());
+			rDetail.put("sendDate", receiveMessageDetail.get(i).getSendDate());
+			rDetail.put("msgStatus",receiveMessageDetail.get(i).getMsgStatus());
+		
+			rDetailArr.add(rDetail);
+		}
+		obj.put("receiveMessageDetail", rDetailArr);
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(obj);
+		out.flush();
+		out.close();
+		
+	}
+	
+	@RequestMapping(value="insertMessageDetail.do",method=RequestMethod.POST)
+	public void insertMessageDetail(HttpServletRequest request, HttpServletResponse response, String modal_reply_sendId,String modal_reply_title,String modal_reply_content) throws IOException {
+		
+		
+		response.setContentType("application/json;charset=utf-8");
+
+		HttpSession session = request.getSession();
+
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		String userId = loginUser.getId();
+		JSONObject obj = new JSONObject();
+		
+		
+		//System.out.println("답장 에이작스 받았니?"+modal_reply_sendId+modal_reply_title+modal_reply_content);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("Id", userId);
+		map.put("modal_reply_sendId", modal_reply_sendId );
+		map.put("modal_reply_title", modal_reply_title);
+		map.put("modal_reply_content",modal_reply_content);
+		
+		
+		
+		//모달 수신메세지 답장하기(인서트)
+		int insertMessageDetail = msgService.insertMessageDetail(map);
+		
+		
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("gg", "서엉공");
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(resultObj);
+		out.flush();
+		out.close();
+		
+	}
+	
+	
 }
 
 

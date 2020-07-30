@@ -60,7 +60,7 @@
 		#main_section>#text_area{margin: auto; width: 90%;}
 		#main_section>#text_area>textarea{margin: auto; width: 100%;}
 	</style>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf020d83fc09d8567b48751e315e48a&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -164,6 +164,7 @@
 	
 	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 	
+	        
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,

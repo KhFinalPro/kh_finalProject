@@ -42,6 +42,9 @@ public class HomeController {
 		ArrayList<Store> bestStoreList = mainService.bestListSelect();
 		//베스트 치킨
 		ArrayList<BestMenu> bestMenuList = mainService.selectBestMenu();
+//		//로그인시 찜한 매장
+//		ArrayList<Store> likeStoreList = mainService.likeStoreList();
+		
 		if(!bestStoreList.isEmpty())
 		{
 			mv.addObject("bestList", bestStoreList);

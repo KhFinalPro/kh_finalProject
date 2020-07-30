@@ -19,4 +19,11 @@ public class DeliveryDao {
 		return (ArrayList)sqlSessionTemplate.selectList("deliveryMapper.selectList");
 	}
 
+	public ArrayList<Delivery> selectBestDelivery() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("deliveryMapper.selectOptionDelivery");
+	}
+
+	
+
 }

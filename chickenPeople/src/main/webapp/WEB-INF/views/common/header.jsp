@@ -43,6 +43,8 @@
             #modal #search_input{margin: auto; width: 50%; height: 60px; margin-top: 100px; border:2px solid black;}
             #modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         	#modal #search_category{height: 60px;}
+        	
+        	#message{position:fixed; top:200px; right:10px; width:50px; height:50px;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -58,7 +60,7 @@
                     <select name="address" id="address">
                     	<c:if test="${!empty sessionScope.loginUser }">
                     		<c:forEach var="addr" items="${sessionScope.address }">
-		                        <option value="${addr.lat }+${addr.lng}">${addr.address }</option>
+		                        <option value="${addr.lat } ${addr.lng}">${addr.address }</option>
                         	</c:forEach>
                         </c:if>
                         <c:if test="${empty sessionScope.loginUser }">
@@ -101,7 +103,12 @@
                 
                 <ul>
                     <li>
-                        <a id="delivery">딜리버리</a>
+                    	<c:if test="${!empty sessionScope.loginUser }">
+                        	<a id="delivery">딜리버리</a>
+                        </c:if>
+                        <c:if test="${empty sessionScope.loginUser }">
+                    		<a id="noneLogin">딜리버리</a>
+                        </c:if>
                     </li>
                     <li>
                         <a href="bungList.do">치킨번개</a>
@@ -119,31 +126,32 @@
         </header>
 
 	
-        <c:if test="${empty msg}">
-	        <div id="modal" style="display: none">
-	            <!-- <input type="button" id="search_cancel" > -->
-	            <img id="search_cancel" src="resources/images/cancel.png" alt="">
-	            <form action="homeSearch.do" method="post">
-	                <br clear="both">
-	                <!-- <select name="option">
-	                	<option value="sto_name">매장이름 검색</option>
-	                	<option value="brand_name">브랜드 검색</option>
-	                </select> -->
-	                <select name="search_category" id="search_category">
-	                	<option value="brand">브랜드</option>
-	                	<option value="store">매장</option>
-	                </select>
-	                <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
-	                <input type="submit" id="submit" value="검색">
-	            </form>
-	        </div>
-        </c:if>
+       <c:if test="${empty msg}">
+	       <div id="modal" style="display: none">
+
+	           <img id="search_cancel" src="resources/images/cancel.png" alt="">
+	           <form action="homeSearch.do" method="post">
+	               <br clear="both">
+	               
+	               <select name="search_category" id="search_category">
+					<option value="brand">브랜드</option>
+					<option value="store">매장</option>
+	               </select>
+	               <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
+	               <input type="submit" id="submit" value="검색">
+	           </form>
+	       </div>
+       </c:if>
        
-        
+       <c:if test="${!empty sessionScope.loginUser}">
+			<img id="message" src="resources/images/message.png" alt="">
+       </c:if>
     </body>
 
     <script>
         $(function(){
+        	
+        	$address = $("#address option:selected").val()
             $modal=$("#modal");
             
             $("#search").on("click",function(){
@@ -164,6 +172,15 @@
             $("#delivery").on("click",function(){
             	
             	location.href="deliveryList.do?address=" + $("#address option:selected").val();
+            })
+            
+            //계연이 채팅 연결
+            $("#message").on("click",function(){
+            	alert("채팅 클릭!!");
+            })
+            
+            $("#noneLogin").on("click",function(){
+            	alert("로그인시 이용가능합니다")
             })
         })
     </script>

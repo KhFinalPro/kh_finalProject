@@ -11,4 +11,7 @@ public interface DeliveryService {
 
 	ArrayList<Delivery> selectDelivery();
 
+	ArrayList<Delivery> selectBestDelivery();
+
+
 }

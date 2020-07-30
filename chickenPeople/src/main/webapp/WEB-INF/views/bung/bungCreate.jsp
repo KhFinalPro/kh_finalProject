@@ -64,7 +64,7 @@
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf020d83fc09d8567b48751e315e48a&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
