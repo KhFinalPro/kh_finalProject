@@ -20,13 +20,13 @@
 		#main_section>#head_area>#title>h2{margin-top: 100px;}
 		/*관심*/
 		#main_section>#head_area>#good>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
-		#main_section>#head_area>#good>h3:hover{color:black;}
+		#main_section>#head_area>#good>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#good_contents{margin-left: 10px;}
 		#main_section>#head_area>.head_second_line{float: left;}
 		
 		/*채팅*/
 		#main_section>#head_area>#chatting>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
-		#main_section>#head_area>#chatting>h3:hover{color:black;}
+		#main_section>#head_area>#chatting>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
@@ -54,7 +54,8 @@
 		#main_section>.info_four_area{float: left;}
 		
 		/*태그*/
-		#main_section>#tag_area{margin: 20px;}
+		#main_section>#tag_area{margin: 20px; color:blue;}
+		#main_section>#tag_area:hover{cursor:pointer;}
 		
 		/*번개 내용 / 소개 */
 		#main_section>#text_area{margin: auto; width: 90%;}

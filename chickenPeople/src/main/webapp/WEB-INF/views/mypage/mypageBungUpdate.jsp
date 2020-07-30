@@ -58,8 +58,8 @@
 	#bungCreate_area table .date{height: 50px; font-size: 20px; font-weight: 600;}
 	#bungCreate_area table #bung_int{font: 15px; font-weight: 500;}
 	#bungCreate_area table #bung_p_no{height: 30px; width: 50px; font-size: 20px; font-weight: 600;}
-	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
-	#bungCreate_btn:hover{color:white;}
+	#bungUpdate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
+	#bungUpdate_btn:hover{color:white;}
 	#detail_address{width:100%;}
 	#bung_addr{heigth:50px; width:50%; text-align:center; border:0px; font-size:25px; font-weight:600;}
 	.map{border:1px solid black;}

@@ -14,7 +14,7 @@
             #header_brandName{width: 15%; height: 100%; text-align: center; vertical-align: middle;}
             #header_brandName #brandName{margin: 0;}
             #header_brandName #brandName a{color: white; text-decoration: none;}
-            #header_brandName #brandName a:hover{color: black;}
+            #header_brandName #brandName a:hover{color: black; cursor:pointer;}
 
             #header_address{width: 69%; height: 100%; text-align: center; vertical-align: middle;}
             #header_address #address{width: 50%; height: 50px; border-radius: 20px;}
@@ -38,6 +38,7 @@
             
             #header_nav ul li a{margin: auto; width: 100%; text-decoration: none; color: white; display: block; width: 150px; font-size: 30px; font-weight: bold;}
             #header_nav ul li a:hover{color: black;}
+            #delivery:hover{cursor:pointer;}
 
             #modal{position: fixed; display: none; opacity: 0.9; left: 0; top: 0px; width: 100%; height: 100%; text-align: center; background-color: rgb(199, 197, 197); border: 1px solid black; z-index: 2;}
             #modal #search_cancel{margin-right: 0px; margin-left: 1800px; margin-top: 200px; width: 70px; height: 70px;}
@@ -46,6 +47,7 @@
         	#modal #search_category{height: 60px;}
         	
         	#message{position:fixed; top:200px; right:10px; width:50px; height:50px;}
+        	#message:hover{cursor:pointer;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -79,7 +81,7 @@
                     <ul>
                     	<li>
                     		<c:if test="${!empty sessionScope.loginUser}">
-                    			<p>${sessionScope.loginUser.id }님 환영합니다.</p>
+                    			<p>${sessionScope.loginUser.name }님 환영합니다.</p>
                     		</c:if>
                     	</li>
                     	<li>
