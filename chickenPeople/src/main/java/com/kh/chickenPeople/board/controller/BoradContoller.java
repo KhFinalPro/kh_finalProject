@@ -53,30 +53,29 @@ public class BoradContoller {
 	
 	
 
-//	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
-//	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
-//		
-//		
-//		//조회수
-//		int result= boardService.addReadCount(bNum);
-//		
-//		if(result>0) {
-//			Board board = boardService.selectOne(bNum);
-//			System.out.println("b조회수"+board);
-//			if(board !=null) {
-//				mv.addObject("board",board);
-//				mv.setViewName("board/boardDetailView");
-//			}else {
-//				throw new BoardException("게시판 조회 실패");
-//			}
-//		}else {
-//			throw new BoardException(" 공지사항 조회수 증가 실패");
-//		}
-//		
-//		return mv;
-//		
-//	}
-//	
+	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
+	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
+		
+	
+	//조회수
+		int result= boardService.addReadCount(bNum);
+		if(result>0) {
+		Board board = boardService.selectOne(bNum);
+		System.out.println("b조회수"+board);
+		if(board !=null) {
+				mv.addObject("board",board);
+				mv.setViewName("board/boardDetailView");
+			}else {
+				throw new BoardException("게시판 조회 실패");
+			}
+		}else {
+			throw new BoardException(" 공지사항 조회수 증가 실패");
+		}
+		
+		return mv;
+		
+	}
+	
 //	@RequestMapping("bInsertView.do")
 //	public String boardInsertView () {
 //		
