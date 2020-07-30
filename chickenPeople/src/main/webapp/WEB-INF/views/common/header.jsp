@@ -16,19 +16,20 @@
             #header_brandName #brandName a{color: white; text-decoration: none;}
             #header_brandName #brandName a:hover{color: black;}
 
-            #header_address{width: 74%; height: 100%; text-align: center; vertical-align: middle;}
+            #header_address{width: 69%; height: 100%; text-align: center; vertical-align: middle;}
             #header_address #address{width: 50%; height: 50px; border-radius: 20px;}
 
 
-            #header_userArea{width: 10%; height: 80%;}
+            #header_userArea{width: 15%; height: 80%;}
             #header_userArea ul {list-style-type: none; height: 40px; padding: 0; margin: 0;}
             #header_userArea ul li{float: left; position: relative; padding: 0; line-height: 50px;}
-            #header_userArea ul li img{width: 50px; height: 50px; margin-top: 20px;}
+            #header_userArea ul li p{font-size: 12px; color:white;}
+            #header_userArea ul li img{width: 40px; height: 40px; margin-top: 20px;}
             #header_userArea ul li ul{opacity: 0; position: absolute; left: 0; list-style-type: none; padding: 0; margin: 0;}
             #header_userArea ul li:hover ul{opacity: 1;}
             #header_userArea ul li ul li{float: none; position: static; height: 0px; line-height: 0; background: none; width: 100px;}
             #header_userArea ul li:hover ul li{width: 100px; height: 30px; line-height: 30px; padding:5px 0;}
-            #header_userArea ul li ul li a{text-decoration: none; text-align: center; font-weight:600; font-size:25px; color:black; width: 100px;}
+            #header_userArea ul li ul li a{text-decoration: none; text-align: center; font-weight:600; font-size:20px; color:black; width: 100px;}
             #header_userArea ul li ul li a:hover{color:black;}
 
             #header_nav {height: 80px; margin: auto; width: 100%;}
@@ -76,10 +77,12 @@
                 </div>
                 <div id="header_userArea">
                     <ul>
-                        <li>
-                            <img id="search" src="resources/images/search.png" alt="">
-                        </li>
-                        <li>
+                    	<li>
+                    		<c:if test="${!empty sessionScope.loginUser}">
+                    			<p>${sessionScope.loginUser.id }님 환영합니다.</p>
+                    		</c:if>
+                    	</li>
+                    	<li>
                             <img src="resources/images/user.png" alt="">
                             
                             <ul>
@@ -98,6 +101,9 @@
                                 </c:if>
 
                             </ul>
+                        </li>
+                        <li>
+                            <img id="search" src="resources/images/search.png" alt="">
                         </li>
                     </ul>
                     

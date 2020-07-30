@@ -12,7 +12,7 @@
 		#storeList{margin: 0 auto; width: 100%; margin-top: 200px; text-align: center;}
 		#store_category{float: right; width: 200px; height: 30px; border: 1px solid black; margin-bottom: 10px;}
 
-		.store_area{margin: 0 auto;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; display: inline-block;}
+		.store_area{margin:0 auto; margin-right:5px; margin-left:5px;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; float:left;}
 
 		.store_area:hover{border: 2px solid #2ac1bc;}
 		.store_area .store{padding: 0; text-align: left;}
@@ -71,6 +71,8 @@
         
         
     </section>
+    
+    <br clear="both">
     
     <div id="move_area">
     	<button id="top" class="move_btn">Top</button><br>

@@ -56,9 +56,9 @@ public class BungController {
 	@RequestMapping("bungDetail.do")
 	public ModelAndView bungDetail(ModelAndView mv, @RequestParam(value="bung_num", required=false) Integer bung_num, String myPageStatus) {
 		System.out.println("myPageStatus : " + myPageStatus);
-		Bung b = bungService.selectBung(bung_num);
 		ArrayList<Tag> t = tagService.selectTag(bung_num);
 		int result = bungService.updateHit(bung_num);
+		Bung b = bungService.selectBung(bung_num);
 		if(b != null && myPageStatus == null)
 		{
 			mv.addObject("myPageStatus", "n");

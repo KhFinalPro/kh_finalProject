@@ -202,7 +202,7 @@
 				type:"post",
 				success:function(data){
 					var value="";
-					value += "<h4>치킨민족 " + data.list[0].bungLike + "명이 관심있고, 총" + data.list[0].bungHit + "번 봤어요</h4>";						
+					value += "<h4>치킨민족 " + data.list[0].bungLike + "명이 관심있고, 총 " + data.list[0].bungHit + "번 봤어요</h4>";						
 					$("#bung_like").html(value);	
 				},
 				error:function(data){
