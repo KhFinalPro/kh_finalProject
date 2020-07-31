@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Menu" alias="Menu"/>
 		<typeAlias type="com.kh.chickenPeople.tag.model.vo.Tag" alias="Tag"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus" alias="SearchStatus"/>
 		<typeAlias type="com.kh.chickenPeople.bung.model.vo.BungTag" alias="BungTag"/>
 		<typeAlias type="com.kh.chickenPeople.member.model.vo.Address" alias="Address"/>
 		<typeAlias type="com.kh.chickenPeople.main.model.vo.BestMenu" alias="BestMenu"/>
@@ -25,6 +26,7 @@
 		<typeAlias type="com.kh.chickenPeople.delivery.model.vo.Delivery" alias="Delivery"/>
 		<typeAlias type="com.kh.chickenPeople.main.model.vo.Search" alias="Search"/>
 		<typeAlias type="com.kh.chickenPeople.Calendar.model.vo.Calendar" alias="Calendar"/>
+		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
 	</typeAliases>
 	
