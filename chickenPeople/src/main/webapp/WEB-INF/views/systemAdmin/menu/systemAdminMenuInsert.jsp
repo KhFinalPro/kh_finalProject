@@ -48,7 +48,7 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">메뉴 관리</p>
 				<br><hr><br>
-				<form action="systemAdminMenu.do" method="get">
+				<form action="systemAdminMenu.do" method="post">
 					<table class="searchTable">
 						<tr>
 							<td><b>메뉴 검색</b></td>
@@ -99,7 +99,6 @@
 				</div>
 				<br>
 				<form action="menuInsertData.do" method="post" enctype="multipart/form-data">
-				
 				<table class="resultTable">
 					<tr>
 						<td rowspan="6">
@@ -109,60 +108,49 @@
 						</td>
 						<td><b>브랜드 명</b></td>
 						<td>
-							<select id="brandCategory" class="brandCategory" name="brandCategory">
-									<option value="total">전체</option>
-									<c:forEach var="m" items="${brandList}">
-										<c:if test="${searchStatus.searchCategory eq m.brand_name }">
-											<option value="${m.brand_name }" selected>${m.brand_name }</option>
-										</c:if>
-										<c:if test="${searchStatus.searchCategory ne m.brand_name }">
-											<option value="${m.brand_name }">${m.brand_name }</option>
-										</c:if>
-									</c:forEach>
-								</select>
+							<select id="brandCategory" class="brandCategory" name="brand_name">
+								<c:forEach var="m" items="${brandList}">
+									<option value="${m.brand_name }">${m.brand_name }</option>
+									
+								</c:forEach>
+							</select>
 						</td>
 					</tr>
 					<tr>
 						
 						<td><b>분류</b>&nbsp;</td>
 						<td>
-							<select id="insertCategory" class="insertCategory" name="insertCategory">
-								<option value="1">뼈치킨</option>
-								<option value="2">순살치킨</option>
-								<option value="3">세트메뉴</option>
-								<option value="4">사이드메뉴</option>
-								<option value="5">음료</option>
-								<option value="6">소스</option>
+							<select id="category" class="category" name="cat_Code">
+								<c:forEach var="c" items="${categoryList }">
+									<option value="${c.cat_Code }">${c.cat_Name }</option> 
+								</c:forEach>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<td><b>메뉴 이름 </b></td>
-						<td><input class="menuSearch" type="text" placeholder="메뉴 이름을 입력해주세요"></td>
+						<td><input name="menu_Name" class="menuSearch" type="text" placeholder="메뉴 이름을 입력해주세요"></td>
 					</tr>
 					<tr>
 						<td><b>메뉴 가격 </b></td>
-						<td><input class="menuSearch" type="text" placeholder="가격을 입력해주세요"> &nbsp;원</td>
+						<td><input name="menu_Price" class="menuSearch" type="text" placeholder="가격을 입력해주세요"> &nbsp;원</td>
 					</tr>
 					<tr>
 						<td><b>메뉴 설명</b></td>
-						<td><textarea cols="55" rows="6"></textarea></td>
+						<td><textarea name="menu_Exp" cols="55" rows="6"></textarea></td>
 					</tr>
+					<c:url var="insert" value="menuInsertData.do"/>
 					<tr>	
 						<td>
-							<button id="update"><b>수정하기</b></button>&nbsp;
-							<c:if test="${menu.menu_Yn eq'N' }">
-								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
-							</c:if>
-							<c:if test="${menu.menu_Yn eq'Y' }">
-								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매처리</b></button>
-							</c:if>
+							<button id="insert" onclick="location.href='${contextPath}/${insert}'"><b>판매처리</b></button>
+							
 						</td>
 					</tr>
 				</table>
 				<div id="fileArea">
 					<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this)">
 				</div>
+					</form>
 				<script>
 					$(function(){
 						$("#fileArea").hide();

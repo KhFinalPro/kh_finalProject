@@ -27,4 +27,8 @@
 		FROM TAG
 		WHERE TAG_NUM = #{tag_num}
 	</select>
+	
+	<delete id="deleteTag" parameterType="_int">
+		DELETE FROM BUNG_TAG WHERE BUNG_NUM = #{bung_num}
+	</delete>
 </mapper>

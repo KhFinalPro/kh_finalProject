@@ -26,6 +26,7 @@
 		<typeAlias type="com.kh.chickenPeople.delivery.model.vo.Delivery" alias="Delivery"/>
 		<typeAlias type="com.kh.chickenPeople.main.model.vo.Search" alias="Search"/>
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Category" alias="Category"/>
+		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
 	</typeAliases>
 	
 	<mappers>
@@ -43,5 +44,6 @@
 		<mapper resource="/mappers/main-mapper.xml"/>
 		<mapper resource="/mappers/coupon-mapper.xml"/>
 		<mapper resource="/mappers/delivery-mapper.xml"/>
+		<mapper resource="/mappers/orderStatus-mapper.xml"/>
 	</mappers>
 </configuration>

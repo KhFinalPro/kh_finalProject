@@ -71,7 +71,7 @@
 		
 		$(".bungae_area").on("click", function() {
 			$bung_num = $(this).children("#bung_num").val();
-			location.href = "bungDetail.do?bung_num="+$bung_num;
+			location.href = "bungDetail.do?bung_num="+$bung_num + "&myPageStatus=y";
 		})
 		
 		$("#create_bung_area").on("click",function(){

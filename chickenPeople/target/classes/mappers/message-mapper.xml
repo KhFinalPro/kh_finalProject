@@ -29,8 +29,35 @@
       ORDER BY SEND_DATE DESC
    </select>
    
+   <!-- 발신메세지 삭제 -->
+   <delete id="deleteMessage">
+   DELETE 
+   FROM message
+   WHERE msg_no=#{deleteMsgNo} AND SEND_ID=#{Id}
+   </delete>
    
+   
+   <!-- 수신메세지 삭제 -->
+   <delete id="deleteRcvMessage">
+   DELETE 
+   FROM message
+   WHERE msg_no=#{deleteMsgNo} AND RCV_ID=#{Id}
+   </delete>
+   
+   <!-- 모달 수신메세지 -->
+   <select id="receiveMessageDetail" resultMap="messageResultSet">
+     SELECT SEND_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS
+     FROM MESSAGE
+     WHERE RCV_ID=#{Id} AND MSG_NO=#{msgNo}
+     ORDER BY SEND_DATE DESC
+   </select>
     
+    
+    <!-- 모달 수신메세지 답장하기 -->
+    <insert id="insertMessageDetail">
+    INSERT INTO MESSAGE(MSG_NO,SEND_ID,RCV_ID,MSG_TITLE,MSG_CONTENTS,SEND_DATE,MSG_STATUS)
+	VALUES(SEQ_MSG_NO.NEXTVAL,#{Id},#{modal_reply_sendId},#{modal_reply_title},#{modal_reply_content},SYSDATE,DEFAULT)
+    </insert>
  
  
  

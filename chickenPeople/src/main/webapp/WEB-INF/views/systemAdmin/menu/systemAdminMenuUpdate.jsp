@@ -87,7 +87,7 @@
 			<div class="menuResultTable">
 				<br><hr><br>
 				
-				<form action="goUpdateMenuPage.do" method="get">
+				<form action="goUpdateMenuPage.do" method="get" enctype="multipart/form-data">
 					<table class="resultTable">
 						<tr>
 							<td rowspan="5">
@@ -145,7 +145,7 @@
 						
 					</table>
 					<div id="fileArea">
-						<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this);">
+						<input type="file" id="thumbnailImg" name="menu_Pic" onchange="LoadImg(this);">
 					</div>
 				</form>
 					<script>

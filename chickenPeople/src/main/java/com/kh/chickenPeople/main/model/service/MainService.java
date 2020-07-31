@@ -19,4 +19,6 @@ public interface MainService {
 
 	ArrayList<Store> searchStore(String brand_code);
 
+	ArrayList<Store> likeStoreList(String id);
+
 }

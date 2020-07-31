@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
@@ -152,12 +153,21 @@ public class MenuController {
 	public ModelAndView goInsertMenuPage(ModelAndView mv) {
 		
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
+
 		mv.addObject("brandList",selectBrandList);
+		mv.addObject("categoryList",selectCategoryList);
+
 		mv.setViewName("systemAdmin/menu/systemAdminMenuInsert");
 		return mv;
 	}
 	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)
 	public ModelAndView goInsertMenu(ModelAndView mv) {
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
+		
+		mv.addObject("brandList",selectBrandList);
+		mv.addObject("categoryList",selectCategoryList);
 		
 		return mv;
 	}
@@ -176,9 +186,11 @@ public class MenuController {
 		return mv;
 	}
 	@RequestMapping(value="goUpdateMenuPage.do", method=RequestMethod.GET)
-	public ModelAndView goUpdateMenu(HttpServletResponse response, ModelAndView mv,Menu menu) {
+	public ModelAndView goUpdateMenu(HttpServletResponse response, ModelAndView mv,Menu menu,
+									 @RequestParam(value="menu_Pic", required=false)MultipartFile file) {
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println("수정:"+menu);
+		System.out.println("파일:"+file);
 		int updateMenu = menuService.updateMenu(menu);
 		
 		PrintWriter out;
