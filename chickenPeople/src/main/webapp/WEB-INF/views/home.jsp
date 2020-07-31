@@ -28,7 +28,7 @@
 		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
 		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
 		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
-		.place_area div #menu_name{margin:0 auto; width:90%;}
+		.menu_area .menu_name{margin:0 auto; width:90%; height:50px;}
 		
 		
    </style>
@@ -92,9 +92,7 @@
 	                    </a>
 	                    <div align="center">
 	                        <h3>${m.brand_name }</h3>
-	                        <h3 id="menu_name">${m.menu_name }</h3>
-	                        <!-- <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp; -->
-	                        
+	                        <h3 class="menu_name">${m.menu_name }</h3>
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -171,7 +169,7 @@
 		
 		$(".menu_area").on("click",function(){
 			$brand_code = $(this).children("#brand_code").val();
-			$menu_name = $(this).children("div").children("#menu_name").html();
+			$menu_name = $(this).children("div").children(".menu_name").html();
 			
 			location.href="searchStore.do?brand_code="+$brand_code + "&menu_name=" + $menu_name;
 		})
