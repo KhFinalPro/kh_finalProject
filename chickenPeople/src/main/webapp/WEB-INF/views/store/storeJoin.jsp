@@ -234,9 +234,10 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
+            </ul>
             
-        </form> 
-          
+        </form>      
+        <br clear="both">
         <%@ include file="../common/footer.jsp"%>
         
     </body>
