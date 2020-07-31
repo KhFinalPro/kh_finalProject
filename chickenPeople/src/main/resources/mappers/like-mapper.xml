@@ -34,6 +34,7 @@
       LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
    </select>
    
+   
    <!-- 찜한 글 -->
    <select id="likeWriteList" resultMap="writelikeResult">
       SELECT B.B_NUM,B.B_WRITER,B.B_TITLE,B.B_CONT,B.B_DATE
