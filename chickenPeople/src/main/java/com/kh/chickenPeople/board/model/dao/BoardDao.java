@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.board.model.vo.Board;
+import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Repository("bDao")
@@ -45,6 +46,7 @@ public class BoardDao {
 		return sqlSessionTemplate.insert("boardMapper.insertBoard",b);
 	}
 
+	
 	
 	
 }

@@ -52,8 +52,15 @@ public class BoradContoller {
 	}
 	
 	
+	@RequestMapping("bdetail.do")
+	public String boardDetail() {
 
-	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
+	return "board/test";
+	}
+
+
+
+/*	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
 	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
 		
 	
@@ -75,22 +82,24 @@ public class BoradContoller {
 		return mv;
 		
 	}
+	*/
 	
-//	@RequestMapping("bInsertView.do")
-//	public String boardInsertView () {
-//		
-//		return "board/boardInsertForm";
-//	}
-//
-//	@RequestMapping(value="ninsert.do",method=RequestMethod.POST)
-//	public String boardInsert(Board b, HttpServletRequest request) {
-//		
-//		int result = boardService.insertBoard(b);
-//		
-//		if(result>0) {
-//			return "redirect:boardList.do";
-//		}else {
-//			throw new BoardException("게시판 등록 실패");
-//		}
-//	}
-}
+	@RequestMapping("bInsertView.do")
+		public String boardInsertView() {
+		
+		return "board/boardInsertForm";}
+	}
+	/*
+	 * @RequestMapping("bInsertView.do") public String boardInsertView () {
+	 * 
+	 * return "board/boardInsertForm"; }
+	 * 
+	 * @RequestMapping(value="ninsert.do",method=RequestMethod.POST) public String
+	 * boardInsert(Board b, HttpServletRequest request) {
+	 * 
+	 * int result = boardService.insertBoard(b);
+	 * 
+	 * if(result>0) { return "redirect:boardList.do"; }else { throw new
+	 * BoardException("게시판 등록 실패"); } }
+	 */
+//}

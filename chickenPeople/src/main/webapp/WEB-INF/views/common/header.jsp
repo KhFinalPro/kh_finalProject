@@ -117,7 +117,7 @@
                         <a href="boardList.do">맛잘알</a>
                     </li>
                     <li>
-                        <a href="noticeList.do">공지사항</a>
+                        <a href="nList.do">공지사항</a>
                     </li>
                 </ul>
 

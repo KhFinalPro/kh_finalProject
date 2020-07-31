@@ -3,7 +3,7 @@
 <mapper namespace="boardMapper">
 	<resultMap id="boardResultSet" type="Board">
 		<id property="bNum" column="B_NUM"/>
-		<result property="bWriter" column="B_WRITER"/>
+		<result property="userId" column="USER_ID"/>
 		<result property="bCate" column="B_CATE"/>
 		<result property="bTitle" column="B_TITLE"/>
 		<result property="bCont" column="B_CONT"/>
@@ -38,6 +38,8 @@
 		WHERE B_NUM =#{bNum}
 	</update>
 	
+
+
 	
 	
 	

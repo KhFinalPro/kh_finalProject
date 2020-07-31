@@ -312,7 +312,7 @@ html, body {
 			<br> <br>
 			<br>
 			<div align="center">
-				<button onclick="toNlist()" value="nlist.do">목록</button>
+				<button onclick="toNlist()" value="nList.do">목록</button>
 				<!-- 왜 안되지? -->
 				<br>
 			</div>
@@ -322,7 +322,7 @@ html, body {
 			<!-- 목록으로~ -->
 			<script>
 		function toNlist (){
-			location.href="nlist.do"; 
+			location.href="nList.do"; 
 		}
 	</script>
 

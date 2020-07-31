@@ -48,14 +48,14 @@
 	}
 	
 	 table {
-	    width: 100%;
-	    border-top: 1px solid #444444;
+	 	
 	    border-collapse: collapse;
 		  }
 	  th, td {
-	    border-bottom: 1px solid #444444;
+	    
 	    padding: 10px;
 	  }
+	
 	  
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -81,46 +81,60 @@
 	  <div style="width:80%; height: 1500px; margin:0 auto; ">
 
 		  <br><br><br><br><br>
-		  <table align="center"  width="80%" > 
+		  <table align="center"  width="100%" border=1px;> 
 		    <br><br>
 	  <h1 align="center">${board.bNum} 맛잘알 게시판 상세보기</h1>
 	    <br><br><br>
+	    
+	    		 <tr style="background:white" align="center">
+	    		 
+				  	<td>번호</td> <!-- 나중에 DB갔다온 후 $붙이기 -->
+				  	<td>분류</td>
+				  	<td width="45%">제목</td>
+				  	
+				  	<td width="15%">날짜</td>
+				  	<td>조회수</td>
+				  	<td>추천수</td>
+				  	
+				  </tr>
 		    	 <tr style="background:#dee2e6">
 				  	<th>${board.bNum}</th> <!-- 나중에 DB갔다온 후 $붙이기 -->
 				  	<th>${board.bCate}</th>
 				  	<th width="45%">${board.bTitle}</th>
-				  	<th>${board.bWriter}</th>
+				  	
 				  	<th width="15%">${board.bDate}</th>
 				  	<th>${board.bCount}</th>
 				  	<th>${board.bHit}</th>
 				  	
 				  </tr>
-			
+					<tr>
+						<td colspan="6"  align="right">작성자: ${board.userId}</td>
+					</tr>
 				  <tr>
-				 	<td colspan="5" >
+				 	<td colspan="6" >
 				 	${board.bCont }
 				 	<br><br><br><br><br><br><br>
 				 	<br><br><br><br><br><br><br><br>
 				 	<br><br><br><br><br><br><br><br>
-				 	<td>
+				 	</td>
 				 </tr>
 				 
 				  <!--  insert 완료후 작성 -->
 		 </table>
 		 
 		 <div style="float:right;">
-			   <c:if test="${loginUser.id eq board.bWriter }">
+			   <c:if test="${loginUser.id eq board.userId }">
 				  	<button class="button" onclick ="UpBoard()">수정하기</button>
 				  	<button class="button" onclick ="DelBoard()">삭제하기</button>
 			 </c:if>
 		 </div>
 		 <br><br> <br><br> <br><br>
 		 <!-- 수정하기 -->
-		 <script>
-		/*  	function UpBoard(){
-		 		location.href="nupView.do?nNum=${notice.nNum}";
-		 	} */
-		 </script>
+		<!--  <script>
+		 	function UpBoard(){
+		 		location.href="boardUpView.do?bNum=${board.bNum}";
+		 	} 
+		 </script> -->
 		 
 		 <!-- 삭제하기 -->
 		 <script>
@@ -130,112 +144,62 @@
 		 </script>
 		 
 		 <!-- 댓글 등록 -->
-		 <button style=float:right;">추천하기</button>
-		 <table align="center" width="500" >
-		 	<tr>
-				<td><textarea cols="80" rows="7" id="rContent"></textarea></td>		 	
+		 
+		 <table align="center" width="100%"  border="1" >
+		 	<tr width="80%">
+				<td><textarea cols="85" rows="7" id="rContent"></textarea></td>		 	
 				<td>
-					<input type="button" id ="rSubmit" class="button" value="등록하기">
+					<input type="button" id ="rSubmit"  value="등록하기">
+					<button >추천하기</button>
 				</td>		 	
 		 	</tr>
-		 </table>
-		 
-		 <!-- 댓글 목록 -->
-		 <table align="center" width="500" border="1" cellspacing="0" id="rtb">
-		 	<thead>
+		 	
+		 	 <thead  border="1">
 		 		<tr>
 		 			<td colspan="2"><b id="rCount"></b></td>
 		 		</tr>
 		 	</thead>
-		 	<tbody>
+		 	<tbody style="padding-left:10px;">
+	 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 	</tbody>
+		 </table>
+		 
+		 <!-- 댓글 목록 -->
+		 <table align="center" width="500" border="1" cellspacing="0" id="rtb">
+		 	<thead  border="1">
+		 		<tr>
+		 			<td colspan="2"><b id="rCount"></b></td>
+		 		</tr>
+		 	</thead>
+		 	<tbody >
+	 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
+		 			<tr>
+		 			<td colspan="2">여긴 제목?<b id="rCount">여기가 내용</b></td>
+		 		</tr>
 		 	</tbody>
 		 </table>
 		 
 		 <!-- 댓글 ajax -->
-		 <script>
-		 	$(function(){
-		 		getReplyList();
-		 		
-		 		setInterval(function(){
-		 			getReplyList();
-		 		},10000);
-		 		
-		 		$("#rSubmit").on("click",function(){
-		 			var rContent = $("#rContent").val();
-		 			var refBwriter =${board.bWriter};
-		 			
-		 			$.ajax({
-		 				url:"addReply.do",
-		 				data:{rContent:rContent, refBwriter:refBwriter},
-		 				success:function(data){
-		 					if(data == "success"){
-		 						getReplyList();
-		 						
-		 						$("#rContent").val("");
-		 					}
-		 				},
-		 				error:function(request,status,errorData){
-		 					alert("error code:"+request.status+"\n"
-		 							+"message:"+request.responseText
-		 							+"error"+errorData);
-		 				}
-		 			})
-		 		})
-		 	})
-		 	
-		 	
-		 	
-		 	/* function getReplyList(){
-		 		var bWriter = ${board.bWriter};
-		 		
-		 		$.ajax({
-		 			url:"rList.do",
-		 			data:{bWriter,bWriter},
-		 			dataType="json",
-		 			success:function(data){
-		 				$tableBody=$("rtb tbody");
-		 				$tableBody.html("");
-		 				
-		 				var $tr; 
-		 				var $userId; 
-		 				var $repCont; 
-		 				var $repUpDate; 
-		 				
-		 				$("#rCount").text("댓글("+data.length+")");
-		 				
-		 				if(data.length>0){
-		 					for(var i in data){
-		 						for(var i in data){
-		 							$tr=$("<tr>");
-		 							$userId=$("<td width='100'>").text(data[i].userId);
-									$refCont=$("<td>").text(data[i].refCont);
-									$refUpDate=$("<td width='100'>").text(data[i].repUpDate);
-									
-									$tr.append($userId);
-									$tr.append($refCont);
-									$tr.append($refUpDate);
-									$tableBody.append($tr);
-								}
-							}else{						// 댓글이 없으면
-								$tr = $("<tr>");
-								$refCont=$("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-								$tr.append($refCont);
-								
-								$tableBody.append($tr);
-							}
-							
-							
-							
-							
-						},
-						error:function(request, status, errorData){
-							alert("error code: " + request.status + "\n"
-									+"message: " + request.responseText
-									+"error: " + errorData);
-						}
-					})
-				} */
-		 </script>
+		
 
 			 <br><br> <br><br> <br><br>
 	 <div align="center">

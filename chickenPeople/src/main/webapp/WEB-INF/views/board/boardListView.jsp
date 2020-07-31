@@ -120,7 +120,7 @@
 						  			${b.bTitle }
 						  		</c:if>
 					  	</td>
-						  	<td>${b.bWriter}</td>
+						  	<td>${b.userId}</td>
 						  	<td width="15%">${b.bDate}</td>
 						  	<td >${b.bCount}</td>
 						  	<td >${b.bHit}</td>

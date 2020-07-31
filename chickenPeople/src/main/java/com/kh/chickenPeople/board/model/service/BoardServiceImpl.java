@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.board.model.dao.BoardDao;
 import com.kh.chickenPeople.board.model.vo.Board;
+import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Service("bService")
