@@ -1,8 +1,11 @@
 package com.kh.chickenPeople.menu.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.menu.model.service.MenuService;
+import com.kh.chickenPeople.menu.model.vo.Category;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
@@ -64,7 +68,7 @@ public class MenuController {
 			listCount = menuService.getSearchListCount(menuSearch);		//검색 결과의 갯수 count
 			pi = Pagination.getPageInfo(currentPage, listCount,5);		
 			resultMenuList = menuService.selectMenuSearchList(menuSearch,pi);
-			
+			System.out.println("검색:"+resultMenuList);
 			mv.addObject("searchStatus",menuSearch);
 			mv.addObject("listCount",listCount);
 			mv.addObject("menuList",resultMenuList);
@@ -74,6 +78,7 @@ public class MenuController {
 			listCount=menuService.getListCount();						//전체 게시글 갯수 count
 			pi = Pagination.getPageInfo(currentPage, listCount,5);
 			resultMenuList = menuService.selectMenuList(pi);
+			System.out.println("전체:"+resultMenuList);
 			mv.addObject("searchStatus",menuSearch);
 			mv.addObject("listCount",listCount);
 			mv.addObject("menuList",resultMenuList);
@@ -154,6 +159,39 @@ public class MenuController {
 	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)
 	public ModelAndView goInsertMenu(ModelAndView mv) {
 		
+		return mv;
+	}
+	@RequestMapping(value="goUpdateMenu.do")
+	public ModelAndView goUpdateMenuPage(ModelAndView mv, 
+										 @RequestParam(value="menuNum")int menuNum) {
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
+		Menu selectOneMenu = menuService.selectOneMenu(menuNum);
+		
+		mv.addObject("brandList",selectBrandList);
+		mv.addObject("categoryList",selectCategoryList);
+		System.out.println(selectCategoryList);
+		mv.addObject("menu",selectOneMenu);
+		mv.setViewName("systemAdmin/menu/systemAdminMenuUpdate");
+		return mv;
+	}
+	@RequestMapping(value="goUpdateMenuPage.do", method=RequestMethod.GET)
+	public ModelAndView goUpdateMenu(HttpServletResponse response, ModelAndView mv,Menu menu) {
+		response.setContentType("text/html; charset=UTF-8");
+		System.out.println("수정:"+menu);
+		int updateMenu = menuService.updateMenu(menu);
+		
+		PrintWriter out;
+		if(updateMenu>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당항목이 수정되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return mv;
 	}
 }

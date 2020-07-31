@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
+import com.kh.chickenPeople.menu.model.vo.Category;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
@@ -48,6 +49,12 @@ public class MenuDao {
 	}
 	public int changeMenuN(int menuNum) {
 		return sqlSessionTemplate.update("menuMapper.changeMenuN",menuNum);
+	}
+	public int updateMenu(Menu m) {
+		return sqlSessionTemplate.update("menuMapper.updateMenu",m);
+	}
+	public ArrayList<Category> selectCategoryList() {
+		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectCategory");
 	}
 
 

@@ -101,7 +101,7 @@
 				</div>
 				<table class="resultTable">
 					<tr>
-						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="500px" height="500px"></td>
+						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px"></td>
 						<td><b>메뉴번호</b>&nbsp;${menu.menu_Num }</td>
 						<td><b>${menu.brand_Name }</b></td>
 					</tr>
@@ -120,13 +120,15 @@
 							<c:param name="menuNum" value="${menu.menu_Num }"/>
 							<c:param name="menuYN" value="${menu.menu_Yn }"/>
 						</c:url>
+						<c:url var="update" value="goUpdateMenu.do">
+							<c:param name="menuNum" value="${menu.menu_Num }"/>
+						</c:url>
 						<td colspan="2"><b>판매여부</b>&nbsp;
 							<c:if test="${menu.menu_Yn eq 'Y'}"> 판매중지 </c:if>
 							<c:if test="${menu.menu_Yn eq 'N'}"> 판매중 </c:if>
 						</td>
-							
 						<td>
-							<button id="update"><b>수정하기</b></button>&nbsp;
+							<button id="update" onclick="location.href='${contextPath}/${update}'"><b>수정하기</b></button>&nbsp;
 							<c:if test="${menu.menu_Yn eq'N' }">
 								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
 							</c:if>

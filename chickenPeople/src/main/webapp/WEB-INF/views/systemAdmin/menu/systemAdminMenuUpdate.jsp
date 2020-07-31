@@ -37,6 +37,8 @@
 </style>
 </head>
 <body>
+<jsp:include page="../../common/systemAdminHeader.jsp"/>
+
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item">
@@ -84,46 +86,86 @@
 			</div><!-- menuHeader end -->
 			<div class="menuResultTable">
 				<br><hr><br>
-				<table class="resultTable">
-					<tr>
-						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="500px" height="500px"></td>
-						<td><b>메뉴번호</b>&nbsp;${menu.menu_Num }</td>
-						<td><b>${menu.brand_Name }</b></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<b>분류</b>
-							&nbsp;${menu.cat_Name}</td>
-					</tr>
-					<tr>
-						<td><b>메뉴 이름 </b>&nbsp;${menu.menu_Name }</td>
-						<td><b>메뉴 가격 </b>&nbsp;${menu.menu_Price } &nbsp;원</td>
-					</tr>
-					<tr>
-						<td colspan="2"><b>메뉴 설명</b><br>&nbsp;${menu.menu_Exp }</td>
-					</tr>
-					<tr>
-						<c:url var="delete" value="deleteMenu.do">
-							<c:param name="menuNum" value="${menu.menu_Num }"/>
-							<c:param name="menuYN" value="${menu.menu_Yn }"/>
-						</c:url>
-						<td colspan="2"><b>판매여부</b>&nbsp;
-							<c:if test="${menu.menu_Yn eq 'Y'}"> 판매중지 </c:if>
-							<c:if test="${menu.menu_Yn eq 'N'}"> 판매중 </c:if>
-						</td>
-							
-						<td>
-							<button id="update"><b>수정하기</b></button>&nbsp;
-							<c:if test="${menu.menu_Yn eq'N' }">
-								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
-							</c:if>
-							<c:if test="${menu.menu_Yn eq'Y' }">
-								<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매처리</b></button>
-							</c:if>
-						</td>
-					</tr>
-					
-				</table>
+				
+				<form action="goUpdateMenuPage.do" method="get">
+					<table class="resultTable">
+						<tr>
+							<td rowspan="5">
+								<div id="contentImgArea">
+									<img id="contentImg" src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px">
+								</div>
+							</td>
+							<td><b>메뉴번호</b>&nbsp;<input type="text" name="menu_Num" class="menuSearch" value="${menu.menu_Num }" readonly></td>
+							<td><b><input type="text" name="brand_Name" class="menuSearch" value="${menu.brand_Name }" readonly></b></td>
+							<c:forEach var="check" items="${brandList }">
+								<c:if test="${check.brand_name eq menu.brand_Name}">
+									<input type="hidden" name="brand_Code" value="${check.brand_code }"/>
+								</c:if>
+							</c:forEach>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<b>분류</b>
+								&nbsp;
+								<select id="category" class="category" name="cat_Code">
+									<c:forEach var="c" items="${categoryList }">
+										<option value="${c.cat_Code }">${c.cat_Name }</option> 
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>메뉴 이름 </b>&nbsp;<input type="text" name="menu_Name" class="menuSearch" value="${menu.menu_Name }"></td>
+							<td><b>메뉴 가격 </b>&nbsp;<input type="text" name="menu_Price" class="menuSearch" value="${menu.menu_Price }"> &nbsp;원</td>
+						</tr>
+						<tr>
+							<td colspan="2"><b>메뉴 설명</b>
+								<br>&nbsp;<textarea rows="5" name="menu_Exp" cols="100">${menu.menu_Exp }</textarea></td>
+						</tr>
+						<tr>
+							<c:url var="delete" value="deleteMenu.do">
+								<c:param name="menuNum" value="${menu.menu_Num }"/>
+								<c:param name="menuYN" value="${menu.menu_Yn }"/>
+							</c:url>
+							<td colspan="2"><b>판매여부</b>&nbsp;
+								<c:if test="${menu.menu_Yn eq 'Y'}"> <input type="hidden" name="menu_Yn" value="Y">판매중지 </c:if>
+								<c:if test="${menu.menu_Yn eq 'N'}"> <input type="hidden" name="menu_Yn" value="N">판매중 </c:if>
+							</td>
+								
+							<td>
+								<input type="submit" id="update"><b>수정하기</b>&nbsp;
+								<c:if test="${menu.menu_Yn eq'N' }">
+									<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
+								</c:if>
+								<c:if test="${menu.menu_Yn eq'Y' }">
+									<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매처리</b></button>
+								</c:if>
+							</td>
+						</tr>
+						
+					</table>
+					<div id="fileArea">
+						<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this);">
+					</div>
+				</form>
+					<script>
+						$(function(){
+							$("#fileArea").hide();
+							$("#contentImgArea").click(function(){
+								$("#thumbnailImg").click();
+							})
+						})
+						function LoadImg(value){
+							console.log("성공");
+							if(value.files && value.files[0]){
+								var reader = new FileReader();
+								reader.onload = function(e){
+									$("#contentImg").attr("src",e.target.result);
+								}
+								reader.readAsDataURL(value.files[0]);
+							}
+						}
+					</script>
 			</div>
 		</div><!-- class item end -->
 	</div><!-- class main_container end -->

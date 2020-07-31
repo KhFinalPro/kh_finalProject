@@ -104,7 +104,7 @@
 					<tr>
 						<td rowspan="6">
 							<div id="contentImgArea">
-								<img id="contentImg" src="noimage.jpg" onerror="this.onerror=null; this.src='resources/images/noneImage.png'"width="450px" height="450px">
+								<img id="contentImg" src="" onerror="this.src='resources/images/noneImage.png'" width="450px" height="450px">
 							</div>
 						</td>
 						<td><b>브랜드 명</b></td>
@@ -161,7 +161,7 @@
 					</tr>
 				</table>
 				<div id="fileArea">
-					<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this,1)">
+					<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this)">
 				</div>
 				<script>
 					$(function(){
@@ -170,13 +170,15 @@
 							$("#thumbnailImg").click();
 						})
 					})
-					function LoadImg(value,num){
-						
-						if(value.files&&value.files[0]){
-							var reader = new FileReader();
+					function LoadImg(value){
+						if(value.files && value.files[0]){
+				   			var reader = new FileReader();
 							reader.onload = function(e){
+								console.log("사진변경");
 								$("#contentImg").attr("src",e.target.result);
+								console.log("성공");
 							}
+							reader.readAsDataURL(value.files[0]);
 						}
 					}
 				</script>
