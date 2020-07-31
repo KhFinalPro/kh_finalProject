@@ -715,38 +715,53 @@
             }
     </style>
     <body>
+      <jsp:include page="../common/header.jsp"/>
+        <br><br><br><br><br><br><br><br><br><br><br>
         <input type="hidden" id="board_id" name="board_id" value="${boardView.id}" />
         <div align="center">
             </br>
             </br>
-            <table border="1" width="1200px" >
-                <tr>
-                    <td colspan="2" align="right">
-                        <input type="password" id="password" name="password" style="width:200px;" maxlength="10" placeholder="패스워드"/>
-                        <button id="modify" name="modify">글 수정</button>
-                        <button id="delete" name="delete">글 삭제</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="900px">
-                        제목: 댓글 테스트
-                    </td>
-                    <td>
-                        작성자: 허스크
-                    </td>
-                </tr>
-                <tr height="200px">
-                    <td colspan="2" valign="top">
-                        게시글 내용
-                    </td>
-                </tr>
-            </table>
-            <table border="1" width="1200px" id="reply_area">
-                <tr reply_type="all"><!-- 뒤에 댓글 붙이기 쉽게 선언 -->
-                    <td colspan="4"></td>
-                </tr>
-                <!-- 댓글이 들어갈 공간 -->
-            </table>
+            
+              <table align="center"  width="1200px" border=1px;> 
+		    <br><br>
+	  <h1 align="center">${board.bNum} 맛잘알 게시판 상세보기</h1>
+	    <br><br><br>
+	    
+	    		 <tr style="background:white" align="center">
+	    		 
+				  	<td>번호</td> <!-- 나중에 DB갔다온 후 $붙이기 -->
+				  	<td>분류</td>
+				  	<td width="45%">제목</td>
+				  	
+				  	<td width="15%">날짜</td>
+				  	<td>조회수</td>
+				  	<td>추천수</td>
+				  	
+				  </tr>
+		    	 <tr style="background:#dee2e6">
+				  	<th>${board.bNum}</th> <!-- 나중에 DB갔다온 후 $붙이기 -->
+				  	<th>${board.bCate}</th>
+				  	<th width="45%">${board.bTitle}</th>
+				  	
+				  	<th width="15%">${board.bDate}</th>
+				  	<th>${board.bCount}</th>
+				  	<th>${board.bHit}</th>
+				  	
+				  </tr>
+					<tr>
+						<td colspan="6"  align="right">작성자: ${board.userId}</td>
+					</tr>
+				  <tr>
+				 	<td colspan="6" >
+				 	${board.bCont }
+				 	<br><br><br><br><br><br><br>
+				 	<br><br><br><br><br><br><br><br>
+				 	<br><br><br><br><br><br><br><br>
+				 	</td>
+				 </tr>
+				 
+				  <!--  insert 완료후 작성 -->
+		
             <table border="1" width="1200px" bordercolor="#46AA46">
                 <tr>
                     <td width="500px">
@@ -761,13 +776,27 @@
                     </td>
                 </tr>
             </table>
+            <table border="1" width="1200px" id="reply_area">
+                <tr reply_type="all"><!-- 뒤에 댓글 붙이기 쉽게 선언 -->
+                    <td colspan="4"></td>
+                </tr>
+                <!-- 댓글이 들어갈 공간 -->
+            </table>
             <table width="1200px">
                 <tr>
                     <td align="right">
-                        <button id="list" name="list">게시판</button>
+                        <button onclick="toBlist"  value="boardList.do">게시판</button>
                     </td>
                 </tr>
             </table>
         </div>
+	<script>
+		function toBlist (){
+			location.href="boardList.do"; 
+		}
+	</script>
+        
+        <!-- 목록으로~ -->
+        <jsp:include page="../common/footer.jsp"/>
     </body>
 </html>

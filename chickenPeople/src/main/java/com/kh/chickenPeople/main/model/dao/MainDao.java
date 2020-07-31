@@ -36,4 +36,9 @@ public class MainDao {
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.searchStore", brand_code);
 	}
 
+	public ArrayList<Store> likeStoreList(String id) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.likeStoreList", id);
+	}
+
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +47,12 @@
         </div>
     <br clear="both"><br><br>
     
-	<h2 align="center" id="first_title">"${menu_name }"를 판매하는 매장</h2>
+    <c:if test="${menu_name != '' }">
+		<h2 align="center" id="first_title">"${menu_name }"를 판매하는 매장</h2>
+	</c:if>
+	<c:if test="${menu_name == '' }">
+		<h2 align="center" id="first_title">"${storeList.get(0).brand_name }"매장</h2>
+	</c:if>
 	
 	<section class="main_area">
 	    
@@ -60,7 +66,7 @@
 		            <div align="center">
 		                <h3>${s.brand_name }</h3>
 		                <h3>${s.sto_name }</h3>
-		                <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp;
+		                <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${s.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                40~50분 소요예정
 		            </div>
 		        </div>

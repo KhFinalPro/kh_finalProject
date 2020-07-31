@@ -60,7 +60,7 @@ public class BoradContoller {
 
 
 
-/*	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
+	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
 	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
 		
 	
@@ -71,7 +71,7 @@ public class BoradContoller {
 		System.out.println("b조회수"+board);
 		if(board !=null) {
 				mv.addObject("board",board);
-				mv.setViewName("board/boardDetailView");
+				mv.setViewName("board/test");
 			}else {
 				throw new BoardException("게시판 조회 실패");
 			}
@@ -82,7 +82,7 @@ public class BoradContoller {
 		return mv;
 		
 	}
-	*/
+	
 	
 	@RequestMapping("bInsertView.do")
 		public String boardInsertView() {

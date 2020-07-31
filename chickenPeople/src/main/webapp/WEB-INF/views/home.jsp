@@ -28,6 +28,7 @@
 		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
 		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
 		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
+		.menu_area .menu_name{margin:0 auto; width:90%; height:50px;}
 		
 		
    </style>
@@ -68,7 +69,7 @@
 	                    <div align="center">
 	                        <h3>${b.brand_name }</h3>
 	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" pattern=".00"/>&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	                        40~50분 소요예정
 	                    </div>
 	                </div>
@@ -91,9 +92,7 @@
 	                    </a>
 	                    <div align="center">
 	                        <h3>${m.brand_name }</h3>
-	                        <h3 id="menu_name">${m.menu_name }</h3>
-	                        <!-- <img class="start" src="resources/images/start.png" alt="start"> 4.5&nbsp;&nbsp;&nbsp;&nbsp; -->
-	                        
+	                        <h3 class="menu_name">${m.menu_name }</h3>
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -101,10 +100,30 @@
             
             
         </section>
-    
-    
-	    
+
+	    <h2 align="center" class="title">찜한 매장</h2>    
+    	<c:if test="${!empty likeStoreList }">
 	
+	        <section class="main_area">
+	            
+	            <div class="second_area">
+            	<c:forEach var="b" items="${likeStoreList }" begin="0" end="4" step="1">
+	                <div class="place_area bestSto_area" style="margin-right: 10px;">
+	                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
+	                    <a href="#">
+	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
+	                    </a>
+	                    <div align="center">
+	                        <h3>${b.brand_name }</h3>
+	                        <h3>${b.sto_name }</h3>
+	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
+	                        40~50분 소요예정
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div>
+	        </section>
+		</c:if>
 	    
 	    
 	<%@ include file="../views/common/footer.jsp" %>
@@ -150,7 +169,7 @@
 		
 		$(".menu_area").on("click",function(){
 			$brand_code = $(this).children("#brand_code").val();
-			$menu_name = $(this).children("div").children("#menu_name").html();
+			$menu_name = $(this).children("div").children(".menu_name").html();
 			
 			location.href="searchStore.do?brand_code="+$brand_code + "&menu_name=" + $menu_name;
 		})

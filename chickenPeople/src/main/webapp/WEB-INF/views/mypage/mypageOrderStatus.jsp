@@ -1,0 +1,183 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배달현황</title>
+<style>
+	/* delivery section*/
+    #my_delivery{margin: 0 auto; margin-top:20px; width: 70%; height: 700px; overflow: auto;}
+    #my_delivery #my_delivery_head{margin: 0 auto; width: 100%; height: 80px; line-height: 40px; background-color: white; box-shadow: 0px 10px 5px rgb(235, 235, 232);}
+    #my_delivery #my_delivery_head>h2{margin-left: 40px; float: left;}
+
+    #my_delivery #my_delivery_info_area{margin: 0 auto; width: 100%; margin-top: 20px;}
+    /* #my_delivery #my_delivery_info_area .my_delivery{display: inline-block;} */
+    #my_delivery #my_delivery_info_area .my_delivery{float:left; width: 49%; height: 100%;}
+    #my_delivery #my_delivery_info_area #my_delivery_info{border-right: 1px solid black;}
+    #my_delivery #my_delivery_info_area #my_delivery_info .delivery_info{margin-bottom: 5px; margin-left: 20px; font-size: 25px; color:rgb(199, 198, 198)}
+    #my_delivery #my_delivery_info_area #my_delivery_info .order_num{color: blue;}
+    #my_delivery #my_delivery_info_area #my_delivery_info .delivery_info_detail{margin: 0 auto; margin-left: 20px; font-size: 20px;}
+    #my_delivery #my_delivery_info_area #my_delivery_info .brand_logo{width: 200px; height: 100px;}
+
+    #my_delivery #my_delivery_info_area #my_menu_info_area{}
+    #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area{margin-left: 20px;}
+    #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area .menu_info{float: left; margin-right: 10px;}
+    #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area .menu_num{margin:0; font-size: 25px; top:0px;}
+    #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area img{width: 100px; height: 100px;}
+
+    #map{margin: 0 auto; margin-top: 20px; width: 70%; height: 300px; border: 1px solid black;}
+
+    .delivery_info_title{text-align: center;}
+    
+    #delivery_status{color:blue;}
+</style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
+	<input type="hidden" id="brand_code" value="${menuList.get(0).brand_code }"/>
+	<input type="hidden" id="sto_addr" value="${menuList.get(0).sto_addr }"/>
+	<jsp:include page="../common/header.jsp"/>
+	
+	<jsp:include page="../common/sidebar.jsp"/>
+	
+	<div id="my_delivery">
+        <div id="my_delivery_head">
+            <h2>주문일자 : ${paymentList.pay_date }</h2>
+            <h2 id="delivery_status">배달현황 : ${paymentList.ord_status }</h2>
+        </div>
+        <div id="my_delivery_info_area">
+            <!-- 제일 좌측 주문정보 -->
+            <div id="my_delivery_info" class="my_delivery">
+                <h2 class="delivery_info_title">주문정보</h2>
+                <img class="brand_logo delivery_info" src="resources/images/${menuList.get(0).brand_pic }.png">
+                <p id="order_num" class="delivery_info">주문번호:</p>
+                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
+                <p id="delivery_time" class="delivery_info">배달 시간:</p>
+                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
+                <p id="delivery_addr" class="delivery_info">주소:</p>
+                <p class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
+                <p id="total_price" class="delivery_info">합계금액:</p>
+                <p class="delivery_total_price delivery_info_detail"><fmt:formatNumber value="${paymentList.pay_toal }" type="currency"/></p>
+            </div>
+
+            <!-- 가운데 메뉴 정보 -->
+            <div id="my_menu_info_area" class="my_delivery">
+                <h2 class="delivery_info_title">메뉴정보</h2>
+                <c:forEach var="m" items="${menuList }">
+	                <div class="menu_area">
+	                	<input type="hidden" id="menu_num" value="${m.menu_num }">
+	                    <p class="menu_num menu_info">${m.mord_num }</p>
+	                    <img class="menu_pic menu_info" src="resources/menu/${m.menu_pic }.jpg">
+	                    <p class="menu_name menu_info">핫 후라이드<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
+	                </div>
+	                <br clear="both">
+	                <br>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+    <div id="map">지도</div>
+	
+	<br clear="both">
+	
+	<jsp:include page="../common/footer.jsp"/>
+</body>
+<script>
+	$(function(){
+		
+	    $(".brand_logo").on("click",function(){
+	    	location.href="searchStore.do?brand_code="+$("#brand_code").val();
+	    })
+	    
+	    //새로고침
+	    setInterval(function(){
+	    	location.href="orderStatus.do?id="+ $("#id").val();
+	    }, 5000);
+	    
+	    
+	    //메뉴 사진 hover시 ajax
+	    /* $(".menu_pic").hover(function(){
+	    	$.ajax({
+	    		
+	    	})
+	    }) */
+	    
+	})
+	
+	
+	
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.516186, 127.059691), // 지도의 중심좌표
+        level: 7 // 지도의 확대 레벨
+    };
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	 
+	
+	geocoder.addressSearch($(".delivery_addr").text(), function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+	        });
+	        infowindow.open(map, marker);
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	/* // 마커를 표시할 위치와 title 객체 배열입니다 
+	var positions = [
+	    {
+	        title: '사용자', 
+	        latlng: new kakao.maps.LatLng(37.516186, 127.059691)
+	    },
+	    {
+	        title: '매장', 
+	        latlng: new kakao.maps.LatLng(37.486888, 127.103443)
+	    }
+	];
+	
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	    
+	for (var i = 0; i < positions.length; i ++) {
+	    
+	    // 마커 이미지의 이미지 크기 입니다
+	    var imageSize = new kakao.maps.Size(24, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	    
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: positions[i].latlng, // 마커를 표시할 위치
+	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+	} */
+</script>
+</html>
