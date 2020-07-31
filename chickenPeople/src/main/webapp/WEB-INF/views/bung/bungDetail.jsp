@@ -20,13 +20,13 @@
 		#main_section>#head_area>#title>h2{margin-top: 100px;}
 		/*관심*/
 		#main_section>#head_area>#good>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
-		#main_section>#head_area>#good>h3:hover{color:black;}
+		#main_section>#head_area>#good>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#good_contents{margin-left: 10px;}
 		#main_section>#head_area>.head_second_line{float: left;}
 		
 		/*채팅*/
 		#main_section>#head_area>#chatting>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
-		#main_section>#head_area>#chatting>h3:hover{color:black;}
+		#main_section>#head_area>#chatting>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
@@ -54,13 +54,18 @@
 		#main_section>.info_four_area{float: left;}
 		
 		/*태그*/
-		#main_section>#tag_area{margin: 20px;}
+		#main_section>#tag_area{margin: 20px; color:blue;}
+		#main_section>#tag_area:hover{cursor:pointer;}
 		
 		/*번개 내용 / 소개 */
 		#main_section>#text_area{margin: auto; width: 90%;}
-		#main_section>#text_area>textarea{margin: auto; width: 100%;}
+		#main_section>#text_area>textarea{margin: auto; width: 100%; font-size: 20px; font-weight: 600; resize:none;}
+		
+		/*번개 수정하기 버튼*/
+		#UpdateBung{float:right; height: 50px; width: 200px; font-size:25px; font-weight:600; border: 0px;}
+		#UpdateBung:hover{color:#2ac1bc; background-color: white;}
 	</style>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf020d83fc09d8567b48751e315e48a&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -71,6 +76,11 @@
 	<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
 	
     <section id="main_section">
+    	<c:if test="${myPageStatus == 'y' }">
+    		<button id="UpdateBung">번개 수정하기</button>
+        </c:if>
+        
+        
         <div id="head_area">
             <div id="brand_logo" class="head_line">
                 <img src="resources/images/${bung.bung_img }.png">
@@ -134,7 +144,7 @@
 
         <div id="text_area">
             <h4>치킨번개 모집 내용 / 소개</h4>
-            <textarea name="contents" id="contents" cols="127" rows="10">${bung.bung_int }</textarea>
+            <textarea name="contents" id="contents" cols="127" rows="10" readonly>${bung.bung_int }</textarea>
         </div>
     </section>
 
@@ -164,6 +174,7 @@
 	
 	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 	
+	        
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,
@@ -192,7 +203,7 @@
 				type:"post",
 				success:function(data){
 					var value="";
-					value += "<h4>치킨민족 " + data.list[0].bungLike + "명이 관심있고, 총" + data.list[0].bungHit + "번 봤어요</h4>";						
+					value += "<h4>치킨민족 " + data.list[0].bungLike + "명이 관심있고, 총 " + data.list[0].bungHit + "번 봤어요</h4>";						
 					$("#bung_like").html(value);	
 				},
 				error:function(data){
@@ -207,6 +218,12 @@
 			$tag_num = $(this).attr('value');
 			
 			location.href="bungTagList.do?tag_num=" + $tag_num;
+		})
+		
+		$("#UpdateBung").on("click",function(){
+			$bung_num = $("#bung_num").val();
+			alert($bung_num);
+			location.href="bungUpdateView.do?bung_num=" + $bung_num;
 		})
 	})
 </script>

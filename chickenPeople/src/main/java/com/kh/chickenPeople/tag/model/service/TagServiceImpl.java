@@ -38,4 +38,10 @@ public class TagServiceImpl implements TagService{
 		return tagDao.selectTagName(tag_num);
 	}
 
+	@Override
+	public int deleteTag(int bung_num) {
+		// TODO Auto-generated method stub
+		return tagDao.deleteTag(bung_num);
+	}
+
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderStatusMapper">
+	
+	<resultMap id="orderStatusResultSet" type="OrderStatus">
+		<id property="ord_num" column="ORD_NUM"/>
+		<result property="pay_date" column="PAY_DATE"/>
+		<result property="pay_addr" column="PAY_ADDR"/>
+		<result property="pay_toal" column="PAY_TOAL"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="sto_num" column="STO_NUM"/>
+		<result property="menu_num" column="MENU_NUM"/>
+		<result property="brand_code" column="BRAND_CODE"/>
+		<result property="mord_num" column="MORD_NUM"/>
+		<result property="menu_name" column="MENU_NAME"/>
+		<result property="menu_price" column="MENU_PRICE"/>
+		<result property="menu_pic" column="MENU_PIC"/>
+		<result property="brand_pic" column="BRAND_PIC"/>
+		<result property="sto_lat" column="STO_LAT"/>
+		<result property="sto_lng" column="STO_LNG"/>
+		<result property="lat" column="LAT"/>
+		<result property="lng" column="LNG"/>
+		<result property="sto_addr" column="STO_ADDR"/>
+	</resultMap>
+	
+	<select id="paymentInfoSelect" parameterType="string" resultMap="orderStatusResultSet">
+		SELECT P.ORD_NUM, TO_DATE(PAY_DATE,'YYYY/MM/DD HH24:MI') AS PAY_DATE, PAY_ADDR, PAY_TOAL, ORD_STATUS
+		FROM PAYMENT P
+		JOIN JUMUN J ON P.ORD_NUM = J.ORD_NUM
+		WHERE J.USER_ID = #{id} AND ORD_CANCEL = 'N' AND NOT ORD_STATUS = '배달완료'
+		ORDER BY PAY_DATE DESC
+	</select>
+	
+	<select id="menuInfoSelect" parameterType="string" resultMap="orderStatusResultSet">
+		SELECT OP.STO_NUM, M.MENU_NUM, B.BRAND_CODE, MORD_NUM, MENU_NAME, MENU_PRICE, MENU_PIC, BRAND_PIC, STO_LAT, STO_LNG, STO_ADDR
+		FROM ORDER_PRO OP
+		JOIN STORE_INFO SI ON OP.STO_NUM = SI.STO_NUM
+		JOIN JUMUN_DETAIL JD ON OP.ORD_NUM = JD.ORD_NUM
+		JOIN MENU M ON JD.MENU_NUM = M.MENU_NUM
+		JOIN BRAND B ON M.BRAND_CODE = B.BRAND_CODE
+		WHERE OP.ORD_NUM = #{ord_num}
+	</select>
+</mapper>

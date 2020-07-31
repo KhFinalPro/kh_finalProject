@@ -39,4 +39,10 @@ public class MainServiceImpl implements MainService {
 		// TODO Auto-generated method stub
 		return mainDao.searchStore(brand_code);
 	}
+
+	@Override
+	public ArrayList<Store> likeStoreList(String id) {
+		// TODO Auto-generated method stub
+		return mainDao.likeStoreList(id);
+	}
 }
