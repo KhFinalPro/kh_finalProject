@@ -82,4 +82,12 @@ public class BungDao {
 		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.selectMyBung", id);
 	}
 
+	public int updateBung(Bung b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("bungMapper.updateBung", b);
+	}
+
+
+	
+
 }

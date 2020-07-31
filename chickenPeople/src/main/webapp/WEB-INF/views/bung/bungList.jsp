@@ -14,7 +14,7 @@ section{margin-top: 200px;}
 
 #main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
 
-#main_section>.bungae_area:hover{border:2px solid #2ac1bc;}
+#main_section>.bungae_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
 
 #main_section>.bungae_area>.brand_logo {text-align:center; width: 30%; height: 180px; margin-left:30px;}
 
@@ -30,7 +30,8 @@ section{margin-top: 200px;}
 
 #main_section>.bungae_area>.second_line {float: left;}
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
-#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black;}
+#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
+#create_bung_area>input:hover{color: #2ac1bc; border: 2px solid  #2ac1bc; cursor:pointer;}
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
 </style>
@@ -45,9 +46,19 @@ section{margin-top: 200px;}
 		</c:if>
 		
 		<div id="main_section">
+			<select id="month_selc">
+				<c:forEach var="i" begin="1" end="12" step="1">
+					<option value="${i }">${i }달</option>
+				</c:forEach>
+			</select>
 			<c:if test="${!empty sessionScope.loginUser }">
 				<div id="create_bung_area">
 					<input type="button" id="create_bung" value="번개 계설하기"/>	
+				</div>
+			</c:if>
+			<c:if test="${empty sessionScope.loginUser }">
+				<div id="create_bung_area">
+					<p>번개 계설은 로그인시 이용할 수 있습니다.</p>	
 				</div>
 			</c:if>
 			<br>
@@ -83,7 +94,7 @@ section{margin-top: 200px;}
 			location.href = "bungDetail.do?bung_num="+$bung_num;
 		})
 		
-		$("#create_bung_area").on("click",function(){
+		$("#create_bung").on("click",function(){
 			location.href="bungCreatePageMove.do";
 		})
 	})

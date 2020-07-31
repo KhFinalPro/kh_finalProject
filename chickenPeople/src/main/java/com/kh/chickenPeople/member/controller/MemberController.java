@@ -1,5 +1,7 @@
 package com.kh.chickenPeople.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -38,41 +40,42 @@ public class MemberController {
 		return mv;
 	}
 	
-//	@RequestMapping("doLogin.do")
-//	public String doLoginMember(HttpServletRequest request, Member m, ModelAndView mv, HttpSession session) {
-//		System.out.println("doLogin.do");
+	@RequestMapping(value="doLoginView.do")
+	public String doLoginMember(HttpServletRequest request, Member m, ModelAndView mv, HttpSession session) {
+		System.out.println("doLogin.do");
+		Member member = mService.loginMember(m);
+		//로그인한 회원의 주소
+		ArrayList<Address> addrList = mService.selectAddress(member);
+		
+		
+		session = request.getSession();
+		if(member != null)
+		{
+			System.out.println("로그인 성공!!");
+			System.out.println(member.getId());
+			session.setAttribute("loginUser",member);
+			session.setAttribute("address", addrList);
+			
+			
+			
+			return "redirect:/loginHome.do?id="+member.getId();
+		}
+		
+		return null;
+	}
+	
+//	@RequestMapping(value="doLogin.do", method=RequestMethod.POST)
+//	public String doLoginMember(Member m, Model model) {
 //		Member member = mService.loginMember(m);
-//		//로그인한 회원의 주소
-////		ArrayList<Address> addrList = mService.selectAddress(member);
-////		session = request.getSession();
-////		if(member != null)
-////		{
-////			System.out.println("로그인 성공!!");
-////			System.out.println(member.getId());
-////			session.setAttribute("loginUser",member);
-////			session.setAttribute("address", addrList);			
-////			
-////			return "redirect:/home.do";
-////		}
+//		
 //		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
-//			m.addAttribute("member", member);
+//			model.addAttribute("member", member);
 //			return "redirect:/home.do";
+//		}else {
+//			
 //		}
 //		return null;
 //	}
-	
-	@RequestMapping(value="doLogin.do", method=RequestMethod.POST)
-	public String doLoginMember(Member m, Model model) {
-		Member member = mService.loginMember(m);
-		
-		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
-			model.addAttribute("member", member);
-			return "redirect:/home.do";
-		}else {
-			
-		}
-		return null;
-	}
 	
 	
 	
@@ -110,7 +113,7 @@ public class MemberController {
 	// 아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(value="idChk.do", method=RequestMethod.POST)
-	public int idChk(Member m) throws Exception{
+	public int idChk(Member m) throws Exception {
 		int result = mService.idChk(m);
 		
 		return result;
@@ -145,7 +148,28 @@ public class MemberController {
 	}
 	
 	
+	// 회원가입post
+//	@RequestMapping(value = "/register", method= RequestMethod.POST)
+//	public String postRegister(Member m) throws Exception{
+//		Logger.info("post register");
+//		int result = mService.idChk(m);
+//		try {
+//			if(result ==1 ) {
+//				return "/member/insertMember";
+//			}else if(result==0) {
+//				String inputPass = m.getUserPass();
+//				String pwd = pwdEncoder.encode(inputPass);
+//				m.setUserPass(pwd);
+//				
+//				mService.insertMember(m);
+//			}
+//				
+//		}
+//		
+//	}
 	
 	
 
 }
+
+

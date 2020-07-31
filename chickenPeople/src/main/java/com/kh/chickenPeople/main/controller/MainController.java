@@ -22,8 +22,8 @@ public class MainController {
 	public ModelAndView searchStore(ModelAndView mv, String brand_code, String menu_name) {
 		
 		ArrayList<Store> storeList = mainService.searchStore(brand_code);
-		
-		if(!storeList.isEmpty())
+		System.out.println("storeList : " + storeList);
+		if(!storeList.isEmpty() && menu_name != null)
 		{
 			mv.addObject("storeList", storeList);
 			mv.addObject("menu_name", menu_name);
@@ -31,7 +31,9 @@ public class MainController {
 		}
 		else
 		{
-			System.out.println("비어있음");
+			mv.addObject("storeList", storeList);
+			mv.addObject("menu_name", "");
+			mv.setViewName("main/mainMenuSearch");
 		}
 		return mv;
 	}
