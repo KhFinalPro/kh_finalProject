@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="calendarMapper">
+
+<resultMap id="orderListResult" type="Calendar">
+	<id property="ordNum" column="ORD_NUM"/>
+	<result property="ordStatus" column="ORD_STATUS"/>
+	<result property="ordDate" column="ORD_DATE"/>
+	<result property="userId" column="USER_ID"/>
+	<result property="stoNum" column="STO_NUM"/>
+	<result property="ordPrice" column="ORD_PRICE"/>
+	<result property="menuNum" column="MENU_NUM"/>
+	<result property="brandCode" column="BRAND_CODE"/>
+	<result property="mordNum" column="MORD_NUM"/>
+	<result property="menuName" column="MENU_NAME"/>
+	<result property="menuPrice" column="MENU_PRICE"/>
+	<result property="brandName" column="BRAND_NAME"/>
+	<result property="stoName" column="STO_NAME"/>
+</resultMap>
+
+
+
+<!-- <select id="orderList" resultMap="orderListResult">
+SELECT ORD_NUM,ORD_STATUS,ORD_DATE,USER_ID,STO_NUM,ORD_PRICE,MENU_NUM,BRAND_CODE,MORD_NUM,MENU_NAME,MENU_PRICE,BRAND_NAME,STO_NAME
+FROM ORDER_CALENDAR
+WHERE USER_ID=#{userId}
+</select> -->
+
+
+<select id="orderList" resultMap="orderListResult">
+SELECT ORD_NUM,ORD_DATE
+FROM JUMUN
+WHERE USER_ID=#{userId}
+</select>
+
+<select id="orderDetailList" resultMap="orderListResult">
+SELECT ORD_NUM,ORD_STATUS,ORD_DATE,USER_ID,STO_NUM,ORD_PRICE,MORD_NUM,MENU_NAME,MENU_PRICE,BRAND_NAME,STO_NAME
+FROM ORDER_CALENDAR
+WHERE USER_ID=#{Id} AND ORD_NUM=#{orderNo}
+ORDER BY MENU_NUM ASC
+</select>
+
+
+</mapper>

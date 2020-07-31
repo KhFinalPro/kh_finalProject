@@ -24,6 +24,7 @@
 		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.Coupon" alias="Coupon"/>
 		<typeAlias type="com.kh.chickenPeople.delivery.model.vo.Delivery" alias="Delivery"/>
 		<typeAlias type="com.kh.chickenPeople.main.model.vo.Search" alias="Search"/>
+		<typeAlias type="com.kh.chickenPeople.Calendar.model.vo.Calendar" alias="Calendar"/>
 	</typeAliases>
 	
 	<mappers>
@@ -41,5 +42,6 @@
 		<mapper resource="/mappers/main-mapper.xml"/>
 		<mapper resource="/mappers/coupon-mapper.xml"/>
 		<mapper resource="/mappers/delivery-mapper.xml"/>
+		<mapper resource="/mappers/calendar-mapper.xml"/>
 	</mappers>
 </configuration>
