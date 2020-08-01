@@ -130,9 +130,8 @@
 				        <tr>
 				            <td colspan="3" height="30">가게상세</td>          			         
 				        </tr><tr>
-				            <td width="150">가게 사진</td>
-				            <td>가게 정보</td>
-				        	
+				            <td width="150">${storeList.get(0).brand_pic }</td>
+				            <td>${storeList.get(0).sto_intro }</td>				        	
 				        </tr>
 				  		
 				        <tr>
@@ -146,12 +145,13 @@
                 <h1>메뉴판</h1>
                 <div class="noborder" style="overflow: auto; width: 500px; height: 130px;">
 				    <div class="noborder" id="test" style="width:0px;"> 
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
-				        <a href="#"><img src="resources/images/bhc.png" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>
+				    	<c:forEach var="mainM" items="${storeList }">
+				    		<c:if test="${mainM.cat_code == 1 && mainM.cat_code == 1}">
+				    			<a href="#"><img src="resources/menu/${mainM.menu_pic }.jpg" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>	
+				    		</c:if>
+				    	</c:forEach>
+				        
+				        
 				       
 				    </div>
 				</div>
@@ -175,68 +175,62 @@
 			        <li class="menu">
 			            <a>뼈치킨</a>
 			            <ul class="hide">
-			                <li>메뉴1-1</li>
-			                <li>메뉴1-2</li>
-			                <li>메뉴1-3</li>
-			                <li>메뉴1-4</li>
-			                <li>메뉴1-5</li>
-			                <li>메뉴1-6</li>
+			            	<c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 1 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			 
 			        <li class="menu">
 			            <a>순살치킨</a>
 			            <ul class="hide">
-			                <li>메뉴2-1</li>
-			                <li>메뉴2-2</li>
-			                <li>메뉴2-3</li>
-			                <li>메뉴2-4</li>
-			                <li>메뉴2-5</li>
-			                <li>메뉴2-6</li>
+			                <c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 2 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			         <li class="menu">
 			            <a>새트메뉴</a>
 			            <ul class="hide">
-			                <li>메뉴2-1</li>
-			                <li>메뉴2-2</li>
-			                <li>메뉴2-3</li>
-			                <li>메뉴2-4</li>
-			                <li>메뉴2-5</li>
-			                <li>메뉴2-6</li>
+			                <c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 3 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			         <li class="menu">
 			            <a>사이드메뉴</a>
 			            <ul class="hide">
-			                <li>메뉴2-1</li>
-			                <li>메뉴2-2</li>
-			                <li>메뉴2-3</li>
-			                <li>메뉴2-4</li>
-			                <li>메뉴2-5</li>
-			                <li>메뉴2-6</li>
+			                <c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 4 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			         <li class="menu">
 			            <a>음료</a>
 			            <ul class="hide">
-			                <li>메뉴2-1</li>
-			                <li>메뉴2-2</li>
-			                <li>메뉴2-3</li>
-			                <li>메뉴2-4</li>
-			                <li>메뉴2-5</li>
-			                <li>메뉴2-6</li>
+			                <c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 5 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			          <li class="menu">
 			            <a>소스</a>
 			            <ul class="hide">
-			                <li>메뉴2-1</li>
-			                <li>메뉴2-2</li>
-			                <li>메뉴2-3</li>
-			                <li>메뉴2-4</li>
-			                <li>메뉴2-5</li>
-			                <li>메뉴2-6</li>
+			                <c:forEach var="m1" items="${storeList }">
+			            		<c:if test="${m1.cat_code == 6 }">
+			                		<li>${m1.menu_name }</li>
+			                	</c:if>
+			                </c:forEach>
 			            </ul>
 			        </li>
 			    </ul>
