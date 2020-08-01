@@ -12,7 +12,7 @@
 
 <style>
 	#section{width:auto; background-color: white; display:block; margin-top:200px; }
-	#section>div{margin: 0 auto; width: 55%;}
+	#section>div{margin-left: 10%; width: 65%;}
 	       
     #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
 	
@@ -41,7 +41,7 @@
 	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
 	.imgLen{width:100px; height:100px; margin-top:10px;}
 	
-	#orderCheck{position: fixed; top: 200px; right:10px; width: 20%; background-color: white; border:1px solid black;}
+	#orderCheck{position: fixed; top: 200px; right:10px; width: 23%; background-color: white; border:1px solid black;}
 	#order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px;}
 	
 	/*메뉴상세 - 정보*/
@@ -74,6 +74,15 @@
 	#menu_price_titl{margin-left:10px;}
 	#modal_ul li{list-style:none;}
 	#order_put{position: absolute; bottom:0px; right:0px; width:100%; height:50px;}
+	
+	#orderCheck{border:1px solid black;}
+	#orderCheck>h3{text-align: center;}
+	#orderCheck>.total_price_area{width:90%; text-align: right;}
+	#orderCheck>.total_price_area>h4{float:right;}
+	#orderCheck>.list_area{overflow-y: auto; height: 200px;}
+	#orderCheck>.list_area>.list_group>.list_group_item{list-style:none;}
+	#orderCheck>.list_area>.list_group>.list_group_item .col{float:left; width: 40%;}
+	#orderCheck>.list_area>.list_group>.list_group_item .update{text-align: right;}
 </style>
         
 </head>
@@ -116,8 +125,9 @@
 						<c:forEach var="mainM" items="${storeList }">
 							<!-- 메뉴명 줄이기 -->
 							<c:set var="menu_name" value="${fn:substring(mainM.menu_name,0,10) }"/>
-							<c:if test="${mainM.cat_code == 1 && mainM.cat_code == 1}">
-								<div class="main_menu">
+							<c:if test="${mainM.cat_code == 1 || mainM.cat_code == 2}">
+								<div class="main_menu menu_click">
+									<input type="hidden" id="menu_num" value="${mainM.menu_num }">
 									<a href="#"><img src="resources/menu/${mainM.menu_pic }.jpg" class="imgLen" alt="image name"></a>	
 									<br>
 									<h4>${menu_name }..</h4>
@@ -248,32 +258,19 @@
 			</div> <!-- 가게 + 메뉴판-->
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
-				<table width="100%" height="300" >
-					<tr>		 
-						<th colspan="2"  height="30" style=" background:gray; color:white;">주문표</th>
-					</tr>
-					<tr>		 
-						<td colspan="2"  height="30">주문내역</td>
-					</tr>
-					<tr>
-						<td  colspan="2" height="50">가게명</td>
-					</tr>
-					<tr>  
-						<td>주문정보</td>
-						<td>가격</td>
-					</tr>
-					<tr  height="70">  
-						<td>총 결제금액</td>
-						<td> 금액</td>
-					</tr>
-				</table>
+				<h3>주문확인</h3>
+				<div class="list_area">
+					
+				</div>
+				<div class="total_price_area">
+					<h4 id="total_price"></h4>
+					<h4>합계: </h4>
+				</div>
+				<br clear="both">
 				<p>이용약관,개인정보 수집 동의,개인정보 제 3자 제공,전자금융거래 이용약관
-   					 	 만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
-				
+				만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
 				<button id="order_btn">주문하기</button>
-			
 			</div><!-- orderCheck end-->
-            
 		</div> 
 	</div>
 	<br clear="both">
@@ -341,7 +338,7 @@
 							var sideMenu_list = $("<ul id='modal_ul'></ul>");
 							
 							for(var i = 0; i<data.sideMenu.length; i++){
-								sideMenu_list.append("<li><input type='checkbox' class='side_menu' name='menu_num' value='"+data.sideMenu[i].menu_num+"'>"+data.sideMenu[i].menu_name+" +"+data.sideMenu[i].menu_price+"원</li>");	
+								sideMenu_list.append("<li><input type='checkbox' class='side_menu' name='menu_num' value='"+data.sideMenu[i].menu_num+"'><a>"+data.sideMenu[i].menu_name+"</a> +<span>"+data.sideMenu[i].menu_price+"원</span></li>");	
 							}
 							$("#menu_option").append(sideMenu_list);
 						},
@@ -361,10 +358,36 @@
 		})
 		
 		//사이드메뉴 클릭하고 담기 버튼
+		var sideMenuName = [];	//사이드메뉴 담는 배열	
+		var menuNum = [];	//메뉴번호 담는 배열
+		var total_price = 0;
+		
 		$(document).on("click",".side_menu",function(){
-			alert($(this).val());
+			menuNum.push($(this).val());
+			sideMenuName.push($(this).parent('li').children('a').text());
+			total_price += parseInt($(this).parent('li').children('span').text());
+			//alert($(this).children().html());
+			console.log(sideMenuName);
+		})
+		
+		//담기버튼
+		$(document).on("click","#order_put",function(){
+			var list_group = $("<ul id='list_group'></ul>");
+			var menu_name = $(this).parent('div').children("#menu_option").children("#menu_name");
+			var order_menu_name = $(this).parent('div').children("#menu_option").children("#menu_name").text() + " : ";
+			for(i = 0; i<sideMenuName.length; i++){
+				order_menu_name += " " + sideMenuName[i];
+			};
+			list_group.append("<li class='list_group_item'><div class='row'><h4 id='order_menu_name'>"+order_menu_name+"</h4></div><div class='price col'<a>삭제</a><span>"+"가격"+"</span></div><div class='update col'><a class='btn btn_minus'>-</a><span>"+1+"</span><a class='btn btn_plus'>+</a></div></li><br>");
+			//$("#order_menu_name").text(order_menu_name);
+			$(".list_area").append(list_group);
+			//총 합계금액 업데이트
+			total_price += parseInt($("#menu_price").text());
+			$("#total_price").text(total_price);
+			$("#modalReview").css('display','none');
 		})
 	});
+	
 	function openCity(evt, cityName) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");

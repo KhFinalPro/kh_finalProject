@@ -153,10 +153,8 @@
 		
 		//매장 상세 페이지이동		
 		$(document).on("click",".store_area",function(){
-			console.log("매장 상세 페이지이동");
-			/* $(this).children("#sto_num").val();*/
-			/* location.href=""; */
-			/*alert($(this).children("#sto_num").val()); */
+			$sto_num = $(this).children("#sto_num").val();
+			location.href="storeDetail.do?sto_num="+$sto_num;
 		})
 	})
 </script>
