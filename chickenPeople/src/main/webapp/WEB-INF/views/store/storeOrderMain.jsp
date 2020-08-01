@@ -18,7 +18,7 @@
 	
 	body {font-family: Arial;}
 	
-	#order{width: 100%; border:1px solid black;}
+	#order{width: 100%;s}
 	
 	.store{width: 100%; height:250px;}
 	.store>table{width: 100%; height:200px;}
@@ -34,7 +34,7 @@
 	.menu .hide{display:none;}
 	
 	/* #store_info{border:1px solid black;} */
-	#store_info :nth-child(1)>td{border-bottom: 1px solid black;}
+	#store_info :nth-child(1)>td{border-bottom: 1px solid black; font-size:30px; color:#735949;}
 	#store_info :nth-child(2) :nth-child(1)>td{border: 1px solid black;}
 	
 	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:rgb(236, 235, 235);}
@@ -100,7 +100,8 @@
 				<div class="store">
   					<table id="store_info">
 						<tr>
-						    <td colspan="3" height="30"><b>${storeList.get(0).sto_name }</b>
+						    <td colspan="3" height="30">
+						    	<b>${storeList.get(0).sto_name }</b>
 						    </td>          			         
 						</tr>
 						<tr>
@@ -221,7 +222,7 @@
 									<c:forEach var="m1" items="${storeList }">
 										<c:if test="${m1.cat_code == 6 }">
 											<li class="menu_click">
-												<input type="hidden" value="${m1.menu_num }">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
 												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
 											</li>
 										</c:if>
@@ -259,7 +260,7 @@
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
 				<h3>주문확인</h3>
-				<div class="list_area">
+				<div class="list_area" style="text-align:center;">
 					
 				</div>
 				<div class="total_price_area">
@@ -320,9 +321,10 @@
 			$brand_code = $("#brand_code").val();
 			$modal = $("#modalReview");
 			
+			menuNum.push($menu_num);
+			
 			$("#modalReview").toggle(
 				function(){
-					
 					$.ajax({
 						url:"menuDetail.do",
 						data:{menu_num:$menu_num, brand_code:$brand_code},
@@ -347,11 +349,7 @@
 			                    +"message: " + request.responseText
 			                    +"error: " + errorData);
 						}
-					})	
-					
-					
-					
-					
+					})		
 				}
 				
 			);
@@ -359,32 +357,57 @@
 		
 		//사이드메뉴 클릭하고 담기 버튼
 		var sideMenuName = [];	//사이드메뉴 담는 배열	
-		var menuNum = [];	//메뉴번호 담는 배열
+		menuNum = [];	//메뉴번호 담는 배열
 		var total_price = 0;
-		
+		var price = 0;
 		$(document).on("click",".side_menu",function(){
 			menuNum.push($(this).val());
 			sideMenuName.push($(this).parent('li').children('a').text());
+			
+			price += parseInt($(this).parent('li').children('span').text());
+			
 			total_price += parseInt($(this).parent('li').children('span').text());
 			//alert($(this).children().html());
-			console.log(sideMenuName);
+			console.log(menuNum);
 		})
 		
 		//담기버튼
 		$(document).on("click","#order_put",function(){
-			var list_group = $("<ul id='list_group'></ul>");
+			
+			var list_group = $("<ul class='list_group'></ul>");
 			var menu_name = $(this).parent('div').children("#menu_option").children("#menu_name");
 			var order_menu_name = $(this).parent('div').children("#menu_option").children("#menu_name").text() + " : ";
 			for(i = 0; i<sideMenuName.length; i++){
 				order_menu_name += " " + sideMenuName[i];
 			};
-			list_group.append("<li class='list_group_item'><div class='row'><h4 id='order_menu_name'>"+order_menu_name+"</h4></div><div class='price col'<a>삭제</a><span>"+"가격"+"</span></div><div class='update col'><a class='btn btn_minus'>-</a><span>"+1+"</span><a class='btn btn_plus'>+</a></div></li><br>");
-			//$("#order_menu_name").text(order_menu_name);
+			//담는 메뉴의 금액
+			price += parseInt($("#menu_price").text());
+			
+			list_group.append("<li class='list_group_item' style='list-style:none; text-align:left;'><div class='row'><h4 id='order_menu_name'>"+order_menu_name+"</h4></div><div class='price col' style='float:left; width:40%;'><a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span>"+price+"</span></div><div class='update col' style='float:left; text-align:right; width:45%;'><a class='btn btn_minus'>-</a><span>"+1+"</span><a class='btn btn_plus'>+</a></div></li><br>");
 			$(".list_area").append(list_group);
 			//총 합계금액 업데이트
 			total_price += parseInt($("#menu_price").text());
+			
+			price = 0;
 			$("#total_price").text(total_price);
 			$("#modalReview").css('display','none');
+		})
+		
+		$(document).on("click",".menu_cancel",function(){
+			//alert(typeof total_price);
+			
+			total_price -= parseInt($(this).parent("a").parent(".price").children('span').html());
+			$("#total_price").text(total_price);
+			$(this).parents('.list_group').remove();
+		})
+		
+		//결제 페이지 이동
+		var pay_product = [];
+		$(document).on("click","#order_btn",function(){
+			//메뉴번호 배열
+			console.log(menu_num);
+			//합계금액
+			console.log(total_price);
 		})
 	});
 	

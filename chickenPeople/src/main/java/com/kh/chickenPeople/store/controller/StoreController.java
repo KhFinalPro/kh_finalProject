@@ -50,30 +50,36 @@ public class StoreController {
 		//추가메뉴 가져오기
 		ArrayList<Menu> sideMenu = storeService.selectListSideMenu(brand_code);
 		
-		JSONArray jarr = new JSONArray();
-		for(Menu menu : sideMenu)
+		//리뷰 가져오기
+		
+		if(mainMenu != null && !sideMenu.isEmpty())
 		{
-			JSONObject jobj = new JSONObject();
+			JSONArray jarr = new JSONArray();
+			for(Menu menu : sideMenu)
+			{
+				JSONObject jobj = new JSONObject();
+				
+				jobj.put("menu_num", menu.getMenu_Num());
+				jobj.put("menu_name", menu.getMenu_Name());
+				jobj.put("menu_price", menu.getMenu_Price());
+				
+				jarr.add(jobj);
+			}
 			
-			jobj.put("menu_num", menu.getMenu_Num());
-			jobj.put("menu_name", menu.getMenu_Name());
-			jobj.put("menu_price", menu.getMenu_Price());
+			JSONObject sendJson = new JSONObject();
+			sendJson.put("menu_num", mainMenu.getMenu_Num());
+			sendJson.put("menu_name", mainMenu.getMenu_Name());
+			sendJson.put("menu_pic", mainMenu.getMenu_Pic());
+			sendJson.put("menu_price", mainMenu.getMenu_Price());
+			sendJson.put("sideMenu", jarr);
 			
-			jarr.add(jobj);
+			PrintWriter out = response.getWriter();
+			
+			out.print(sendJson);
+			out.flush();
+			out.close();
 		}
 		
-		JSONObject sendJson = new JSONObject();
-		sendJson.put("menu_num", mainMenu.getMenu_Num());
-		sendJson.put("menu_name", mainMenu.getMenu_Name());
-		sendJson.put("menu_pic", mainMenu.getMenu_Pic());
-		sendJson.put("menu_price", mainMenu.getMenu_Price());
-		sendJson.put("sideMenu", jarr);
-		
-		PrintWriter out = response.getWriter();
-		
-		out.print(sendJson);
-		out.flush();
-		out.close();
 	}
 	
 
