@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.dao.StoreDao;
 import com.kh.chickenPeople.store.model.vo.Store;
 
@@ -19,5 +20,17 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> selectStore(int sto_num) {
 		// TODO Auto-generated method stub
 		return storeDao.selectStore(sto_num);
+	}
+
+	@Override
+	public Menu selectOneMenu(int menu_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectOneMenu(menu_num);
+	}
+
+	@Override
+	public ArrayList<Menu> selectListSideMenu(String brand_code) {
+		// TODO Auto-generated method stub
+		return storeDao.selectListSideMenu(brand_code);
 	}
 }

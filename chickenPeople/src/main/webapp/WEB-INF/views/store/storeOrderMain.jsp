@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,307 +10,373 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-        <style>
-          
-            #section{width:auto; height:1500px; background-color: white; display:block; }
-          
-            #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
-
-			body {font-family: Arial;}
-			
-			/* Style the tab */
-			.tab {
-			  overflow: hidden;
-			  border: 1px solid #ccc;
-			  background-color: #f1f1f1;
-			}
-			
-			/* Style the buttons inside the tab */
-			.tab button {
-			  background-color: inherit;
-			  float: left;
-			  border: none;
-			  outline: none;
-			  cursor: pointer;
-			  padding: 14px 16px;
-			  transition: 0.3s;
-			  font-size: 17px;
-			}
-			
-			/* Change background color of buttons on hover */
-			.tab button:hover {
-			  background-color: #ddd;
-			}
-			
-			/* Create an active/current tablink class */
-			.tab button.active {
-			  background-color: #ccc;
-			}
-			
-			/* Style the tab content */
-			.tabcontent {
-			  display: none;
-			  padding: 6px 12px;
-			  border: 1px solid #ccc;
-			  border-top: none;
-			}
-			
-			<!-- 메뉴 카테고리-->
-			.menu a{cursor:pointer;}
-		    .menu .hide{display:none;}
-
-
-			<!--좋아요 버튼 -->
+<style>
+	#section{width:auto; background-color: white; display:block; margin-top:200px; }
+	#section>div{margin: 0 auto; width: 55%;}
+	       
+    #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
 	
-        </style>
-        <script>
-			    /* window.onload=function(){
-			        var test = document.getElementById( 'test' );
-			        var imgLength = document.getElementsByClassName("imgLen");
-			        test.style.width=imgLength.length*210;
-			    }  */
-			    $(function(){
-			    	var imgLength = $(".imgLen");
-
-			    	//이미지 크기 하나 가로길이 변수
-					var imgWid = 100;
-			    	imgLength.css("width",imgWid);
-			    	
-			    	//이미지 크기 하나 세로길이 변수
-					var imgHi = 100;
-			    	imgLength.css("height",imgHi);
-			    	
-			    	
-			    	var test = $("#test");
-			    	var len = imgLength.length*(imgWid+10);
-			    	test.css("width",len);
-			    })
-			</script>
-			
-			<!-- 좋아요 버튼  -->
-			<script>
-		
-			
-			</script>
-			
-			<!-- 메뉴 카테고리 -->
-			<script>
-		    // html dom 이 다 로딩된 후 실행된다.
-		    $(document).ready(function(){
-		        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-		        $(".menu>a").click(function(){
-		            var submenu = $(this).next("ul");
-		 
-		            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-		            if( submenu.is(":visible") ){
-		                submenu.slideUp();
-		            }else{
-		                submenu.slideDown();
-		            }
-		        });
-		    });
-			</script>
-    </head>
-    <body>
+	body {font-family: Arial;}
+	
+	#order{width: 100%; border:1px solid black;}
+	
+	.store{width: 100%; height:250px;}
+	.store>table{width: 100%; height:200px;}
+	
+	#London{padding: 0; width:100%; float:left;}
+	#London ul{margin: 0 auto; padding: 0;}
+	#London ul li{margin:0 auto; width:100%; line-height: 50px; list-style: none; background-color: white; color: #2ac1bc; font-size: 25px; font-weight: 600;}
+	#London ul li a{margin-left: 20px;}
+	#London>ul>li>ul>li{margin-left: 40px; width:80%; color:#735949;}
+	
+	/*메뉴 카테고리*/
+	.menu a{cursor:pointer;}
+	.menu .hide{display:none;}
+	
+	/* #store_info{border:1px solid black;} */
+	#store_info :nth-child(1)>td{border-bottom: 1px solid black;}
+	#store_info :nth-child(2) :nth-child(1)>td{border: 1px solid black;}
+	
+	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:rgb(236, 235, 235);}
+	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
+	.imgLen{width:100px; height:100px; margin-top:10px;}
+	
+	#orderCheck{position: fixed; top: 200px; right:10px; width: 20%; background-color: white; border:1px solid black;}
+	#order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px;}
+	
+	/*메뉴상세 - 정보*/
+	#Tokyo h4{margin-top: 20px; margin-bottom:5px; font-size:25px;}
+	.store_info_title{color: #d6d5d5;}
+	
+	/* Style the tab */
+	.tab {overflow: hidden; border: 1px solid #ccc; background-color: #f1f1f1;}
+	
+	/* Style the buttons inside the tab */
+	.tab button {margin:0 auto; width:33.3%; background-color: inherit; font-size: 25px; font-weight: 600; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; font-size: 17px;}
+	
+	/* Change background color of buttons on hover */
+	.tab button:hover {background-color: #ddd;}
+	
+	/* Create an active/current tablink class */
+	.tab button.active {background-color: #ccc;}
+	
+	/*모달창*/
+	#modalReview{display:none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+	#modalReview>div{width: 450px; height: 600px; background-color: #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+	#modalReview>div>div{position: absolute; top:58px; bottom:48px; overflow-y:auto;}
+	#modalReview>div>a{width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;}
+	#modalReview>div>a>img{width:100%;}
+	#modalReview>div>div>#modal_menu_pic{width:50%; height:200px; margin-top:30px; margin-left:25%;}
+	#modalReview>div>h2{text-align:center;}
+	#modalReview>div>div>#menu_name{text-align:center;}
+	#modalReview>div>div>h4{display:inline-block;}
+	#modalReview>div>div>h3{margin-left:10px;}
+	#menu_price_titl{margin-left:10px;}
+	#modal_ul li{list-style:none;}
+	#order_put{position: absolute; bottom:0px; right:0px; width:100%; height:50px;}
+</style>
+        
+</head>
+<body>
 
 
 
   <jsp:include page="../common/header.jsp"/>
-    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
-  
-    <div id= "section">
-        <div style="width:60%;  margin:0 auto;">
-   
-            <div id="order" style="width:56%; height:auto;float:left;margin-left:15px; ">
-            <!--  가게 간단한 정보  -->
-                <div class="store" style="width:auto;height:250px;">
-	                 <table border="1" width="500" height="200">
-	                   <tr>
-				            <td colspan="3" height="30" style="background:gray; color:white;">주문하기</td>          			         
-				        </tr>
-				        <tr>
-				            <td colspan="3" height="30">가게상세</td>          			         
-				        </tr><tr>
-				            <td width="150">${storeList.get(0).brand_pic }</td>
-				            <td>${storeList.get(0).sto_intro }</td>				        	
-				        </tr>
-				  		
-				        <tr>
-				            <td colspan="3" height="50">사장님 알림</td>
-				        </tr>
-	    			</table>
-                </div>
-                
-                <div> <!-- 가게 정보 box1 -->
-                <!-- 메뉴판  -->
-                <h1>메뉴판</h1>
-                <div class="noborder" style="overflow: auto; width: 500px; height: 130px;">
-				    <div class="noborder" id="test" style="width:0px;"> 
-				    	<c:forEach var="mainM" items="${storeList }">
-				    		<c:if test="${mainM.cat_code == 1 && mainM.cat_code == 1}">
-				    			<a href="#"><img src="resources/menu/${mainM.menu_pic }.jpg" class="imgLen" style="float: left; height: 50px; margin: 0 5px;" alt="image name"></a>	
-				    		</c:if>
-				    	</c:forEach>
-				        
-				        
-				       
-				    </div>
-				</div>
-		
-                <!-- tabs 메뉴 클릭 -->
-					<h2>메뉴상세</h2>
-					<p>Click on the buttons inside the tabbed menu:</p>
-					
-					<div class="tab" style="width: 500px;">
-					  <button class="tablinks" onclick="openCity(event, 'London')">여긴 메뉴판</button>
-					  <button class="tablinks" onclick="openCity(event, 'Paris')">여긴 리뷰</button>
-					  <button class="tablinks" onclick="openCity(event, 'Tokyo')">여긴 정보창</button>
-					</div>
-					
-					<div id="London" class="tabcontent">
-					  <h3>여긴 메뉴판</h3>
-					  <p>London is the capital city of England.</p>
-					  <p>여기에 메뉴판이랑 div 넣어서 적용해야한다아아~</p>
-					  
-					<ul>
-			        <li class="menu">
-			            <a>뼈치킨</a>
-			            <ul class="hide">
-			            	<c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 1 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			 
-			        <li class="menu">
-			            <a>순살치킨</a>
-			            <ul class="hide">
-			                <c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 2 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			         <li class="menu">
-			            <a>새트메뉴</a>
-			            <ul class="hide">
-			                <c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 3 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			         <li class="menu">
-			            <a>사이드메뉴</a>
-			            <ul class="hide">
-			                <c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 4 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			         <li class="menu">
-			            <a>음료</a>
-			            <ul class="hide">
-			                <c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 5 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			          <li class="menu">
-			            <a>소스</a>
-			            <ul class="hide">
-			                <c:forEach var="m1" items="${storeList }">
-			            		<c:if test="${m1.cat_code == 6 }">
-			                		<li>${m1.menu_name }</li>
-			                	</c:if>
-			                </c:forEach>
-			            </ul>
-			        </li>
-			    </ul>
-								  
-				
-					  
-					</div>
-					
-					<div id="Paris" class="tabcontent">
-					  <h3>여긴 리뷰</h3>
-					  <p>Paris is the capital of France.</p> 
-					  <p>여기는 리뷰이다!</p>
-					    <br><br><br><br><br><br><br><br><br><br>
-					  <br><br><br><br><br><br><br><br><br><br>
-					</div>
-					
-					<div id="Tokyo" class="tabcontent">
-					  <h3>여긴 정보창</h3>
-					  <p>여기는 정보창이다아!</p>
-					    <br><br><br><br><br><br><br><br><br><br>
-					  <br><br><br><br><br><br><br><br><br><br>
-					</div>
-					
-					<script>
-					function openCity(evt, cityName) {
-					  var i, tabcontent, tablinks;
-					  tabcontent = document.getElementsByClassName("tabcontent");
-					  for (i = 0; i < tabcontent.length; i++) {
-					    tabcontent[i].style.display = "none";
-					  }
-					  tablinks = document.getElementsByClassName("tablinks");
-					  for (i = 0; i < tablinks.length; i++) {
-					    tablinks[i].className = tablinks[i].className.replace(" active", "");
-					  }
-					  document.getElementById(cityName).style.display = "block";
-					  evt.currentTarget.className += " active";
-					}
-					</script>
-					
-					
-  			 </div>
-            </div> <!-- 가게 + 메뉴판-->
-
-            <div id="orderCheck" style="width:39%;height:1000px;float:left; border:soild; margin-left:15px;"> <!--주문 확인 orderHistory-->
-		        	<table border="1" width="350" height="300" >
-		        	  <tr>		 
-				            <td colspan="2"  height="30" style=" background:gray; color:white;">주문표</td>
-			
-				        </tr>
-				        <tr>		 
-				            <td colspan="2"  height="30">주문내역</td>
-			
-				        </tr>
-				        
-				        <tr>
-				            <td  colspan="2" height="50">가게명</td>
-	
-				        </tr>
-				        <tr>  
-				            <td>주문정보</td>
-				            <td>가격</td>
-				        </tr>
-				          <tr  height="70">  
-				            <td>총 결제금액</td>
-				            <td> 금액</td>
-				        </tr>
-   					 </table>
-   					 <p><a href="#">이용약관</a>,<a href="#">개인정보 수집 동의</a>,<a href="#">개인정보 제 3자 제공</a>,<a href="#">전자금융거래 이용약관</a>
-   					 	 만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
-   					 <br><br><br>
-                     <button style="float:right; width:330px; height:70px; "><a href="order.do">주문하기</a></button>
-
-            </div><!-- orderCheck end-->
-            
-        </div> 
-    </div>
-<br><br><br>
-     <jsp:include page="../common/footer.jsp"/>
     
+	<input type="hidden" id="brand_code" value="${storeList.get(0).brand_code }">
+	<div id="section">
+		<div>
+			<div id="order">
+				<!--  가게 간단한 정보  -->
+				<div class="store">
+  					<table id="store_info">
+						<tr>
+						    <td colspan="3" height="30"><b>${storeList.get(0).sto_name }</b>
+						    </td>          			         
+						</tr>
+						<tr>
+						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
+							<td>
+								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"></pre>
+								<pre>최소주문금액 <b><fmt:formatNumber value="${storeList.get(0).ord_limit }" maxFractionDigits="3"/>원</b></pre>
+								<pre>결제 <b>신용카드, 현금</b></pre>
+								<pre>배달시간 <b>40~50분</b></pre>
+							</td>				        	
+  						</tr>
+  						<tr>
+      						<td colspan="3" height="50">${storeList.get(0).sto_intro }</td>
+    					</tr>
+					</table>
+        		</div>
+        
+        		<div> <!-- 가게 정보 box1 -->
+					<!-- 메뉴판  -->
+					<h1>메뉴판</h1>
+					<div class="mainmenu_area" id="test">						
+						<c:forEach var="mainM" items="${storeList }">
+							<!-- 메뉴명 줄이기 -->
+							<c:set var="menu_name" value="${fn:substring(mainM.menu_name,0,10) }"/>
+							<c:if test="${mainM.cat_code == 1 && mainM.cat_code == 1}">
+								<div class="main_menu">
+									<a href="#"><img src="resources/menu/${mainM.menu_pic }.jpg" class="imgLen" alt="image name"></a>	
+									<br>
+									<h4>${menu_name }..</h4>
+									<p><fmt:formatNumber value="${mainM.menu_price }" maxFractionDigits="3"/>원</p>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
 
+            		<!-- tabs 메뉴 클릭 -->
+					<h2>메뉴상세</h2>
+					
+
+					<div class="tab" style="width: 99.85%;">
+						<button class="tablinks" onclick="openCity(event, 'London')">메뉴판</button>
+						<button class="tablinks" onclick="openCity(event, 'Paris')">리뷰</button>
+						<button class="tablinks" onclick="openCity(event, 'Tokyo')">정보</button>
+					</div>
+
+					<div id="London" class="tabcontent">
+						<ul>
+							<li class="menu">
+							    <a>뼈치킨</a>
+							    <ul class="hide">
+						    		<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 1 }">
+											<li class="menu_click">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+
+							<li class="menu">
+								<a>순살치킨</a>
+								<ul class="hide">
+									<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 2 }">
+											<li class="menu_click">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+							<li class="menu">
+								<a>새트메뉴</a>
+								<ul class="hide">
+									<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 3 }">
+											<li class="menu_click">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+							<li class="menu">
+								<a>사이드메뉴</a>
+								<ul class="hide">
+									<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 4 }">
+											<li class="menu_click">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+							<li class="menu">
+								<a>음료</a>
+								<ul class="hide">
+									<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 5 }">
+											<li class="menu_click">
+												<input type="hidden" id="menu_num" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+							<li class="menu">
+								<a>소스</a>
+								<ul class="hide">
+									<c:forEach var="m1" items="${storeList }">
+										<c:if test="${m1.cat_code == 6 }">
+											<li class="menu_click">
+												<input type="hidden" value="${m1.menu_num }">
+												${m1.menu_name } <fmt:formatNumber value="${m1.menu_price }" maxFractionDigits="3"/>원
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<div id="Paris" class="tabcontent" style="display:none;">
+						<h3>여긴 리뷰</h3>
+						<p>Paris is the capital of France.</p> 
+						<p>여기는 리뷰이다!</p>
+					</div>
+
+					<div id="Tokyo" class="tabcontent" style="display:none;">
+						<h4>업체정보</h4>
+						<hr>
+						<c:if test="${storeList.get(0).open_yn == 'Y' }">
+							<p class="store_info_title">영업상태</p><p>OPEN</p>
+						</c:if>
+						<c:if test="${storeList.get(0).open_yn == 'N' }">
+							<p class="store_info_title">영업상태</p><p>CLOSE</p>
+						</c:if>
+						<p class="store_info_title">전화번호</p><p>${storeList.get(0).sto_tel }</p>
+						<p class="store_info_title">주소</p><p>${storeList.get(0).sto_addr }</p>
+
+						<h4>결제정보</h4>
+						<hr>
+						<p class="store_info_title">최소주문금액</p><p><fmt:formatNumber value="${storeList.get(0).ord_limit }" maxFractionDigits="3"/>원</p>
+						<p class="store_info_title">결제수단</p><p>신용카드, 현금</p>
+					</div>
+				</div>
+			</div> <!-- 가게 + 메뉴판-->
+
+			<div id="orderCheck"> <!--주문 확인 orderHistory-->
+				<table width="100%" height="300" >
+					<tr>		 
+						<th colspan="2"  height="30" style=" background:gray; color:white;">주문표</th>
+					</tr>
+					<tr>		 
+						<td colspan="2"  height="30">주문내역</td>
+					</tr>
+					<tr>
+						<td  colspan="2" height="50">가게명</td>
+					</tr>
+					<tr>  
+						<td>주문정보</td>
+						<td>가격</td>
+					</tr>
+					<tr  height="70">  
+						<td>총 결제금액</td>
+						<td> 금액</td>
+					</tr>
+				</table>
+				<p>이용약관,개인정보 수집 동의,개인정보 제 3자 제공,전자금융거래 이용약관
+   					 	 만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
+				
+				<button id="order_btn">주문하기</button>
+			
+			</div><!-- orderCheck end-->
+            
+		</div> 
+	</div>
+	<br clear="both">
+	<jsp:include page="../common/footer.jsp"/>
+
+	<div id="modalReview">
+        <div>
+            <a href="javascript: $('#modalReview').fadeOut(500);" id="modal_cancel">
+                <img src="resources/images/close.png"/>
+            </a>
+            <h2>메뉴상세</h2>
+            <div id="menu_option" style="width:100%;">            	
+            	<img id="modal_menu_pic">
+	            <h3 id="menu_name"></h3>
+	            <hr>
+	            <h4 id="menu_price_titl">가격 : </h4>
+	            <h4 id="menu_price"></h4>
+	            <br clear="both">
+	            <hr>
+	            <h3>추가메뉴</h3>
+	            
+            </div>
+            <br clear="both">
+            
+            <button id="order_put">담기</button>
+       </div>
+    </div> 
 </body>
+<script>
+<!-- 메뉴 카테고리 -->
+	// html dom 이 다 로딩된 후 실행된다.
+	$(document).ready(function(){
+		// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+		$(".menu>a").click(function(){
+			var submenu = $(this).next("ul");
+	
+			// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+			if( submenu.is(":visible") ){
+				submenu.slideUp();
+			}else{
+				submenu.slideDown();
+			}
+		});
+		
+		$(".menu_click").on("click",function(){
+			$menu_num = $(this).children("#menu_num").val();
+			$brand_code = $("#brand_code").val();
+			$modal = $("#modalReview");
+			
+			$("#modalReview").toggle(
+				function(){
+					
+					$.ajax({
+						url:"menuDetail.do",
+						data:{menu_num:$menu_num, brand_code:$brand_code},
+						dataType:"json",
+						type:"post",
+						success:function(data){
+							$modal.addClass('show');
+							$("#modal_ul").remove();
+							console.log(data);
+							$("#modal_menu_pic").attr('src', "resources/menu/"+data.menu_pic+".jpg");
+							$("#menu_name").text(data.menu_name);
+							$("#menu_price").text(data.menu_price+"원");
+							var sideMenu_list = $("<ul id='modal_ul'></ul>");
+							
+							for(var i = 0; i<data.sideMenu.length; i++){
+								sideMenu_list.append("<li><input type='checkbox' class='side_menu' name='menu_num' value='"+data.sideMenu[i].menu_num+"'>"+data.sideMenu[i].menu_name+" +"+data.sideMenu[i].menu_price+"원</li>");	
+							}
+							$("#menu_option").append(sideMenu_list);
+						},
+						error:function(request, status, errorData){
+			            	alert("error code: " + request.status + "\n"
+			                    +"message: " + request.responseText
+			                    +"error: " + errorData);
+						}
+					})	
+					
+					
+					
+					
+				}
+				
+			);
+		})
+		
+		//사이드메뉴 클릭하고 담기 버튼
+		$(document).on("click",".side_menu",function(){
+			alert($(this).val());
+		})
+	});
+	function openCity(evt, cityName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+</script>
 </html>
