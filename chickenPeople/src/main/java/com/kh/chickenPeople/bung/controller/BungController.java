@@ -237,6 +237,9 @@ public class BungController {
 		
 	}
 	
+//	@RequestMapping(value="bungMassage.do", method=RequestMethod.POST)
+	
+	
 	
 	
 	
