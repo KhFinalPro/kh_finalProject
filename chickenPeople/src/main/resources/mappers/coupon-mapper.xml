@@ -8,6 +8,10 @@
 		<result property="coup_term" column="COUP_TERM"/>
 		<result property="coup_disc" column="COUP_DISC"/>
 		<result property="coup_pic" column="COUP_PIC"/>
+		<result property="id" column="USER_ID"/>
+		<result property="coup_num" column="COUP_NUM"/>
+		<result property="coup_c_date" column="COUP_C_DATE"/>
+		<result property="coup_yn" column="COUP_YN"/>
 	</resultMap>
 	
 	<select id="selectCouponList" resultMap="couponResultSet">
@@ -32,4 +36,13 @@
 		WHERE COUP_SERIAL = #{coup_serial}
 	</update>
 	
+	<insert id="insertMemberCoupon" parameterType="Coupon">
+		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL, SYSDATE, 'N', #{id}, #{coup_serial})
+	</insert>
+	
+	<select id="selectCouponSerial" parameterType="Coupon" resultMap="couponResultSet">
+		SELECT *
+		FROM COUPON
+		WHERE USER_ID=#{id} AND COUP_SERIAL=#{coup_serial}
+	</select>
 </mapper>
