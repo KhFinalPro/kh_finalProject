@@ -60,6 +60,10 @@ public class MenuServiceImpl implements MenuService{
 	public ArrayList<Category> selectCategoryList() {
 		return menuDao.selectCategoryList();
 	}
+	@Override
+	public int insertNewMenu(Menu m) {
+		return menuDao.insertNewMenu(m);
+	}
 
 
 }
