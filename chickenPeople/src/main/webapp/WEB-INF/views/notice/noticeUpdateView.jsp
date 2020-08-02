@@ -64,7 +64,7 @@
 		<!-- 목록으로~ -->
 			<script>
 				function toNlist (){
-					location.href="nlist.do"; 
+					location.href="noticeList.do"; 
 				}
 			</script>
 		

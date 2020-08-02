@@ -83,7 +83,7 @@
 
 		  <br><br><br><br><br>
 
-		  <table align="center"  width="100%"> 
+		  <table align="center"  width="100%" id="listArea"> 
 		    <br><br>
 	  <h1 align="center">공지사항</h1>
 	    <br><br><br>
@@ -97,16 +97,20 @@
 				  
 			<c:forEach var="n" items="${noticeList }">
 					<tr align="center">
-						<td>${n.nNum} </td>
+						<td>
+					  			<c:url var="ndetail" value="ndetail.do">
+					  				<c:param name="nNum" value="${n.nNum }"/>
+					  			</c:url>
+					  			<a href="${ndetail }" style="text-decoration:none; ">${n.nNum}</a>
+						 </td>
+						
 					  	<td width="45%">
 					  	
 					  			<c:url var="ndetail" value="ndetail.do">
 					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
-					  			<a href="${ndetail }">${n.nTitle}</a>
-					  		<c:if test="${empty loginUser }">
-						${n.nTitle }
-					</c:if>
+					  			<a href="${ndetail }" style="text-decoration:none; ">${n.nTitle}</a>
+					  	
 					  	</td>
 					  	<td>${n.userId }</td>
 					  	<td width="20%">${n.nDate}</td>
@@ -114,6 +118,25 @@
 					</tr>
 			</c:forEach>
 		 </table>
+		 
+		 <!-- 커서 올렸을때  -->
+		 <script>
+		 		$(function() {
+			$("#listArea td").mouseenter(function() {
+				$(this).parent().css({
+					"background" : "#1AAB8A",
+					"cursor" : "pointer"
+				});
+			}).mouseout(function() {
+				$(this).parent().css({
+					"background" : "white"});
+				}).click(function(){
+					var nid=$(this).parent().children("input").val();
+
+			});
+		});
+		 
+	</script>	 
 		 
 		 
  	<div class = "p-parents" style="margin:0 auto">
@@ -154,15 +177,15 @@
 	
 			 
 
-		 <bra><br><br><br><br>
+ <bra><br><br><br><br>
 	 <div style="float:right">
 	 <c:if test="${loginUser.id eq 'Admin' }">
 		  	<button class="button" onclick ="nWrite()">글쓰기</button>
 	 </c:if>
 	 <c:url var="home" value="home.do"/>
 	<button class="button" onclick="goHome()">home</button>
-
 	</div>
+	<!-- [bWrite/goHome]button end-->
 
 	<script>
 		function goHome(){
@@ -175,9 +198,6 @@
 		}
 	</script>
 	
-		  
-<!-- 페이징 처리 기능이랑 같이하기.  -->
-		  
 		  
 	 </div> 
   </div>

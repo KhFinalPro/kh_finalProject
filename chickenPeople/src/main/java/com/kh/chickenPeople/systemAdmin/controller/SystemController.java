@@ -26,20 +26,18 @@ public class SystemController {
 	SystemService sService;
 	
 	@RequestMapping(value="systemAdmin.do", method=RequestMethod.GET)
-	public String goSystemAdminMain() {
+	public String goSystemAdminMain() {									//SYSTEM MAIN PAGE 이동
 		return "systemAdmin/systemAdminMain";
 	}
 	
-
-	
 	@RequestMapping(value="systemAdminStore.do", method=RequestMethod.GET)
-	public String goStoreList() {
-		return "systemAdmin/systemAdminStore";
+	public String goStoreList() {										//SYSTEM STORE PAGE 이동
+		return "systemAdmin/storeManage/systemAdminStore";
 	}
 	
 		
 	@RequestMapping(value="systemAdminCoupon.do", method=RequestMethod.GET)
-	public ModelAndView goCouponList(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {
+	public ModelAndView goCouponList(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {		//SYSTEM COUPON PAGE 이동
 		
 		int currentPage = 1;
 		if(page != null)
@@ -64,17 +62,17 @@ public class SystemController {
 	}
 	
 	@RequestMapping(value="systemAdminReport.do", method=RequestMethod.GET)
-	public String goReportList(){
+	public String goReportList(){										//SYSTEM COUPON PAGE 이동
 		return "systemAdmin/systemAdminReport";
 	}
 	
 	@RequestMapping("couponCreateView.do")
-	public String couponCreateView() {
+	public String couponCreateView() {									//SYSTEM COUPON CREATE PAGE 이동
 		return "systemAdmin/systemAdminCouponCreate";
 	}
 	
 	@RequestMapping(value="couponCreate.do")
-	public String goCouponCreate(HttpServletRequest request, @ModelAttribute Coupon coupon,
+	public String goCouponCreate(HttpServletRequest request, @ModelAttribute Coupon coupon,								//SYSTEM COUPON CREATE 동작
 			@RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		
 		if(!file.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
@@ -92,9 +90,8 @@ public class SystemController {
 		return "redirect:/systemAdminCoupon.do";
 	}
 	
-	
 	@RequestMapping(value="couponDetail.do")
-	public ModelAndView couponDetail(ModelAndView mv, String coup_serial)
+	public ModelAndView couponDetail(ModelAndView mv, String coup_serial)	//SYSTEM COUPON DETAIL PAGE 이동
 	{
 		Coupon coupon = sService.selectCoupon(coup_serial);
 		
@@ -103,7 +100,7 @@ public class SystemController {
 		return mv;
 	}
 	
-	@RequestMapping(value="couponUpdate.do")
+	@RequestMapping(value="couponUpdate.do")								//SYSTEM COUPON UPDATE 동작
 	public String couponUpdate(HttpServletRequest request, @ModelAttribute Coupon coupon,
 			@RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		

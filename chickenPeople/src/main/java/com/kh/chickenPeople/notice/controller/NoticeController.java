@@ -1,8 +1,10 @@
+
 package com.kh.chickenPeople.notice.controller;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.notice.model.exception.NoticeException;
 import com.kh.chickenPeople.notice.model.service.NoticeService;
 import com.kh.chickenPeople.notice.model.vo.Notice;
+import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 
@@ -27,7 +30,7 @@ public class NoticeController {
 	 
 	
 //공지사항 목록 
-	@RequestMapping("noticeList.do") 
+	@RequestMapping("nList.do") 
 	public ModelAndView noticeList(ModelAndView mv,
 					@RequestParam(value="page",required=false) Integer page){
 		
@@ -98,7 +101,7 @@ public String noticeInsert(Notice n, HttpServletRequest request) {
 	int result = noticeService.insertNotice(n);
 	
 	if(result >0) {
-		return "redirect:nlist.do";
+		return "redirect:nList.do";
 	}else {
 		throw new NoticeException("공지사항 등록 실패");
 	}
@@ -123,7 +126,7 @@ public String noticeUpdate(HttpServletRequest request,Notice n) {
 	int result = noticeService.updateNotice(n);
 
 	if(result>0) {
-		return "redirect:nlist.do";
+		return "redirect:nList.do";
 	}else {
 		throw new NoticeException("공지사항 수정 실패");
 		
@@ -139,11 +142,9 @@ public String noticeUpdate(HttpServletRequest request,Notice n) {
 		int result =noticeService.deleteNotice(nNum);
 		System.out.println("삭제"+nNum);
 		if(result>0) {
-			return "redirect:nlist.do"; 
+			return "redirect:nList.do"; 
 		}else {
 			throw new NoticeException("공지사항 삭제 실패");
 		}
-	
-}
-	
-}
+
+}}

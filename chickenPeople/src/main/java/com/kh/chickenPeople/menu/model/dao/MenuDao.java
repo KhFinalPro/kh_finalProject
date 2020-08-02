@@ -56,6 +56,9 @@ public class MenuDao {
 	public ArrayList<Category> selectCategoryList() {
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectCategory");
 	}
+	public int insertNewMenu(Menu m) {
+		return sqlSessionTemplate.insert("menuMapper.insertNewMenu", m);
+	}
 
 
 }

@@ -28,5 +28,7 @@ public interface MenuService {
 
 	ArrayList<Category> selectCategoryList();										//관리자_ 카테고리리스트 select
 
+	int insertNewMenu(Menu m);															//관리자 _ 메뉴 insert
+
 
 }

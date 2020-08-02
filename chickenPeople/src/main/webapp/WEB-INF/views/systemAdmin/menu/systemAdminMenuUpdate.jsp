@@ -87,7 +87,7 @@
 			<div class="menuResultTable">
 				<br><hr><br>
 				
-				<form action="goUpdateMenuPage.do" method="get" enctype="multipart/form-data">
+				<form action="goUpdateMenuPage.do" method="post" enctype="Multipart/form-data">
 					<table class="resultTable">
 						<tr>
 							<td rowspan="5">
@@ -144,27 +144,15 @@
 						</tr>
 						
 					</table>
-					<div id="fileArea">
-						<input type="file" id="thumbnailImg" name="menu_Pic" onchange="LoadImg(this);">
-					</div>
+					
 				</form>
 					<script>
 						$(function(){
-							$("#fileArea").hide();
 							$("#contentImgArea").click(function(){
-								$("#thumbnailImg").click();
+								alert("이미지는 변경할 수 없습니다. 관리자에게 문의하세요");
 							})
 						})
-						function LoadImg(value){
-							console.log("성공");
-							if(value.files && value.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(e){
-									$("#contentImg").attr("src",e.target.result);
-								}
-								reader.readAsDataURL(value.files[0]);
-							}
-						}
+						
 					</script>
 			</div>
 		</div><!-- class item end -->
