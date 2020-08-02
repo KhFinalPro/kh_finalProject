@@ -59,6 +59,8 @@
 	VALUES(SEQ_MSG_NO.NEXTVAL,#{Id},#{modal_reply_sendId},#{modal_reply_title},#{modal_reply_content},SYSDATE,DEFAULT)
     </insert>
  
- 
+ 	<insert id="insertMessage" parameterType="Message">
+ 		INSERT INTO MESSAGE VALUES(SEQ_MSG_NO.NEXTVAL, #{sendId}, #{rcvId}, SYSDATE, #{msgTitle}, #{msgContents}, 'N')
+ 	</insert>
  
 </mapper>

@@ -271,21 +271,28 @@
 		})
 		
 		$("#bungMessage").on("click",function(){
-			$create_user_id = $("#create_user_id").text();
-			$user_id = $("#user_id").text();
+			$rev_id = $("#create_user_id").text();
+			$send_id = $("#user_id").val();
 			$msg_contents = $("#modal_reply_content").val();
 			$msg_title = $("#modal_reply_title").val();
-			
 			$.ajax({
-				url:"",
-				data:"",
-				type:"",
-				dataType:"",
+				url:"bungMessage.do",
+				data:{rev_id:$rev_id, send_id:$send_id, msg_contents:$msg_contents, msg_title:$msg_title},
+				type:"post",
+				dataType:"json",
 				success:function(data){
-					
+					if(data.success == 'y'){
+						console.log("메세지 성공");
+						$("#msgReplyModal").fadeOut(500);
+					}						
+					else{
+						console.log("실패");
+					}
 				},
-				error:function(data){
-					
+				error:function(request, status, errorData){
+	            	alert("error code: " + request.status + "\n"
+	                    +"message: " + request.responseText
+	                    +"error: " + errorData);
 				}
 			})
 		})
