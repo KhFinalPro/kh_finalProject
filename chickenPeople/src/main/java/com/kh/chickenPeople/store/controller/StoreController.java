@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
+import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 @Controller
@@ -32,7 +33,21 @@ public class StoreController {
 		//매장에 대한 정보 가져오기
 		ArrayList<Store> storeList = storeService.selectStore(sto_num);
 		
+		//리뷰 가져오기
+		ArrayList<Review> reviewList = storeService.selectListReview(sto_num);
+				
+		//리뷰 평균
+		double avg_review_rate = storeService.selectReviewAvg(sto_num);
+		
+		//주문번호당 메뉴명 가져오기
+//		for(Store s : storeList)
+//		{
+//			ArrayList<Menu> menuList = storeService.selectMenuList(s.get)
+//		}
+		
 		mv.addObject("storeList", storeList);
+		mv.addObject("reviewList", reviewList);
+		mv.addObject("avg_review_rate", avg_review_rate);
 		mv.setViewName("store/storeOrderMain");
 		return mv;
 		
@@ -50,7 +65,6 @@ public class StoreController {
 		//추가메뉴 가져오기
 		ArrayList<Menu> sideMenu = storeService.selectListSideMenu(brand_code);
 		
-		//리뷰 가져오기
 		
 		if(mainMenu != null && !sideMenu.isEmpty())
 		{

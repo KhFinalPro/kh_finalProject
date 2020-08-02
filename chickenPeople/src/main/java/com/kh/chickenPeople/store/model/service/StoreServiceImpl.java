@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.dao.StoreDao;
+import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 
@@ -32,5 +33,17 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Menu> selectListSideMenu(String brand_code) {
 		// TODO Auto-generated method stub
 		return storeDao.selectListSideMenu(brand_code);
+	}
+
+	@Override
+	public ArrayList<Review> selectListReview(int sto_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectListReview(sto_num);
+	}
+
+	@Override
+	public double selectReviewAvg(int sto_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectReviewAvg(sto_num);
 	}
 }

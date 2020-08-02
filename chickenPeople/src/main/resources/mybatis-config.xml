@@ -28,6 +28,7 @@
 		<typeAlias type="com.kh.chickenPeople.Calendar.model.vo.Calendar" alias="Calendar"/>
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
+		<typeAlias type="com.kh.chickenPeople.store.model.vo.Review" alias="Review"/>
 	</typeAliases>
 	
 	<mappers>
@@ -47,6 +48,6 @@
 		<mapper resource="/mappers/delivery-mapper.xml"/>
 		<mapper resource="/mappers/calendar-mapper.xml"/>
 		<mapper resource="/mappers/orderStatus-mapper.xml"/>
-
+		<mapper resource="/mappers/review-mapper.xml"/>
 	</mappers>
 </configuration>

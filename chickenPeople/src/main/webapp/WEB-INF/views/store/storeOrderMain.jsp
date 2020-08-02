@@ -83,6 +83,20 @@
 	#orderCheck>.list_area>.list_group>.list_group_item{list-style:none;}
 	#orderCheck>.list_area>.list_group>.list_group_item .col{float:left; width: 40%;}
 	#orderCheck>.list_area>.list_group>.list_group_item .update{text-align: right;}
+	
+	/*리뷰*/
+	#reivew_header{width:100%; height:50px; margin-left: 40%; margin-top: 10px; margin-bottom: 10px;}
+	#reivew_header .rev_head{float: left; line-height: 50px;}
+	#reivew_header>img{width: 50px; height: 50px;}
+	#reivew_header>h3{font-size: 50px; margin: 0;}
+
+	.review>ul{padding: 10px;}
+	.review>ul>li{list-style: none;}
+	.review>ul>li>.id{font-size: 20px; font-weight: 600; margin-right: 15px;}
+	.review>ul>li>.rev_rate{margin: 0; font-size: 25px;}
+	.review>ul>li>.rev_rate_area{margin-top: 16px;}
+	.review>ul>li>.order_product{color: #735949;}
+	.review>ul>li>.rev_pic{margin:0 auto; width: 100%; height:200px;}
 </style>
         
 </head>
@@ -107,7 +121,7 @@
 						<tr>
 						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
 							<td>
-								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"></pre>
+								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></pre>
 								<pre>최소주문금액 <b><fmt:formatNumber value="${storeList.get(0).ord_limit }" maxFractionDigits="3"/>원</b></pre>
 								<pre>결제 <b>신용카드, 현금</b></pre>
 								<pre>배달시간 <b>40~50분</b></pre>
@@ -233,9 +247,32 @@
 					</div>
 
 					<div id="Paris" class="tabcontent" style="display:none;">
-						<h3>여긴 리뷰</h3>
-						<p>Paris is the capital of France.</p> 
-						<p>여기는 리뷰이다!</p>
+						<div id="reivew_header">
+							<img class="rev_head" src="resources/images/start.png"><h3 class="rev_head">${avg_review_rate }</h3>
+						</div>
+						<hr>
+						<div class="review">
+							<c:forEach var="r" items="${reviewList }">
+								<ul>
+									<li>
+										<a class="id">${r.user_id }</a><span>${r.rev_date }</span>
+									</li>
+									<li>
+										<img class="rev_rate_area" src="resources/images/start.png" alt="" style="width: 25px; height: 25px;"><a class="rev_rate rev_rate_area">${r.user_rev_rate }</a>
+									</li>
+									<li>
+										<p class="order_product">치킨 / 음료</p>
+									</li>
+									<li>
+										<p class="rev_cont">${r.rev_cont }</p>
+									</li>
+									<li>
+										<img class="rev_pic" src="../workspace/images/pelicana.png" alt=""><!-- 리뷰 이미지 -->
+									</li>
+								</ul>
+								<hr>
+							</c:forEach>
+						</div>
 					</div>
 
 					<div id="Tokyo" class="tabcontent" style="display:none;">
@@ -304,6 +341,12 @@
 <!-- 메뉴 카테고리 -->
 	// html dom 이 다 로딩된 후 실행된다.
 	$(document).ready(function(){
+		
+		var sideMenuName = [];	//사이드메뉴 담는 배열	
+		var menuNum = new Array();	//메뉴번호 담는 배열
+		var total_price = 0;
+		var price = 0;
+		
 		// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
 		$(".menu>a").click(function(){
 			var submenu = $(this).next("ul");
@@ -320,7 +363,7 @@
 			$menu_num = $(this).children("#menu_num").val();
 			$brand_code = $("#brand_code").val();
 			$modal = $("#modalReview");
-			
+			//메뉴번호 배열에 담기
 			menuNum.push($menu_num);
 			
 			$("#modalReview").toggle(
@@ -333,7 +376,7 @@
 						success:function(data){
 							$modal.addClass('show');
 							$("#modal_ul").remove();
-							console.log(data);
+							
 							$("#modal_menu_pic").attr('src', "resources/menu/"+data.menu_pic+".jpg");
 							$("#menu_name").text(data.menu_name);
 							$("#menu_price").text(data.menu_price+"원");
@@ -356,19 +399,16 @@
 		})
 		
 		//사이드메뉴 클릭하고 담기 버튼
-		var sideMenuName = [];	//사이드메뉴 담는 배열	
-		menuNum = [];	//메뉴번호 담는 배열
-		var total_price = 0;
-		var price = 0;
 		$(document).on("click",".side_menu",function(){
+			//메뉴번호 배열에 담기
 			menuNum.push($(this).val());
+			
 			sideMenuName.push($(this).parent('li').children('a').text());
 			
 			price += parseInt($(this).parent('li').children('span').text());
 			
 			total_price += parseInt($(this).parent('li').children('span').text());
-			//alert($(this).children().html());
-			console.log(menuNum);
+			
 		})
 		
 		//담기버튼
@@ -394,8 +434,6 @@
 		})
 		
 		$(document).on("click",".menu_cancel",function(){
-			//alert(typeof total_price);
-			
 			total_price -= parseInt($(this).parent("a").parent(".price").children('span').html());
 			$("#total_price").text(total_price);
 			$(this).parents('.list_group').remove();
@@ -405,7 +443,7 @@
 		var pay_product = [];
 		$(document).on("click","#order_btn",function(){
 			//메뉴번호 배열
-			console.log(menu_num);
+			console.log(menuNum);
 			//합계금액
 			console.log(total_price);
 		})

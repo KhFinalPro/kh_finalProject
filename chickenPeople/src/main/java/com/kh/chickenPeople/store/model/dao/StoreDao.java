@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.menu.model.vo.Menu;
+import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 
 @Repository("storeDao")
@@ -28,6 +29,16 @@ public class StoreDao {
 	public ArrayList<Menu> selectListSideMenu(String brand_code) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectListSideMenu",brand_code);
+	}
+
+	public ArrayList<Review> selectListReview(int sto_num) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("reviewMapper.selectListReview", sto_num);
+	}
+
+	public double selectReviewAvg(int sto_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewAvg", sto_num);
 	}
 
 }
