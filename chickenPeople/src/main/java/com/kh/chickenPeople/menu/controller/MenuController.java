@@ -131,10 +131,11 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="deleteMenu.do",method=RequestMethod.GET)
-	public String goDeleteMenu(Model mv,																		//메뉴 DELETE
+	public String goDeleteMenu(Model mv, HttpServletResponse response,																		//메뉴 DELETE
 							   @RequestParam(value="menuNum",required=false)int menuNum,
 							   @RequestParam(value="menuYN", required=false)String menuYN) {
-		
+		response.setContentType("text/html; charset=UTF-8");
+
 		int result=0;
 		System.out.println("상태:"+menuYN);
 		if(menuYN.equals("N")){
@@ -145,20 +146,30 @@ public class MenuController {
 			System.out.println("YY");
 			result = menuService.changeMenuN(menuNum);			
 		}
+		PrintWriter out = null;
+		if(result>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당메뉴 상태가 변경되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println(result);
 		mv.addAttribute("menuName","");
 		mv.addAttribute("menuCategory","total");
 		mv.addAttribute("status_s","N");
 		
-		return "redirect:systemAdminMenu.do";
+		return null;
 	}
 	
 	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)										
-	public ModelAndView goInsertMenu(ModelAndView mv, Menu m, HttpServletRequest request,						//메뉴 INSERT
+	public ModelAndView goInsertMenu(ModelAndView mv, Menu m,
+									 HttpServletRequest request, HttpServletResponse response,						//메뉴 INSERT
 									 @RequestParam(value="thumbnailImg",required=false) MultipartFile file) {															//메뉴 INSERT
-		System.out.println("테스트:"+m);
-		System.out.println("멀티파일:"+file);
-		
+		response.setContentType("text/html; charset=UTF-8");
+
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
 		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
 		m.setMenu_Yn("N");
@@ -178,7 +189,16 @@ public class MenuController {
 
 		mv.addObject("brandList",selectBrandList);
 		mv.addObject("categoryList",selectCategoryList);
-		
+		PrintWriter out = null;
+		if(insertResult>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당항목이 등록되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			
+		}
 		return mv;
 	}
 
