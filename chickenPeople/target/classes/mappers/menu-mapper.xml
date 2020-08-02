@@ -26,7 +26,7 @@
  	
  	<select id="getListCount" resultType="_int">
  		SELECT COUNT(*) 
- 		FROM ADMIN_MENU`
+ 		FROM ADMIN_MENU
  	</select>
  	<select id="getSearchListCount" resultType="_int">
  		SELECT COUNT(*)
@@ -93,5 +93,10 @@
 		    )
 		WHERE CAT_CODE = 4 OR CAT_CODE = 5 OR CAT_CODE = 6
 	</select>
+	<insert id="insertNewMenu" parameterType="Menu">
+		INSERT INTO MENU
+		VALUES(SEQ_MENU_NUM.NEXTVAL, #{brand_Code}, #{menu_Name}, #{menu_Price}, #{menu_Pic}, #{menu_Exp}, #{menu_Yn}, #{cat_Code})
+	</insert>
+	
   
 </mapper>

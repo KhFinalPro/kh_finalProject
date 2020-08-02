@@ -141,7 +141,7 @@
 					</tr>
 					<tr>	
 						<td>
-							<button id="insert" type="submit"><b>판매처리</b></button>
+							<button id="insert" style="text-align:right;" type="submit"><b>판매처리</b></button>
 							
 						</td>
 					</tr>

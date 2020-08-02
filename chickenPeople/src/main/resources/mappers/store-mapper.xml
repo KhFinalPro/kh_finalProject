@@ -98,4 +98,34 @@
 		WHERE SI.STO_NUM = #{sto_num}
 	</select>
 	
+	<select id="getListCount" resultType="_int">
+ 		SELECT COUNT(*) 
+ 		FROM ADMIN_STORE
+ 	</select>
+ 	 	<select id="getSearchListCount" resultType="_int">
+ 		SELECT COUNT(*)
+		FROM (SELECT *
+			  FROM ADMIN_STORE
+			  WHERE APRV_STATUS=#{searchStatus}
+			  <if test="searchCategory!='total'">
+			  AND BRAND_NAME=#{searchCategory}
+			  </if>
+			  <if test="searchName!=null">
+			  AND STORE_NAME LIKE '%'||#{searchName}||'%'
+			  </if>)
+ 	</select>
+ 	<select id="selectStoreList" resultMap="storeResultSet">
+		SELECT * FROM ADMIN_STORE
+		ORDER BY 1
+	</select>
+		<select id="getSearchStoreList" parameterType="SearchStatus" resultMap="storeResultSet">
+			SELECT * FROM ADMIN_STORE
+			WHERE APRV_STATUS=#{searchStatus}
+		<if test="searchCategory!='total'">	
+			AND BRAND_NAME=#{searchCategory}
+		</if>		
+		<if test="searchName!=null">
+			AND STORE_NAME LIKE '%'||#{searchName}||'%'
+		</if>
+	</select>
 </mapper>

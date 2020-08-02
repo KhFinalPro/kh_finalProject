@@ -52,6 +52,33 @@ public class Store implements Serializable{
 	}
 
 
+	//관리자 _ 점포 관리 생성자(계연)
+	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
+			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,
+			String delivery, String sto_email, String aprv_status, String brand_code, String user_id,
+			String brand_name) {
+		super();
+		this.sto_num = sto_num;
+		this.sto_name = sto_name;
+		this.sto_tel = sto_tel;
+		this.sto_open = sto_open;
+		this.sto_close = sto_close;
+		this.sto_addr = sto_addr;
+		this.sto_intro = sto_intro;
+		this.ord_limit = ord_limit;
+		this.deli_time = deli_time;
+		this.enter_yn = enter_yn;
+		this.open_yn = open_yn;
+		this.ceo_name = ceo_name;
+		this.delivery = delivery;
+		this.sto_email = sto_email;
+		this.aprv_status = aprv_status;
+		this.brand_code = brand_code;
+		this.user_id = user_id;
+		this.brand_name = brand_name;
+	}
+
+
 	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
 			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,
 			String delivery, String sto_email, String aprv_status, String brand_code, String user_id, double sto_lat,

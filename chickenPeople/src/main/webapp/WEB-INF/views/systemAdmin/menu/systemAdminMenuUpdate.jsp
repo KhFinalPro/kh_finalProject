@@ -84,9 +84,13 @@
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
+			<c:url var="goMenuInsert" value="menuInsert.do"></c:url>
+			
 			<div class="menuResultTable">
 				<br><hr><br>
-				
+				<div style="text-align:right;">
+					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
+				</div>
 				<form action="goUpdateMenuPage.do" method="post" enctype="Multipart/form-data">
 					<table class="resultTable">
 						<tr>
@@ -134,7 +138,7 @@
 							</td>
 								
 							<td>
-								<input type="submit" id="update"><b>수정하기</b>&nbsp;
+								<button type="submit" id="update" style="text-align:right"><b>수정하기</b></button>&nbsp;
 								<c:if test="${menu.menu_Yn eq'N' }">
 									<button id="delete" onclick="location.href='${contextPath}/${delete}'"><b>판매취소</b></button>
 								</c:if>

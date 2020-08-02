@@ -94,11 +94,14 @@
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
+			<c:url var="goMenuInsert" value="menuInsert.do"></c:url>
+			
 			<div class="menuResultTable">
 				<br><hr><br>
-				<div >
-					<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
+				<div style="text-align:right;">
+					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
 				</div>
+				<br>
 				<table class="resultTable">
 					<tr>
 						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px"></td>
