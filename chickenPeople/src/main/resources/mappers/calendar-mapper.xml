@@ -20,12 +20,6 @@
 
 
 
-<!-- <select id="orderList" resultMap="orderListResult">
-SELECT ORD_NUM,ORD_STATUS,ORD_DATE,USER_ID,STO_NUM,ORD_PRICE,MENU_NUM,BRAND_CODE,MORD_NUM,MENU_NAME,MENU_PRICE,BRAND_NAME,STO_NAME
-FROM ORDER_CALENDAR
-WHERE USER_ID=#{userId}
-</select> -->
-
 
 <select id="orderList" resultMap="orderListResult">
 SELECT ORD_NUM,ORD_DATE
@@ -39,6 +33,24 @@ FROM ORDER_CALENDAR
 WHERE USER_ID=#{Id} AND ORD_NUM=#{orderNo}
 ORDER BY MENU_NUM ASC
 </select>
+
+
+
+<insert id="insertOrderReview">
+INSERT INTO REVIEW (REV_NUM,REV_RATE,REV_PIC,REV_DATE,REV_CONT,REV_RE,USER_ID,ORD_NUM) 
+VALUES (SEQ_REVIEW_NUM.NEXTVAL,#{rate},#{renameFileName},SYSDATE,#{textarea_review_content},DEFAULT,#{Id},#{order_num})
+</insert> 
+
+
+
+<insert id="insertStoreReview">
+INSERT INTO STORE_REVIEW (STO_NUM,REV_NUM,REV_RATE) 
+VALUES (#{sto_num},SEQ_REVIEW_NUM.CURRVAL,#{rate})
+</insert>
+
+<!-- <select id="searchRevNum">
+SELECT MAX(REV_NUM) AS MAX_NUM FROM REVIEW
+</select> -->
 
 
 </mapper>

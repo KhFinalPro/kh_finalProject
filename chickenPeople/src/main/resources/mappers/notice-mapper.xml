@@ -32,6 +32,13 @@
   		WHERE N_NUM=#{nNum}
   	</select>
   	
+  		<update id="updateCount" parameterType="_int">
+  		UPDATE NOTICE
+  		SET N_COUNT = N_COUNT +1
+  		WHERE N_NUM =#{nNum}
+  	</update>
+  	
+  	
   	<insert id ="insertNotice" parameterType="Notice">
   		INSERT INTO NOTICE VALUES(
 			SEQ_N_NUM.NEXTVAL
@@ -46,12 +53,7 @@
 )
   	</insert>
   	
-  	<update id="updateCount" parameterType="_int">
-  		UPDATE NOTICE
-  		SET N_COUNT = N_COUNT +1
-  		WHERE N_NUM =#{nNum}
-  	</update>
-  	
+  
   <update id="updateNotice" parameterType="Notice">
   		UPDATE NOTICE
   		SET N_TITLE=#{nTitle},

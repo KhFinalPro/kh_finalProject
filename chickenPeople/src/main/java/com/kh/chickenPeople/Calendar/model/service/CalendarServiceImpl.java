@@ -27,7 +27,24 @@ public class CalendarServiceImpl implements CalendarService {
 		
 		return calenderDao.orderDetailList(map);
 	}
+
 	
+	//주문 리뷰
+
+	 @Override public int insertOrderReview(HashMap<String, String> map) {
+	  
+		 return calenderDao.insertOrderReview(map);	
+	 }
+	 
+	
+	
+	//스토어리뷰
+	@Override
+	public int insertStoreReview(HashMap<String, String> map2) {
+		
+		return calenderDao.insertStoreReview(map2);
+	}
+
 	
 	
 }

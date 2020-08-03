@@ -4,11 +4,13 @@
   <resultMap type="Menu" id="menuResultSet">
  		<id property="menu_Num" column="MENU_NUM"/>
  		<result property="brand_Name" column="BRAND_NAME"/>
+ 		<result property="brand_Code" column="BRAND_CODE"/>
  		<result property="menu_Name" column="MENU_NAME"/>
  		<result property="menu_Price" column="MENU_PRICE"/>
  		<result property="menu_Exp" column="MENU_EXP"/>
  		<result property="menu_Yn" column="MENU_YN"/>
  		<result property="cat_Name" column="CAT_NAME"/>
+ 		<result property="cat_Code" column="CAT_CODE"/>
  		<result property="menu_Pic" column="MENU_PIC"/>
  	</resultMap>
  	<resultMap type="brand" id="brandResultSet">
@@ -17,10 +19,26 @@
  		<result property="brand_name" column="BRAND_NAME"/>
  		<result property="brand_yn" column="BRAND_YN"/>	
  	</resultMap>
+ 	<resultMap type="category" id="categoryResultSet">
+ 		<id property="cat_Code" column="CAT_CODE"/>
+ 		<result property="cat_Name" column="CAT_NAME"/>
+ 	</resultMap>
  	
  	<select id="getListCount" resultType="_int">
  		SELECT COUNT(*) 
- 		FROM ADMIN_MENU
+ 		FROM ADMIN_MENU`
+ 	</select>
+ 	<select id="getSearchListCount" resultType="_int">
+ 		SELECT COUNT(*)
+		FROM (SELECT *
+			  FROM ADMIN_MENU
+			  WHERE MENU_YN=#{searchStatus}
+			  <if test="searchCategory!='total'">
+			  AND BRAND_NAME=#{searchCategory}
+			  </if>
+			  <if test="searchName!=null">
+			  AND MENU_NAME LIKE '%'||#{searchName}||'%'
+			  </if>)
  	</select>
  	
 	<select id="selectMenu" resultMap="menuResultSet">
@@ -31,21 +49,40 @@
 	<select id="selectBrand" resultMap="brandResultSet">
 		SELECT * FROM BRAND
 	</select>
-	
-	<select id="selectSearchMenu" resultMap="menuResultSet">
-		SELECT * FROM ADMIN_MENU
-		<where>
-			<if test="searchStatus.searchName!=null">
-				MENU_NAME=#{searchName}
-			</if>
-			<if test="searchStatus.searchStatus!=null">
-				AND MENU_YN=#{searchStatus}
-			</if>
-			<if test="searchStatus.searchCategory!=null">
-				AND BRAND_NAME=#{searchCategory}
-			</if>
-		</where>
-		
+	<select id="selectCategory" resultMap="categoryResultSet">
+		SELECT * FROM MENU_CATEGORY
 	</select>
+	
+	<select id="selectSearchMenu" parameterType="SearchStatus" resultMap="menuResultSet">
+			SELECT * FROM ADMIN_MENU
+			WHERE MENU_YN=#{searchStatus}
+		<if test="searchCategory!='total'">	
+			AND BRAND_NAME=#{searchCategory}
+		</if>		
+		<if test="searchName!=null">
+			AND MENU_NAME LIKE '%'||#{searchName}||'%'
+		</if>
+	</select>
+	<select id="selectOneMenu" resultMap="menuResultSet" parameterType="_int">
+		SELECT * 
+		FROM ADMIN_MENU
+		WHERE MENU_NUM=#{menu_Num}
+	</select>
+	
+	<update id="changeMenuY" parameterType="_int">
+		UPDATE MENU
+		SET MENU_YN='Y'
+		WHERE MENU_NUM=#{menu_Num}
+	</update>
+	<update id="changeMenuN" parameterType="_int">
+		UPDATE MENU
+		SET MENU_YN='N'
+		WHERE MENU_NUM=#{menu_Num}
+	</update>
+	<update id="updateMenu" parameterType="Menu">
+		UPDATE MENU
+		SET BRAND_CODE=#{brand_Code}, MENU_NAME=#{menu_Name}, MENU_PRICE=#{menu_Price}, MENU_EXP=#{menu_Exp}, MENU_YN=#{menu_Yn}, CAT_Code=#{cat_Code}, MENU_PIC=#{menu_Pic}
+		WHERE MENU_NUM=#{menu_Num}
+	</update>
   
 </mapper>

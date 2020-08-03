@@ -24,7 +24,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="../common/systemAdminHeader.jsp"/>
+<jsp:include page="../../common/systemAdminHeader.jsp"/>
 	<div class="wrapper">
 		<div class="main_container">
 			<div class="item">
