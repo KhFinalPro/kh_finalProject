@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 import com.kh.chickenPeople.bung.model.vo.BungTag;
+import com.kh.chickenPeople.message.model.vo.Message;
 
 @Repository("bungDao")
 public class BungDao {
@@ -85,6 +86,11 @@ public class BungDao {
 	public int updateBung(Bung b) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.update("bungMapper.updateBung", b);
+	}
+
+	public int insertMessage(Message m) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("messageMapper.insertMessage", m);
 	}
 
 

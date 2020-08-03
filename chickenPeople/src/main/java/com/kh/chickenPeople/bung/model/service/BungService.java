@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 import com.kh.chickenPeople.bung.model.vo.BungTag;
+import com.kh.chickenPeople.message.model.vo.Message;
 
 @Service
 public interface BungService {
@@ -38,6 +39,8 @@ public interface BungService {
 	ArrayList<Bung> selectMyBung(String id);
 
 	int updateBung(Bung b);
+
+	int insertMessage(Message m);
 
 	
 

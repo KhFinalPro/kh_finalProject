@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+	<resultMap id="reviewResultSet" type="Review">
+		<id property="rev_num" column="REV_NUM"/>
+		<result property="user_rev_rate" column="USER_REV_RATE"/>
+		<result property="avg_rev_rate" column="AVG_REV_RATE"/>
+		<result property="rev_pic" column="REV_PIC"/>
+		<result property="rev_date" column="REV_DATE"/>
+		<result property="rev_cont" column="REV_CONT"/>
+		<result property="rev_re" column="REV_RE"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="ord_num" column="ORD_NUM"/>
+		<result property="sto_num" column="STO_NUM"/>
+	</resultMap>
+	
+	<select id="selectListReview" parameterType="_int" resultMap="reviewResultSet">
+		SELECT R.REV_NUM, R.REV_RATE AS USER_REV_RATE, REV_PIC, REV_DATE, REV_CONT, REV_RE, USER_ID, ORD_NUM
+		FROM REVIEW R
+		JOIN STORE_REVIEW SR ON R.REV_NUM = SR.REV_NUM
+		WHERE STO_NUM = #{sto_num}
+	</select>
+	
+	<select id="selectReviewAvg" parameterType="_int" resultType="Double">
+		SELECT AVG(REV_RATE)
+		FROM STORE_REVIEW
+		WHERE STO_NUM = #{sto_num}
+		GROUP BY STO_NUM
+	</select>
+</mapper>

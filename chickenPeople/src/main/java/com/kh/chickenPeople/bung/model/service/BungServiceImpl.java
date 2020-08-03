@@ -9,6 +9,7 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.dao.BungDao;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 import com.kh.chickenPeople.bung.model.vo.BungTag;
+import com.kh.chickenPeople.message.model.vo.Message;
 
 @Service("bungService")
 public class BungServiceImpl implements BungService {
@@ -99,6 +100,12 @@ public class BungServiceImpl implements BungService {
 	public int updateBung(Bung b) {
 		// TODO Auto-generated method stub
 		return bungDao.updateBung(b);
+	}
+
+	@Override
+	public int insertMessage(Message m) {
+		// TODO Auto-generated method stub
+		return bungDao.insertMessage(m);
 	}
 
 
