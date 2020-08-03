@@ -85,7 +85,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">브랜드 관리</span>
                     </a></li>
-                    <li id="store"><a href="systemAdminStore.do">
+                    <li id="store"><a href="systemAdminStore.do?storeSearch=&brandCategory=total&status_s=Y">
                         <span class="icon">
                             <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
                         </span>

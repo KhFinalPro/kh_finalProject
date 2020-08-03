@@ -85,8 +85,7 @@
 		    WHERE SL.USER_ID = #{id}
 		    GROUP BY SL.STO_NUM, STO_NAME, BRAND_PIC, BRAND_NAME
 		    )
-	</select>
-	
+	</select>	
 	<select id="selectStore" parameterType="_int" resultMap="storeResultSet">
 		SELECT SI.STO_NUM, STO_NAME, STO_TEL, STO_OPEN, STO_CLOSE, STO_ADDR, STO_INTRO, ORD_LIMIT, OPEN_YN, CEO_NAME,
 				DELIVERY, BRAND_PIC, BRAND_NAME, M.MENU_NUM, MENU_NAME, MENU_PRICE, MENU_PIC, MENU_EXP,
@@ -97,12 +96,13 @@
         
 		WHERE SI.STO_NUM = #{sto_num}
 	</select>
+
 	
 	<select id="getListCount" resultType="_int">
  		SELECT COUNT(*) 
  		FROM ADMIN_STORE
  	</select>
- 	 	<select id="getSearchListCount" resultType="_int">
+ 	<select id="getSearchListCount" resultType="_int">
  		SELECT COUNT(*)
 		FROM (SELECT *
 			  FROM ADMIN_STORE
@@ -111,7 +111,7 @@
 			  AND BRAND_NAME=#{searchCategory}
 			  </if>
 			  <if test="searchName!=null">
-			  AND STORE_NAME LIKE '%'||#{searchName}||'%'
+			  AND STO_NAME LIKE '%'||#{searchName}||'%'
 			  </if>)
  	</select>
  	<select id="selectStoreList" resultMap="storeResultSet">
@@ -125,7 +125,7 @@
 			AND BRAND_NAME=#{searchCategory}
 		</if>		
 		<if test="searchName!=null">
-			AND STORE_NAME LIKE '%'||#{searchName}||'%'
+			AND STO_NAME LIKE '%'||#{searchName}||'%'
 		</if>
 	</select>
 </mapper>

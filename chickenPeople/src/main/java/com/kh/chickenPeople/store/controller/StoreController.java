@@ -34,6 +34,7 @@ public class StoreController {
 	@RequestMapping("storeDetail.do")
 	public ModelAndView storeOrderMain(ModelAndView mv, int sto_num) {
 		
+		
 		System.out.println("storeOrderMain 페이지 뿌리기! : " + sto_num);
 		//매장에 대한 정보 가져오기
 		ArrayList<Store> storeList = storeService.selectStore(sto_num);
@@ -42,19 +43,24 @@ public class StoreController {
 		ArrayList<Review> reviewList = storeService.selectListReview(sto_num);
 				
 		//리뷰 평균
-		double avg_review_rate = storeService.selectReviewAvg(sto_num);
 		
-		//주문번호당 메뉴명 가져오기
-//		for(Store s : storeList)
-//		{
-//			ArrayList<Menu> menuList = storeService.selectMenuList(s.get)
-//		}
-		
-		mv.addObject("storeList", storeList);
-		mv.addObject("reviewList", reviewList);
-		mv.addObject("avg_review_rate", avg_review_rate);
-		mv.setViewName("store/storeOrderMain");
-		return mv;
+		try
+		{
+			double avg_review_rate = storeService.selectReviewAvg(sto_num);
+			mv.addObject("avg_review_rate", avg_review_rate);
+			mv.addObject("storeList", storeList);
+			mv.addObject("reviewList", reviewList);
+			mv.setViewName("store/storeOrderMain");
+			return mv;
+		}
+		catch(NullPointerException e)
+		{
+			mv.addObject("avg_review_rate", 0.0);
+			mv.addObject("storeList", storeList);
+			mv.addObject("reviewList", reviewList);
+			mv.setViewName("store/storeOrderMain");
+			return mv;
+		}
 		
 		
 	} 
@@ -122,7 +128,7 @@ public class StoreController {
 									@RequestParam(value="status_s",required=false) String status,
 									SearchStatus storeSearch){
 		
-		System.out.println("storeName:"+storeSearch);
+		System.out.println("storeName:"+storeName);
 		System.out.println("storeCategory:"+storeCategory);
 		System.out.println("status:"+status);
 		
@@ -143,11 +149,12 @@ public class StoreController {
 			}else {
 				storeSearch.setSearchName(storeName);
 			}
+			
 			storeSearch.setSearchCategory(storeCategory);
 			storeSearch.setSearchStatus(status);
 			
 			listCount = storeService.getSearchListCount(storeSearch);		//검색 결과 갯수 count
-			pi = Pagination.getPageInfo(currentPage, listCount, 5);
+			pi = Pagination.getPageInfo(currentPage, listCount, 8);
 			resultStoreList = storeService.selectStoreSearchList(storeSearch,pi);
 			System.out.println("검색:"+resultStoreList);
 			
@@ -156,7 +163,7 @@ public class StoreController {
 			mv.addObject("storeList",resultStoreList);
 		}else {
 			listCount = storeService.getListCount();
-			pi = Pagination.getPageInfo(currentPage, listCount, 5);
+			pi = Pagination.getPageInfo(currentPage, listCount, 8);
 			resultStoreList = storeService.selectStoreList(pi);
 			System.out.println("전체:"+resultStoreList);
 			

@@ -39,7 +39,7 @@ public class MenuController {
 							 @RequestParam(value="menuCategory",required=false) String menuCategory,
 							 @RequestParam(value="status_s",required=false)String status_s,
 							 @RequestParam(value="page",required=false)Integer page,
-							 SearchStatus menuSearch, HttpSession session,
+							 SearchStatus menuSearch, 
 							 ModelAndView mv){
 //		System.out.println("---------------------------------");
 //		System.out.println("menuName:"+menuName);

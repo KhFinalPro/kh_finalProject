@@ -53,10 +53,10 @@
 						<tr>
 							<td><b>입점매장 검색</b></td>
 							<c:if test="${empty searchStatus.searchName}">
-								<td><input class="storeSearch" name="storeSearch" type="text" placeholder="매장명을 입력해주세요."></td>
+								<td><input class="menuSearch" name="storeSearch" type="text" placeholder="매장명을 입력해주세요."></td>
 							</c:if>
 							<c:if test="${not empty searchStatus.searchName }">
-								<td><input class="storeSearch" name="storeSearch" type="text" value="${searchStatus.searchName}"></td>
+								<td><input class="menuSearch" name="storeSearch" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -74,22 +74,16 @@
 									</c:forEach>
 								</select>
 							</td>
-							<td><b>판매 상태</b></td>
-<%-- 								<c:if test="${searchStatus.searchStatus eq 'N' }">
+								
+								<c:if test="${searchStatus.searchStatus eq 'Y' }">
+								
+									<td><b>판매 상태</b></td>
 									<td>
-										<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
-										<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
-										
+										<label><input type="radio" name="status_s" value="Y" checked/> 계약 중</label>
+										<label><input type="radio" name="status_s" value="N"/> 계약 대기</label>		
 									</td>
 								</c:if>
-								<c:if test="${searchStatus.searchStatus eq 'Y' }">
-									<td><b>입점 상태</b></td>
-									<td>
-										<label><input type="radio" name="status_s" value="Y"/> 계약 중</label>
-										<label><input type="radio" name="status_s" value="N"/> 계약 만료</label>
-										<label><input type="radio" name="status_s" value=""/> 입점 대기</label>
-									</td>
-								</c:if> --%>
+								
 						</tr>
 						<tr>
 							<td colspan="4">
@@ -148,7 +142,7 @@
 		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
 	                    </c:if>
 	                    <c:if test="${pi.currentPage gt 1}">
-	                    	<c:url var="blistBack" value="systemAdminMenu.do">
+	                    	<c:url var="blistBack" value="systemAdminStore.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
 	                    		<c:param name="storeSearch" value="${searchStatus.searchName }"/>
 	                    		<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
@@ -162,7 +156,7 @@
 	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
 	                    	</c:if>
 	                    	<c:if test="${p ne pi.currentPage }">
-	                    		<c:url var="blistCheck" value="systemAdminMenu.do">
+	                    		<c:url var="blistCheck" value="systemAdminStore.do">
 	                    			<c:param name="page" value="${p }"/>
 	                    			<c:param name="storeSearch" value="${searchStatus.searchName }"/>
 	                    			<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
@@ -176,7 +170,7 @@
 		                    <a style = "color:#9c9c9c"  disabled>Next</a>
 	                    </c:if>
 						<c:if test="${pi.currentPage lt pi.maxPage }">
-							<c:url var="blistAfter" value="systemAdminMenu.do">
+							<c:url var="blistAfter" value="systemAdminStore.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
 								<c:param name="storeSearch" value="${searchStatus.searchName }"/>
 	                    		<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
