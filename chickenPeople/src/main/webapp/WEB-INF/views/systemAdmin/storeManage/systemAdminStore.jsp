@@ -127,6 +127,9 @@
  						 		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
  						 	</c:url>
 							<tr>
+								<c:url var="updateStore" value="updateStore.do">
+									<c:param name="storeNum" value="${i.sto_num }"/>
+								</c:url>
 								<td class="storeNum">${i.sto_num }</td>
 								<td><a style="cursor:hand">${i.brand_name }</a></td>
 								<td><a href="${storeDetail }" style="cursor:hand">${i.sto_name }</a></td>
@@ -137,7 +140,7 @@
 									<td>입점</td>
 								</c:if>
 								<c:if test="${i.aprv_status eq 'N' }">
-									<td><button>승인처리</button></td>
+									<td><button onclick="location.href='${updateStore}'">승인처리</button></td>
 								</c:if>
 							</tr>					
 					</c:forEach>					

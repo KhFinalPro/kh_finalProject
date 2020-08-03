@@ -11,12 +11,10 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
-	.leftArea{background-color:yellow; width:30%; height:100%; float:left}
-	.rightArea{background-color:red; width:100%; height:100%; }
-	.top{background-color:orange; height:50%; }
-	.bot{background-color:green;}
-	#bar_chart_div{width:80%; margin:0 auto;}
-	
+	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
+	.left-box {background: red; float: left; width: 30%; height:100%}
+	.right-box { background: blue; float: right; width:70%; height:100%}
+	.right-top{background:yellow;  height:50%}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
@@ -24,19 +22,15 @@
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
-			<div class="leftArea">
-			</div>
-
-			<div class="rightArea">
-				<div class="top">
-					<div id="bar_chart_div" class="top"></div>
+			<div class='left-box'></div>
+			<div class='right-box'>
+				<div class="right-top">
+					<div id="bar_chart_div"></div>
 				</div>
-				
-				<div class="bot">
+				<div class="right-bot">
 				</div>
-			</div>
-			
-		</div>
+			</div>			
+	</div>
 	</div>
 </div>
 </body>

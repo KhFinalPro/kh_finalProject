@@ -73,7 +73,7 @@ body{ background:#e1ecf2; overflow: hidden; }
         </div>
             <div class="sidebar">
                 <ul>
-                    <li id="main"><a href="systemAdmin.do">
+                    <li id="main"><a href="brandTotalGraph.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>

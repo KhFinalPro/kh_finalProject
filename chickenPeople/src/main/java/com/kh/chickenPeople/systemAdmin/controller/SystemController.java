@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.common.SaveFile;
 import com.kh.chickenPeople.systemAdmin.model.service.SystemService;
+import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
@@ -114,6 +114,18 @@ public class SystemController {
 		
 		
 		return "redirect:/systemAdminCoupon.do";
+	}
+	
+	//계연 System Admin Main 그래프(1)
+	@RequestMapping(value="brandTotalGraph.do")
+	public ModelAndView brandTotalGraph(ModelAndView mv) {
+		
+		ArrayList<BrandTotal> selectBrandTotal = sService.selectBrandTotal();
+		System.out.println("맙소사ㅏ"+selectBrandTotal);
+		
+		mv.addObject("printTotalList",selectBrandTotal);
+		mv.setViewName("systemAdmin/systemAdminMain");
+		return mv;
 	}
 	
 	

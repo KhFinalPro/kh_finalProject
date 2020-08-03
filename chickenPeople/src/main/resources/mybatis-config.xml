@@ -13,6 +13,8 @@
 		<typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
 		<typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal" alias="BrandTotal"/>
+		
 		<typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.chickenPeople.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>

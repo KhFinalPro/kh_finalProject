@@ -8,6 +8,11 @@
   	<result property="brand_yn"	column="BRAND_YN"/>
   	<result property="brand_count" column="BRAND_COUNT"/>
   </resultMap>
+  
+  <resultMap type="brandTotal" id="brandTotalResultSet">
+  	<id property="brandCode" column="BRAND_CODE"/>
+  	<result property="payTotal" column="PAY_TOTAL"/>
+  </resultMap>
   <select id="getListCount" resultType="_int">
   	SELECT COUNT(*)
   	FROM BRAND
@@ -20,4 +25,9 @@
 	GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME
   </select>
   
+  
+  <select id="selectBrandTotal" resultMap="brandTotalResultSet">
+  	SELECT * 
+  	FROM ADMIN_TOTAL_BRAND
+  </select>
 </mapper>
