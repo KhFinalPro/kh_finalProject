@@ -201,6 +201,10 @@
             $("#home").on("click", function(){
             	location.href="loginHome.do?id="+$("#id").val();
             })
+            
+            $("#address").on("change",function(){
+            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
+            })
         })
     </script>
 

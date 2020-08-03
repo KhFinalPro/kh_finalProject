@@ -30,6 +30,12 @@
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
+		/*채팅*/
+		#main_section>#head_area>#massage>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#massage>h3:hover{color:black; cursor:pointer;}
+		#main_section>#head_area>#chatting_status{margin-left: 10px;}
+		#main_section>#head_area>.head_tree_line{float: left;}
+		
 		/*시간 정보*/
 		#main_section>#date>img{width: 50px; height: 50px;}
 		#main_section>#date_info{margin-left: 10px; height: 25px; line-height: 25px;}
@@ -64,6 +70,10 @@
 		/*번개 수정하기 버튼*/
 		#UpdateBung{float:right; height: 50px; width: 200px; font-size:25px; font-weight:600; border: 0px;}
 		#UpdateBung:hover{color:#2ac1bc; background-color: white;}
+		
+		#msgReplyModal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+		#msgReplyModal>div{width: 400px; height: 500px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+		
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -74,7 +84,7 @@
 	<br clear="both">
 	
 	<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
-	
+	<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
     <section id="main_section">
     	<c:if test="${myPageStatus == 'y' }">
     		<button id="UpdateBung">번개 수정하기</button>
@@ -107,6 +117,11 @@
             <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div>
             <br clear="both">
             
+            <div id="massage" class="head_tree_line">
+            	<h3 id="massage_click">메세지</h3>
+            </div>
+            <%-- <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div> --%>
+            <br clear="both">
         </div>
 
         <hr>
@@ -132,7 +147,7 @@
         <br><br>
         
         <div id="my" class="info_four_area"><img src="resources/images/userIcon.png" alt=""></div>
-        <div id="my_info" class="info_four_area"><h4>${bung.user_id }</h4></div>
+        <div id="my_info" class="info_four_area"><h4 id="create_user_id">${bung.user_id }</h4></div>
 
         <br clear="both">
 
@@ -152,6 +167,31 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 
+	<!-- 모달 -->
+	<div id="msgReplyModal">
+	    <div>
+	        <a href="javascript: $('#msgReplyModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+	            <img src="resources/images/close.png" style="width: 100%;"/>
+	        </a>
+	        <div style="position: absolute; top : 53px; left:35px;">
+		        <table id="replyMessage">
+		            <tr >
+		                <th style="width: 100px; height: 50px; font-size:22px;">Title</th>
+		                <td><input id="modal_reply_title" type="text" style="border:2px solid; border-radius:6px; height:20px;"></td>
+		            </tr>
+		        </table>
+	    	</div>
+		    <div style="position: absolute; top : 100px; left:12px;">
+		        <ul style="list-style: none;">
+		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
+		            <textarea id="modal_reply_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
+		
+		            </textarea>
+		        </ul>
+		        <button type="button" id="bungMessage" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>보내기</b></button>
+		    </div>
+	    </div>
+    </div>
 </body>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -225,6 +265,39 @@
 			alert($bung_num);
 			location.href="bungUpdateView.do?bung_num=" + $bung_num;
 		})
+		
+		$("#massage_click").on("click",function(){
+			$("#msgReplyModal").fadeIn(500);
+		})
+		
+		$("#bungMessage").on("click",function(){
+			$rev_id = $("#create_user_id").text();
+			$send_id = $("#user_id").val();
+			$msg_contents = $("#modal_reply_content").val();
+			$msg_title = $("#modal_reply_title").val();
+			$.ajax({
+				url:"bungMessage.do",
+				data:{rev_id:$rev_id, send_id:$send_id, msg_contents:$msg_contents, msg_title:$msg_title},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data.success == 'y'){
+						console.log("메세지 성공");
+						$("#msgReplyModal").fadeOut(500);
+					}						
+					else{
+						console.log("실패");
+					}
+				},
+				error:function(request, status, errorData){
+	            	alert("error code: " + request.status + "\n"
+	                    +"message: " + request.responseText
+	                    +"error: " + errorData);
+				}
+			})
+		})
+		
+
 	})
 </script>
 </html>
