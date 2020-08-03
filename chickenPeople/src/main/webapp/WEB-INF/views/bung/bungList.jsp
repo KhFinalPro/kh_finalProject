@@ -53,7 +53,7 @@ section{margin-top: 200px;}
 			</select>
 			<c:if test="${!empty sessionScope.loginUser }">
 				<div id="create_bung_area">
-					<input type="button" id="create_bung" value="번개 계설하기"/>	
+					<input type="button" id="create_bung" value="번개 개설하기"/>	
 				</div>
 			</c:if>
 			<c:if test="${empty sessionScope.loginUser }">

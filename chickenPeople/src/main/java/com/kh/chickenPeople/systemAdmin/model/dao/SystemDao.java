@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
+
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Repository("sDao")

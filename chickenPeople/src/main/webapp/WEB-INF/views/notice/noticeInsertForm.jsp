@@ -95,7 +95,7 @@
 		}
 		
 		function toNlist(){
-			location.href="nlist.do"
+			location.href="noticeList.do";
 		}
 	</script>
 </body>

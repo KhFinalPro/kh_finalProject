@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 _ 메뉴</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
     .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
@@ -32,10 +32,14 @@
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+    a:link{text-decoration:none; color:#646464;}
+    a:visited{text-decoration:none; color:#646464;}
+    a:active{text-decoration:none; color:#646464;}
+    a:hover{text-decoration:none; color:#646464;}
 </style>
 </head>
 <body>
-<jsp:include page="../common/systemAdminHeader.jsp"/>
+<jsp:include page="../../common/systemAdminHeader.jsp"/>
 
 <div class="wrapper">
 	<div class="main_container">
@@ -44,11 +48,16 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">메뉴 관리</p>
 				<br><hr><br>
-				<form action="menuSearch.do" method="get">
+				<form action="systemAdminMenu.do" method="get">
 					<table class="searchTable">
 						<tr>
 							<td><b>메뉴 검색</b></td>
-							<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+							<c:if test="${empty searchStatus.searchName}">
+								<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
+							</c:if>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -56,25 +65,48 @@
 								<select id="menuCategory" class="menuCategory" name="menuCategory">
 									<option value="total">전체</option>
 									<c:forEach var="m" items="${brandList}">
-										<option value="${m.brand_name }">${m.brand_name }</option>
+										<c:if test="${searchStatus.searchCategory eq m.brand_name }">
+											<option value="${m.brand_name }" selected>${m.brand_name }</option>
+										</c:if>
+										<c:if test="${searchStatus.searchCategory ne m.brand_name }">
+											<option value="${m.brand_name }">${m.brand_name }</option>
+										</c:if>
 									</c:forEach>
 								</select>
 							</td>
 							<td><b>판매 상태</b></td>
-							<td>
-								<label><input type="radio" name="status" value="Y" checked/> 판매 중</label>
-								<label><input type="radio" name="status" value="N"/> 판매 종료</label>
-							</td>
+								<c:if test="${searchStatus.searchStatus eq 'N' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
+										
+									</td>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq 'Y' }">
+									<td>
+										<label><input type="radio" name="status_s" value="N" /> 판매 중</label>
+										<label><input type="radio" name="status_s" value="Y" checked/> 판매 종료</label>
+									</td>
+								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
+							<td colspan="4">
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
-		
+			<c:url var="goMenuInsert" value="menuInsert.do"></c:url>
+			
 			<div class="menuResultTable">
 				<br><hr><br>
+				<div style="text-align:right;">
+					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
+				</div>
+				<c:if test="${listCount ne 300 }">
+					<p>게시글 검색 결과가 총 ${listCount }건 존재합니다.</p>
+				</c:if>
 				<table class="resultTable">
 					<thead>
 						<th>번호</th>
@@ -88,15 +120,24 @@
 					</thead>
 					<tbody>
 					<c:forEach var="i" items="${menuList }">
+							<c:url var="menuDetail" value="systemAdminMenuDetail.do">
+								<c:param name="menuNum" value="${i.menu_Num }"/>
+								<c:param name="page" value="${pi.currentPage }"/>
+								<c:param name="menuName" value="${searchStatus.searchName }"/>
+	                    		<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
+	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
+							</c:url>
 						<tr>
-							<td>${i.menu_Num }</td>
+							<td class="menuNum">${i.menu_Num }</td>
 							<td>${i.brand_Name }</td>
 							<td>${i.cat_Name }</td>
 							<td><img src="resources/menu/${i.menu_Pic }.jpg" width="40px" height="40px"></td>
-							<td>${i.menu_Name }</td>
+							<td><a href="${menuDetail}" style="cursor:hand">${i.menu_Name }</a></td>
 							<td>${i.menu_Price }</td>
 							<td>${i.menu_Exp }</td>
-							<td>${i.menu_Yn }</td>
+							<c:if test="${i.menu_Yn eq 'Y'}"> <td>판매중지</td> </c:if>
+							<c:if test="${i.menu_Yn eq 'N'}"> <td>판매중</td> </c:if>
+							
 						</tr>					
 					</c:forEach>
 					</tbody>
@@ -112,7 +153,10 @@
 	                    <c:if test="${pi.currentPage gt 1}">
 	                    	<c:url var="blistBack" value="systemAdminMenu.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
-	                    	</c:url>
+	                    		<c:param name="menuName" value="${searchStatus.searchName }"/>
+	                    		<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
+	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
+							</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
 	                    </c:if>
 	                    <ol>
@@ -123,6 +167,9 @@
 	                    	<c:if test="${p ne pi.currentPage }">
 	                    		<c:url var="blistCheck" value="systemAdminMenu.do">
 	                    			<c:param name="page" value="${p }"/>
+	                    			<c:param name="menuName" value="${searchStatus.searchName }"/>
+	                    			<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
+	                    			<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
 	                    	</c:if>
@@ -134,6 +181,9 @@
 						<c:if test="${pi.currentPage lt pi.maxPage }">
 							<c:url var="blistAfter" value="systemAdminMenu.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
+								<c:param name="menuName" value="${searchStatus.searchName }"/>
+	                    		<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
+	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 							</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 						</c:if>
@@ -146,8 +196,6 @@
 <script>
 $(function(){
 	$("#menu").children().addClass('active');
-	
-	
 })
 </script>
 </html>
