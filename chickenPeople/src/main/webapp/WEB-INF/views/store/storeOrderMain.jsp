@@ -267,7 +267,7 @@
 										<p class="rev_cont">${r.rev_cont }</p>
 									</li>
 									<li>
-										<img class="rev_pic" src="../workspace/images/pelicana.png" alt=""><!-- 리뷰 이미지 -->
+										<img class="rev_pic" src="resources/review/${r.rev_pic }" alt=""><!-- 리뷰 이미지 -->
 									</li>
 								</ul>
 								<hr>
