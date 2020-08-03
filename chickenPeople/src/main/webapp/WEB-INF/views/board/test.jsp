@@ -713,6 +713,7 @@
         .reply_modify {
                 border: 2px solid #FFBB00;
             }
+            
     </style>
     <body>
       <jsp:include page="../common/header.jsp"/>

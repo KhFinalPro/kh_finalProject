@@ -42,7 +42,7 @@ public class BoardDao {
 	}
 
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
+		
 		return sqlSessionTemplate.insert("boardMapper.insertBoard",b);
 	}
 

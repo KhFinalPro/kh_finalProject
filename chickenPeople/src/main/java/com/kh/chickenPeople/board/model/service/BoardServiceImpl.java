@@ -43,7 +43,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
+		
 		return bDao.insertBoard(b);
 	}
 

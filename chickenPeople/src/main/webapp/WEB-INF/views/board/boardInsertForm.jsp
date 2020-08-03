@@ -66,7 +66,10 @@
 			location.href="boardList.do";
 		}
 	</script>
-	<form action="binsert.do" method="post" encType="multipart/form-data">
+	<form action="bInsert.do" method="post" encType="multipart/form-data">
+	<input type="text" name="bWriter" value="${loginUser.id }">
+	<input type="text" name="bCate" value="레시피">
+	
 	<!--  enctype="Multipart/form-data"  파일 쓸때 사용-->
 	
 	<table align="center"width="40%" style='border-left:0;border-right:0;border-bottom:0;border-top:0' > 
@@ -75,15 +78,15 @@
 		
 			<tr>
 				<td>
-					title:<textarea  type="text" rows="1" cols="90" name="nTitle"></textarea>
+					title:<input type="text" size="90" name="bTitle">
 				</td>
 			</tr>
 					
 			<tr align="center" colspan="2" >
-				<td colspan="2"><h1>notice contents</h1> </td>
+				<td colspan="2"><h1>board contents</h1> </td>
 				
 			</tr>
-		
+		<!-- 
 			<tr  colspan="2" style="margin-top:150px" >
 					
 				<td  colspan="2">
@@ -107,24 +110,77 @@
 					<textarea rows="20" cols="90" name="nCont">
 					</textarea>
 				</td>
-			</tr>
-			<tr align="right">
-				<td>
-					<input type="text" style="background-color:transparent;border:0 solid black;text-align:right;" name="userId" readonly value="${loginUser.id}" >
-				</td>
-			</tr>
-			
-			<tr  style="margin-top:150px">
-			<td colspan="2"  align="center" style="border-top: 50px solid #fff;">
-				<input type="submit" class="button" value="등록" >		
-			</td>
+			</tr> -->
+		  <tr colspan="2">
+				<td><button type="button" onclick="addContent()">내용추가</button></td>
 			</tr>
 		 </table>
-		 
-		 
+		
+			<!-- test -->
+		<br>
+			<div id ="bContents">
+			</div>
+			
+		<br clear="both">
+			<div>
+				<button type="button" onclick="removeTable()">마지막꺼 삭제</button>
+				<input type="submit" value="등록하기">&nbsp; 
+				<a href="boardList.do"></a>
+			</div>
+				
+				<input type="submit" class="button" value="등록" >		
+
 		 </form>
 
-		<br><br><br><br><br><br><br>
 
+
+<br><br><br><br><br><br><br>
+
+	<script type="text/javascript">
+			num = 0;
+			function addContent(){
+				$content =  "<table align='center' border='1' cellcpacing='0' id='t" + num + "'>"+
+							"<tr>" +
+								"<td colspan='2'>첨부파일</td>" +
+							"</tr>" +
+							"<tr>" +
+								"<td colspan='2'>"+
+									"<div id='i" + num + "' align='center' style='border:1px solid black;height:250px;width:400px' onclick='clickFile(this)'>"+
+										"<img name='i" + num + "' style='height:250px;width:400px'>" +
+									"</div>" +
+							"</tr>" +
+							"<tr>" +
+								"<td colspan='2'><input type='file' class='i" + num + "' name='fileName' onchange='LoadImg(this, " + num + ")'></td>" +
+							"</tr>" +
+							"<tr>" +
+								"<td colspan='2'>내용</td>" +
+							"</tr>" +
+							"<tr>" +
+								"<td colspan='2'><textarea cols='50' rows='5' name='bContent'></textarea></td>" +
+							"</tr>" +
+							"</table>";
+				$("#bContents").append($content);
+				num++;
+			}
+			function clickFile(obj){
+				var iden = "." + obj.id;
+				$(iden).click();
+			}
+			function LoadImg(value, num) {
+				var iden = "img[name=i" + num + "]";
+				if (value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+							$(iden).attr("src", e.target.result);
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			function removeTable(){
+				var iden = "#t"+(--num);
+				var table = $(iden);
+				table.remove();
+			}
+	</script>
 </body>
 </html>
