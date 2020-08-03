@@ -10,7 +10,7 @@
 	<title>Insert title here</title>
 	<style>
 		#mypage_nav{margin-top:200px}
-		    .mypageTitle{
+		   	.mypageTitle{
             text-align: center;
             margin-top: 120px;
         }
@@ -22,8 +22,8 @@
             border-radius: 10px;
             position:relative;
             margin:0 auto 0;
-          
-            width: 840px;
+         
+            width: 960px;
             height: 50px;
             background:lightgrey;
             box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
@@ -107,6 +107,13 @@
             width:115px;
             left:724px;
         }
+        a:nth-child(8){
+            width:115px;
+        }
+        nav .start-home,a:nth-child(8):hover~.animation{
+            width:115px;
+            left:845px;
+        }
 	</style>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
@@ -117,6 +124,7 @@
 	        <a href="#">회원정보</a>
 	        <a href="#">포인트</a>
 	        <a href="#">쿠폰</a>
+	        <a href="couponAccept.do?id=${sessionScope.loginUser.id }">쿠폰받아가기</a>
 	        <a href="orderStatus.do?id=${sessionScope.loginUser.id }">주문현황</a>
 	        <a href="calender.do">주문달력/리뷰</a>
 	        <a href="msgList.do">메세지</a>

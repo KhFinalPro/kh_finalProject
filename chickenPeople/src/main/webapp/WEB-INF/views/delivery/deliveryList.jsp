@@ -44,7 +44,6 @@
         <select name="store_category" id="store_category">
             <option value="distance">거리순</option>
             <option value="good">인기순</option>
-            <option value="like">찜한목록순</option>
         </select>
     
         <br clear="both">
@@ -153,10 +152,8 @@
 		
 		//매장 상세 페이지이동		
 		$(document).on("click",".store_area",function(){
-			console.log("매장 상세 페이지이동");
-			/* $(this).children("#sto_num").val();*/
-			/* location.href=""; */
-			/*alert($(this).children("#sto_num").val()); */
+			$sto_num = $(this).children("#sto_num").val();
+			location.href="storeDetail.do?sto_num="+$sto_num;
 		})
 	})
 </script>

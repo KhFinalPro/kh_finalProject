@@ -20,6 +20,7 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.bung.model.service.BungService;
 import com.kh.chickenPeople.bung.model.vo.Bung;
 import com.kh.chickenPeople.bung.model.vo.BungTag;
+import com.kh.chickenPeople.message.model.vo.Message;
 import com.kh.chickenPeople.tag.model.service.TagService;
 import com.kh.chickenPeople.tag.model.vo.Tag;
 
@@ -236,6 +237,26 @@ public class BungController {
 		return "redirect:/myBung.do?id="+b.getUser_id();	//myPageBungList controller로 이동
 		
 	}
+	
+	@RequestMapping(value="bungMessage.do", method=RequestMethod.POST)
+	public void bungMassage(HttpServletResponse  response, String rev_id, String send_id, String msg_contents, String msg_title) throws IOException {
+		Message m = new Message(0, send_id, rev_id, "", msg_title, msg_contents, "");
+		System.out.println(m);
+		int result = bungService.insertMessage(m);
+		if(result > 0)
+		{
+			System.out.println("성공?");
+			JSONObject obj = new JSONObject();
+			PrintWriter out = response.getWriter();
+			
+			obj.put("success", "y");
+			out.print(obj);
+			out.flush();
+			out.close();
+		}
+			
+	}
+	
 	
 	
 	

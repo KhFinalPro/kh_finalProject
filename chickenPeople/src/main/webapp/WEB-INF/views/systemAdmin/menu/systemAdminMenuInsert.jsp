@@ -108,14 +108,14 @@
 						</td>
 						<td><b>브랜드 명</b></td>
 						<td>
-							<select id="brandCategory" class="brandCategory" name="brand_name">
+							<select id="brandCategory" class="brandCategory" name="brand_Code">
 								<c:forEach var="m" items="${brandList}">
-									<option value="${m.brand_name }">${m.brand_name }</option>
-									
+									<option value="${m.brand_code }">${m.brand_name }</option>
 								</c:forEach>
 							</select>
 						</td>
 					</tr>
+					
 					<tr>
 						
 						<td><b>분류</b>&nbsp;</td>
@@ -139,10 +139,9 @@
 						<td><b>메뉴 설명</b></td>
 						<td><textarea name="menu_Exp" cols="55" rows="6"></textarea></td>
 					</tr>
-					<c:url var="insert" value="menuInsertData.do"/>
 					<tr>	
 						<td>
-							<button id="insert" onclick="location.href='${contextPath}/${insert}'"><b>판매처리</b></button>
+							<button id="insert" style="text-align:right;" type="submit"><b>판매처리</b></button>
 							
 						</td>
 					</tr>
