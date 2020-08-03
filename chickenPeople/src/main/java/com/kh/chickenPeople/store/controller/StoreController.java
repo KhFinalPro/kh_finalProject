@@ -12,12 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.chickenPeople.brand.model.vo.Brand;
+import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 @Controller
 public class StoreController {
@@ -113,4 +118,64 @@ public class StoreController {
 		
 		
 	}
+
+	//(계연)관리자 _ 매장 관리-----------------------------------------------------------------------------
+	@RequestMapping(value="systemAdminStore.do", method=RequestMethod.GET)
+	public ModelAndView storeSearch(ModelAndView mv, 
+									@RequestParam(value="page", required=false) Integer page,
+									@RequestParam(value="storeSearch", required=false) String storeName,
+									@RequestParam(value="brandCategory", required=false) String storeCategory,
+									@RequestParam(value="status_s",required=false) String status,
+									SearchStatus storeSearch){
+		
+		System.out.println("storeName:"+storeName);
+		System.out.println("storeCategory:"+storeCategory);
+		System.out.println("status:"+status);
+		
+		int currentPage=1;
+		int listCount=0;
+		PageInfo pi = null;
+		ArrayList<Store> resultStoreList = null;
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		System.out.println(selectBrandList);
+		
+		if(page!=null) {
+			currentPage = page;
+		}
+		if(storeCategory!=null) {
+			if(storeName.equals("")) {
+				storeName=null;
+				storeSearch.setSearchName(storeName);
+			}else {
+				storeSearch.setSearchName(storeName);
+			}
+			
+			storeSearch.setSearchCategory(storeCategory);
+			storeSearch.setSearchStatus(status);
+			
+			listCount = storeService.getSearchListCount(storeSearch);		//검색 결과 갯수 count
+			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			resultStoreList = storeService.selectStoreSearchList(storeSearch,pi);
+			System.out.println("검색:"+resultStoreList);
+			
+			mv.addObject("searchStatus",storeSearch);
+			mv.addObject("listCount",listCount);
+			mv.addObject("storeList",resultStoreList);
+		}else {
+			listCount = storeService.getListCount();
+			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			resultStoreList = storeService.selectStoreList(pi);
+			System.out.println("전체:"+resultStoreList);
+			
+			mv.addObject("searchStatus",storeSearch);
+			mv.addObject("listCount",listCount);
+			mv.addObject("storeList",resultStoreList);
+		}
+		mv.addObject("brandList",selectBrandList);
+		mv.addObject("pi",pi);
+		
+		mv.setViewName("systemAdmin/storeManage/systemAdminStore");
+		return mv;
+	}
+	
 }

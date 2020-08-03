@@ -19,4 +19,5 @@
 	WHERE BRAND_YN='입점'
 	GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME
   </select>
+  
 </mapper>

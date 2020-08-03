@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.common.SaveFile;
 import com.kh.chickenPeople.systemAdmin.model.service.SystemService;
@@ -30,14 +31,6 @@ public class SystemController {
 		return "systemAdmin/systemAdminMain";
 	}
 	
-
-	
-	@RequestMapping(value="systemAdminStore.do", method=RequestMethod.GET)
-	public String goStoreList() {
-		return "systemAdmin/systemAdminStore";
-	}
-	
-		
 	@RequestMapping(value="systemAdminCoupon.do", method=RequestMethod.GET)
 	public ModelAndView goCouponList(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {
 		
