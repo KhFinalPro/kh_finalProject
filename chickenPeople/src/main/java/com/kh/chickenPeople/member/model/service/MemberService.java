@@ -16,4 +16,5 @@ public interface MemberService {
 	ArrayList<Address> selectAddress(Member member);
 
 	int memberJoin(Member m);
+
 }

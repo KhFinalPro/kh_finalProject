@@ -31,4 +31,14 @@ public class CouponDao {
 		return sqlSessionTemplate.selectOne("couponMapper.selectCouponSerial", c);
 	}
 
+	public ArrayList<Coupon> myCoupon(String id) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("couponMapper.myCouponList", id);
+	}
+
+	public ArrayList<Coupon> pastCoup(String id) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("couponMapper.pastCouponList", id);
+	}
+
 }

@@ -27,7 +27,7 @@
 	
 	<insert id="memberJoin" parameterType="Member">
 		INSERT ALL
-		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, NULL, NULL, NULL, NULL, NULL)
+		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, NULL, NULL, NULL, NULL, 'N')
 		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, 0, 0)
 		SELECT * FROM DUAL
 	</insert>
@@ -35,7 +35,7 @@
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER 
-		WHERE USER_ID=#{id} AND USER_PWD=#{pwd} AND USER_STATUS='N'
+		WHERE USER_ID=#{id} AND USER_STATUS='N'
 	</select>
 	
 	<!-- 아이디 중복체크 -->

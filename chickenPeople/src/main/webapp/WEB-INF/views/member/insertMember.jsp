@@ -6,7 +6,8 @@
         <title></title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script src="/resources/js/addressapi.js"></script>
+		<!-- <script src="/resources/js/addressapi.js"></script> -->
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services"></script>
         <style>
             #memberJoin{
                 width: 700px;
@@ -43,13 +44,6 @@
             #checkAll{
                zoom: 2.0;
             }
-           div select{
-              height: 30px;
-              border-radius: 5px;
-              width: 80px;
-              float: left;
-              margin-left: 3px ;
-           }
            #h2{
                margin-left: 20px;
            }
@@ -162,7 +156,7 @@
                         <label>도로명 주소</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr1" id="addr1" type="text" readonly="readonly" />
+                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr1" id="addr1" class="addr1" type="text" readonly="readonly" />
                     </td>
                 </tr>
                 <tr>
@@ -554,7 +548,6 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	        }).open();
 	    }
 	    
-	    
 
 	    $("#idChk").on("click",function(){
 	    	if($("#id").val()==""){
@@ -576,6 +569,8 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    	})
 	    	}
 	    })
+	    
+	    
     </script>
     
 </html>

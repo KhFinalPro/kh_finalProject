@@ -44,4 +44,5 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.memberJoin(m);
 	}
 
+
 }

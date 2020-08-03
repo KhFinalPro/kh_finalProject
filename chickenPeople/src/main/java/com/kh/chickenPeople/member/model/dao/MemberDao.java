@@ -35,6 +35,8 @@ public  class MemberDao {
 		
 		return sqlSessionTemplate.insert("memberMapper.memberJoin", m);
 	}
+
+	
 	
 //	@Transactional
 //	public int updatePwd(Member m) throws Exception{

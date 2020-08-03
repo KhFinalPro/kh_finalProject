@@ -27,11 +27,14 @@ public class Address implements Serializable{
 		this.lng = lng;
 	}
 	
-	public Address(String user_id, String post_code, String address) {
+	
+	public Address(String user_id, String post_code, String address, double lat, double lng) {
 		super();
 		this.user_id = user_id;
 		this.post_code = post_code;
 		this.address = address;
+		this.lat = lat;
+		this.lng = lng;
 	}
 	public int getAddr_num() {
 		return addr_num;
