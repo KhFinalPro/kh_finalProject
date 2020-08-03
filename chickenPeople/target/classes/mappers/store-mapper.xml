@@ -128,4 +128,10 @@
 			AND STO_NAME LIKE '%'||#{searchName}||'%'
 		</if>
 	</select>
+	<select id="selectStoreOne" resultMap="storeResultSet" parameterType="_int">
+		SELECT *
+		FROM STORE_INFO
+		WHERE STO_NUM=#{storeNum}
+	</select>
+	
 </mapper>

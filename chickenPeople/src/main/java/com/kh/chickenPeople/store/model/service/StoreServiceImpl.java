@@ -69,4 +69,9 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> selectStoreList(PageInfo pi) {
 		return storeDao.selectStoreList(pi);
 	}
+
+	@Override
+	public Store selectOneStore(Integer storeNum) {
+		return storeDao.selectOneStore(storeNum);
+	}
 }

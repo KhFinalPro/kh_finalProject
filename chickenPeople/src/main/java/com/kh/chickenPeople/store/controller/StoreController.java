@@ -128,9 +128,9 @@ public class StoreController {
 									@RequestParam(value="status_s",required=false) String status,
 									SearchStatus storeSearch){
 		
-		System.out.println("storeName:"+storeName);
-		System.out.println("storeCategory:"+storeCategory);
-		System.out.println("status:"+status);
+//		System.out.println("storeName:"+storeName);
+//		System.out.println("storeCategory:"+storeCategory);
+//		System.out.println("status:"+status);
 		
 		int currentPage=1;
 		int listCount=0;
@@ -178,4 +178,41 @@ public class StoreController {
 		return mv;
 	}
 	
+	@RequestMapping(value="systemAdminStoreDetail.do", method=RequestMethod.GET)
+	public ModelAndView storeDetail(ModelAndView mv, SearchStatus searchStatus,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+		System.out.println("storeNum:"+storeNum);
+		System.out.println("Page:"+page);
+		System.out.println("storeNum"+storeNum);
+		System.out.println("storeCategory:"+storeCategory);
+		System.out.println("status:"+status);
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		searchStatus.setSearchCategory(storeCategory);
+		searchStatus.setSearchName(storeName);
+		searchStatus.setSearchStatus(status);
+		
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		Store s = storeService.selectOneStore(storeNum);
+		System.out.println(s);
+		
+		if(s!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("store",s);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/storeManage/systemAdminStoreDetail");
+		}
+		return mv;
+	}
+	@RequestMapping(value="storeUpdate.do", method=RequestMethod.GET)
+	public ModelAndView storeUpdate(ModelAndView mv) {
+		return mv;
+	}
 }

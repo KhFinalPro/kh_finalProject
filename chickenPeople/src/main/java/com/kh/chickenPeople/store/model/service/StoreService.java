@@ -32,4 +32,6 @@ public interface StoreService {
 
 	ArrayList<Store> selectStoreList(PageInfo pi);				//검색결과 storeList
 
+	Store selectOneStore(Integer storeNum);						//store detail
+
 }
