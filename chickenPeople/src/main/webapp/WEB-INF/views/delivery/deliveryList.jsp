@@ -44,7 +44,6 @@
         <select name="store_category" id="store_category">
             <option value="distance">거리순</option>
             <option value="good">인기순</option>
-            <option value="like">찜한목록순</option>
         </select>
     
         <br clear="both">

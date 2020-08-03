@@ -20,6 +20,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
+	.resultTable td{height:20}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
@@ -104,10 +105,18 @@
 					<button onclick="location.href='${goStoreUpdate}'">매장 정보 수정</button>
 				</div>
 				<br>
-				<table class="resultTable">
-					<tr>
+				<table class="resultTable" >
+					<tr>					
 						<td><b>매장번호</b>&nbsp;${store.sto_num }</td>
 						<td><b>${store.sto_name }</b></td>
+						<td>
+							<c:if test="${store.open_yn eq 'Y' }">
+								<button style="color:green"><b>영업중</b></button>
+							</c:if>
+							<c:if test="${store.open_yn eq 'N' }">
+								<button style="color:red"><b>영업 종료</b></button>
+							</c:if>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="2"><b>분류</b>&nbsp;${store.sto_tel}</td>
