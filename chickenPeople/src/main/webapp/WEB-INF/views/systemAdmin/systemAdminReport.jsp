@@ -46,7 +46,12 @@
 					<table class="searchTable">
 						<tr>
 							<td><b>아이디 검색</b></td>
-							<td><input class="menuSearch" name="searchId" type="text" placeholder="아이디를 입력해주세요."></td>
+							<c:if test="${empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="searchId" type="text" placeholder="아이디를 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="searchId" type="text" value="${searchStatus.searchName }"></td>
+							</c:if>
 						</tr>
 						<tr>
 							<td><b>신고사유 검색</b></td>
@@ -54,15 +59,27 @@
 								<select id="rptCategory" class="menuCategory" name="rptCategory">
 									<option value="total">전체</option>
 									<c:forEach var="m" items="${rCategory}">
-										<option value="${m.rpt_Content }">${m.rpt_Content }</option>
+										<c:if test="${searchStatus.searchCategory eq m.rpt_Content }">
+											<option value="${m.rpt_Content }" selected>${m.rpt_Content }</option>
+										</c:if>
+										<c:if test="${searchStatus.searchCategory ne m.rpt_Content }">
+											<option value="${m.rpt_Content }">${m.rpt_Content }</option>
+										</c:if>																
 									</c:forEach>
 									
 								</select>
 							</td>
 							<td><b>처리 상태</b></td>
 							<td>
-								<label><input type="radio" name="status_s" value="Y" checked/>처리 완료</label>&nbsp;
-								<label><input type="radio" name="status_s" value="N"/>미처리</label>&nbsp;
+								<c:if test="${searchStatus.searchStatus eq 'N' }">
+									<label><input type="radio" name="status_s" value="Y" />처리 완료</label>&nbsp;
+									<label><input type="radio" name="status_s" value="N" checked/>미처리</label>&nbsp;
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq 'Y' }">
+									<label><input type="radio" name="status_s" value="Y" checked/>처리 완료</label>&nbsp;
+									<label><input type="radio" name="status_s" value="N"/>미처리</label>&nbsp;
+								</c:if>
+								
 							</td>
 						</tr>
 						<tr>
@@ -86,8 +103,26 @@
 						<th>처리상태</th>
 					</thead>
 					<tbody>
-						
-						
+						<c:forEach var="i" items="${reportList }">
+							<tr>
+								<td class="reportNum">${i.rpt_Num }</td>
+								<td>${i.br_Content }</td>
+								<td>${i.br_Num }</td>
+								<td>${i.rpt_Content }</td>
+								<td>${i.content }</td>
+								<td>${i.rpt_Date }</td>
+								<td>${i.user_Id }</td>
+								<c:if test="${i.rpt_Status eq 'Y' }">
+									<td>처리</td>								
+								</c:if>
+								<c:url var="updateReport" value="reportUpdate.do">
+								<!-- 값을 가지고 뒤로 넘어가는 거 생각해보기 ***************************************** -->
+								</c:url>
+								<c:if test="${i.rpt_Status eq 'N' }">
+									<td><button onclick="location.href=''">삭제</button></td>
+								</c:if>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table><!-- class resultTable end -->
 			</div><!-- class menuResultTable end -->
@@ -99,8 +134,11 @@
 		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
 	                    </c:if>
 	                    <c:if test="${pi.currentPage gt 1}">
-	                    	<c:url var="blistBack" value="">
+	                    	<c:url var="blistBack" value="systemAdminReport.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    		<c:param name="rptCategory" value="${searchStatus.searchCategory }"/>
+	                    		<c:param name="searchId" value="${searchStatus.searchName }"/>
+	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/> 
 	                    	</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
 	                    </c:if>
@@ -110,8 +148,11 @@
 	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
 	                    	</c:if>
 	                    	<c:if test="${p ne pi.currentPage }">
-	                    		<c:url var="blistCheck" value="">
+	                    		<c:url var="blistCheck" value="systemAdminReport.do">
 	                    			<c:param name="page" value="${p }"/>
+	                    			<c:param name="rptCategory" value="${searchStatus.searchCategory }"/>
+		                    		<c:param name="searchId" value="${searchStatus.searchName }"/>
+		                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
 	                    	</c:if>
@@ -121,8 +162,11 @@
 		                    <a style = "color:#9c9c9c"  disabled>Next</a>
 	                    </c:if>
 						<c:if test="${pi.currentPage lt pi.maxPage }">
-							<c:url var="blistAfter" value="">
+							<c:url var="blistAfter" value="systemAdminReport.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
+								<c:param name="rptCategory" value="${searchStatus.searchCategory }"/>
+	                    		<c:param name="searchId" value="${searchStatus.searchName }"/>
+	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 							</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 						</c:if>

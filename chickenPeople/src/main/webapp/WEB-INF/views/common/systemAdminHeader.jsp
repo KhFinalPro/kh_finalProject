@@ -103,7 +103,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">쿠폰발행</span>
                     </a></li>
-                    <li id="report"><a href="systemAdminReport.do">
+                    <li id="report"><a href="systemAdminReport.do?rptCategory=total&searchId=&status_s=N">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
