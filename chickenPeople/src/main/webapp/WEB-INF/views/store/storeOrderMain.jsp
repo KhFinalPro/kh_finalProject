@@ -61,7 +61,7 @@
 	.tab button.active {background-color: #ccc;}
 	
 	/*모달창*/
-	#modalReview{display:none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+	#modalReview{display:none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 100;}
 	#modalReview>div{width: 450px; height: 600px; background-color: #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 	#modalReview>div>div{position: absolute; top:58px; bottom:48px; overflow-y:auto;}
 	#modalReview>div>a{width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;}
@@ -97,6 +97,12 @@
 	.review>ul>li>.rev_rate_area{margin-top: 16px;}
 	.review>ul>li>.order_product{color: #735949;}
 	.review>ul>li>.rev_pic{margin:0 auto; width: 100%; height:200px;}
+	
+	#like_area{margin: 0 auto; width:100%; text-align:center; height:40px; border:0px; background-color: #735949; color: white; border-radius: 10px;}
+	#like{font-size: 25px; font-weight:600;}
+	
+	#showMsg{position:fixed; width:37%; height:300px; z-index:100; left:31.5%; top: 100px; text-align:center; font-size:25px; font_weight:600; background-color: white; display:none; border:2px solid black;}
+	.close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
 </style>
         
 </head>
@@ -107,6 +113,8 @@
   <jsp:include page="../common/header.jsp"/>
     
 	<input type="hidden" id="brand_code" value="${storeList.get(0).brand_code }">
+	<input type="hidden" id="sto_num" value="${storeList.get(0).sto_num }">
+	<input type="hidden" id="loginUserId" value="${sessionScope.loginUser.id }">
 	<div id="section">
 		<div>
 			<div id="order">
@@ -116,7 +124,12 @@
 						<tr>
 						    <td colspan="3" height="30">
 						    	<b>${storeList.get(0).sto_name }</b>
-						    </td>          			         
+						    </td>
+						    <td align="right" style="width:10%;">
+						    	<div id="like_area">
+							    	<a id="like">찜하기</a>						    	
+						    	</div>
+						    </td>
 						</tr>
 						<tr>
 						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
@@ -335,7 +348,12 @@
             
             <button id="order_put">담기</button>
        </div>
-    </div> 
+    </div>
+    
+    <div id="showMsg">
+    	<img class="close" src="resources/images/close.png"/>
+    	<h1 id="msg"></h1>
+    </div>
 </body>
 <script>
 <!-- 메뉴 카테고리 -->
@@ -415,8 +433,8 @@
 		$(document).on("click","#order_put",function(){
 			
 			var list_group = $("<ul class='list_group'></ul>");
-			var menu_name = $(this).parent('div').children("#menu_option").children("#menu_name");
-			var order_menu_name = $(this).parent('div').children("#menu_option").children("#menu_name").text() + " : ";
+			var menu_name = $(this).parent('div').children("#menu_option").children("#menu_name").text();
+			var order_menu_name = menu_name + " : ";
 			for(i = 0; i<sideMenuName.length; i++){
 				order_menu_name += " " + sideMenuName[i];
 			};
@@ -433,9 +451,11 @@
 			$("#modalReview").css('display','none');
 		})
 		
+		//취소버튼
 		$(document).on("click",".menu_cancel",function(){
 			total_price -= parseInt($(this).parent("a").parent(".price").children('span').html());
 			$("#total_price").text(total_price);
+			menuNum.splice()
 			$(this).parents('.list_group').remove();
 		})
 		
@@ -447,6 +467,38 @@
 			//합계금액
 			console.log(total_price);
 		})
+		
+		//찜하기 버튼
+		$("#like").on("click",function(){
+			$sto_num = $("#sto_num").val();
+			$loginUserId = $("#loginUserId").val();
+			$.ajax({
+				url:"storeLike.do",
+				data:{sto_num:$sto_num, id:$loginUserId},
+				dataType:"json",
+				type:"post",
+				success:function(data){
+					console.log(data.msg);
+					$("#myPageStoreLike").remove();
+					$("#showMsg").css('display','block');
+					$("#msg").html(data.msg);
+					$("#showMsg").append("<button id='myPageStoreLike' style='width:200px; height: 50px; font-size: 20px; font-weight:600; border:0px; background-color: #735949; color: white;'>찜한 매장 확인하자</button>");
+				},
+				error:function(request, status, errorData){
+	            	alert("error code: " + request.status + "\n"
+	                    +"message: " + request.responseText
+	                    +"error: " + errorData);
+				}
+			})
+		})
+		
+		$(document).on("click",".close",function(){
+        	$("#showMsg").css('display','none');
+        })
+        
+        $(document).on("click","#myPageStoreLike",function(){
+        	location.href="storeLikeList.do";
+        })
 	});
 	
 	function openCity(evt, cityName) {

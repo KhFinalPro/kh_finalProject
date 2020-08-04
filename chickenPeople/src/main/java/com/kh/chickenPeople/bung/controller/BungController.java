@@ -183,12 +183,12 @@ public class BungController {
 		if(!bungList.isEmpty())
 		{
 			mv.addObject("bungList", bungList);
-			mv.setViewName("mypage/mypageBung");
 		}
 		else
 		{
-			
+			mv.addObject("msg", "텅!");
 		}
+		mv.setViewName("mypage/mypageBung");
 		return mv;
 	}
 	

@@ -33,6 +33,9 @@
     .delivery_info_title{text-align: center;}
     
     #delivery_status{color:blue;}
+    
+    #msg{margin:0 auto; width:100%; height:200px; text-align:center;}
+    #msg h1{margin-top:100px; font-size:100px;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -45,44 +48,54 @@
 	
 	<jsp:include page="../common/sidebar.jsp"/>
 	
-	<div id="my_delivery">
-        <div id="my_delivery_head">
-            <h2>주문일자 : ${paymentList.pay_date }</h2>
-            <h2 id="delivery_status">배달현황 : ${paymentList.ord_status }</h2>
-        </div>
-        <div id="my_delivery_info_area">
-            <!-- 제일 좌측 주문정보 -->
-            <div id="my_delivery_info" class="my_delivery">
-                <h2 class="delivery_info_title">주문정보</h2>
-                <img class="brand_logo delivery_info" src="resources/images/${menuList.get(0).brand_pic }.png">
-                <p id="order_num" class="delivery_info">주문번호:</p>
-                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
-                <p id="delivery_time" class="delivery_info">배달 시간:</p>
-                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
-                <p id="delivery_addr" class="delivery_info">주소:</p>
-                <p class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
-                <p id="total_price" class="delivery_info">합계금액:</p>
-                <p class="delivery_total_price delivery_info_detail"><fmt:formatNumber value="${paymentList.pay_toal }" type="currency"/></p>
-            </div>
-
-            <!-- 가운데 메뉴 정보 -->
-            <div id="my_menu_info_area" class="my_delivery">
-                <h2 class="delivery_info_title">메뉴정보</h2>
-                <c:forEach var="m" items="${menuList }">
-	                <div class="menu_area">
-	                	<input type="hidden" id="menu_num" value="${m.menu_num }">
-	                    <p class="menu_num menu_info">${m.mord_num }</p>
-	                    <img class="menu_pic menu_info" src="resources/menu/${m.menu_pic }.jpg">
-	                    <p class="menu_name menu_info">핫 후라이드<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
-	                </div>
-	                <br clear="both">
-	                <br>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-
-    <div id="map">지도</div>
+	
+	<c:if test="${!empty paymentList }">
+	
+		<div id="my_delivery">
+	        <div id="my_delivery_head">
+	            <h2>주문일자 : ${paymentList.pay_date }</h2>
+	            <h2 id="delivery_status">배달현황 : ${paymentList.ord_status }</h2>
+	        </div>
+	        <div id="my_delivery_info_area">
+	            <!-- 제일 좌측 주문정보 -->
+	            <div id="my_delivery_info" class="my_delivery">
+	                <h2 class="delivery_info_title">주문정보</h2>
+	                <img class="brand_logo delivery_info" src="resources/images/${menuList.get(0).brand_pic }.png">
+	                <p id="order_num" class="delivery_info">주문번호:</p>
+	                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
+	                <p id="delivery_time" class="delivery_info">배달 시간:</p>
+	                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
+	                <p id="delivery_addr" class="delivery_info">주소:</p>
+	                <p class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
+	                <p id="total_price" class="delivery_info">합계금액:</p>
+	                <p class="delivery_total_price delivery_info_detail"><fmt:formatNumber value="${paymentList.pay_toal }" type="currency"/></p>
+	            </div>
+	
+	            <!-- 가운데 메뉴 정보 -->
+	            <div id="my_menu_info_area" class="my_delivery">
+	                <h2 class="delivery_info_title">메뉴정보</h2>
+	                <c:forEach var="m" items="${menuList }">
+		                <div class="menu_area">
+		                	<input type="hidden" id="menu_num" value="${m.menu_num }">
+		                    <p class="menu_num menu_info">${m.mord_num }</p>
+		                    <img class="menu_pic menu_info" src="resources/menu/${m.menu_pic }.jpg">
+		                    <p class="menu_name menu_info">핫 후라이드<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
+		                </div>
+		                <br clear="both">
+		                <br>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div id="map">지도</div>
+	</c:if>
+	
+	<c:if test="${!empty msg }">
+		<div id="msg">
+			<h1>${msg }</h1>
+		</div>
+	</c:if>
 	
 	<br clear="both">
 	
@@ -98,7 +111,7 @@
 	    //새로고침
 	    setInterval(function(){
 	    	location.href="orderStatus.do?id="+ $("#id").val();
-	    }, 5000);
+	    }, 10000);
 	    
 	    
 	    //메뉴 사진 hover시 ajax
