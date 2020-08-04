@@ -6,6 +6,7 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -20,6 +21,10 @@ public interface StoreService {
 	ArrayList<Review> selectListReview(int sto_num);
 
 	double selectReviewAvg(int sto_num);
+	
+	StoreLike selectStoreLike(StoreLike sl);
+
+	int insertStoreLike(StoreLike sl);
 
 	//------------------------------------------------------------------------------
 	ArrayList<Brand> selectBrandList();							//관리자 _ brand list
@@ -31,5 +36,7 @@ public interface StoreService {
 	int getListCount();											//전체 storeList 갯수
 
 	ArrayList<Store> selectStoreList(PageInfo pi);				//검색결과 storeList
+
+	
 
 }

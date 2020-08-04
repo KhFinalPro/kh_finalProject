@@ -21,6 +21,7 @@ import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -176,6 +177,32 @@ public class StoreController {
 		
 		mv.setViewName("systemAdmin/storeManage/systemAdminStore");
 		return mv;
+	}
+	
+	//상원 매장 상세 찜하기 ajax
+	@RequestMapping(value="storeLike.do", method=RequestMethod.POST)
+	public void storeLike(HttpServletResponse response, StoreLike sl) throws IOException
+	{
+		response.setContentType("application/json;charset=utf-8");
+		
+		StoreLike storeLike = storeService.selectStoreLike(sl);
+		
+		JSONObject sendJson = new JSONObject();
+		if(storeLike == null)	//찜 안한 매장
+		{
+			int result = storeService.insertStoreLike(sl);
+			sendJson.put("msg", "등록되었습니다.");
+		}
+		else
+		{
+			sendJson.put("msg", "이미 등록된 매장입니다.");
+		}
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(sendJson);
+		out.flush();
+		out.close();
 	}
 	
 }
