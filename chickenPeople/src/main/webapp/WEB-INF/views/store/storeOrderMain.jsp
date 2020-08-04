@@ -76,13 +76,13 @@
 	#order_put{position: absolute; bottom:0px; right:0px; width:100%; height:50px;}
 	
 	#orderCheck{border:1px solid black;}
-	#orderCheck>h3{text-align: center;}
-	#orderCheck>.total_price_area{width:90%; text-align: right;}
-	#orderCheck>.total_price_area>h4{float:right;}
-	#orderCheck>.list_area{overflow-y: auto; height: 200px;}
-	#orderCheck>.list_area>.list_group>.list_group_item{list-style:none;}
-	#orderCheck>.list_area>.list_group>.list_group_item .col{float:left; width: 40%;}
-	#orderCheck>.list_area>.list_group>.list_group_item .update{text-align: right;}
+	#orderCheck>form>h3{text-align: center;}
+	#orderCheck>form>.total_price_area{width:90%; text-align: right;}
+	#orderCheck>form>.total_price_area>h4{float:right;}
+	#orderCheck>form>.list_area{overflow-y: auto; height: 200px;}
+	#orderCheck>form>.list_area>.list_group>.list_group_item{list-style:none;}
+	#orderCheck>form>.list_area>.list_group>.list_group_item .col{float:left; width: 40%;}
+	#orderCheck>form>.list_area>.list_group>.list_group_item .update{text-align: right;}
 	
 	/*리뷰*/
 	#reivew_header{width:100%; height:50px; margin-left: 40%; margin-top: 10px; margin-bottom: 10px;}
@@ -125,11 +125,13 @@
 						    <td colspan="3" height="30">
 						    	<b>${storeList.get(0).sto_name }</b>
 						    </td>
-						    <td align="right" style="width:10%;">
-						    	<div id="like_area">
-							    	<a id="like">찜하기</a>						    	
-						    	</div>
-						    </td>
+				    		<c:if test="${!empty  sessionScope.loginUser}">
+							    <td align="right" style="width:10%;">
+							    	<div id="like_area">
+								    	<a id="like">찜하기</a>	
+							    	</div>
+							    </td>
+					    	</c:if>					    	
 						</tr>
 						<tr>
 						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
@@ -309,18 +311,21 @@
 			</div> <!-- 가게 + 메뉴판-->
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
-				<h3>주문확인</h3>
-				<div class="list_area" style="text-align:center;">
-					
-				</div>
-				<div class="total_price_area">
-					<h4 id="total_price"></h4>
-					<h4>합계: </h4>
-				</div>
-				<br clear="both">
-				<p>이용약관,개인정보 수집 동의,개인정보 제 3자 제공,전자금융거래 이용약관
-				만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
-				<button id="order_btn">주문하기</button>
+				<form action="" method="">
+					<h3>주문확인</h3>
+					<div class="list_area" style="text-align:center;">
+						
+					</div>
+					<div class="total_price_area">
+						<h4 id="total_price"></h4>
+						<h4>합계: </h4>
+					</div>
+					<br clear="both">
+					<p>이용약관,개인정보 수집 동의,개인정보 제 3자 제공,전자금융거래 이용약관
+					만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</p>
+					<!-- <button id="order_btn">주문하기</button> -->
+					<input type="submit" id="order_btn" value="주문하기"> 
+				</form>
 			</div><!-- orderCheck end-->
 		</div> 
 	</div>
