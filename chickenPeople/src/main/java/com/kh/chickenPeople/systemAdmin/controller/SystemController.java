@@ -56,10 +56,6 @@ public class SystemController {
 		return mv;
 	}
 	
-	@RequestMapping(value="systemAdminReport.do", method=RequestMethod.GET)
-	public String goReportList(){
-		return "systemAdmin/systemAdminReport";
-	}
 	
 	@RequestMapping("couponCreateView.do")
 	public String couponCreateView() {
