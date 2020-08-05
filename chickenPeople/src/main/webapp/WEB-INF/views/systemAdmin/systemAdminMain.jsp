@@ -83,7 +83,6 @@ var chartDrowFun = {
 	        	  		var n = "<%=st.getPay_Date()%>"
 	        	  		
 	        	  		var m = n.substring(6,7)
-	        	  		console.log("____"+m);
 	        	  		if(i==m){
 	        	  			total = <%=st.getPay_Total()%>
 	        	  		}else{
@@ -91,6 +90,7 @@ var chartDrowFun = {
 	        	  		}
 		              dataRow = [new Date('2020', i), total];
 		              data.addRow(dataRow);
+		              console.log(dataRow);
 	        	  	<%}%>
 
 	            }
