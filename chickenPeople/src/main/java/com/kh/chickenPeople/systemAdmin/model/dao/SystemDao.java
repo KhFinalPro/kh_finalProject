@@ -11,6 +11,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 @Repository("sDao")
 public class SystemDao {
@@ -42,6 +43,10 @@ public class SystemDao {
 
 	public ArrayList<BrandTotal> selectBrandTotal() {
 		return (ArrayList)sqlSessionTemplate.selectList("brandMapper.selectBrandTotal");
+	}
+
+	public ArrayList<SiteTotal> selectSiteTotal() {
+		return (ArrayList)sqlSessionTemplate.selectList("systemMapper.selectSiteTotal");
 	}
 
 

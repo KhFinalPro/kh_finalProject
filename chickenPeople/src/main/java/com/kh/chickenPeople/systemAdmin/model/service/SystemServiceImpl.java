@@ -10,6 +10,7 @@ import com.kh.chickenPeople.systemAdmin.model.dao.SystemDao;
 import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 @Service("sService")
 public class SystemServiceImpl implements SystemService{
@@ -45,6 +46,11 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public ArrayList<BrandTotal> selectBrandTotal() {
 		return sDao.selectBrandTotal();
+	}
+
+	@Override
+	public ArrayList<SiteTotal> selectSiteTotal() {
+		return sDao.selectSiteTotal();
 	}
 	
 

@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
 		<typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
 		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal" alias="BrandTotal"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal" alias="SiteTotal"/>
 		<typeAlias type="com.kh.chickenPeople.report.model.vo.ReportCategory" alias="ReportCategory"/>
 		<typeAlias type="com.kh.chickenPeople.report.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
