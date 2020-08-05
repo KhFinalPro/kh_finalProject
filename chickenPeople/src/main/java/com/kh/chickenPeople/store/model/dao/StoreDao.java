@@ -71,4 +71,9 @@ public class StoreDao {
 		return sqlSessionTemplate.selectOne("storeMapper.selectStoreOne",storeNum);
 	}
 
+	public Store updateStore(int storeNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

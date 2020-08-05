@@ -97,7 +97,14 @@
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
-			<c:url var="goStoreUpdate" value="storeUpdate.do"></c:url>
+			<c:url var="goStoreUpdate" value="storeUpdatePage.do">
+				<c:param name="storeNum" value="${store.sto_num }"/>
+				<c:param name="storeSearch" value="${searchStatus.searchName }"/>
+				<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
+				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
+				<c:param name="page" value="${pi.currentPage }"/>
+				
+			</c:url>
 			
 			<div class="menuResultTable">
 				<br><hr><br>

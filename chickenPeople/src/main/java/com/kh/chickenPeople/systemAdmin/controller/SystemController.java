@@ -1,8 +1,12 @@
 package com.kh.chickenPeople.systemAdmin.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -114,14 +118,15 @@ public class SystemController {
 	
 	//계연 System Admin Main 그래프(1)
 	@RequestMapping(value="brandTotalGraph.do")
-	public ModelAndView brandTotalGraph(ModelAndView mv) {
+	public ModelAndView brandTotalGraph(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ArrayList<BrandTotal> selectBrandTotal = sService.selectBrandTotal();
 		System.out.println("맙소사ㅏ"+selectBrandTotal);
 		
-		mv.addObject("printTotalList",selectBrandTotal);
+		request.setAttribute("printTotalList",selectBrandTotal);
 		mv.setViewName("systemAdmin/systemAdminMain");
 		return mv;
+		
 	}
 	
 	

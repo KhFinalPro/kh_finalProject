@@ -16,10 +16,10 @@ public class BrandTotal implements Serializable {
 		this.brandCode = brandCode;
 		this.payTotal = payTotal;
 	}
-	public String getBrand_Code() {
+	public String getBrandCode() {
 		return brandCode;
 	}
-	public void setBrand_Code(String brandCode) {
+	public void setBrandCode(String brandCode) {
 		this.brandCode = brandCode;
 	}
 	public int getPayTotal() {
@@ -33,7 +33,7 @@ public class BrandTotal implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "BrandTotal [brand_Code=" + brandCode + ", payTotal=" + payTotal + "]";
+		return "BrandTotal [brandCode=" + brandCode + ", payTotal=" + payTotal + "]";
 	}
 
 	

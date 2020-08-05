@@ -34,4 +34,6 @@ public interface StoreService {
 
 	Store selectOneStore(Integer storeNum);						//store detail
 
+	Store updateStore(int storeNum);							//store update
+
 }

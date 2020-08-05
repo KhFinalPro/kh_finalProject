@@ -74,4 +74,9 @@ public class StoreServiceImpl implements StoreService{
 	public Store selectOneStore(Integer storeNum) {
 		return storeDao.selectOneStore(storeNum);
 	}
+
+	@Override
+	public Store updateStore(int storeNum) {
+		return storeDao.updateStore(storeNum);
+	}
 }
