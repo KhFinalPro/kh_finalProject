@@ -39,6 +39,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="storeList">
+		<input type="hidden" id="select_latlng" value="${latlng }">
 		<input type="hidden" id="select_address" value="${address }">
         <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
         <select name="store_category" id="store_category">
@@ -92,13 +93,13 @@
 		//카테고리별 ajax
 		$("#store_category").on("change",function(){
 
-			$address = $("#select_address").val();
+			$latlng = $("#select_latlng").val();
 			
 			$store_category = $(this).val();
 
 			$.ajax({
 				url:"ajaxDeliveryList.do",
-				data:{address:$address, store_category:$store_category},
+				data:{latlng:$latlng, store_category:$store_category},
 				dataType:"json",
 				type:"post",
 				success:function(data){
@@ -145,15 +146,14 @@
 		//header.jsp 의 주소창 변경시 딜리버리에 뿌려줄 매장 가져오기
 		$("#address").on("change",function(){
 			
-			location.href="deliveryList.do?address=" + $("#address option:selected").val();
-			//사용자의 위도 경도를 hidden으로 담고있기
-			$("#select_address").val($("#address option:selected").val());
+			location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
+
 		})
 		
 		//매장 상세 페이지이동		
 		$(document).on("click",".store_area",function(){
 			$sto_num = $(this).children("#sto_num").val();
-			location.href="storeDetail.do?sto_num="+$sto_num;
+			location.href="storeDetail.do?sto_num="+$sto_num +"&address=" + $("#select_address").val();
 		})
 	})
 </script>

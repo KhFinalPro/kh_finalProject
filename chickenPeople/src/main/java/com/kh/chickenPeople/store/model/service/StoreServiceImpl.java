@@ -57,6 +57,14 @@ public class StoreServiceImpl implements StoreService{
 		// TODO Auto-generated method stub
 		return storeDao.insertStoreLike(sl);
 	}
+	
+	@Override
+	public Menu selectMenu(int menu_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectMenu(menu_num);
+	}
+
+	
 //----------------------------------------------------------------------------관리자 매장관리
 	@Override
 	public ArrayList<Brand> selectBrandList() {
@@ -83,5 +91,6 @@ public class StoreServiceImpl implements StoreService{
 		return storeDao.selectStoreList(pi);
 	}
 
+	
 	
 }

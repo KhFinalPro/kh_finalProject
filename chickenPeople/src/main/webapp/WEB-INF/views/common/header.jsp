@@ -165,7 +165,7 @@
     <script>
         $(function(){
         	
-        	$address = $("#address option:selected").val()
+        	$latlng = $("#address option:selected").val()
             $modal=$("#modal");
             
             $("#search").on("click",function(){
@@ -183,9 +183,10 @@
                 location.href="home.do";
             })
             
+            //딜리버리 버튼
             $("#delivery").on("click",function(){
             	
-            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
+            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
             })
             
             //계연이 채팅 연결
@@ -203,7 +204,7 @@
             })
             
             $("#address").on("change",function(){
-            	location.href="deliveryList.do?address=" + $("#address option:selected").val();
+            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
             })
         })
     </script>

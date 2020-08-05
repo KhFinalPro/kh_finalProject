@@ -50,8 +50,13 @@ public class StoreDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.insert("storeMapper.insertStoreLike", sl);
 	}
+	
+	public Menu selectMenu(int menu_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("menuMapper.selectOneMenu", menu_num);
+	}
 
-	//
+	//-----------------------------------------------------------------------------
 	public ArrayList<Brand> selectBrandList() {
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectBrand");
 	}
@@ -76,6 +81,8 @@ public class StoreDao {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreList",null,rowBounds);
 	}
+
+	
 
 	
 
