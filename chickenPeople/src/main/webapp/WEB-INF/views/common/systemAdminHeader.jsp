@@ -79,7 +79,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">관리자 메인</span>
                     </a></li>
-                    <li id="brand" ><a href="systemAdminBrand.do" >
+                    <li id="brand" ><a href="systemAdminBrand.do?brandName=no&brandStatus=입점" >
                         <span class="icon">
                             <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>

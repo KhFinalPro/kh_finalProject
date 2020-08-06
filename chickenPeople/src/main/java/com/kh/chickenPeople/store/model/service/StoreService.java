@@ -25,7 +25,10 @@ public interface StoreService {
 	StoreLike selectStoreLike(StoreLike sl);
 
 	int insertStoreLike(StoreLike sl);
+	
+	Menu selectMenu(int menu_num);
 
+	int selectReivewCount(int sto_num);
 	//------------------------------------------------------------------------------
 	ArrayList<Brand> selectBrandList();							//관리자 _ brand list
 
@@ -44,6 +47,6 @@ public interface StoreService {
 	String checkStatus(int storeNum);
 
 	int updateStatus(int storeNum);
-	
+
 
 }

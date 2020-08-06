@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,12 +29,13 @@ public class DeliveryController {
 	
 	
 	@RequestMapping("deliveryList.do")
-	public ModelAndView selectDelivery(ModelAndView mv, String address) {
+	public ModelAndView selectDelivery(ModelAndView mv, String latlng, String address) {
 		int store_count = 0;
+		
 		System.out.println(address);
 		//사용자의 좌표를 split를 활용하여 위도와 경도롤 나눔
-		String lat = address.split(" ")[0];
-		String lng = address.split(" ")[1];
+		String lat = latlng.split(" ")[0];
+		String lng = latlng.split(" ")[1];
 		double user_lat = Double.parseDouble(lat);
 		double user_lng = Double.parseDouble(lng);
 		//매장 정보 별점 포함 
@@ -63,6 +65,7 @@ public class DeliveryController {
 		//거리에 따라 확인
 		if(!deliveryList.isEmpty())
 		{
+			mv.addObject("latlng", latlng);
 			mv.addObject("address", address);
 			mv.addObject("count", store_count);
 			mv.addObject("deliveryList", unRemove);
@@ -75,13 +78,13 @@ public class DeliveryController {
 	
 	//딜리버리 카테고리 ajax
 	@RequestMapping(value="ajaxDeliveryList.do", method=RequestMethod.POST)
-	public void ajaxDeliveryList(HttpServletResponse  response, String address, String store_category) throws IOException
+	public void ajaxDeliveryList(HttpServletResponse  response, String latlng, String store_category) throws IOException
 	{
 		response.setContentType("application/json;charset=utf-8");
 		int store_count = 0;
-		System.out.println(address + " , " + store_category);
-		String lat = address.split(" ")[0];
-		String lng = address.split(" ")[1];
+		System.out.println(latlng + " , " + store_category);
+		String lat = latlng.split(" ")[0];
+		String lng = latlng.split(" ")[1];
 		double user_lat = Double.parseDouble(lat);
 		double user_lng = Double.parseDouble(lng);
 		
@@ -128,7 +131,7 @@ public class DeliveryController {
 				
 			}
 			
-			sendJson.put("address", address);
+			sendJson.put("address", latlng);
 			sendJson.put("count", store_count);
 			sendJson.put("deliveryList", jarr);
 
@@ -161,7 +164,7 @@ public class DeliveryController {
 					jarr.add(jobj);
 				}
 			}
-			sendJson.put("address", address);
+			sendJson.put("address", latlng);
 			sendJson.put("count", store_count);
 			sendJson.put("deliveryList", jarr);
 

@@ -80,11 +80,31 @@
             	border:none;
             }
             
-            
+            #showMsg{
+            position:fixed; top:200px; left:35%; width: 30%; height: 200px; z-index:100; border:3px solid black; background-color:white; text-align:center; border-radius:10px;
+            }
+            #showMsg .msg{font-size:30px; font-weight:600; margin-top:15px;}
+            #showMsg img{
+            width:30px; height:30px; margin-left:95%;
+            }
+            #showMsg input{
+            width:120px; height:60px; background-color:#735949; border:0px; font-size:20px; color:white; font-weight:600; border-radius:10px;
+            }
+     		#showMsg #home{
+     		margin-right:150px;
+     		}
     </style>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
+	<c:if test="${!empty msg }">
+		<div id="showMsg">
+			<img src="resources/images/close.png" id="cancel">
+			<p class="msg">${msg }</p>
+			<input type="button" id="home" value="홈으로">
+			<input type="button" id="join" value="회원가입">
+		</div>
+	</c:if>
 	<c:if test="${empty sessionScope.loginUser }">
 	<form id="loginform" action="doLoginView.do" method="post">
             <h1 id="h2">회원 로그인</h1>
@@ -138,5 +158,16 @@
         </c:if>
 	<%@ include file="../common/footer.jsp"%>
 </body>
+
+<script>
+
+	$("#cancel").on("click",function(){
+	    $("#showMsg").css('display','none');
+	})
+	
+	$("#join").on("click",function(){
+        location.href="memberJoinView.do";
+    })
+</script>
 
 </html>

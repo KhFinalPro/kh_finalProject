@@ -37,7 +37,6 @@
 				      <!-- 컨트롤바를 생성할 영역 -->
 				          <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
 		        </div>
-
 			</div>
 			<div class='right-box'>
 				<div class="right-top">
@@ -86,12 +85,15 @@ var chartDrowFun = {
 	        	  		console.log("____"+m);
 	        	  		if(i==m){
 	        	  			total = <%=st.getPay_Total()%>
-	        	  		}else{
-	        	  			total = 0;
+	      
 	        	  		}
 	        	  	<%}%>
-		              dataRow = [new Date('2020', i), total];
-		              data.addRow(dataRow);
+	        	  	  
+		              
+	        	  	  dataRow = [new Date('2020', i), total];
+		              total=0;
+	        	  	  data.addRow(dataRow);
+		              
 
 	            }
 

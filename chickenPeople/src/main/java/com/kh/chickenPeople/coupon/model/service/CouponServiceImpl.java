@@ -33,4 +33,15 @@ public class CouponServiceImpl implements CouponService{
 		// TODO Auto-generated method stub
 		return couponDao.selectCouponSerial(c);
 	}
+
+	@Override
+	public ArrayList<Coupon> myCoupon(String id) {
+		return couponDao.myCoupon(id);
+	}
+
+	@Override
+	public ArrayList<Coupon> pastCoup(String id) {
+		// TODO Auto-generated method stub
+		return couponDao.pastCoup(id);
+	}
 }

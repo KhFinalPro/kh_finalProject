@@ -38,4 +38,11 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.selectAddress(member);
 	}
 
+	@Override
+	public int memberJoin(Member m) {
+	
+		return mDao.memberJoin(m);
+	}
+
+
 }

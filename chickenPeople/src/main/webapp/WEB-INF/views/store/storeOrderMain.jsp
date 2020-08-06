@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의민족</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style>
@@ -15,8 +15,6 @@
 	#section>div{margin-left: 10%; width: 65%;}
 	       
     #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
-	
-	/* body {font-family: Arial;} */
 	
 	#order{width: 100%;s}
 	
@@ -36,6 +34,9 @@
 	/* #store_info{border:1px solid black;} */
 	#store_info :nth-child(1)>td{border-bottom: 1px solid black; font-size:30px; color:#735949;}
 	#store_info :nth-child(2) :nth-child(1)>td{border: 1px solid black;}
+	
+	#reviewCount_titl{margin-left:20px; font-size:15px; font-weight:600;}
+	#reviewCount{font-size:15px; font-weight:600;}
 	
 	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:rgb(236, 235, 235);}
 	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
@@ -90,7 +91,9 @@
 	#reivew_header .rev_head{float: left; line-height: 50px;}
 	#reivew_header>img{width: 50px; height: 50px;}
 	#reivew_header>h3{font-size: 50px; margin: 0;}
-
+	#reivew_header>a{height:50px; line-height:50px; margin-left:20px; font-size:20px;}
+	#reivew_header>span{font-size:20px;}
+	
 	.review>ul{padding: 10px;}
 	.review>ul>li{list-style: none;}
 	.review>ul>li>.id{font-size: 20px; font-weight: 600; margin-right: 15px;}
@@ -138,11 +141,12 @@
 						<tr>
 						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
 							<td>
-								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"><a style="font-size:20px; font-weight:600;"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></a></pre>
+								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"><a style="font-size:20px; font-weight:600;"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></a><a id="reviewCount_titl">리뷰 : </a><span id="reviewCount">${reviewCount }개</span></pre>
 								<pre>최소주문금액 <b><fmt:formatNumber value="${storeList.get(0).ord_limit }" maxFractionDigits="3"/>원</b></pre>
 								<pre>결제 <b>신용카드, 현금</b></pre>
 								<pre>배달시간 <b>40~50분</b></pre>
-							</td>				        	
+							</td>
+									        	
   						</tr>
   						<tr>
       						<td colspan="3" height="50">${storeList.get(0).sto_intro }</td>
@@ -264,6 +268,7 @@
 								<ul class="hide">
 									<c:forEach var="m1" items="${storeList }">
 										<c:if test="${m1.cat_code == 6 }">
+											
 											<li class="menu_click">
 												<input type="hidden" id="menu_num" value="${m1.menu_num }">
 												<input type="hidden" id="menu_name" value="${m1.menu_name }">
@@ -279,7 +284,7 @@
 
 					<div id="Paris" class="tabcontent" style="display:none;">
 						<div id="reivew_header">
-							<img class="rev_head" src="resources/images/start.png"><h3 class="rev_head"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></h3>
+							<img class="rev_head" src="resources/images/start.png"><h3 class="rev_head"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></h3><a>리뷰 : </a><span>${reviewCount }개</span>
 						</div>
 						<hr>
 						<div class="review">
@@ -329,7 +334,9 @@
 			</div> <!-- 가게 + 메뉴판-->
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
-				<form action="" method="" id="orderCheckForm">
+				<form action="paymentView.do" method="get" id="orderCheckForm">
+					<input type="hidden" name="sto_num" value="${storeList.get(0).sto_num }">
+					<input type="hidden" name="address" value="${address }">
 					<h3>주문확인</h3>
 					<div class="list_area" style="text-align:center;">
 						
@@ -363,7 +370,7 @@
 	<div id="modalReview">
         <div>
             <a href="javascript: $('#modalReview').fadeOut(500);" id="modal_cancel">
-                <img src="resources/images/close.png"/>
+                <img id="shoppingBag_cancel" src="resources/images/close.png"/>
             </a>
             <h2>메뉴상세</h2>
             <div id="menu_option" style="width:100%;">
@@ -372,7 +379,7 @@
 	            <h3 id="menu_name"></h3>
 	            <hr>
 	            <h4 id="menu_price_titl">가격 : </h4>
-	            <h4 id="menu_price"></h4>
+	            <h4 id="modal_menu_price"></h4>
 	            <br clear="both">
 	            <hr>
 	            <h3>추가메뉴</h3>
@@ -411,7 +418,7 @@
 			}
 		});
 		
-		$(".menu_click").on("click",function(){
+		$(document).on("click",".menu_click",function(){
 			row = $("<div class='row' style='text-align:left;'></div");
 			
 			$menu_num = $(this).children("#menu_num").val();
@@ -436,10 +443,9 @@
 							$modal.addClass('show');
 							$("#modal_ul").remove();
 							
-							$("#menu_num").val(data.menu_num);	//메뉴번호 hidden
 							$("#modal_menu_pic").attr('src', "resources/menu/"+data.menu_pic+".jpg");
 							$("#menu_name").text(data.menu_name);
-							$("#menu_price").text(data.menu_price+"원");
+							$("#modal_menu_price").text(data.menu_price + "원");
 							var sideMenu_list = $("<ul id='modal_ul'></ul>");
 							
 							for(var i = 0; i<data.sideMenu.length; i++){
@@ -493,7 +499,7 @@
 									
 			
 			//금액
-			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' name='price' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
+			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
 			col.append(item_price);
 			list_group_item.append(col);
 			
@@ -521,10 +527,21 @@
 			$("#total_price").append("<span><input type='text' name='total_price' value='"+ total_price +"' style='width:100px; text-align:right; font-size:20px; border:0px;'>원</span>")
 		})
 		
+		$("#shoppingBag_cancel").on("click",function(){
+			price = 0;
+		})
+		
 		//결제 페이지 이동
 		var pay_product = [];
 		$(document).on("click","#order_btn",function(){
-			$("#orderCheckForm").submit();
+			
+			if(total_price >= $("#ord_limit").val()){
+				$("#orderCheckForm").submit();				
+			}
+			else{
+				$("#msg").html($("#ord_limit").val() + "원 이상 구매하셔야 합니다.");
+	        	$("#showMsg").css('display','block');
+			}
 		})
 		
 		//찜하기 버튼
