@@ -124,11 +124,15 @@ public class MemberController {
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		
-		System.out.println(encPwd);
+		System.out.println(post);
+		System.out.println(address1);
+		System.out.println(address2);
+		
 		
 		
 		m.setPwd(encPwd);
-		
+		m.setPost_code(post);
+		m.setAddress(address1+" "+address2);
 		int result = mService.memberJoin(m);
 
 		
