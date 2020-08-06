@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -119,9 +118,16 @@ public class StoreController {
 			out.flush();
 			out.close();
 		}
+	}
+	@RequestMapping("/storeJoinForm.do")
+	public ModelAndView storeJoin(ModelAndView mv) {
+	System.out.println("storeJoinForm.do");
+	mv.setViewName("store/storeJoin");
+	
+	return mv;
 		
 	}
-	
+		
 
 	@RequestMapping("/order.do")
 	public String orderPayController(){
@@ -261,7 +267,4 @@ public class StoreController {
 		mv.setViewName("systemAdmin/storeManage/systemAdminStore");
 		return mv;
 	}
-	
-	
-	
 }

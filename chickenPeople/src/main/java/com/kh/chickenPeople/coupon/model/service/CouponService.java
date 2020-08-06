@@ -17,4 +17,8 @@ public interface CouponService {
 
 	Coupon selectCouponSerial(Coupon c);
 
+	ArrayList<Coupon> myCoupon(String id);
+
+	ArrayList<Coupon> pastCoup(String id);
+
 }

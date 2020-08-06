@@ -101,8 +101,8 @@
         
 		WHERE SI.STO_NUM = #{sto_num}
 	</select>
-
 	
+
 	<select id="getListCount" resultType="_int">
  		SELECT COUNT(*) 
  		FROM ADMIN_STORE
@@ -144,3 +144,4 @@
 		INSERT INTO STORE_LIKE VALUES(#{id}, #{sto_num})
 	</insert>
 </mapper>
+
