@@ -3,19 +3,19 @@
 <mapper namespace="calendarMapper">
 
 <resultMap id="orderListResult" type="Calendar">
-	<id property="ordNum" column="ORD_NUM"/>
-	<result property="ordStatus" column="ORD_STATUS"/>
-	<result property="ordDate" column="ORD_DATE"/>
-	<result property="userId" column="USER_ID"/>
-	<result property="stoNum" column="STO_NUM"/>
-	<result property="ordPrice" column="ORD_PRICE"/>
-	<result property="menuNum" column="MENU_NUM"/>
-	<result property="brandCode" column="BRAND_CODE"/>
-	<result property="mordNum" column="MORD_NUM"/>
-	<result property="menuName" column="MENU_NAME"/>
-	<result property="menuPrice" column="MENU_PRICE"/>
-	<result property="brandName" column="BRAND_NAME"/>
-	<result property="stoName" column="STO_NAME"/>
+   <id property="ordNum" column="ORD_NUM"/>
+   <result property="ordStatus" column="ORD_STATUS"/>
+   <result property="ordDate" column="ORD_DATE"/>
+   <result property="userId" column="USER_ID"/>
+   <result property="stoNum" column="STO_NUM"/>
+   <result property="ordPrice" column="ORD_PRICE"/>
+   <result property="menuNum" column="MENU_NUM"/>
+   <result property="brandCode" column="BRAND_CODE"/>
+   <result property="mordNum" column="MORD_NUM"/>
+   <result property="menuName" column="MENU_NAME"/>
+   <result property="menuPrice" column="MENU_PRICE"/>
+   <result property="brandName" column="BRAND_NAME"/>
+   <result property="stoName" column="STO_NAME"/>
 </resultMap>
 
 

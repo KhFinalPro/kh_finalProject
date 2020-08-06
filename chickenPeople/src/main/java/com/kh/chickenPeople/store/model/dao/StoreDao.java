@@ -11,6 +11,7 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -40,8 +41,27 @@ public class StoreDao {
 		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewAvg", sto_num);
 	}
 	
+	public StoreLike selectStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreLiek", sl);
+	}
 
-	//
+	public int insertStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("storeMapper.insertStoreLike", sl);
+	}
+	
+	public Menu selectMenu(int menu_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("menuMapper.selectOneMenu", menu_num);
+	}
+	
+	public int selectReviewCount(int sto_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewCount", sto_num);
+	}
+
+	//-----------------------------------------------------------------------------
 	public ArrayList<Brand> selectBrandList() {
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectBrand");
 	}
@@ -66,5 +86,11 @@ public class StoreDao {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreList",null,rowBounds);
 	}
+
+	
+
+	
+
+	
 
 }

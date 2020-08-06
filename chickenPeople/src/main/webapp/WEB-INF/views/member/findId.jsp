@@ -12,13 +12,15 @@
                 font-family:sans-serif;
             }
             .loginbox{
+                margin-top:500px;
+            	margin-bottom:-200px;
                 width:600px;
                 height:420px;
                 background: black;
                 color:#fff;
                 top:50%;
                 left:50%;
-                position:absolute;
+                position:relative;
                 transform:translate(-50%, -50%);
                 box-sizing: border-box;
                 padding:70px 30px;
@@ -79,7 +81,7 @@
         </style>
     </head>
     <body>
-   <%--  <jsp:include page="../common/header.jsp"/> --%>
+   <jsp:include page="../common/header.jsp"/>
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
             <h1>아이디를 잊어버렸니?</h1>
@@ -93,6 +95,6 @@
                 <a href="memberJoinView.do">치민이 처음이니?</a>
             </form>
         </div>
-       <%-- <%@ include file="../common/footer.jsp"%> --%>
+       <%@ include file="../common/footer.jsp"%>
     </body>
 </html>

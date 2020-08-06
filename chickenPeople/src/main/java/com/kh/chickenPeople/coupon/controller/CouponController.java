@@ -53,4 +53,26 @@ public class CouponController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("myCoupon.do")
+	public ModelAndView myCoupon(ModelAndView mv, String id) {
+		
+		ArrayList<Coupon> myCoupon = couponService.myCoupon(id);
+		ArrayList<Coupon> pastCoup = couponService.pastCoup(id);
+		if(myCoupon.isEmpty()&&pastCoup.isEmpty()) {
+			mv.addObject("msg", "쿠폰이 없네요");
+		}else if(myCoupon.isEmpty() && !pastCoup.isEmpty()){
+			mv.addObject("pastCoup", pastCoup);
+		}else if(!myCoupon.isEmpty() && pastCoup.isEmpty()) {
+			mv.addObject("myCoupon", myCoupon);
+		}else {
+			mv.addObject("myCoupon", myCoupon);
+			mv.addObject("pastCoup", pastCoup);
+		}
+		
+		mv.setViewName("mypage/mypageCoupon");
+		return mv;
+		
+	}
+	
 }

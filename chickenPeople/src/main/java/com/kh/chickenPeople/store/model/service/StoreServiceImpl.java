@@ -10,6 +10,7 @@ import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.dao.StoreDao;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -44,6 +45,31 @@ public class StoreServiceImpl implements StoreService{
 	public double selectReviewAvg(int sto_num) {
 		return storeDao.selectReviewAvg(sto_num);
 	}
+	
+	@Override
+	public StoreLike selectStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return storeDao.selectStoreLike(sl);
+	}
+
+	@Override
+	public int insertStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return storeDao.insertStoreLike(sl);
+	}
+	
+	@Override
+	public Menu selectMenu(int menu_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectMenu(menu_num);
+	}
+
+	
+	@Override
+	public int selectReivewCount(int sto_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectReviewCount(sto_num);
+	}
 //----------------------------------------------------------------------------관리자 매장관리
 	@Override
 	public ArrayList<Brand> selectBrandList() {
@@ -69,4 +95,8 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> selectStoreList(PageInfo pi) {
 		return storeDao.selectStoreList(pi);
 	}
+
+
+	
+	
 }

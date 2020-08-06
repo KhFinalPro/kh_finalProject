@@ -25,7 +25,7 @@
 		        <li>회원등급정책</li>
 		        <li>회사소개</li>
 		        <li>요기요사장님</li>
-		        <li><a href="#">입점문의</a></li>
+		        <li><a href="storeJoinForm.do">입점문의</a></li>
 		        <li><a href="noticeList.do">공지사항</a></li>
 		    </ul>
 		</div>

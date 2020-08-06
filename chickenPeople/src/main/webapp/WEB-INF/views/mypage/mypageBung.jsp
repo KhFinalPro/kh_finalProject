@@ -31,6 +31,9 @@
 #create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black;}
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
+
+#msg{margin:0 auto; width:100%; height:200px; text-align:center;}
+#msg h1{margin-top:100px; font-size:100px;}
 </style>
 </head>
 <body>
@@ -38,29 +41,33 @@
 	<jsp:include page="../common/sidebar.jsp"/>
 	
 	<section>
-		
-		<div id="main_section">
-			<br>
-			<c:forEach var="b" items="${bungList }">
-				<div class="bungae_area">
-					<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
-					<div class="brand_logo first_line">
-						<img src="resources/images/${b.bung_img }.png" alt="logo">
+		<c:if test="${!empty bungList }">
+			<div id="main_section">
+				<br>
+				<c:forEach var="b" items="${bungList }">
+					<div class="bungae_area">
+						<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
+						<div class="brand_logo first_line">
+							<img src="resources/images/${b.bung_img }.png" alt="logo">
+						</div>
+						<div class="first_line bungae_title">
+							<h2>${b.bung_title }</h2>
+							<h3>${b.bung_addr }</h3>
+							<h3>${b.bung_date }</h3>
+							<h4>${b.bung_p_no }명까지</h4>	
+						</div>
+						<br clear="both">
+						<div class="brand_name second_line ">${b.bung_brd }</div>
+						<div class="status second_line">${b.bung_status }</div>
 					</div>
-					<div class="first_line bungae_title">
-						<h2>${b.bung_title }</h2>
-						<h3>${b.bung_addr }</h3>
-						<h3>${b.bung_date }</h3>
-						<h4>${b.bung_p_no }명까지</h4>	
-					</div>
-					<br clear="both">
-					<div class="brand_name second_line ">${b.bung_brd }</div>
-					<div class="status second_line">${b.bung_status }</div>
-				</div>
-			</c:forEach>
-	
-	
-		</div>
+				</c:forEach>		
+			</div>
+		</c:if>
+		<c:if test="${!empty msg }">
+			<div id="msg">
+				<h1>${msg }</h1>
+			</div>
+		</c:if>
 	</section>
 	
 	<jsp:include page="../common/footer.jsp"/>

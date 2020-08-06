@@ -30,6 +30,7 @@
 		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.kh.chickenPeople.storeAdmin.model.vo.StoreReview" alias="StoreReview"/>
+		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLike" alias="StoreLike"/>
 	</typeAliases>
 	
 	<mappers>

@@ -122,8 +122,7 @@
 	<div class="mypageTitle"><h2>MY PAGE</h2></div>
 	    <nav>
 	        <a href="#">회원정보</a>
-	        <a href="#">포인트</a>
-	        <a href="#">쿠폰</a>
+	        <a href="myCoupon.do?id=${sessionScope.loginUser.id }">쿠폰</a>
 	        <a href="couponAccept.do?id=${sessionScope.loginUser.id }">쿠폰받아가기</a>
 	        <a href="orderStatus.do?id=${sessionScope.loginUser.id }">주문현황</a>
 	        <a href="calender.do">주문달력/리뷰</a>

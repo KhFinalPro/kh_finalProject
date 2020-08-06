@@ -45,4 +45,27 @@
 		FROM COUPON
 		WHERE USER_ID=#{id} AND COUP_SERIAL=#{coup_serial}
 	</select>
+	
+	<!-- 쿠폰사용가능 -->
+	<select id="myCouponList" parameterType="string" resultMap="couponResultSet">
+		<![CDATA[
+		SELECT *
+		FROM COUPON C
+		JOIN MAKE_COUP MC ON C.COUP_SERIAL = MC.COUP_SERIAL
+		WHERE COUP_YN = 'N' AND USER_ID = #{id} AND SYSDATE < COUP_C_DATE + COUP_TERM
+		ORDER BY COUP_C_DATE DESC
+		]]>
+	</select>
+	
+	<!-- 쿠폰지난거 -->
+	<select id="pastCouponList" parameterType="string" resultMap="couponResultSet">
+		<![CDATA[
+		SELECT *
+		FROM COUPON C
+		JOIN MAKE_COUP MC ON C.COUP_SERIAL = MC.COUP_SERIAL
+		WHERE COUP_YN = 'N' AND USER_ID = #{id} AND SYSDATE > COUP_C_DATE + COUP_TERM
+		ORDER BY COUP_C_DATE DESC
+		]]>
+	</select>
+	
 </mapper>

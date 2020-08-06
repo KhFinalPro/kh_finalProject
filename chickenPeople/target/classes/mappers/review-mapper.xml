@@ -30,8 +30,10 @@
 		GROUP BY STO_NUM
 	</select>
 	
-	
+	<select id="selectReviewCount" parameterType="_int" resultType="int">
+		SELECT COUNT(*)
+		FROM STORE_REVIEW
+		WHERE STO_NUM = #{sto_num}
+	</select>
 
-	
-	
 </mapper>
