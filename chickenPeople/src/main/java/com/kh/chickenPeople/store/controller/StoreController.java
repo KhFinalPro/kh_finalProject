@@ -228,9 +228,9 @@ public class StoreController {
 									@RequestParam(value="status_s",required=false) String status,
 									SearchStatus storeSearch){
 		
-		System.out.println("storeName:"+storeName);
-		System.out.println("storeCategory:"+storeCategory);
-		System.out.println("status:"+status);
+//		System.out.println("storeName:"+storeName);
+//		System.out.println("storeCategory:"+storeCategory);
+//		System.out.println("status:"+status);
 		
 		int currentPage=1;
 		int listCount=0;
@@ -277,4 +277,111 @@ public class StoreController {
 		mv.setViewName("systemAdmin/storeManage/systemAdminStore");
 		return mv;
 	}
+	
+	@RequestMapping(value="systemAdminStoreDetail.do", method=RequestMethod.GET)
+	public ModelAndView storeDetail(ModelAndView mv, SearchStatus searchStatus,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		searchStatus.setSearchCategory(storeCategory);
+		searchStatus.setSearchName(storeName);
+		searchStatus.setSearchStatus(status);
+		
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		Store s = storeService.selectOneStore(storeNum);
+		System.out.println(s);
+		
+		if(s!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("store",s);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/storeManage/systemAdminStoreDetail");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value="storeUpdatePage.do", method=RequestMethod.GET)
+	public ModelAndView goUpdatePage(ModelAndView mv, SearchStatus searchStatus,HttpServletResponse response,	
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}else {
+			page=1;
+		}
+		searchStatus.setSearchCategory(storeCategory);
+		searchStatus.setSearchName(storeName);
+		searchStatus.setSearchStatus(status);
+		
+		Store s = storeService.selectOneStore(storeNum);
+		System.out.println(s);
+		
+		if(s!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("store",s);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/storeManage/systemAdminStoreUpdate");
+		}
+		return mv;
+	}
+	@RequestMapping(value="storeUpdate.do", method=RequestMethod.GET)
+	public ModelAndView storeUpdate(ModelAndView mv, SearchStatus searchStatus, Store s,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status)  {
+		System.out.println(storeName);
+		System.out.println(storeCategory);
+		System.out.println(status);
+		System.out.println(s);
+		
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+//		Store updateStore = storeService.updateStore(storeNum);
+		
+		mv.addObject("brandList",selectBrandList);
+//		mv.addObject("store",updateStore);
+		mv.addObject("searchStatus",searchStatus);
+		
+		return mv;
+	}
+
+	@RequestMapping(value="storeStatusUpdate.do", method=RequestMethod.GET)
+	public void storeStatusUpdate(HttpServletResponse response, ModelAndView mv, SearchStatus searchStatus,	
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+		response.setContentType("text/html; charset=UTF-8");
+
+		String checkStatus = storeService.checkStatus(storeNum);
+		PrintWriter out;
+
+		if(checkStatus.equals("Y")) {
+			
+		}else if(checkStatus.equals("N")) {
+			//모달창을 띄운다
+			int updateStatus = storeService.updateStatus(storeNum);
+
+		}
+		
+		
+		
+	}
+
+
 }

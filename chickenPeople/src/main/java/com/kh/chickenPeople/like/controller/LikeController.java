@@ -166,17 +166,18 @@ public class LikeController {
 	
 		// 찜취소 삭제하기 매장용 만들기 storeNo, userId 보내기
 		int result = likeService.deleteStore(map);
-
-		JSONObject resultObj = new JSONObject();
-		resultObj.put("cd", "success");
-		resultObj.put("msg", "성공");
-
-		PrintWriter out = response.getWriter();
-
-		out.print(resultObj);
-		out.flush();
-		out.close();
-
+		
+	
+			JSONObject resultObj = new JSONObject();
+			resultObj.put("cd", "success");
+			resultObj.put("msg", "성공");
+	
+			PrintWriter out = response.getWriter();
+	
+			out.print(resultObj);
+			out.flush();
+			out.close();
+		
 	}
 
 }

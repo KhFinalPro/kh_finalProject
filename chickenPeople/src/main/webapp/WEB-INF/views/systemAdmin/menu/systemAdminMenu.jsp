@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 _ 메뉴</title>
+
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
     .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }

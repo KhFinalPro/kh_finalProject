@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="storeReviewMapper">
+
+   <resultMap id="storeReviewResultSet" type="StoreReview">
+      <id property="revNum" column="REV_NUM"/>
+      <result property="revRate" column="REV_RATE"/>
+      <result property="revPic" column="REV_PIC"/>
+      <result property="revDate" column="REV_DATE"/>
+      <result property="revRe" column="REV_RE"/>
+      <result property="revNum" column="REV_NUM"/>
+      <result property="userId" column="USER_ID"/>
+      <result property="ordNum" column="ORD_NUM"/>
+      <result property="ordDate" column="ORD_DATE"/>
+      <result property="stoNum" column="STO_NUM"/>
+      <result property="stoId" column="USER_ID"/>
+      <result property="ordPrice" column="ORD_PRICE"/>
+      <result property="menuName" column="MENU_NAME"/>
+      <result property="menuPrice" column="MENU_PRICE"/>
+      <result property="revCont" column="REV_CONT"/>
+      <result property="realMenu" column="REAL_MENU"/>
+   </resultMap>
+   
+      <!-- 다슬꺼 -->
+   <!-- 리뷰리스트 -->
+   <select id="reviewList" resultMap="storeReviewResultSet">
+   SELECT DISTINCT J.ORD_NUM, R.REV_NUM,R.REV_RATE,R.REV_PIC,R.REV_DATE,R.REV_CONT,R.REV_RE,R.USER_ID,R.ORD_NUM,SR.STO_NUM,OP.ORD_PRICE,J.ORD_DATE
+   FROM REVIEW R
+   JOIN STORE_REVIEW SR ON (R.REV_NUM=SR.REV_NUM)
+   LEFT JOIN STORE_INFO SI ON (SR.STO_NUM=SI.STO_NUM)
+   LEFT JOIN ORDER_PRO OP ON (R.ORD_NUM=OP.ORD_NUM)
+   RIGHT JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+   WHERE SI.USER_ID=#{userId}
+   ORDER BY REV_NUM DESC
+   </select>
+   
+   
+   <!-- 메뉴리스트 -->
+   <select id="menuList" resultMap="storeReviewResultSet" >
+   SELECT J.ORD_NUM, LISTAGG(CAST(M.MENU_NAME AS VARCHAR(1000)),',')WITHIN GROUP(ORDER BY M.MENU_NAME) AS REAL_MENU
+   FROM JUMUN_DETAIL J
+   JOIN STORE_INFO SI ON(J.STO_NUM=SI.STO_NUM)
+   JOIN MENU M ON (J.MENU_NUM=M.MENU_NUM)
+   WHERE SI.USER_ID=#{userId}
+   GROUP BY J.ORD_NUM
+   ORDER BY J.ORD_NUM
+   </select>
+   
+   
+   <!-- 리뷰 답글달기 -->
+   <update id="updateReviewRe">
+   UPDATE REVIEW
+   SET 
+   REV_RE =#{revReCont}
+   WHERE REV_NUM=#{revNum}
+   </update>
+   
+   
+   <!-- 스토어 리뷰삭제 -->
+   <delete id="deleteStoreReview">
+   DELETE STORE_REVIEW
+   WHERE REV_NUM=#{deleteReviewNo}
+   </delete>
+   
+   <!-- 리뷰삭제 -->
+   <delete id="deleteReview">
+   DELETE REVIEW
+   WHERE REV_NUM=#{deleteReviewNo}
+   </delete>
+   
+   
+   
+
+</mapper>
