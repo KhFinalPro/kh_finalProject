@@ -11,6 +11,7 @@ import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -40,6 +41,15 @@ public class StoreDao {
 		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewAvg", sto_num);
 	}
 	
+	public StoreLike selectStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreLiek", sl);
+	}
+
+	public int insertStoreLike(StoreLike sl) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("storeMapper.insertStoreLike", sl);
+	}
 
 	//
 	public ArrayList<Brand> selectBrandList() {
@@ -72,8 +82,16 @@ public class StoreDao {
 	}
 
 	public Store updateStore(int storeNum) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String checkStatus(int storeNum) {
+		return sqlSessionTemplate.selectOne("storeMapper.checkStatus",storeNum);
+	}
+
+	public int updateStatus(int storeNum) {
+		return sqlSessionTemplate.update("storeMapper.updateStatus",storeNum);
+	}
+	
 
 }

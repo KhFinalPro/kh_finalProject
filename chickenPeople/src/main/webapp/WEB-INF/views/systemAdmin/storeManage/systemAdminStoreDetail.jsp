@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>관리자 _ 점포 관리</title>
+<!-- 끝! -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <style>
@@ -20,9 +21,9 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
-	.resultTable td{height:20}
+	.resultTable tr{height:70px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
-	
+	#back{margin:0 auto}
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
 	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -103,44 +104,52 @@
 				<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
 				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 				<c:param name="page" value="${pi.currentPage }"/>
-				
 			</c:url>
-			
+			<c:url var="storeStatusUpdate" value="storeStatusUpdate.do">
+				<c:param name="storeNum" value="${store.sto_num }"/>
+				<c:param name="storeSearch" value="${searchStatus.searchName }"/>
+				<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
+				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
+				<c:param name="page" value="${pi.currentPage }"/>
+			</c:url>
 			<div class="menuResultTable">
 				<br><hr><br>
 				<div style="text-align:right;">
-					<button onclick="location.href='${goStoreUpdate}'">매장 정보 수정</button>
+					<button id="back" onclick="history.back(-1)"><b>목록</b></button>
+					&nbsp;<button onclick="location.href='${storeStatusUpdate }'"><b>승인처리</b></button>
+					&nbsp;<button onclick="location.href='${goStoreUpdate}'"><b>정보 수정</b></button>
 				</div>
 				<br>
 				<table class="resultTable" >
-					<tr>					
-						<td><b>매장번호</b>&nbsp;${store.sto_num }</td>
-						<td><b>${store.sto_name }</b></td>
-						<td>
+					<tr style="height:100px;">
+						<td colspan="1"><b>${store.sto_name }</b>&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:if test="${store.open_yn eq 'Y' }">
-								<button style="color:green"><b>영업중</b></button>
+								<button style="color:green; background-color:#A9F5A9; font-size:15px;"  ><b>영업중</b></button>
 							</c:if>
 							<c:if test="${store.open_yn eq 'N' }">
-								<button style="color:red"><b>영업 종료</b></button>
+								<button style="color:red; background-color:#F5A9A9; font-size:15px;"><b>영업 종료</b></button>
 							</c:if>
+						</td>
+						<td><b>매장번호</b>&nbsp;&nbsp;&nbsp;${store.sto_num }</td>
+					</tr>
+					<tr>
+						<td><b>대표명</b>&nbsp;${store.ceo_name }&nbsp;사장님</td>
+						<td colspan="2"><b>Tel)</b>&nbsp; ${store.sto_tel}</td>
+					</tr>
+					<tr>
+						<td><b>주소 </b>&nbsp;${store.sto_addr }</td>
+						<td>
+							<b>배달 가능 시간</b>&nbsp;${store.deli_time }&nbsp;
+							<c:if test="${store.delivery eq 'Y' }"> 배달가능 </c:if>
+							<c:if test="${store.delivery eq 'N' }"> 배달불가 </c:if>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><b>분류</b>&nbsp;${store.sto_tel}</td>
+						<td colspan="1"><b>매장 소개</b><br>&nbsp;${store.sto_intro }</td>
+						<td>
+							<b>최소 주문금액 </b>&nbsp;${store.ord_limit } &nbsp;원</td>
 					</tr>
 					<tr>
-						<td><b>매장 주소 </b>&nbsp;${store.sto_addr }</td>
-						<td><b>최소 주문금액 </b>&nbsp;${store.ord_limit } &nbsp;원</td>
-					</tr>
-					<tr>
-						<td colspan="2"><b>매장 소개</b><br>&nbsp;${store.sto_intro }</td>
-					</tr>
-					<tr>
-						<td><b>배달 가능 여부</b>&nbsp;${store.delivery }</td>
-						
-					</tr>
-					<tr>
-						<td><b>대표명</b>&nbsp;${store.ceo_name }</td>
 					</tr>
 			
 				</table>

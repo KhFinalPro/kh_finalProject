@@ -17,8 +17,8 @@
 
 <style>
 	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
-	.left-box {background: red; float: left; width: 50%; height:100%}
-	.right-box { background: blue; float: right; width:50%; height:100%}
+	.left-box {background: red; float: left; display:inline; width: 50%; height:100%}
+	.right-box { background: blue; float: right; width:50%; display:inline; height:100%}
 	.right-top{background:yellow;  height:50%}
 </style>
 </head>
@@ -41,7 +41,7 @@
 			</div>
 			<div class='right-box'>
 				<div class="right-top">
-					<div id="bar_chart_div"></div>
+					<div id="bar_chart_div" style="height:40%"></div>
 				</div>
 				<div class="right-bot">
 				</div>
@@ -83,15 +83,15 @@ var chartDrowFun = {
 	        	  		var n = "<%=st.getPay_Date()%>"
 	        	  		
 	        	  		var m = n.substring(6,7)
+	        	  		console.log("____"+m);
 	        	  		if(i==m){
 	        	  			total = <%=st.getPay_Total()%>
 	        	  		}else{
 	        	  			total = 0;
 	        	  		}
+	        	  	<%}%>
 		              dataRow = [new Date('2020', i), total];
 		              data.addRow(dataRow);
-		              console.log(dataRow);
-	        	  	<%}%>
 
 	            }
 

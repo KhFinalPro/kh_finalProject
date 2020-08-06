@@ -21,6 +21,7 @@ import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
@@ -240,23 +241,72 @@ public class StoreController {
 		return mv;
 	}
 	@RequestMapping(value="storeUpdate.do", method=RequestMethod.GET)
-	public ModelAndView storeUpdate(ModelAndView mv, SearchStatus searchStatus,
-									@RequestParam(value="storeNum", required=false)int storeNum,
+	public ModelAndView storeUpdate(ModelAndView mv, SearchStatus searchStatus, Store s,
 									@RequestParam(value="storeSearch", required=false)String storeName,
 									@RequestParam(value="brandCategory", required=false)String storeCategory,
 									@RequestParam(value="status_s",required=false)String status)  {
-		System.out.println(storeNum);
 		System.out.println(storeName);
 		System.out.println(storeCategory);
 		System.out.println(status);
+		System.out.println(s);
 		
 		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
-		Store updateStore = storeService.updateStore(storeNum);
+//		Store updateStore = storeService.updateStore(storeNum);
 		
 		mv.addObject("brandList",selectBrandList);
-		mv.addObject("store",updateStore);
+//		mv.addObject("store",updateStore);
 		mv.addObject("searchStatus",searchStatus);
 		
 		return mv;
 	}
+
+	@RequestMapping(value="storeStatusUpdate.do", method=RequestMethod.GET)
+	public void storeStatusUpdate(HttpServletResponse response, ModelAndView mv, SearchStatus searchStatus,	
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+		response.setContentType("text/html; charset=UTF-8");
+
+		String checkStatus = storeService.checkStatus(storeNum);
+		PrintWriter out;
+
+		if(checkStatus.equals("Y")) {
+			
+		}else if(checkStatus.equals("N")) {
+			//모달창을 띄운다
+			int updateStatus = storeService.updateStatus(storeNum);
+
+		}
+		
+		
+		
+	}
+	//상원 매장 상세 찜하기 ajax
+	@RequestMapping(value="storeLike.do", method=RequestMethod.POST)
+	public void storeLike(HttpServletResponse response, StoreLike sl) throws IOException
+	{
+		response.setContentType("application/json;charset=utf-8");
+		
+		StoreLike storeLike = storeService.selectStoreLike(sl);
+		
+		JSONObject sendJson = new JSONObject();
+		if(storeLike == null)	//찜 안한 매장
+		{
+			int result = storeService.insertStoreLike(sl);
+			sendJson.put("msg", "등록되었습니다.");
+		}
+		else
+		{
+			sendJson.put("msg", "이미 등록된 매장입니다.");
+		}
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(sendJson);
+		out.flush();
+		out.close();
+	}
+	
 }

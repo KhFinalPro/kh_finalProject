@@ -6,10 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>관리자 _ 점포관리</title>
+<!-- 다스리언니가 가져가기로해씀 -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <style>
+    .inputText {background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
+
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	 select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
@@ -20,7 +23,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
-	.resultTable td{height:20}
+	.resultTable tr{height:70px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
@@ -97,51 +100,66 @@
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
-			<c:url var="goStoreUpdate" value="storeUpdate.do">
-				<c:param name="storeNum" value="${store.sto_num }"/>
-				<c:param name="storeSearch" value="${searchStatus.searchName }"/>
-				<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
-				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
-				<c:param name="page" value="${pi.currentPage }"/>
-				
-			</c:url>
 			
 			<div class="menuResultTable">
 				<br><hr><br>
+			<form action="storeUpdate.do" method="get">
+				<div style="text-align:right;">
+					<button type="submit"><b>수정완료</b></button>
+				</div>
 				<br>
+				
 				<table class="resultTable" >
-					<tr>					
-						<td><b>매장번호</b>&nbsp;<input type="text" value="${store.sto_num }" readonly></td>
-						<td><b><inpt type="text" value="${store.sto_name }" readonly></b></td>
-						<td>
+					<tr style="height:100px;">
+						<td colspan="1"><b>${store.sto_name }</b>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="hidden" name="sto_name" value="${store.sto_name }">
 							<c:if test="${store.open_yn eq 'Y' }">
-								<button style="color:green"><b>영업중</b></button>
+								<button style="color:green; background-color:#A9F5A9; font-size:15px;"  ><b>영업중</b></button>
+								<input type="hidden" name="open_yn" value="${store.open_yn }"/>
 							</c:if>
 							<c:if test="${store.open_yn eq 'N' }">
-								<button style="color:red"><b>영업 종료</b></button>
+								<button style="color:red; background-color:#F5A9A9; font-size:15px;"><b>영업 종료</b></button>
+							<input type="hidden" name="open_yn" value="${store.open_yn }"/>	
 							</c:if>
+						</td>
+						<td>
+							<b>매장번호</b>&nbsp;&nbsp;&nbsp;${store.sto_num }
+							<input type="hidden" name="sto_num" value="${store.sto_num }"/>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><b>분류</b>&nbsp;<input type="text" value="${store.sto_tel}"></td>
+						<td><b>대표명</b>&nbsp;${store.ceo_name }&nbsp;사장님</td>
+						<input type="hidden" name="ceo_name" value="${store.ceo_name }"/>
+						<td colspan="2"><b>Tel)</b>&nbsp; ${store.sto_tel}</td>
+						<input type="hidden" name="sto_tel" value="${store.sto_tel }"/>
 					</tr>
 					<tr>
-						<td><b>매장 주소 </b>&nbsp;<input type="text" value="${store.sto_addr }"></td>
-						<td><b>최소 주문금액 </b>&nbsp;<input type="text" value="${store.ord_limit }"> &nbsp;원</td>
+						<td><b>주소 </b>&nbsp;${store.sto_addr }</td>
+						<input type="hidden" name="sto_addr" value="${store.sto_addr }"/>
+						<td>
+							<b>배달 가능 시간</b>&nbsp;
+							<input type="time" class="inputText" style="width:150px;" value="${store.deli_time }">&nbsp;~&nbsp;<input type="time"  style="width:150px;" class="inputText"/>
+							<c:if test="${store.delivery eq 'Y' }"> 배달가능 </c:if>
+							<c:if test="${store.delivery eq 'N' }"> 배달불가 </c:if>
+							<input type="hidden" name="delivery" value="${store.delivery }">
+						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><b>매장 소개</b><br>&nbsp;
-						<textarea>${store.sto_intro }</textarea></td>
+						<td colspan="1">
+							<b>매장 소개</b><br>&nbsp;
+							<br>
+							<textarea cols="55" rows="5" name="sto_intro">${store.sto_intro }</textarea>
+						</td>
+						<td>
+							<b>최소 주문금액 </b>&nbsp;
+							<input type="number" style="width:200px;"class="inputText" name="ord_limit"value="${store.ord_limit }" step="1000"/> &nbsp;원</td>
+						</td>
 					</tr>
 					<tr>
-						<td><b>배달 가능 여부</b>&nbsp;<input type="text" value="${store.delivery }"></td>
-						
-					</tr>
-					<tr>
-						<td><b>대표명</b>&nbsp;<input id="ceoName" type="text" value="${store.ceo_name } readonly"></td>
 					</tr>
 			
 				</table>
+			</form>
 				<script>
 					$(function(){
 						$("#ceoName").on("click",function(){

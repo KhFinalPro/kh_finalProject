@@ -110,7 +110,7 @@
 	$(function(){
 		$(".place_area").on("click",function(){
 			$sto_num = $(this).children("#sto_num").val();
-			alert($sto_num);
+			location.href="storeDetail.do?sto_num="+$sto_num;
 		})
 	})
 </script>
