@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
+import com.kh.chickenPeople.coupon.model.service.CouponService;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
@@ -33,6 +35,9 @@ public class StoreController {
 	
 	@Autowired
 	StoreService storeService;
+	
+	@Autowired
+	CouponService couponService;
 	
 	//상원 매장 상세페이진
 	@RequestMapping("storeDetail.do")
@@ -176,6 +181,8 @@ public class StoreController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		ArrayList<Menu> menuList = new ArrayList<>();
+		
+		
 		for(int i = 0; i<menu_num_arr.length; i++)
 		{
 			Menu m = storeService.selectMenu(menu_num_arr[i]);
@@ -185,13 +192,16 @@ public class StoreController {
 		
 		//회원이 가지고있는 쿠폰
 //		ArrayList<Coupon> myCouponList = 
-		
-		if(!menuList.isEmpty())
+		ArrayList<Coupon> myCouponList = couponService.myCoupon(loginUser.getId());
+		if(!menuList.isEmpty() && !myCouponList.isEmpty())
 		{
+			mv.addObject("myCouponList", myCouponList);
 			mv.addObject("address", address);
 			mv.addObject("menuList", menuList);
 			mv.addObject("total_price", total_price);
+			mv.addObject("sto_num", sto_num);
 		}
+		
 		else
 		{
 			System.out.println("구매할 메뉴가 없음!!");

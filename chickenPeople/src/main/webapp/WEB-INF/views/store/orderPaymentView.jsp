@@ -25,7 +25,7 @@
             .order_info #info{font-size: 25px; font-weight: 600;}
             .order_info #address{font-size: 35px; font-weight: 600; color:#2CBFB1;}
             .order_info #detail_address_area{margin-top: 10px; height:60px; line-height: 60px; font-size: 20px; background-color: rgb(238, 236, 236); vertical-align:middle;}
-            .order_info #detail_address_area .detail_address{margin-bottom:5px; background-color: white; border:0px; height:30px; margin:0px; width:400px;}
+            .order_info #detail_address_area #detail_address{margin-bottom:5px; background-color: white; border:0px; height:30px; margin:0px; width:400px;}
             .order_info #phone{margin-top: 50px; font-size: 30px; font-weight: 300;}
             
             #menuList_area{margin-top: 50px; width:100%; height: 250px; overflow-y: auto;}
@@ -64,6 +64,9 @@
    
 
     	<section>
+    		<input type="hidden" id="id" name="id" value="${sessionScope.loginUser.id }">
+    		<input type="hidden" id="sto_num" name="sto_num" value="${sto_num }">
+    		
         <!-- <h2 id="payment_title">주문하기</h2> -->
 	        <div id="order">
 	        <!--  가게 간단한 정보  -->
@@ -73,7 +76,7 @@
 	
 	                <p id="info" class="title">배달정보</p>
 	                <p id="address">${address }</p>
-	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input class="detail_address" name="detail_address"></div>
+	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input id="detail_address" name="detail_address"></div>
 	
 	                <a>전화번호 : </a><span id="phone">${sessionScope.loginUser.tel }</span>
 	            </div>
@@ -84,6 +87,7 @@
 	            <div id="menuList_area">
 	            	<c:forEach var="m" items="${menuList }">
 		                <ul>
+		            		<input type="hidden" class="menu_num" name="menu_num" value="${m.menu_Num }">
 		                    <li>
 		                        <img src="resources/menu/${m.menu_Pic }.jpg" alt="">
 		                    </li>
@@ -124,11 +128,19 @@
 	
 	            <div id="coupon_area">
 	                <h2 class="title">쿠폰</h2>
-	                <select name="" id="coupon_choice">
-	                    <option value="">신규회원</option>
+	                <select name="coup_num" id="coupon_choice">
+	                	<c:if test="${empty myCouponList }"> <!-- 보유한 쿠폰이 없으면 -->
+	                		<option value="" selected disabled hidden >보유하신 쿠폰이 없습니다..</option>
+	                	</c:if>
+	                	<c:if test="${!empty myCouponList }"> <!-- 보유한 쿠폰이 있으면 -->
+	                		<option value="" >선택해주세요.</option>
+	                		<c:forEach var="c" items="${myCouponList }">
+	                    		<option value="${c.coup_num }">${c.coup_name } ${c.coup_disc }</option>
+	                    	</c:forEach>
+	                	</c:if>
 	                </select>
 	                <p id="coupon_info">
-	                    신규회원 쿠폰입니다.
+	                   	 
 	                </p>
 	            </div>
 	            
@@ -141,15 +153,15 @@
 	        <table id="orderCheck">
 	            <tr>
 	                <td class="orderCheck_item_title">메뉴 합계 금액</td>
-	                <td class="orderCheck_item"><a><fmt:formatNumber value="${total_price }" pattern=""/></a>원</td>
+	                <td class="orderCheck_item" id="price"><a>${total_price }</a>원</td>
 	            </tr>
 	            <tr>
 	                <td class="orderCheck_item_title">쿠폰 사용 금액</td>
-	                <td class="orderCheck_item"><a>1000</a>원</td>
+	                <td class="orderCheck_item" id="coup_price"></td>
 	            </tr>
 	            <tr>
 	                <td class="orderCheck_item_title">최종 결제 금액</td>
-	                <td class="resultPrice"><a>19000</a>원</td>
+	                <td class="resultPrice"><a></a>원</td>
 	            </tr>
 	        </table>
 	        <button id="payment_btn">결제하기</button>
@@ -163,67 +175,91 @@
 	
     	<jsp:include page="../common/footer.jsp"/>
     </body>
-	    <script>
-	        $(function() {
-	        	var IMP = window.IMP;
-	        	IMP.init('imp33962000');
-	        	var msg;
-	        	
-	            $("#payment_btn").on("click",function(){
-	            	if($("input[name='method']:checked").val() == 'kakao'){
-	            		IMP.request_pay({
-	                        pg : 'kakaopay',
-	                        pay_method : 'card',
-	                        merchant_uid : 'merchant_' + new Date().getTime(),
-	                        name : '치킨의 민족',
-	                        amount : $(".resultPrice").children("a").text(),
-	                        buyer_email : 'asdasd@asd.asd',
-	                        buyer_name : '최상원',
-	                        buyer_tel : $("#phone").text(),
-	                        buyer_addr : '서울 구로구',
-	                        buyer_postcode : '123-456',
-	                        //m_redirect_url : 'http://www.naver.com'
-	                    }, function(rsp) {
-	                        if ( rsp.success ) {
-	                            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-	                            jQuery.ajax({
-	                                url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
-	                                type: 'POST',
-	                                dataType: 'json',
-	                                data: {
-	                                    imp_uid : rsp.imp_uid
-	                                    //기타 필요한 데이터가 있으면 추가 전달
-	                                }
-	                            }).done(function(data) {
-	                                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-	                                if ( everythings_fine ) {
-	                                    msg = '결제가 완료되었습니다.';
-	                                    msg += '\n고유ID : ' + rsp.imp_uid;
-	                                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	                                    msg += '\결제 금액 : ' + rsp.paid_amount;
-	                                    msg += '카드 승인번호 : ' + rsp.apply_num;
-	                                    
-	                                    alert(msg);
-	                                } else {
-	                                    //[3] 아직 제대로 결제가 되지 않았습니다.
-	                                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-	                                }
-	                            });
-	                            
-	                        } else {
-	                            msg = '결제에 실패하였습니다.';
-	                            msg += '에러내용 : ' + rsp.error_msg;
-	                            //실패시 이동할 페이지
-	                            
-	                        }
-	                    });
-	            	}
-	            	else{
-		            	location.href="paymentSuccess.do";
-		            }
-	            })
-	            
-	        });
-	    </script>
+    <script>
+        $(function() {
+        	var IMP = window.IMP;
+        	IMP.init('imp33962000');
+        	var msg;
+        	
+            $("#payment_btn").on("click",function(){
+            	
+            	var address = $("#address").text() + " " + $("#detail_address").val();
+            	var tel = $("#phone").text();
+            	var pay_msg = $("#msg").val();
+            	var pay_toal = $(".resultPrice").children("a").text();
+            	var coup_num = $("#coupon_choice option:selected").val();
+            	var id = $("#id").val();
+            	var pay_method = $("input[name='method']:checked").val();
+            	
+            	var menu_length = $(".menu_num").get();
+            	for(var i = 0; i<menu_length.length; i++){
+            		console.log($(".menu_num").get(i));            		
+            	}
+            	
+            	
+            	if($("input[name='method']:checked").val() == 'kakao'){
+            		IMP.request_pay({
+                        pg : 'kakaopay',
+                        pay_method : 'card',
+                        merchant_uid : 'merchant_' + new Date().getTime(),
+                        name : '치킨의 민족',
+                        amount : $(".resultPrice").children("a").text(),
+                        buyer_email : 'asdasd@asd.asd',
+                        buyer_name : '최상원',
+                        buyer_tel : $("#phone").text(),
+                        buyer_addr : '서울 구로구',
+                        buyer_postcode : '123-456',
+                        //m_redirect_url : 'http://www.naver.com'
+                    }, function(rsp) {
+                        if ( rsp.success ) {
+                            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                            jQuery.ajax({
+                                url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    imp_uid : rsp.imp_uid
+                                    //기타 필요한 데이터가 있으면 추가 전달
+                                }
+                            }).done(function(data) {
+                                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                                if ( everythings_fine ) {
+                                    msg = '결제가 완료되었습니다.';
+                                    msg += '\n고유ID : ' + rsp.imp_uid;
+                                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                                    msg += '\결제 금액 : ' + rsp.paid_amount;
+                                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                                    
+                                    alert(msg);
+                                } else {
+                                    //[3] 아직 제대로 결제가 되지 않았습니다.
+                                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                                }
+                            });
+                            
+                        } else {
+                            msg = '결제에 실패하였습니다.';
+                            msg += '에러내용 : ' + rsp.error_msg;
+                            //실패시 이동할 페이지
+                            
+                        }
+                    });
+            	}
+            	else{
+	            	location.href="paymentSuccess.do";
+	            }
+            })
+            
+            $("#coupon_choice").on("change",function(){
+            	var coup_content = $("#coupon_choice option:selected").text();
+            	var coup_disc = coup_content.split(" ");
+            	$("#coup_price").children("a").remove();
+            	$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
+            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
+            	var total_price = parseInt($("#price").children("a").text()) - parseInt($("#coup_price").children("a").text());
+            	$(".resultPrice").children("a").text(total_price);
+            })
+        });
+    </script>
 	    
 </html>
