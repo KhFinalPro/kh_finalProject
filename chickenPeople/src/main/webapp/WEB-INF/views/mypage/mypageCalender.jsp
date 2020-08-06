@@ -386,6 +386,7 @@ function showOrderDetail(id){
 
 function goReview(){
 
+	
 	$("#modalOrderHistory").fadeOut(500);
 	$("#modalReview").fadeIn(500);
 }
@@ -450,6 +451,8 @@ function reveiw_done_btn(){
         } 
 	}) 
 	
+	//리뷰등록하고 다시 모달창 켰을때 지난 사진 남기지 않기
+	//$("#review_photo").attr("src","");
 }
 </script>
 

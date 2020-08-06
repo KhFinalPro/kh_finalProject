@@ -13,6 +13,8 @@
 		<result property="ord_num" column="ORD_NUM"/>
 		<result property="sto_num" column="STO_NUM"/>
 	</resultMap>
+
+
 	
 	<select id="selectListReview" parameterType="_int" resultMap="reviewResultSet">
 		SELECT R.REV_NUM, R.REV_RATE AS USER_REV_RATE, REV_PIC, REV_DATE, REV_CONT, REV_RE, USER_ID, ORD_NUM
@@ -27,4 +29,9 @@
 		WHERE STO_NUM = #{sto_num}
 		GROUP BY STO_NUM
 	</select>
+	
+	
+
+	
+	
 </mapper>

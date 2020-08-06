@@ -214,7 +214,7 @@
        function searchData(){
           var param = {
                 'type' : $("#selectType").val(),
-                 //console.log("테이블 값 조회"+ $("#selectType").val());
+                 /* //console.log("테이블 값 조회"+ $("#selectType").val()); */
           }
           
           $.ajax({
