@@ -47,11 +47,16 @@ public class StoreController {
 		//리뷰 가져오기
 		ArrayList<Review> reviewList = storeService.selectListReview(sto_num);
 				
-		//리뷰 평균
 		
 		try
 		{
+			//리뷰 평균
 			double avg_review_rate = storeService.selectReviewAvg(sto_num);
+
+			int reviewCount = storeService.selectReivewCount(sto_num);			
+			
+			mv.addObject("reviewCount", reviewCount);
+			
 			mv.addObject("address", address);
 			mv.addObject("avg_review_rate", avg_review_rate);
 			mv.addObject("storeList", storeList);
@@ -61,6 +66,7 @@ public class StoreController {
 		}
 		catch(NullPointerException e)
 		{
+			mv.addObject("reviewCount", 0);
 			mv.addObject("address", address);
 			mv.addObject("avg_review_rate", 0.0);
 			mv.addObject("storeList", storeList);
@@ -187,6 +193,13 @@ public class StoreController {
 		
 		mv.setViewName("store/orderPaymentView");
 		return mv;
+	}
+	
+	@RequestMapping("paymentSuccess.do")
+	public String paymentSuccess()
+	{
+		
+		return "payment/paymentSuccess";
 	}
 	
 	

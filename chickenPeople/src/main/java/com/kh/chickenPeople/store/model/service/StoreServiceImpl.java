@@ -65,6 +65,11 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	
+	@Override
+	public int selectReivewCount(int sto_num) {
+		// TODO Auto-generated method stub
+		return storeDao.selectReviewCount(sto_num);
+	}
 //----------------------------------------------------------------------------관리자 매장관리
 	@Override
 	public ArrayList<Brand> selectBrandList() {
@@ -90,6 +95,7 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> selectStoreList(PageInfo pi) {
 		return storeDao.selectStoreList(pi);
 	}
+
 
 	
 	

@@ -104,7 +104,7 @@
 	                <h2 class="title">요청사항</h2>
 	                <p>가게 사장님께</p>
 	                <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-	                <input type="text" id="msg" placeholder="예 견과류 빼주세요. 덜 맵게 해주세요.">
+	                <input type="text" id="msg" placeholder="예) 견과류 빼주세요. 덜 맵게 해주세요.">
 	            </div>
 	
 	            <div id="pay_method_area">
@@ -209,18 +209,20 @@
 	                                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	                                }
 	                            });
-	                            //성공시 이동할 페이지
-	                            location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
+	                            
 	                        } else {
 	                            msg = '결제에 실패하였습니다.';
 	                            msg += '에러내용 : ' + rsp.error_msg;
 	                            //실패시 이동할 페이지
-	                            location.href="<%=request.getContextPath()%>/order/payFail";
-	                            alert(msg);
+	                            
 	                        }
 	                    });
-	            	}	            
+	            	}
+	            	else{
+		            	location.href="paymentSuccess.do";
+		            }
 	            })
+	            
 	        });
 	    </script>
 	    
