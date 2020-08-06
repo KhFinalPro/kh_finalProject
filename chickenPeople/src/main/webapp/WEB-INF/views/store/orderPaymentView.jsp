@@ -23,7 +23,7 @@
           
             .title{height: 50px; line-height: 50px; font-size: 25px; font-weight: 600; border-top: 1px solid black; color:#735949;}
             .order_info #info{font-size: 25px; font-weight: 600;}
-            .order_info #address{font-size: 35px; font-weight: 600; color:#2CBFB1;}
+            .order_info #pay_addr{font-size: 35px; font-weight: 600; color:#2CBFB1;}
             .order_info #detail_address_area{margin-top: 10px; height:60px; line-height: 60px; font-size: 20px; background-color: rgb(238, 236, 236); vertical-align:middle;}
             .order_info #detail_address_area #detail_address{margin-bottom:5px; background-color: white; border:0px; height:30px; margin:0px; width:400px;}
             .order_info #phone{margin-top: 50px; font-size: 30px; font-weight: 300;}
@@ -75,7 +75,7 @@
 	                
 	
 	                <p id="info" class="title">배달정보</p>
-	                <p id="address">${address }</p>
+	                <p id="pay_addr">${address }</p>
 	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input id="detail_address" name="detail_address"></div>
 	
 	                <a>전화번호 : </a><span id="phone">${sessionScope.loginUser.tel }</span>
@@ -85,22 +85,27 @@
 	            
 	            <!-- 메뉴판  -->
 	            <div id="menuList_area">
-	            	<c:forEach var="m" items="${menuList }">
-		                <ul>
-		            		<input type="hidden" class="menu_num" name="menu_num" value="${m.menu_Num }">
-		                    <li>
-		                        <img src="resources/menu/${m.menu_Pic }.jpg" alt="">
-		                    </li>
-		                    <li class="text">
-		                        <a>${m.menu_Name }</a>
-		                        
-		                    </li>
-		                    <li class="price">
-		                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.menu_Price }" pattern=""/>">원</p>
-		                    </li>
-		                    <br clear="both">
-		                </ul>
-	                </c:forEach>
+	            	<form action="payment.do" method="post" id="paymentForm">
+	            		<input type="hidden" id="latlng" name="latlng" value="${latlng }">
+	            		<input type="hidden" name="sto_num" value="${sto_num }">
+	            		<input type="hidden" name="brand_code" value="${brand_code }">
+		            	<c:forEach var="m" items="${menuList }">
+			                <ul>
+			            		<input type="hidden" class="menu_num" name="menu_numArr" value="${m.menu_Num }">
+			                    <li>
+			                        <img src="resources/menu/${m.menu_Pic }.jpg" alt="">
+			                    </li>
+			                    <li class="text">
+			                        <a>${m.menu_Name }</a>
+			                        
+			                    </li>
+			                    <li class="price">
+			                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.menu_Price }" pattern=""/>">원</p>
+			                    </li>
+			                    <br clear="both">
+			                </ul>
+		                </c:forEach>
+	                </form>
 	            </div>
 	    
 	            <!-- tabs 메뉴 클릭 -->
@@ -161,7 +166,7 @@
 	            </tr>
 	            <tr>
 	                <td class="orderCheck_item_title">최종 결제 금액</td>
-	                <td class="resultPrice"><a></a>원</td>
+	                <td class="resultPrice"><a>${total_price }</a>원</td>
 	            </tr>
 	        </table>
 	        <button id="payment_btn">결제하기</button>
@@ -181,20 +186,16 @@
         	IMP.init('imp33962000');
         	var msg;
         	
+        	//결제
             $("#payment_btn").on("click",function(){
             	
-            	var address = $("#address").text() + " " + $("#detail_address").val();
+            	var address = $("#pay_addr").text() + " " + $("#detail_address").val();
             	var tel = $("#phone").text();
             	var pay_msg = $("#msg").val();
             	var pay_toal = $(".resultPrice").children("a").text();
             	var coup_num = $("#coupon_choice option:selected").val();
             	var id = $("#id").val();
-            	var pay_method = $("input[name='method']:checked").val();
-            	
-            	var menu_length = $(".menu_num").get();
-            	for(var i = 0; i<menu_length.length; i++){
-            		console.log($(".menu_num").get(i));            		
-            	}
+            	var pay_method = $("input[name='method']:checked").val();        
             	
             	
             	if($("input[name='method']:checked").val() == 'kakao'){
@@ -212,8 +213,19 @@
                         //m_redirect_url : 'http://www.naver.com'
                     }, function(rsp) {
                         if ( rsp.success ) {
+                        	alert("결제 성공");
+                        	$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
+                        	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
+                        	$("#paymentForm").submit();
+                        	
+                        	
                             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                            jQuery.ajax({
+                            /* jQuery.ajax({
                                 url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
                                 type: 'POST',
                                 dataType: 'json',
@@ -236,7 +248,7 @@
                                     //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                                 }
                             });
-                            
+                             */
                         } else {
                             msg = '결제에 실패하였습니다.';
                             msg += '에러내용 : ' + rsp.error_msg;
@@ -244,20 +256,36 @@
                             
                         }
                     });
+            		//카카오결제 진행후 insert
             	}
             	else{
-	            	location.href="paymentSuccess.do";
+            		$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
+                	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
+            		$("#paymentForm").submit();
 	            }
             })
             
+            //쿠폰 적용
             $("#coupon_choice").on("change",function(){
             	var coup_content = $("#coupon_choice option:selected").text();
             	var coup_disc = coup_content.split(" ");
             	$("#coup_price").children("a").remove();
-            	$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
-            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
-            	var total_price = parseInt($("#price").children("a").text()) - parseInt($("#coup_price").children("a").text());
-            	$(".resultPrice").children("a").text(total_price);
+            	
+            	if(coup_disc[1] == null){
+            		$("#coup_price").append("<a>0원</a>");
+            		$(".resultPrice").children("a").text($("#price").children("a").text());
+            	}
+            	else{
+            		$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
+	            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
+	            	var total_price = parseInt($("#price").children("a").text()) - parseInt($("#coup_price").children("a").text());
+	            	$(".resultPrice").children("a").text(total_price);            		
+            	}
             })
         });
     </script>

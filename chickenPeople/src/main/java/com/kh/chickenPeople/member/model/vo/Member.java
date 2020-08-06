@@ -26,11 +26,13 @@ public class Member implements Serializable{
 	private String status;
 	private String post_code;
 	private String address;
+	private double lat;
+	private double lng;
 	
 	public Member() {}
 
 	public Member(String id, String name, String pwd, String tel, String email, String lBrand, String pic, String uGrd,
-			String uLvl, int oCnt, String status, String post_code, String address) {
+			String uLvl, int oCnt, String status, String post_code, String address, double lat, double lng) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,6 +47,8 @@ public class Member implements Serializable{
 		this.status = status;
 		this.post_code = post_code;
 		this.address = address;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public String getId() {
@@ -151,6 +155,22 @@ public class Member implements Serializable{
 		this.address = address;
 	}
 
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -159,8 +179,11 @@ public class Member implements Serializable{
 	public String toString() {
 		return "Member [id=" + id + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel + ", email=" + email
 				+ ", lBrand=" + lBrand + ", pic=" + pic + ", uGrd=" + uGrd + ", uLvl=" + uLvl + ", oCnt=" + oCnt
-				+ ", status=" + status + ", post_code=" + post_code + ", address=" + address + "]";
+				+ ", status=" + status + ", post_code=" + post_code + ", address=" + address + ", lat=" + lat + ", lng="
+				+ lng + "]";
 	}
+
+	
 	
 	
 	

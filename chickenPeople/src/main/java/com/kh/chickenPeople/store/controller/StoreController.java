@@ -41,9 +41,10 @@ public class StoreController {
 	
 	//상원 매장 상세페이진
 	@RequestMapping("storeDetail.do")
-	public ModelAndView storeOrderMain(ModelAndView mv, int sto_num, String address) {
+	public ModelAndView storeOrderMain(ModelAndView mv, int sto_num, String latlng, String address) {
 		
 		System.out.println("storeDetail : " + address);
+		System.out.println("storeDetail : " + latlng);
 		System.out.println("storeOrderMain 페이지 뿌리기! : " + sto_num);
 		//매장에 대한 정보 가져오기
 		ArrayList<Store> storeList = storeService.selectStore(sto_num);
@@ -62,6 +63,7 @@ public class StoreController {
 			mv.addObject("reviewCount", reviewCount);
 			
 			mv.addObject("address", address);
+			mv.addObject("latlng", latlng);
 			mv.addObject("avg_review_rate", avg_review_rate);
 			mv.addObject("storeList", storeList);
 			mv.addObject("reviewList", reviewList);
@@ -72,6 +74,7 @@ public class StoreController {
 		{
 			mv.addObject("reviewCount", 0);
 			mv.addObject("address", address);
+			mv.addObject("latlng", latlng);
 			mv.addObject("avg_review_rate", 0.0);
 			mv.addObject("storeList", storeList);
 			mv.addObject("reviewList", reviewList);
@@ -174,7 +177,7 @@ public class StoreController {
 	//주문버튼 클릭시
 	@RequestMapping(value="paymentView.do", method=RequestMethod.GET)
 	public ModelAndView paymentView(ModelAndView mv, HttpServletRequest request, @RequestParam(value="menu_num") int[] menu_num_arr,
-									int total_price, int sto_num, String address)
+									int total_price, int sto_num, String address, String latlng, String brand_code)
 	{
 		HttpSession session = request.getSession();
 
@@ -195,14 +198,24 @@ public class StoreController {
 		ArrayList<Coupon> myCouponList = couponService.myCoupon(loginUser.getId());
 		if(!menuList.isEmpty() && !myCouponList.isEmpty())
 		{
+			mv.addObject("brand_code", brand_code);
+			mv.addObject("latlng", latlng);
 			mv.addObject("myCouponList", myCouponList);
 			mv.addObject("address", address);
 			mv.addObject("menuList", menuList);
 			mv.addObject("total_price", total_price);
 			mv.addObject("sto_num", sto_num);
 		}
-		
-		else
+		else if(!menuList.isEmpty() && myCouponList.isEmpty())
+		{
+			mv.addObject("brand_code", brand_code);
+			mv.addObject("latlng", latlng);
+			mv.addObject("address", address);
+			mv.addObject("menuList", menuList);
+			mv.addObject("total_price", total_price);
+			mv.addObject("sto_num", sto_num);
+		}
+		else if(menuList.isEmpty() && myCouponList.isEmpty())
 		{
 			System.out.println("구매할 메뉴가 없음!!");
 		}
