@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reportMapper">
+  <resultMap type="ReportCategory" id="reportCategorySet">
+  	<id property="rpt_Code" column="RPT_CODE"/>
+  	<result property="rpt_Content" column="RPT_CONTENT"/>
+  </resultMap>
+  <resultMap type="Report" id="reportResultSet">
+  	<id property="rpt_Num" column="RPT_NUM"/>
+  	<result property="br_Num" column="BR_NUM"/>
+  	<result property="content" column="CONTENT"/>
+  	<result property="rpt_Date" column="RPT_DATE"/>
+  	<result property="user_Id" column="USER_ID"/>
+  	<result property="br_Content" column="BR_CONTENT"/>
+  	<result property="rpt_Content" column="RPT_CONTENT"/>
+  	<result property="rpt_Status" column="RPT_STATUS"/>
+  </resultMap>
+  
+  <select id="selectRCateogory" resultMap="reportCategorySet">
+  	SELECT * 
+  	FROM R_CODE
+  </select>
+  <select id="getListCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM ADMIN_REPORT
+  </select>
+  <select id="getsearchListcount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM (SELECT *
+  		  FROM ADMIN_REPORT
+  		  WHERE RPT_STATUS=#{searchStatus}
+  		  <if test="searchCategory!='total'">
+  		  AND RPT_CONTENT=#{searchCategory}
+  		  </if>
+  		  <if test="searchName!=null">
+  		  AND USER_ID LIKE '%'||#{searchName}||'%'
+  		  </if>)
+  </select>
+  <select id="selectReport" resultMap="reportResultSet">
+  	SELECT * 
+  	FROM ADMIN_REPORT
+  	ORDER BY 1
+  </select>
+  <select id="selectReportSearchList" resultMap="reportResultSet">
+  	  SELECT *
+	  FROM ADMIN_REPORT
+	  WHERE RPT_STATUS=#{searchStatus}
+	 <if test="searchCategory!='total'">
+	  AND RPT_CONTENT=#{searchCategory}
+	 </if>
+	 <if test="searchName!=null">
+	  AND USER_ID LIKE '%'||#{searchName}||'%'
+	 </if>
+  </select>
+</mapper>

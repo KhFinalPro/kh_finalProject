@@ -87,6 +87,21 @@ public class StoreDao {
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreList",null,rowBounds);
 	}
 
+	public Store selectOneStore(Integer storeNum) {
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreOne",storeNum);
+	}
+
+	public Store updateStore(int storeNum) {
+		return null;
+	}
+
+	public String checkStatus(int storeNum) {
+		return sqlSessionTemplate.selectOne("storeMapper.checkStatus",storeNum);
+	}
+
+	public int updateStatus(int storeNum) {
+		return sqlSessionTemplate.update("storeMapper.updateStatus",storeNum);
+	}
 	
 
 	

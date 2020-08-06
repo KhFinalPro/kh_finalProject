@@ -1,8 +1,11 @@
 package com.kh.chickenPeople.systemAdmin.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.common.SaveFile;
 import com.kh.chickenPeople.systemAdmin.model.service.SystemService;
+import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 @Controller
 public class SystemController {
@@ -56,10 +60,6 @@ public class SystemController {
 		return mv;
 	}
 	
-	@RequestMapping(value="systemAdminReport.do", method=RequestMethod.GET)
-	public String goReportList(){
-		return "systemAdmin/systemAdminReport";
-	}
 	
 	@RequestMapping("couponCreateView.do")
 	public String couponCreateView() {
@@ -114,6 +114,22 @@ public class SystemController {
 		
 		
 		return "redirect:/systemAdminCoupon.do";
+	}
+	//-------------------------------------------------------------------------------------------------------------------
+	//계연 System Admin Main 그래프(1)
+	@RequestMapping(value="brandTotalGraph.do")
+	public ModelAndView brandTotalGraph(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<BrandTotal> selectBrandTotal = sService.selectBrandTotal();
+		ArrayList<SiteTotal> selectSiteTotal = sService.selectSiteTotal();
+		System.out.println(selectSiteTotal);
+		
+		request.setAttribute("printTotalList",selectBrandTotal);
+		request.setAttribute("printSiteTotalList", selectSiteTotal);
+		mv.addObject("citeTotalList",selectSiteTotal);
+		mv.setViewName("systemAdmin/systemAdminMain");
+		return mv;
+		
 	}
 	
 	

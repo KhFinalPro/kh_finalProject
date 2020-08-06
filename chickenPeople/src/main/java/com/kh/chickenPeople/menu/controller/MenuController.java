@@ -112,7 +112,6 @@ public class MenuController {
 		
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
 		Menu m = menuService.selectOneMenu(menuNum);
-		
 		if(m!=null) {
 			mv.addObject("brandList",selectBrandList);
 			mv.addObject("menu",m);

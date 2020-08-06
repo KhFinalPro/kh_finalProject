@@ -13,6 +13,10 @@
 		<typeAlias type="com.kh.chickenPeople.bung.model.vo.Bung" alias="Bung"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Store" alias="Store"/>
 		<typeAlias type="com.kh.chickenPeople.brand.model.vo.Brand" alias="Brand"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal" alias="BrandTotal"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal" alias="SiteTotal"/>
+		<typeAlias type="com.kh.chickenPeople.report.model.vo.ReportCategory" alias="ReportCategory"/>
+		<typeAlias type="com.kh.chickenPeople.report.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.chickenPeople.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.chickenPeople.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.chickenPeople.like.model.vo.Like" alias="Like"/>
@@ -52,5 +56,6 @@
 		<mapper resource="/mappers/orderStatus-mapper.xml"/>
 		<mapper resource="/mappers/review-mapper.xml"/>
 		<mapper resource="/mappers/store-review-mapper.xml"/>
+		<mapper resource="/mappers/report-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -9,20 +9,22 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 @Repository("brandDao")
 public class BrandDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public int getListCount() {
-		return sqlSessionTemplate.selectOne("brandMapper.getListCount");
+	public int getListCount(SearchStatus brandSearch) {
+		return sqlSessionTemplate.selectOne("brandMapper.getListCount", brandSearch);
 	}
 
-	public ArrayList<Brand> selectBrandList(PageInfo pi) {
+	public ArrayList<Brand> selectBrandList(SearchStatus brandSearch, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSessionTemplate.selectList("brandMapper.selectBrand", null, rowBounds);
+
+		return (ArrayList)sqlSessionTemplate.selectList("brandMapper.selectBrand", brandSearch, rowBounds);
 	}
 
 

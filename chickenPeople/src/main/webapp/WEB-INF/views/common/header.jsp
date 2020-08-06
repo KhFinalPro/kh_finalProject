@@ -98,7 +98,7 @@
 	                                <li><a href="msgList.do">MyPage</a></li>
 	                                <li><a href="storeOrder.do">Store</a></li>
 	                                <c:if test="${sessionScope.loginUser.uLvl eq '관리자' }">
-	                                	<li><a href="systemAdmin.do">System</a></li>
+	                                	<li><a href="brandTotalGraph.do">System</a></li>
 	                                </c:if>
                                 </c:if>
 
