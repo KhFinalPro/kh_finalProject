@@ -33,7 +33,29 @@ public class CalendarDao {
 		
 		return orderDetailList;
 	}
+
+
+	//주문리뷰
 	
+	 public int insertOrderReview(HashMap<String, String> map) {
+	  
+	 return sqlSessionTemplate.insert("calendarMapper.insertOrderReview",map); }
+
+
+	 //리뷰번호 최대값 조회
+	 public String searchRevNum() {
+		 
+		 return sqlSessionTemplate.selectOne("calendarMapper.searchRevNum");
+	 }
+	 
+
+	//스토어리뷰
+	public int insertStoreReview(HashMap<String, String> map2) {
+		
+		return sqlSessionTemplate.insert("calendarMapper.insertStoreReview",map2);
+	}
+
+
 	
 	
 	

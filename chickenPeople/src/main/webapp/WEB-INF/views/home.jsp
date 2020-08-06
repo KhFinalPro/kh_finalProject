@@ -163,8 +163,9 @@
 <script>
 	$(function(){
 		$(".bestSto_area").on("click",function(){
-			$sto_num = $(this).children("#sto_num").val();
-			location.href="storeDetail.do?sto_num="+$sto_num;
+			/* $sto_num = $(this).children("#sto_num").val();
+			location.href="storeDetail.do?sto_num="+$sto_num +"&address=" + $("#select_address").val(); */
+			alert("딜리버리 서비스는 딜리버리 페이지를 이용해주세요.");
 		})
 		
 		$(".menu_area").on("click",function(){
