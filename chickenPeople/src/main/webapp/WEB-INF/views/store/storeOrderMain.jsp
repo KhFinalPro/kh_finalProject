@@ -116,7 +116,7 @@
 
   <jsp:include page="../common/header.jsp"/>
     
-	<input type="hidden" id="brand_code" value="${storeList.get(0).brand_code }">
+	
 	<input type="hidden" id="sto_num" value="${storeList.get(0).sto_num }">
 	<input type="hidden" id="loginUserId" value="${sessionScope.loginUser.id }">
 	<input type="hidden" id="ord_limit" value="${storeList.get(0).ord_limit }">
@@ -335,8 +335,10 @@
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
 				<form action="paymentView.do" method="get" id="orderCheckForm">
+					<input type="hidden" id="brand_code" name="brand_code" value="${storeList.get(0).brand_code }">
 					<input type="hidden" name="sto_num" value="${storeList.get(0).sto_num }">
 					<input type="hidden" name="address" value="${address }">
+					<input type="hidden" name="latlng" value="${latlng }">
 					<h3>주문확인</h3>
 					<div class="list_area" style="text-align:center;">
 						

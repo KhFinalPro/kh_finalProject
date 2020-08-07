@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="paymentMapper">
+	
+	<resultMap id="paymentResultSet" type="Payment">
+		<id property="ord_num" column="ORD_NUM"/>
+		<result property="pay_date" column="PAY_DATE"/>
+		<result property="pay_rcv" column="PAY_RCV"/>
+		<result property="pay_addr" column="PAY_ADDR"/>
+		<result property="pay_msg" column="PAY_MSG"/>
+		<result property="pay_toal" column="PAY_TOAL"/>
+	</resultMap>
+	
+	<select id="selectCurrval" resultType="int">
+		SELECT SEQ_ORD_NUM.CURRVAL FROM DUAL	
+	</select>
+	
+	<insert id="insertAllKakao" parameterType="Payment">
+		INSERT ALL
+		<if test="pay_method == 'kakao'">
+			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'Y', #{user_id}, NULL)
+			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})		
+		</if>
+		<if test="pay_method == 'card'">
+			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'N', #{user_id}, NULL)
+			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})
+		</if>
+		<if test="pay_method == 'cash'">
+			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'N', #{user_id}, NULL)
+			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})
+		</if>
+		SELECT * FROM DUAL
+	</insert>
+	
+	
+	
+	<insert id="insertJumunDetail" parameterType="java.util.Map">
+		<foreach separator=" " item="item" collection="list" open="INSERT ALL" close="SELECT * FROM DUAL">
+			INTO JUMUN_DETAIL VALUES
+			(#{item.menu_num}, #{item.brand_code}, 'P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||#{item.currval}, #{item.sto_num}, 1)
+		</foreach>
+	</insert>
+	
+	<select id="selectPaymentInfo" parameterType="string" resultMap="paymentResultSet">
+		SELECT *
+		FROM(
+		    SELECT ORD_NUM, PAY_DATE, PAY_RCV, PAY_ADDR, PAY_MSG, PAY_TOAL
+		    FROM PAYMENT
+		    WHERE USER_ID=#{user_id}
+		    ORDER BY PAY_DATE DESC
+		    )
+		WHERE ROWNUM = 1
+	</select>
+</mapper>

@@ -14,6 +14,7 @@ import com.kh.chickenPeople.brand.model.service.BrandService;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 @Controller
 public class BrandController {
@@ -22,21 +23,41 @@ public class BrandController {
 	BrandService brandService;
 	
 	@RequestMapping(value="systemAdminBrand.do", method=RequestMethod.GET)
-	public ModelAndView goBrandList(ModelAndView mv,
-									@RequestParam(value="page",required=false) Integer page) {
+	public ModelAndView goBrandList(ModelAndView mv, SearchStatus brandSearch,
+									@RequestParam(value="page",required=false) Integer page,
+									@RequestParam(value="brandName",required=false) String brandName,
+									@RequestParam(value="brandStatus",required=false)String brandStatus) {
 		int currentPage=1;
+		int listCount = 0;
+		PageInfo pi = null;
+		ArrayList<Brand> selectTotalBrandList = null;
+		
 		if(page!=null) {
 			currentPage=page;
 		}
-		int listCount = brandService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount,5);
-		ArrayList<Brand> selectTotalBrandList = brandService.selectBrandList(pi);
 		
+		System.out.println(currentPage+":"+brandName+":"+brandStatus);
+		if(brandName.equals("no")) {
+			brandName=null;
+			brandSearch.setSearchName(brandName);
+		}else {
+			brandSearch.setSearchName(brandName);
+		}
+		brandSearch.setSearchStatus(brandStatus);
+
+		
+		listCount = brandService.getListCount(brandSearch);
+		pi = Pagination.getPageInfo(currentPage, listCount,5);
+		
+		selectTotalBrandList = brandService.selectBrandList(brandSearch,pi);
 		System.out.println(selectTotalBrandList);
+		
 		if(selectTotalBrandList!=null) {
 			mv.addObject("brandList",selectTotalBrandList);
 			mv.addObject("pi",pi);
-			mv.setViewName("systemAdmin/systemAdminBrand");
+			mv.addObject("searchStatus",brandSearch);
+			mv.addObject("listCount",listCount);
+			mv.setViewName("systemAdmin/brand/systemAdminBrand");
 		}
 		return mv;
 	}}

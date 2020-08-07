@@ -66,7 +66,7 @@
 	                <p id="delivery_time" class="delivery_info">배달 시간:</p>
 	                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
 	                <p id="delivery_addr" class="delivery_info">주소:</p>
-	                <p class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
+	                <p id="user_addr" class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
 	                <p id="total_price" class="delivery_info">합계금액:</p>
 	                <p class="delivery_total_price delivery_info_detail"><fmt:formatNumber value="${paymentList.pay_toal }" type="currency"/></p>
 	            </div>
@@ -111,7 +111,7 @@
 	    //새로고침
 	    setInterval(function(){
 	    	location.href="orderStatus.do?id="+ $("#id").val();
-	    }, 10000);
+	    }, 50000);
 	    
 	    
 	    //메뉴 사진 hover시 ajax
@@ -121,76 +121,46 @@
 	    	})
 	    }) */
 	    
+	
+	
+	
+		var user_addr = $("#user_addr").text();
+	    var sto_addr = $("#sto_addr").val();
+
+	
+	   var mapContainer = document.getElementById('map');
+	   var mapOption = {
+	       center: new daum.maps.LatLng(37.450701, 126.570667),
+	       level: 5
+	   };  
+	
+	   var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+	   var geocoder = new daum.maps.services.Geocoder();
+	   var listData = [
+		   user_addr, 
+	       sto_addr
+	   ];
+	
+	   listData.forEach(function(addr, index) {
+	       geocoder.addressSearch(addr, function(result, status) {
+	           if (status === daum.maps.services.Status.OK) {
+	               var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	
+	               var marker = new daum.maps.Marker({
+	                   map: map,
+	                   position: coords
+	               });
+	               var infowindow = new daum.maps.InfoWindow({
+	                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+	                   disableAutoPan: true
+	               });
+	               infowindow.open(map, marker);
+
+	               map.setCenter(coords);
+	           } 
+	       });
+	   });
 	})
-	
-	
-	
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.516186, 127.059691), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
-    };
-
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	 
-	
-	geocoder.addressSearch($(".delivery_addr").text(), function(result, status) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
-
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-	        });
-	        infowindow.open(map, marker);
-
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});    
-	/* // 마커를 표시할 위치와 title 객체 배열입니다 
-	var positions = [
-	    {
-	        title: '사용자', 
-	        latlng: new kakao.maps.LatLng(37.516186, 127.059691)
-	    },
-	    {
-	        title: '매장', 
-	        latlng: new kakao.maps.LatLng(37.486888, 127.103443)
-	    }
-	];
-	
-	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-	    
-	for (var i = 0; i < positions.length; i ++) {
-	    
-	    // 마커 이미지의 이미지 크기 입니다
-	    var imageSize = new kakao.maps.Size(24, 35); 
-	    
-	    // 마커 이미지를 생성합니다    
-	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-	    
-	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map, // 마커를 표시할 지도
-	        position: positions[i].latlng, // 마커를 표시할 위치
-	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-	        image : markerImage // 마커 이미지 
-	    });
-	} */
 </script>
 </html>

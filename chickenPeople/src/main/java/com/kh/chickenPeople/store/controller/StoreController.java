@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
+import com.kh.chickenPeople.coupon.model.service.CouponService;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
@@ -34,11 +36,15 @@ public class StoreController {
 	@Autowired
 	StoreService storeService;
 	
+	@Autowired
+	CouponService couponService;
+	
 	//상원 매장 상세페이진
 	@RequestMapping("storeDetail.do")
-	public ModelAndView storeOrderMain(ModelAndView mv, int sto_num, String address) {
+	public ModelAndView storeOrderMain(ModelAndView mv, int sto_num, String latlng, String address) {
 		
 		System.out.println("storeDetail : " + address);
+		System.out.println("storeDetail : " + latlng);
 		System.out.println("storeOrderMain 페이지 뿌리기! : " + sto_num);
 		//매장에 대한 정보 가져오기
 		ArrayList<Store> storeList = storeService.selectStore(sto_num);
@@ -57,6 +63,7 @@ public class StoreController {
 			mv.addObject("reviewCount", reviewCount);
 			
 			mv.addObject("address", address);
+			mv.addObject("latlng", latlng);
 			mv.addObject("avg_review_rate", avg_review_rate);
 			mv.addObject("storeList", storeList);
 			mv.addObject("reviewList", reviewList);
@@ -67,6 +74,7 @@ public class StoreController {
 		{
 			mv.addObject("reviewCount", 0);
 			mv.addObject("address", address);
+			mv.addObject("latlng", latlng);
 			mv.addObject("avg_review_rate", 0.0);
 			mv.addObject("storeList", storeList);
 			mv.addObject("reviewList", reviewList);
@@ -169,13 +177,15 @@ public class StoreController {
 	//주문버튼 클릭시
 	@RequestMapping(value="paymentView.do", method=RequestMethod.GET)
 	public ModelAndView paymentView(ModelAndView mv, HttpServletRequest request, @RequestParam(value="menu_num") int[] menu_num_arr,
-									int total_price, int sto_num, String address)
+									int total_price, int sto_num, String address, String latlng, String brand_code)
 	{
 		HttpSession session = request.getSession();
 
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		ArrayList<Menu> menuList = new ArrayList<>();
+		
+		
 		for(int i = 0; i<menu_num_arr.length; i++)
 		{
 			Menu m = storeService.selectMenu(menu_num_arr[i]);
@@ -185,14 +195,27 @@ public class StoreController {
 		
 		//회원이 가지고있는 쿠폰
 //		ArrayList<Coupon> myCouponList = 
-		
-		if(!menuList.isEmpty())
+		ArrayList<Coupon> myCouponList = couponService.myCoupon(loginUser.getId());
+		if(!menuList.isEmpty() && !myCouponList.isEmpty())
 		{
+			mv.addObject("brand_code", brand_code);
+			mv.addObject("latlng", latlng);
+			mv.addObject("myCouponList", myCouponList);
 			mv.addObject("address", address);
 			mv.addObject("menuList", menuList);
 			mv.addObject("total_price", total_price);
+			mv.addObject("sto_num", sto_num);
 		}
-		else
+		else if(!menuList.isEmpty() && myCouponList.isEmpty())
+		{
+			mv.addObject("brand_code", brand_code);
+			mv.addObject("latlng", latlng);
+			mv.addObject("address", address);
+			mv.addObject("menuList", menuList);
+			mv.addObject("total_price", total_price);
+			mv.addObject("sto_num", sto_num);
+		}
+		else if(menuList.isEmpty() && myCouponList.isEmpty())
 		{
 			System.out.println("구매할 메뉴가 없음!!");
 		}
@@ -218,9 +241,9 @@ public class StoreController {
 									@RequestParam(value="status_s",required=false) String status,
 									SearchStatus storeSearch){
 		
-		System.out.println("storeName:"+storeName);
-		System.out.println("storeCategory:"+storeCategory);
-		System.out.println("status:"+status);
+//		System.out.println("storeName:"+storeName);
+//		System.out.println("storeCategory:"+storeCategory);
+//		System.out.println("status:"+status);
 		
 		int currentPage=1;
 		int listCount=0;
@@ -267,4 +290,111 @@ public class StoreController {
 		mv.setViewName("systemAdmin/storeManage/systemAdminStore");
 		return mv;
 	}
+	
+	@RequestMapping(value="systemAdminStoreDetail.do", method=RequestMethod.GET)
+	public ModelAndView storeDetail(ModelAndView mv, SearchStatus searchStatus,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		searchStatus.setSearchCategory(storeCategory);
+		searchStatus.setSearchName(storeName);
+		searchStatus.setSearchStatus(status);
+		
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		Store s = storeService.selectOneStore(storeNum);
+		System.out.println(s);
+		
+		if(s!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("store",s);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/storeManage/systemAdminStoreDetail");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value="storeUpdatePage.do", method=RequestMethod.GET)
+	public ModelAndView goUpdatePage(ModelAndView mv, SearchStatus searchStatus,HttpServletResponse response,	
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}else {
+			page=1;
+		}
+		searchStatus.setSearchCategory(storeCategory);
+		searchStatus.setSearchName(storeName);
+		searchStatus.setSearchStatus(status);
+		
+		Store s = storeService.selectOneStore(storeNum);
+		System.out.println(s);
+		
+		if(s!=null) {
+			mv.addObject("brandList",selectBrandList);
+			mv.addObject("store",s);
+			mv.addObject("page",currentPage);
+			mv.addObject("searchStatus",searchStatus);
+			mv.setViewName("systemAdmin/storeManage/systemAdminStoreUpdate");
+		}
+		return mv;
+	}
+	@RequestMapping(value="storeUpdate.do", method=RequestMethod.GET)
+	public ModelAndView storeUpdate(ModelAndView mv, SearchStatus searchStatus, Store s,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status)  {
+		System.out.println(storeName);
+		System.out.println(storeCategory);
+		System.out.println(status);
+		System.out.println(s);
+		
+		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
+//		Store updateStore = storeService.updateStore(storeNum);
+		
+		mv.addObject("brandList",selectBrandList);
+//		mv.addObject("store",updateStore);
+		mv.addObject("searchStatus",searchStatus);
+		
+		return mv;
+	}
+
+	@RequestMapping(value="storeStatusUpdate.do", method=RequestMethod.GET)
+	public void storeStatusUpdate(HttpServletResponse response, ModelAndView mv, SearchStatus searchStatus,	
+									@RequestParam(value="page", required=false)Integer page,
+									@RequestParam(value="storeNum", required=false)int storeNum,
+									@RequestParam(value="storeSearch", required=false)String storeName,
+									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="status_s",required=false)String status) {
+		response.setContentType("text/html; charset=UTF-8");
+
+		String checkStatus = storeService.checkStatus(storeNum);
+		PrintWriter out;
+
+		if(checkStatus.equals("Y")) {
+			
+		}else if(checkStatus.equals("N")) {
+			//모달창을 띄운다
+			int updateStatus = storeService.updateStatus(storeNum);
+
+		}
+		
+		
+		
+	}
+
+
 }

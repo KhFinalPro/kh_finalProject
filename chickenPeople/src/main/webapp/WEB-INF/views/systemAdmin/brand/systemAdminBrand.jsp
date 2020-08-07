@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 _ 브랜드</title>
+<!-- 끝! -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
     .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
@@ -35,7 +36,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="../common/systemAdminHeader.jsp"/>
+<jsp:include page="../../common/systemAdminHeader.jsp"/>
 
 <div class="wrapper">
 	<div class="main_container">
@@ -44,31 +45,20 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">브랜드 관리</p>
 				<br><hr><br>
-				<form action="menuSearch.do" method="get">
+				<form action="systemAdminBrand.do" method="get">
 					<table class="searchTable">
 						<tr>
-							<td><b>메뉴 검색</b></td>
-							<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
-						</tr>
-						<tr>
 							<td><b>브랜드 검색</b></td>
-							<td>
-								<select id="menuCategory" class="menuCategory" name="menuCategory">
-									<option value="total">전체</option>
-									<c:forEach var="m" items="${brandList}">
-										<option value="${m.brand_name }">${m.brand_name }</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td><b>판매 상태</b></td>
-							<td>
-								<label><input type="radio" name="status" value="입점" checked/> 입점</label>&nbsp;
-								<label><input type="radio" name="status" value="계약종료"/> 계약종료</label>&nbsp;
-								<label><input type="radio" name="status" value="입점대기"/> 입점대기</label>
-							</td>
+							<td><input class="menuSearch" name="brandName" type="text" placeholder="브랜드명을 입력해주세요."></td>
+							<td colspan="4"><button type="submit">검색</button></td>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
+							<td><b>상태</b></td>
+							<td>
+								<label><input type="radio" name="brandStatus" value="입점" checked/> 입점</label>&nbsp;
+								<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
+								<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+							</td>
 						</tr>
 					</table>
 				</form>
@@ -109,6 +99,8 @@
 	                    <c:if test="${pi.currentPage gt 1}">
 	                    	<c:url var="blistBack" value="systemAdminBrand.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    		<c:param name="brandName" value="${searchStatus.searchName }"/>
+	                    		<c:param name="brandStatus" value="${searchStatus.searchStatus }"/>
 	                    	</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
 	                    </c:if>
@@ -120,6 +112,8 @@
 	                    	<c:if test="${p ne pi.currentPage }">
 	                    		<c:url var="blistCheck" value="systemAdminBrand.do">
 	                    			<c:param name="page" value="${p }"/>
+		                    		<c:param name="brandName" value="${searchStatus.searchName }"/>
+		                    		<c:param name="brandStatus" value="${searchStatus.searchStatus }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
 	                    	</c:if>
@@ -131,7 +125,9 @@
 						<c:if test="${pi.currentPage lt pi.maxPage }">
 							<c:url var="blistAfter" value="systemAdminBrand.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
-							</c:url>
+								<c:param name="brandName" value="${searchStatus.searchName }"/>
+	                    		<c:param name="brandStatus" value="${searchStatus.searchStatus }"/>
+	                    	</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 						</c:if>
 	           </div>
@@ -141,6 +137,9 @@
 </div>
 </body>
 <script>
+window.onload = function(){
+	alert("검색 & 페이지네이션 완료 > 브랜드 이름 누르면 점포관리에 브랜드를 검색한 값으로 화면 전환예정");
+}
 $(function(){
 	$("#brand").children().addClass('active');
 	

@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 _ 점포관리</title>
+<!-- 끝! -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <style>
     .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
@@ -18,8 +18,8 @@
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
-	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
-	
+	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
+	.resultTable tr{height:40px;}
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
 	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -46,7 +46,7 @@
 		<div class="item"> 
 		<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">입점 관리</p>
+				<p style="font-size:20px;">점포 관리</p>
 				<br><hr><br>
 				<form action="systemAdminStore.do" method="get">
 					<table class="searchTable">
@@ -83,7 +83,14 @@
 										<label><input type="radio" name="status_s" value="N"/> 계약 대기</label>		
 									</td>
 								</c:if>
+								<c:if test="${searchStatus.searchStatus eq 'N' }">
 								
+									<td><b>판매 상태</b></td>
+									<td>
+										<label><input type="radio" name="status_s" value="Y"/> 계약 중</label>
+										<label><input type="radio" name="status_s" value="N" checked/> 계약 대기</label>		
+									</td>
+								</c:if>
 						</tr>
 						<tr>
 							<td colspan="4">
@@ -107,29 +114,35 @@
 	                    <th>점포명</th>
 	                    <th>대표명</th>
 	                    <th>연락처</th>
-	                    <th>입점날짜</th>
+	                    <th>운영시간</th>
 	                    <th>입점 유무</th>
-	                    <th>변경</th>
 			         </thead>
 					<tbody>
 						<c:forEach var="i" items="${storeList }">
-<%-- 							<c:url var="menuDetail" value="systemAdminMenuDetail.do">
-								<c:param name="menuNum" value="${i.menu_Num }"/>
-								<c:param name="page" value="${pi.currentPage }"/>
-								<c:param name="menuName" value="${searchStatus.searchName }"/>
-	                    		<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
-	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
-							</c:url> --%>
-						<tr>
-							<td class="storeNum">${i.sto_num }</td>
-							<td>${i.brand_name }</td>
-							<td>${i.sto_name }</td>
-							
-							<td><a style="cursor:hand">${i.ceo_name }</a></td>
-							<td>${i.sto_tel }</td>
-							<td>${i.deli_time }</td>
-							
-						</tr>					
+ 						 	<c:url var="storeDetail" value="systemAdminStoreDetail.do">
+ 						 		<c:param name="storeNum" value="${i.sto_num }"/>
+ 						 		<c:param name="page" value="${pi.currentPage }"/>
+ 						 		<c:param name="storeSearch" value="${searchStatus.searchName }"/>
+ 						 		<c:param name="brandCategory" value="${searchStatus.searchCategory}"/>
+ 						 		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
+ 						 	</c:url>
+							<tr>
+								<c:url var="updateStore" value="updateStore.do">
+									<c:param name="storeNum" value="${i.sto_num }"/>
+								</c:url>
+								<td class="storeNum">${i.sto_num }</td>
+								<td><a style="cursor:hand">${i.brand_name }</a></td>
+								<td><a href="${storeDetail }" style="cursor:hand">${i.sto_name }</a></td>
+								<td><a style="cursor:hand">${i.ceo_name }</a></td>
+								<td>${i.sto_tel }</td>
+								<td>${i.deli_time }</td>
+								<c:if test="${i.aprv_status eq 'Y' }">
+									<td>입점</td>
+								</c:if>
+								<c:if test="${i.aprv_status eq 'N' }">
+									<td><button onclick="location.href='${updateStore}'">승인처리</button></td>
+								</c:if>
+							</tr>					
 					</c:forEach>					
 					</tbody>
 				</table><!-- class resultTable end -->
@@ -185,6 +198,9 @@
 </div>
 </body>
 <script>
+window.onload = function(){
+	alert("검색 & 페이징 처리 완료 - 입점신청한 점포들 아이디 부여하는것 남음 / 입점신청한 점포 데이터 insert 중 ");
+}
 $(function(){
 	$("#store").children().addClass('active');
 })

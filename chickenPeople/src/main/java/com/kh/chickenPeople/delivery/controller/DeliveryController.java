@@ -32,7 +32,7 @@ public class DeliveryController {
 	public ModelAndView selectDelivery(ModelAndView mv, String latlng, String address) {
 		int store_count = 0;
 		
-		System.out.println(address);
+		System.out.println(latlng);
 		//사용자의 좌표를 split를 활용하여 위도와 경도롤 나눔
 		String lat = latlng.split(" ")[0];
 		String lng = latlng.split(" ")[1];
@@ -78,7 +78,7 @@ public class DeliveryController {
 	
 	//딜리버리 카테고리 ajax
 	@RequestMapping(value="ajaxDeliveryList.do", method=RequestMethod.POST)
-	public void ajaxDeliveryList(HttpServletResponse  response, String latlng, String store_category) throws IOException
+	public void ajaxDeliveryList(HttpServletResponse  response, String latlng, String address, String store_category) throws IOException
 	{
 		response.setContentType("application/json;charset=utf-8");
 		int store_count = 0;
@@ -131,7 +131,8 @@ public class DeliveryController {
 				
 			}
 			
-			sendJson.put("address", latlng);
+			sendJson.put("latlng", latlng);
+			sendJson.put("address", address);
 			sendJson.put("count", store_count);
 			sendJson.put("deliveryList", jarr);
 
@@ -164,7 +165,8 @@ public class DeliveryController {
 					jarr.add(jobj);
 				}
 			}
-			sendJson.put("address", latlng);
+			sendJson.put("latlng", latlng);
+			sendJson.put("address", address);
 			sendJson.put("count", store_count);
 			sendJson.put("deliveryList", jarr);
 

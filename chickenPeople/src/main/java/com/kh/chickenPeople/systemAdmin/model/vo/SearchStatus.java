@@ -12,6 +12,14 @@ public class SearchStatus implements Serializable{
 	
 	public SearchStatus() {
 	}
+	
+
+	public SearchStatus(String searchName, String searchStatus) {
+		super();
+		this.searchName = searchName;
+		this.searchStatus = searchStatus;
+	}
+
 
 	public SearchStatus(String searchName, String searchStatus, String searchCategory) {
 		super();
