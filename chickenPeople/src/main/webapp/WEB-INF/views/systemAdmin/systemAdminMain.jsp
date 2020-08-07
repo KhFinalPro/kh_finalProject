@@ -17,9 +17,29 @@
 
 <style>
 	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
-	.left-box {background: red; float: left; display:inline; width: 50%; height:100%}
-	.right-box { background: blue; float: right; width:50%; display:inline; height:100%}
-	.right-top{background:yellow;  height:50%}
+	.left-box {background: red;
+    width: 50%;}
+	.right-box {
+    width: 50%;}
+	
+	
+	.item {
+		    background: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 14px;
+    height: 873px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        margin-top: -30px;
+
+	}
+	
+	.top_menu {
+		width: calc(100% - 75px) !important;
+	}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
@@ -33,16 +53,13 @@
 			<div class='left-box'>
 				<div id="Line_Controls_Chart">
 				      <!-- 라인 차트 생성할 영역 -->
-				          <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+				          <div id="lineChartArea" style="height:450px;"></div>
 				      <!-- 컨트롤바를 생성할 영역 -->
-				          <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+				          <div id="controlsArea" style="height:150px"></div>
 		        </div>
 			</div>
 			<div class='right-box'>
-				<div class="right-top">
 					<div id="bar_chart_div" style="height:40%"></div>
-				</div>
-				<div class="right-bot">
 				</div>
 			</div>			
 		</div><!-- class item end -->
