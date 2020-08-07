@@ -12,7 +12,7 @@ public class OrderStatus implements Serializable{
 	
 	
 	private String ord_num;
-	private Date pay_date;
+	private String pay_date;
 	private String pay_addr;
 	private String pay_toal;
 	private String ord_status;
@@ -33,7 +33,7 @@ public class OrderStatus implements Serializable{
 	public OrderStatus() {
 		super();
 	}
-	public OrderStatus(String ord_num, Date pay_date, String pay_addr, String pay_toal, String ord_status, int sto_num,
+	public OrderStatus(String ord_num, String pay_date, String pay_addr, String pay_toal, String ord_status, int sto_num,
 			int menu_num, String brand_code, int mord_num, String menu_name, int menu_price, String menu_pic,
 			String brand_pic, String sto_addr, double sto_lat, double sto_lng, double lat, double lng) {
 		super();
@@ -62,10 +62,10 @@ public class OrderStatus implements Serializable{
 	public void setOrd_num(String ord_num) {
 		this.ord_num = ord_num;
 	}
-	public Date getPay_date() {
+	public String getPay_date() {
 		return pay_date;
 	}
-	public void setPay_date(Date pay_date) {
+	public void setPay_date(String pay_date) {
 		this.pay_date = pay_date;
 	}
 	public String getPay_addr() {

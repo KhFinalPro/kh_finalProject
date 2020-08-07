@@ -28,7 +28,7 @@
     #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area .menu_num{margin:0; font-size: 25px; top:0px;}
     #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area img{width: 100px; height: 100px;}
 
-    #map{margin: 0 auto; margin-top: 20px; width: 70%; height: 300px; border: 1px solid black;}
+    #map{margin: 0 auto; margin-top: 20px; width: 50%; height: 400px; border: 1px solid black;}
 
     .delivery_info_title{text-align: center;}
     
@@ -141,6 +141,7 @@
 		   user_addr, 
 	       sto_addr
 	   ];
+	   var listName = ["사용자", "매장"];
 	
 	   listData.forEach(function(addr, index) {
 	       geocoder.addressSearch(addr, function(result, status) {
@@ -152,7 +153,7 @@
 	                   position: coords
 	               });
 	               var infowindow = new daum.maps.InfoWindow({
-	                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+	                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listName[index] + '</div>',
 	                   disableAutoPan: true
 	               });
 	               infowindow.open(map, marker);
