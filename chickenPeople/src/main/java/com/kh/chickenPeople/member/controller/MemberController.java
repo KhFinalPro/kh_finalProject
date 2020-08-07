@@ -62,15 +62,22 @@ public class MemberController {
 		//아이디를 잘못 입력후 로그인시 nullpointerException발생 해결해야함/
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
-		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
-			
+		
+		if(member==null) {
+			model.addAttribute("msg", "아이디가 틀렸습니다.");
+			return "redirect:/loginView.do";
+		}else {
+			if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
 			session.setAttribute("loginUser", member);
 			session.setAttribute("address", addrList);
 			return "redirect:/loginHome.do?id="+member.getId();
-		}else {
-			model.addAttribute("msg", "로그인 실패!");
+			}else {
+			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 			return "redirect:/loginView.do";
-		}
+			}
+		} 
+		
+		
 	}
 	
 	

@@ -51,12 +51,13 @@
             }
             #check1{
                 float: left;
-                
             }
+            
             #idsave{
                 color: lightgray;
                 float:left
             }
+            
             #memberJoin{
                 background: #2ac1bc; 
                 color: white; 
