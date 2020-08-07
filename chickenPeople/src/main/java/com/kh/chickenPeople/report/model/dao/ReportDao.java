@@ -29,6 +29,7 @@ public class ReportDao {
 
 
 	public int getSearchListCount(SearchStatus searchStatus) {
+
 		return sqlSessionTemplate.selectOne("reportMapper.getsearchListcount",searchStatus);
 	}
 
@@ -44,7 +45,6 @@ public class ReportDao {
 	public ArrayList<Report> selectReportSearchList(SearchStatus searchStatus, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-
 		
 		return (ArrayList)sqlSessionTemplate.selectList("reportMapper.selectReportSearchList",searchStatus,rowBounds);
 	}
