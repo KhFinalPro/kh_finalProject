@@ -42,6 +42,8 @@ public interface BungService {
 
 	int insertMessage(Message m);
 
+	ArrayList<Bung> searchBung(String month);
+
 	
 
 

@@ -29,11 +29,14 @@ section{margin-top: 200px;}
 #main_section>.bungae_area>.status {width: 100px; margin-left: 20px; height: 50; line-height: 50px;}
 
 #main_section>.bungae_area>.second_line {float: left;}
+#month_selc{width:70px; height:25px; margin-right:20px;}
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
 #create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
-#create_bung_area>input:hover{color: #2ac1bc; border: 2px solid  #2ac1bc; cursor:pointer;}
+#create_bung_area>input:hover{color: #735949;; border: 2px solid #735949; cursor:pointer;}
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
+#msg_area{text-align:center;}
+#msg_area > img{width:20%; heigth:20%;}
 </style>
 </head>
 <body>
@@ -46,22 +49,42 @@ section{margin-top: 200px;}
 		</c:if>
 		
 		<div id="main_section">
-			<select id="month_selc">
-				<c:forEach var="i" begin="1" end="12" step="1">
-					<option value="${i }">${i }달</option>
-				</c:forEach>
-			</select>
 			<c:if test="${!empty sessionScope.loginUser }">
 				<div id="create_bung_area">
+					<select id="month_selc">
+						<c:forEach var="i" begin="1" end="12" step="1">
+							<c:if test="${i < 10 }">
+								<option value="0${i }">${i }월</option>
+							</c:if>
+							<c:if test="${i > 9 }">
+								<option value="${i }">${i }월</option>
+							</c:if>
+						</c:forEach>
+					</select>
 					<input type="button" id="create_bung" value="번개 개설하기"/>	
 				</div>
 			</c:if>
 			<c:if test="${empty sessionScope.loginUser }">
 				<div id="create_bung_area">
-					<p>번개 계설은 로그인시 이용할 수 있습니다.</p>	
+					<select id="month_selc">
+						<c:forEach var="i" begin="1" end="12" step="1">
+							<c:if test="${i < 10 }">
+								<option value="0${i }">${i }월</option>
+							</c:if>
+							<c:if test="${i > 9 }">
+								<option value="${i }">${i }월</option>
+							</c:if>
+						</c:forEach>
+					</select>
+					<p>번개 개설은 로그인시 이용할 수 있습니다.</p>	
 				</div>
 			</c:if>
 			<br>
+			<c:if test="${msg != null }">
+				<div id="msg_area">
+					<img src="resources/images/tung.png">
+				</div>
+			</c:if>
 			<c:forEach var="b" items="${list }">
 				<div class="bungae_area">
 					<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
@@ -96,6 +119,11 @@ section{margin-top: 200px;}
 		
 		$("#create_bung").on("click",function(){
 			location.href="bungCreatePageMove.do";
+		})
+		
+		$("#month_selc").on("change",function(){
+			$month = $("#month_selc").val();
+			location.href="bungSearch.do?month="+$month;
 		})
 	})
 </script>
