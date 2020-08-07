@@ -64,7 +64,7 @@
 	                <p id="order_num" class="delivery_info">주문번호:</p>
 	                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
 	                <p id="delivery_time" class="delivery_info">배달 시간:</p>
-	                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
+	                <p class="delivery_time delivery_info_detail">${paymentList.delivery_time }</p>
 	                <p id="delivery_addr" class="delivery_info">주소:</p>
 	                <p id="user_addr" class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
 	                <p id="total_price" class="delivery_info">합계금액:</p>

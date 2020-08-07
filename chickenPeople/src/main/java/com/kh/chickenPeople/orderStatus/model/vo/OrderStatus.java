@@ -30,13 +30,15 @@ public class OrderStatus implements Serializable{
 	private double sto_lng;
 	private double lat;
 	private double lng;
+	
+	private String delivery_time;
 	public OrderStatus() {
 		super();
 	}
-	public OrderStatus(String ord_num, String pay_date, String pay_addr, String pay_toal, String ord_status, int sto_num,
-			int menu_num, String brand_code, int mord_num, String menu_name, int menu_price, String menu_pic,
-			String brand_pic, String sto_addr, double sto_lat, double sto_lng, double lat, double lng) {
-		super();
+	public OrderStatus(String ord_num, String pay_date, String pay_addr, String pay_toal, String ord_status,
+			int sto_num, int menu_num, String brand_code, int mord_num, String menu_name, int menu_price,
+			String menu_pic, String brand_pic, String sto_addr, double sto_lat, double sto_lng, double lat, double lng,
+			String delivery_time) {
 		this.ord_num = ord_num;
 		this.pay_date = pay_date;
 		this.pay_addr = pay_addr;
@@ -55,6 +57,7 @@ public class OrderStatus implements Serializable{
 		this.sto_lng = sto_lng;
 		this.lat = lat;
 		this.lng = lng;
+		this.delivery_time = delivery_time;
 	}
 	public String getOrd_num() {
 		return ord_num;
@@ -164,6 +167,12 @@ public class OrderStatus implements Serializable{
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
+	public String getDelivery_time() {
+		return delivery_time;
+	}
+	public void setDelivery_time(String delivery_time) {
+		this.delivery_time = delivery_time;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -173,11 +182,9 @@ public class OrderStatus implements Serializable{
 				+ pay_toal + ", ord_status=" + ord_status + ", sto_num=" + sto_num + ", menu_num=" + menu_num
 				+ ", brand_code=" + brand_code + ", mord_num=" + mord_num + ", menu_name=" + menu_name + ", menu_price="
 				+ menu_price + ", menu_pic=" + menu_pic + ", brand_pic=" + brand_pic + ", sto_addr=" + sto_addr
-				+ ", sto_lat=" + sto_lat + ", sto_lng=" + sto_lng + ", lat=" + lat + ", lng=" + lng + "]";
+				+ ", sto_lat=" + sto_lat + ", sto_lng=" + sto_lng + ", lat=" + lat + ", lng=" + lng + ", delivery_time="
+				+ delivery_time + "]";
 	}
-	
-	
-	
 	
 	
 

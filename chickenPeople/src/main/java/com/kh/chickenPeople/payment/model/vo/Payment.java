@@ -32,7 +32,7 @@ public class Payment implements Serializable{
 	private String ord_status;
 	private String ord_cancel;
 	private String pay_status;
-	private Date delivery_time;
+	private Date delivery_time;	//배달중하면 표시하기
 	
 	//주문상품
 	private int sto_num;
