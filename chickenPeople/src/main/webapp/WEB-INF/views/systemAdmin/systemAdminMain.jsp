@@ -237,9 +237,6 @@ var chartDrowFun = {
     }
     google.charts.setOnLoadCallback(schedulerSuccessAndFailChart); 
 
-    window.onload = function(){
-    	alert("그래프 위치 평형으로 맞춰놓긴 했는데 높이가 잘 안줄여져서 더이상 어떤 데이터를 담기 힘들다");
-    }
 </script>
 
 </html>

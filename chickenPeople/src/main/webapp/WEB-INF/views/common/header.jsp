@@ -162,7 +162,7 @@
        </c:if>
        
        <c:if test="${!empty sessionScope.loginUser}">
-			<img id="message" src="resources/images/message.png" alt="">
+			<img id="message" src="resources/images/message.png" alt="" onclick="showPopUp();">
        </c:if>
     </body>
 
@@ -208,7 +208,9 @@
             
             //계연이 채팅 연결
             $("#message").on("click",function(){
-            	alert("채팅 클릭!!");
+            	var loginUser="<c:out value='${loginUser.name}'/>";
+        		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1");
+				
             })
             
             $("#noneLogin").on("click",function(){
@@ -224,6 +226,10 @@
             	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
             })
         })
+    </script>
+    <script>
+    	function shopPopUp(){
+    	}
     </script>
 
 </html>
