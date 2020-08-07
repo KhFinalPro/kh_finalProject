@@ -68,4 +68,7 @@
 		]]>
 	</select>
 	
+	<update id="updateMyCoupon" parameterType="Payment">
+		UPDATE COUPON SET COUP_YN = 'Y' WHERE USER_ID = #{user_id} AND COUP_NUM = #{coup_num}
+	</update>
 </mapper>

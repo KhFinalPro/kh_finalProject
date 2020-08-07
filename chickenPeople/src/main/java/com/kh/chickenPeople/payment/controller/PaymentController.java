@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.chickenPeople.coupon.model.service.CouponService;
 import com.kh.chickenPeople.payment.model.service.PaymentService;
 import com.kh.chickenPeople.payment.model.vo.Payment;
 
@@ -19,6 +20,9 @@ public class PaymentController {
 
 	@Autowired
 	PaymentService paymentService;
+	
+	@Autowired
+	CouponService couponService;
 	
 	@RequestMapping(value="payment.do", method=RequestMethod.POST)
 	public ModelAndView payment(ModelAndView mv, @ModelAttribute Payment payment, String latlng)
@@ -59,6 +63,10 @@ public class PaymentController {
 		if(resultInsertJumunDetail > 0) //결제 성공
 		{
 			Payment pay = paymentService.selectPayment(payment.getUser_id());
+			if(!payment.getCoup_num().isEmpty())	//사용한 쿠폰이 있으면
+			{
+				int update = couponService.updateMyCoupon(payment);				
+			}
 			mv.addObject("payInfo", pay);
 		}
 		else	//결제 실패

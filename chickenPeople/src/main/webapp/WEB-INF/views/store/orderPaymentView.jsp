@@ -76,7 +76,7 @@
 	
 	                <p id="info" class="title">배달정보</p>
 	                <p id="pay_addr">${address }</p>
-	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input id="detail_address" name="detail_address"></div>
+	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input id="detail_address" name="detail_address" required></div>
 	
 	                <a>전화번호 : </a><span id="phone">${sessionScope.loginUser.tel }</span>
 	            </div>
@@ -205,10 +205,9 @@
                         merchant_uid : 'merchant_' + new Date().getTime(),
                         name : '치킨의 민족',
                         amount : $(".resultPrice").children("a").text(),
-                        buyer_email : 'asdasd@asd.asd',
                         buyer_name : '최상원',
                         buyer_tel : $("#phone").text(),
-                        buyer_addr : '서울 구로구',
+                        buyer_addr : address,
                         buyer_postcode : '123-456',
                         //m_redirect_url : 'http://www.naver.com'
                     }, function(rsp) {
