@@ -35,6 +35,9 @@
 	#store_info :nth-child(1)>td{border-bottom: 1px solid black; font-size:30px; color:#735949;}
 	#store_info :nth-child(2) :nth-child(1)>td{border: 1px solid black;}
 	
+	#reviewCount_titl{margin-left:20px; font-size:15px; font-weight:600;}
+	#reviewCount{font-size:15px; font-weight:600;}
+	
 	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:rgb(236, 235, 235);}
 	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
 	.imgLen{width:100px; height:100px; margin-top:10px;}
@@ -88,7 +91,9 @@
 	#reivew_header .rev_head{float: left; line-height: 50px;}
 	#reivew_header>img{width: 50px; height: 50px;}
 	#reivew_header>h3{font-size: 50px; margin: 0;}
-
+	#reivew_header>a{height:50px; line-height:50px; margin-left:20px; font-size:20px;}
+	#reivew_header>span{font-size:20px;}
+	
 	.review>ul{padding: 10px;}
 	.review>ul>li{list-style: none;}
 	.review>ul>li>.id{font-size: 20px; font-weight: 600; margin-right: 15px;}
@@ -111,7 +116,7 @@
 
   <jsp:include page="../common/header.jsp"/>
     
-	<input type="hidden" id="brand_code" value="${storeList.get(0).brand_code }">
+	
 	<input type="hidden" id="sto_num" value="${storeList.get(0).sto_num }">
 	<input type="hidden" id="loginUserId" value="${sessionScope.loginUser.id }">
 	<input type="hidden" id="ord_limit" value="${storeList.get(0).ord_limit }">
@@ -136,7 +141,7 @@
 						<tr>
 						    <td width="100"><img id="brand_pic" src="resources/images/${storeList.get(0).brand_pic }.png" style="width:100px; height:100px;"></td>
 							<td>
-								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"><a style="font-size:20px; font-weight:600;"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></a><a>리뷰갯수:</a></pre>
+								<pre><img src="resources/images/start.png" style="width:20px; height:20px;"><a style="font-size:20px; font-weight:600;"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></a><a id="reviewCount_titl">리뷰 : </a><span id="reviewCount">${reviewCount }개</span></pre>
 								<pre>최소주문금액 <b><fmt:formatNumber value="${storeList.get(0).ord_limit }" maxFractionDigits="3"/>원</b></pre>
 								<pre>결제 <b>신용카드, 현금</b></pre>
 								<pre>배달시간 <b>40~50분</b></pre>
@@ -279,7 +284,7 @@
 
 					<div id="Paris" class="tabcontent" style="display:none;">
 						<div id="reivew_header">
-							<img class="rev_head" src="resources/images/start.png"><h3 class="rev_head"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></h3>
+							<img class="rev_head" src="resources/images/start.png"><h3 class="rev_head"><fmt:formatNumber value="${avg_review_rate }" maxFractionDigits="2"/></h3><a>리뷰 : </a><span>${reviewCount }개</span>
 						</div>
 						<hr>
 						<div class="review">
@@ -330,8 +335,10 @@
 
 			<div id="orderCheck"> <!--주문 확인 orderHistory-->
 				<form action="paymentView.do" method="get" id="orderCheckForm">
+					<input type="hidden" id="brand_code" name="brand_code" value="${storeList.get(0).brand_code }">
 					<input type="hidden" name="sto_num" value="${storeList.get(0).sto_num }">
 					<input type="hidden" name="address" value="${address }">
+					<input type="hidden" name="latlng" value="${latlng }">
 					<h3>주문확인</h3>
 					<div class="list_area" style="text-align:center;">
 						
@@ -530,7 +537,7 @@
 		var pay_product = [];
 		$(document).on("click","#order_btn",function(){
 			
-			if(total_price > $("#ord_limit").val()){
+			if(total_price >= $("#ord_limit").val()){
 				$("#orderCheckForm").submit();				
 			}
 			else{

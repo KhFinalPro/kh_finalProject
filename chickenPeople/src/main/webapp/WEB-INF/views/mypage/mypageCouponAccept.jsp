@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#coupon_area{margin: 0 auto; margin-top: 20px; width: 70%; text-align: center;}
-	#coupon_area_title{margin: 0; width: 100%; height: 50px; line-height: 50px; text-align: center; font-size: 40px; font-weight: 600;}
+	#coupon_area p{margin: 0; width: 100%; height: 50px; line-height: 50px; text-align: center; font-size: 40px; font-weight: 600; color:#735949;}
 	/* #coupon_area .coupon{width: 1000px; height: 300px; margin-bottom: 10px; background-image: url("../workspace/images/coupon1.png");} */
 	#coupon_area .coupon{width: 1000px; height: 100%; margin-bottom: 10px;}
 	#coupon_area .coupon img{border-radius: 20px; transition: box-shadow 0.5s;}
@@ -27,6 +27,7 @@
 	<input type="hidden" id="id" value="${sessionScope.loginUser.id }"/>
 	
 	<section id="coupon_area">
+		<p>쿠폰 받아가자!</p>
         <c:forEach var="coupon" items="${couponList }">
 	        <div class="coupon" >
 	            <input type="hidden" id="coup_serial" value="${coupon.coup_serial }"/>

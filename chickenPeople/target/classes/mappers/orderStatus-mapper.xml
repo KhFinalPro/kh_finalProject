@@ -28,7 +28,7 @@
 		FROM PAYMENT P
 		JOIN JUMUN J ON P.ORD_NUM = J.ORD_NUM
 		WHERE J.USER_ID = #{id} AND ORD_CANCEL = 'N' AND NOT ORD_STATUS = '배달완료'
-		ORDER BY PAY_DATE DESC
+		ORDER BY ORD_NUM DESC
 	</select>
 	
 	<select id="menuInfoSelect" parameterType="string" resultMap="orderStatusResultSet">

@@ -48,9 +48,6 @@ INSERT INTO STORE_REVIEW (STO_NUM,REV_NUM,REV_RATE)
 VALUES (#{sto_num},SEQ_REVIEW_NUM.CURRVAL,#{rate})
 </insert>
 
-<!-- <select id="searchRevNum">
-SELECT MAX(REV_NUM) AS MAX_NUM FROM REVIEW
-</select> -->
 
 
 </mapper>

@@ -55,6 +55,11 @@ public class StoreDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("menuMapper.selectOneMenu", menu_num);
 	}
+	
+	public int selectReviewCount(int sto_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewCount", sto_num);
+	}
 
 	//-----------------------------------------------------------------------------
 	public ArrayList<Brand> selectBrandList() {
@@ -81,6 +86,23 @@ public class StoreDao {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreList",null,rowBounds);
 	}
+
+	public Store selectOneStore(Integer storeNum) {
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreOne",storeNum);
+	}
+
+	public Store updateStore(int storeNum) {
+		return null;
+	}
+
+	public String checkStatus(int storeNum) {
+		return sqlSessionTemplate.selectOne("storeMapper.checkStatus",storeNum);
+	}
+
+	public int updateStatus(int storeNum) {
+		return sqlSessionTemplate.update("storeMapper.updateStatus",storeNum);
+	}
+	
 
 	
 

@@ -28,6 +28,7 @@ public interface StoreService {
 	
 	Menu selectMenu(int menu_num);
 
+	int selectReivewCount(int sto_num);
 	//------------------------------------------------------------------------------
 	ArrayList<Brand> selectBrandList();							//관리자 _ brand list
 
@@ -39,8 +40,13 @@ public interface StoreService {
 
 	ArrayList<Store> selectStoreList(PageInfo pi);				//검색결과 storeList
 
-	
+	Store selectOneStore(Integer storeNum);						//store detail
 
-	
+	Store updateStore(int storeNum);							//store update
+
+	String checkStatus(int storeNum);
+
+	int updateStatus(int storeNum);
+
 
 }

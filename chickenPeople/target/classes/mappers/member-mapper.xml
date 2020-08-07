@@ -28,7 +28,7 @@
 	<insert id="memberJoin" parameterType="Member">
 		INSERT ALL
 		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, NULL, NULL, NULL, NULL, 'N')
-		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, 0, 0)
+		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, #{lat}, #{lng})
 		SELECT * FROM DUAL
 	</insert>
 	

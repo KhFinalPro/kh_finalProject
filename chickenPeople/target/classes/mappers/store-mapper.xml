@@ -134,6 +134,21 @@
 		</if>
 	</select>
 	
+	<select id="selectStoreOne" resultMap="storeResultSet" parameterType="_int">
+		SELECT *
+		FROM STORE_INFO
+		WHERE STO_NUM=#{storeNum}
+	</select>
+	<select id="checkStatus" parameterType="_int">
+		SELECT ENTER_YN
+		FROM STORE_INFO
+		WHERE STO_NAME=#{storeNum}
+	</select>
+	<update id="updateStatus" parameterType="_int">
+		UPDATE STORE_INFO
+		SET ENTER_YN='N'
+	</update>
+	
 	<select id="selectStoreLiek" parameterType="StoreLike" resultMap="StoreLikeResultSet">
 		SELECT *
 		FROM STORE_LIKE

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의 민족</title>
 	<style>
 
 		#storeList{margin: 0 auto; width: 100%; margin-top: 200px; text-align: center;}
@@ -42,6 +42,7 @@
 		<input type="hidden" id="select_latlng" value="${latlng }">
 		<input type="hidden" id="select_address" value="${address }">
         <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
+        <p>${address }</p>
         <select name="store_category" id="store_category">
             <option value="distance">거리순</option>
             <option value="good">인기순</option>
@@ -94,12 +95,13 @@
 		$("#store_category").on("change",function(){
 
 			$latlng = $("#select_latlng").val();
+			$address = $("#select_address").val();
 			
 			$store_category = $(this).val();
 
 			$.ajax({
 				url:"ajaxDeliveryList.do",
-				data:{latlng:$latlng, store_category:$store_category},
+				data:{latlng:$latlng, address:$address, store_category:$store_category},
 				dataType:"json",
 				type:"post",
 				success:function(data){
@@ -111,6 +113,8 @@
 						var store_area = $("<div class='store_area'></div>");
 						var store = $("<ul class='store'></ul>");
 						
+						$("#select_latlng").val(data.latlng);
+						$("#select_address").val(data.address);
 						
 						store_area.append("<input type='hidden' id='sto_num' name='sto_num' value='"+ data.deliveryList[i].sto_num +"'/>");
 						
@@ -153,7 +157,7 @@
 		//매장 상세 페이지이동		
 		$(document).on("click",".store_area",function(){
 			$sto_num = $(this).children("#sto_num").val();
-			location.href="storeDetail.do?sto_num="+$sto_num +"&address=" + $("#select_address").val();
+			location.href="storeDetail.do?sto_num="+$sto_num +"&latlng=" + $("#select_latlng").val() + "&address=" + $("#select_address").val();
 		})
 	})
 </script>
