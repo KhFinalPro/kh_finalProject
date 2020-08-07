@@ -34,8 +34,8 @@
     
     #delivery_status{color:blue;}
     
-    #msg{margin:0 auto; width:100%; height:200px; text-align:center;}
-    #msg h1{margin-top:100px; font-size:100px;}
+    #msg_area{text-align:center;}
+	#msg_area > img{width:20%; heigth:20%;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -92,8 +92,8 @@
 	</c:if>
 	
 	<c:if test="${!empty msg }">
-		<div id="msg">
-			<h1>${msg }</h1>
+		<div id="msg_area">
+			<img src="resources/images/tung.png">
 		</div>
 	</c:if>
 	

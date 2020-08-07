@@ -257,7 +257,26 @@ public class BungController {
 			
 	}
 	
+	@RequestMapping(value="bungSearch.do")
+	public ModelAndView bungSearch(ModelAndView mv, String month) throws IOException
+	{
+		
+		ArrayList<Bung> list = bungService.searchBung(month);
+
+		
+		if(!list.isEmpty())
+		{
+			mv.addObject("list", list);
+
+		}
+		else
+		{
+			mv.addObject("msg", "텅");
+		}
+		mv.setViewName("bung/bungList");
+		return mv;
 	
+	}
 	
 	
 	
