@@ -267,7 +267,6 @@ public class BungController {
 		if(!list.isEmpty())
 		{
 			mv.addObject("list", list);
-
 		}
 		else
 		{
