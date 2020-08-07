@@ -58,10 +58,10 @@ public class MemberController {
 	
 	@RequestMapping(value="doLoginView.do", method=RequestMethod.POST)
 	public String doLoginMember(Member m, Model model, HttpServletRequest request, HttpSession session) {
+		
+		//아이디를 잘못 입력후 로그인시 nullpointerException발생 해결해야함/
 		Member member = mService.loginMember(m);
-		
 		ArrayList<Address> addrList = mService.selectAddress(member);
-		
 		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
 			
 			session.setAttribute("loginUser", member);
@@ -119,7 +119,9 @@ public class MemberController {
 	public String memberJoin(Member m, Model model,
 							@RequestParam("post") String post,
 							@RequestParam("addr1") String address1,
-							@RequestParam("addr2") String address2) {
+							@RequestParam("addr2") String address2,
+							@RequestParam("lat") String lat,
+							@RequestParam("lng") String lng) {
 		
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
@@ -133,6 +135,8 @@ public class MemberController {
 		m.setPwd(encPwd);
 		m.setPost_code(post);
 		m.setAddress(address1+" "+address2);
+		m.setLat(Double.parseDouble(lat));
+		m.setLng(Double.parseDouble(lng));
 		int result = mService.memberJoin(m);
 
 		

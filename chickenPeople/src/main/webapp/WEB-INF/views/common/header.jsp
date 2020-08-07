@@ -24,7 +24,7 @@
             #header_userArea ul {list-style-type: none; height: 40px; padding: 0; margin: 0;}
             #header_userArea ul li{float: left; position: relative; padding: 0; line-height: 50px;}
             #header_userArea ul li p{font-size: 12px; color:white;}
-            #header_userArea ul li img{width: 40px; height: 40px; margin-top: 20px;}
+            #header_userArea ul li img{width: 30px; height: 30px; margin-top: 20px;}
             #header_userArea ul li ul{opacity: 0; position: absolute; left: 0; list-style-type: none; padding: 0; margin: 0;}
             #header_userArea ul li:hover ul{opacity: 1;}
             #header_userArea ul li ul li{float: none; position: static; height: 0px; line-height: 0; background: none; width: 100px;}
@@ -68,12 +68,13 @@
                 <div id="header_address">
                     <select name="address" id="address">
                     	<c:if test="${!empty sessionScope.loginUser }">
+	                    	<option value="">주소를 선택해주세요.</option>
                     		<c:forEach var="addr" items="${sessionScope.address }">
 		                        <option value="${addr.lat } ${addr.lng}">${addr.address }</option>
                         	</c:forEach>
                         </c:if>
                         <c:if test="${empty sessionScope.loginUser }">
-                        	<option value=""></option>
+	                    	<option value="">로그인시 이용가능합니다.</option>
                         </c:if>
                     </select>
                 </div>
@@ -82,6 +83,9 @@
                     	<li>
                     		<c:if test="${!empty sessionScope.loginUser}">
                     			<p>${sessionScope.loginUser.name }님 환영합니다.</p>
+                    		</c:if>
+                    		<c:if test="${empty sessionScope.loginUser}">
+                    			<p>로그인시 딜리버리 이용가능.</p>
                     		</c:if>
                     	</li>
                     	<li>
@@ -107,8 +111,7 @@
                         <li>
                             <img id="search" src="resources/images/search.png" alt="">
                         </li>
-                    </ul>
-                    
+                    </ul> 
                 </div>
                 <br clear="both">
             </div>
@@ -144,7 +147,8 @@
 	       <div id="modal" style="display: none">
 
 	           <img id="search_cancel" src="resources/images/cancel.png" alt="">
-	           <form action="homeSearch.do" method="post">
+	           <form action="homeSearch.do" id="form" method="get">
+					
 	               <br clear="both">
 	               
 	               <select name="search_category" id="search_category">
@@ -152,7 +156,7 @@
 					<option value="store">매장</option>
 	               </select>
 	               <input type="text" id="search_input" name="search_input" placeholder="치킨 매장(브랜드)만 검색해주세요.">
-	               <input type="submit" id="submit" value="검색">
+	               <button type="button" id="submit">검색</button>
 	           </form>
 	       </div>
        </c:if>
@@ -168,6 +172,15 @@
         	$latlng = $("#address option:selected").val()
             $modal=$("#modal");
             
+        	//검색버튼
+        	$("#submit").on("click",function(){
+        		/* alert("asd");
+				$("#form").append("<input type='hidden' name='latlng' value='"+ $("#address option:selected").val() +"'");
+				$("#form").append("<input type='hidden' name='address' value='"+ $("#address option:selected").text() +"'");
+				 */
+				$("#form").submit();
+        	})
+        	
             $("#search").on("click",function(){
                 // $("#modal").css('display','none');
                 $("#modal").toggle(
@@ -185,8 +198,12 @@
             
             //딜리버리 버튼
             $("#delivery").on("click",function(){
-            	
-            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
+            	if($("#address option:selected").val() == ""){
+            		alert("주소를 선택해주세요");
+            	}
+            	else{
+	            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();            		
+            	}
             })
             
             //계연이 채팅 연결

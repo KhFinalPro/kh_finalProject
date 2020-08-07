@@ -7,7 +7,7 @@
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<!-- <script src="/resources/js/addressapi.js"></script> -->
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
         <style>
             #memberJoin{
                 width: 700px;
@@ -493,6 +493,7 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
             </div>
             
         </form>
+        <div id="map"></div>
         <%@ include file="../common/footer.jsp"%>
     </body>
     
@@ -571,6 +572,45 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    })
 	    
 	    
+	    
+	    $(function(){
+	    	var latlng = "";
+	    	var lat = "";
+	    	var lng = "";
+	    	$("#addr2").on("blur",function(){
+	    		
+	    		var addr1 = $("#addr1").val();
+	    		
+				var mapContainer = document.getElementById('map');
+				var mapOption = {
+				    center: new daum.maps.LatLng(37.450701, 126.570667),
+				    level: 5
+				};  
+				
+				var map = new daum.maps.Map(mapContainer, mapOption); 
+				
+				var geocoder = new daum.maps.services.Geocoder();
+				var listData = [
+					addr1
+				];
+				
+				listData.forEach(function(addr, index) {
+				    geocoder.addressSearch(addr, function(result, status) {
+				        if (status === daum.maps.services.Status.OK) {
+				            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+				
+							latlng = coords;
+							lng = latlng.Ga;
+							lat = latlng.Ha;
+							$("#memberJoin").append("<input type='hidden' name='lat' value='"+lat+"'>");
+							$("#memberJoin").append("<input type='hidden' name='lng' value='"+lng+"'>");
+				        } 
+				    });
+				});
+	    		
+	    	})
+	    	
+	    })
     </script>
     
 </html>

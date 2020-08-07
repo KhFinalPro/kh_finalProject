@@ -25,8 +25,11 @@
 	<section>
 		<div id="main_area">
 			<h1>주문완료</h1>
-			<a class="title">주문번호 : </a><span id="ord_num">P20200806011</span><br>
-			<a class="title">배달 주소 : </a><span id="address">강남구 역삼 kh정보교육원</span>
+			<a class="title">주문번호 : </a><span id="ord_num">${payInfo.ord_num }</span><br>
+			<a class="title">배달 주소 : </a><span id="address">${payInfo.pay_addr }</span><br>
+			<a class="title">결제 시간 : </a><span id="address">${payInfo.pay_date }</span><br>
+			<a class="title">받는사람 : </a><span id="address">${payInfo.pay_rcv }</span><br>
+			<a class="title">메세지 : </a><span id="address">${payInfo.pay_msg }</span><br>
 			<br>
 			<button id="home" style="margin-right:10px;">메인화면</button><button id="delivery" style="margin-left:10px;">배달현황</button>
 		</div>

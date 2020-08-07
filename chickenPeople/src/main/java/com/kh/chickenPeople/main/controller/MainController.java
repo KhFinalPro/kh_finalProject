@@ -39,7 +39,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="homeSearch.do")
-	public ModelAndView homeSearch(ModelAndView mv, Search s) throws MainException
+	public ModelAndView homeSearch(ModelAndView mv, Search s, String latlng, String address) throws MainException
 	{
 		ArrayList<Store> list = mainService.search(s);
 		

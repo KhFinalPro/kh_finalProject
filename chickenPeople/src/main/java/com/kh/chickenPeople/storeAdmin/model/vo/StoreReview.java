@@ -2,7 +2,7 @@ package com.kh.chickenPeople.storeAdmin.model.vo;
 
 import java.io.Serializable;
 
-public class Review implements Serializable{
+public class StoreReview implements Serializable{
 
 	/**
 	 * 
@@ -14,8 +14,10 @@ public class Review implements Serializable{
 	private String revPic;		//리뷰사진
 	private String revDate;		//리뷰등록날짜
 	private String revCont;		//리뷰내용
+	private String revRe;		//리뷰답변
 	private String userId;		//리뷰작성자
 	private String ordNum; 		//리뷰-주문번호
+	private String ordDate;		//주문날짜
 	
 	//매장리뷰테이블
 	private int stoNum;			//매장번호
@@ -37,16 +39,34 @@ public class Review implements Serializable{
 	private int menuPrice;		//메뉴가격
 	
 	
-	public Review(int revNum, int revRate, String revPic, String revDate, String revCont, String userId, String ordNum,
-			int stoNum, String stoId, int ordPrice, int menuNum, int mordNum, String menuName, int menuPrice) {
+	//메뉴 합치기
+	private String realMenu;	//메뉴 리스트 합
+	
+	
+	
+	
+	
+	public StoreReview() {
+		super();
+	}
+
+
+
+
+
+	public StoreReview(int revNum, int revRate, String revPic, String revDate, String revCont, String revRe,
+			String userId, String ordNum, String ordDate, int stoNum, String stoId, int ordPrice, int menuNum,
+			int mordNum, String menuName, int menuPrice, String realMenu) {
 		super();
 		this.revNum = revNum;
 		this.revRate = revRate;
 		this.revPic = revPic;
 		this.revDate = revDate;
 		this.revCont = revCont;
+		this.revRe = revRe;
 		this.userId = userId;
 		this.ordNum = ordNum;
+		this.ordDate = ordDate;
 		this.stoNum = stoNum;
 		this.stoId = stoId;
 		this.ordPrice = ordPrice;
@@ -54,12 +74,11 @@ public class Review implements Serializable{
 		this.mordNum = mordNum;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
+		this.realMenu = realMenu;
 	}
 
 
-	public Review() {
-		super();
-	}
+
 
 
 	public int getRevNum() {
@@ -67,9 +86,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setRevNum(int revNum) {
 		this.revNum = revNum;
 	}
+
+
+
 
 
 	public int getRevRate() {
@@ -77,9 +102,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setRevRate(int revRate) {
 		this.revRate = revRate;
 	}
+
+
+
 
 
 	public String getRevPic() {
@@ -87,9 +118,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setRevPic(String revPic) {
 		this.revPic = revPic;
 	}
+
+
+
 
 
 	public String getRevDate() {
@@ -97,9 +134,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setRevDate(String revDate) {
 		this.revDate = revDate;
 	}
+
+
+
 
 
 	public String getRevCont() {
@@ -107,9 +150,31 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setRevCont(String revCont) {
 		this.revCont = revCont;
 	}
+
+
+
+
+
+	public String getRevRe() {
+		return revRe;
+	}
+
+
+
+
+
+	public void setRevRe(String revRe) {
+		this.revRe = revRe;
+	}
+
+
+
 
 
 	public String getUserId() {
@@ -117,9 +182,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+
+
 
 
 	public String getOrdNum() {
@@ -127,9 +198,31 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setOrdNum(String ordNum) {
 		this.ordNum = ordNum;
 	}
+
+
+
+
+
+	public String getOrdDate() {
+		return ordDate;
+	}
+
+
+
+
+
+	public void setOrdDate(String ordDate) {
+		this.ordDate = ordDate;
+	}
+
+
+
 
 
 	public int getStoNum() {
@@ -137,9 +230,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setStoNum(int stoNum) {
 		this.stoNum = stoNum;
 	}
+
+
+
 
 
 	public String getStoId() {
@@ -147,9 +246,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setStoId(String stoId) {
 		this.stoId = stoId;
 	}
+
+
+
 
 
 	public int getOrdPrice() {
@@ -157,9 +262,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setOrdPrice(int ordPrice) {
 		this.ordPrice = ordPrice;
 	}
+
+
+
 
 
 	public int getMenuNum() {
@@ -167,9 +278,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setMenuNum(int menuNum) {
 		this.menuNum = menuNum;
 	}
+
+
+
 
 
 	public int getMordNum() {
@@ -177,9 +294,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setMordNum(int mordNum) {
 		this.mordNum = mordNum;
 	}
+
+
+
 
 
 	public String getMenuName() {
@@ -187,9 +310,15 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
+
+
+
 
 
 	public int getMenuPrice() {
@@ -197,9 +326,31 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	public void setMenuPrice(int menuPrice) {
 		this.menuPrice = menuPrice;
 	}
+
+
+
+
+
+	public String getRealMenu() {
+		return realMenu;
+	}
+
+
+
+
+
+	public void setRealMenu(String realMenu) {
+		this.realMenu = realMenu;
+	}
+
+
+
 
 
 	public static long getSerialversionuid() {
@@ -207,14 +358,21 @@ public class Review implements Serializable{
 	}
 
 
+
+
+
 	@Override
 	public String toString() {
-		return "Review [revNum=" + revNum + ", revRate=" + revRate + ", revPic=" + revPic + ", revDate=" + revDate
-				+ ", revCont=" + revCont + ", userId=" + userId + ", ordNum=" + ordNum + ", stoNum=" + stoNum
-				+ ", stoId=" + stoId + ", ordPrice=" + ordPrice + ", menuNum=" + menuNum + ", mordNum=" + mordNum
-				+ ", menuName=" + menuName + ", menuPrice=" + menuPrice + "]";
+		return "StoreReview [revNum=" + revNum + ", revRate=" + revRate + ", revPic=" + revPic + ", revDate=" + revDate
+				+ ", revCont=" + revCont + ", revRe=" + revRe + ", userId=" + userId + ", ordNum=" + ordNum
+				+ ", ordDate=" + ordDate + ", stoNum=" + stoNum + ", stoId=" + stoId + ", ordPrice=" + ordPrice
+				+ ", menuNum=" + menuNum + ", mordNum=" + mordNum + ", menuName=" + menuName + ", menuPrice="
+				+ menuPrice + ", realMenu=" + realMenu + "]";
 	}
-	
+
+
 	
 	
 }
+
+
