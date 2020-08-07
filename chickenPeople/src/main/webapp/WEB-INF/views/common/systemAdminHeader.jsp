@@ -67,7 +67,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                 <ul>
                     <li><a href="#"><i class="fas fa-search"></i></a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                    <li><a href="#"><i class="fas fa-user"></i></a></li>
+                    <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
                 </ul>
             </div>
         </div>
