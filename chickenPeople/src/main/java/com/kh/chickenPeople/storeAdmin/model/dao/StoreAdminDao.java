@@ -3,11 +3,13 @@ package com.kh.chickenPeople.storeAdmin.model.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.storeAdmin.model.vo.StoreReview;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Repository("storeAdminDao")
 public class StoreAdminDao {
@@ -44,6 +46,11 @@ public class StoreAdminDao {
 	public int deleteReview(HashMap<String, String> map) {
 		
 		return sqlSessionTemplate.delete("storeReviewMapper.deleteReview",map);
+	}
+
+	public int getListCount(String userId) {
+		
+		return sqlSessionTemplate.selectOne("storeReviewMapper.getListCount",userId);
 	}
 
 	

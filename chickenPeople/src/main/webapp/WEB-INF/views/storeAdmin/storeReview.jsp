@@ -13,18 +13,6 @@
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 <style>
 /*********페이지네이션***********/
- .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
-    .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
-	 select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
-     select { width: 200px; background-color:white; padding:7px 25px;  font-family: inherit; background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
-     select::-ms-expand { /* for IE 11 */ display: none; }
-    .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
-	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
-	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
-	
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
-	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
     .pppp > ol > li:first-child { border-left : 1px solid black; }
@@ -141,13 +129,54 @@
                             
                             </tbody>
                         </table>
-                        
+                          <div class = "p-parents" style="margin:0 auto">
+	            <div class="pppp">
+	            <!-- 요기 내용 ajax로 만들어보기 -->
+		                    <c:if test="${pi.currentPage eq 1}">
+			                    <a style = "color:#9c9c9c; " disabled>Previous</a>
+		                    </c:if>
+		                    <c:if test="${pi.currentPage gt 1}">
+		                    	<c:url var="blistBack" value="storeReview.do">
+		                    		<c:param name="page" value="${pi.currentPage-1} "/>
+								</c:url>
+		                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
+		                    </c:if>
+		                    <ol>
+		                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+		                    	<c:if test="${p eq pi.currentPage }">
+		           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
+		                    	</c:if>
+		                    	<c:if test="${p ne pi.currentPage }">
+		                    		<c:url var="blistCheck" value="storeReview.do">
+		                    			<c:param name="page" value="${p }"/>
+		                    		</c:url>
+		                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
+		                    	</c:if>
+		                    </c:forEach>
+		                    </ol>
+		                    <c:if test="${pi.currentPage eq pi.maxPage }">
+			                    <a style = "color:#9c9c9c"  disabled>Next</a>
+		                    </c:if>
+							<c:if test="${pi.currentPage lt pi.maxPage }">
+								<c:url var="blistAfter" value="storeReview.do">
+									<c:param name="page" value="${pi.currentPage+1 }"/>
+								</c:url>
+								<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
+							</c:if>
+	           </div>
+	        </div><!-- pagination class p-parents end -->
                         
                         
                 </div>
 
             </div>
             </div>
+            
+            
+          
+            
+            
+            
             
              <!-- 쪽지 답장하기 모달 -->
 <div id="replyReviewModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
@@ -168,9 +197,11 @@
 
 </body>
 <script>
+
 $(function(){
 	$(".reviewBar").children().addClass('active');
 })
+
 
 
 
@@ -195,16 +226,35 @@ $('#rDelete').click(function(){
 
 function init(){
     searchData();
+    //pi();
  }
  
  
+/*  function pi(){
+	 $.ajax({
+		 type:"GET",
+		 url:"pagination.do",
+		 dataType:"json",
+		 success:function(data){
+			 console.log("페이지네이션 :" + data.pi);
+			 
+		 },error:function(request, status, errorData){
+	            alert("error code: " + request.status + "\n"
+	                    +"message: " + request.responseText
+	                    +"error: " + errorData);
+	        } 
+	 })
+	 
+ }
+ 
+ */
  //데이터 조회
 function searchData(){
 	
 	$.ajax({
 		type:'GET',
 		url:'selectReviewList.do',
-		dataType:'JSON',
+		dataType:'json',
 		success:function(data){
 			
 			//리뷰리스트 목록

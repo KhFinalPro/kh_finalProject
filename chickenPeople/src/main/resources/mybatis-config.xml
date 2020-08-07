@@ -31,6 +31,7 @@
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.kh.chickenPeople.storeAdmin.model.vo.StoreReview" alias="StoreReview"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLike" alias="StoreLike"/>
+		<typeAlias type="com.kh.chickenPeople.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
 	</typeAliases>
 	
 	<mappers>
@@ -52,5 +53,6 @@
 		<mapper resource="/mappers/orderStatus-mapper.xml"/>
 		<mapper resource="/mappers/review-mapper.xml"/>
 		<mapper resource="/mappers/store-review-mapper.xml"/>
+		<mapper resource="/mappers/storeMenu-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.chickenPeople.storeAdmin.model.vo.StoreReview;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 public interface StoreAdminService {
 
@@ -16,6 +17,8 @@ public interface StoreAdminService {
 	int deleteStoreReview(HashMap<String, String> map);
 
 	int deleteReview(HashMap<String, String> map);
+
+	int getListCount(String userId);
 
 
 

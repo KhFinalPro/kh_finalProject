@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.storeAdmin.model.dao.StoreAdminDao;
 import com.kh.chickenPeople.storeAdmin.model.vo.StoreReview;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Service("storeAdminService")
 public class StoreAdminServiceImpl implements StoreAdminService {
@@ -43,6 +44,12 @@ public class StoreAdminServiceImpl implements StoreAdminService {
 	public int deleteReview(HashMap<String, String> map) {
 		
 		return storeAdminDao.deleteReview(map);
+	}
+
+	@Override
+	public int getListCount(String userId) {
+	
+		return storeAdminDao.getListCount(userId);
 	}
 
 	

@@ -121,19 +121,20 @@
                             </ul>
                         </div> -->
                     </div>
-                        <table class="content-table">
+                        <table class="content-table" id="menuTable">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>메뉴ID</th>
+                                    <th>번호</th>
+                                    <th>브랜드</th>
+                                    <th>사진</th>
                                     <th>종류</th>
                                     <th>메뉴명</th>
+                                    <th>메뉴가격</th>
                                     <th>메뉴설명</th>
-                                    <th>품절여부</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                               <!--  <tr>
                                     <td><input type="checkbox"></td>
                                     <td>A123</td>
                                     <td>치킨</td>
@@ -148,7 +149,7 @@
                                     <td>레드콤보</td>
                                     <td>불닭치즈맛, 중량 900g, 2020출시</td>
                                     <td>N</td>
-                                </tr>
+                                </tr> -->
                                 
                             </tbody>
                         </table>
@@ -160,5 +161,71 @@
 $(function(){
 	$(".menuBar").children().addClass('active');
 })
+
+
+
+
+//메뉴 데이터 조회
+$(document).ready(function(){
+	init();
+});
+
+
+function init(){
+	searchData();
+}
+
+
+//데이터 조회
+
+function searchData(){
+	$.ajax({
+		type:'GET',
+		url:'selectMenuList.do',
+		dataType:'json',
+		success:function(data){
+			
+			var menuList = data.menuList;
+			
+			var menuListAppendStr = '';
+			
+			
+			
+			//메뉴 목록 개수만큼 반복
+			for(var i=0; i<menuList.length; i++){
+				menuListAppendStr += '<tr>'+
+									'<td>'+(i+1)+'</td>'+
+									'<td>'+menuList[i].brandName+'</td>'+
+									'<td>'+menuList[i].menuPic+'</td>'+
+									'<td>'+menuList[i].catName+'</td>'+
+									'<td>'+menuList[i].menuName+'</td>'+
+									'<td>'+menuList[i].menuPrice+'</td>'+
+									'<td>'+menuList[i].menuExp+'</td>'+
+									'</tr>'
+									console.log(menuList[i].menuExp);
+									console.log(menuList[i].catName);
+			}
+			$("#menuTable").find('tbody').empty();
+			$("#menuTable").find('tbody').append(menuListAppendStr);
+			
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </html>

@@ -16,9 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.storeAdmin.model.service.StoreAdminService;
 import com.kh.chickenPeople.storeAdmin.model.vo.StoreReview;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Controller
 public class StoreAdminController {
@@ -49,73 +51,121 @@ public class StoreAdminController {
 	  }
 	  
 	  
+		/*
+		 * @RequestMapping(value="pagination.do",method=RequestMethod.GET) public void
+		 * pagination(HttpServletRequest request, HttpServletResponse response) throws
+		 * IOException{ //System.out.println("page : " + page);//넘어오는 페이지 체크
+		 * response.setContentType("application/json;charset=utf-8"); HttpSession
+		 * session = request.getSession(); Member loginUser = (Member)
+		 * session.getAttribute("loginUser"); String userId = loginUser.getId();
+		 * JSONObject obj = new JSONObject();
+		 * 
+		 * //초기값 int currentPage=1; int listCount =0; int page = 1;
+		 * 
+		 * 
+		 * 
+		 * listCount = storeAdminService.getListCount(userId);
+		 * 
+		 * int pageLimit=5; int maxPage; int startPage; int endPage;
+		 * 
+		 * int boardLimit= 10;
+		 * 
+		 * maxPage = (int)((double)listCount/boardLimit+0.9); startPage =
+		 * ((int)((double)currentPage/pageLimit+0.9)-1)*pageLimit + 1; endPage =
+		 * startPage+pageLimit-1;
+		 * 
+		 * if(maxPage<endPage) { endPage = maxPage; }
+		 * 
+		 * PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage,
+		 * startPage, endPage, boardLimit);
+		 * 
+		 * JSONObject piobj = new JSONObject();
+		 * 
+		 * piobj.put("currentPage",currentPage); piobj.put("listCount",listCount);
+		 * piobj.put("pageLimit",pageLimit); piobj.put("maxPage",maxPage);
+		 * piobj.put("startPage",startPage); piobj.put("endPage",endPage);
+		 * piobj.put("boardLimit",boardLimit);
+		 * 
+		 * JSONArray piobjArr = new JSONArray();
+		 * 
+		 * piobjArr.add(piobj);
+		 * 
+		 * PrintWriter out = response.getWriter();
+		 * 
+		 * out.print(piobjArr); //out.print(piobj); out.flush(); out.close();
+		 * 
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 	  
 	  @RequestMapping(value="selectReviewList",method=RequestMethod.GET)
-	  public void selectReviewList(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		  
-		  response.setContentType("application/json;charset=utf-8");
+	     public void selectReviewList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	        
+	        response.setContentType("application/json;charset=utf-8");
 
-		  HttpSession session = request.getSession();
+	        HttpSession session = request.getSession();
 
-		  Member loginUser = (Member) session.getAttribute("loginUser");
+	        Member loginUser = (Member) session.getAttribute("loginUser");
 
-		  System.out.println("세션 유저 정보 : " + loginUser.toString());
-		  
-		  // 유저 아이디
-		  String userId = loginUser.getId();
-		  
-		  JSONObject obj = new JSONObject();
-		  
-		  /****리뷰리스트(메뉴없음)****/
-		  ArrayList<StoreReview> reviewList = storeAdminService.reviewList(userId);
-		  System.out.println("리뷰리스트"+reviewList);
-		  
-		  
-		  /*******메뉴리스트********/
-		  ArrayList<StoreReview> menuList = storeAdminService.menuList(userId);
-		  System.out.println("메뉴리스트"+menuList);
-		 
-		  
-		  JSONArray reviewMenuArr = new JSONArray();
-		  for(int i=0; i<reviewList.size(); i++) {
-			  //System.out.println("리뷰오더넘버"+reviewList.get(i).getOrdNum());
-			  //JSONObject review = new JSONObject();
-			  for(int j=0; j<menuList.size(); j++) {
-				 // System.out.println("메뉴오더넘버"+menuList.get(j).getOrdNum());
-				 // JSONObject menu = new JSONObject();
-				  if(reviewList.get(i).getOrdNum().equals(menuList.get(j).getOrdNum())) {
-					 System.out.println("같니?"+"리뷰오더넘버"+reviewList.get(i).getOrdNum()+"메뉴오더넘버"+menuList.get(j).getOrdNum());
-					  
-					  for(int r=0; r<reviewList.size(); r++) {
-						  JSONObject reviewMenu = new JSONObject();
-						  reviewMenu.put("ordNum",reviewList.get(r).getOrdNum());
-						  reviewMenu.put("menuName",menuList.get(r).getRealMenu());
-						  reviewMenu.put("ordPrice",reviewList.get(r).getOrdPrice());
-						  reviewMenu.put("ordDate",reviewList.get(r).getOrdDate());
-						  reviewMenu.put("revDate",reviewList.get(r).getRevDate());
-						  reviewMenu.put("revRate",reviewList.get(r).getRevRate());
-						  reviewMenu.put("revCont",reviewList.get(r).getRevCont()); 
-						  reviewMenu.put("revNum",reviewList.get(r).getRevNum());						  
-						  reviewMenuArr.add(reviewMenu);
-						  
-					  }
-					  obj.put("reviewMenu", reviewMenuArr);
-					  System.out.println("찐 리얼 메뉴리스트"+reviewMenuArr);
-						
-						PrintWriter out = response.getWriter();
-						
-						out.print(obj);
-						out.flush();
-						out.close();
-					  
-				  }
-				    
-			  }
-		  } 
-		
-	  
-	  
-	  }
+	        System.out.println("세션 유저 정보 : " + loginUser.toString());
+	        
+	        // 유저 아이디
+	        String userId = loginUser.getId();
+	        
+	        JSONObject obj = new JSONObject();
+	        
+	        /****리뷰리스트(메뉴없음)****/
+	        ArrayList<StoreReview> reviewList = storeAdminService.reviewList(userId);
+	        System.out.println("리뷰리스트"+reviewList);
+	        
+	        
+	        /*******메뉴리스트********/
+	        ArrayList<StoreReview> menuList = storeAdminService.menuList(userId);
+	        System.out.println("메뉴리스트"+menuList);
+	       
+	        
+	        JSONArray reviewMenuArr = new JSONArray();
+	        for(int i=0; i<reviewList.size(); i++) {
+	           //System.out.println("리뷰오더넘버"+reviewList.get(i).getOrdNum());
+	           //JSONObject review = new JSONObject();
+	           for(int j=0; j<menuList.size(); j++) {
+	             // System.out.println("메뉴오더넘버"+menuList.get(j).getOrdNum());
+	             // JSONObject menu = new JSONObject();
+	              if(reviewList.get(i).getOrdNum().equals(menuList.get(j).getOrdNum())) {
+	                System.out.println("같니?"+"리뷰오더넘버"+reviewList.get(i).getOrdNum()+"메뉴오더넘버"+menuList.get(j).getOrdNum());
+	                 
+	                 for(int r=0; r<reviewList.size(); r++) {
+	                    JSONObject reviewMenu = new JSONObject();
+	                    reviewMenu.put("ordNum",reviewList.get(r).getOrdNum());
+	                    reviewMenu.put("menuName",menuList.get(r).getRealMenu());
+	                    reviewMenu.put("ordPrice",reviewList.get(r).getOrdPrice());
+	                    reviewMenu.put("ordDate",reviewList.get(r).getOrdDate());
+	                    reviewMenu.put("revDate",reviewList.get(r).getRevDate());
+	                    reviewMenu.put("revRate",reviewList.get(r).getRevRate());
+	                    reviewMenu.put("revCont",reviewList.get(r).getRevCont()); 
+	                    reviewMenu.put("revNum",reviewList.get(r).getRevNum());                    
+	                    reviewMenuArr.add(reviewMenu);
+	                    
+	                 }
+	                 obj.put("reviewMenu", reviewMenuArr);
+	                 System.out.println("찐 리얼 메뉴리스트"+reviewMenuArr);
+	                  
+	                  PrintWriter out = response.getWriter();
+	                  
+	                  out.print(obj);
+	                  out.flush();
+	                  out.close();
+	                 
+	              }
+	                
+	           }
+	        } 
+	      
+	     
+	     }
+
 	  
 	  @RequestMapping(value="updateReviewRe",method=RequestMethod.POST)
 	  public void updateReviewRe(HttpServletRequest request, HttpServletResponse response,String revNum, String revReCont) throws IOException {

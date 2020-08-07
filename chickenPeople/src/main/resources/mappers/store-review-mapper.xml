@@ -68,6 +68,15 @@
    WHERE REV_NUM=#{deleteReviewNo}
    </delete>
    
+<!--    <select id="getListCount" resultType="_int">
+   SELECT COUNT(J.ORD_NUM)
+   FROM REVIEW R
+   JOIN STORE_REVIEW SR ON (R.REV_NUM=SR.REV_NUM)
+   LEFT JOIN STORE_INFO SI ON (SR.STO_NUM=SI.STO_NUM)
+   LEFT JOIN ORDER_PRO OP ON (R.ORD_NUM=OP.ORD_NUM)
+   RIGHT JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+   WHERE SI.USER_ID=#{userId}
+   </select> -->
    
    
 
