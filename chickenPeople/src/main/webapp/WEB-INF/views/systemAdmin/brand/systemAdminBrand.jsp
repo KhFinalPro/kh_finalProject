@@ -33,6 +33,10 @@
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+    a:link{text-decoration:none; color:#646464;}
+    a:visited{text-decoration:none; color:#646464;}
+    a:active{text-decoration:none; color:#646464;}
+    a:hover{text-decoration:none; color:#646464;}
 </style>
 </head>
 <body>
@@ -78,10 +82,15 @@
 					<tbody>
 					
 					<c:forEach var="i" items="${brandList }">
+						<c:url var="goStore" value="systemAdminStore.do">
+							<c:param name="storeSearch" value="" />
+							<c:param name="brandCategory" value="${i.brand_name }"/>
+							<c:param name="status_s" value="Y"/>
+						</c:url>
 						<tr>
 							<td>${i.brand_code }</td>
 							<td><img src="resources/images/${i.brand_pic }.png" width="40px" height="40px"></td>
-							<td>${i.brand_name }</td>
+							<td><a href="${goStore }">${i.brand_name }</a></td>
 							<td>입점</td>
 							<td>${i.brand_count }</td>
 						</tr>					
@@ -137,9 +146,7 @@
 </div>
 </body>
 <script>
-window.onload = function(){
-	alert("검색 & 페이지네이션 완료 > 브랜드 이름 누르면 점포관리에 브랜드를 검색한 값으로 화면 전환예정");
-}
+
 $(function(){
 	$("#brand").children().addClass('active');
 	
