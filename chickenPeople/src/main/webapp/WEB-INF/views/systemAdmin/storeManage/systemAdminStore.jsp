@@ -198,6 +198,9 @@
 </div>
 </body>
 <script>
+window.onload = function(){
+	alert("검색 & 페이징 처리 완료 - 입점신청한 점포들 아이디 부여하는것 남음 / 입점신청한 점포 데이터 insert 중 ");
+}
 $(function(){
 	$("#store").children().addClass('active');
 })

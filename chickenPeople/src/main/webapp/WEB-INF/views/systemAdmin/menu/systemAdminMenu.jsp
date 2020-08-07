@@ -198,5 +198,8 @@
 $(function(){
 	$("#menu").children().addClass('active');
 })
+window.onload = function(){
+	alert("메뉴 등록시 이미지가 엑박이 뜨는 현상만 수정하면 됨");
+}
 </script>
 </html>

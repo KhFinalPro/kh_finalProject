@@ -137,6 +137,9 @@
 </div>
 </body>
 <script>
+window.onload = function(){
+	alert("검색 & 페이지네이션 완료 > 브랜드 이름 누르면 점포관리에 브랜드를 검색한 값으로 화면 전환예정");
+}
 $(function(){
 	$("#brand").children().addClass('active');
 	
