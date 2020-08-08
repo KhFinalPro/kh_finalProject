@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.storeMenu.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,23 @@ public class StoreMenuDao {
 		menuList = (ArrayList)sqlSessionTemplate.selectList("storeMenuMapper.menuList",userId);
 		
 		return menuList;
+	}
+
+	public ArrayList<StoreMenu> cateList(HashMap<String, String> map) {
+		
+		
+		
+		ArrayList<StoreMenu> cateList = new ArrayList<StoreMenu>();
+		cateList = (ArrayList)sqlSessionTemplate.selectList("storeMenuMapper.cateList",map);
+		
+		return cateList;
+	}
+
+	public ArrayList<StoreMenu> nameList(HashMap<String, String> map) {
+		
+		ArrayList<StoreMenu> nameList = new ArrayList<StoreMenu>();
+		nameList = (ArrayList)sqlSessionTemplate.selectList("storeMenuMapper.nameList",map);
+		return nameList;
 	}
 	
 }
