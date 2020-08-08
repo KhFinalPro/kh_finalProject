@@ -60,7 +60,7 @@
 			room_no = strArray[0];
 			sessionId = strArray[1];
 			message = strArray[2];
-			
+			console.log(strArray);
 			var printData = null;
 			if(room_no==currentChattingRoom){
 				if(sessionId==currentUserSession){
@@ -76,7 +76,7 @@
 		}
 		
 		sock.onclose = function(){
-			var removeClient = sessionId+"님이 퇴장하셨습니다.<br>";
+			var removeClient = "님이 퇴장하셨습니다.<br>";
 			$("#chat").append(removeClient);
 		}
 		

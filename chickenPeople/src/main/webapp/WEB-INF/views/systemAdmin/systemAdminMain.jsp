@@ -86,8 +86,8 @@ var chartDrowFun = {
 	          var data = new google.visualization.DataTable();
 	          //그래프에 표시할 컬럼 추가
 	          data.addColumn('date' , '날짜');
-	          data.addColumn('number'   , '매출');
-	  
+	          data.addColumn('number'   , '교촌');
+	  		  data.addColumn('number', 'bbq')
 
 	          //그래프에 표시할 데이터
 	          var dataRow = [];
@@ -102,12 +102,12 @@ var chartDrowFun = {
 	        	  		console.log("____"+m);
 	        	  		if(i==m){
 	        	  			total = <%=st.getPay_Total()%>
-	      
+	      					
 	        	  		}
 	        	  	<%}%>
 	        	  	  
 		              
-	        	  	  dataRow = [new Date('2020', i), total];
+	        	  	  dataRow = [new Date('2020', i), total,i*100000];
 		              total=0;
 	        	  	  data.addRow(dataRow);
 		              

@@ -35,7 +35,7 @@ public class ChatController {
 				session.setAttribute("room_no", ChattingRoom_No);
 				session.setAttribute("client_Name", Client_Name);
 //
-				mv.setViewName("chattingPage");
+				mv.setViewName("chat/chatInquiry");
 //			}
 //		}
 //		else {
