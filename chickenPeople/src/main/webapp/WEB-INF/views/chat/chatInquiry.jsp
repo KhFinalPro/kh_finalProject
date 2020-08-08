@@ -16,11 +16,16 @@
 	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	button{border:1px solid black; background-color:white; color:black; padding:8px;}
-.arrow_box {
+.arrow_box_right {
 	position: relative;
-	background: #382275;
+	background: #88b7d5;
+	border: 3px solid #88b7d5;
+	width:65%;
+	margin-top:10px;
+	height:40px;
+	margin-left: 130px;
 }
-.arrow_box:after {
+.arrow_box_right:after, .arrow_box:before {
 	left: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -29,12 +34,52 @@
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-color: rgba(56, 34, 117, 0);
-	border-left-color: #382275;
-	border-width: 0px;
-	margin-top: -0px;
 }
+
+.arrow_box_right:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #88b7d5;
+	border-width: 13px;
+	margin-top: -13px;
+}
+.arrow_box_right:before {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #88b7d5;
+	border-width: 13px;
+	margin-top: -13px;
+}
+.arrow_box_left {
+	position: relative;
+	background: #88b7d5;
+	border: 3px solid #88b7d5;
+	width:65%;
+	margin-top:10px;
+	height:40px;
 	
+}
+.arrow_box_left:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_left:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #88b7d5;
+	border-width: 13px;
+	margin-top: -13px;
+}
+.arrow_box_left:before {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #88b7d5;
+	border-width: 9px;
+	margin-top: -9px;
+}
 </style>
 </head>
 <body>
@@ -88,16 +133,16 @@
 			var currentChattingRoom = $("#roomNo").val();
 			
 			room_no = strArray[0];
-			sessionId = strArray[1];
+			sessionId = '최상원';
 			message = strArray[2];
 			console.log(strArray);
 			var printData = null;
 			if(room_no==currentChattingRoom){
 				if(sessionId==currentUserSession){
-					printData = "<div class='arrow_box'>["+sessionId+"]"+message+"<br></div><br><br>";
+					printData = "<div class='arrow_box_right'>["+sessionId+"]"+message+"<br></div><br>";
 					$("#chat").append(printData);
 				}else{
-					printData = "<div class='arrow_box'>["+sessionId+"]"+message+"<br></div><br><br>";
+					printData = "<div class='arrow_box_left'>["+sessionId+"]"+message+"<br></div><br>";
 					$("#chat").append(printData);	
 				}
 			}else{

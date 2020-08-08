@@ -137,7 +137,7 @@
 								<td>${i.sto_tel }</td>
 								<td>${i.deli_time }</td>
 								<c:if test="${i.aprv_status eq 'Y' }">
-									<td>입점</td>
+									<td>계약 중</td>
 								</c:if>
 								<c:if test="${i.aprv_status eq 'N' }">
 									<td><button onclick="location.href='${updateStore}'">승인처리</button></td>

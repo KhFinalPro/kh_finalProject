@@ -53,15 +53,32 @@
 					<table class="searchTable">
 						<tr>
 							<td><b>브랜드 검색</b></td>
-							<td><input class="menuSearch" name="brandName" type="text" placeholder="브랜드명을 입력해주세요."></td>
+							<c:if test="${empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="brandName" type="text" placeholder="브랜드명을 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="brandName" type="text" value="${searchStatus.searchName }"></td>
+							</c:if>
 							<td colspan="4"><button type="submit">검색</button></td>
 						</tr>
 						<tr>
 							<td><b>상태</b></td>
 							<td>
-								<label><input type="radio" name="brandStatus" value="입점" checked/> 입점</label>&nbsp;
-								<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
-								<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								<c:if test="${searchStatus.searchStatus eq '입점'}">
+									<label><input type="radio" name="brandStatus" value="입점" checked/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq '계약종료'}">
+									<label><input type="radio" name="brandStatus" value="입점"/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료" checked/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq '입점대기'}">
+									<label><input type="radio" name="brandStatus" value="입점"/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기" checked/> 입점대기</label>
+								</c:if>
 							</td>
 						</tr>
 					</table>
@@ -91,7 +108,7 @@
 							<td>${i.brand_code }</td>
 							<td><img src="resources/images/${i.brand_pic }.png" width="40px" height="40px"></td>
 							<td><a href="${goStore }">${i.brand_name }</a></td>
-							<td>입점</td>
+							<td>${searchStatus.searchStatus }</td>
 							<td>${i.brand_count }</td>
 						</tr>					
 					</c:forEach>
