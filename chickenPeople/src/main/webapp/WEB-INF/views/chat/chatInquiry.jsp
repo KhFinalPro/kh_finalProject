@@ -75,10 +75,10 @@
 			}			
 		}
 		
-		sock.onclose = function(){
+ 		sock.onclose = function(){
 			var removeClient = "님이 퇴장하셨습니다.<br>";
 			$("#chat").append(removeClient);
-		}
+		} 
 		
 	</script>
 </body>
