@@ -209,7 +209,7 @@
             //계연이 채팅 연결
             $("#message").on("click",function(){
             	var loginUser="<c:out value='${loginUser.name}'/>";
-        		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1");
+        		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
 				
             })
             
