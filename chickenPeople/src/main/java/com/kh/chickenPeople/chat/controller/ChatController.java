@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.chat.model.service.ChatService;
+import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
 
 @Controller
 public class ChatController {
-//
-//	@Autowired
-//	ChatService chatService;
+
+	@Autowired
+	ChatService chatService;
 	
 	@RequestMapping(value="chatting.do",method=RequestMethod.GET)
 	public ModelAndView goChatting(ModelAndView mv,HttpSession session, String loginUserName) {
 		System.out.println("ㅎㅇ");
 		
-//		ChattingRoom room_data = chatService.selectRoom_data(loginUserName);
-//		System.out.println(room_data);
+		ChattingRoom room_data = chatService.selectRoom_data(loginUserName);
+		System.out.println(room_data);
 		String ChattingRoom_No =null;
 		String Client_Name = null;
-//		
+		
 //		if(room_data==null) {
 //			int result = chatService.createRoom_no(loginUserName);			
 //			if(result>0) {
