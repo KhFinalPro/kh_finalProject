@@ -45,7 +45,7 @@
 	</insert>
 	
 	<select id="selectPaymentInfo" parameterType="string" resultMap="paymentResultSet">
-		SELECT *
+		SELECT ORD_NUM, TO_CHAR(PAY_DATE, 'YYYY/MM/DD HH24:MI') AS PAY_DATE, PAY_RCV, PAY_ADDR, PAY_MSG, PAY_TOAL
 		FROM(
 		    SELECT ORD_NUM, PAY_DATE, PAY_RCV, PAY_ADDR, PAY_MSG, PAY_TOAL
 		    FROM PAYMENT

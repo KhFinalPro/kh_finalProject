@@ -15,11 +15,11 @@
 		
 		
 		/*main body*/
-		#first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
+		#first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color: white; background-color: #2ac1bc;}
 		.first_area{text-align: center;}
 		.second_area{text-align: center; vertical-align:middle;}
 		.tree_area{text-align: center;}
-		.title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
+		.title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color: #735949; background-color: #2ac1bc;}
 		.main_area{margin: 0 auto; width: 90%;}
 		
 		

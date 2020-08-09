@@ -28,14 +28,14 @@
     #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area .menu_num{margin:0; font-size: 25px; top:0px;}
     #my_delivery #my_delivery_info_area #my_menu_info_area .menu_area img{width: 100px; height: 100px;}
 
-    #map{margin: 0 auto; margin-top: 20px; width: 70%; height: 300px; border: 1px solid black;}
+    #map{margin: 0 auto; margin-top: 20px; width: 50%; height: 400px; border: 1px solid black;}
 
     .delivery_info_title{text-align: center;}
     
     #delivery_status{color:blue;}
     
-    #msg{margin:0 auto; width:100%; height:200px; text-align:center;}
-    #msg h1{margin-top:100px; font-size:100px;}
+    #msg_area{text-align:center;}
+	#msg_area > img{width:20%; heigth:20%;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -64,7 +64,7 @@
 	                <p id="order_num" class="delivery_info">주문번호:</p>
 	                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
 	                <p id="delivery_time" class="delivery_info">배달 시간:</p>
-	                <p class="delivery_time delivery_info_detail">주문 테이블에 컬럼 추가 필요</p>
+	                <p class="delivery_time delivery_info_detail">${paymentList.delivery_time }</p>
 	                <p id="delivery_addr" class="delivery_info">주소:</p>
 	                <p id="user_addr" class="delivery_addr delivery_info_detail">${paymentList.pay_addr }</p>
 	                <p id="total_price" class="delivery_info">합계금액:</p>
@@ -92,8 +92,8 @@
 	</c:if>
 	
 	<c:if test="${!empty msg }">
-		<div id="msg">
-			<h1>${msg }</h1>
+		<div id="msg_area">
+			<img src="resources/images/tung.png">
 		</div>
 	</c:if>
 	
@@ -141,6 +141,7 @@
 		   user_addr, 
 	       sto_addr
 	   ];
+	   var listName = ["사용자", "매장"];
 	
 	   listData.forEach(function(addr, index) {
 	       geocoder.addressSearch(addr, function(result, status) {
@@ -152,7 +153,7 @@
 	                   position: coords
 	               });
 	               var infowindow = new daum.maps.InfoWindow({
-	                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+	                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listName[index] + '</div>',
 	                   disableAutoPan: true
 	               });
 	               infowindow.open(map, marker);
