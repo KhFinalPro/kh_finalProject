@@ -118,14 +118,12 @@
 		
 			<!-- test -->
 		<br>
-			<div id ="bContents">
+			<div id ="bContents" style="width:100%; align:center;">
 			</div>
-			
-		<br clear="both">
+	<br clear="both">
 			<div>
-				<button type="button" onclick="removeTable()">마지막꺼 삭제</button>
-				<input type="submit" value="등록하기">&nbsp; 
-				<a href="boardList.do"></a>
+				<button type="button" style="text-align:center" onclick="removeTable()">마지막꺼 삭제</button>
+				<a href="boardList.do">목록</a>
 			</div>
 				
 				<input type="submit" class="button" value="등록" >		
