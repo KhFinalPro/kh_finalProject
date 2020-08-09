@@ -127,6 +127,7 @@ public class StoreController {
 			out.close();
 		}
 	}
+
 	@RequestMapping("/storeJoinForm.do")
 	public ModelAndView storeJoin(ModelAndView mv) {
 	System.out.println("storeJoinForm.do");
@@ -136,7 +137,6 @@ public class StoreController {
 		
 	}
 		
-
 	@RequestMapping("/order.do")
 	public String orderPayController(){
 		
