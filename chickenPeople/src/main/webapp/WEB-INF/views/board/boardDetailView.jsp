@@ -227,7 +227,7 @@
 					</tr>
 		  <!--  insert 완료후 작성 -->
 	
-		 
+		  
 		 </table> 
 		 <div id="contents" style="border:1px solid black">
 		 	<div align="center" border="1px solid black">
