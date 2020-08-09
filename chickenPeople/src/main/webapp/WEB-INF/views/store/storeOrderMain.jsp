@@ -307,6 +307,14 @@
 											<img class="rev_pic" src="resources/review/${r.rev_pic }" alt=""><!-- 리뷰 이미지 -->
 										</c:if>
 									</li>
+									<li>
+										<c:if test="${empty r.rev_re }">
+											<p>답변 없습</p>
+										</c:if>
+										<c:if test="${!empty r.rev_re }">
+											<p><b>사장님 답변 - </b>${r.rev_re }</p>
+										</c:if>
+									</li>
 								</ul>
 								<hr>
 							</c:forEach>

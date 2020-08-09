@@ -16,7 +16,7 @@ public class Payment implements Serializable{
 	
 	//payment
 	private String ord_num;
-	private Date pay_date;
+	private String pay_date;
 	private String pay_rcv;
 	private String pay_addr;
 	private String pay_tel;
@@ -46,7 +46,7 @@ public class Payment implements Serializable{
 	public Payment() {
 		super();
 	}
-	public Payment(int currval, String ord_num, Date pay_date, String pay_rcv, String pay_addr, String pay_tel,
+	public Payment(int currval, String ord_num, String pay_date, String pay_rcv, String pay_addr, String pay_tel,
 			String pay_msg, int pay_toal, String coup_num, String user_id, String pay_method, double user_lat,
 			double user_lng, String ord_status, String ord_cancel, String pay_status, Date delivery_time, int sto_num,
 			int ord_price, int[] menu_numArr, int menu_num, String brand_code, int mord_num) {
@@ -86,10 +86,10 @@ public class Payment implements Serializable{
 	public void setOrd_num(String ord_num) {
 		this.ord_num = ord_num;
 	}
-	public Date getPay_date() {
+	public String getPay_date() {
 		return pay_date;
 	}
-	public void setPay_date(Date pay_date) {
+	public void setPay_date(String pay_date) {
 		this.pay_date = pay_date;
 	}
 	public String getPay_rcv() {
