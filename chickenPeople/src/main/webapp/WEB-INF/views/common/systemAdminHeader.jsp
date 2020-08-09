@@ -67,25 +67,25 @@ body{ background:#e1ecf2; overflow: hidden; }
                 <ul>
                     <li><a href="#"><i class="fas fa-search"></i></a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                    <li><a href="#"><i class="fas fa-user"></i></a></li>
+                    <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
                 </ul>
             </div>
         </div>
             <div class="sidebar">
                 <ul>
-                    <li id="main"><a href="systemAdmin.do">
+                    <li id="main"><a href="brandTotalGraph.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
                         <span class="title">관리자 메인</span>
                     </a></li>
-                    <li id="brand" ><a href="systemAdminBrand.do" >
+                    <li id="brand" ><a href="systemAdminBrand.do?brandName=no&brandStatus=입점" >
                         <span class="icon">
                             <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>
                         <span class="title">브랜드 관리</span>
                     </a></li>
-                    <li id="store"><a href="systemAdminStore.do">
+                    <li id="store"><a href="systemAdminStore.do?storeSearch=&brandCategory=total&status_s=Y">
                         <span class="icon">
                             <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
                         </span>
@@ -103,7 +103,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">쿠폰발행</span>
                     </a></li>
-                    <li id="report"><a href="systemAdminReport.do">
+                    <li id="report"><a href="systemAdminReport.do?rptCategory=total&searchId=&status_s=N">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>

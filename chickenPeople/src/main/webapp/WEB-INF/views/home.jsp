@@ -101,27 +101,26 @@
             
         </section>
 
-	    <h2 align="center" class="title">찜한 매장</h2>    
     	<c:if test="${!empty likeStoreList }">
+		    <h2 align="center" class="title">찜한 매장</h2>    
 	
 	        <section class="main_area">
-	            
 	            <div class="second_area">
-            	<c:forEach var="b" items="${likeStoreList }" begin="0" end="4" step="1">
-	                <div class="place_area bestSto_area" style="margin-right: 10px;">
-	                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
-	                    <a href="#">
-	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
-	                    </a>
-	                    <div align="center">
-	                        <h3>${b.brand_name }</h3>
-	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
-	                        40~50분 소요예정
-	                    </div>
-	                </div>
-                </c:forEach>
-            </div>
+	            	<c:forEach var="b" items="${likeStoreList }" begin="0" end="4" step="1">
+		                <div class="place_area bestSto_area" style="margin-right: 10px;">
+		                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
+		                    <a href="#">
+		                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
+		                    </a>
+		                    <div align="center">
+		                        <h3>${b.brand_name }</h3>
+		                        <h3>${b.sto_name }</h3>
+		                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                        40~50분 소요예정
+		                    </div>
+		                </div>
+	                </c:forEach>
+                </div>
 	        </section>
 		</c:if>
 	    
@@ -163,8 +162,9 @@
 <script>
 	$(function(){
 		$(".bestSto_area").on("click",function(){
-			$sto_num = $(this).children("#sto_num").val();
-			location.href="storeDetail.do?sto_num="+$sto_num;
+			/* $sto_num = $(this).children("#sto_num").val();
+			location.href="storeDetail.do?sto_num="+$sto_num +"&address=" + $("#select_address").val(); */
+			alert("딜리버리 서비스는 딜리버리 페이지를 이용해주세요.");
 		})
 		
 		$(".menu_area").on("click",function(){

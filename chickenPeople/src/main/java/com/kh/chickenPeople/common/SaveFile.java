@@ -12,7 +12,7 @@ public class SaveFile {
 	public SaveFile() {
 		
 	}
-	
+	//상원이꺼
 	public static String saveFile(MultipartFile file, HttpServletRequest request) {
 		// 파일이 저장될 경로를 설정하는 메소드
 		
@@ -51,4 +51,40 @@ public class SaveFile {
 
 		return renameFileName;
 	}
+
+	
+	//다슬꺼
+	public static String saveFile2(MultipartFile files, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		String savePath = root + "\\review";
+	
+		
+
+		File folder = new File(savePath);
+
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+
+		// 업로드 시간을 기준으로 파일명을 변경하자
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originFileName = files.getOriginalFilename();
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+
+		String filePath = folder + "\\" + renameFileName;
+
+		try {
+			files.transferTo(new File(filePath));
+
+		} catch (Exception e) {
+
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+
+		return renameFileName;
+	}
+
+	
 }

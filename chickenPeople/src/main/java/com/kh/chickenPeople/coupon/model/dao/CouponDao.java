@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.chickenPeople.payment.model.vo.Payment;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
 
@@ -29,6 +30,21 @@ public class CouponDao {
 	public Coupon selectCouponSerial(Coupon c) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("couponMapper.selectCouponSerial", c);
+	}
+
+	public ArrayList<Coupon> myCoupon(String id) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("couponMapper.myCouponList", id);
+	}
+
+	public ArrayList<Coupon> pastCoup(String id) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("couponMapper.pastCouponList", id);
+	}
+
+	public int updateMyCoupon(Payment payment) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("couponMapper.updateMyCoupon", payment);
 	}
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="storeMenuMapper">
+
+
+<resultMap id="storeMenuResultSet" type="StoreMenu">
+	<id property="menuCode" column="MENU_CODE"/>
+	<result property="brandCode" column="BRAND_CODE"/>
+	<result property="menuPic" column="MENU_PIC"/>
+	<result property="catName" column="CAT_NAME"/>
+	<result property="menuName" column="MENU_NAME"/>
+	<result property="menuPrice" column="MENU_PRICE"/>
+	<result property="menuExp" column="MENU_EXP"/>
+	<result property="brandName" column="BRAND_NAME"/>
+</resultMap>
+
+
+<!-- 메뉴리스트 -->
+<select id="menuList" resultMap="storeMenuResultSet">
+SELECT B.BRAND_NAME,M.MENU_PIC,MC.CAT_NAME,M.MENU_NAME,M.MENU_PRICE,M.MENU_EXP
+FROM MENU M
+JOIN MENU_CATEGORY MC ON (M.CAT_CODE=MC.CAT_CODE)
+JOIN STORE_INFO SI ON (M.BRAND_CODE=SI.BRAND_CODE)
+JOIN BRAND B ON (M.BRAND_CODE= B.BRAND_CODE)
+WHERE SI.USER_ID=#{userId}
+</select>
+
+</mapper>

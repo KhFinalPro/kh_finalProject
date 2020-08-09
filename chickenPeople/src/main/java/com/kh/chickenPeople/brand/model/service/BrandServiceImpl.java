@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.chickenPeople.brand.model.dao.BrandDao;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 @Service("brandService")
 public class BrandServiceImpl implements BrandService{
@@ -16,13 +17,14 @@ public class BrandServiceImpl implements BrandService{
 	BrandDao brandDao;
 	
 	@Override
-	public int getListCount() {
-		return brandDao.getListCount();
+	public int getListCount(SearchStatus brandSearch) {
+		return brandDao.getListCount(brandSearch);
 	}
 
 	@Override
-	public ArrayList<Brand> selectBrandList(PageInfo pi) {
-		return brandDao.selectBrandList(pi);
+	public ArrayList<Brand> selectBrandList(SearchStatus brandSearch, PageInfo pi) {
+
+		return brandDao.selectBrandList(brandSearch, pi);
 	}
 
 

@@ -8,15 +8,36 @@
   	<result property="brand_yn"	column="BRAND_YN"/>
   	<result property="brand_count" column="BRAND_COUNT"/>
   </resultMap>
-  <select id="getListCount" resultType="_int">
+  
+  <resultMap type="brandTotal" id="brandTotalResultSet">
+  	<id property="brandCode" column="BRAND_CODE"/>
+  	<result property="payTotal" column="PAY_TOTAL"/>
+  </resultMap>
+  <select id="getListCount" resultType="_int" parameterType="SearchStatus">
   	SELECT COUNT(*)
-  	FROM BRAND
+  	FROM (SELECT B.BRAND_CODE AS "BRAND_CODE", BRAND_PIC, BRAND_NAME, COUNT(*) AS "BRAND_COUNT", BRAND_YN
+		  FROM BRAND B
+		  JOIN STORE_INFO SI ON (B.BRAND_CODE = SI.BRAND_CODE)
+	      WHERE BRAND_YN=#{searchStatus}
+	      <if test="searchName!=null">
+	      AND BRAND_NAME LIKE '%'||#{searchName}||'%'
+	      </if>
+	      GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME, BRAND_YN	)	  
   </select>
-  <select id="selectBrand" resultMap="brandResultSet">
-	SELECT B.BRAND_CODE AS "BRAND_CODE", BRAND_PIC, BRAND_NAME, COUNT(*) AS "BRAND_COUNT"
+  <select id="selectBrand" parameterType="SearchStatus" resultMap="brandResultSet">
+  	SELECT B.BRAND_CODE AS "BRAND_CODE", BRAND_PIC, BRAND_NAME, COUNT(*) AS "BRAND_COUNT", BRAND_YN
 	FROM BRAND B
-	JOIN STORE_INFO SI ON B.BRAND_CODE = SI.BRAND_CODE
-	WHERE BRAND_YN='입점'
-	GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME
+	JOIN STORE_INFO SI ON (B.BRAND_CODE = SI.BRAND_CODE)
+	WHERE BRAND_YN=#{searchStatus}
+	<if test="searchName!=null">
+	AND BRAND_NAME LIKE '%'||#{searchName}||'%'
+	</if>
+	GROUP BY B.BRAND_CODE, BRAND_PIC, BRAND_NAME, BRAND_YN	
+  </select>
+  
+  
+  <select id="selectBrandTotal" resultMap="brandTotalResultSet">
+  	SELECT * 
+  	FROM ADMIN_TOTAL_BRAND
   </select>
 </mapper>

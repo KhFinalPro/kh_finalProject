@@ -33,6 +33,11 @@
 		<result property="cat_name" column="CAT_NAME"/>
 	</resultMap>
 	
+	<resultMap type="StoreLike" id="StoreLikeResultSet">
+		<id property="id" column="USER_ID"/>
+		<result property="sto_num" column="STO_NUM"/>
+	</resultMap>
+	
 	<select id="searchList" parameterType="Search" resultMap="storeResultSet">
 		SELECT SI.STO_NUM, STO_NAME, STO_TEL, STO_OPEN, STO_CLOSE, STO_ADDR, STO_INTRO, ORD_LIMIT, DELI_TIME, ENTER_YN, OPEN_YN, DELIVERY, APRV_STATUS, SI.BRAND_CODE, B.BRAND_PIC, BRAND_NAME, AVG(REV_RATE) AS REV_RATE
 		FROM STORE_INFO SI
@@ -85,8 +90,7 @@
 		    WHERE SL.USER_ID = #{id}
 		    GROUP BY SL.STO_NUM, STO_NAME, BRAND_PIC, BRAND_NAME
 		    )
-	</select>
-	
+	</select>	
 	<select id="selectStore" parameterType="_int" resultMap="storeResultSet">
 		SELECT SI.STO_NUM, STO_NAME, STO_TEL, STO_OPEN, STO_CLOSE, STO_ADDR, STO_INTRO, ORD_LIMIT, OPEN_YN, CEO_NAME,
 				DELIVERY, BRAND_PIC, BRAND_NAME, M.MENU_NUM, MENU_NAME, MENU_PRICE, MENU_PIC, MENU_EXP,
@@ -98,4 +102,61 @@
 		WHERE SI.STO_NUM = #{sto_num}
 	</select>
 	
+
+	<select id="getListCount" resultType="_int">
+ 		SELECT COUNT(*) 
+ 		FROM ADMIN_STORE
+ 	</select>
+ 	<select id="getSearchListCount" resultType="_int">
+ 		SELECT COUNT(*)
+		FROM (SELECT *
+			  FROM ADMIN_STORE
+			  WHERE APRV_STATUS=#{searchStatus}
+			  <if test="searchCategory!='total'">
+			  AND BRAND_NAME=#{searchCategory}
+			  </if>
+			  <if test="searchName!=null">
+			  AND STO_NAME LIKE '%'||#{searchName}||'%'
+			  </if>)
+ 	</select>
+ 	<select id="selectStoreList" resultMap="storeResultSet">
+		SELECT * FROM ADMIN_STORE
+		ORDER BY 1
+	</select>
+		<select id="getSearchStoreList" parameterType="SearchStatus" resultMap="storeResultSet">
+			SELECT * FROM ADMIN_STORE
+			WHERE APRV_STATUS=#{searchStatus}
+		<if test="searchCategory!='total'">	
+			AND BRAND_NAME=#{searchCategory}
+		</if>		
+		<if test="searchName!=null">
+			AND STO_NAME LIKE '%'||#{searchName}||'%'
+		</if>
+	</select>
+	
+	<select id="selectStoreOne" resultMap="storeResultSet" parameterType="_int">
+		SELECT *
+		FROM STORE_INFO
+		WHERE STO_NUM=#{storeNum}
+	</select>
+	<select id="checkStatus" parameterType="_int">
+		SELECT ENTER_YN
+		FROM STORE_INFO
+		WHERE STO_NAME=#{storeNum}
+	</select>
+	<update id="updateStatus" parameterType="_int">
+		UPDATE STORE_INFO
+		SET ENTER_YN='N'
+	</update>
+	
+	<select id="selectStoreLiek" parameterType="StoreLike" resultMap="StoreLikeResultSet">
+		SELECT *
+		FROM STORE_LIKE
+		WHERE USER_ID = #{id} AND STO_NUM = #{sto_num}
+	</select>
+	
+	<insert id="insertStoreLike" parameterType="StoreLike">
+		INSERT INTO STORE_LIKE VALUES(#{id}, #{sto_num})
+	</insert>
 </mapper>
+

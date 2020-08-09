@@ -11,4 +11,11 @@ public interface CalendarService {
 
 	ArrayList<Calendar> orderDetailList(HashMap<String, String> map);
 
+	int insertOrderReview(HashMap<String, String> map);
+
+	/* String searchRevNum(); */
+
+	int insertStoreReview(HashMap<String, String> map2);
+
+
 }

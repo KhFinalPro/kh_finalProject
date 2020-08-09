@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.board.model.dao.BoardDao;
 import com.kh.chickenPeople.board.model.vo.Board;
+import com.kh.chickenPeople.board.model.vo.Picture;
 import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
@@ -45,6 +46,24 @@ public class BoardServiceImpl implements BoardService {
 	public int insertBoard(Board b) {
 		
 		return bDao.insertBoard(b);
+	}
+
+	@Override
+	public int selectCurrval() {
+		// TODO Auto-generated method stub
+		return bDao.selectCurrval();
+	}
+
+	@Override
+	public int insertPicture(ArrayList<Picture> pList) {
+		// TODO Auto-generated method stub
+		return bDao.insertPicture(pList);
+	}
+
+	@Override
+	public ArrayList<Picture> selectPicture(int bNum) {
+		// TODO Auto-generated method stub
+		return bDao.selectPicture(bNum);
 	}
 
 	

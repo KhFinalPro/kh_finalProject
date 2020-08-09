@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.chickenPeople.coupon.model.dao.CouponDao;
+import com.kh.chickenPeople.payment.model.vo.Payment;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
 
@@ -32,5 +33,22 @@ public class CouponServiceImpl implements CouponService{
 	public Coupon selectCouponSerial(Coupon c) {
 		// TODO Auto-generated method stub
 		return couponDao.selectCouponSerial(c);
+	}
+
+	@Override
+	public ArrayList<Coupon> myCoupon(String id) {
+		return couponDao.myCoupon(id);
+	}
+
+	@Override
+	public ArrayList<Coupon> pastCoup(String id) {
+		// TODO Auto-generated method stub
+		return couponDao.pastCoup(id);
+	}
+
+	@Override
+	public int updateMyCoupon(Payment payment) {
+		// TODO Auto-generated method stub
+		return couponDao.updateMyCoupon(payment);
 	}
 }

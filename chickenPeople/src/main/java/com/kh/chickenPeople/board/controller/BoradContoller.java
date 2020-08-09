@@ -20,6 +20,7 @@ import com.kh.chickenPeople.board.model.service.BoardService;
 import com.kh.chickenPeople.board.model.vo.Board;
 import com.kh.chickenPeople.board.model.vo.Picture;
 import com.kh.chickenPeople.common.Pagination;
+import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.notice.model.exception.NoticeException;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
@@ -66,16 +67,20 @@ public class BoradContoller {
 
 
 	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
-	public ModelAndView boardDetail(ModelAndView mv, int bNum) {
+	public ModelAndView boardDetail(ModelAndView mv, int bNum, ArrayList<Picture> pList) {
 		
 	
 	//조회수
 		int result= boardService.addReadCount(bNum);
 		if(result>0) {
 		Board board = boardService.selectOne(bNum);
+		
+		pList = boardService.selectPicture(bNum);
+		
 		System.out.println("b조회수"+board);
 		if(board !=null) {
 				mv.addObject("board",board);
+				mv.addObject("pList",pList);
 				mv.setViewName("board/boardDetailView");
 			}else {
 				throw new BoardException("게시판 조회 실패");
@@ -109,44 +114,49 @@ public class BoradContoller {
 			 */
 		
 		ArrayList<Picture> pList = new ArrayList<>();
-		
-		int result1 = boardService.insertBoard(b);	
-		/* int currval = boardService.selectCurrval(); */
+		Member memId = (Member)request.getSession().getAttribute("loginUser");
+		b.setbWriter(memId.getId());
 
-//		int i = 0;
-//		for(MultipartFile m : file) {
-//			if(!m.getOriginalFilename().equals("")) {
-//				System.out.println(m.getOriginalFilename());
-//				Attachment aSample = new Attachment();
-//				aSample.setRefBid(Integer.valueOf(currval).toString());
-//				aSample.setbContent(bCon[i]);
-//				
-//				String renameFileName = saveFile(m,request);
-//				System.out.println(renameFileName);
-//	
-//				aSample.setOriginalFileName(m.getOriginalFilename());
-//				aSample.setRenameFileName(renameFileName);
-//				aList.add(aSample);
-//				i++;
-//			}else {
-//				Attachment aSample = new Attachment();
-//				aSample.setRefBid(Integer.valueOf(currval).toString());
-//				aSample.setbContent(bCon[i]);
-//
-//				aList.add(aSample);
-//				i++;
-//			}
-//		}
-//
-//		int result2 = bService.insertAttachment(aList);
-//		
-//		if(result1 > 0 && result2 > 0) {
-//			return "redirect:blist.do";
-//		}else {
-//			throw new BoardException("게시글 등록 실패!");
-//		}		
+		int result1 = boardService.insertBoard(b);		// 작성자, 게시글 제목, 카테고리
+		int currval = boardService.selectCurrval(); 
+		/* System.out.println("현재 게시글 번호"+currval); */
+
+		int i = 0;
+		for(MultipartFile m : file) {
+			if(!m.getOriginalFilename().equals("")) {
+				System.out.println(m.getOriginalFilename());
+				Picture pic = new Picture();
+				pic.setbNum(currval);
+				if(bContent.length > 0 && bContent[i] != null){	
+				pic.setbContent(bContent[i]);
+				}
+				
+				String renameFileName = saveFile(m,request);
+				/* System.out.println(renameFileName); */
+	
+				pic.setOriFileName(m.getOriginalFilename());
+				pic.setUpFileName(renameFileName);
+				pList.add(pic);
+				i++;
+			}else {
+				Picture pic = new Picture();
+				pic.setbNum(currval);
+				if(bContent.length > 0 && bContent[i] != null){	
+				pic.setbContent(bContent[i]);
+				}
+				pList.add(pic);
+				i++;
+			}
+		}
+
+		int result2 = boardService.insertPicture(pList);
 		
-		return "redirect:boardList.do";
+		if(result1 > 0 && result2 > 0) {
+			return "redirect:boardList.do";
+		}else {
+			throw new BoardException("게시글 등록 실패!");
+		}		
+		
 	}
 
 	public String saveFile(MultipartFile file, HttpServletRequest request) {

@@ -24,7 +24,11 @@ public class OrderStatusController {
 		
 		System.out.println("-------------------------------------------");
 		//주문번호를 활용해서 메뉴 목록을 가져온다.
-		ArrayList<OrderStatus> menuList = orderStatusService.menuInfoSelect(paymentList.get(0).getOrd_num());
+		ArrayList<OrderStatus> menuList = new ArrayList<>();
+		if(!paymentList.isEmpty())
+		{
+			menuList = orderStatusService.menuInfoSelect(paymentList.get(0).getOrd_num());			
+		}
 		System.out.println("menuList : " + menuList);
 		
 		
@@ -32,13 +36,12 @@ public class OrderStatusController {
 		{
 			mv.addObject("paymentList", paymentList.get(0));
 			mv.addObject("menuList", menuList);
-			mv.setViewName("mypage/mypageOrderStatus");
 		}
 		else
 		{
-			
+			mv.addObject("msg", "텅!");
 		}
-		
+		mv.setViewName("mypage/mypageOrderStatus");
 		return mv;
 	}
 }

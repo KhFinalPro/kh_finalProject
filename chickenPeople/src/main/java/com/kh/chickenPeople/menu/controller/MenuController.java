@@ -1,10 +1,13 @@
 package com.kh.chickenPeople.menu.controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -32,11 +35,11 @@ public class MenuController {
 	MenuService menuService;
 	
 	@RequestMapping(value="systemAdminMenu.do", method=RequestMethod.GET)
-	public ModelAndView menuSearch(@RequestParam(value="menuName",required=false) String menuName,
+	public ModelAndView menuSearch(@RequestParam(value="menuName",required=false) String menuName,				//검색 및 초기 SELECT	
 							 @RequestParam(value="menuCategory",required=false) String menuCategory,
 							 @RequestParam(value="status_s",required=false)String status_s,
 							 @RequestParam(value="page",required=false)Integer page,
-							 SearchStatus menuSearch, HttpSession session,
+							 SearchStatus menuSearch, 
 							 ModelAndView mv){
 //		System.out.println("---------------------------------");
 //		System.out.println("menuName:"+menuName);
@@ -93,19 +96,12 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="systemAdminMenuDetail.do", method=RequestMethod.GET)
-	public ModelAndView goMenuDetail(ModelAndView mv, SearchStatus searchStatus,
+	public ModelAndView goMenuDetail(ModelAndView mv, SearchStatus searchStatus,								//메뉴 DETAIL
 									 @RequestParam(value="menuNum") int menuNum,
 									 @RequestParam(value="page",required=false) Integer page,
 									 @RequestParam(value="menuName") String menuName,
 									 @RequestParam(value="menuCategory") String menuCategory,
 									 @RequestParam(value="status_s") String status_s) {
-//		System.out.println("menuNum:"+menuNum);
-//		System.out.println("page:"+page);
-//		System.out.println("menuName:"+menuName);
-//		System.out.println("menuCategory:"+menuCategory);
-//		System.out.println("menuStatus:"+status_s);
-//		System.out.println("-------------------------");
-//		
 		int currentPage = 1;
 		if(page!=null) {
 			currentPage = page;
@@ -116,7 +112,6 @@ public class MenuController {
 		
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
 		Menu m = menuService.selectOneMenu(menuNum);
-		
 		if(m!=null) {
 			mv.addObject("brandList",selectBrandList);
 			mv.addObject("menu",m);
@@ -128,10 +123,11 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="deleteMenu.do",method=RequestMethod.GET)
-	public String goDeleteMenu(Model mv,
+	public String goDeleteMenu(Model mv, HttpServletResponse response,																	//메뉴 DELETE
 							   @RequestParam(value="menuNum",required=false)int menuNum,
 							   @RequestParam(value="menuYN", required=false)String menuYN) {
-		
+		response.setContentType("text/html; charset=UTF-8");
+
 		int result=0;
 		System.out.println("상태:"+menuYN);
 		if(menuYN.equals("N")){
@@ -142,55 +138,77 @@ public class MenuController {
 			System.out.println("YY");
 			result = menuService.changeMenuN(menuNum);			
 		}
+		PrintWriter out;
+		if(result>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('메뉴 상태가 변경 되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println(result);
-		mv.addAttribute("menuName","");
-		mv.addAttribute("menuCategory","total");
-		mv.addAttribute("status_s","N");
-		
-		return "redirect:systemAdminMenu.do";
+	
+		return null;
 	}
+	
+	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)										
+	public ModelAndView goInsertMenu(ModelAndView mv, Menu m, HttpServletRequest request,
+									 HttpServletResponse response,											//메뉴 INSERT
+									 @RequestParam(value="thumbnailImg",required=false) MultipartFile file) {															//메뉴 INSERT
+		response.setContentType("text/html; charset=UTF-8");
+
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
+		m.setMenu_Yn("N");
+		
+		if(!file.getOriginalFilename().contentEquals("")) {
+			String fileName = saveFile(file,request);
+			System.out.println(fileName);
+			int position = fileName.lastIndexOf(".");
+			System.out.println(position);
+			String OnlyFileName = fileName.substring(0,position);
+			System.out.println(OnlyFileName);
+			m.setMenu_Pic(OnlyFileName);
+		}
+		int insertResult = menuService.insertNewMenu(m);
+		PrintWriter out;
+		if(insertResult>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('메뉴가 추가 되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		mv.addObject("brandList",selectBrandList);
+		mv.addObject("categoryList",selectCategoryList);
+		
+		return mv;
+	}
+
 	@RequestMapping(value="menuInsert.do", method=RequestMethod.GET)
-	public ModelAndView goInsertMenuPage(ModelAndView mv) {
+	public ModelAndView goInsertMenuPage(ModelAndView mv, Menu m) {												//메뉴 INSERT 이동 페이지
 		
 		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
 		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
-
+		
 		mv.addObject("brandList",selectBrandList);
 		mv.addObject("categoryList",selectCategoryList);
 
 		mv.setViewName("systemAdmin/menu/systemAdminMenuInsert");
 		return mv;
 	}
-	@RequestMapping(value="menuInsertData.do", method=RequestMethod.POST)
-	public ModelAndView goInsertMenu(ModelAndView mv) {
-		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
-		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
-		
-		mv.addObject("brandList",selectBrandList);
-		mv.addObject("categoryList",selectCategoryList);
-		
-		return mv;
-	}
-	@RequestMapping(value="goUpdateMenu.do")
-	public ModelAndView goUpdateMenuPage(ModelAndView mv, 
-										 @RequestParam(value="menuNum")int menuNum) {
-		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
-		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
-		Menu selectOneMenu = menuService.selectOneMenu(menuNum);
-		
-		mv.addObject("brandList",selectBrandList);
-		mv.addObject("categoryList",selectCategoryList);
-		System.out.println(selectCategoryList);
-		mv.addObject("menu",selectOneMenu);
-		mv.setViewName("systemAdmin/menu/systemAdminMenuUpdate");
-		return mv;
-	}
-	@RequestMapping(value="goUpdateMenuPage.do", method=RequestMethod.GET)
-	public ModelAndView goUpdateMenu(HttpServletResponse response, ModelAndView mv,Menu menu,
-									 @RequestParam(value="menu_Pic", required=false)MultipartFile file) {
+	
+	@RequestMapping(value="goUpdateMenuPage.do")
+	public ModelAndView goUpdateMenu(HttpServletResponse response,												//메뉴 UPDATE
+									 HttpServletRequest request,
+									 ModelAndView mv, Menu menu) {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println("수정:"+menu);
-		System.out.println("파일:"+file);
+
 		int updateMenu = menuService.updateMenu(menu);
 		
 		PrintWriter out;
@@ -200,10 +218,47 @@ public class MenuController {
 				out.println("<script>alert('해당항목이 수정되었습니다.'); location.href='systemAdminMenu.do?menuName=&menuCategory=total&status_s=N';</script>");
 				out.flush();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		return null;
+	}
+	
+	@RequestMapping(value="goUpdateMenu.do")
+	public ModelAndView goUpdateMenuPage(ModelAndView mv, 														//메뉴 UPDATE이동 페이지
+										 @RequestParam(value="menuNum")int menuNum) {
+		ArrayList<Brand> selectBrandList = menuService.selectBrandList();
+		ArrayList<Category> selectCategoryList = menuService.selectCategoryList();
+		Menu selectOneMenu = menuService.selectOneMenu(menuNum);
+		
+		mv.addObject("brandList",selectBrandList);
+
+		mv.addObject("categoryList",selectCategoryList);
+		System.out.println(selectCategoryList);
+		mv.addObject("menu",selectOneMenu);
+		mv.setViewName("systemAdmin/menu/systemAdminMenuUpdate");
 		return mv;
+	}
+	
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources"); //webapp 및 resources
+		String savePath = root+"\\menu";
+		File folder = new File(savePath);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originFileName = file.getOriginalFilename();
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
+								+"."+originFileName.substring(originFileName.lastIndexOf(".")+1);
+		
+		String filePath = folder+"\\"+originFileName;
+		try {
+			file.transferTo(new File(filePath));
+			//이상태로 파일업로그가 되지 않는다. 왜냐하면 파일 제한 크기에 대한 설정이 없기 때문이다
+			//그래서 파일 크기 지정을 root-context.xml에서 해주자
+			
+		} catch (Exception e) {
+			System.out.println("파일전송에러:"+e.getMessage());
+		} //이때 파일이 저장된다.
+		return originFileName;
 	}
 }
