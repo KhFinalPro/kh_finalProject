@@ -116,29 +116,7 @@
                 <br clear="both">
             </div>
 
-            <%-- <div id="header_nav">
-                
-                <ul>
-                    <li>
-                    	<c:if test="${!empty sessionScope.loginUser }">
-                        	<a id="delivery">딜리버리</a>
-                        </c:if>
-                        <c:if test="${empty sessionScope.loginUser }">
-                    		<a id="noneLogin">딜리버리</a>
-                        </c:if>
-                    </li>
-                    <li>
-                        <a href="bungList.do">치킨번개</a>
-                    </li>
-                    <li>
-                        <a href="boardList.do">맛잘알</a>
-                    </li>
-                    <li>
-                        <a href="nList.do">공지사항</a>
-                    </li>
-                </ul>
-
-            </div> --%>
+           
             <br clear="both">
         </header>
 
@@ -199,7 +177,6 @@
             //딜리버리 버튼
             $("#delivery").on("click",function(){
             	if($("#address option:selected").val() == ""){
-            		alert("주소를 선택해주세요");
             	}
             	else{
 	            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();            		
