@@ -60,7 +60,7 @@ public class NoticeDao {
 	
 	public int deleteNotice(int nNum) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.delete("noticeMapper.deleteNotice",nNum);
+		return sqlSessionTemplate.update("noticeMapper.deleteNotice",nNum);
 	}
 
 	

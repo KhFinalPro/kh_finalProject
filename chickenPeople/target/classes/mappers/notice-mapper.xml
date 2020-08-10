@@ -16,6 +16,7 @@
   	<select id ="selectNoticeList" resultMap="noticeResultSet">
   		SELECT *
   		FROM NOTICE
+  		WHERE N_STATUS = 'N'
   		ORDER BY N_DATE DESC 
   		<!-- 최신 순 내림차순 -->
   	</select>
@@ -23,6 +24,7 @@
 	 <select id="getListCount" resultType="_int">
 	  	SELECT COUNT(*)
 	  	FROM NOTICE
+	  	WHERE N_STATUS = 'N'
 	  </select>
 
   	
@@ -61,8 +63,8 @@
   		WHERE N_NUM=#{nNum}
   	</update>
   	 
-  	 <delete id ="deleteNotice" parameterType="_int">
-  	 	DELETE FROM NOTICE
+  	 <update id ="deleteNotice" parameterType="_int">
+  	 	UPDATE NOTICE SET N_STATUS = 'Y'
   	 	WHERE N_NUM=#{nNum}
-  	 </delete>
+  	 </update>
 </mapper>

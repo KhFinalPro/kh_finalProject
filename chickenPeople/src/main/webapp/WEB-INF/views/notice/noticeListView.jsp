@@ -18,58 +18,21 @@
     #section #article ul{margin-left: 50px;}
     #section #article ul li{list-style: none;}
     #section #article ul li .content{font-size:50px; font-weight: 600; color: #2CBFB1; margin:0;}
-    #section #article ul li .notice_date{font-size: 20px; color: rgb(172, 171, 171);}
-
-	.button{
-	  background:#1AAB8A;
-	  color:#fff;
-	  border:none;
-	  position:relative;
-	  height:50px;
-	  font-size:1.2em;
-	  padding:0 2em;
-	  cursor:pointer;
-	  transition:800ms ease all;
-	  outline:none;
-	}
-	.button:hover{
-	  background:#fff;
-	  color:#1AAB8A;
-	}
-	.button:before,button:after{
-	  content:'';
-	  position:absolute;
-	  top:0;
-	  right:0;
-	  height:2px;
-	  width:0;
-	  background: #1AAB8A;
-	  transition:400ms ease all;
-	}
-	.button:after{
-	  right:inherit;
-	  top:inherit;
-	  left:0;
-	  bottom:0;
-	}
-	.button:hover:before,button:hover:after{
-	  width:100%;
-	  transition:800ms ease all;
-	}
-	
+    #section #article ul li .notice_date{font-size: 20px; color: rgb(172, 171, 171);}	
 	  
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
     .pppp > ol > li:first-child { border-left : 1px solid black; }
     .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
-    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
+    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; padding:0px;}
     .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
     .page-list1 { background-color:#1AAB8A; }
     .page-cur {width:100%; height:100%; font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
     .page-nocur {width:100%; height:100%; font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+
 </style>
 
 
@@ -127,7 +90,7 @@
 						<a style = "color:#9c9c9c"  disabled>Next</a>
 					</c:if>
 					<c:if test="${pi.currentPage lt pi.maxPage }">
-						<c:url var="blistAfter" value="noticeList.do">
+						<c:url var="blistAfter" value="nList.do">
 							<c:param name="page" value="${pi.currentPage+1 }"/>
 						</c:url>
 						<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
@@ -138,12 +101,10 @@
 				 
 	
 	
-			<div style="float:right">
+			<div id="writer_btn">
 		 		<c:if test="${loginUser.id eq 'Admin' }">
 			  		<button class="button" onclick ="nWrite()">글쓰기</button>
 				</c:if>
-				<c:url var="home" value="home.do"/>
-
 			</div>
 			<!-- [bWrite/goHome]button end-->
 
