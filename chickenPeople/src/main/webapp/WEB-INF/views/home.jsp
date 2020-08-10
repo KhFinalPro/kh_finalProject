@@ -166,7 +166,7 @@
 	}
 	
 	function matjalal(){
-		
+		location.href="boardList.do";
 	}
 	
 	function coupon(){

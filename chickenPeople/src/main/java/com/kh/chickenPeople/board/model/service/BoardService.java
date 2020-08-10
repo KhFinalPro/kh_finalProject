@@ -26,6 +26,8 @@ public interface BoardService {
 
 	ArrayList<Picture> selectPicture(int bNum);
 
+	int updateThumbnail(Board b);
+
 
 	
 
