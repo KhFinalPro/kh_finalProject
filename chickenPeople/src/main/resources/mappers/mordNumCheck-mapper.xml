@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mordNumCheckMapper">
+
+	<resultMap id="mordNumCheckMapperResultSet" type="MordNumCheck">
+		<id property="jumund_num" column="JUMUND_NUM"/>
+		<result property="menu_num" column="MENU_NUM"/>
+		<result property="menu_name" column="MENU_NAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="mord_num" column="MORD_NUM"/>
+	</resultMap>
+	<insert id="insertMordNumCount" parameterType="MordNumCheck">
+		INSERT INTO MORDNUM_COUNT VALUES(SEQ_JUMUND_NUM.NEXTVAL, #{menu_num}, #{menu_name}, #{price})
+	</insert>
+	
+	<select id="selectMordNumCount" resultMap="mordNumCheckMapperResultSet">
+		SELECT MENU_NUM, MENU_NAME, SUM(PRICE) AS PRICE, COUNT(MENU_NUM) AS MORD_NUM
+		FROM MORDNUM_COUNT
+		GROUP BY MENU_NUM, MENU_NAME
+	</select>
+	
+	<delete id="deleteMordNumCount">
+		DELETE FROM MORDNUM_COUNT
+	</delete>
+</mapper>

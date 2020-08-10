@@ -38,6 +38,7 @@
 		<typeAlias type="com.kh.chickenPeople.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
 		<typeAlias type="com.kh.chickenPeople.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.chickenPeople.board.model.vo.Picture" alias="Picture"/>
+		<typeAlias type="com.kh.chickenPeople.store.model.vo.MordNumCheck" alias="MordNumCheck"/>
 	</typeAliases>
 	
 	<mappers>
@@ -62,6 +63,6 @@
 		<mapper resource="/mappers/storeMenu-mapper.xml"/>
 		<mapper resource="/mappers/report-mapper.xml"/>
 		<mapper resource="/mappers/payment-mapper.xml"/>
-
+		<mapper resource="/mappers/mordNumCheck-mapper.xml"/>
 	</mappers>
 </configuration>

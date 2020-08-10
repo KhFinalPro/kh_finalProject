@@ -79,7 +79,7 @@
 		                	<input type="hidden" id="menu_num" value="${m.menu_num }">
 		                    <p class="menu_num menu_info">${m.mord_num }</p>
 		                    <img class="menu_pic menu_info" src="resources/menu/${m.menu_pic }.jpg">
-		                    <p class="menu_name menu_info">핫 후라이드<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
+		                    <p class="menu_name menu_info">${m.menu_name }<br><span class="price"><fmt:formatNumber value="${m.menu_price }" type="currency"/>원</span></p>
 		                </div>
 		                <br clear="both">
 		                <br>

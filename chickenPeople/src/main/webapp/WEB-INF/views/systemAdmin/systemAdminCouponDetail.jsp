@@ -60,7 +60,8 @@
 				</div>
 				
 				<div id="create_coup_area">
-					<input type="submit" id="create_coup_btn" value="쿠폰 수정하기">
+					<input type="submit" id="create_coup_btn" value="쿠폰 수정하기"><br>
+					<input type="button" class="coup_delete_btn" id="create_coup_btn" value="쿠폰 삭제하기">
 				</div>
 				
 			</form>

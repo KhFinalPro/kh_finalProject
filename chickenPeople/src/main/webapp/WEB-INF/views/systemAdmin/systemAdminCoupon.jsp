@@ -12,11 +12,11 @@
 	#coupon_nv{margin:0 auto; width:80%; text-align: right; margin-bottom: 20px;}
 	#coupon_nv #couponCreate{width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
 	#coupon_nv #couponCreate:hover{color:white; background-color:#2e4ead;}
-	.coupon{width: 49.5%; height: 150px; margin-bottom:10px; display:inline-block; border:1px solid black;}
-	.coupon img{width:100%; height: 100%;}
-	#coupon_area{width:100%; height: 500px;}
+	.coupon{width: 49.5%; height: 200px; margin-bottom:10px; display:inline-block;}
+	.coupon img{width:100%; height: 200px;}
+	#coupon_area{width:100%; height: 700px;}
 	#page_area{margin:0 auto; width:50%; text-align:center;}
-	.page_btn{font-size:20px; margin-right:5px;}
+	.page_btn{font-size:30px; font-weight:600; margin-right:5px;}
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
