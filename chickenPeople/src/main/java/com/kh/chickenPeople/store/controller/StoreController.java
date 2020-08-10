@@ -23,6 +23,7 @@ import com.kh.chickenPeople.coupon.model.service.CouponService;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
+import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
@@ -177,45 +178,54 @@ public class StoreController {
 	//주문버튼 클릭시
 	@RequestMapping(value="paymentView.do", method=RequestMethod.GET)
 	public ModelAndView paymentView(ModelAndView mv, HttpServletRequest request, @RequestParam(value="menu_num") int[] menu_num_arr,
-									int total_price, int sto_num, String address, String latlng, String brand_code)
+			@RequestParam(value="price") int[] price_arr, @RequestParam(value="menu_name") String[] menu_name_arr, int total_price, int sto_num, String address, String latlng, String brand_code)
 	{
 		HttpSession session = request.getSession();
 
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		
-		ArrayList<Menu> menuList = new ArrayList<>();
-		
-		
+		int result = 0;
 		for(int i = 0; i<menu_num_arr.length; i++)
 		{
-			Menu m = storeService.selectMenu(menu_num_arr[i]);
 			
-			menuList.add(m);
+			MordNumCheck muc = new MordNumCheck(menu_num_arr[i], price_arr[i], menu_name_arr[i]);
+			
+			//임의의 테이블에 insert하기
+			result = storeService.insertMordNumCount(muc);
+			
+		}
+		ArrayList<MordNumCheck> mordNumCheckList = new ArrayList<>();
+		if(result > 0)
+		{
+			//select한 값을 넣는다.
+			mordNumCheckList = storeService.selectMordNumCount();			
 		}
 		
+		//테이블의 데이터 지우기
+		int deleteResult = storeService.deleteMordNumCount();
+
 		//회원이 가지고있는 쿠폰
-//		ArrayList<Coupon> myCouponList = 
 		ArrayList<Coupon> myCouponList = couponService.myCoupon(loginUser.getId());
-		if(!menuList.isEmpty() && !myCouponList.isEmpty())
+		
+		if(!mordNumCheckList.isEmpty() && !myCouponList.isEmpty())
 		{
 			mv.addObject("brand_code", brand_code);
 			mv.addObject("latlng", latlng);
 			mv.addObject("myCouponList", myCouponList);
 			mv.addObject("address", address);
-			mv.addObject("menuList", menuList);
+			mv.addObject("menuList", mordNumCheckList);
 			mv.addObject("total_price", total_price);
 			mv.addObject("sto_num", sto_num);
 		}
-		else if(!menuList.isEmpty() && myCouponList.isEmpty())
+		else if(!mordNumCheckList.isEmpty() && myCouponList.isEmpty())
 		{
 			mv.addObject("brand_code", brand_code);
 			mv.addObject("latlng", latlng);
 			mv.addObject("address", address);
-			mv.addObject("menuList", menuList);
+			mv.addObject("menuList", mordNumCheckList);
 			mv.addObject("total_price", total_price);
 			mv.addObject("sto_num", sto_num);
 		}
-		else if(menuList.isEmpty() && myCouponList.isEmpty())
+		else if(mordNumCheckList.isEmpty() && myCouponList.isEmpty())
 		{
 			System.out.println("구매할 메뉴가 없음!!");
 		}

@@ -10,7 +10,7 @@
 </head>
 <style>
 	.button{
-	  background:#1AAB8A;
+	  background:#2CBFB1;
 	  color:#fff;
 	  border:none;
 	  position:relative;
@@ -23,7 +23,7 @@
 	}
 	.button:hover{
 	  background:#fff;
-	  color:#1AAB8A;
+	  color:#2CBFB1;
 	}
 	.button:before,button:after{
 	  content:'';
@@ -32,7 +32,7 @@
 	  right:0;
 	  height:2px;
 	  width:0;
-	  background: #1AAB8A;
+	  background:#2CBFB1;
 	  transition:400ms ease all;
 	}
 	.button:after{
@@ -48,14 +48,54 @@
 	
 	 table {
 	    width: 100%;
-	    border-top: 1px solid #444444;
+	    border-top: 1px solid #2CBFB1;
 	    border-collapse: collapse;
 		  }
 	  th, td {
-	    border-bottom: 1px solid #444444;
+	    border-bottom: 1px solid #2CBFB1;
 	    padding: 10px;
 	  }
 	  
+	 /* 글쓰기 버튼 */
+	  .wbutton{
+	  background:#F2C2CB;
+	  color:#fff;
+	  border:none;
+	  position:relative;
+	  height:50px;
+	  font-size:1.2em;
+	  padding:0 2em;
+	  cursor:pointer;
+	  transition:800ms ease all;
+	  outline:none;
+	}
+	.wbutton:hover{
+	  background:#fff;
+	  color:#F2C2CB;
+	}
+	.wbutton:before,wbutton:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background:#F2C2CB;
+	  transition:400ms ease all;
+	}
+	.wbutton:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	  background:#F2C2CB;
+	  
+	}
+	.wbutton:hover:before,wbutton:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
+	
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -63,7 +103,7 @@
     .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
     .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
     .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
-    .page-list1 { background-color:#1AAB8A; }
+    .page-list1 { background-color:#2CBFB1; }
     .page-cur { font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
@@ -81,13 +121,13 @@
 	  
 		  <table align="center"  width="100%" id="listArea"> 
 		  <br><br>
-	  <h1 align="center">맛잘알 리뷰 게시판</h1>
+	  <h1 align="center" style="color:#2CBFB1">맛잘알 리뷰 게시판</h1>
 		  <br><br><br>
 		  
 		  	<c:if test="${empty loginUser }">
 			 	회원가입이 필요한 서비스 입니다.
 			</c:if>
-				  <tr>
+				  <tr style="color:#2CBFB1">
 				  	<th>번호</th>
 				  	<th>분류</th>
 				  	<th width="45%">제목</th>
@@ -98,13 +138,13 @@
 				  </tr>
 	
 				<c:forEach var="b" items="${boardList }">
-					<tr align="center">
+					<tr align="center" style="color:#ced4da">
 						 	<td>	
 						 	<c:if test="${!empty loginUser }">
 								<c:url var="bdetail" value="bdetail.do">
 						  			<c:param name="bNum" value="${b.bNum }"/>
 						  		</c:url>
-						  		<a href="${bdetail }"style="text-decoration:none;">${b.bNum}</a>
+						  		<a href="${bdetail }"style="text-decoration:none; color:#D96262">${b.bNum}</a>
 						  	</c:if>
 						  	<c:if test="${empty loginUser }">${b.bNum }</c:if>
 						  	</td>
@@ -114,13 +154,13 @@
 							  		<c:url var="bdetail" value="bdetail.do">
 							  			<c:param name="bNum" value="${b.bNum }"/>
 							  		</c:url>
-							  		<a href="${bdetail }" style="text-decoration:none;">${b.bTitle}</a>
+							  		<a href="${bdetail }" style="text-decoration:none; color:#D96262">${b.bTitle}</a>
 						  		</c:if>
 						  		<c:if test ="${empty loginUser }">
 						  			${b.bTitle }
 						  		</c:if>
 					  	</td>
-						  	<td>${b.userId}</td>
+						  	<td>${b.bWriter}</td>
 						  	<td width="15%">${b.bDate}</td>
 						  	<td >${b.bCount}</td>
 						  	<td >${b.bHit}</td>
@@ -137,12 +177,15 @@
 		 		$(function() {
 			$("#listArea td").mouseenter(function() {
 				$(this).parent().css({
-					"background" : "darkgray",
+					"background" : "#2CBFB1",
 					"cursor" : "pointer"
+					
 				});
 			}).mouseout(function() {
 				$(this).parent().css({
-					"background" : "white"});
+					"background" : "white"
+						
+				});
 				}).click(function(){
 					var nid=$(this).parent().children("input").val();
 	
@@ -192,7 +235,7 @@
 		  
 			 <div style="float:right">
 			<c:if test ="${!empty loginUser }">
-			  	<button class="button" onclick ="bWrite()">글쓰기</button>
+			  	<button class="wbutton" onclick ="bWrite()">글쓰기</button>
 			  </c:if>
 			  	<button class="button" onclick ="goHome()">home</button>
 			  

@@ -180,143 +180,37 @@ html, body {
 				<!--  insert 완료후 작성 -->
 			</table>
 
-			<div style="float: right;">
-				<c:if test="${loginUser.id eq 'Admin' }">
-					<button onclick="UpNotice()">수정하기</button>
-					<button onclick="DelNotice()">삭제하기</button>
-				</c:if>
-			</div>
-			<br>
-			<br> <br>
-			<br> <br>
-			<br>
-			<!-- 수정하기 -->
-			<script>
-		 	function UpNotice(){
-		 		location.href="nupView.do?nNum=${notice.nNum}";
-		 	}
-		 </script>
-
-			<!-- 삭제하기 -->
-			<script>
-		 	function DelNotice(){
-		 		location.href="ndelete.do?nNum=${notice.nNum}";
-		 	}
-		 </script>
-
-			<!-- 댓글 등록 -->
-			<table align="center" width="500">
-				<tr>
-					<td><textarea cols="80" rows="7" id="rContent"></textarea></td>
-					<td><input type="button" id="rSubmit" class="button"
-						value="등록하기"></td>
-				</tr>
-			</table>
-
-			<!-- 댓글 목록 -->
-			<table align="center" width="500">
-				<thead>
-					<tr>
-						<td colspan="2"><b id="rCount"></b></td>
-					</tr>
-				</thead>
-			</table>
-
-			<!-- 댓글 ajax -->
-			<script>
-		 
- 		 	function getReplyList(){
-				var bId = ${board.bId};
-				
-				$.ajax({
-					url:"rList.do",
-					data:{userId:userId},
-					dataType:"json",
-					success:function(data){
-						$tableBody = $("#rtb tbody");
-						$tableBody.html("");
-						
-					
-						var $tr;
-						var $rWriter; 
-						var $rContent; 
-						var $CreateDate; 
-						
-						
-						$("rCount").text("댓글("+data.length+")");
-						
-						if(data.length > 0){		// 댓글이 하나 이상 존재하면
-							for(var i in data){
-								$tr = $("<tr>");
-								$rWriter=$("<td width='100'>").text(data[i].rWriter);
-								$rContent=$("<td>").text(data[i].rContent);
-								$rCreateDate=$("<td width='100'>").text(data[i].rCreateDate);
-								
-								$tr.append($rWriter);
-								$tr.append($rContent);
-								$tr.append($rCreateDate);
-								$tableBody.append($tr);
-							}
-						}else{						// 댓글이 없으면
-							$tr = $("<tr>");
-							$rContent=$("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-							$tr.append($rContent);
-							
-							$tableBody.append($tr);
-						}
-					},
-					error:function(request, status, errorData){
-						alert("error code: " + request.status + "\n"
-								+"message: " + request.responseText
-								+"error: " + errorData);
-						}
 			
-		 	} 
-					
-	// 댓글 달기
-					
-					$(function(){
-				 		getReplyList();
-				 		
-				 		setInterval(function(){
-				 			getReplyList();
-				 		}, 10000);
-				 		
-				 		$("#rSubmit").on("click",function(){
-				 			var rContent = $("#rContent").val();
-				 			var refBid = ${board.bId};
-				 			
-				 			$.ajax({
-				 				url:"addReply.do",
-				 				data:{rContent:rContent, refBid:refBid},
-				 				success:function(data){
-				 					if(data=="success"){
-				 						getReplyList();
-				 						
-				 						$("rContent").val("");
-				 					}
-				 				},
-				 				error:function(request, status, errorData){
-									alert("error code: " + request.status + "\n"
-											+"message: " + request.responseText
-											+"error: " + errorData);
-				 				}
-				 			})
-				 		})
-				 	})
-				 	
-		 </script>
-
-			<br>
-			<br> <br>
 			<br> <br>
 			<br>
 			<div align="center">
-				<button onclick="toNlist()" value="nList.do">목록</button>
-				<!-- 왜 안되지? -->
-				<br>
+				
+					<c:if test="${loginUser.id eq 'Admin' }">
+						<button  class="ubutton" onclick="UpNotice()">수정하기</button>
+					</c:if>
+					<button onclick="toNlist()" value="nList.do">목록</button>		
+					<c:if test="${loginUser.id eq 'Admin' }">
+						<button class="dbutton" onclick="DelNotice()">삭제하기</button>
+					</c:if>
 			</div>
-
+			
+				<br>
+				<br> <br>
+				<br> <br>
+				<br>
+				<!-- 수정하기 -->
+				<script>
+			 	function UpNotice(){
+			 		location.href="nupView.do?nNum=${notice.nNum}";
+			 	}
+			 </script>
+	
+				<!-- 삭제하기 -->
+				<script>
+			 	function DelNotice(){
+			 		location.href="ndelete.do?nNum=${notice.nNum}";
+			 	}
+			 </script>
 
 
 			<!-- 목록으로~ -->
@@ -331,19 +225,7 @@ html, body {
 
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<br>
 	<jsp:include page="../common/footer.jsp" />
 </body>

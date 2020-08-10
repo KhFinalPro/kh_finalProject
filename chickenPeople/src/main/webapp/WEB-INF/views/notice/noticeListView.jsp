@@ -101,7 +101,7 @@
 					  			<c:url var="ndetail" value="ndetail.do">
 					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
-					  			<a href="${ndetail }" style="text-decoration:none; ">${n.nNum}</a>
+					  			<a href="${ndetail }" style="text-decoration:none; color:white">${n.nNum}</a>
 						 </td>
 						
 					  	<td width="45%">
@@ -109,7 +109,7 @@
 					  			<c:url var="ndetail" value="ndetail.do">
 					  				<c:param name="nNum" value="${n.nNum }"/>
 					  			</c:url>
-					  			<a href="${ndetail }" style="text-decoration:none; ">${n.nTitle}</a>
+					  			<a href="${ndetail }" style="text-decoration:none;color:black ">${n.nTitle}</a>
 					  	
 					  	</td>
 					  	<td>${n.userId }</td>

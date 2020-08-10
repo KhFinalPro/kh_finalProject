@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#coupon_area{margin: 0 auto; margin-top: 20px; width: 70%; text-align: center;}
+	#coupon_area{margin: 0 auto; margin-top: 20px; width: 55%; text-align: center;}
 	#coupon_area p{margin: 0; width: 100%; height: 50px; line-height: 50px; text-align: center; font-size: 40px; font-weight: 600; color:#735949;}
 	/* #coupon_area .coupon{width: 1000px; height: 300px; margin-bottom: 10px; background-image: url("../workspace/images/coupon1.png");} */
 	#coupon_area .coupon{width: 1000px; height: 100%; margin-bottom: 10px;}
@@ -16,7 +16,7 @@
 	#coupon_area .coupon ul{bottom: 10px;}
 	#coupon_area .coupon .coup_term{text-align: right; margin-right: 10px; font-size: 20px; font-weight: 600; color: black;}
 
-	.showMsg{position:fixed; width:30%; height:200px; z-index:100; left:35%; top: 100px; text-align:center; font-size:30px; font_weight:600; background-color: white;}
+	.showMsg{position:fixed; width:30%; height:200px; z-index:100; left:35%; top: 100px; text-align:center; font-size:30px; font_weight:600; background-color: white; display:none;}
 	.close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
 </style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -43,20 +43,32 @@
     </section>
     
     
-    <c:if test="${!empty msg }">
-	    <div class="showMsg">
-	    	<img class="close" src="resources/images/close.png"/>
-	    	${msg }
-	   	</div>	
-    </c:if>
+    <input type="hidden" id="msg" value="${msg }">
+    <div class="showMsg">
+    	<img class="close" src="resources/images/close.png"/>
+   	</div>	
 	<%@ include file="../common/footer.jsp" %>
 </body>
 <script>
     $(function(){
         $(".coupon").on("click",function(){
-            $coup_serial = $(this).children("#coup_serial").val()
-            location.href="couponIssue.do?id="+$("#id").val()+"&coup_serial="+$coup_serial;
+        	if($("#id").val() != ""){
+        		console.log($(this).children("#coup_serial").val());
+        		$coup_serial = $(this).children("#coup_serial").val()
+	            location.href="couponIssue.do?id="+$("#id").val()+"&coup_serial="+$coup_serial;    
+        	}
+        	else{
+        		$(".showMsg").children("p").remove();
+        		$(".showMsg").css("display","block");
+	            $(".showMsg").append("<p>로그인시 이용가능.</p>");
+        	}
         })
+        
+        if($("#msg").val() != ""){
+        	$(".showMsg").children("p").remove();
+        	$(".showMsg").css("display","block");
+            $(".showMsg").append("<p>"+$("#msg").val()+"</p>");
+        }
         
         $(".close").on("click",function(){
         	$(".showMsg").css('display','none');

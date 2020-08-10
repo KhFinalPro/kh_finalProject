@@ -3,7 +3,7 @@
 <mapper namespace="boardMapper">
 	<resultMap id="boardResultSet" type="Board">
 		<id property="bNum" column="B_NUM"/>
-		<result property="userId" column="USER_ID"/>
+		<result property="bWriter" column="B_WRITER"/>
 		<result property="bCate" column="B_CATE"/>
 		<result property="bTitle" column="B_TITLE"/>
 		<result property="bCont" column="B_CONT"/>
@@ -14,6 +14,18 @@
 		<result property="bUpDate" column="B_UP_DATE"/>
 		<result property="bStatus" column="B_STATUS"/>
 	</resultMap>
+	
+	
+	<resultMap id ="pictureResultSet" type="Picture">
+		<id property="picNum" column="PIC_NUM"/>
+		<result property="oriFileName" column="ORI_FILENAME"/>
+		<result property="upFileName" column="UP_FILENAME"/>
+		<result property="bNum" column="B_NUM"/>
+		<result property="bContent" column="B_CONTENT"/>
+		<result property="status" column="STATUS"/>
+		
+	</resultMap>
+	
 	
 	<select id ="selectBoardList" resultMap="boardResultSet">
 		SELECT *
@@ -38,10 +50,34 @@
 		WHERE B_NUM =#{bNum}
 	</update>
 	
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO BOARD
+		VALUES (SEQ_B_NUM.NEXTVAL,#{bWriter},#{bCate},#{bTitle},'test1',0,0,SYSDATE,null,null,'N')
+	</insert>
 
-
 	
+	<select id="selectCurrval" resultType="_int">
+		SELECT SEQ_B_NUM.CURRVAL
+		FROM DUAL
+	</select>
 	
+	<insert id="insertPicture" parameterType="Picture">
+		INSERT INTO PICTURE VALUES(
+			SEQ_PIC_NUM.NEXTVAL
+			,#{oriFileName}
+			,#{upFileName}
+			,#{bNum}
+			,#{bContent}
+			,'Y'
+		)
+	</insert>
 	
+	<select id="selectPicture" parameterType="_int" resultMap="pictureResultSet">
+		SELECT *
+		FROM PICTURE
+		WHERE B_NUM = #{bNum}
+		AND STATUS = 'Y'
+		ORDER BY PIC_NUM 
+	</select>
 	
 </mapper>

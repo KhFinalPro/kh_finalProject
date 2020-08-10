@@ -15,6 +15,8 @@
             #coupon_area .coupon .create_date{margin: 0; margin-top: 10px; text-align: right; font-size: 20px; font-weight: 600; color: black;}
             #coupon_area .coupon ul{bottom: 10px;}
             #coupon_area .coupon .coup_term{text-align: right; margin-right: 10px; font-size: 20px; font-weight: 600; color: black;}
+        	#msg_area{text-align:center;}
+			#msg_area > img{width:20%; heigth:20%;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     </head>
@@ -50,7 +52,9 @@
             </c:if>
             
             <c:if test="${empty myCoupon && empty pastCoup }">
-            	<h1>텅!</h1>
+            	<div id="msg_area">
+					<img src="resources/images/tung.png">
+				</div>
             </c:if>
             
         </section>

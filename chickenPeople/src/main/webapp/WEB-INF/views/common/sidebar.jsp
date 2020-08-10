@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style>
-		#mypage_nav{margin-top:200px}
+		#mypage_nav{margin-top:100px}
 		   	.mypageTitle{
             text-align: center;
             margin-top: 120px;

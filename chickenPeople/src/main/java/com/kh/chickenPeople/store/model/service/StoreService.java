@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
+import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
@@ -29,6 +30,13 @@ public interface StoreService {
 	Menu selectMenu(int menu_num);
 
 	int selectReivewCount(int sto_num);
+	
+	int insertMordNumCount(MordNumCheck muc);
+	
+	ArrayList<MordNumCheck> selectMordNumCount();
+	
+	int deleteMordNumCount();
+	
 	//------------------------------------------------------------------------------
 	ArrayList<Brand> selectBrandList();							//관리자 _ brand list
 
@@ -47,6 +55,12 @@ public interface StoreService {
 	String checkStatus(int storeNum);
 
 	int updateStatus(int storeNum);
+
+	
+
+	
+
+	
 
 
 }
