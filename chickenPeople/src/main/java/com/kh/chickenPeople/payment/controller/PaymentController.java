@@ -36,7 +36,8 @@ public class PaymentController {
 		System.out.println(payment);
 		int currval = 0;
 		
-		currval = paymentService.insertAll(payment);		
+		currval = paymentService.insertAll(payment);
+		
 		System.out.println("currval : " + currval);
 		//다중 insert에 필요한 리스트 맵
 		ArrayList<Payment> list = new ArrayList<>();
@@ -65,7 +66,7 @@ public class PaymentController {
 			Payment pay = paymentService.selectPayment(payment.getUser_id());
 			if(!payment.getCoup_num().isEmpty())	//사용한 쿠폰이 있으면
 			{
-				int update = couponService.updateMyCoupon(payment);				
+				int update = couponService.updateMyCoupon(payment);	//사용한 쿠폰이 있으면 업데이트				
 			}
 			mv.addObject("payInfo", pay);
 		}
