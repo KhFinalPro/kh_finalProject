@@ -116,7 +116,7 @@
                 <br clear="both">
             </div>
 
-            <div id="header_nav">
+            <%-- <div id="header_nav">
                 
                 <ul>
                     <li>
@@ -138,7 +138,7 @@
                     </li>
                 </ul>
 
-            </div>
+            </div> --%>
             <br clear="both">
         </header>
 

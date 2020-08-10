@@ -9,7 +9,7 @@
 <title>치킨의 민족</title>
 	<style>
 
-		#storeList{margin: 0 auto; width: 100%; margin-top: 200px; text-align: center;}
+		#storeList{margin: 0 auto; width: 100%; margin-top: 150px; text-align: center;}
 		#store_category{float: right; width: 100px; height: 30px; border: 1px solid black; margin-bottom: 10px; margin-right:20px;}
 
 		.store_area{margin:0 auto; margin-right:5px; margin-left:5px;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; float:left;}
@@ -32,6 +32,8 @@
 		
 		#store_count{font-size: 30px;}
 		#store_count>b{font-size:50px;}
+		
+		#msg{font-size:25px; font-weight:600;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -39,35 +41,43 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="storeList">
-		<input type="hidden" id="select_latlng" value="${latlng }">
-		<input type="hidden" id="select_address" value="${address }">
-        <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
-        <p>${address }</p>
-        <select name="store_category" id="store_category">
-            <option value="distance">거리순</option>
-            <option value="good">인기순</option>
-        </select>
-    
-        <br clear="both">
-        <hr style="color: gray;">
         
-		<c:forEach var="d" items="${deliveryList }">
-	        <div class="store_area">
-	        	<input type="hidden" id="sto_num" name="sto_num" value="${d.sto_num }"/>
-	            <ul class="store">
-	                <li>
-	                    <div class="store_img">
-	                        <img src="resources/images/${d.brand_pic }.png" alt="${d.brand_pic }">
-	                    </div>
-	                    <ul>
-	                        <li class="store_name"><b>${d.sto_name }</b></li>
-	                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
-	                        <li class="store_delivery_time">40~50분</li>
-	                    </ul>
-	                </li>
-	            </ul>
-	        </div>
-		</c:forEach>
+		<c:if test="${empty deliveryList }">
+			<p id="msg">주소를 선택해주세요~</p>
+			<img src="resources/images/tung.png">
+		</c:if>
+		
+		<!-- 주소지 입력시 -->
+		<c:if test="${!empty deliveryList }">	 
+			<input type="hidden" id="select_latlng" value="${latlng }">
+			<input type="hidden" id="select_address" value="${address }">
+	        <p id="store_count"><b>${count }</b>개 치킨집 배달 가능</p>
+	        <p>${address }</p>
+	        <select name="store_category" id="store_category">
+	            <option value="distance">거리순</option>
+	            <option value="good">인기순</option>
+	        </select>
+	    
+	        <br clear="both">
+	        <hr style="color: gray;">       
+			<c:forEach var="d" items="${deliveryList }">
+		        <div class="store_area">
+		        	<input type="hidden" id="sto_num" name="sto_num" value="${d.sto_num }"/>
+		            <ul class="store">
+		                <li>
+		                    <div class="store_img">
+		                        <img src="resources/images/${d.brand_pic }.png" alt="${d.brand_pic }">
+		                    </div>
+		                    <ul>
+		                        <li class="store_name"><b>${d.sto_name }</b></li>
+		                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
+		                        <li class="store_delivery_time">40~50분</li>
+		                    </ul>
+		                </li>
+		            </ul>
+		        </div>
+			</c:forEach>
+		</c:if>
         
         
     </section>
