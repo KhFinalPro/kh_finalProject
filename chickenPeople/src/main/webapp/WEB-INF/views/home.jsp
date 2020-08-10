@@ -39,12 +39,12 @@
     <div class="contents">
         <div class="banner">
             <ul>
-                <li><a href="couponAccept.do"><img src="resources/images/benu1.png" width="100%" height="300px"></a></li>  <!--쿠폰함-->
-                <li><a href="bungList.do"><img src="resources/images/benu2.png" width="100%" height="300px"></a></li>  <!--번개-->
-                <li><a href="#"><img src="resources/images/benu3.png" width="100%" height="300px"></a></li>  <!--배달 현황-->
-                <li><a href="#"><img src="resources/images/benu4.png" width="100%" height="300px"></a></li>  <!--딜리버리-->
-                <li><a href="#"><img src="resources/images/benu5.png" width="100%" height="300px"></a></li>  <!--나의 쿠폰함-->
-                <li><a href="#"><img src="resources/images/benu6.png" width="100%" height="300px"></a></li>  <!--맛잘알-->
+                <li><a href="couponAccept.do"><img src="resources/images/banner1.png" width="100%" height="300px"></a></li>  <!--쿠폰함-->
+                <li><a href="bungList.do"><img src="resources/images/banner2.png" width="100%" height="300px"></a></li>  <!--번개-->
+                <li><a href="#"><img src="resources/images/banner3.png" width="100%" height="300px"></a></li>  <!--배달 현황-->
+                <li><a href="#"><img src="resources/images/banner4.png" width="100%" height="300px"></a></li>  <!--딜리버리-->
+                <li><a href="#"><img src="resources/images/banner5.png" width="100%" height="300px"></a></li>  <!--나의 쿠폰함-->
+                <li><a href="#"><img src="resources/images/banner6.png" width="100%" height="300px"></a></li>  <!--맛잘알-->
             </ul>
         </div>
     </div>
@@ -178,7 +178,7 @@
 	}
 	
 	function notice(){
-		location.href="noticeList.do";
+		location.href="nList.do";
 	}
 
 	$(function(){
