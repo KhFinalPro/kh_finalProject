@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="chatMapper">
+  <resultMap type="ChattingRoom" id="chattingResultSet">
+  	<id property="chattingRoom_no" column="CHATTINGROOM_NO"/>
+  	<result property="client_id" column="USER_ID"/>
+  </resultMap>
   
+  <select id="selectRoom_data" parameterType="String" resultMap="chattingResultSet">
+  	SELECT *
+  	FROM CHATTING_ROOM
+  	WHERE USER_ID=#{userId}
+  </select>
+   <insert id="insertRoom_no" parameterType="ChattingRoom">
+  	INSERT INTO CHATTING_ROOM 
+  	VALUES(SEQ_CHATROOM_NUM.NEXTVAL,#{client_id},'관리자') 
+  </insert>
+  <select id="selectAllRoom_data" resultMap="chattingResultSet">
+  	SELECT * 
+  	FROM CHATTING_ROOM
+  </select>
+
+
 </mapper>

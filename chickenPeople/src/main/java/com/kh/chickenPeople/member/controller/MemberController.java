@@ -65,6 +65,7 @@ public class MemberController {
 		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
 			
 			session.setAttribute("loginUser", member);
+			session.setAttribute("loginUserId", member.getId());
 			session.setAttribute("address", addrList);
 			return "redirect:/loginHome.do?id="+member.getId();
 		}else {

@@ -9,6 +9,9 @@
 <title>관리자 _ 점포 관리</title>
 <!-- 끝! -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /> 
 </head>
 <style>
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
@@ -116,9 +119,10 @@
 				<br><hr><br>
 				<div style="text-align:right;">
 					<button id="back" onclick="history.back(-1)"><b>목록</b></button>
-					&nbsp;<button onclick="location.href='${storeStatusUpdate }'"><b>승인처리</b></button>
-					&nbsp;<button onclick="location.href='${goStoreUpdate}'"><b>정보 수정</b></button>
+					&nbsp;<a href="#giveId" rel="modal:open"><b>승인처리</b></a>
+					&nbsp;<button onclick="location.href='${goStoreUpdate}'"><b>정보 수정</b></button><!-- update는 후순위로 이동!! -->
 				</div>
+
 				<br>
 				<table class="resultTable" >
 					<tr style="height:100px;">
@@ -161,6 +165,41 @@
 $(function(){
 	$("#store").children().addClass('active');
 })
-</script> 
+</script>
+
+ <!-- 쪽지 확인하기 모달 --> 
+ <div id="msgModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
+    <div style="width: 400px; height: 500px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+        <a href="javascript: $('#msgModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+            <img src="resources/images/close.png" style="width: 100%;"/></a>
+        <div style="position: absolute; top : 50px; left:35px;">
+        <table id="receiveMessageModalTable">
+            <tr>
+                <th style="width: 100px; height: 40px;" >보낸 사람</th>
+                <td id="modal_sendId"></td>
+            </tr>
+            <tr >
+                <th style="width: 100px; height: 40px;" >보낸 시각</th>
+                <td id="modal_sendDate"></td>
+            </tr>
+            <tr >
+                <th style="width: 100px; height: 40px;" >Title</th>
+                <td id="modal_msgTitle"></td>
+            </tr>
+        </table>
+    </div>
+    <div style="position: absolute; top : 172px; left:12px;">
+        <ul style="list-style: none;">
+            <li style="margin-bottom: 12px;"><b>Message</b></li>
+            <textarea style="width:300px; height:200px; border:2px solid; border-radius: 13px;" id="modal_msgContent">
+
+            </textarea>
+        </ul>
+        <button type="button" onclick="wantToReply()" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>답장하기</b></button>
+    	
+    
+    </div>
+    </div>
+ </div> 
 </body>
 </html>

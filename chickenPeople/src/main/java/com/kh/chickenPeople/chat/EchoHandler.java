@@ -23,23 +23,18 @@ public class EchoHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) {
 		   Map<String,Object> sessionMap = session.getAttributes();
-		   System.out.println((String)sessionMap.get("room_no"));
 		   
 		   String ChattingRoom_no = (String)sessionMap.get("room_no");
-
 		   Map<String,Object> map = new HashMap<String,Object>();
 		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
-		   
 		   sessionList.add(map);
-		  
 		
 	}
 	
 	 @Override
 	 protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		  
 		  ObjectMapper objectMapper = new ObjectMapper();
 		  Map<String,String> mapReceive = objectMapper.readValue(message.getPayload(), Map.class);
 
@@ -55,7 +50,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   if(ChattingRoom_no.equals(mapReceive.get("room_no"))) {
 				   
-				   String jsonStr = ChattingRoom_no + "|"+ session.getAttributes().get("name") +"|"+mapReceive.get("msg");
+				   String jsonStr = ChattingRoom_no + "|"+ session.getAttributes().get("loginUserId") +"|"+mapReceive.get("msg");
 				   System.out.println(jsonStr);
 				   sess.sendMessage(new TextMessage(jsonStr));
 				   
@@ -67,14 +62,10 @@ public class EchoHandler extends TextWebSocketHandler{
 	 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-		
 		System.out.println("채팅방 퇴장자: " + session.getPrincipal().getName());
 		sessionList.remove(session);
 	}
 	
-	@RequestMapping(value="chattingDB.do")
-	public void goChattingDB(){
-		
-	}
+
 	
 }

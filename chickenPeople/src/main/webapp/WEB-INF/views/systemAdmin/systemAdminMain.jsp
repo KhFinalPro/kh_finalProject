@@ -17,29 +17,10 @@
 
 <style>
 	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
-	.left-box {background: red;
-    width: 50%;}
-	.right-box {
-    width: 50%;}
-	
-	
-	.item {
-		    background: #fff;
-    margin-bottom: 10px;
-    padding: 15px;
-    font-size: 14px;
-    height: 873px;
-    border-bottom-right-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-        margin-top: -30px;
-
-	}
-	
-	.top_menu {
-		width: calc(100% - 75px) !important;
-	}
+	.left-box {background: red; width: 50%;}
+	.right-box { width: 50%;}
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; display: flex; justify-content: center; align-items: center; margin-top: -30px; }
+	.top_menu { width: calc(100% - 75px) !important;}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
@@ -86,8 +67,7 @@ var chartDrowFun = {
 	          var data = new google.visualization.DataTable();
 	          //그래프에 표시할 컬럼 추가
 	          data.addColumn('date' , '날짜');
-	          data.addColumn('number'   , '교촌');
-	  		  data.addColumn('number', 'bbq')
+	          data.addColumn('number'   , '사이트 총 수입');
 
 	          //그래프에 표시할 데이터
 	          var dataRow = [];
@@ -107,7 +87,7 @@ var chartDrowFun = {
 	        	  	<%}%>
 	        	  	  
 		              
-	        	  	  dataRow = [new Date('2020', i), total,i*100000];
+	        	  	  dataRow = [new Date('2020', i), total];
 		              total=0;
 	        	  	  data.addRow(dataRow);
 		              

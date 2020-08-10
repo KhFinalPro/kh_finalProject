@@ -107,6 +107,12 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">신고 관리</span>
                     </a></li>
+                    <li id="chat"><a href="systemAdminChat.do">
+                        <span class="icon">
+                            <i class="fas fa-store" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">1:1 문의</span>
+                    </a></li>
                 </ul>
             </div>
 

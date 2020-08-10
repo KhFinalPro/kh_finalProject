@@ -208,7 +208,7 @@
             
             //계연이 채팅 연결
             $("#message").on("click",function(){
-            	var loginUser="<c:out value='${loginUser.name}'/>";
+            	var loginUser="<c:out value='${loginUser.id}'/>";
         		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
 				
             })
