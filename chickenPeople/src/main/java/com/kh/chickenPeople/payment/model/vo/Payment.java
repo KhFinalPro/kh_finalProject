@@ -42,6 +42,7 @@ public class Payment implements Serializable{
 	private int[] menu_numArr;
 	private int menu_num;
 	private String brand_code;
+	private int[] mord_numArr;
 	private int mord_num;
 	public Payment() {
 		super();
@@ -49,7 +50,7 @@ public class Payment implements Serializable{
 	public Payment(int currval, String ord_num, String pay_date, String pay_rcv, String pay_addr, String pay_tel,
 			String pay_msg, int pay_toal, String coup_num, String user_id, String pay_method, double user_lat,
 			double user_lng, String ord_status, String ord_cancel, String pay_status, Date delivery_time, int sto_num,
-			int ord_price, int[] menu_numArr, int menu_num, String brand_code, int mord_num) {
+			int ord_price, int[] menu_numArr, int menu_num, String brand_code, int[] mord_numArr, int mord_num) {
 		this.currval = currval;
 		this.ord_num = ord_num;
 		this.pay_date = pay_date;
@@ -72,6 +73,7 @@ public class Payment implements Serializable{
 		this.menu_numArr = menu_numArr;
 		this.menu_num = menu_num;
 		this.brand_code = brand_code;
+		this.mord_numArr = mord_numArr;
 		this.mord_num = mord_num;
 	}
 	public int getCurrval() {
@@ -206,6 +208,12 @@ public class Payment implements Serializable{
 	public void setBrand_code(String brand_code) {
 		this.brand_code = brand_code;
 	}
+	public int[] getMord_numArr() {
+		return mord_numArr;
+	}
+	public void setMord_numArr(int[] mord_numArr) {
+		this.mord_numArr = mord_numArr;
+	}
 	public int getMord_num() {
 		return mord_num;
 	}
@@ -223,9 +231,8 @@ public class Payment implements Serializable{
 				+ ", user_lat=" + user_lat + ", user_lng=" + user_lng + ", ord_status=" + ord_status + ", ord_cancel="
 				+ ord_cancel + ", pay_status=" + pay_status + ", delivery_time=" + delivery_time + ", sto_num="
 				+ sto_num + ", ord_price=" + ord_price + ", menu_numArr=" + Arrays.toString(menu_numArr) + ", menu_num="
-				+ menu_num + ", brand_code=" + brand_code + ", mord_num=" + mord_num + "]";
+				+ menu_num + ", brand_code=" + brand_code + ", mord_numArr=" + Arrays.toString(mord_numArr)
+				+ ", mord_num=" + mord_num + "]";
 	}
-	
-	
 	
 }

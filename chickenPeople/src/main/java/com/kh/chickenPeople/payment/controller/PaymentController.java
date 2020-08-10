@@ -50,8 +50,8 @@ public class PaymentController {
 				p.setSto_num(payment.getSto_num());
 				p.setBrand_code(payment.getBrand_code());
 				p.setMenu_num(payment.getMenu_numArr()[i]);
+				p.setMord_num(payment.getMord_numArr()[i]);
 				p.setCurrval(currval);
-				
 				
 				list.add(p);
 			}

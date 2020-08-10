@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
+import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
@@ -60,7 +61,22 @@ public class StoreDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("reviewMapper.selectReviewCount", sto_num);
 	}
+	
+	public int insertMordNumCount(MordNumCheck muc) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("mordNumCheckMapper.insertMordNumCount", muc);
+	}
 
+	public ArrayList<MordNumCheck> selectMordNumCount() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("mordNumCheckMapper.selectMordNumCount");
+	}
+	
+	public int deleteMordNumCount() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("mordNumCheckMapper.deleteMordNumCount");
+	}
+	
 	//-----------------------------------------------------------------------------
 	public ArrayList<Brand> selectBrandList() {
 		return (ArrayList)sqlSessionTemplate.selectList("menuMapper.selectBrand");
@@ -102,6 +118,14 @@ public class StoreDao {
 	public int updateStatus(int storeNum) {
 		return sqlSessionTemplate.update("storeMapper.updateStatus",storeNum);
 	}
+
+	
+
+	
+
+	
+
+	
 	
 
 	
