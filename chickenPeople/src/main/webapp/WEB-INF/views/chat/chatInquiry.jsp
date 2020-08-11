@@ -24,6 +24,31 @@
 	.arrow_box_left:after, .arrow_box:before { right: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
 	.arrow_box_left:after { border-color: rgba(136, 183, 213, 0);border-right-color: #88b7d5;border-width: 13px;margin-top: -13px;}
 	.arrow_box_left:before { border-color: rgba(136, 183, 213, 0); border-right-color: #88b7d5; border-width: 9px; margin-top: -9px; }
+	
+	#chat{height:500px;overflow-y:scroll;overflow-x:hidden;}
+	.scroll-test::-webkit-scrollbar { width: 6px; }
+	.scroll-test::-webkit-scrollbar-track { background-color: transparent; }
+	.scroll-test::-webkit-scrollbar-thumb { border-radius: 3px; background-color: gray; }
+	.scroll-test::-webkit-scrollbar-button { width: 0; height: 0; }
+	#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
 </style>
 </head>
 <body>
@@ -31,10 +56,10 @@
 		<p class="siteLogo"><b>치킨의 민족</b></p>
 	</div>
 	<div>
-		<div id="chat"></div>
+		<div id="chat" class="scroll-test"></div>
 		<form id="chatForm">
-			<input type="text" value="${client_id }" id="clientName"/>
-			<input type="text" value="${room_no }" id="roomNo"/>
+			<input type="hidden" value="${client_id }" id="clientName"/>
+			<input type="hidden" value="${room_no }" id="roomNo"/>
 			<div class="sendArea">
 				<input class="inputText" type="text" id="message"/>
 				<button>send</button>
@@ -86,13 +111,16 @@
 				if(sessionId==currentUserSession){
 					printData = "<div class='arrow_box_right'>["+sessionId+"]"+message+"<br></div><br>";
 					$("#chat").append(printData);
+					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 				}else{
 					printData = "<div class='arrow_box_left'>["+sessionId+"]"+message+"<br></div><br>";
 					$("#chat").append(printData);	
+					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 				}
 			}else{
 				$("#chat").append("상대방의 대화를 불러오지 못했습니다.");
-			}			
+			}
+
 		}
 		
  		sock.onclose = function(){

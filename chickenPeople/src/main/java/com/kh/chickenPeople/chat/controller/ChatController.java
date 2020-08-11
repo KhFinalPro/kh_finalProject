@@ -39,7 +39,6 @@ public class ChatController {
 		session.setAttribute("room_no",room_no);
 		session.setAttribute("client_id", loginUserName);
 
-		
 		mv.setViewName("chat/chatInquiry");
 		return mv;
 	}
@@ -50,7 +49,6 @@ public class ChatController {
 		
 		ChattingRoom room_data = chatService.selectRoom_data(userId);
 		
-		System.out.println("체크"+room_data);
 		String ChattingRoom_No =null;
 		String Client_Name = null;
 		String Client_Id = null;
