@@ -151,16 +151,31 @@
 	                
 	    </div>
 	        <c:if test="${!empty sessionScope.loginUser}">
-			    <div id="login_area" class="banner_login">
-			        <p id="login_title">치킨의민족 시작하기</p>
-			        
-			        <img src="resources/images/user1.png" alt="">
-			
-			        <p id="login">${sessionScope.loginUser.name }</p>
-			
-			        <button class="my_btn btn">MyPage</button>
-			        <button class="logout_btn btn">LogOut</button>
-		        </div>
+	        	<c:if test="${sessionScope.loginUser.uLvl == '관리자' }">
+	        		<div id="login_area" class="banner_login">
+				        <p id="login_title">치킨의민족 시작하기</p>
+				        
+				        <img src="resources/images/user1.png" alt="">
+				
+				        <p id="login">${sessionScope.loginUser.name }</p>
+				
+				        <button class="system_btn btn">System</button>
+				        <button class="logout_btn btn">LogOut</button>
+			        </div>
+	        	</c:if>
+	        	<c:if test="${sessionScope.loginUser.uLvl == '소비자' }">
+	        		<div id="login_area" class="banner_login">
+				        <p id="login_title">치킨의민족 시작하기</p>
+				        
+				        <img src="resources/images/user1.png" alt="">
+				
+				        <p id="login">${sessionScope.loginUser.name }</p>
+				
+				        <button class="my_btn btn">MyPage</button>
+				        <button class="logout_btn btn">LogOut</button>
+			        </div>
+	        	</c:if>
+			    
 			</c:if>
 			
 	        <c:if test="${empty sessionScope.loginUser}">
@@ -304,7 +319,7 @@
 	}
 	
 	function apply(){
-		
+		location.href="storeJoinForm.do";
 	}
 	
 	function notice(){
@@ -317,20 +332,24 @@
         })
 	})
 	
-	$(".login_btn").on("click",function(){
+	$(".login_btn").on("click",function(){		//로그인
 		location.href="loginView.do"
 	})
 	
-	$(".join_btn").on("click",function(){
+	$(".join_btn").on("click",function(){		//회원가입
 		location.href="memberJoinView.do";
 	})
 	
-	$(".my_btn").on("click",function(){
+	$(".my_btn").on("click",function(){			//마이페이지
 		location.href="msgList.do";
 	})
 	
-	$(".logout_btn").on("click",function(){
+	$(".logout_btn").on("click",function(){		//로그아웃
 		location.href="logoutView.do";
+	})
+	
+	$(".system_btn").on("click",function(){		//시스템 페이지 이동
+		location.href="brandTotalGraph.do";
 	})
 	
     var pos = 0;

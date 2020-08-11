@@ -67,6 +67,18 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.deleteNotice(nNum);
 	}
 
+	@Override
+	public int getAdminNoticeListCount() {
+		// TODO Auto-generated method stub
+		return nDao.getAdminNoticeListCount();
+	}
+
+	@Override
+	public ArrayList<Notice> selectAdminNoticeList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return nDao.selectAdminNoticeList(pi);
+	}
+
 
 
 

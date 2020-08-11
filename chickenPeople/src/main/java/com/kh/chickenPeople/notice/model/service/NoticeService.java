@@ -19,6 +19,9 @@ public interface NoticeService {
 	public int updateNotice(Notice n);
 
 	public int deleteNotice(int nNum);
+	
+	public int getAdminNoticeListCount();
+	public ArrayList<Notice> selectAdminNoticeList(PageInfo pi);
 
 
 

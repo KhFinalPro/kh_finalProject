@@ -97,19 +97,6 @@
 					</c:if>
 				</div>
 			</div><!-- pagination class p-parents end --> 
-		
-				 
-	
-	
-			<div id="writer_btn">
-		 		<c:if test="${loginUser.id eq 'Admin' }">
-			  		<button class="button" onclick ="nWrite()">글쓰기</button>
-				</c:if>
-			</div>
-			<!-- [bWrite/goHome]button end-->
-
-	
-		  
 		</div> 
 	</div>
     <jsp:include page="../common/footer.jsp"/>
