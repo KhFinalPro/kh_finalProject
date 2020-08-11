@@ -46,7 +46,7 @@
             #modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         	#modal #search_category{height: 60px;}
         	
-        	#message{position:fixed; top:200px; right:10px; width:50px; height:50px;}
+        	#message{position:fixed; top:200px; right:10px; width:50px; height:50px; z-index:99;}
         	#message:hover{cursor:pointer;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -140,7 +140,7 @@
        </c:if>
        
        <c:if test="${!empty sessionScope.loginUser}">
-			<img id="message" src="resources/images/message.png" alt="">
+			<img id="message" src="resources/images/chatting.png" alt="">
        </c:if>
     </body>
 
