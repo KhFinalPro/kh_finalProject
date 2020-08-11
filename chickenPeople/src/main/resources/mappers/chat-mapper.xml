@@ -5,6 +5,14 @@
   	<id property="chattingRoom_no" column="CHATTINGROOM_NO"/>
   	<result property="client_id" column="USER_ID"/>
   </resultMap>
+  <resultMap type="ChattingMsg" id="chattingMsgResultSet">
+  	<id property="chatMsg_no" column="CHAT_NO"/>
+  	<result property="chattingRoom_no" column="CHATTINGROOM_NO"/>
+  	<result property="chat_msg" column="CHAT_MSG"/>
+  	<result property="talker" column="TALKER"/>
+  	<result property="send_time" column="SEND_TIME"/>
+  </resultMap>
+  
   
   <select id="selectRoom_data" parameterType="String" resultMap="chattingResultSet">
   	SELECT *
@@ -19,6 +27,13 @@
   	SELECT * 
   	FROM CHATTING_ROOM
   </select>
-
+  <insert id="insertMessage" parameterType="ChattingRoom">
+  	INSERT INTO CHAT_DETAIL
+  	VALUES(SEQ_CHAT_MSG_NUM.NEXTVAL,#{chattingRoom_no},#{message}, #{client_id}, SYSDATE )
+  </insert>
+  <select id="selectAllMsg_data" resultMap="chattingMsgResultSet">
+  	SELECT * 
+  	FROM CHAT_DETAIL
+  </select> 
 
 </mapper>

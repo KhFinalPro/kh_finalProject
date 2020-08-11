@@ -6,20 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.chickenPeople.chat.model.service.ChatService;
+import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
 
 @Controller
 public class EchoHandler extends TextWebSocketHandler{
 		
 	//List 사용
 	private List<Map<String,Object>> sessionList = new ArrayList<Map<String,Object>>();
+	
+	@Autowired
+	ChatService chatService;
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws IOException {
@@ -30,16 +35,22 @@ public class EchoHandler extends TextWebSocketHandler{
 		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
+		   
 		   sessionList.add(map);
 		   
 		   for(int i = 0; i<sessionList.size(); i++) {
 			   Map<String,Object> temp = sessionList.get(i);
 			   WebSocketSession sess = (WebSocketSession)temp.get("session");
-			   System.out.println(sess);
 			   
 			   String userId = "member"+"|"+session.getAttributes().get("loginUserId");
+			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
+			   System.out.println(beforeDate);
 			   
-			   sess.sendMessage(new TextMessage(userId+"님이 입장하셨습니다."));
+			   sess.sendMessage(new TextMessage(userId));
+			   String beforeMsg = "msg"+"|"+beforeDate.get(1).getChattingRoom_no()+"|"+beforeDate.get(1).getTalker()+"|"+beforeDate.get(1).getChat_msg();
+			   
+			   sess.sendMessage(new TextMessage(beforeMsg));
+			   
 		   }
 		
 	}
@@ -61,9 +72,14 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   if(ChattingRoom_no.equals(mapReceive.get("room_no"))) {
 				   
-				   String jsonStr = ChattingRoom_no + "|"+ session.getAttributes().get("loginUserId") +"|"+mapReceive.get("msg");
-				   System.out.println(jsonStr);
+				   String jsonStr = "msg"+"|"+ChattingRoom_no + "|"+ session.getAttributes().get("loginUserId") +"|"+mapReceive.get("msg");
+				   
 				   sess.sendMessage(new TextMessage(jsonStr));
+				   
+				   int result = chatService.saveMessage(jsonStr);
+				   if (result>0) {
+					   System.out.println("저장완료다 이녀석들아");
+				   }
 				   
 			   }
 	        }

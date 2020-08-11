@@ -16,7 +16,7 @@
 	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	button{border:1px solid black; background-color:white; color:black; padding:8px;}
-	.arrow_box_right {position: relative; background: #88b7d5; border: 3px solid #88b7d5; width:65%; margin-top:10px; height:40px; margin-left: 130px;}
+	.arrow_box_right {position: relative; background: #88b7d5; border: 3px solid #88b7d5; width:65%; margin-top:10px; height:40px; margin-left: 115px;}
 	.arrow_box_right:after, .arrow_box:before { left: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
 	.arrow_box_right:after { border-color: rgba(136, 183, 213, 0); border-left-color: #88b7d5; border-width: 13px; margin-top: -13px;}
 	.arrow_box_right:before { border-color: rgba(136, 183, 213, 0); border-left-color: #88b7d5; border-width: 13px; margin-top: -13px; }
@@ -83,24 +83,43 @@
 			var currentUserSession = $("#clientName").val();
 			var currentChattingRoom = $("#roomNo").val();
 			
-			room_no = strArray[0];
-			sessionId = strArray[1];
-			message = strArray[2];
-			console.log(data);
-			console.log(currentUserSession);
+			var sessionList ="";
 			var printData = null;
-			if(room_no==currentChattingRoom){
-				if(sessionId==currentUserSession){
-					printData = "<div class='arrow_box_right'>"+message+"<br></div><br>";
-					$("#chat").append(printData);
-					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
+			
+			if(strArray[0]=="member"){
+				printData="<div>";
+				printData+="<div>";
+				printData+="<strong>"+strArray[1]+"님이 입장하셨습니다.</strong>";
+				printData+="</div>";
+				printData+="</div>";
+				console.log(data)
+				sessionList+=printData
+				$("#chat").append(sessionList);
+				
+			}
+			if(strArray[0]=="msg"){
+				room_no = strArray[1];
+				sessionId = strArray[2];
+				message = strArray[3];
+				console.log(data);
+				console.log(currentUserSession);
+				if(room_no==currentChattingRoom){
+					if(sessionId==currentUserSession){
+						
+						printData = "<div class='arrow_box_right'>"+message+"<br></div><br>";
+						
+						$("#chat").append(printData);
+						
+						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
+					}else{
+						printData = "<div class='arrow_box_left'>"+message+"<br></div><br>";
+						$("#chat").append(printData);	
+						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
+					}
 				}else{
-					printData = "<div class='arrow_box_left'>"+message+"<br></div><br>";
-					$("#chat").append(printData);	
-					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
+					$("#chat").append("상대방의 대화를 불러오지 못했습니다.");
 				}
-			}else{
-				$("#chat").append("상대방의 대화를 불러오지 못했습니다.");
+				
 			}
 
 		}
