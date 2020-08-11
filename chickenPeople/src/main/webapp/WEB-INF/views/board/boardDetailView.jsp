@@ -14,7 +14,8 @@
     #section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
     #section #head{margin: 0 auto; width: 80%;}
     #section .head_title img{width: 500px; height: 400px;}
-    #section .head_title{float:left;}
+    #section .head_title{float:left; margin:0 auto; width:49%; text-align:center;}
+    /* #section .head_title:nth-child(1){margin-right:30px;} */
     #section .head_title #title{margin-left: 50px; font-size: 50px; font-weight: 600; margin-top: 90px;}
     #section .head_title .content{margin-left: 50px; font-size: 25px;}
 	#section .head_title a{margin-left:20px;}
@@ -35,7 +36,8 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"/>	
-	
+	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
+	<input type="hidden" id="bNum" value="${board.bNum}">
   	<div id="section">
         <h1>맛잘알 리뷰</h1>
         <div id="head">
@@ -45,7 +47,7 @@
             <div class="head_title">
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
-                <a>조회수 : ${board.bCount } </a><a> 좋아요 : ${board.bHit }</a>
+                <a>조회수 : ${board.bCount } </a><a id="like"> 좋아요 : ${board.bHit }</a>
             </div>
         </div>
 
@@ -73,4 +75,29 @@
   	<br clear="both">
   	<jsp:include page="../common/footer.jsp"/>
 </body>
+<script>
+	$("#like").on("click",function(){
+		$id = $("#id").val();
+		$bNum = $("#bNum").val();
+		console.log($id);
+		$.ajax({
+			url:"boardLike.do",
+			dataType:"json",
+			type:"post",
+			data:{id:$id, bNum:$bNum},
+			success:function(data){
+				if(data.msg == "성공"){
+					$("#like").text("");
+					$("#like").text(" 좋아요 : " + data.count);
+				}
+				else{
+					
+				}
+			},
+			error:function(data){
+				
+			}
+		})
+	})
+</script>
 </html>

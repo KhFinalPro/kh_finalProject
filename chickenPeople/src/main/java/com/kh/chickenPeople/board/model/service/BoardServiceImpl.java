@@ -72,6 +72,42 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.updateThumbnail(b);
 	}
 
+	@Override
+	public Board selectBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.selectBoardLike(b);
+	}
+
+	@Override
+	public int insertBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.insertBoardLike(b);
+	}
+
+	@Override
+	public int selectBoardLikeCount(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.selectBoardLikeCount(b);
+	}
+
+	@Override
+	public int updateBoardHit(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.updateBoardHit(b);
+	}
+
+	@Override
+	public int deleteBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.deleteBoardLike(b);
+	}
+
+	@Override
+	public int downBoardHit(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.downBoardHit(b);
+	}
+
 	
 
 

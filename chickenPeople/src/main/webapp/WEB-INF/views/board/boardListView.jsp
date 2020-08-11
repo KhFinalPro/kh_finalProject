@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-	body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
+	body, hmtl{background: #ecf0f1;}
 	.button{
 	  background:#2CBFB1;
 	  color:#fff;

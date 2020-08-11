@@ -159,7 +159,7 @@
 			        <p id="login">${sessionScope.loginUser.name }</p>
 			
 			        <button class="my_btn btn">MyPage</button>
-			        <button class="msg_btn btn">Message</button>
+			        <button class="logout_btn btn">LogOut</button>
 		        </div>
 			</c:if>
 			
@@ -329,8 +329,8 @@
 		location.href="msgList.do";
 	})
 	
-	$(".msg_btn").on("click",function(){
-		location.href="msgList.do";
+	$(".logout_btn").on("click",function(){
+		location.href="logoutView.do";
 	})
 	
     var pos = 0;
