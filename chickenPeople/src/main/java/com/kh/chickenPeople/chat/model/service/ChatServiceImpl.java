@@ -32,9 +32,6 @@ public class ChatServiceImpl implements ChatService{
 		System.out.println(jsonStr);
 		String[] arr = jsonStr.split("\\|");
 		
-		for(String str: arr) {
-			System.out.println(str);
-		}
 		String room_no = arr[1];
 		String talker = arr[2];
 		String message = arr[3];

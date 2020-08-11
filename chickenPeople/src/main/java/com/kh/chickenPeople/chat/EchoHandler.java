@@ -47,7 +47,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   sess.sendMessage(new TextMessage(userId));
 			   for(int j = 0 ; j < beforeDate.size(); j++) {
-				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {
+				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
 					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg();
 					   sess.sendMessage(new TextMessage(beforeMsg));					   
 				   }
@@ -74,7 +74,10 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   if(ChattingRoom_no.equals(mapReceive.get("room_no"))) {
 				   
-				   String jsonStr = "msg"+"|"+ChattingRoom_no + "|"+ session.getAttributes().get("loginUserId") +"|"+mapReceive.get("msg");
+				   Map<String,Object> tmp = session.getAttributes();
+				   String userId = (String)tmp.get("loginUserId");
+				   
+				   String jsonStr = "msg"+"|"+ChattingRoom_no + "|"+ userId +"|"+mapReceive.get("msg");
 				   
 				   sess.sendMessage(new TextMessage(jsonStr));
 				   
@@ -90,9 +93,29 @@ public class EchoHandler extends TextWebSocketHandler{
 	 
 	 
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-		sessionList.remove(session);
-		System.out.println("채팅방 퇴장");
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		String now_room_no = "";
+		
+		for(int i = 0; i<sessionList.size(); i++) {
+			Map<String,Object> map = sessionList.get(i);
+			String room_no = (String)map.get("room_no");
+			WebSocketSession sess = (WebSocketSession)map.get("session");
+			
+			if(session.equals(sess)) {
+				sessionList.remove(map);
+				break;
+			}
+			Map<String,Object> outputMap = session.getAttributes();
+			String userId = (String)outputMap.get("session");
+			String leaveMsg = "leaveRoom"+"|"+room_no+"|"+userId+"|";
+			System.out.println(leaveMsg);
+			sess.sendMessage(new TextMessage(leaveMsg));
+
+		}
+		
+		
+		
 	}
 	
 

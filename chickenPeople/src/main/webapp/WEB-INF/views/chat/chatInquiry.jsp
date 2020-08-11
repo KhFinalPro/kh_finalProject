@@ -63,6 +63,7 @@
 		
 		sock.onopen = function(){
 			console.log("언제실행되지");
+			
 		};
 		
 		
@@ -106,14 +107,11 @@
 				room_no = strArray[1];
 				sessionId = strArray[2];
 				message = strArray[3];
-
+				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){
-						
 						printData = "<div class='arrow_box_right'>"+message+"<br></div><br>";
-						
 						$("#chat").append(printData);
-						
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
 						printData = "<div class='arrow_box_left'>"+message+"<br></div><br>";
@@ -125,12 +123,31 @@
 				}
 				
 			}
+			if(strArray[0]=="leaveRoom"){
+				room_no = strArray[1];
+				sessionId = strArray[2];
+				
+				printData="<div>";
+				printData+="<div>";
+				printData+="<strong>"+strArray[1]+"님이 입장하셨습니다.</strong>";
+				printData+="</div>";
+				printData+="</div>";
+				console.log(data)
+				sessionList+=printData
+				$("#chat").append(sessionList);
+			}
 
 		}
 		
  		sock.onclose = function(){
-			var removeClient = "님이 퇴장하셨습니다.<br>";
-			$("#chat").append(removeClient);
+			var msgData = {
+					client_name:$("#clientName").val(),
+					room_no:$("#roomNo").val(),
+					msg:"퇴장"
+			}
+			var jsonData = JSON.stringify(msgData);
+			console.log(jsonData);
+			sock.send(jsonData);
 			
 		} 
 		
