@@ -53,7 +53,6 @@
 	
 	<script>
 		var sock = new SockJS("<c:url value="/echo"/>");
-		
 		$(document).ready(function(){
 			$("#chatForm").submit(function(event){
 				event.preventDefault();
@@ -62,6 +61,11 @@
 			});
 		});
 		
+		sock.onopen = function(){
+			console.log("언제실행되지");
+		};
+		
+		
 		function sendMessage(){
 			var msgData = {
 					client_name : $("#clientName").val(),
@@ -69,6 +73,7 @@
 					msg : $("#message").val()
 			};
 			var jsonData = JSON.stringify(msgData);
+			console.log(jsonData);
 			sock.send(jsonData);
 		}
 		
@@ -101,8 +106,7 @@
 				room_no = strArray[1];
 				sessionId = strArray[2];
 				message = strArray[3];
-				console.log(data);
-				console.log(currentUserSession);
+
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){
 						
@@ -127,6 +131,7 @@
  		sock.onclose = function(){
 			var removeClient = "님이 퇴장하셨습니다.<br>";
 			$("#chat").append(removeClient);
+			
 		} 
 		
 	</script>

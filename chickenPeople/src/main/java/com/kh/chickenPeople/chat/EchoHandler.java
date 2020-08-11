@@ -44,12 +44,14 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   String userId = "member"+"|"+session.getAttributes().get("loginUserId");
 			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
-			   System.out.println(beforeDate);
 			   
 			   sess.sendMessage(new TextMessage(userId));
-			   String beforeMsg = "msg"+"|"+beforeDate.get(1).getChattingRoom_no()+"|"+beforeDate.get(1).getTalker()+"|"+beforeDate.get(1).getChat_msg();
-			   
-			   sess.sendMessage(new TextMessage(beforeMsg));
+			   for(int j = 0 ; j < beforeDate.size(); j++) {
+				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {
+					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg();
+					   sess.sendMessage(new TextMessage(beforeMsg));					   
+				   }
+			   }
 			   
 		   }
 		

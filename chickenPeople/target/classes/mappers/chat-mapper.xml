@@ -27,9 +27,9 @@
   	SELECT * 
   	FROM CHATTING_ROOM
   </select>
-  <insert id="insertMessage" parameterType="ChattingRoom">
+  <insert id="insertMessage" parameterType="ChattingMsg">
   	INSERT INTO CHAT_DETAIL
-  	VALUES(SEQ_CHAT_MSG_NUM.NEXTVAL,#{chattingRoom_no},#{message}, #{client_id}, SYSDATE )
+  	VALUES(SEQ_CHAT_MSG_NUM.NEXTVAL,#{chattingRoom_no},#{chat_msg}, #{talker}, SYSDATE )
   </insert>
   <select id="selectAllMsg_data" resultMap="chattingMsgResultSet">
   	SELECT * 
