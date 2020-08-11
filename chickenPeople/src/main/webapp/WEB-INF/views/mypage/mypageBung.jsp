@@ -32,8 +32,9 @@
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
 
-#msg{margin:0 auto; width:100%; height:200px; text-align:center;}
-#msg h1{margin-top:100px; font-size:100px;}
+
+#msg_area{text-align:center;}
+#msg_area > img{width:20%; heigth:20%;}
 </style>
 </head>
 <body>
@@ -64,8 +65,8 @@
 			</div>
 		</c:if>
 		<c:if test="${!empty msg }">
-			<div id="msg">
-				<h1>${msg }</h1>
+			<div id="msg_area">
+					<img src="resources/images/tung.png">
 			</div>
 		</c:if>
 	</section>

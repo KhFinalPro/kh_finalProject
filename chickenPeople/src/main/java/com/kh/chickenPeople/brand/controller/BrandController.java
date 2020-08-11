@@ -36,7 +36,6 @@ public class BrandController {
 			currentPage=page;
 		}
 		
-		System.out.println(currentPage+":"+brandName+":"+brandStatus);
 		if(brandName.equals("no")) {
 			brandName=null;
 			brandSearch.setSearchName(brandName);
@@ -50,7 +49,6 @@ public class BrandController {
 		pi = Pagination.getPageInfo(currentPage, listCount,5);
 		
 		selectTotalBrandList = brandService.selectBrandList(brandSearch,pi);
-		System.out.println(selectTotalBrandList);
 		
 		if(selectTotalBrandList!=null) {
 			mv.addObject("brandList",selectTotalBrandList);

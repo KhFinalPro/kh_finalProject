@@ -116,10 +116,11 @@
             </div>
             <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div>
             <br clear="both">
-            
-            <div id="massage" class="head_tree_line">
-            	<h3 id="massage_click">메세지</h3>
-            </div>
+            <c:if test="${!empty sessionScope.loginUser }">
+	            <div id="massage" class="head_tree_line">
+	            	<h3 id="massage_click">메세지</h3>
+	            </div>
+            </c:if>
             <%-- <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div> --%>
             <br clear="both">
         </div>

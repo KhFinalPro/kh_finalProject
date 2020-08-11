@@ -120,5 +120,14 @@
 		WHERE USER_ID = #{id}
 	</select>
 	
+	<select id="searchBung" parameterType="string" resultMap="bungResultSet">
+		<![CDATA[
+		SELECT BUNG_NUM, USER_ID, BUNG_TITLE, BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
+		FROM BUNG
+        WHERE TO_CHAR(BUNG_DATE, 'MM') = #{month} AND SYSDATE <= BUNG_DATE
+		ORDER BY BUNG_DATE ASC
+		]]>
+	</select>
+	
 	
 </mapper>

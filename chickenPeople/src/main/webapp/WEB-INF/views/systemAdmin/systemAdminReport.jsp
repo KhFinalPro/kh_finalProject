@@ -117,6 +117,7 @@
 								</c:if>
 								<c:url var="updateReport" value="reportUpdate.do">
 								<!-- 값을 가지고 뒤로 넘어가는 거 생각해보기 ***************************************** -->
+									<c:param name="" value=""/>
 								</c:url>
 								<c:if test="${i.rpt_Status eq 'N' }">
 									<td><button onclick="location.href=''">삭제</button></td>

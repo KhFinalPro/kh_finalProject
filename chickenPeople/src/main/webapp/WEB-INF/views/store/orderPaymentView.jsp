@@ -30,7 +30,7 @@
             
             #menuList_area{margin-top: 50px; width:100%; height: 250px; overflow-y: auto;}
             #menuList_area ul li{list-style: none; float: left; line-height: 100px;}
-            #menuList_area ul .text{width: 60%;}
+            #menuList_area ul .text{width: 40%;}
             #menuList_area ul .price{width: 20%; text-align: right;}
             #menuList_area ul .price .order_price{width: 80%; text-align: right; font-size: 25px; font-weight: 400; border: 0px;}
             #menuList_area ul li img{width: 100px; height: 100px;}
@@ -91,16 +91,20 @@
 	            		<input type="hidden" name="brand_code" value="${brand_code }">
 		            	<c:forEach var="m" items="${menuList }">
 			                <ul>
-			            		<input type="hidden" class="menu_num" name="menu_numArr" value="${m.menu_Num }">
-			                    <li>
+			            		<input type="hidden" class="menu_num" name="menu_numArr" value="${m.menu_num }">
+			            		<input type="hidden" name="mord_numArr" value="${m.mord_num }">
+			                    <%-- <li>
 			                        <img src="resources/menu/${m.menu_Pic }.jpg" alt="">
-			                    </li>
+			                    </li> --%>
 			                    <li class="text">
-			                        <a>${m.menu_Name }</a>
+			                        <a>${m.menu_name }</a>
 			                        
 			                    </li>
+			                    <li class="text">
+			                        <a>${m.mord_num }</a>
+			                    </li>
 			                    <li class="price">
-			                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.menu_Price }" pattern=""/>">원</p>
+			                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.price }" pattern=""/>">원</p>
 			                    </li>
 			                    <br clear="both">
 			                </ul>

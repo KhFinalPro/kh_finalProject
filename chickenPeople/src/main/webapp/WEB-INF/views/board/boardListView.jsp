@@ -10,7 +10,7 @@
 </head>
 <style>
 	.button{
-	  background:#1AAB8A;
+	  background:#2CBFB1;
 	  color:#fff;
 	  border:none;
 	  position:relative;
@@ -23,7 +23,7 @@
 	}
 	.button:hover{
 	  background:#fff;
-	  color:#1AAB8A;
+	  color:#2CBFB1;
 	}
 	.button:before,button:after{
 	  content:'';
@@ -32,7 +32,7 @@
 	  right:0;
 	  height:2px;
 	  width:0;
-	  background: #1AAB8A;
+	  background:#2CBFB1;
 	  transition:400ms ease all;
 	}
 	.button:after{
@@ -48,108 +48,81 @@
 	
 	 table {
 	    width: 100%;
-	    border-top: 1px solid #444444;
+	    border-top: 1px solid #2CBFB1;
 	    border-collapse: collapse;
 		  }
 	  th, td {
-	    border-bottom: 1px solid #444444;
+	    border-bottom: 1px solid #2CBFB1;
 	    padding: 10px;
 	  }
 	  
+	 
+	#section{margin: 0 auto; width: 100%; margin-top:150px;}
+	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
+	#main_section>.mja_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
+    #main_section>.mja_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
+    #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
+    #main_section>.mja_area>.mja_logo>img {width: 100%; height: 100%;}
+    #main_section>.mja_area>.first_line {float: left; height: 90%;margin-top: 10px;}
+    #main_section>.mja_area>.mja_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
+	
+	#btn_area{margin: auto; width: 90%; text-align: right;}
+	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
+	#btn_area .wbutton:hover{color: #735949;; border: 2px solid #735949; cursor:pointer;}
+	
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
     .pppp > ol > li:first-child { border-left : 1px solid black; }
     .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
-    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
+    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; padding:0px;}
     .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
     .page-list1 { background-color:#1AAB8A; }
-    .page-cur { font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
-    .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
+    .page-cur {width:100%; height:100%; font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
+    .page-nocur {width:100%; height:100%; font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
 </style>
 
-<body style="background:#e9ecef;">
- <jsp:include page="../common/header.jsp"/>
+<body>
+	<jsp:include page="../common/header.jsp"/>
   
-  <div  style=" width:70%;background:white; margin:0 auto;">
-  <br><br><br>
-	  
-	  <div style="width:80%; height: 1000px; margin:0 auto; ">
-		  <br><br><br><br><br><br>
-	  
-		  <table align="center"  width="100%" id="listArea"> 
-		  <br><br>
-	  <h1 align="center">맛잘알 리뷰 게시판</h1>
-		  <br><br><br>
+	<div id="section">
+
+		<div id="main_section">
 		  
-		  	<c:if test="${empty loginUser }">
-			 	회원가입이 필요한 서비스 입니다.
-			</c:if>
-				  <tr>
-				  	<th>번호</th>
-				  	<th>분류</th>
-				  	<th width="45%">제목</th>
-				  	<th>글쓴이</th>
-				  	<th width="15%">날짜</th>
-				  	<th >조회수</th>
-				  	<th >추천수</th>
-				  </tr>
+
+		<h1 align="center">맛잘알 리뷰</h1>
+
+		  
+	  	<c:if test="${empty loginUser }">
+		 	회원가입이 필요한 서비스 입니다.
+		</c:if>
+		<div id="btn_area">
+			<c:if test ="${!empty loginUser }">
+	  			<button class="wbutton" onclick ="bWrite()">글쓰기</button>
+		  	</c:if>			  
+		</div> <!-- [bWrite/goHome]button end-->
+		<br clear="both">  
 	
-				<c:forEach var="b" items="${boardList }">
-					<tr align="center">
-						 	<td>	
-						 	<c:if test="${!empty loginUser }">
-								<c:url var="bdetail" value="bdetail.do">
-						  			<c:param name="bNum" value="${b.bNum }"/>
-						  		</c:url>
-						  		<a href="${bdetail }"style="text-decoration:none;">${b.bNum}</a>
-						  	</c:if>
-						  	<c:if test="${empty loginUser }">${b.bNum }</c:if>
-						  	</td>
-						  	<td>${b.bCate}</td>
-						  	<td width="45%">
-						  		<c:if test ="${!empty loginUser }">
-							  		<c:url var="bdetail" value="bdetail.do">
-							  			<c:param name="bNum" value="${b.bNum }"/>
-							  		</c:url>
-							  		<a href="${bdetail }" style="text-decoration:none;">${b.bTitle}</a>
-						  		</c:if>
-						  		<c:if test ="${empty loginUser }">
-						  			${b.bTitle }
-						  		</c:if>
-					  	</td>
-						  	<td>${b.userId}</td>
-						  	<td width="15%">${b.bDate}</td>
-						  	<td >${b.bCount}</td>
-						  	<td >${b.bHit}</td>
-					</tr>
-				</c:forEach>
-			 </table>
-			 
-			 <!-- 시간 될때  로그인하면 사진 미리보기처럼! -->
-			  
-			 
-			 
-		<!-- cursor click script -->
-		 <script>
-		 		$(function() {
-			$("#listArea td").mouseenter(function() {
-				$(this).parent().css({
-					"background" : "darkgray",
-					"cursor" : "pointer"
-				});
-			}).mouseout(function() {
-				$(this).parent().css({
-					"background" : "white"});
-				}).click(function(){
-					var nid=$(this).parent().children("input").val();
-	
-				});
-			});
-		</script>	 
-		<!-- cursor click script end -->
+		<c:forEach var="b" items="${boardList }">
+			
+	 		<div class="mja_area">
+                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
+                <div class="mja_logo first_line">
+                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
+                </div>
+                <div class="first_line mja_title">
+                    <h2>제목 : ${b.bTitle }</h2>
+                    <h3>조회수 : ${b.bCount }</h3>
+                    <h3>추천수 : ${b.bHit }</h3>
+                    <h3>등록 날짜 : ${b.bDate }</h3>
+                </div>
+                <br clear="both">
+            </div>
+			
+		</c:forEach>
+
 		
 		
 		 <div class = "p-parents" style="margin:0 auto">
@@ -188,28 +161,28 @@
 	           </div>
 	        </div><!-- pagination class p-parents end --> 
 	
-		  
-		  
-			 <div style="float:right">
-			<c:if test ="${!empty loginUser }">
-			  	<button class="button" onclick ="bWrite()">글쓰기</button>
-			  </c:if>
-			  	<button class="button" onclick ="goHome()">home</button>
-			  
-			  </div> <!-- [bWrite/goHome]button end-->
-	
-			<script>
-				function goHome(){
-					location.href="home.do";
-				}
-				
-				function bWrite(){
-					location.href="bInsertView.do"
-				}
-			</script>
+			
 		 
-	 </div> 
-  </div>
+		</div> 
+	</div>
     <jsp:include page="../common/footer.jsp"/>
 </body>
+<script>
+	function goHome(){
+		location.href="home.do";
+	}
+	
+	function bWrite(){
+		location.href="bInsertView.do"
+	}
+
+	$(function() {
+		$(".mja_area").on("click",function(){
+			var bNum = $(this).children("#bNum").val();
+			location.href="bdetail.do?bNum="+bNum;
+		})
+		
+	
+	});
+</script>
 </html>

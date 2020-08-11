@@ -93,6 +93,11 @@ public class BungDao {
 		return sqlSessionTemplate.insert("messageMapper.insertMessage", m);
 	}
 
+	public ArrayList<Bung> searchBung(String month) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.searchBung", month);
+	}
+
 
 	
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.chickenPeople.board.model.vo.Board;
+import com.kh.chickenPeople.board.model.vo.Picture;
 import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
@@ -42,8 +43,35 @@ public class BoardDao {
 	}
 
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.insert("boardMapper.insertBoard",b);
+	}
+
+	public int selectCurrval() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("boardMapper.selectCurrval");
+	}
+
+	public int insertPicture(ArrayList<Picture> pList) {
+		int result = 0;
+		for(Picture p : pList) {
+			result += sqlSessionTemplate.insert("boardMapper.insertPicture",p);
+		}
+		if(result == pList.size()) {
+			return 1;
+		}else {
+			sqlSessionTemplate.rollback();
+			return 0;
+		}
+	}
+
+	public ArrayList<Picture> selectPicture(int bNum) {
+	
+		return (ArrayList)sqlSessionTemplate.selectList("boardMapper.selectPicture",bNum);
+	}
+
+	public int updateThumbnail(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.updateThumbnail",b);
 	}
 
 	

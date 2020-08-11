@@ -10,6 +10,13 @@
 <title>Insert title here</title>
 </head>
 <style>
+#section{margin:0 auto; width:80%; margin-top:150px;}
+#section #article{width:100%; overflow-y:auto}
+#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
+#section #title{font-size:30px; font-weight: 600; color: black; margin:0; margin-bottom:20px;}
+#section #date{font-size: 20px; color: rgb(172, 171, 171);}
+#section span{margin-left: 20px;}
+#section #article #content{font-size:20px;}
 /* 최종버튼 */
 button {
 	background: #1AAB8A;
@@ -63,9 +70,7 @@ th, td {
 	padding: 10px;
 }
 
-html, body {
-	height: 100%;
-}
+
 
 .wrap {
 	height: 100%;
@@ -102,249 +107,56 @@ html, body {
 </style>
 
 
-<body style="background: #e9ecef;">
+<body>
 	<jsp:include page="../common/header.jsp" />
 
-	<div style="width: 70%; background: white; margin: 0 auto;">
-		<br>
-		<br>
-		<br>
+	<div id="section">
 
-		<div style="width: 80%; height: 1500px; margin: 0 auto;">
-
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<table align="center" cellspacing="" width="80%">
-				<br>
-				<br>
-				<h1 align="center">${notice.nNum}공지사항 상세보기</h1>
-				<br>
-				<br>
-				<br>
-				<tr style="background: #dee2e6">
-					<th>${notice.nNum }</th>
-					<th width="45%">${notice.nTitle }</th>
-					<th>${notice.userId }</th>
-					<th width="20%">${notice.nDate }</th>
-					<th>${notice.nCount }</th>
-				</tr>
-				<%-- 	  
-				 <tr align="center">
-				 	<td>번호</td>
-				 	<td>${notice.nNum }</td>
-				 </tr>
-				  <tr align="center">
-				 	<td>제목</td>
-				 	<td>${notice.nTitle }</td>
-				 </tr>
-				  <tr align="center">
-				 	<td>작성자</td>
-				 	<td>${notice.userId }</td>
-				 </tr>
-				  <tr align="center">
-				 	<td>날짜</td>
-				 	<td>${notice.nDate }</td>
-				 </tr>
-				  <tr align="center">
-				 	<td>조회수</td>
-				 	<td>${notice.nCount }</td>
-				 </tr> --%>
-				<tr>
-					<td colspan="5">${notice.nCont } <br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br> <br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br> <br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<td>
-				</tr>
-
-				<!--  insert 완료후 작성 -->
-			</table>
-
-			<div style="float: right;">
-				<c:if test="${loginUser.id eq 'Admin' }">
-					<button onclick="UpNotice()">수정하기</button>
-					<button onclick="DelNotice()">삭제하기</button>
-				</c:if>
-			</div>
-			<br>
-			<br> <br>
-			<br> <br>
-			<br>
-			<!-- 수정하기 -->
-			<script>
-		 	function UpNotice(){
-		 		location.href="nupView.do?nNum=${notice.nNum}";
-		 	}
-		 </script>
-
-			<!-- 삭제하기 -->
-			<script>
-		 	function DelNotice(){
-		 		location.href="ndelete.do?nNum=${notice.nNum}";
-		 	}
-		 </script>
-
-			<!-- 댓글 등록 -->
-			<table align="center" width="500">
-				<tr>
-					<td><textarea cols="80" rows="7" id="rContent"></textarea></td>
-					<td><input type="button" id="rSubmit" class="button"
-						value="등록하기"></td>
-				</tr>
-			</table>
-
-			<!-- 댓글 목록 -->
-			<table align="center" width="500">
-				<thead>
-					<tr>
-						<td colspan="2"><b id="rCount"></b></td>
-					</tr>
-				</thead>
-			</table>
-
-			<!-- 댓글 ajax -->
-			<script>
-		 
- 		 	function getReplyList(){
-				var bId = ${board.bId};
-				
-				$.ajax({
-					url:"rList.do",
-					data:{userId:userId},
-					dataType:"json",
-					success:function(data){
-						$tableBody = $("#rtb tbody");
-						$tableBody.html("");
-						
-					
-						var $tr;
-						var $rWriter; 
-						var $rContent; 
-						var $CreateDate; 
-						
-						
-						$("rCount").text("댓글("+data.length+")");
-						
-						if(data.length > 0){		// 댓글이 하나 이상 존재하면
-							for(var i in data){
-								$tr = $("<tr>");
-								$rWriter=$("<td width='100'>").text(data[i].rWriter);
-								$rContent=$("<td>").text(data[i].rContent);
-								$rCreateDate=$("<td width='100'>").text(data[i].rCreateDate);
-								
-								$tr.append($rWriter);
-								$tr.append($rContent);
-								$tr.append($rCreateDate);
-								$tableBody.append($tr);
-							}
-						}else{						// 댓글이 없으면
-							$tr = $("<tr>");
-							$rContent=$("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-							$tr.append($rContent);
-							
-							$tableBody.append($tr);
-						}
-					},
-					error:function(request, status, errorData){
-						alert("error code: " + request.status + "\n"
-								+"message: " + request.responseText
-								+"error: " + errorData);
-						}
+		<h1 align="center">공지사항</h1>
 			
-		 	} 
-					
-	// 댓글 달기
-					
-					$(function(){
-				 		getReplyList();
-				 		
-				 		setInterval(function(){
-				 			getReplyList();
-				 		}, 10000);
-				 		
-				 		$("#rSubmit").on("click",function(){
-				 			var rContent = $("#rContent").val();
-				 			var refBid = ${board.bId};
-				 			
-				 			$.ajax({
-				 				url:"addReply.do",
-				 				data:{rContent:rContent, refBid:refBid},
-				 				success:function(data){
-				 					if(data=="success"){
-				 						getReplyList();
-				 						
-				 						$("rContent").val("");
-				 					}
-				 				},
-				 				error:function(request, status, errorData){
-									alert("error code: " + request.status + "\n"
-											+"message: " + request.responseText
-											+"error: " + errorData);
-				 				}
-				 			})
-				 		})
-				 	})
-				 	
-		 </script>
+		
+		<p id="title">${notice.nTitle }</p>
+		<a id="date">${notice.nDate }</a><span>조회수 : ${notice.nCount }</span>
 
-			<br>
-			<br> <br>
-			<br> <br>
-			<br>
-			<div align="center">
-				<button onclick="toNlist()" value="nList.do">목록</button>
-				<!-- 왜 안되지? -->
-				<br>
-			</div>
-
-
-
-			<!-- 목록으로~ -->
-			<script>
-		function toNlist (){
-			location.href="nList.do"; 
-		}
-	</script>
-
-
-
-
+		<hr>
+		<div id="article">
+			
+			<pre id="content">${notice.nCont }</pre>
+		</div>
+		
+		<div align="center">
+			<c:if test="${loginUser.id eq 'Admin' }">
+				<button  class="ubutton" onclick="UpNotice()">수정하기</button>
+			</c:if>
+			<button onclick="toNlist()" value="nList.do">목록</button>		
+			<c:if test="${loginUser.id eq 'Admin' }">
+				<button class="dbutton" onclick="DelNotice()">삭제하기</button>
+			</c:if>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<br>
 	<jsp:include page="../common/footer.jsp" />
 </body>
+
+<script>
+	function UpNotice(){
+		location.href="nupView.do?nNum=${notice.nNum}";
+	}
+
+	
+	<!-- 삭제하기 -->
+
+	function DelNotice(){
+		location.href="ndelete.do?nNum=${notice.nNum}";
+	}
+
+	
+	
+	<!-- 목록으로~ -->
+
+	function toNlist (){
+		location.href="nList.do"; 
+	}
+</script>
 </html>

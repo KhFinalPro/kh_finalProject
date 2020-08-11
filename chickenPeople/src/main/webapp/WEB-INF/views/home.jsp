@@ -8,172 +8,188 @@
 <head>
    <title>치킨의 민족</title>
    <style>
-		.contents{margin: 0 auto; width: 90%; height: 300px; z-index: 0; margin-top: 200px;}
-		.banner {position: relative; width: 1200px; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
-		.banner ul {position: absolute; margin: 0px; padding:0; width: 100%; list-style: none; }
-		.banner ul li {float: left; width: 1200px; height: 300px; margin:0; padding:0;}
+		.contents{margin: 0 auto; width: 100%; height: 300px; z-index: 0; margin-top: 100px;}
+        .banner {position: relative; width: 100%; height: 300px;  margin:0 auto; padding:0; overflow: hidden;}
+        .banner ul {position: absolute; margin: 0px; padding:0; width: 100%; list-style: none; }
+        .banner ul li {float: left; width: 100%; height: 300px; margin:0; padding:0;}
+        .banner ul li a{width: 100%;}
+        
+        
+        /*main body*/
+        .first_area{text-align: center;}
+        .main_area{margin: 0 auto; width: 90%; text-align: center; }
+        .main_area>.first_area>.place_area{width: 32.59%; height: 350px; margin-top: 10px; margin-bottom: 10px; border-radius: 25px; float: left; box-shadow: 0px 5px 5px rgb(226, 226, 226);}
+        .main_area .first_area .place_area a .logo {margin: 0 auto; width: 100%; height: 250px; margin-top: 10px; border-radius: 20px;}
+        .main_area .first_area .place_area div p{font-size: 25px; font-weight: 600;}
+
+        
+        #chicken_live{margin: 0px; font-size: 50px; font-weight: 600; margin-left: 5%; color:#735949;}
 		
-		
-		/*main body*/
-		#first_title{margin: 0; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
-		.first_area{text-align: center;}
-		.second_area{text-align: center; vertical-align:middle;}
-		.tree_area{text-align: center;}
-		.title{margin-top: 20px; width: 100%; height: 50px; line-height: 50px; color:white; background-color: #2ac1bc;}
-		.main_area{margin: 0 auto; width: 90%;}
-		
-		
-		
-		.main_area>.second_area>.place_area{width: 18%; height: 320px; background-color: #BDF2E8; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; display: inline-block; transition: border 0.3s;}
-		.main_area .place_area:hover{border: 2px solid #2ac1bc;}
-		.main_area .second_area .place_area a .logo {margin: auto; width: 100%; height: 150px; margin-top: 10px;}
-		.main_area .second_area .place_area .start{width: 15px; height: 15px;}
-		.menu_area .menu_name{margin:0 auto; width:90%; height:50px;}
-		
-		
+		.showMsg{position:fixed; width:30%; height:200px; z-index:100; left:35%; top: 100px; text-align:center; font-size:30px; font_weight:600; background-color: white; display:none;}
+		.close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
    </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
 	<jsp:include page="common/header.jsp"/>
+	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
 	<br clear="both">
-        <div class="contents">
-            <div class="banner">
-                <ul>
-                    <li><a href="#"><img src="resources/images/benu1.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu2.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu3.png" width="1200px" height="300px"></a></li>
-                    <li><a href="#"><img src="resources/images/benu4.png" width="1200px" height="300px"></a></li>
-                    
-                </ul>
+        
+
+    <div class="contents">
+        <div class="banner">
+            <ul>
+            	<c:if test="${empty sessionScope.loginUser}">
+	            	<li>	
+	                	<a href="#"><img src="resources/images/banner1.png" width="100%" height="300px"></a>  <!--쿠폰함-->
+	                </li>
+                </c:if>
+                <li><img class="myCouponView" src="resources/images/banner5.png" width="100%" height="300px"></li>  <!--나의 쿠폰함-->
+                <li><a href="bungList.do"><img src="resources/images/banner2.png" width="100%" height="300px"></a></li>  <!--번개-->
+                <li><a href="#"><img id="" src="resources/images/banner3.png" width="100%" height="300px"></a></li>  <!--배달 현황-->
+                <li><a href="deliverView.do"><img src="resources/images/banner4.png" width="100%" height="300px"></a></li>  <!--딜리버리-->
+                <li><a href="boardList.do"><img src="resources/images/banner6.png" width="100%" height="300px"></a></li>  <!--맛잘알-->
+            </ul>
+        </div>
+    </div>
+
+    <br clear="both">
+    <p id="chicken_live">Chicken's Minjok LIVE</p>
+
+    
+
+    <section class="main_area">
+        
+    	<div class="first_area">
+        	<div class="place_area" style="margin-right: 10px;" onclick="deliver();">
+                <a href="#">
+                    <img class="logo" src="resources/images/delivery.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>치킨 먹고 싶니~?!?</p>
+                </div>
+            </div>
+            <div class="place_area" style="margin-right: 10px;" onclick="bung();">
+                <a href="#">
+                    <img class="logo" src="resources/images/bung.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>치킨 먹을 사람~~</p>
+                </div>
+            </div>
+            <div class="place_area" style="margin-right: 10px;" onclick="matjalal();">
+                <a href="#">
+                    <img class="logo" src="resources/images/matjalal.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>치킨의 황금 레시피!!</p>
+                </div>
+            </div>
+            <div class="place_area" style="margin-right: 10px;" onclick="coupon();">
+                <a href="#">
+                    <img class="logo" src="resources/images/coupon.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>회원 가입하고 쿠폰 받아가자!!</p>
+                </div>
+            </div>
+            <div class="place_area" style="margin-right: 10px;" onclick="apply();">
+                <a href="#">
+                    <img class="logo" src="resources/images/apply.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>점포신청!!</p>
+                </div>
+            </div>
+            <div class="place_area" style="margin-right: 10px;" onclick="notice();">
+                <a href="#">
+                    <img class="logo" src="resources/images/notice.png" alt="logo">
+                </a>
+                <div align="center">
+                    <p>무슨 공지사항이야~??</p>
+                </div>
             </div>
         </div>
+	</section>
+	<br clear="both">
 
-
-       <br clear="both"><br><br>
-
-
-	
-        <h2 align="center" class="title">베스트 치킨집 Top5</h2>
-
-        <section class="main_area">
-            
-            <div class="second_area">
-            	<c:forEach var="b" items="${bestList }">
-	                <div class="place_area bestSto_area" style="margin-right: 10px;">
-	                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
-	                    <a href="#">
-	                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
-	                    </a>
-	                    <div align="center">
-	                        <h3>${b.brand_name }</h3>
-	                        <h3>${b.sto_name }</h3>
-	                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
-	                        40~50분 소요예정
-	                    </div>
-	                </div>
-                </c:forEach>
-            </div>
-            
-            
-        </section>
-        
-        <h2 align="center" class="title">베스트 메뉴 Top5</h2>
-
-        <section class="main_area">
-            
-            <div class="second_area">
-            	<c:forEach var="m" items="${bestMenuList }" begin="0" end="4" step="1">
-	                <div class="place_area menu_area" style="margin-right: 10px;">
-	                	<input type="hidden" id="brand_code" value="${m.brand_code }"/>
-	                    <a href="#">
-	                        <img class="logo" src="resources/menu/${m.menu_pic }.jpg" alt="logo">
-	                    </a>
-	                    <div align="center">
-	                        <h3>${m.brand_name }</h3>
-	                        <h3 class="menu_name">${m.menu_name }</h3>
-	                    </div>
-	                </div>
-                </c:forEach>
-            </div>
-            
-            
-        </section>
-
-    	<c:if test="${!empty likeStoreList }">
-		    <h2 align="center" class="title">찜한 매장</h2>    
-	
-	        <section class="main_area">
-	            <div class="second_area">
-	            	<c:forEach var="b" items="${likeStoreList }" begin="0" end="4" step="1">
-		                <div class="place_area bestSto_area" style="margin-right: 10px;">
-		                	<input type="hidden" id="sto_num" value="${b.sto_num }"/>
-		                    <a href="#">
-		                        <img class="logo" src="resources/images/${b.brand_pic }.png" alt="logo">
-		                    </a>
-		                    <div align="center">
-		                        <h3>${b.brand_name }</h3>
-		                        <h3>${b.sto_name }</h3>
-		                        <img class="start" src="resources/images/start.png" alt="start"><fmt:formatNumber value="${b.rev_rate }" maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;
-		                        40~50분 소요예정
-		                    </div>
-		                </div>
-	                </c:forEach>
-                </div>
-	        </section>
-		</c:if>
-	    
-	    
 	<%@ include file="../views/common/footer.jsp" %>
+	
+	<div class="showMsg">
+    	<img class="close" src="resources/images/close.png"/>
+    	
+   	</div>	
 </body>
 <script language="JavaScript">
 
-    $(document).ready(function() {
-        var $banner = $(".banner").find("ul");
-
-        var $bannerWidth = $banner.children().outerWidth();//이미지의 폭
-        var $bannerHeight = $banner.children().outerHeight(); // 높이
-        var $length = $banner.children().length;//이미지의 갯수
-        var rollingId;
-
-        //정해진 초마다 함수 실행
-        rollingId = setInterval(function() { rollingStart(); }, 4000);//다음 이미지로 롤링 애니메이션 할 시간차
-    
-        function rollingStart() {
-            $banner.css("width", $bannerWidth * $length + "px");
-            $banner.css("height", $bannerHeight + "px");
-            //alert(bannerHeight);
-            //배너의 좌측 위치를 옮겨 준다.
-            $banner.animate({left: - $bannerWidth + "px"}, 2000, function() { //숫자는 롤링 진행되는 시간이다.
-                //첫번째 이미지를 마지막 끝에 복사(이동이 아니라 복사)해서 추가한다.
-                $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-                //뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
-                $(this).find("li:first").remove();
-                //다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
-                $(this).css("left", 0);
-                //이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
-            });
-        }
-    });  
+	$(document).ready(function() {
+	
+	    var $banner = $(".banner").find("ul");
+	
+	    var $bannerWidth = $banner.children().outerWidth();//이미지의 폭
+	    var $bannerHeight = $banner.children().outerHeight(); // 높이
+	    var $length = $banner.children().length;//이미지의 갯수
+	    var rollingId;
+	
+	    //정해진 초마다 함수 실행
+	    rollingId = setInterval(function() { rollingStart(); }, 4000);//다음 이미지로 롤링 애니메이션 할 시간차
+	
+	    function rollingStart() {
+	        $banner.css("width", $bannerWidth  + "px");
+	        $banner.css("height", $bannerHeight + "px");
+	        //alert(bannerHeight);
+	        //배너의 좌측 위치를 옮겨 준다.
+	        $banner.animate({left: - $bannerWidth + "px"}, 2000, function() { //숫자는 롤링 진행되는 시간이다.
+	            //첫번째 이미지를 마지막 끝에 복사(이동이 아니라 복사)해서 추가한다.
+	            $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+	            //뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
+	            $(this).find("li:first").remove();
+	            //다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
+	            $(this).css("left", 0);
+	            //이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
+	        });
+	    }
+	}); 
 </script>
 
-<!-- 완성되면 매장 상세페이지와 연결할 script -->
+
 <script>
-	$(function(){
-		$(".bestSto_area").on("click",function(){
-			/* $sto_num = $(this).children("#sto_num").val();
-			location.href="storeDetail.do?sto_num="+$sto_num +"&address=" + $("#select_address").val(); */
-			alert("딜리버리 서비스는 딜리버리 페이지를 이용해주세요.");
-		})
+	
+	function deliver(){
+		if($("#id").val() == ""){
+			location.href="deliverView.do";
+		}
+		else{
+			location.href="deliverView.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
+		}
+	}
+	
+	function bung(){
+		location.href="bungList.do";
+	}
+	
+	function matjalal(){
+		location.href="boardList.do";
+	}
+	
+	function coupon(){
+		location.href="couponAccept.do";
+	}
+	
+	function apply(){
 		
-		$(".menu_area").on("click",function(){
-			$brand_code = $(this).children("#brand_code").val();
-			$menu_name = $(this).children("div").children(".menu_name").html();
-			
-			location.href="searchStore.do?brand_code="+$brand_code + "&menu_name=" + $menu_name;
-		})
+	}
+	
+	function notice(){
+		location.href="nList.do";
+	}
+
+	$(function(){
+		$(".close").on("click",function(){
+        	$(".showMsg").css('display','none');
+        })
 	})
+	
 </script>
 
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.dao.StoreDao;
+import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
@@ -70,6 +71,25 @@ public class StoreServiceImpl implements StoreService{
 		// TODO Auto-generated method stub
 		return storeDao.selectReviewCount(sto_num);
 	}
+	
+	@Override
+	public int insertMordNumCount(MordNumCheck muc) {
+		// TODO Auto-generated method stub
+		return storeDao.insertMordNumCount(muc);
+	}
+
+	@Override
+	public ArrayList<MordNumCheck> selectMordNumCount() {
+		// TODO Auto-generated method stub
+		return storeDao.selectMordNumCount();
+	}
+	
+	@Override
+	public int deleteMordNumCount() {
+		// TODO Auto-generated method stub
+		return storeDao.deleteMordNumCount();
+	}
+	
 //----------------------------------------------------------------------------관리자 매장관리
 	@Override
 	public ArrayList<Brand> selectBrandList() {
@@ -116,5 +136,10 @@ public class StoreServiceImpl implements StoreService{
 		return storeDao.updateStatus(storeNum);
 	}
 
+	
+
+	
+
+	
 
 }

@@ -27,6 +27,14 @@ public class DeliveryController {
 	@Autowired
 	DeliveryService deliveryService;
 	
+	@RequestMapping("deliverView.do")
+	public ModelAndView delivery(ModelAndView mv, String latlng, String address) {
+		
+		mv.addObject("latlng", latlng);
+		mv.addObject("address", address);
+		mv.setViewName("delivery/deliveryList");
+		return mv;
+	}
 	
 	@RequestMapping("deliveryList.do")
 	public ModelAndView selectDelivery(ModelAndView mv, String latlng, String address) {

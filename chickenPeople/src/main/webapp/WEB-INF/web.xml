@@ -34,6 +34,7 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- 로그인 만들다가 MemberController부분에서 예외처리할 때 작성하자! -->

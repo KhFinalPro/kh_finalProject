@@ -4,17 +4,16 @@ import java.sql.Date;
 
 public class Notice {
 
-	
-	
-	public int nNum;      //공지사항번호
-	public String nTitle; //제목
-	public String nCont;  //게시판내용
-	public String userId; //작성자
-	public int nCount; 	  //조회수
-	public Date nDate; 	  //게시날짜
-	public Date nDelDate; //삭제날짜
-	public Date nUpDate;  //수정날짜
-	public String nStatus;//삭제여부
+
+	private int nNum;      //공지사항번호
+	private String nTitle; //제목
+	private String nCont;  //게시판내용
+	private String userId; //작성자
+	private int nCount; 	  //조회수
+	private Date nDate; 	  //게시날짜
+	private Date nDelDate; //삭제날짜
+	private Date nUpDate;  //수정날짜
+	private String nStatus;//삭제여부
 	
 	public Notice() {
 		super();

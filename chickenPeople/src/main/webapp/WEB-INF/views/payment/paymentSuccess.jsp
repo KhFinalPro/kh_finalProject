@@ -31,7 +31,7 @@
 			<a class="title">받는사람 : </a><span id="address">${payInfo.pay_rcv }</span><br>
 			<a class="title">메세지 : </a><span id="address">${payInfo.pay_msg }</span><br>
 			<br>
-			<button id="home" style="margin-right:10px;">메인화면</button><button id="delivery" style="margin-left:10px;">배달현황</button>
+			<button id="home" style="margin-right:10px;">메인화면</button><button id="orderStatus" style="margin-left:10px;">배달현황</button>
 		</div>
 	</section>
 	
@@ -43,7 +43,7 @@
 			location.href="loginHome.do?id="+$("#id").val();
 		})
 		
-		$(document).on("click","#delivery",function(){
+		$(document).on("click","#orderStatus",function(){
 			location.href="orderStatus.do?id="+$("#id").val();
 		})
 		

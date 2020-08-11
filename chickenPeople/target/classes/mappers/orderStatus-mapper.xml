@@ -21,10 +21,11 @@
 		<result property="lat" column="LAT"/>
 		<result property="lng" column="LNG"/>
 		<result property="sto_addr" column="STO_ADDR"/>
+		<result property="delivery_time" column="DELIVERY_TIME"/>
 	</resultMap>
 	
 	<select id="paymentInfoSelect" parameterType="string" resultMap="orderStatusResultSet">
-		SELECT P.ORD_NUM, TO_DATE(PAY_DATE,'YYYY/MM/DD HH24:MI') AS PAY_DATE, PAY_ADDR, PAY_TOAL, ORD_STATUS
+		SELECT P.ORD_NUM, TO_CHAR(PAY_DATE,'YYYY/MM/DD HH24:MI') AS PAY_DATE, PAY_ADDR, PAY_TOAL, ORD_STATUS, TO_CHAR(DELIVERY_TIME,'YYYY/MM/DD HH24:MI') AS DELIVERY_TIME
 		FROM PAYMENT P
 		JOIN JUMUN J ON P.ORD_NUM = J.ORD_NUM
 		WHERE J.USER_ID = #{id} AND ORD_CANCEL = 'N' AND NOT ORD_STATUS = '배달완료'

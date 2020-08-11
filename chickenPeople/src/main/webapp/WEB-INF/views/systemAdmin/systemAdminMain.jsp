@@ -17,29 +17,10 @@
 
 <style>
 	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
-	.left-box {background: red;
-    width: 50%;}
-	.right-box {
-    width: 50%;}
-	
-	
-	.item {
-		    background: #fff;
-    margin-bottom: 10px;
-    padding: 15px;
-    font-size: 14px;
-    height: 873px;
-    border-bottom-right-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-        margin-top: -30px;
-
-	}
-	
-	.top_menu {
-		width: calc(100% - 75px) !important;
-	}
+	.left-box {background: red; width: 50%;}
+	.right-box { width: 50%;}
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; display: flex; justify-content: center; align-items: center; margin-top: -30px; }
+	.top_menu { width: calc(100% - 75px) !important;}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
@@ -86,8 +67,7 @@ var chartDrowFun = {
 	          var data = new google.visualization.DataTable();
 	          //그래프에 표시할 컬럼 추가
 	          data.addColumn('date' , '날짜');
-	          data.addColumn('number'   , '매출');
-	  
+	          data.addColumn('number'   , '사이트 총 수입');
 
 	          //그래프에 표시할 데이터
 	          var dataRow = [];
@@ -102,7 +82,7 @@ var chartDrowFun = {
 	        	  		console.log("____"+m);
 	        	  		if(i==m){
 	        	  			total = <%=st.getPay_Total()%>
-	      
+	      					
 	        	  		}
 	        	  	<%}%>
 	        	  	  
@@ -237,9 +217,6 @@ var chartDrowFun = {
     }
     google.charts.setOnLoadCallback(schedulerSuccessAndFailChart); 
 
-    window.onload = function(){
-    	alert("그래프 위치 평형으로 맞춰놓긴 했는데 높이가 잘 안줄여져서 더이상 어떤 데이터를 담기 힘들다");
-    }
 </script>
 
 </html>

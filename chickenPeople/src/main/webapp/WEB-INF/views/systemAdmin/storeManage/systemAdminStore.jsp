@@ -127,9 +127,6 @@
  						 		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
  						 	</c:url>
 							<tr>
-								<c:url var="updateStore" value="updateStore.do">
-									<c:param name="storeNum" value="${i.sto_num }"/>
-								</c:url>
 								<td class="storeNum">${i.sto_num }</td>
 								<td><a style="cursor:hand">${i.brand_name }</a></td>
 								<td><a href="${storeDetail }" style="cursor:hand">${i.sto_name }</a></td>
@@ -137,10 +134,10 @@
 								<td>${i.sto_tel }</td>
 								<td>${i.deli_time }</td>
 								<c:if test="${i.aprv_status eq 'Y' }">
-									<td>입점</td>
+									<td>계약 중</td>
 								</c:if>
 								<c:if test="${i.aprv_status eq 'N' }">
-									<td><button onclick="location.href='${updateStore}'">승인처리</button></td>
+									<td>승인대기</td>
 								</c:if>
 							</tr>					
 					</c:forEach>					
@@ -198,9 +195,7 @@
 </div>
 </body>
 <script>
-window.onload = function(){
-	alert("검색 & 페이징 처리 완료 - 입점신청한 점포들 아이디 부여하는것 남음 / 입점신청한 점포 데이터 insert 중 ");
-}
+
 $(function(){
 	$("#store").children().addClass('active');
 })

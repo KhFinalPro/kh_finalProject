@@ -65,8 +65,6 @@ body{ background:#e1ecf2; overflow: hidden; }
             <div class="top_menu">
                 <div class="logo">Admin page</div>
                 <ul>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i></a></li>
                     <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
                 </ul>
             </div>
@@ -108,6 +106,18 @@ body{ background:#e1ecf2; overflow: hidden; }
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
                         <span class="title">신고 관리</span>
+                    </a></li>
+                    <li id="chat"><a href="systemAdminChat.do">
+                        <span class="icon">
+                            <i class="fas fa-store" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">1:1 문의</span>
+                    </a></li>
+                     <li id="notice"><a href="#">
+                        <span class="icon">
+                            <i class="fas fa-store" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">공지사항</span>
                     </a></li>
                 </ul>
             </div>

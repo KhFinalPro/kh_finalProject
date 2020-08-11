@@ -40,12 +40,12 @@
 	<insert id="insertJumunDetail" parameterType="java.util.Map">
 		<foreach separator=" " item="item" collection="list" open="INSERT ALL" close="SELECT * FROM DUAL">
 			INTO JUMUN_DETAIL VALUES
-			(#{item.menu_num}, #{item.brand_code}, 'P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||#{item.currval}, #{item.sto_num}, 1)
+			(#{item.menu_num}, #{item.brand_code}, 'P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||#{item.currval}, #{item.sto_num}, #{item.mord_num})
 		</foreach>
 	</insert>
 	
 	<select id="selectPaymentInfo" parameterType="string" resultMap="paymentResultSet">
-		SELECT *
+		SELECT ORD_NUM, TO_CHAR(PAY_DATE, 'YYYY/MM/DD HH24:MI') AS PAY_DATE, PAY_RCV, PAY_ADDR, PAY_MSG, PAY_TOAL
 		FROM(
 		    SELECT ORD_NUM, PAY_DATE, PAY_RCV, PAY_ADDR, PAY_MSG, PAY_TOAL
 		    FROM PAYMENT

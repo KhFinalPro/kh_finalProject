@@ -46,7 +46,7 @@
             #modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
         	#modal #search_category{height: 60px;}
         	
-        	#message{position:fixed; top:200px; right:10px; width:50px; height:50px;}
+        	#message{position:fixed; top:500px; right:10px; width:50px; height:50px; z-index:99;}
         	#message:hover{cursor:pointer;}
         </style>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -57,13 +57,7 @@
 
             <div id="header">
                 <div id="header_brandName">
-                	<c:if test="${!empty sessionScope.loginUser }">
-                		<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
-                    	<h1 id="brandName"><a id="home">치킨의민족</a></h1>
-                    </c:if>
-                    <c:if test="${empty sessionScope.loginUser }">
-                    	<h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
-                    </c:if>
+                   	<h1 id="brandName"><a href="home.do">치킨의민족</a></h1>
                 </div>
                 <div id="header_address">
                     <select name="address" id="address">
@@ -116,29 +110,7 @@
                 <br clear="both">
             </div>
 
-            <div id="header_nav">
-                
-                <ul>
-                    <li>
-                    	<c:if test="${!empty sessionScope.loginUser }">
-                        	<a id="delivery">딜리버리</a>
-                        </c:if>
-                        <c:if test="${empty sessionScope.loginUser }">
-                    		<a id="noneLogin">딜리버리</a>
-                        </c:if>
-                    </li>
-                    <li>
-                        <a href="bungList.do">치킨번개</a>
-                    </li>
-                    <li>
-                        <a href="boardList.do">맛잘알</a>
-                    </li>
-                    <li>
-                        <a href="nList.do">공지사항</a>
-                    </li>
-                </ul>
-
-            </div>
+           
             <br clear="both">
         </header>
 
@@ -162,7 +134,7 @@
        </c:if>
        
        <c:if test="${!empty sessionScope.loginUser}">
-			<img id="message" src="resources/images/message.png" alt="">
+			<img id="message" src="resources/images/chatting.png" alt="">
        </c:if>
     </body>
 
@@ -199,7 +171,6 @@
             //딜리버리 버튼
             $("#delivery").on("click",function(){
             	if($("#address option:selected").val() == ""){
-            		alert("주소를 선택해주세요");
             	}
             	else{
 	            	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();            		
@@ -208,22 +179,23 @@
             
             //계연이 채팅 연결
             $("#message").on("click",function(){
-            	alert("채팅 클릭!!");
+            	var loginUser="<c:out value='${loginUser.id}'/>";
+        		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
+				
             })
             
             $("#noneLogin").on("click",function(){
             	alert("로그인시 이용가능합니다")
             })
             
-            //로그인시 home버튼 클릭
-            $("#home").on("click", function(){
-            	location.href="loginHome.do?id="+$("#id").val();
-            })
-            
             $("#address").on("change",function(){
             	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
             })
         })
+    </script>
+    <script>
+    	function shopPopUp(){
+    	}
     </script>
 
 </html>
