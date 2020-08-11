@@ -69,6 +69,11 @@ public class BoardDao {
 		return (ArrayList)sqlSessionTemplate.selectList("boardMapper.selectPicture",bNum);
 	}
 
+	public int updateThumbnail(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.updateThumbnail",b);
+	}
+
 	
 	
 	

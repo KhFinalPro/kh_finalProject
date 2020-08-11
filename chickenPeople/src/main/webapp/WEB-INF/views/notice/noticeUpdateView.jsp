@@ -7,17 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-			<style>
-		html, body {
-		  height: 100%;
-		}
+			
+		#section{margin: 0 auto; width:80%; margin-top:150px;}
+		#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
 		
-		.wrap {
-		  height: 100%;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		}
+		table{margin:0 auto; width:100%;}
+		table p{font-size:30px;}
+		table #nTitle{width: 100%; height:80px; font-size:30px;}
+		table #nCont{font-size:25px; resize:none;}
 		
 		.button {
 		  width: 140px;
@@ -47,83 +44,70 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
-	<br><br><br><br><br>
 	
-	
-	<br><br><br><br> 
-			 <div align="center">
-				  	<button class="button" onclick ="toNlist()" value="nlist.do" >목록으로[nList]</button>
-				  	<button class ="button" onclick ="BeforePage()" >이전 페이지로[Detail]</button>			  	 
-				  	<button class ="button" onclick ="goHome()" value="home.do" >시작페이지로[Home]</button> 
-					<br>
-			</div>
 		
 		
 		
 		
-		<!-- 목록으로~ -->
-			<script>
-				function toNlist (){
-					location.href="noticeList.do"; 
-				}
-			</script>
-		
-		<!-- 이전 페이지로 -->
-		<script>
-			function beforePage(){
-				location.href="javascript:history.go(-1);"
-			}
-		</script>
-		
-				<!-- 시작페이지로 --> 
-			<script>
-				function goHome(){
-					location.href="home.do";
-				}
-			</script>
+	<div id="section">
+		<h1 align="center">공지사항 작성하기</h1>	
 			
-	<form action="nupdate.do" method="post">
-	
-	<input type="hidden" name="nNum" value="${notice.nNum}"/>
-	
-	<table align="center"width="40%" style='border-left:0;border-right:0;border-bottom:0;border-top:0' > 
-	 <h1 align="center">공지글 작성하기</h1>
-	 <br><br>
+		<form action="nupdate.do" method="post">
 		
-			<tr>
-				<td>
-					title:<textarea type="text" rows="1" cols="90" name="nTitle">${notice.nTitle}</textarea>
-				</td>
-			</tr>
-			<tr align="center" colspan="2" >
-				<td colspan="2">notice contents </td>
-			</tr>
-			<tr  colspan="2" style="margin-top:150px" >
-				<td  colspan="2" ">
-					<textarea rows="45" cols="90" name="nCont">${notice.nCont}</textarea>
-				</td>
-			</tr>
-			<tr align="right">
-				<td>
-					<input type="text" style="background-color:transparent;border:0 solid black;text-align:right;" name="userId" readonly value="${loginUser.id}" > <!-- 로그인 유저중에 관리자만 글쓰게끔! -->
-				</td>
-			</tr>
-			
-			<tr  style="margin-top:150px">
-			<td colspan="2"  align="center" style="border-top: 50px solid #fff;">
-				<input type="submit" class="button" value="수정완료" >		
-			</td>
-			</tr>
-		 </table>
-		 </form>
+		<input type="hidden" name="nNum" value="${notice.nNum}"/>
 		
+			<table align="center"> 
+				<tr>
+					<td>
+						<p>Title:</p>
+						<input type="text" id="nTitle" name="nTitle" value="${notice.nTitle }">
+					</td>
+				</tr>
+				<tr align="center" colspan="2" >
+					<td colspan="2"><p>Notice Contents</p></td>
+				</tr>
+				<tr >
+					<td  colspan="2">
+						<textarea rows="30" cols="92" id="nCont" name="nCont">${notice.nCont }</textarea>
+					</td>
+				</tr>
+				<tr align="right">
+					<td>
+						<input type="hidden" name="userId" readonly value="${sessionScope.loginUser.id}" > <!-- 로그인 유저중에 관리자만 글쓰게끔! -->
+					</td>
+				</tr>
+				
+				<tr>
+				<td colspan="2"  align="center" style="border-top: 50px solid #fff;">
+					<input type="submit" class="button" value="수정" >		
+				</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 	
-	
+	<jsp:include page="../common/footer.jsp"/>
 
 
 
 
 </body>
+
+<script>
+
+	function toNlist (){
+		location.href="noticeList.do"; 
+	}
+
+	function beforePage(){
+		location.href="javascript:history.go(-1);"
+	}
+
+	function goHome(){
+		location.href="home.do";
+	}
+
+</script>
 </html>
 
 

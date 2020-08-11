@@ -68,7 +68,7 @@ public class MemberController {
 			session.setAttribute("loginUserId", member.getId());
 			session.setAttribute("address", addrList);
 //			return "redirect:/loginHome.do?id="+member.getId();
-			return "redirect:/loginHome.do";
+			return "home";
 		}else {
 			model.addAttribute("msg", "로그인 실패!");
 			return "redirect:/loginView.do";

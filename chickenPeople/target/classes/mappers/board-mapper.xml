@@ -13,6 +13,7 @@
 		<result property="bDelDate" column="B_DEL_DATE"/>
 		<result property="bUpDate" column="B_UP_DATE"/>
 		<result property="bStatus" column="B_STATUS"/>
+		<result property="bThumbnail" column="B_THUMBNAIL"/>
 	</resultMap>
 	
 	
@@ -52,7 +53,7 @@
 	
 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO BOARD
-		VALUES (SEQ_B_NUM.NEXTVAL,#{bWriter},#{bCate},#{bTitle},'test1',0,0,SYSDATE,null,null,'N')
+		VALUES (SEQ_B_NUM.NEXTVAL,#{bWriter},#{bCate},#{bTitle},'test1',0,0,SYSDATE,null,null,'N', NULL)
 	</insert>
 
 	
@@ -80,4 +81,8 @@
 		ORDER BY PIC_NUM 
 	</select>
 	
+	<update id="updateThumbnail" parameterType="Board">
+		UPDATE BOARD
+		SET B_THUMBNAIL = #{bThumbnail} WHERE B_NUM = #{bNum}
+	</update>
 </mapper>

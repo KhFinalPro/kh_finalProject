@@ -39,12 +39,16 @@
     <div class="contents">
         <div class="banner">
             <ul>
-                <li><a href="couponAccept.do"><img src="resources/images/benu1.png" width="100%" height="300px"></a></li>  <!--쿠폰함-->
-                <li><a href="bungList.do"><img src="resources/images/benu2.png" width="100%" height="300px"></a></li>  <!--번개-->
-                <li><a href="#"><img src="resources/images/benu3.png" width="100%" height="300px"></a></li>  <!--배달 현황-->
-                <li><a href="#"><img src="resources/images/benu4.png" width="100%" height="300px"></a></li>  <!--딜리버리-->
-                <li><a href="#"><img src="resources/images/benu5.png" width="100%" height="300px"></a></li>  <!--나의 쿠폰함-->
-                <li><a href="#"><img src="resources/images/benu6.png" width="100%" height="300px"></a></li>  <!--맛잘알-->
+            	<c:if test="${empty sessionScope.loginUser}">
+	            	<li>	
+	                	<a href="#"><img src="resources/images/banner1.png" width="100%" height="300px"></a>  <!--쿠폰함-->
+	                </li>
+                </c:if>
+                <li><img class="myCouponView" src="resources/images/banner5.png" width="100%" height="300px"></li>  <!--나의 쿠폰함-->
+                <li><a href="bungList.do"><img src="resources/images/banner2.png" width="100%" height="300px"></a></li>  <!--번개-->
+                <li><a href="#"><img id="" src="resources/images/banner3.png" width="100%" height="300px"></a></li>  <!--배달 현황-->
+                <li><a href="deliverView.do"><img src="resources/images/banner4.png" width="100%" height="300px"></a></li>  <!--딜리버리-->
+                <li><a href="boardList.do"><img src="resources/images/banner6.png" width="100%" height="300px"></a></li>  <!--맛잘알-->
             </ul>
         </div>
     </div>
@@ -119,7 +123,7 @@
 <script language="JavaScript">
 
 	$(document).ready(function() {
-
+	
 	    var $banner = $(".banner").find("ul");
 	
 	    var $bannerWidth = $banner.children().outerWidth();//이미지의 폭
@@ -148,13 +152,12 @@
 	}); 
 </script>
 
-<!-- 완성되면 매장 상세페이지와 연결할 script -->
+
 <script>
 	
 	function deliver(){
 		if($("#id").val() == ""){
-			$(".showMsg").css('display','block');
-			$(".showMsg").append("<p>로그인후 이용가능.</p>");
+			location.href="deliverView.do";
 		}
 		else{
 			location.href="deliverView.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
@@ -166,7 +169,7 @@
 	}
 	
 	function matjalal(){
-		
+		location.href="boardList.do";
 	}
 	
 	function coupon(){
@@ -178,7 +181,7 @@
 	}
 	
 	function notice(){
-		location.href="noticeList.do";
+		location.href="nList.do";
 	}
 
 	$(function(){

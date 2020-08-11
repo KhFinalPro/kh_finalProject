@@ -66,6 +66,12 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.selectPicture(bNum);
 	}
 
+	@Override
+	public int updateThumbnail(Board b) {
+		// TODO Auto-generated method stub
+		return bDao.updateThumbnail(b);
+	}
+
 	
 
 

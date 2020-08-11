@@ -41,9 +41,13 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="storeList">
-        
 		<c:if test="${empty deliveryList }">
-			<p id="msg">주소를 선택해주세요~</p>
+			<c:if test="${!empty sessionScope.loginUser.id }">
+				<p id="msg">주소를 선택해주세요~</p>
+			</c:if>
+			<c:if test="${empty sessionScope.loginUser.id }">
+				<p id="msg">로그인시 이용가능합니다~</p>
+			</c:if>
 			<img src="resources/images/tung.png">
 		</c:if>
 		

@@ -148,7 +148,12 @@ public class BoradContoller {
 				i++;
 			}
 		}
+		b.setbNum(currval);
+		b.setbThumbnail(pList.get(0).getUpFileName());
+		//썸네일 저장
+		int thumbnailUpdate = boardService.updateThumbnail(b);
 
+		
 		int result2 = boardService.insertPicture(pList);
 		
 		if(result1 > 0 && result2 > 0) {

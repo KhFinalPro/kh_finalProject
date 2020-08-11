@@ -19,13 +19,14 @@ public class Board {
 	private Date bDelDate;	//삭제날짜
 	private Date bUpDate; 	//수정날짜
 	private String bStatus;	//글삭제 여부
+	private String bThumbnail;	//썸네일
 	
 	public Board() {
 		super();
 	}
+
 	public Board(int bNum, String bWriter, String bCate, String bTitle, String bCont, String bCount, String bHit,
-			Date bDate, Date bDelDate, Date bUpDate, String bStatus) {
-		super();
+			Date bDate, Date bDelDate, Date bUpDate, String bStatus, String bThumbnail) {
 		this.bNum = bNum;
 		this.bWriter = bWriter;
 		this.bCate = bCate;
@@ -37,81 +38,111 @@ public class Board {
 		this.bDelDate = bDelDate;
 		this.bUpDate = bUpDate;
 		this.bStatus = bStatus;
+		this.bThumbnail = bThumbnail;
 	}
+
 	public int getbNum() {
 		return bNum;
 	}
+
 	public void setbNum(int bNum) {
 		this.bNum = bNum;
 	}
+
 	public String getbWriter() {
 		return bWriter;
 	}
+
 	public void setbWriter(String bWriter) {
 		this.bWriter = bWriter;
 	}
+
 	public String getbCate() {
 		return bCate;
 	}
+
 	public void setbCate(String bCate) {
 		this.bCate = bCate;
 	}
+
 	public String getbTitle() {
 		return bTitle;
 	}
+
 	public void setbTitle(String bTitle) {
 		this.bTitle = bTitle;
 	}
+
 	public String getbCont() {
 		return bCont;
 	}
+
 	public void setbCont(String bCont) {
 		this.bCont = bCont;
 	}
+
 	public String getbCount() {
 		return bCount;
 	}
+
 	public void setbCount(String bCount) {
 		this.bCount = bCount;
 	}
+
 	public String getbHit() {
 		return bHit;
 	}
+
 	public void setbHit(String bHit) {
 		this.bHit = bHit;
 	}
+
 	public Date getbDate() {
 		return bDate;
 	}
+
 	public void setbDate(Date bDate) {
 		this.bDate = bDate;
 	}
+
 	public Date getbDelDate() {
 		return bDelDate;
 	}
+
 	public void setbDelDate(Date bDelDate) {
 		this.bDelDate = bDelDate;
 	}
+
 	public Date getbUpDate() {
 		return bUpDate;
 	}
+
 	public void setbUpDate(Date bUpDate) {
 		this.bUpDate = bUpDate;
 	}
+
 	public String getbStatus() {
 		return bStatus;
 	}
+
 	public void setbStatus(String bStatus) {
 		this.bStatus = bStatus;
 	}
+
+	public String getbThumbnail() {
+		return bThumbnail;
+	}
+
+	public void setbThumbnail(String bThumbnail) {
+		this.bThumbnail = bThumbnail;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bNum=" + bNum + ", bWriter=" + bWriter + ", bCate=" + bCate + ", bTitle=" + bTitle + ", bCont="
 				+ bCont + ", bCount=" + bCount + ", bHit=" + bHit + ", bDate=" + bDate + ", bDelDate=" + bDelDate
-				+ ", bUpDate=" + bUpDate + ", bStatus=" + bStatus + "]";
+				+ ", bUpDate=" + bUpDate + ", bStatus=" + bStatus + ", bThumbnail=" + bThumbnail + "]";
 	}
-	
-	
 	
 	
 	
