@@ -94,16 +94,21 @@ public class CalendarController {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("Id", userId);
 		map.put("orderNo", orderNo);
-
+		
 		JSONObject obj = new JSONObject();
-
+		
+		
 		// 주문내역 디테일
 		ArrayList<Calendar> orderDetailList = calendarService.orderDetailList(map);
+		
+		
 
 		// 주문번호에 대한 ARRAY만들기
 		JSONArray orderDetailArr = new JSONArray();
 		for (int i = 0; i < orderDetailList.size(); i++) {
 			JSONObject orderDetail = new JSONObject();
+			
+		
 
 			orderDetail.put("ordNum", orderDetailList.get(i).getOrdNum());
 			orderDetail.put("ordStatus", orderDetailList.get(i).getOrdStatus());
@@ -120,6 +125,16 @@ public class CalendarController {
 			orderDetailArr.add(orderDetail);
 
 		}
+		
+		
+		
+		//리뷰테이블 조회하기
+		ArrayList<Calendar> reviewList = calendarService.reviewList(map);
+	
+		obj.put("REV_CHECK", reviewList.size());
+		
+		
+		
 		// obj에 내가 쓴 글 넣기
 		obj.put("orderDetailList", orderDetailArr);
 
@@ -138,7 +153,14 @@ public class CalendarController {
 
 		response.setContentType("application/json;charset=utf-8");
 		HttpSession session = request.getSession();
-
+		
+		
+		System.out.println("-----------------------------");
+		System.out.println("------------파일 체크 ----------");
+		System.out.println(files);
+		System.out.println("------------파일 체크 끝---------");
+		System.out.println("-----------------------------");
+		
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		System.out.println("세션 유저 정보 : " + loginUser.toString());
@@ -152,56 +174,56 @@ public class CalendarController {
 		System.out.println("리뷰내용" + textarea_review_content);
 		System.out.println("이미지" + files);
 
-		if (!files.getOriginalFilename().equals("")) { // 파일이 잘 넘어온 경우
 
-			System.out.println("오리지널 파일: " + files.getOriginalFilename());
-			String renameFileName = SaveFile.saveFile2(files, request);
-			// calendar.setRevPic(renameFileName);
-
-			
-			HashMap<String,String> map = new HashMap<>(); 
-			map.put("Id", userId);
-			map.put("order_num", order_num); 
-			map.put("textarea_review_content",textarea_review_content); 
-			map.put("renameFileName", renameFileName);
-			map.put("rate", rate); map.put("sto_num", sto_num);
-			
-			 //주문내역 리뷰하기 (인서트) 
-			int insertOrderReview = calendarService.insertOrderReview(map); 
-			System.out.println("주문내역"+map);
-		
-
-			/*
-			 * // 리뷰번호(최대값 조회하기) String searchRevNum = calendarService.searchRevNum();
-			 * System.out.println("리뷰번호최대값"+searchRevNum);
-			 */
-			
-			
-			HashMap<String, String> map2 = new HashMap<>();
-			map2.put("sto_num", sto_num);
-			map2.put("rate", rate);
-			//map2.put("searchRevNum", searchRevNum);
-			System.out.println("-----ㅡMAP2---------");
-			System.out.println(sto_num);
-			System.out.println(rate);
-			//System.out.println(searchRevNum);
-			System.out.println(map2);
-
-			
-			// 스토어 리뷰하기(인서트)
-			int insertStoreReview = calendarService.insertStoreReview(map2);
-			System.out.println("스토어 " + map2);
-
-			JSONObject resultObj = new JSONObject();
-			resultObj.put("gg", "서엉공");
-
-			PrintWriter out = response.getWriter();
-
-			out.print(resultObj);
-			out.flush();
-			out.close();
-
+		String renameFileName = "";
+		if(files != null) {
+			renameFileName = SaveFile.saveFile2(files, request);
 		}
+		
+		// calendar.setRevPic(renameFileName);
+
+		
+		HashMap<String,String> map = new HashMap<>(); 
+		map.put("Id", userId);
+		map.put("order_num", order_num); 
+		map.put("textarea_review_content",textarea_review_content); 
+		map.put("renameFileName", renameFileName);
+		map.put("rate", rate); map.put("sto_num", sto_num);
+		
+		 //주문내역 리뷰하기 (인서트) 
+		int insertOrderReview = calendarService.insertOrderReview(map); 
+		System.out.println("주문내역"+map);
+	
+
+		/*
+		 * // 리뷰번호(최대값 조회하기) String searchRevNum = calendarService.searchRevNum();
+		 * System.out.println("리뷰번호최대값"+searchRevNum);
+		 */
+		
+		
+		HashMap<String, String> map2 = new HashMap<>();
+		map2.put("sto_num", sto_num);
+		map2.put("rate", rate);
+		//map2.put("searchRevNum", searchRevNum);
+		System.out.println("-----ㅡMAP2---------");
+		System.out.println(sto_num);
+		System.out.println(rate);
+		//System.out.println(searchRevNum);
+		System.out.println(map2);
+
+		
+		// 스토어 리뷰하기(인서트)
+		int insertStoreReview = calendarService.insertStoreReview(map2);
+		System.out.println("스토어 " + map2);
+
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("gg", "서엉공");
+
+		PrintWriter out = response.getWriter();
+
+		out.print(resultObj);
+		out.flush();
+		out.close();
 
 	}
 

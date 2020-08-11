@@ -109,6 +109,12 @@
     float:right;
 }
 
+.wrapper1 .searchDate ul li button{
+    padding:5px;
+    font-size: 12px;
+
+} 
+
 </style>
 </head>
 <body>
@@ -136,15 +142,10 @@
                         <br>
                         <div class="searchDate">
                             <ul>
-                                <span class="searchTerm">
-                                <li><a href="#"><span>어제 |</span></a></li>
-                                <li><a href="#"><span>오늘 |</span></a></li>
-                                <li><a href="#"><span>일주일 |</span></a></li>
-                                <li><a href="#"><span>한달</span></a></li>
-                                </span>
-                                &nbsp;
-                                <li><input type="month" class="cal"></li>
-                          
+                                <li><input type="date" class="cal" id="calendar"></li>&nbsp;-
+                                <li><input type="date" class="cal" id="calendar2"></li>
+                                &nbsp;&nbsp;
+                           		<li><button type="button" onclick="chooseDate()" id="chooseDate">조회</button></li>
                             </ul>
                             
                         </div>
@@ -152,13 +153,14 @@
                         <br>
                                                                                                                                                 
                     </div>
-                        <table class="content-table">
+                        <table class="content-table" id="orderTable">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>주문번호</th>
+                                    <th>주문메뉴</th>
                                     <th>주문일시</th>
-                                    <th>주문상품</th>
+                                    <th>주문자</th>
                                     <th>주문금액</th>
                                     <th>주문상태</th>
                                     <th>결제방법</th>
@@ -166,35 +168,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A90</td>
-                                    <td>2020.7.4 18:00</td>
-                                    <td>허니콤보1,콜라1,핫소스1</td>
-                                    <td>32,000</td>
-                                    <td>배달준비</td>
-                                    <td>카드결제</td>
-                                    <td>젓가락 많이 주세요</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A89</td>
-                                    <td>2020.7.2 22:00</td>
-                                    <td>레드콤보1,콜라1,핫소스1</td>
-                                    <td>32,000</td>
-                                    <td>배달완료</td>
-                                    <td>현장결제</td>
-                                    <td>조금 맵게 해주세요</td>
-                                </tr>
-                                
-                                
+                          
                             </tbody>
                         </table>
-                        <table class="content-table">
+                        <table class="content-table" id="summaryTable">
                             <td class="totalTd">
                                 <ul>
-                                    <li class="totalOrder">오늘 총 주문&nbsp;: 40 건</li>
-                                    <li class="totalPrice">전체금액 :&nbsp; 1,230,300 원</li>
+                                    <li class="totalOrder">총 주문&nbsp; : <span id="orderCount">zz</span></li>
+                                    <li class="totalPrice">전체금액 :&nbsp; <span id="orderTotalPrice">zz</span></li>
                                 </ul>
                             </td>
                         </table>
@@ -215,5 +196,139 @@
 $(function(){
 	$(".orderBar").children().addClass('active');
 })
+
+
+
+$(document).ready(function(){
+	init();
+});
+
+/* $(document).on('click','#calendar',function(){
+	searchDate(this);
+});
+ */
+
+function init(){
+	searchDate();
+}
+
+//데이터조회
+function searchDate(){
+	
+	$.ajax({
+		type:'GET',
+		url:'getOrderList.do',
+		dataType:'json',
+		success:function(data){
+			
+			var orderList = data.orderList;
+			var oderListAppendStr = '';
+			console.log(orderList);
+			
+			//주문 목록 개수만큼 반복
+			//메뉴 목록 개수만큼 반복
+			
+			var sum =0;
+			for(var i=0; i<orderList.length; i++){
+				oderListAppendStr += '<tr>'+
+									'<td>'+(i+1)+'</td>'+
+									'<td>'+orderList[i].ordNum+'</td>'+
+									'<td>'+orderList[i].menuName+'</td>'+
+									'<td>'+orderList[i].payDate+'</td>'+
+									'<td>'+orderList[i].userId+'</td>'+
+									'<td>'+orderList[i].payToal+'</td>'+
+									'<td>'+orderList[i].ordStatus+'</td>'+
+									'<td>'+orderList[i].payMethod+'</td>'+
+									'<td>'+orderList[i].payMsg+'</td>'+
+									'</tr>'
+									
+				sum += orderList[i].payToal;
+			}
+			$("#orderTable").find('tbody').empty();
+			$("#orderTable").find('tbody').append(oderListAppendStr);
+			
+			
+			$("#orderCount").empty();
+			$("#orderCount").html("&nbsp"+orderList.length+"&nbsp"+"건");
+			
+			
+		 	$("#orderTotalPrice").empty();
+			$("#orderTotalPrice").html(sum);
+			
+			console.log(orderList.length);
+			
+		
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+		
+}
+
+
+function chooseDate(){
+	
+var start = $("#calendar").val();
+var end = $("#calendar2").val();
+
+console.log(start+end);
+
+var param = {'start':start,'end':end};
+	
+	$.ajax({
+		type:'POST',
+		url:"selectChooseOrder.do",
+		data:param,
+		dataType:'JSON',
+		success:function(data){
+			var chooseOrder = data.chooseOrder;
+			var chooseOrderAppendStr = '';
+			console.log(chooseOrder);
+			
+			
+			//선택날짜 주문개수만큼
+			//메뉴개수만큼 반복
+			
+			var sum =0;
+			for(var i=0; i<chooseOrder.length; i++){
+				
+				chooseOrderAppendStr += '<tr>'+
+									'<td>'+(i+1)+'</td>'+
+									'<td>'+chooseOrder[i].ordNum+'</td>'+
+									'<td>'+chooseOrder[i].menuName+'</td>'+
+									'<td>'+chooseOrder[i].payDate+'</td>'+
+									'<td>'+chooseOrder[i].userId+'</td>'+
+									'<td>'+chooseOrder[i].payToal+'</td>'+
+									'<td>'+chooseOrder[i].ordStatus+'</td>'+
+									'<td>'+chooseOrder[i].payMethod+'</td>'+
+									'<td>'+chooseOrder[i].payMsg+'</td>'+
+									'</tr>'
+									
+			 	sum += chooseOrder[i].payToal;
+			}
+			console.log(sum);
+			$("#orderTable").find('tbody').empty();
+			$("#orderTable").find('tbody').append(chooseOrderAppendStr);
+			
+		 	$("#orderTotalPrice").empty();
+			$("#orderTotalPrice").html(sum);
+			
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	
+	});
+
+	
+} 
+
+
+
+
+
 </script>
 </html>

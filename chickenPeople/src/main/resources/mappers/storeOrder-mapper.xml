@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="storeOrderMapper">
+
+<resultMap id="orderResultSet" type="StoreOrder">
+	<id property="ordNum" column="ORD_NUM"/>
+	<result property="payDate" column="PAY_DATE"/>
+	<result property="userId" column="USER_ID"/>
+	<result property="payToal" column="PAY_TOAL"/>
+	<result property="ordStatus" column="ORD_STATUS"/>
+	<result property="payMethod" column="PAY_METHOD"/>
+	<result property="payMsg" column="PAY_MSG"/>
+	<result property="menuName" column="MANU_NAME"/>
+	<result property="realMenu" column="REAL_MENU"/>
+</resultMap>
+
+
+<select id="orderList" resultMap="orderResultSet">
+SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
+FROM PAYMENT P
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND P.PAY_DATE >= TRUNC(SYSDATE) AND P.PAY_DATE <![CDATA[ < ]]> TRUNC(SYSDATE+1)
+</select>
+
+
+<!-- 메뉴리스트 -->
+<select id="menuList"  resultMap="orderResultSet">
+   SELECT J.ORD_NUM, LISTAGG(CAST(M.MENU_NAME AS VARCHAR(1000)),',')WITHIN GROUP(ORDER BY M.MENU_NAME) AS REAL_MENU
+   FROM JUMUN_DETAIL J
+   JOIN STORE_INFO SI ON(J.STO_NUM=SI.STO_NUM)
+   JOIN MENU M ON (J.MENU_NUM=M.MENU_NUM)
+   WHERE SI.USER_ID=#{userId}
+   GROUP BY J.ORD_NUM
+   ORDER BY J.ORD_NUM
+</select>
+
+
+<!-- 선택한 날짜 오더리스트 -->
+<!-- <select id="chooseOrderList" resultMap="orderResultSet">
+SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
+FROM PAYMENT P
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND P.PAY_DATE>= TO_CHAR(#{start}) AND P.PAY_DATE <![CDATA[ < ]]> TO_CHAR(#{end})
+</select> -->
+
+<select id="chooseOrderList" resultMap="orderResultSet">
+SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
+FROM PAYMENT P
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND P.PAY_DATE>= TO_DATE(#{start},'YYYY-MM-DD') AND P.PAY_DATE <![CDATA[ < ]]> TO_DATE(#{end},'YYYY-MM-DD')+1
+</select>
+ 
+</mapper>

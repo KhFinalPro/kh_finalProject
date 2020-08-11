@@ -33,9 +33,10 @@
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Review" alias="Review"/>
-		<typeAlias type="com.kh.chickenPeople.storeAdmin.model.vo.StoreReview" alias="StoreReview"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeReview.model.vo.StoreReview" alias="StoreReview"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLike" alias="StoreLike"/>
-		<typeAlias type="com.kh.chickenPeople.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeOrder.model.vo.StoreOrder" alias="StoreOrder"/>
 		<typeAlias type="com.kh.chickenPeople.payment.model.vo.Payment" alias="Payment"/>
 
 	</typeAliases>
@@ -62,6 +63,6 @@
 		<mapper resource="/mappers/storeMenu-mapper.xml"/>
 		<mapper resource="/mappers/report-mapper.xml"/>
 		<mapper resource="/mappers/payment-mapper.xml"/>
-
+		<mapper resource="/mappers/storeOrder-mapper.xml"/>
 	</mappers>
 </configuration>

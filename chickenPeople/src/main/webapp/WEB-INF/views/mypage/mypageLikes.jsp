@@ -288,7 +288,7 @@
                var param = {
                      'storeNo' : $(obj).parents('tr').find('input[name=storeNo]').val(),
                }
-               console.log(param);
+               console.log('삭제할 넘버 :'+param.storeNo);
                if(!confirm('찜하기를 취소하시겠습니까?')){
                   return false;
                }
@@ -298,6 +298,8 @@
                  data:param,
                  dataType:'JSON',
                  success:function(data){
+                	 console.log('----- 데이터 확인 -----');
+                	 console.log(data);
                      searchData();
                     
                  },error:function(request, status, errorData){

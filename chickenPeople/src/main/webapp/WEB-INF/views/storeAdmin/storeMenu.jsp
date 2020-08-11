@@ -101,14 +101,6 @@
                         <br>
                         <div class="searchMenu">
                             <ul>
-                                <!-- <li>
-                                    <select class="searchCate" id="searchCate">
-                                        <option>종류</option>
-                                        <option value="치킨">치킨</option>
-                                        <option value="사이드">사이드</option>
-                                        <option value="음료">음료</option>
-                                    </select>
-                                </li> -->
                                 <li><input class="searchBox" id="searchName" type="search" placeholder="메뉴명을 검색해주세요"></li>
                                 <li><button type="button" onclick="searchName()">조회</button></li>
                             </ul>
@@ -116,13 +108,6 @@
                         <br>
                         <br>
                   
-                        <!-- <div class="clickButtons">
-                            <ul>
-                                <li><button id="rDelete">삭제하기</button></li>
-                                <li><button id="rModify">수정하기</button></li>
-                                <li><button id="rAnswer">답변하기</button></li>
-                            </ul>
-                        </div> -->
                     </div>
                         <table class="content-table" id="menuTable">
                             <thead>
@@ -144,23 +129,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               <!--  <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A123</td>
-                                    <td>치킨</td>
-                                    <td>허니콤보</td>
-                                    <td>치즈맛, 중량 800g, 2019출시</td>
-                                    <td>N</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A125</td>
-                                    <td>치킨</td>
-                                    <td>레드콤보</td>
-                                    <td>불닭치즈맛, 중량 900g, 2020출시</td>
-                                    <td>N</td>
-                                </tr> -->
-                                
+                              
                             </tbody>
                         </table>
                 </div>

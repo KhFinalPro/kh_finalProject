@@ -196,7 +196,7 @@ $(document).ready(function(){
             </div>
            
             
-            <button type="button" onclick="goReview()" style="position: absolute; bottom: 50px; left:38%; font-weight: bold; border: none; border-radius: 5px; width: 100px; height: 35px; font-size: 14px;">리뷰쓰기</button>
+            <button type="button" onclick="goReview()" id="goReviewBtn" style="position: absolute; bottom: 50px; left:38%; font-weight: bold; border: none; border-radius: 5px; width: 100px; height: 35px; font-size: 14px;">리뷰쓰기</button>
         </div>
      </div> 
      
@@ -223,8 +223,7 @@ $(document).ready(function(){
             </div>
             <div id="review_content" style=" position: absolute; top:130px; left:60px;">
                 <p style="font-size: 18px; font-weight: bold; margin-bottom: -10px;">리뷰 작성<p>
-                <textarea id="textarea_review_content"style="width: 330px; height: 100px; border-radius: 10px; border: solid 2px black;">
-                </textarea>
+                <textarea id="textarea_review_content"style="width: 330px; height: 100px; border-radius: 10px; border: solid 2px black;"></textarea>
             </div>  
             <div id="review_photo_area" style=" position: absolute; top:280px; left:60px;">
                 <p style="font-size: 18px; font-weight: bold; margin-bottom: -10px;">사진 등록<p>
@@ -375,6 +374,13 @@ function showOrderDetail(id){
 			 $('#orderDetailTable3').find('tr').find('td').empty();
 			 $('#orderDetailTable3').find('tr').find('#modal_order_price').append(ordPrice);
         	 
+			 if(data.REV_CHECK > 0){
+				 $('#goReviewBtn').attr('onclick', 'javascript: goReview(0)');
+			 } else{
+				 $('#goReviewBtn').attr('onclick', 'javascript: goReview(1)');	 
+			 }
+			 
+			 
 			},error:function(request, status, errorData){
             	alert("error code: " + request.status + "\n"
                     +"message: " + request.responseText
@@ -384,11 +390,15 @@ function showOrderDetail(id){
 
 }
 
-function goReview(){
-
+function goReview(type){
+	if(type == 1){
+		$("#modalOrderHistory").fadeOut(500);
+		$("#modalReview").fadeIn(500);	
+	} else {
+		alert('이미 리뷰를 작성했습니다');
+		return false;
+	}
 	
-	$("#modalOrderHistory").fadeOut(500);
-	$("#modalReview").fadeIn(500);
 }
 
 
@@ -424,7 +434,12 @@ function reveiw_done_btn(){
 	
 	
 	var formData = new FormData();
-	formData.append('files',files[0]); //key,value 형태로 보내기!
+	if(files.length > 0){
+		formData.append('files',files[0]); //key,value 형태로 보내기!	
+	} else {
+		formData.append('files',null); // 파일이 존재하지 않을 때
+	}
+	
 	formData.append('order_num',order_num);
 	formData.append('rate',rate);	 //별점
 	formData.append('textarea_review_content',textarea_review_content);
@@ -439,7 +454,7 @@ function reveiw_done_btn(){
 		contentType :false,
 		type:'POST',
 		success:function(data){
-			$("#modalReview").fadeOut(500);
+			location.reload();
 			alert('리뷰가 성공적으로 등록되었습니다!');
 		
 			
