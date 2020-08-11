@@ -30,25 +30,7 @@
 	.scroll-test::-webkit-scrollbar-track { background-color: transparent; }
 	.scroll-test::-webkit-scrollbar-thumb { border-radius: 3px; background-color: gray; }
 	.scroll-test::-webkit-scrollbar-button { width: 0; height: 0; }
-	#style-1::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
 
-#style-1::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
-}
-
-#style-1::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
-}
 </style>
 </head>
 <body>
@@ -109,11 +91,11 @@
 			var printData = null;
 			if(room_no==currentChattingRoom){
 				if(sessionId==currentUserSession){
-					printData = "<div class='arrow_box_right'>["+sessionId+"]"+message+"<br></div><br>";
+					printData = "<div class='arrow_box_right'>"+message+"<br></div><br>";
 					$("#chat").append(printData);
 					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 				}else{
-					printData = "<div class='arrow_box_left'>["+sessionId+"]"+message+"<br></div><br>";
+					printData = "<div class='arrow_box_left'>"+message+"<br></div><br>";
 					$("#chat").append(printData);	
 					$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 				}
