@@ -79,7 +79,8 @@
 			room_no = strArray[0];
 			sessionId = strArray[1];
 			message = strArray[2];
-			console.log(strArray);
+			console.log(data);
+			console.log(currentUserSession);
 			var printData = null;
 			if(room_no==currentChattingRoom){
 				if(sessionId==currentUserSession){

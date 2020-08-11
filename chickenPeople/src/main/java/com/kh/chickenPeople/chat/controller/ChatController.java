@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.chat.model.service.ChatService;
@@ -27,10 +28,20 @@ public class ChatController {
 		System.out.println(totalRoomData);
 		if(totalRoomData!=null) {
 			mv.addObject("totalRoomData",totalRoomData);
-			mv.setViewName("chat/systemChatInquiry");
+			mv.setViewName("chat/systemChatRoomList");
 		}
 		
 		return mv;	
+	}
+	@RequestMapping(value="goChattingAdmin", method=RequestMethod.GET)
+	public ModelAndView goChattingAdmin(ModelAndView mv, HttpSession session, 
+										@RequestParam(value="room_no", required=false)String room_no, String loginUserName) {
+		session.setAttribute("room_no",room_no);
+		session.setAttribute("client_id", loginUserName);
+
+		
+		mv.setViewName("chat/chatInquiry");
+		return mv;
 	}
 	@RequestMapping(value="chatting.do",method=RequestMethod.GET)
 	public ModelAndView goChatting(ModelAndView mv,HttpSession session) {
