@@ -11,9 +11,9 @@
 </head>
 <style>
 #section{margin:0 auto; width:80%; margin-top:150px;}
-#section #article{width:100%; height:500px; overflow-y:auto}
+#section #article{width:100%; overflow-y:auto}
 #section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
-#section #title{font-size:50px; font-weight: 600; color: black; margin:0; margin-bottom:20px;}
+#section #title{font-size:30px; font-weight: 600; color: black; margin:0; margin-bottom:20px;}
 #section #date{font-size: 20px; color: rgb(172, 171, 171);}
 #section span{margin-left: 20px;}
 #section #article #content{font-size:20px;}
@@ -114,7 +114,6 @@ th, td {
 
 		<h1 align="center">공지사항</h1>
 			
-		<hr>
 		
 		<p id="title">${notice.nTitle }</p>
 		<a id="date">${notice.nDate }</a><span>조회수 : ${notice.nCount }</span>
@@ -122,7 +121,7 @@ th, td {
 		<hr>
 		<div id="article">
 			
-			<p id="content">${notice.nCont }</p>
+			<pre id="content">${notice.nCont }</pre>
 		</div>
 		
 		<div align="center">

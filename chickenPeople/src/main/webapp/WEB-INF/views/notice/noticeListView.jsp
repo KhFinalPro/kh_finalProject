@@ -17,7 +17,7 @@
 
     #section #article ul{margin-left: 50px;}
     #section #article ul li{list-style: none;}
-    #section #article ul li .content{font-size:50px; font-weight: 600; color: #2CBFB1; margin:0;}
+    #section #article ul li .content{font-size:30px; font-weight: 600; color: black; margin:0;}
     #section #article ul li .notice_date{font-size: 20px; color: rgb(172, 171, 171);}	
 	  
 	  /* 페이징 처리 */

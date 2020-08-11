@@ -56,53 +56,19 @@
 	    padding: 10px;
 	  }
 	  
-	 /* 글쓰기 버튼 */
-	  .wbutton{
-	  background:#F2C2CB;
-	  color:#fff;
-	  border:none;
-	  position:relative;
-	  height:50px;
-	  font-size:1.2em;
-	  padding:0 2em;
-	  cursor:pointer;
-	  transition:800ms ease all;
-	  outline:none;
-	}
-	.wbutton:hover{
-	  background:#fff;
-	  color:#F2C2CB;
-	}
-	.wbutton:before,wbutton:after{
-	  content:'';
-	  position:absolute;
-	  top:0;
-	  right:0;
-	  height:2px;
-	  width:0;
-	  background:#F2C2CB;
-	  transition:400ms ease all;
-	}
-	.wbutton:after{
-	  right:inherit;
-	  top:inherit;
-	  left:0;
-	  bottom:0;
-	  background:#F2C2CB;
-	  
-	}
-	.wbutton:hover:before,wbutton:hover:after{
-	  width:100%;
-	  transition:800ms ease all;
-	}
+	 
 	#section{margin: 0 auto; width: 100%; margin-top:150px;}
 	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
 	#main_section>.mja_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
     #main_section>.mja_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
-    #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px; border: 1px solid black;}
+    #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
     #main_section>.mja_area>.mja_logo>img {width: 100%; height: 100%;}
     #main_section>.mja_area>.first_line {float: left; height: 90%;margin-top: 10px;}
     #main_section>.mja_area>.mja_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
+	
+	#btn_area{margin: auto; width: 90%; text-align: right;}
+	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
+	#btn_area .wbutton:hover{color: #735949;; border: 2px solid #735949; cursor:pointer;}
 	
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -132,7 +98,12 @@
 	  	<c:if test="${empty loginUser }">
 		 	회원가입이 필요한 서비스 입니다.
 		</c:if>
-		<br>  
+		<div id="btn_area">
+			<c:if test ="${!empty loginUser }">
+	  			<button class="wbutton" onclick ="bWrite()">글쓰기</button>
+		  	</c:if>			  
+		</div> <!-- [bWrite/goHome]button end-->
+		<br clear="both">  
 	
 		<c:forEach var="b" items="${boardList }">
 			
@@ -190,20 +161,10 @@
 	           </div>
 	        </div><!-- pagination class p-parents end --> 
 	
-		  
-		  
-			 <div style="float:right">
-			<c:if test ="${!empty loginUser }">
-			  	<button class="wbutton" onclick ="bWrite()">글쓰기</button>
-			  </c:if>
-			  	<button class="button" onclick ="goHome()">home</button>
-			  
-			  </div> <!-- [bWrite/goHome]button end-->
-	
 			
 		 
-	 </div> 
-  </div>
+		</div> 
+	</div>
     <jsp:include page="../common/footer.jsp"/>
 </body>
 <script>

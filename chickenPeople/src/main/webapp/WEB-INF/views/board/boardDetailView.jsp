@@ -19,11 +19,13 @@
     #section .head_title .content{margin-left: 50px; font-size: 25px;}
 	#section .head_title a{margin-left:20px;}
 	
-    .review{float: left; width: 49.5%; height:300px;}
+    .review{width: 80%%; height:300px;}
+    .review ul li{float:left; list-style:none; width:49%;}
     .review:nth-child(odd){margin-right:10px;}
-    .review img{width: 100%; height: 90%;}
-    .review a{font-size:20px;}
-    .review span{font-size:20px;}
+    .review ul li img{width: 300px; height: 200px;}
+    /* .review ul li .number{font-size:20px; width:100px; height:100px; border-radius:40px; background-color:white; border:1px solid black; text-align:center;} */
+    .review ul li .number{font-size:30px;}
+    .review .review_content{font-size:40px;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
      
@@ -49,13 +51,20 @@
         <br clear="both">
         <hr>
         <%int i = 0; %>
-        <c:forEach var="p" items="${pList }">
-        <% i++;%>
-	        <div class="review">
-	            <img src="resources/buploadFiles/${p.upFileName}" alt="">
-	            <a><%=i %>. </a><span class="review_content">${p.bContent }</span>
-	        </div>
-        </c:forEach>
+        <div class="review">
+	        <c:forEach var="p" items="${pList }">
+	        <% i++;%>
+	        	<ul>
+	        		<li>
+	            		<span class="number"><%=i %>.</span><span class="review_content">${p.bContent }</span>
+	        		</li>
+	        		<li>
+	        			<img src="resources/buploadFiles/${p.upFileName}" alt="">
+	        		</li>
+	        	</ul>
+		        <br clear="both">
+	        </c:forEach>
+        </div>
         
     </div>
   	
