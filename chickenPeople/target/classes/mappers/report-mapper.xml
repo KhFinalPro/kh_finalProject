@@ -11,7 +11,9 @@
   	<result property="content" column="CONTENT"/>
   	<result property="rpt_Date" column="RPT_DATE"/>
   	<result property="user_Id" column="USER_ID"/>
+  	<result property="br_Code" column="BR_CODE"/>
   	<result property="br_Content" column="BR_CONTENT"/>
+  	<result property="rpt_Code" column="RPT_CODE"/>
   	<result property="rpt_Content" column="RPT_CONTENT"/>
   	<result property="rpt_Status" column="RPT_STATUS"/>
   </resultMap>
@@ -24,7 +26,7 @@
   	SELECT COUNT(*)
   	FROM ADMIN_REPORT
   </select>
-  <select id="getsearchListcount" resultType="_int">
+  <select id="getsearchListcount" resultType="_int" parameterType="searchStatus">
   	SELECT COUNT(*)
   	FROM (SELECT *
   		  FROM ADMIN_REPORT
@@ -41,7 +43,7 @@
   	FROM ADMIN_REPORT
   	ORDER BY 1
   </select>
-  <select id="selectReportSearchList" resultMap="reportResultSet">
+  <select id="selectReportSearchList" resultMap="reportResultSet" parameterType="searchStatus">
   	  SELECT *
 	  FROM ADMIN_REPORT
 	  WHERE RPT_STATUS=#{searchStatus}

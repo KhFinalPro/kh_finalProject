@@ -179,7 +179,9 @@
             
             //계연이 채팅 연결
             $("#message").on("click",function(){
-            	alert("채팅 클릭!!");
+            	var loginUser="<c:out value='${loginUser.id}'/>";
+        		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
+				
             })
             
             $("#noneLogin").on("click",function(){
@@ -190,6 +192,10 @@
             	location.href="deliveryList.do?latlng=" + $("#address option:selected").val() + "&address=" + $("#address option:selected").text();
             })
         })
+    </script>
+    <script>
+    	function shopPopUp(){
+    	}
     </script>
 
 </html>

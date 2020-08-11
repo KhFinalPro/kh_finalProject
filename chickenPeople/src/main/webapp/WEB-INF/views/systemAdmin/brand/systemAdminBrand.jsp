@@ -33,6 +33,10 @@
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+    a:link{text-decoration:none; color:#646464;}
+    a:visited{text-decoration:none; color:#646464;}
+    a:active{text-decoration:none; color:#646464;}
+    a:hover{text-decoration:none; color:#646464;}
 </style>
 </head>
 <body>
@@ -49,15 +53,32 @@
 					<table class="searchTable">
 						<tr>
 							<td><b>브랜드 검색</b></td>
-							<td><input class="menuSearch" name="brandName" type="text" placeholder="브랜드명을 입력해주세요."></td>
+							<c:if test="${empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="brandName" type="text" placeholder="브랜드명을 입력해주세요."></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="brandName" type="text" value="${searchStatus.searchName }"></td>
+							</c:if>
 							<td colspan="4"><button type="submit">검색</button></td>
 						</tr>
 						<tr>
 							<td><b>상태</b></td>
 							<td>
-								<label><input type="radio" name="brandStatus" value="입점" checked/> 입점</label>&nbsp;
-								<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
-								<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								<c:if test="${searchStatus.searchStatus eq '입점'}">
+									<label><input type="radio" name="brandStatus" value="입점" checked/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq '계약종료'}">
+									<label><input type="radio" name="brandStatus" value="입점"/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료" checked/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기"/> 입점대기</label>
+								</c:if>
+								<c:if test="${searchStatus.searchStatus eq '입점대기'}">
+									<label><input type="radio" name="brandStatus" value="입점"/> 입점</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="계약종료"/> 계약종료</label>&nbsp;
+									<label><input type="radio" name="brandStatus" value="입점대기" checked/> 입점대기</label>
+								</c:if>
 							</td>
 						</tr>
 					</table>
@@ -78,11 +99,16 @@
 					<tbody>
 					
 					<c:forEach var="i" items="${brandList }">
+						<c:url var="goStore" value="systemAdminStore.do">
+							<c:param name="storeSearch" value="" />
+							<c:param name="brandCategory" value="${i.brand_name }"/>
+							<c:param name="status_s" value="Y"/>
+						</c:url>
 						<tr>
 							<td>${i.brand_code }</td>
 							<td><img src="resources/images/${i.brand_pic }.png" width="40px" height="40px"></td>
-							<td>${i.brand_name }</td>
-							<td>입점</td>
+							<td><a href="${goStore }">${i.brand_name }</a></td>
+							<td>${searchStatus.searchStatus }</td>
 							<td>${i.brand_count }</td>
 						</tr>					
 					</c:forEach>
@@ -137,9 +163,7 @@
 </div>
 </body>
 <script>
-window.onload = function(){
-	alert("검색 & 페이지네이션 완료 > 브랜드 이름 누르면 점포관리에 브랜드를 검색한 값으로 화면 전환예정");
-}
+
 $(function(){
 	$("#brand").children().addClass('active');
 	
