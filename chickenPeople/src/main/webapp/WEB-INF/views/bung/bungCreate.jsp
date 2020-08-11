@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <style>
- 	
+ 	body, hmtl{background: #ecf0f1;}
 	/*지도 api*/
 	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -72,18 +72,19 @@
 	<%@ include file="../common/header.jsp" %>
 	
 	<section id="bungCreate_area">
+
 		<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
         <table>
             <tr>
                 <td><label>번개 제목</label></td>
-                <td><input type="text" id="bung_title" name="bung_title" placeholder="제목을 입력해주세요"></td>
+                <td><input type="text" id="bung_title" name="bung_title" placeholder="제목을 입력해주세요" required></td>
             </tr>
             <tr>
                 <td>
                     <label for="">번개 브랜드</label>
                 </td>
                 <td>
-                    <select name="bung_brand" id="bung_brand">                    
+                    <select name="bung_brand" id="bung_brand" required>                    
                     	<c:forEach var="brand" items="${brandList }">
 	                        <option value="${brand.brand_name }">${brand.brand_name }</option>
                         </c:forEach>
@@ -95,7 +96,7 @@
                     <label for="">번개 시간</label>
                 </td>
                 <td>
-                    <input type="date" name="bung_date" id="bung_date" class="date">&nbsp;<input type="time" name="bung_time" id="bung_time" class="date">
+                    <input type="date" name="bung_date" id="bung_date" class="date" required>&nbsp;<input type="time" name="bung_time" id="bung_time" class="date" required>
                 </td>
             </tr>
             <tr>
@@ -103,7 +104,7 @@
                     <label for="">소개글</label>
                 </td>
                 <td>
-                    <textarea name="bung_int" id="bung_int" cols="70" rows="5"></textarea>
+                    <textarea name="bung_int" id="bung_int" cols="70" rows="5" required></textarea>
                 </td>
             </tr>
             <tr>
@@ -111,7 +112,7 @@
                     <label for="">인원수</label>
                 </td>
                 <td>
-                    <input type="number" name="bung_p_no" id="bung_p_no" min="0" value="0">
+                    <input type="number" name="bung_p_no" id="bung_p_no" min="0" value="0" required>
                 </td>
             </tr>
             <tr>
@@ -153,12 +154,12 @@
                 </td>
             </tr>
             <tr>
-            	<td colspan="2"><div id="detail_address"><input type="text" id="bung_addr" value="${bung.bung_addr }" readonly></div></td>
+            	<td colspan="2"><div id="detail_address"><input type="text" name="bung_addr" id="bung_addr"  readonly required></div></td>
             </tr>
         </table>
 
         <input type="submit" id="bungCreate_btn" value="치킨번개 만들기">
-	    
+
 	</section>
 	
 	<%@ include file="../common/footer.jsp" %>
@@ -195,7 +196,7 @@
                     	type: "post",
                     	success:function(data){
                     		console.log(data);
-                    		var tag="<a href='mainSection.html' id='tag'>#"+data.tag_name+"</a>"+"," 
+                    		var tag="<a  id='tag' style='color:blue'>#"+data.tag_name+"</a>"+"," 
                     				+ "<input type='hidden' id='tagNum' name='tag_num' value='"+ data.tag_num +"'/>";
                             $("#tagArea").append(tag);
                             
@@ -226,15 +227,17 @@
             	$bung_addr = $("#bung_addr").val();
             	console.log($user_id);
             	
-            	$tagNumArr = new Array();
-            	$(".tag input").each(function(index, item){
-	            	$tagNumArr.push($("#tagArea").children("#tagNum").eq(index).val());            		
-            	})
+            	if($bung_title != "" && $bungDate != "" && $bungTime != "" && $bung_int != "" && $bung_p_no > 0 && $bung_addr != ""){
+	            	$tagNumArr = new Array();
+	            	$(".tag input").each(function(index, item){
+		            	$tagNumArr.push($("#tagArea").children("#tagNum").eq(index).val());            		
+	            	})
+	            	
+	            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
+	            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;            		
+            	}
             	
-            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
-            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;
             })
-            
             
         })
     </script>

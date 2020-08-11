@@ -24,7 +24,8 @@
     .review:nth-child(odd){margin-right:10px;}
     .review ul li img{width: 300px; height: 200px;}
     /* .review ul li .number{font-size:20px; width:100px; height:100px; border-radius:40px; background-color:white; border:1px solid black; text-align:center;} */
-    .review ul li .number{font-size:30px;}
+    .review ul li .number{font-size:30px; width:50px; height:50px;  border-radius:25px; background-color: #ffc000; color:white;}
+    .review ul li div{float:left;}
     .review .review_content{font-size:40px;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -56,13 +57,14 @@
 	        <% i++;%>
 	        	<ul>
 	        		<li>
-	            		<span class="number"><%=i %>.</span><span class="review_content">${p.bContent }</span>
+	            		<div class="number"><%=i %>.</div><div class="review_content">${p.bContent }</div>
 	        		</li>
 	        		<li>
 	        			<img src="resources/buploadFiles/${p.upFileName}" alt="">
 	        		</li>
 	        	</ul>
 		        <br clear="both">
+		        <hr>
 	        </c:forEach>
         </div>
         

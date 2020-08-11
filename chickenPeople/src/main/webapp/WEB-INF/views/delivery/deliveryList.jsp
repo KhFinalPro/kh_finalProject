@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>치킨의 민족</title>
 	<style>
-
+		body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
 		#storeList{margin: 0 auto; width: 100%; margin-top: 150px; text-align: center;}
 		#store_category{float: right; width: 100px; height: 30px; border: 1px solid black; margin-bottom: 10px; margin-right:20px;}
 

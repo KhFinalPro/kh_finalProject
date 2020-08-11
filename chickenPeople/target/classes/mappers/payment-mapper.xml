@@ -19,17 +19,17 @@
 		INSERT ALL
 		<if test="pay_method == 'kakao'">
 			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
-			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'Y', #{user_id}, NULL)
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '주문접수', SYSDATE, 'N', 'Y', #{user_id}, NULL)
 			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})		
 		</if>
 		<if test="pay_method == 'card'">
 			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
-			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'N', #{user_id}, NULL)
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '주문접수', SYSDATE, 'N', 'N', #{user_id}, NULL)
 			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})
 		</if>
 		<if test="pay_method == 'cash'">
 			INTO PAYMENT VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.NEXTVAL, SYSDATE, #{pay_rcv}, #{pay_addr}, #{pay_tel}, #{pay_msg}, #{pay_toal}, #{coup_num}, #{user_id}, #{pay_method}, #{user_lat}, #{user_lng} )
-			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '배송준비', SYSDATE, 'N', 'N', #{user_id}, NULL)
+			INTO JUMUN VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, '주문접수', SYSDATE, 'N', 'N', #{user_id}, NULL)
 			INTO ORDER_PRO VALUES('P'||TO_CHAR(SYSDATE, 'YYYYMMDD')||SEQ_ORD_NUM.CURRVAL, #{sto_num}, #{pay_toal})
 		</if>
 		SELECT * FROM DUAL

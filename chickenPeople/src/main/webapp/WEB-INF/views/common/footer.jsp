@@ -33,7 +33,7 @@
 		<hr>
 		
 		<div id="footer_Area">
-			<h2 style="color: white;">치킨의민족</h2>
+			
 			(주)우아한형제들<br>
 			서울 강남구 테헤란로 14길 6 남도빌딩 2층, 3층, 4층 | 대표자 : 홍길동
 			<br><br>
