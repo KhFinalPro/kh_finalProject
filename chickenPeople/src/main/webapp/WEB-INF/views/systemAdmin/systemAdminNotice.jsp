@@ -11,14 +11,14 @@
 	#write:hover{color:white; background-color:#2e4ead;}
 	
 	
-    .menuHeader{margin:0 auto; width:90%; margin-top:100px;}
+    .menuHeader{margin:0 auto; width:90%; margin-top:50px;}
 	.menuResultTable{margin:0 auto; width:90%;}
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable th{height:80px;}
 	.resultTable td{height:50px;}
 	
-	.p-parents{position:fixed; top:700px; right:40%;}
+	.p-parents{position:fixed; top:650px; right:40%;}
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
     .pppp > ol > li:first-child { border-left : 1px solid black; }
@@ -30,7 +30,7 @@
     .page-nocur {width:100%; height:100%; font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
-    #modal{position:fixed; top:300px; right:30%; width:700px; height:500px; border:1px solid black; background-color:white; display:none;}
+    #modal{position:fixed; top:200px; right:30%; width:600px; height:550px; border:1px solid black; background-color:white; display:none; border-radius:20px;}
     #modal img{width:50px; height:50px; float:right;}
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -169,13 +169,14 @@
 				$("#modal").css("display","block");
 				$("#modal").children("form").remove();
 				$("#modal").append("<form action='nupdate.do' method='get'>"+
-									"<div style='margin:0 auto; width:80%; '>"+
+									"<div style='margin:0 auto; width:90%; '>"+
 									"<input type='text' name='nTitle' value='"+ data.title +"' style='width:100%; height:50px; font-size:25px; margin-top:20px;'>"+
 									"<input type='hidden' name='nNum' value='"+ data.nNum +"'>"+
 									"<input type='text' name='nDate' value='"+ data.date +"' style='border:0px;'>"+
 									"</div>"+
 									"<div style='margin:0 auto; width:80%; height:300px; margin-top:30px; overflow-y:scroll;'>"+
-									"<input type='text' name='nCont' value='"+ data.content +"' style='width:100%; height:100%;'>"+
+									//"<input type='text' name='nCont' value='"+ data.content +"' style='width:100%; height:100%;'>"+
+									"<textarea name='nCont' style='width:100%; height:100%;'>"+ data.content + "</textarea>"+
 									"</div>"+
 									"<div style='margin:0 auto; width:80%; text-align:center; margin-top:20px;'>"+
 									"<button id='update_btn' style='width:100px; height:30px;'>수정하기</button>"+									

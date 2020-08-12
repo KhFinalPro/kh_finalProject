@@ -174,6 +174,18 @@
 				        <button class="logout_btn btn">LogOut</button>
 			        </div>
 	        	</c:if>
+	        	<c:if test="${sessionScope.loginUser.uLvl == '판매자' }">
+	        		<div id="login_area" class="banner_login">
+				        <p id="login_title">치킨의민족 시작하기</p>
+				        
+				        <img src="resources/images/user1.png" alt="">
+				
+				        <p id="login">${sessionScope.loginUser.name }</p>
+				
+				        <button class="store_btn btn">Store</button>
+				        <button class="logout_btn btn">LogOut</button>
+			        </div>
+	        	</c:if>
 			    
 			</c:if>
 			
@@ -348,6 +360,10 @@
 	
 	$(".system_btn").on("click",function(){		//시스템 페이지 이동
 		location.href="brandTotalGraph.do";
+	})
+	
+	$(".store_btn").on("click",function(){
+		location.href="storeOrder.do";
 	})
 	
     var pos = 0;

@@ -12,9 +12,9 @@
 	#coupon_nv{margin:0 auto; width:80%; text-align: right; margin-bottom: 20px;}
 	#coupon_nv #couponCreate{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
 	#coupon_nv #couponCreate:hover{color:white; background-color:#2e4ead;}
-	.coupon{width: 49.5%; height: 200px; margin-bottom:10px; display:inline-block;}
-	.coupon img{width:100%; height: 200px;}
-	#coupon_area{width:100%; height: 700px;}
+	.coupon{width: 49.5%; height: 150px; margin-bottom:10px; display:inline-block;}
+	.coupon img{width:100%; height: 150px;}
+	#coupon_area{margin:0 auto; width:90%; height: 500px; text-align:center;}
 	#page_area{margin:0 auto; width:50%; text-align:center;}
 	.page_btn{font-size:30px; font-weight:600; margin-right:5px;}
 </style>

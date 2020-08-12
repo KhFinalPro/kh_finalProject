@@ -58,7 +58,7 @@
 	  }
 	  
 	 
-	#section{margin: 0 auto; width: 100%; margin-top:150px;}
+	#section{margin: 0 auto; width: 90%; margin-top:150px;}
 	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
 	#main_section>.mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid #735949;}
     #main_section>.mja_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
