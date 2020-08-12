@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>1:1문의</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
@@ -17,7 +17,7 @@
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
 	.resultTable { width:90%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
-	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
+	.resultTable td .resultTable th{ margin:0 auto;height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px; width:200px;}
 	.resultTable tr{height:40px;}
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
 	
@@ -47,30 +47,77 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">1:1 문의</p>
 				<br><hr><br>
+				<form action="systemAdminChat.do" method="get">
+					<table class="searchTable">
+						<tr>
+							<td><b>메뉴 검색</b></td>
+							<c:if test="${empty searchStatus.searchName}">
+								<td><input class="menuSearch" name="userId" type="text" placeholder="아이디를 입력해주세요"></td>
+							</c:if>
+							<c:if test="${not empty searchStatus.searchName }">
+								<td><input class="menuSearch" name="userId" type="text" value="${searchStatus.searchName}"></td>
+							</c:if>
+							<td><b>판매 상태</b></td>
+							<c:if test="${searchStatus.searchStatus eq 'N' }">
+								<td>
+									<label><input type="radio" name="chat_status" value="N" checked/>미답변</label>
+									<label><input type="radio" name="chat_status" value="Y"/>답변 완료</label>
+									
+								</td>
+							</c:if>
+							<c:if test="${searchStatus.searchStatus eq 'Y' }">
+								<td>
+									<label><input type="radio" name="chat_status" value="N" />미답변</label>
+									<label><input type="radio" name="chat_status" value="Y" checked/>답변 완료</label>
+								</td>
+							</c:if>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<button type="submit">검색</button>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 			<div class="resultTable">
-				<table class="searchTable">
+				<table class="resultTable" style="text-align:center; margin:0 auto;">
 					<thead>
 						<tr>
 							<th>채팅방 번호</th>
 							<th>접속자 아이디</th>
-							<th>이름</th>			
+							<th>이름</th>		
+							<th>연락처</th>	
+							<th>처리상태<th>
+							<th></th>
 						</tr>
+					
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${totalRoomData }" >
-							<tr>
-								<c:url var="goChattingAdmin" value="goChattingAdmin">
-									<c:param name="room_no" value="${list.chattingRoom_no}"/>
-									<c:param name="client_name" value="${list.client_id }"/>
-								</c:url>
-								<td>${list }</td>
-								<td class="roomNo">${list.chattingRoom_no}</td>
-								<td class="userId">${list.client_id}</td>
-								<td class="userName">${list.client_name }</td>
-								<td><button class="message">채팅하러가기</button> 
-							</tr>			
+							<c:forEach var="member" items="${totalMemberData }">
+								<c:if test="${list.client_id eq member.id }">
+									<tr>
+										<c:url var="goChattingAdmin" value="goChattingAdmin">
+											<c:param name="room_no" value="${list.chattingRoom_no}"/>
+											<c:param name="client_name" value="${list.client_id }"/>
+										</c:url>
+										<td class="roomNo">${list.chattingRoom_no}</td>
+										<td class="userId">${list.client_id}</td>
+										<td class="userName">${member.name }</td>
+										<td class="tel">${member.tel}</td>
+										<c:if test="${list.chat_status eq 'Y' }">
+											<td class="status"><button>답변완료</button></td>
+										</c:if>
+										<c:if test="${list.chat_status eq 'N' }">
+											<td class="status"><button>답변대기</button></td>
+										</c:if>
+										<td><button class="message">채팅하러가기</button> 
+									</tr>
+								</c:if>	
+							</c:forEach>							
 						</c:forEach>
+
 					</tbody><!-- tbody end -->
 				</table><!-- class searchTable end -->
 			</div><!-- class resultTable end -->

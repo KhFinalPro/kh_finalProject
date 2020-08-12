@@ -13,6 +13,7 @@ public class ChattingRoom implements Serializable{
 	private String client_name;
 	private String client_id;
 	private String cs_id;
+	private String chat_status;
 	
 	
 	public ChattingRoom() {}
@@ -42,6 +43,18 @@ public class ChattingRoom implements Serializable{
 		this.client_name = client_name;
 		this.client_id = client_id;
 		this.cs_id = cs_id;
+	}
+
+	
+
+	public ChattingRoom(String chattingRoom_no, String client_name, String client_id, String cs_id,
+			String chat_status) {
+		super();
+		this.chattingRoom_no = chattingRoom_no;
+		this.client_name = client_name;
+		this.client_id = client_id;
+		this.cs_id = cs_id;
+		this.chat_status = chat_status;
 	}
 
 
@@ -85,18 +98,28 @@ public class ChattingRoom implements Serializable{
 	}
 
 
+	public String getChat_status() {
+		return chat_status;
+	}
+
+
+	public void setChat_status(String chat_status) {
+		this.chat_status = chat_status;
+	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-
 
 
 	@Override
 	public String toString() {
 		return "ChattingRoom [chattingRoom_no=" + chattingRoom_no + ", client_name=" + client_name + ", client_id="
-				+ client_id + ", cs_id=" + cs_id  + "]";
+				+ client_id + ", cs_id=" + cs_id + ", chat_status=" + chat_status + "]";
 	}
+
+
 
 
 	

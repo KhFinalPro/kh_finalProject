@@ -16,6 +16,7 @@ import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 @Controller
 public class ChatController {
@@ -24,7 +25,11 @@ public class ChatController {
 	ChatService chatService;
 	
 	@RequestMapping(value="systemAdminChat.do", method=RequestMethod.GET)
-	public ModelAndView systemAdminChat(ModelAndView mv, HttpSession session,
+	public ModelAndView systemAdminChat(ModelAndView mv, 
+										SearchStatus chatSearch,
+										HttpSession session,
+										@RequestParam(value="userId",required=false)String userId,
+										@RequestParam(value="chat_status",required=false)String chat_status,
 										@RequestParam(value="page",required=false)Integer page) {
 		
 		int currentPage = 1;
@@ -32,14 +37,25 @@ public class ChatController {
 		if(page!=null) {
 			currentPage = page;
 		}
-		listCount = chatService.getListCount();
+		
+		if(userId.contentEquals("no")) {
+			userId=null;
+			chatSearch.setSearchName(userId);
+		}else {
+			chatSearch.setSearchName(userId);
+		}
+		chatSearch.setSearchStatus(chat_status);
+		
+		listCount = chatService.getListCount(chatSearch);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<ChattingRoom> totalRoomData = chatService.selectAllRoom_data(pi);
-		System.out.println(totalRoomData);
+		ArrayList<ChattingRoom> totalRoomData = chatService.selectAllRoom_data(chatSearch, pi);
+		ArrayList<Member> totalMemberData = chatService.selectAllMember_data();
+		
 		
 		if(totalRoomData!=null) {
 			mv.addObject("totalRoomData",totalRoomData);
+			mv.addObject("totalMemberData",totalMemberData);
 			mv.addObject("pi",pi);
 			mv.setViewName("chat/systemChatRoomList");
 		}
@@ -60,6 +76,7 @@ public class ChatController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getId();
 		String userName = loginUser.getName();
+		System.out.println("이름출력"+userName);
 		ChattingRoom room_data = chatService.selectRoom_data(userId);
 		
 		
@@ -74,7 +91,7 @@ public class ChatController {
 				ChattingRoom new_room_data = chatService.selectRoom_data(userId);
 				new_room_data.setClient_id(userId);
 				new_room_data.setClient_name(userName);
-				
+				System.out.println(new_room_data);
 				ChattingRoom_No = new_room_data.getChattingRoom_no();
 				Client_Id = new_room_data.getClient_id();
 				Client_Name = new_room_data.getClient_name();

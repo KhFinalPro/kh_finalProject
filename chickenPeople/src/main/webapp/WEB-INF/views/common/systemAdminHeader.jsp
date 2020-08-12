@@ -10,8 +10,8 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+ */
 
 *{ margin:0; list-style:none; padding:0; text-decoration: none; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 body{ background:#e1ecf2; overflow: hidden; }
@@ -107,7 +107,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">신고 관리</span>
                     </a></li>
-                    <li id="chat"><a href="systemAdminChat.do">
+                    <li id="chat"><a href="systemAdminChat.do?userId=no&chat_status=N">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
