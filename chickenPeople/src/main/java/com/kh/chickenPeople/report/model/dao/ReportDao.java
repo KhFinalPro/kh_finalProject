@@ -49,4 +49,10 @@ public class ReportDao {
 		return (ArrayList)sqlSessionTemplate.selectList("reportMapper.selectReportSearchList",searchStatus,rowBounds);
 	}
 
+
+	public int insertReport(Report p) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("reportMapper.insertReport", p);
+	}
+
 }

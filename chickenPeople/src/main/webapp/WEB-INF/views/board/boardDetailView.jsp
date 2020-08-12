@@ -28,6 +28,12 @@
     .review ul li .number{font-size:30px; width:50px; height:50px;  border-radius:25px; background-color: #ffc000; color:white;}
     .review ul li div{float:left;}
     .review .review_content{font-size:40px;}
+    
+    #report_area{float:right;}
+    #report_area>#report{width:100px; height:25px;}
+    
+    #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
      
@@ -48,6 +54,9 @@
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
                 <a>조회수 : ${board.bCount } </a><a id="like"> 좋아요 : ${board.bHit }</a>
+                <div id="report_area">
+                	<button id="report">신고</button>
+                </div>
             </div>
         </div>
 
@@ -70,6 +79,39 @@
 	        </c:forEach>
         </div>
         
+    </div>
+    
+    <div id="report_modal">
+    	<div>
+	        <a href="javascript: $('#report_modal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+	            <img src="resources/images/close.png" style="width: 100%;"/>
+	        </a>
+	        <div style="position: absolute; top : 53px; left:35px;">
+		        <table id="reportMessage">
+		            <tr >
+		                <th style="width: 100px; height: 50px; font-size:22px;">category</th>
+		                <td>
+		                	<input type="hidden" id="br_code" name="br_code" value="B_MUK">
+		                	<select id="rpt_code" style="border:2px solid; border-radius:6px; height:30px;">
+		                		<option value="REPORT_01">타 서비스 홍보 / 광고 / 판매</option>
+		                		<option value="REPORT_02">음란물 유포, 요청</option>
+		                		<option value="REPORT_03">권리침해 (초상권,저작권,명예훼손)</option>
+		                		<option value="REPORT_04">공격적 / 비꼬기 / 비하</option>
+		                	</select>
+		                </td>
+		            </tr>
+		        </table>
+	    	</div>
+		    <div style="position: absolute; top : 100px; left:12px;">
+		        <ul style="list-style: none;">
+		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
+		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
+		
+		            </textarea>
+		        </ul>
+		        <button type="button" id="mukReport" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>신고하기</b></button>
+		    </div>
+	    </div>
     </div>
   	
   	<br clear="both">
@@ -97,6 +139,34 @@
 			error:function(data){
 				
 			}
+		})
+	})
+	
+	$("#report").on("click",function(){
+			$("#report_modal").css("display","block");
+		})
+		
+	//신고하기버튼 ajax
+	$("#mukReport").on("click",function(){
+		$bNum = $("#bNum").val();
+		$rpt_content = $("#rpt_content").val();
+		$rpt_code = $("#rpt_code").val();
+		$br_code = $("#br_code").val();
+		$user_id = $("#id").val();
+
+		$.ajax({
+			url:"reportInsert.do",
+			data:{br_Num:$bNum, rpt_Content:$rpt_content, rpt_Code:$rpt_code, br_Code:$br_code, user_Id:$user_id},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				console.log("성공");
+			},
+			error:function(request, status, errorData){
+           		alert("error code: " + request.status + "\n"
+                          +"message: " + request.responseText
+                          +"error: " + errorData);
+           	}
 		})
 	})
 </script>

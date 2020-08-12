@@ -18,6 +18,8 @@ public interface ReportService {
 	ArrayList<Report> selectReportList(PageInfo pi);
 
 	ArrayList<Report> selectReportSearchList(SearchStatus searchStatus, PageInfo pi);
+
+	int insertReport(Report p);
 	
 
 }
