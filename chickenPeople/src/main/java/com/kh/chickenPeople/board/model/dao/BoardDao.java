@@ -74,6 +74,36 @@ public class BoardDao {
 		return sqlSessionTemplate.update("boardMapper.updateThumbnail",b);
 	}
 
+	public Board selectBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("boardMapper.selectBoardLike", b);
+	}
+
+	public int insertBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("boardMapper.insertBoardLike", b);
+	}
+
+	public int selectBoardLikeCount(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("boardMapper.selectBoardLikeCount", b);
+	}
+
+	public int updateBoardHit(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.updateBoardHit", b);
+	}
+
+	public int deleteBoardLike(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("boardMapper.deleteBoardLike", b);
+	}
+
+	public int downBoardHit(Board b) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.downBoardHit", b);
+	}
+
 	
 	
 	

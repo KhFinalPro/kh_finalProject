@@ -28,6 +28,18 @@ public interface BoardService {
 
 	int updateThumbnail(Board b);
 
+	Board selectBoardLike(Board b);
+
+	int insertBoardLike(Board b);
+
+	int selectBoardLikeCount(Board b);
+
+	int updateBoardHit(Board b);
+
+	int deleteBoardLike(Board b);
+
+	int downBoardHit(Board b);
+
 
 	
 

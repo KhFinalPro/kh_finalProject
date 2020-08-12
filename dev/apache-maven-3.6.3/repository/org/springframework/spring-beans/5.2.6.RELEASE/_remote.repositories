@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sun Jul 19 23:28:06 GMT+09:00 2020
+<<<<<<< HEAD
+#Wed Aug 12 10:00:17 GMT+09:00 2020
+=======
+#Wed Aug 12 09:18:56 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 spring-beans-5.2.6.RELEASE.pom>central=

@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Jul 24 11:23:24 KST 2020
+#Wed Aug 12 11:03:13 KST 2020
+>>>>>>>=refs/remotes/origin/master
 aspectjrt-1.6.10.jar>central=
-aspectjrt-1.6.10-sources.jar>central=
 aspectjrt-1.6.10.pom>central=
+aspectjrt-1.6.10-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

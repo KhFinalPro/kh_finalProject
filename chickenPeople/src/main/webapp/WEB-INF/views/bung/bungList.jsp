@@ -9,10 +9,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body, hmtl{background: #ecf0f1;}
 section{margin-top: 100px;}
 #main_section {margin: auto;clear: both;}
 
-#main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
+#main_section>.bungae_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
 
 #main_section>.bungae_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
 

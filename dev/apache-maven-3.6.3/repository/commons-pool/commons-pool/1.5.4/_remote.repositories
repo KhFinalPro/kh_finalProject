@@ -1,5 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Jul 24 11:24:04 KST 2020
-commons-pool-1.5.4-sources.jar>central=
+#Wed Aug 12 11:03:46 KST 2020
+commons-pool-1.5.4-javadoc.jar>central=
 commons-pool-1.5.4.jar>central=
+commons-pool-1.5.4-sources.jar>central=
 commons-pool-1.5.4.pom>central=
+>>>>>>>=refs/remotes/origin/master
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

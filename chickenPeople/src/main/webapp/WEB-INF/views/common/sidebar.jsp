@@ -119,18 +119,25 @@
 </head>
 <body>
 <div id="mypage_nav">
-	<div class="mypageTitle"><h2>MY PAGE</h2></div>
 	    <nav>
-	        <a href="#">회원정보</a>
-	        <a href="myCoupon.do?id=${sessionScope.loginUser.id }">쿠폰</a>
-	        <a href="couponAccept.do?id=${sessionScope.loginUser.id }">쿠폰받아가기</a>
-	        <a href="orderStatus.do?id=${sessionScope.loginUser.id }">주문현황</a>
-	        <a href="calender.do">주문달력/리뷰</a>
-	        <a href="msgList.do">메세지</a>
-	        <a href="storeLikeList.do">찜한매장/글</a>
-	        <a href="myBung.do?id=${sessionScope.loginUser.id }">번개</a>
+	        <a class="mypage_item" href="#">회원정보</a>
+	        <a class="mypage_item" href="myCoupon.do?id=${sessionScope.loginUser.id }">쿠폰</a>
+	        <a class="mypage_item" href="couponAccept.do?id=${sessionScope.loginUser.id }">쿠폰받아가기</a>
+	        <a class="mypage_item" href="orderStatus.do?id=${sessionScope.loginUser.id }">주문현황</a>
+	        <a class="mypage_item" href="calender.do">주문달력/리뷰</a>
+	        <a class="mypage_item" href="msgList.do">메세지</a>
+	        <a class="mypage_item" href="storeLikeList.do">찜한매장/글</a>
+	        <a class="mypage_item" href="myBung.do?id=${sessionScope.loginUser.id }">번개</a>
 	        <div class="animation start-home"></div>
 	    </nav>
 </div>
 </body>
+<script>
+	/* $(".mypage_item").on("mouseenter",function(){
+		$(this).css('background-color','#1abc9c');
+	})
+	$(".mypage_item").on("mouseout",function(){
+		$(this).css('background-color','lightgrey');
+	}) */
+</script>
 </html>

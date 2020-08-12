@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sun Jul 19 23:29:04 GMT+09:00 2020
+<<<<<<< HEAD
+#Wed Aug 12 10:01:38 GMT+09:00 2020
+=======
+#Wed Aug 12 09:20:46 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 plexus-components-1.1.14.pom>central=

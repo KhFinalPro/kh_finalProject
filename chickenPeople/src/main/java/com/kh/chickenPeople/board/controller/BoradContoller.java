@@ -1,14 +1,19 @@
 package com.kh.chickenPeople.board.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -222,5 +227,48 @@ public class BoradContoller {
 	 * if(result>0) { return "redirect:boardList.do"; }else { throw new
 	 * BoardException("게시판 등록 실패"); } }
 	 */
+	
+	@RequestMapping(value="boardLike.do", method=RequestMethod.POST)
+	public void boardLike(HttpServletResponse response, String id, int bNum) throws IOException
+	{
+		response.setContentType("application/json;charset=utf-8");
+		Board b = new Board();
+		b.setbNum(bNum);
+		b.setId(id);
+		
+		Board selectBoardLike = boardService.selectBoardLike(b);
+		JSONObject sendJson = new JSONObject();
+		//selectBoardLike == null 등록
+		if(selectBoardLike == null)
+		{
+			int result = boardService.insertBoardLike(b);
+			if(result > 0)	//좋아요 인설트 성공
+			{
+				int count = boardService.selectBoardLikeCount(b);
+				int hitUpdate = boardService.updateBoardHit(b);
+				sendJson.put("msg", "성공");
+				sendJson.put("count", count);
+				
+			}
+		}
+		
+		//selectBoardLike != null 좋아요 delete
+		if(selectBoardLike != null)
+		{
+			int delete = boardService.deleteBoardLike(b);
+			if(delete > 0)
+			{
+				int count = boardService.selectBoardLikeCount(b);
+				int hitUpdate = boardService.downBoardHit(b);
+				sendJson.put("msg", "성공");
+				sendJson.put("count", count);
+			}
+		}
+		
+		PrintWriter out = response.getWriter();
+		out.print(sendJson);
+		out.flush();
+		out.close();
+	}
 //}
 }

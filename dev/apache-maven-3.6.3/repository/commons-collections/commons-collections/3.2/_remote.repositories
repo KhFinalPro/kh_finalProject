@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Jul 24 11:24:36 KST 2020
+<<<<<<< HEAD
+#Wed Aug 12 10:01:18 GMT+09:00 2020
+=======
+#Wed Aug 12 09:24:45 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 commons-collections-3.2.jar>central=
-commons-collections-3.2-sources.jar>central=
 commons-collections-3.2.pom>central=

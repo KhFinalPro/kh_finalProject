@@ -113,7 +113,7 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">1:1 문의</span>
                     </a></li>
-                     <li id="notice"><a href="#">
+                     <li id="notice"><a href="adminNoticeList.do">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>

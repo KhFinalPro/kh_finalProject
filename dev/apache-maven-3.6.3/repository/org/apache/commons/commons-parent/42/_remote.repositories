@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sun Jul 19 23:28:16 GMT+09:00 2020
+<<<<<<< HEAD
+#Wed Aug 12 10:00:27 GMT+09:00 2020
+=======
+#Wed Aug 12 09:19:06 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 commons-parent-42.pom>central=

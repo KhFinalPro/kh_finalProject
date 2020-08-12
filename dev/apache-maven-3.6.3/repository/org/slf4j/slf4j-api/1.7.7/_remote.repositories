@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 03 14:05:50 KST 2020
+<<<<<<< HEAD
+#Wed Aug 12 10:00:47 GMT+09:00 2020
+=======
+#Wed Aug 12 09:19:26 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 slf4j-api-1.7.7.pom>central=

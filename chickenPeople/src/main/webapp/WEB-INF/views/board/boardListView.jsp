@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <style>
+	body, hmtl{background: #ecf0f1;}
 	.button{
 	  background:#2CBFB1;
 	  color:#fff;
@@ -59,7 +60,7 @@
 	 
 	#section{margin: 0 auto; width: 100%; margin-top:150px;}
 	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
-	#main_section>.mja_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
+	#main_section>.mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid #735949;}
     #main_section>.mja_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
     #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
     #main_section>.mja_area>.mja_logo>img {width: 100%; height: 100%;}
@@ -92,7 +93,7 @@
 		<div id="main_section">
 		  
 
-		<h1 align="center">맛잘알 리뷰</h1>
+		<!-- <h1 align="center">맛잘알 리뷰</h1> -->
 
 		  
 	  	<c:if test="${empty loginUser }">

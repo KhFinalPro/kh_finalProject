@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Jul 24 11:23:10 KST 2020
+#Wed Aug 12 11:02:52 KST 2020
 spring-jcl-5.2.7.RELEASE.jar>central=
 spring-jcl-5.2.7.RELEASE.pom>central=
-spring-jcl-5.2.7.RELEASE-sources.jar>central=
+>>>>>>>=refs/remotes/origin/master
+spring-jcl-5.2.7.RELEASE-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

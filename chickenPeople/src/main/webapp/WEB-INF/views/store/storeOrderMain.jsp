@@ -437,7 +437,7 @@
 			$brand_code = $("#brand_code").val();
 			$modal = $("#modalReview");
 
-			row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'> : ");
+			row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'><input type='hidden' name='price' value='"+$menu_price+"'> : ");
 			
 			//금액
 			price += $menu_price;
@@ -482,7 +482,7 @@
 			$menu_price = parseInt($(this).parent("li").children("span").text());
 			
 			if($("input[type='checkbox']").is(":checked") == true) {
-				row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'>");
+				row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'><input type='hidden' name='price' value='"+$menu_price+"'> : ");
 			}
 			
 			price += $menu_price; 
@@ -509,7 +509,7 @@
 									
 			
 			//금액
-			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' name='price' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
+			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
 			col.append(item_price);
 			list_group_item.append(col);
 			

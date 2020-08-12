@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		#main_section{margin: auto; width: 80%; margin-top: 200px; clear: both;}
+		#main_section{margin: auto; width: 80%; margin-top: 100px; clear: both;}
 		#main_section>#head_area{margin: auto; width: 90%; height: 100%; z-index: 0;}
 		
 		#main_section>#head_area>.head_line{float: left; text-align: center;}

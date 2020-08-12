@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Jul 24 11:24:01 KST 2020
+#Wed Aug 12 11:03:44 KST 2020
+>>>>>>>=refs/remotes/origin/master
 commons-dbcp-1.4.jar>central=
-commons-dbcp-1.4-sources.jar>central=
+commons-dbcp-1.4-javadoc.jar>central=
 commons-dbcp-1.4.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
