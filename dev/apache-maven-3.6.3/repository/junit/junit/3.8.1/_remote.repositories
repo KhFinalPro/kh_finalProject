@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Wed Aug 12 10:01:44 GMT+09:00 2020
+=======
 #Wed Aug 12 09:20:51 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 junit-3.8.1.jar>central=
 junit-3.8.1.pom>central=

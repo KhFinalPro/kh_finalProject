@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Wed Aug 12 10:01:24 GMT+09:00 2020
+=======
 #Wed Aug 12 09:20:32 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 maven-war-plugin-2.2.jar>central=
 maven-war-plugin-2.2.pom>central=
