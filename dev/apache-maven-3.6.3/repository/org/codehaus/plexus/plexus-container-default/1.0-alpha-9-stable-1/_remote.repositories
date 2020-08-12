@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Wed Aug 12 10:01:44 GMT+09:00 2020
+=======
+#Wed Aug 12 09:20:51 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 plexus-container-default-1.0-alpha-9-stable-1.jar>central=
 plexus-container-default-1.0-alpha-9-stable-1.pom>central=

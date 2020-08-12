@@ -1,4 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Wed Aug 12 10:01:18 GMT+09:00 2020
+=======
+#Wed Aug 12 09:25:20 GMT+09:00 2020
+commons-codec-1.2.pom>central=
+>>>>>>> refs/remotes/origin/master
 commons-codec-1.2.jar>central=
 commons-codec-1.2.pom>central=
