@@ -14,6 +14,7 @@
 		<result property="bUpDate" column="B_UP_DATE"/>
 		<result property="bStatus" column="B_STATUS"/>
 		<result property="bThumbnail" column="B_THUMBNAIL"/>
+		<result property="id" column="USER_ID"/>
 	</resultMap>
 	
 	
@@ -84,5 +85,31 @@
 	<update id="updateThumbnail" parameterType="Board">
 		UPDATE BOARD
 		SET B_THUMBNAIL = #{bThumbnail} WHERE B_NUM = #{bNum}
+	</update>
+	
+	<select id="selectBoardLike" parameterType="Board" resultMap="boardResultSet">
+		SELECT * FROM BOARD_LIKE WHERE USER_ID = #{id} AND B_NUM = #{bNum}
+	</select>
+	
+	<insert id="insertBoardLike" parameterType="Board">
+		INSERT INTO BOARD_LIKE VALUES(#{id}, #{bNum})
+	</insert>
+	
+	<select id="selectBoardLikeCount" parameterType="Board" resultType="int">
+		SELECT COUNT(*) FROM BOARD_LIKE
+		WHERE B_NUM = #{bNum}
+	</select>
+	
+	<update id="updateBoardHit" parameterType="Board">
+		UPDATE BOARD SET B_HIT = B_HIT + 1 WHERE B_NUM = #{bNum}
+	</update>
+	
+	<delete id="deleteBoardLike" parameterType="Board">
+		DELETE FROM BOARD_LIKE
+		WHERE USER_ID = #{id} AND B_NUM =#{bNum}
+	</delete>
+	
+	<update id="downBoardHit" parameterType="Board">
+		UPDATE BOARD SET B_HIT = B_HIT - 1 WHERE B_NUM = #{bNum}
 	</update>
 </mapper>

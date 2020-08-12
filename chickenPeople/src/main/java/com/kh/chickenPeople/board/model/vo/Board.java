@@ -21,12 +21,14 @@ public class Board {
 	private String bStatus;	//글삭제 여부
 	private String bThumbnail;	//썸네일
 	
+	private String id;		//아이디
+	
 	public Board() {
 		super();
 	}
 
 	public Board(int bNum, String bWriter, String bCate, String bTitle, String bCont, String bCount, String bHit,
-			Date bDate, Date bDelDate, Date bUpDate, String bStatus, String bThumbnail) {
+			Date bDate, Date bDelDate, Date bUpDate, String bStatus, String bThumbnail, String id) {
 		this.bNum = bNum;
 		this.bWriter = bWriter;
 		this.bCate = bCate;
@@ -39,6 +41,7 @@ public class Board {
 		this.bUpDate = bUpDate;
 		this.bStatus = bStatus;
 		this.bThumbnail = bThumbnail;
+		this.id = id;
 	}
 
 	public int getbNum() {
@@ -137,12 +140,22 @@ public class Board {
 		this.bThumbnail = bThumbnail;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bNum=" + bNum + ", bWriter=" + bWriter + ", bCate=" + bCate + ", bTitle=" + bTitle + ", bCont="
 				+ bCont + ", bCount=" + bCount + ", bHit=" + bHit + ", bDate=" + bDate + ", bDelDate=" + bDelDate
-				+ ", bUpDate=" + bUpDate + ", bStatus=" + bStatus + ", bThumbnail=" + bThumbnail + "]";
+				+ ", bUpDate=" + bUpDate + ", bStatus=" + bStatus + ", bThumbnail=" + bThumbnail + ", id="
+				+ id + "]";
 	}
+
 	
 	
 	

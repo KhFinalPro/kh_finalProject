@@ -10,7 +10,7 @@
 <style>
 	.item{ width:100%; text-align:center;}
 	#coupon_nv{margin:0 auto; width:80%; text-align: right; margin-bottom: 20px;}
-	#coupon_nv #couponCreate{width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
+	#coupon_nv #couponCreate{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
 	#coupon_nv #couponCreate:hover{color:white; background-color:#2e4ead;}
 	.coupon{width: 49.5%; height: 200px; margin-bottom:10px; display:inline-block;}
 	.coupon img{width:100%; height: 200px;}
@@ -30,7 +30,7 @@
 			<div id="coupon_nv">
 				<button id="couponCreate">쿠폰 만들기</button>
 			</div>
-			
+			<br clear="both"><br><br>
 			<div id="coupon_area">
 				<c:forEach var="c" items="${couponList }">
 					<div class="coupon">

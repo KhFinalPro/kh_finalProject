@@ -63,12 +63,12 @@ public class MemberController {
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
 		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
-			
+			System.out.println(member);
 			session.setAttribute("loginUser", member);
 			session.setAttribute("loginUserId", member.getId());
 			session.setAttribute("address", addrList);
-//			return "redirect:/loginHome.do?id="+member.getId();
-			return "home";
+
+			return "redirect:/home.do";
 		}else {
 			model.addAttribute("msg", "로그인 실패!");
 			return "redirect:/loginView.do";

@@ -10,7 +10,7 @@ public class Notice {
 	private String nCont;  //게시판내용
 	private String userId; //작성자
 	private int nCount; 	  //조회수
-	private Date nDate; 	  //게시날짜
+	private String nDate; 	  //게시날짜
 	private Date nDelDate; //삭제날짜
 	private Date nUpDate;  //수정날짜
 	private String nStatus;//삭제여부
@@ -19,7 +19,7 @@ public class Notice {
 		super();
 	}
 
-	public Notice(int nNum, String nTitle, String nCont, String userId, int nCount, Date nDate, Date nDelDate,
+	public Notice(int nNum, String nTitle, String nCont, String userId, int nCount, String nDate, Date nDelDate,
 			Date nUpDate, String nStatus) {
 		super();
 		this.nNum = nNum;
@@ -73,11 +73,11 @@ public class Notice {
 		this.nCount = nCount;
 	}
 
-	public Date getnDate() {
+	public String getnDate() {
 		return nDate;
 	}
 
-	public void setnDate(Date nDate) {
+	public void setnDate(String nDate) {
 		this.nDate = nDate;
 	}
 

@@ -63,6 +63,18 @@ public class NoticeDao {
 		return sqlSessionTemplate.update("noticeMapper.deleteNotice",nNum);
 	}
 
+	public int getAdminNoticeListCount() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("noticeMapper.getAdminNoticeListCount");
+	}
+
+	public ArrayList<Notice> selectAdminNoticeList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSessionTemplate.selectList("noticeMapper.selectAdminNoticeList", null, rowBounds);
+	}
+
 	
 
 

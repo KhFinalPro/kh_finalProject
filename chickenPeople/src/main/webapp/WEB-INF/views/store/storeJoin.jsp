@@ -43,13 +43,13 @@
             #checkAll{
                zoom: 2.0;
             }
-           div select{
+           /* div select{
               height: 30px;
               border-radius: 5px;
               width: 80px;
               float: left;
               margin-left: 3px ;
-           }
+           } */
            #h2{
                margin-left: 20px;
            }
