@@ -13,4 +13,16 @@ public interface StoreOrderService {
 
 	ArrayList<StoreOrder> chooseOrderList(HashMap<String, String> map);
 
+	int updateOrderStatus(HashMap<String, String> map);
+
+	int updateOrderStatusAgain(HashMap<String, String> map);
+
+	//주문접수중 모달
+	ArrayList<StoreOrder> selectWaitingList(String userId);
+
+	int updateOrderStatusAccept(String ordNum);
+
+	int updateOrderStatusCancel(String ordNum);
+
+
 }

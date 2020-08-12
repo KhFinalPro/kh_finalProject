@@ -42,4 +42,35 @@ public class StoreOrderDao {
 		
 		return chooseOrderList;
 	}
+
+	public int updateOrderStatus(HashMap<String, String> map) {
+	
+		return sqlSessionTemplate.update("storeOrderMapper.updateOrderStatus",map);
+	}
+
+	public int updateOrderStatusAgain(HashMap<String, String> map) {
+		
+		return sqlSessionTemplate.update("storeOrderMapper.updateOrderStatusAgain",map);
+	}
+
+	//주문 접수중 모달
+	public ArrayList<StoreOrder> selectWaitingList(String userId) {
+	
+		ArrayList<StoreOrder> selectWaitingList = new ArrayList<StoreOrder>();
+		
+		selectWaitingList = (ArrayList)sqlSessionTemplate.selectList("storeOrderMapper.selectWaitingList",userId);
+		return selectWaitingList;
+	}
+
+	//주문 접수 모달 - 확인
+	public int updateOrderStatusAccept(String ordNum) {
+		
+		return sqlSessionTemplate.update("storeOrderMapper.updateOrderStatusAccept",ordNum);
+	}
+
+	public int updateOrderStatusCancel(String ordNum) {
+	
+		return sqlSessionTemplate.update("storeOrderMapper.updateOrderStatusCancel",ordNum);
+	
+	}
 }

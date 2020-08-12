@@ -33,6 +33,37 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		
 		return storeOrderDao.chooseOrderList(map);
 	}
+
+	@Override
+	public int updateOrderStatus(HashMap<String, String> map) {
+		
+		return storeOrderDao.updateOrderStatus(map); 
+	}
+
+	@Override
+	public int updateOrderStatusAgain(HashMap<String, String> map) {
+	
+		return storeOrderDao.updateOrderStatusAgain(map); 
+	}
+
+	@Override
+	public ArrayList<StoreOrder> selectWaitingList(String userId) {
+		
+		return storeOrderDao.selectWaitingList(userId); 
+	}
+
+	@Override
+	public int updateOrderStatusAccept(String ordNum) {
+		
+		return storeOrderDao.updateOrderStatusAccept(ordNum); 
+	}
+
+	@Override
+	public int updateOrderStatusCancel(String ordNum) {
+	
+		return storeOrderDao.updateOrderStatusCancel(ordNum); 
+	}
+
 	
 	
 	

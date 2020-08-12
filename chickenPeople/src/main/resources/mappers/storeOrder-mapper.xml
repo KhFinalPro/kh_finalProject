@@ -22,7 +22,7 @@ FROM PAYMENT P
 JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
 JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
 JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
-WHERE SI.USER_ID=#{userId} AND P.PAY_DATE >= TRUNC(SYSDATE) AND P.PAY_DATE <![CDATA[ < ]]> TRUNC(SYSDATE+1)
+WHERE SI.USER_ID=#{userId} AND P.PAY_DATE >= TRUNC(SYSDATE) AND P.PAY_DATE <![CDATA[ < ]]> TRUNC(SYSDATE+1) AND J.ORD_STATUS LIKE '%배달%'
 </select>
 
 
@@ -39,15 +39,6 @@ WHERE SI.USER_ID=#{userId} AND P.PAY_DATE >= TRUNC(SYSDATE) AND P.PAY_DATE <![CD
 
 
 <!-- 선택한 날짜 오더리스트 -->
-<!-- <select id="chooseOrderList" resultMap="orderResultSet">
-SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
-FROM PAYMENT P
-JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
-JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
-JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
-WHERE SI.USER_ID=#{userId} AND P.PAY_DATE>= TO_CHAR(#{start}) AND P.PAY_DATE <![CDATA[ < ]]> TO_CHAR(#{end})
-</select> -->
-
 <select id="chooseOrderList" resultMap="orderResultSet">
 SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
 FROM PAYMENT P
@@ -56,5 +47,49 @@ JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
 JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
 WHERE SI.USER_ID=#{userId} AND P.PAY_DATE>= TO_DATE(#{start},'YYYY-MM-DD') AND P.PAY_DATE <![CDATA[ < ]]> TO_DATE(#{end},'YYYY-MM-DD')+1
 </select>
- 
+
+<update id="updateOrderStatus">
+UPDATE JUMUN
+SET
+ORD_STATUS='배달중'
+WHERE ORD_NUM=#{ordNum}
+</update>
+
+
+<update id="updateOrderStatusAgain">
+UPDATE JUMUN
+SET
+ORD_STATUS='배달완료'
+WHERE ORD_NUM=#{ordNum}
+</update>
+
+
+<!-- 현재 주문접수중 모달 -->
+<select id="selectWaitingList"  resultMap="orderResultSet">
+SELECT P.ORD_NUM, P.PAY_DATE,J.USER_ID,P.PAY_TOAL,J.ORD_STATUS,P.PAY_METHOD,P.PAY_MSG
+FROM PAYMENT P
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND P.PAY_DATE >= TRUNC(SYSDATE) AND P.PAY_DATE <![CDATA[ < ]]> TRUNC(SYSDATE+1) AND J.ORD_STATUS='주문접수'
+</select>
+
+
+<update id="updateOrderStatusAccept">
+UPDATE JUMUN
+SET
+ORD_STATUS = '배달준비'
+WHERE ORD_NUM = #{ordNum}
+</update>
+
+<update id="updateOrderStatusCancel">
+UPDATE JUMUN
+SET
+ORD_STATUS = '주문취소'
+WHERE ORD_NUM = #{ordNum}
+</update>
+
+
+
+
 </mapper>

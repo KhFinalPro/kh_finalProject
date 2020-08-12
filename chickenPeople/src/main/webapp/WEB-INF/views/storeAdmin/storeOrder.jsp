@@ -115,6 +115,18 @@
 
 } 
 
+#deliveryBtn{
+	margin:5px;
+	padding:5px;
+	border:none;
+	border-radius:2px;
+}
+
+
+#waitingOrderTable th{
+	max-width:200px;
+}
+
 </style>
 </head>
 <body>
@@ -130,7 +142,7 @@
                         <div class="orderTitle">주문 리스트</div>
                         <br>
                         <div class="nowOrderStatus">
-                            <button class="nowOrderStatusBtn">현재 7개 접수중</button>
+                            <button type="button" onclick="checkWaitingOrderList()" class="nowOrderStatusBtn" id="checkWaitingOrderList"><span id="nowOrderCount"></span></button>
                             <br>
                             <button class="totalReceiptBtn">매출전표</button>
                         </div>
@@ -162,9 +174,10 @@
                                     <th>주문일시</th>
                                     <th>주문자</th>
                                     <th>주문금액</th>
-                                    <th>주문상태</th>
                                     <th>결제방법</th>
                                     <th>요청사항</th>
+                                    <th>주문상태</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -174,8 +187,8 @@
                         <table class="content-table" id="summaryTable">
                             <td class="totalTd">
                                 <ul>
-                                    <li class="totalOrder">총 주문&nbsp; : <span id="orderCount">zz</span></li>
-                                    <li class="totalPrice">전체금액 :&nbsp; <span id="orderTotalPrice">zz</span></li>
+                                    <li class="totalOrder">총 주문&nbsp; : <span id="orderCount"></span></li>
+                                    <li class="totalPrice">전체금액 :&nbsp; <span id="orderTotalPrice"></span></li>
                                 </ul>
                             </td>
                         </table>
@@ -191,7 +204,36 @@
                 </div>
             </div>
           </div>
+          
+           <!-- 현재 접수중 모달 --> 
+ <div id="waitingModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
+    <div style="width: 800px; height: 500px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+        <a href="javascript: $('#waitingModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+            <img src="resources/images/close.png" style="width: 100%;"/></a>
+        <div style="position: absolute; top : 40px; left:40px;">
+        <h2>접수 대기내역</h2></div>
+        <div style="position: absolute; top : 100px; /* left:70px; */">
+       <table class="content-table" id="waitingOrderTable" style="width:100%">
+           <thead>
+              <tr>
+              <th>주문번호</th>
+              <th>주문메뉴</th>
+              <th>주문일시</th>
+              <th>결제방법</th>
+              <th>주문상태</th>
+              <th>접수처리</th>
+              </tr>
+           </thead>
+           <tbody>
+           </tbody>
+       </table>
+    </div>
+    
+    </div>
+ </div>
 </body>
+
+
 <script>
 $(function(){
 	$(".orderBar").children().addClass('active');
@@ -201,16 +243,52 @@ $(function(){
 
 $(document).ready(function(){
 	init();
+	
 });
 
-/* $(document).on('click','#calendar',function(){
-	searchDate(this);
+$(document).on('click','#deliveryBtn',function(){
+	goDelivery(this);
 });
- */
+
+
+
+
+$(document).on('click','#acceptOrder',function(){
+	
+	
+	if(!confirm('주문 접수 확인하시겠습니까?')){
+        return false;
+     }
+	ordNum = $(this).parents('tr').find('#ordNum').html();
+	console.log('확인'+ordNum);
+	
+	acceptOrder(ordNum);
+	
+	
+}); 
+
+
+
+
+$(document).on('click','#cancelOrder',function(){
+	if(!confirm('주문 접수 취소하시겠습니까?')){
+        return false;
+     }
+	ordNum = $(this).parents('tr').find('#ordNum').html();
+	console.log('확인'+ordNum);
+	
+	cancelOrder(ordNum);
+	
+	
+}); 
 
 function init(){
 	searchDate();
 }
+
+
+
+var nowOrderCount='';
 
 //데이터조회
 function searchDate(){
@@ -232,14 +310,15 @@ function searchDate(){
 			for(var i=0; i<orderList.length; i++){
 				oderListAppendStr += '<tr>'+
 									'<td>'+(i+1)+'</td>'+
-									'<td>'+orderList[i].ordNum+'</td>'+
+									'<td id="ordNum">'+orderList[i].ordNum+'</td>'+
 									'<td>'+orderList[i].menuName+'</td>'+
 									'<td>'+orderList[i].payDate+'</td>'+
 									'<td>'+orderList[i].userId+'</td>'+
 									'<td>'+orderList[i].payToal+'</td>'+
-									'<td>'+orderList[i].ordStatus+'</td>'+
 									'<td>'+orderList[i].payMethod+'</td>'+
 									'<td>'+orderList[i].payMsg+'</td>'+
+									'<td id="ordStatus">'+orderList[i].ordStatus+'</td>'+
+									'<td>'+'<button type="button" id="deliveryBtn">'+'배송시작'+'</button>'+'</td>'
 									'</tr>'
 									
 				sum += orderList[i].payToal;
@@ -255,8 +334,10 @@ function searchDate(){
 		 	$("#orderTotalPrice").empty();
 			$("#orderTotalPrice").html(sum);
 			
-			console.log(orderList.length);
+			//console.log(orderList.length);
 			
+			
+			$("#nowOrderCount").html("현재"+"&nbsp"+data.WAITING_CHECK+"&nbsp"+"건 접수중");
 		
 		},error:function(request, status, errorData){
             alert("error code: " + request.status + "\n"
@@ -312,6 +393,11 @@ var param = {'start':start,'end':end};
 			$("#orderTable").find('tbody').empty();
 			$("#orderTable").find('tbody').append(chooseOrderAppendStr);
 			
+			
+			$("#orderCount").empty();
+			$("#orderCount").html("&nbsp"+chooseOrder.length+"&nbsp"+"건");
+			
+			
 		 	$("#orderTotalPrice").empty();
 			$("#orderTotalPrice").html(sum);
 			
@@ -325,6 +411,186 @@ var param = {'start':start,'end':end};
 
 	
 } 
+
+
+function goDelivery(obj){
+	
+	var ordNum = $(obj).parents('tr').find("#ordNum").html();
+	var ordStatus = $(obj).parents('tr').find("#ordStatus").html();
+	
+	console.log(ordNum);
+	console.log(ordStatus);
+	
+	var param = {'ordNum':ordNum};
+	
+	//console.log('배송시작할거야'+ordStatus);
+	
+	
+	if(ordStatus=='배달준비'){
+		
+	if(!confirm('배달을 시작하시겠습니까?')){
+         return false;
+      }
+	 
+	 $.ajax({
+		 type:'POST',
+		 url:"updateOrderStatus.do",
+		 data:param,
+		 dataType:'JSON',
+		 success:function(data){
+			 
+			alert('배달이 시작되었습니다!');
+			//$("#deliveryBtn").css('color','#fff').css('background-color','#587be4');
+			location.reload();
+		   
+			
+			
+		 },error:function(request, status, errorData){
+             alert("error code: " + request.status + "\n"
+                     +"message: " + request.responseText
+                     +"error: " + errorData);
+         } 
+	 })
+	 
+	}else if(ordStatus=='배달중'){
+		
+		if(!confirm('이미 시작된 배달입니다. 완료하시겠습니까?')){
+	         return false;
+	      }
+		
+		 $.ajax({
+			 type:'POST',
+			 url:"updateOrderStatusAgain.do",
+			 data:param,
+			 dataType:'JSON',
+			 success:function(data){
+				 
+				location.reload();
+				alert('배달이 완료되었습니다!');
+				
+				
+			 },error:function(request, status, errorData){
+	             alert("error code: " + request.status + "\n"
+	                     +"message: " + request.responseText
+	                     +"error: " + errorData);
+	         } 
+		 })
+		
+	}else{
+		alert('배달완료된 상품입니다!');
+	}
+	
+}
+
+
+
+
+
+function checkWaitingOrderList(){
+	 $("#waitingModal").fadeIn(500);
+	 
+	 $.ajax({
+		 type:'GET',
+		 url:"selectWaitingList.do",
+		 dataType:'JSON',
+		 success:function(data){
+			 
+			 var selectWaitingList = data.selectWaitingList;
+			 var selectWaitingArr = '';
+			 
+			 
+			 
+			 
+			 for(var i=0; i<selectWaitingList.length; i++){
+				 selectWaitingArr += '<tr>'+
+									'<td id="ordNum">'+selectWaitingList[i].ordNum+'</td>'+
+									'<td>'+selectWaitingList[i].menuName+'</td>'+
+									'<td>'+selectWaitingList[i].payDate+'</td>'+
+									'<td>'+selectWaitingList[i].payMethod+'</td>'+
+									'<td>'+selectWaitingList[i].ordStatus+'</td>'+
+									'<td>'+'<button type="button" id="acceptOrder">'+'확인'+'</button>'+'<button type="button" id="cancelOrder">'+'취소'+'</button>'+'</td>'+
+									'</tr>'
+			 }
+			 
+			 console.log(selectWaitingArr);
+			 $("#waitingOrderTable").find('tbody').empty();
+			 $("#waitingOrderTable").find('tbody').append(selectWaitingArr);
+			 
+			 
+			 //$("#nowOrderCount").empty();
+			/*  $("#nowOrderCount").html("현재"+"&nbsp"+selectWaitingList.length+"&nbsp"+"건 접수중");
+			 nowOrderCount=selectWaitingList.length; */
+			 
+		 },error:function(request, status, errorData){
+             alert("error code: " + request.status + "\n"
+                     +"message: " + request.responseText
+                     +"error: " + errorData);
+         } 
+	 })
+	 
+	 
+	 
+}
+
+
+//대기 주문 확인
+function acceptOrder(ordNum){
+	var ordNum = ordNum;
+	var param = {'ordNum':ordNum};
+	console.log(ordNum);
+	
+	 $.ajax({
+		 type:'POST',
+		 url:'updateOrderStatusAccept.do',
+		 data:param,
+		 dataType:'JSON',
+		 success:function(data){
+			 $("#waitingModal").fadeOut(500);
+			 alert('성공적으로 접수확인 되었습니다!');
+			 searchDate();
+			 //location.reload();
+			 
+		 },error:function(request, status, errorData){
+             alert("error code: " + request.status + "\n"
+                     +"message: " + request.responseText
+                     +"error: " + errorData);
+         } 
+		 
+	 })
+}
+
+
+
+function cancelOrder(ordNum){
+
+	var ordNum = ordNum;
+	var param = {'ordNum':ordNum};
+	console.log('취소'+ordNum);
+	
+	 $.ajax({
+		 type:'POST',
+		 url:'updateOrderStatusCancel.do',
+		 data:param,
+		 dataType:'JSON',
+		 success:function(data){
+			 $("#waitingModal").fadeOut(500);
+			 alert('주문 취소되었습니다.');
+			 searchDate();
+			 //location.reload();
+			 
+		 },error:function(request, status, errorData){
+             alert("error code: " + request.status + "\n"
+                     +"message: " + request.responseText
+                     +"error: " + errorData);
+         } 
+		 
+	 })
+	
+	
+}
+
+
+
 
 
 

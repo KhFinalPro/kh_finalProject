@@ -128,6 +128,8 @@ public class StoreAdminController {
 	        
 	        JSONArray reviewMenuArr = new JSONArray();
 	        
+	        
+	        
 	        for(int i=0; i<reviewList.size(); i++) {
 	        	
 	        	for(int j=0; j<menuList.size(); j++) {
@@ -147,6 +149,14 @@ public class StoreAdminController {
 	        		}
 	        	}
 	        }
+	        
+	        
+	        
+	        //리뷰 조회하기
+	        
+	        
+	        
+	        
 	        obj.put("reviewMenu", reviewMenuArr);
 	        PrintWriter out = response.getWriter();
             
