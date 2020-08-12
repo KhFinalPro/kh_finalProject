@@ -1,18 +1,21 @@
 package com.kh.chickenPeople.chat;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.chickenPeople.chat.model.service.ChatService;
+import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
 
 @Controller
 public class EchoHandler extends TextWebSocketHandler{
@@ -20,8 +23,11 @@ public class EchoHandler extends TextWebSocketHandler{
 	//List 사용
 	private List<Map<String,Object>> sessionList = new ArrayList<Map<String,Object>>();
 	
+	@Autowired
+	ChatService chatService;
+	
 	@Override
-	public void afterConnectionEstablished(WebSocketSession session) {
+	public void afterConnectionEstablished(WebSocketSession session) throws IOException {
 		   Map<String,Object> sessionMap = session.getAttributes();
 		   
 		   String ChattingRoom_no = (String)sessionMap.get("room_no");
@@ -29,7 +35,25 @@ public class EchoHandler extends TextWebSocketHandler{
 		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
+		   
 		   sessionList.add(map);
+		   
+		   for(int i = 0; i<sessionList.size(); i++) {
+			   Map<String,Object> temp = sessionList.get(i);
+			   WebSocketSession sess = (WebSocketSession)temp.get("session");
+			   
+			   String userId = "member"+"|"+session.getAttributes().get("loginUserId");
+			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
+			   
+			   sess.sendMessage(new TextMessage(userId));
+			   for(int j = 0 ; j < beforeDate.size(); j++) {
+				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
+					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg();
+					   sess.sendMessage(new TextMessage(beforeMsg));					   
+				   }
+			   }
+			   
+		   }
 		
 	}
 	
@@ -50,9 +74,17 @@ public class EchoHandler extends TextWebSocketHandler{
 			   
 			   if(ChattingRoom_no.equals(mapReceive.get("room_no"))) {
 				   
-				   String jsonStr = ChattingRoom_no + "|"+ session.getAttributes().get("loginUserId") +"|"+mapReceive.get("msg");
-				   System.out.println(jsonStr);
+				   Map<String,Object> tmp = session.getAttributes();
+				   String userId = (String)tmp.get("loginUserId");
+				   
+				   String jsonStr = "msg"+"|"+ChattingRoom_no + "|"+ userId +"|"+mapReceive.get("msg");
+				   
 				   sess.sendMessage(new TextMessage(jsonStr));
+				   
+				   int result = chatService.saveMessage(jsonStr);
+				   if (result>0) {
+					   System.out.println("저장완료다 이녀석들아");
+				   }
 				   
 			   }
 	        }
@@ -61,9 +93,29 @@ public class EchoHandler extends TextWebSocketHandler{
 	 
 	 
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-		sessionList.remove(session);
-		System.out.println("채팅방 퇴장");
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		String now_room_no = "";
+		
+		for(int i = 0; i<sessionList.size(); i++) {
+			Map<String,Object> map = sessionList.get(i);
+			String room_no = (String)map.get("room_no");
+			WebSocketSession sess = (WebSocketSession)map.get("session");
+			
+			if(session.equals(sess)) {
+				sessionList.remove(map);
+				break;
+			}
+			Map<String,Object> outputMap = session.getAttributes();
+			String userId = (String)outputMap.get("session");
+			String leaveMsg = "leaveRoom"+"|"+room_no+"|"+userId+"|";
+			System.out.println(leaveMsg);
+			sess.sendMessage(new TextMessage(leaveMsg));
+
+		}
+		
+		
+		
 	}
 	
 

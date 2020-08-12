@@ -102,8 +102,7 @@
 </head>
 <body>
 	<jsp:include page="common/header.jsp"/>
-	
-	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
+	<input type="text" id="id" value="${sessionScope.loginUser.id }">
 	<br clear="both">
         
 
@@ -201,16 +200,15 @@
     
 
     <section class="main_area">
-        
     	<div class="first_area">
-        	<div class="place_area" style="margin-right: 10px;" onclick="deliver();">
-                <a href="#">
-                    <img class="logo" src="resources/images/delivery.png" alt="logo">
-                </a>
-                <div align="center">
-                    <p>치킨 먹고 싶니~?!?</p>
-                </div>
-            </div>
+	        	<div class="place_area" style="margin-right: 10px;" onclick="deliver();">
+	                <a href="#">
+	                    <img class="logo" src="resources/images/delivery.png" alt="logo">
+	                </a>
+	                <div align="center">
+	                    <p>치킨 먹고 싶니~?!?</p>
+	                </div>
+	            </div>
             <div class="place_area" style="margin-right: 10px;" onclick="bung();">
                 <a href="#">
                     <img class="logo" src="resources/images/bung.png" alt="logo">
