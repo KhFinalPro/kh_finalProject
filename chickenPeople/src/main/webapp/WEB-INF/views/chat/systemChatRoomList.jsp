@@ -16,7 +16,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
+	.resultTable { width:90%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
@@ -43,35 +43,78 @@
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
-		<br clear="both">
-
-		<table>
-				<thead>
-					<tr>
-						<th>채팅방 번호</th>
-						<th>접속자</th>			
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="list" items="${totalRoomData }" >
+			<br clear="both">
+			<div class="menuHeader">
+				<p style="font-size:20px;">1:1 문의</p>
+				<br><hr><br>
+			</div>
+			<div class="resultTable">
+				<table class="searchTable">
+					<thead>
 						<tr>
-							<c:url var="goChattingAdmin" value="goChattingAdmin">
-								<c:param name="room_no" value="${list.chattingRoom_no}"/>
-								<c:param name="client_name" value="${list.client_id }"/>
-							</c:url>
-							<td class="roomNo">${list.chattingRoom_no}</td>
-							<td class="userId">${list.client_id}</td>
-							<td><button class="message">채팅하러가기</button> 
-						</tr>			
-					</c:forEach>
-				</tbody>
-			</table>
+							<th>채팅방 번호</th>
+							<th>접속자 아이디</th>
+							<th>이름</th>			
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="list" items="${totalRoomData }" >
+							<tr>
+								<c:url var="goChattingAdmin" value="goChattingAdmin">
+									<c:param name="room_no" value="${list.chattingRoom_no}"/>
+									<c:param name="client_name" value="${list.client_id }"/>
+								</c:url>
+								<td>${list }</td>
+								<td class="roomNo">${list.chattingRoom_no}</td>
+								<td class="userId">${list.client_id}</td>
+								<td class="userName">${list.client_name }</td>
+								<td><button class="message">채팅하러가기</button> 
+							</tr>			
+						</c:forEach>
+					</tbody><!-- tbody end -->
+				</table><!-- class searchTable end -->
+			</div><!-- class resultTable end -->
+			<div class = "p-parents" style="margin:0 auto">
+	            <div class="pppp">
+	                    <c:if test="${pi.currentPage eq 1}">
+		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
+	                    </c:if>
+	                    <c:if test="${pi.currentPage gt 1}">
+	                    	<c:url var="blistBack" value="systemAdminChat.do">
+	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    	</c:url>
+	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
+	                    </c:if>
+	                    <ol>
+	                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+	                    	<c:if test="${p eq pi.currentPage }">
+	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
+	                    	</c:if>
+	                    	<c:if test="${p ne pi.currentPage }">
+	                    		<c:url var="blistCheck" value="systemAdminChat.do">
+	                    			<c:param name="page" value="${p }"/>
+	                    		</c:url>
+	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
+	                    	</c:if>
+	                    </c:forEach>
+	                    </ol>
+	                    <c:if test="${pi.currentPage eq pi.maxPage }">
+		                    <a style = "color:#9c9c9c"  disabled>Next</a>
+	                    </c:if>
+						<c:if test="${pi.currentPage lt pi.maxPage }">
+							<c:url var="blistAfter" value="systemAdminChat.do">
+								<c:param name="page" value="${pi.currentPage+1 }"/>
+
+	                    	</c:url>
+							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
+						</c:if>
+	           </div>
+	        </div><!-- pagination class p-parents end --> 
 		</div>
 	</div>
 </div>
 	<script>
 		$(function(){
-            //계연이 채팅 연결
             $(".message").on("click",function(){
             	/* var loginUser="<c:out value='${loginUser.id}'/>"; */
             	var loginUser = $(this).parent().parent().children(".userId").text();

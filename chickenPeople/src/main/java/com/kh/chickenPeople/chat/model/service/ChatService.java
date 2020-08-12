@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
 import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 public interface ChatService {
 
@@ -11,10 +12,12 @@ public interface ChatService {
 
 	int createRoom_no(String userId);
 
-	ArrayList<ChattingRoom> selectAllRoom_data();
+	ArrayList<ChattingRoom> selectAllRoom_data(PageInfo pi);
 
 	int saveMessage(String jsonStr);
 
 	ArrayList<ChattingMsg> selectAllMsgData(String chattingRoom_no);
+
+	int getListCount();
 
 }

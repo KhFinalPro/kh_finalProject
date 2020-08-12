@@ -12,8 +12,11 @@
   	<result property="talker" column="TALKER"/>
   	<result property="send_time" column="SEND_TIME"/>
   </resultMap>
-  
-  
+ 
+  <select id="getListCount" resultType="_int">
+		SELECT COUNT(*) 
+		FROM CHATTING_ROOM
+  </select>
   <select id="selectRoom_data" parameterType="String" resultMap="chattingResultSet">
   	SELECT *
   	FROM CHATTING_ROOM

@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.chat.model.service.ChatService;
 import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
+import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.member.model.vo.Member;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Controller
 public class ChatController {
@@ -22,12 +24,23 @@ public class ChatController {
 	ChatService chatService;
 	
 	@RequestMapping(value="systemAdminChat.do", method=RequestMethod.GET)
-	public ModelAndView systemAdminChat(ModelAndView mv, HttpSession session) {
-		ArrayList<ChattingRoom> totalRoomData = chatService.selectAllRoom_data();
+	public ModelAndView systemAdminChat(ModelAndView mv, HttpSession session,
+										@RequestParam(value="page",required=false)Integer page) {
 		
+		int currentPage = 1;
+		int listCount = 0;
+		if(page!=null) {
+			currentPage = page;
+		}
+		listCount = chatService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<ChattingRoom> totalRoomData = chatService.selectAllRoom_data(pi);
 		System.out.println(totalRoomData);
+		
 		if(totalRoomData!=null) {
 			mv.addObject("totalRoomData",totalRoomData);
+			mv.addObject("pi",pi);
 			mv.setViewName("chat/systemChatRoomList");
 		}
 		
@@ -46,8 +59,9 @@ public class ChatController {
 	public ModelAndView goChatting(ModelAndView mv,HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getId();
-		
+		String userName = loginUser.getName();
 		ChattingRoom room_data = chatService.selectRoom_data(userId);
+		
 		
 		String ChattingRoom_No =null;
 		String Client_Name = null;
@@ -58,10 +72,14 @@ public class ChatController {
 			
 			if(result>0) {
 				ChattingRoom new_room_data = chatService.selectRoom_data(userId);
+				new_room_data.setClient_id(userId);
+				new_room_data.setClient_name(userName);
+				
 				ChattingRoom_No = new_room_data.getChattingRoom_no();
 				Client_Id = new_room_data.getClient_id();
 				Client_Name = new_room_data.getClient_name();
 				
+				System.out.println(ChattingRoom_No+"/"+Client_Id+"/"+Client_Name);
 				session.setAttribute("room_no", ChattingRoom_No);
 				session.setAttribute("client_Name", Client_Name);
 				session.setAttribute("client_id", Client_Id);
@@ -70,6 +88,9 @@ public class ChatController {
 			}
 		}
 		else {
+			room_data.setClient_id(userId);
+			room_data.setClient_name(userName);
+			
 			ChattingRoom_No = room_data.getChattingRoom_no();
 			Client_Id = room_data.getClient_id();
 			Client_Name = room_data.getClient_name();
