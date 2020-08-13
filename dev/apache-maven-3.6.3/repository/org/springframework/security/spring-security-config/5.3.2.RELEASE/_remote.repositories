@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:03:56 KST 2020
 =======
 <<<<<<< HEAD
@@ -14,9 +15,13 @@
 #Wed Aug 12 09:24:32 GMT+09:00 2020
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:06:29 KST 2020
+>>>>>>> refs/remotes/origin/dev960103
 spring-security-config-5.3.2.RELEASE.jar>central=
 >>>>>>>=refs/remotes/origin/master
 spring-security-config-5.3.2.RELEASE.pom>central=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 spring-security-config-5.3.2.RELEASE-javadoc.jar>central=
@@ -26,3 +31,8 @@ spring-security-config-5.3.2.RELEASE-javadoc.jar>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+spring-security-config-5.3.2.RELEASE-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev960103

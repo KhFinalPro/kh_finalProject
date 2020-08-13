@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:01:59 KST 2020
 =======
 <<<<<<< HEAD
@@ -16,16 +17,25 @@
 #Wed Aug 12 09:23:19 GMT+09:00 2020
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:04:45 KST 2020
+>>>>>>> refs/remotes/origin/dev960103
 plexus-utils-1.5.1.pom>central=
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/dev960103
 >>>>>>>=refs/remotes/origin/master
 plexus-utils-1.5.1.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+<<<<<<< HEAD
 =======
 plexus-utils-1.5.1.jar>central=
 >>>>>>> refs/remotes/origin/master
 =======
 plexus-utils-1.5.1.jar>central=
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> refs/remotes/origin/dev960103

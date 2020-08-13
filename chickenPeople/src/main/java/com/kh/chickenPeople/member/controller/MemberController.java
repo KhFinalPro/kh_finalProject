@@ -63,15 +63,7 @@ public class MemberController {
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
 
-		if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
-			System.out.println(member);
-			session.setAttribute("loginUser", member);
-			session.setAttribute("loginUserId", member.getId());
-			session.setAttribute("address", addrList);
-
-			return "redirect:/home.do";
-		}else {
-			model.addAttribute("msg", "로그인 실패!");
+		
 
 		if(member==null) {
 			model.addAttribute("msg", "아이디가 틀렸습니다.");
@@ -90,7 +82,7 @@ public class MemberController {
 		} 
 		
 	}
-	}
+	
 	
 	
 	
@@ -109,6 +101,7 @@ public class MemberController {
 		return mv;
 	}
 	
+
 	@RequestMapping("findIdView.do")	// 아이디찾기
 	public ModelAndView findId(ModelAndView mv) {
 //		System.out.println("findId.do");
@@ -168,7 +161,24 @@ public class MemberController {
 		return "redirect:/home.do";
 	}
 	
+	@RequestMapping("agreement.do")	// 이용약관 상세
+	public ModelAndView agreement(ModelAndView mv) {
+//		System.out.println("memberJoin.do");
+		mv.setViewName("member/agreement");
+		
+		return mv;
+	}
 	
+	@RequestMapping("agreement2.do")	// 이용약관 상세
+	public ModelAndView agreement2(ModelAndView mv) {
+//		System.out.println("memberJoin.do");
+		mv.setViewName("member/agreement2");
+		
+		return mv;
+	}
+	
+	
+		
 	
 	
 

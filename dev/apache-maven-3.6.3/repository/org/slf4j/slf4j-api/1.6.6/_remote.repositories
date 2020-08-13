@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:03:17 KST 2020
 >>>>>>>=refs/remotes/origin/master
 slf4j-api-1.6.6-javadoc.jar>central=
@@ -18,8 +19,14 @@ slf4j-api-1.6.6.pom>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:05:45 KST 2020
+>>>>>>>=refs/remotes/origin/master
+slf4j-api-1.6.6-javadoc.jar>central=
+>>>>>>> refs/remotes/origin/dev960103
 slf4j-api-1.6.6.jar>central=
 slf4j-api-1.6.6.pom>central=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 slf4j-api-1.6.6-sources.jar>central=
@@ -29,3 +36,8 @@ slf4j-api-1.6.6-sources.jar>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+slf4j-api-1.6.6-sources.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev960103

@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:02:38 KST 2020
 >>>>>>>=refs/remotes/origin/master
 spring-aop-5.2.7.RELEASE-javadoc.jar>central=
@@ -17,6 +18,11 @@ spring-aop-5.2.7.RELEASE-sources.jar>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:05:12 KST 2020
+>>>>>>>=refs/remotes/origin/master
+spring-aop-5.2.7.RELEASE-javadoc.jar>central=
+>>>>>>> refs/remotes/origin/dev960103
 spring-aop-5.2.7.RELEASE.jar>central=
 spring-aop-5.2.7.RELEASE-sources.jar>central=
 spring-aop-5.2.7.RELEASE.pom>central=

@@ -11,7 +11,7 @@
             #storeJoinForm{
                 width: 700px;
                 margin: 0 auto;
-                margin-top: 200px;
+                margin-top: 120px;
             }
             #logintable{
                 margin: 0;
@@ -39,6 +39,14 @@
                 border-radius: 5px;
                 height: 30px;
                 width: 280px;
+            }
+            
+            tr td select{
+                border-radius: 5px;
+                height: 30px;
+                width: 290px;
+                font: bold;
+                font-size: 15px;
             }
             #checkAll{
                zoom: 2.0;
@@ -152,7 +160,18 @@
                         <label>브랜드명</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="text" id="brand" name="brand" required>
+                        <select name="brand" required>
+                        	<option value="BB">비비큐</option>
+                        	<option value="DD">또래오래</option>
+                        	<option value="BH">BHC</option>
+                        	<option value="NO">노랑통닭</option>
+                        	<option value="KK">깐부치킨</option>
+                        	<option value="BR">바른치킨</option>
+                        	<option value="NN">네네치킨</option>
+                        	<option value="HS">호식이치킨두마리</option>
+                        	<option value="GC">교촌치킨</option>
+                        	<option value="PE">페리카나</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -160,84 +179,21 @@
                         <label>배달 가능 여부</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="delivery" name="delivery" required>
+                        <select name="delivery" required>
+                        	<option value="Y">가능</option>
+                        	<option value="N">불가능</option>
+                        </select>
                     </td>
                 </tr>
             </table>
-            <br>
-            <h5 id="agr">약관동의</h5>
-            <hr>
-            <input type="checkbox" id="checkAll">
-            <label style="font-size: 18px;">치킨의민족의 모든 약관을 확인하고 동의합니다.</label>
-            <ul>
-                <ul>
-                    <li style="list-style: none;">
-                        <input type="checkbox" id="check1" name = "agree_chk" class="infoBox">
-                        <label>(필수)이용약관</label>
-                        <lable><a href="memberJoinAgreement.jsp">전체보기</a></lable>
-                    </li>
-                    <br>
-                    <ul>
-                        <li style="list-style: none;">
-                            <div class="container">
-                                <pre>
-
-                                </pre>
-                              </div>
-                        </li>
-                    </ul>
-                    <br>
-                    <li style="list-style: none;">
-                        <input type="checkbox" id="check2" name="agree_chk" class="infoBox">
-                        <label>(필수)개인정보 수집 및 이용</label>
-                        <lable><a href="memberJoinAgreement.jsp">전체보기</a></lable>
-                    </li>
-                    <br>
-                    <ul>
-                        <li style="list-style: none;">
-                            <div class="container">
-                                <pre>
-                                    개인정보 수집 및 이용 동의
-1. 개인정보의 수집 ∙ 이용
-①회원 가입 시 수집하는 개인정보의 범위
-회사의 회원제 서비스 이용을 위해 수집 ∙ 이용하는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 목적 변경 시 별도의 동의를 받는 등 필요한 조치를 이행합니다.
-구분	개인정보 수집 · 이용 목적	개인정보 수집 · 이용 항목
-회원 가입 및 관리	회원 가입의사 확인, 회원제 서비스 이용을 위한 제한적 본인확인, 불만 처리 등 원활한 의사소통 경로의 확보, 서비스 부정이용 방지, 계약이행을 위한 각종 고지 ∙ 통지 ∙ 안내, 통계 ∙ 분석	[e-mail 가입]
-(필수) 이메일 주소, 비밀번호, 휴대전화번호
-(선택) 닉네임
-[SNS 회원가입 - 네이버]
-(필수) 이메일 주소, 휴대전화번호
-(선택) 별명, 생일, 성별, 연령대
-[SNS 회원가입 – 카카오톡]
-(필수) 이메일 주소, 휴대전화번호
-(선택) 닉네임, 생일, 연령대, 성별
-서비스 이용 시 자동생성되는 정보	서비스 부정이용 방지, 개인정보유효기간제 적용	서비스 이용 기록, 접속 로그, 쿠키, 접속 IP 주소, 기기고유번호(디바이스 아이디 또는 IMEI)
-2. 개인정보 보유 ∙ 이용 기간
-① 회사는 이용자로부터 개인정보 수집 시에 동의 받은 보유 · 이용기간 내에서 개인정보를 처리·보유합니다.
-a. 회원 정보: 회원탈퇴 후 90 일까지
-② 1 년 간 회원의 서비스 이용 기록이 없는 경우, 『정보통신망 이용촉진 및 정보보호등에 관한 법률』 제 29 조에 근거하여 회원에게 사전 통지하고 개인정보를 별도로 분리하여 휴면 계정 전환일로부터 4 년 간 보유합니다.
-③ 회원 탈퇴 또는 회원 자격 정지 후 회원 재가입, 임의 해지 등을 반복적으로 행하여 회사가 제공하는 할인쿠폰, 이벤트 혜택 등으로 경제상의 이익을 취하거나 이 과정에서 명의를 무단으로 사용하는 등 편법 행위 또는 불법행위를 하는 회원을 차단하고자 회사는 회원 탈퇴 후 90 일 간 회원의 정보를 보유합니다.
-                                </pre>
-                            </div>
-                        </li>
-                    </ul>
-                    <br>
-                    <li style="list-style: none;">
-                        <input type="checkbox" id="check3" name="agree_chk" class="infoBox" >
-                        <label>(필수)14세 이상입니다. *회원가입은 만 14세 이상부터 가능합니다.</label>
-                    </li>
-                    <br>
-            </ul>
             <br><br>
             <div style="text-align: center;">
                 <input type="submit" value="점포신청" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
-            </ul>
             
         </form>      
-        <br clear="both">
         <%@ include file="../common/footer.jsp"%>
         
     </body>
@@ -250,6 +206,30 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
       </script>
     
     <script>
+    	$(function(){
+    		// 이름
+    		 $("#name").change(function(){
+                 var value = $("#name").val();
+                 var reg = /^[가-힣]{2,6}$/;
+                 
+                 if(!reg.test(value)){
+                     alert("한글로 2글자 이상 입력해주세요.");
+                     $("#name").focus().val('');
+                 }
+             });
+    		 
+    		// 폰번호
+    		 $("#tel").change(function(){
+                 var value = $("#tel").val();
+                 var reg = /^[0-9]{11}$/;
+                 
+                 if(!reg.test(value)){
+                     alert("-를 제외한 11자리 숫자만 입력해 주세요.");
+                     $("#tel").focus().val('');
+                 }
+             });
+    		
+    
 	    function execPostCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {

@@ -72,6 +72,5 @@
 		<mapper resource="/mappers/chat-mapper.xml"/>
 		<mapper resource="/mappers/mordNumCheck-mapper.xml"/>
 		<mapper resource="/mappers/reply-mapper.xml"/>
-
 	</mappers>
 </configuration>

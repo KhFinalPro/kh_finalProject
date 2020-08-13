@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:03:37 KST 2020
 spring-jdbc-5.2.7.RELEASE-javadoc.jar>central=
 =======
@@ -14,7 +15,12 @@ spring-jdbc-5.2.7.RELEASE-javadoc.jar>central=
 =======
 #Wed Aug 12 09:24:18 GMT+09:00 2020
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:06:06 KST 2020
+spring-jdbc-5.2.7.RELEASE-javadoc.jar>central=
+>>>>>>> refs/remotes/origin/dev960103
 spring-jdbc-5.2.7.RELEASE-sources.jar>central=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>>=refs/remotes/origin/master
@@ -23,6 +29,9 @@ spring-jdbc-5.2.7.RELEASE-sources.jar>central=
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>>=refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev960103
 spring-jdbc-5.2.7.RELEASE.jar>central=
 spring-jdbc-5.2.7.RELEASE.pom>central=
 =\=\=\=\=\=\=
