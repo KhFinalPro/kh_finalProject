@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:02:29 KST 2020
 spring-context-5.2.7.RELEASE-javadoc.jar>central=
 =======
@@ -14,7 +15,12 @@ spring-context-5.2.7.RELEASE-javadoc.jar>central=
 =======
 #Wed Aug 12 09:23:34 GMT+09:00 2020
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:05:09 KST 2020
+spring-context-5.2.7.RELEASE-javadoc.jar>central=
+>>>>>>> refs/remotes/origin/dev960103
 spring-context-5.2.7.RELEASE-sources.jar>central=
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>>=refs/remotes/origin/master
 =======
@@ -24,8 +30,12 @@ spring-context-5.2.7.RELEASE.pom>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>>=refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev960103
 spring-context-5.2.7.RELEASE.jar>central=
 spring-context-5.2.7.RELEASE.pom>central=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =\=\=\=\=\=\=
@@ -34,3 +44,7 @@ spring-context-5.2.7.RELEASE.pom>central=
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev960103

@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:05:26 KST 2020
 spring-websocket-5.2.7.RELEASE-javadoc.jar>central=
 >>>>>>>=refs/remotes/origin/master
@@ -16,9 +17,15 @@ spring-websocket-5.2.7.RELEASE.jar>central=
 spring-websocket-5.2.7.RELEASE.pom>central=
 =======
 #Wed Aug 12 09:25:03 GMT+09:00 2020
+=======
+#Thu Aug 13 10:07:05 KST 2020
+spring-websocket-5.2.7.RELEASE-javadoc.jar>central=
+>>>>>>>=refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev960103
 spring-websocket-5.2.7.RELEASE.jar>central=
 spring-websocket-5.2.7.RELEASE.pom>central=
 spring-websocket-5.2.7.RELEASE-sources.jar>central=
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/master
 =======
 #Wed Aug 12 10:01:18 GMT+09:00 2020
@@ -31,3 +38,7 @@ spring-websocket-5.2.7.RELEASE.pom>central=
 spring-websocket-5.2.7.RELEASE-sources.jar>central=
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev960103

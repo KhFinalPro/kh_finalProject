@@ -1,6 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:01:55 KST 2020
 =======
 #Wed Aug 12 09:22:51 GMT+09:00 2020
@@ -8,4 +9,7 @@
 =======
 #Wed Aug 12 09:22:51 GMT+09:00 2020
 >>>>>>> refs/remotes/origin/master
+=======
+#Thu Aug 13 10:04:42 KST 2020
+>>>>>>> refs/remotes/origin/dev960103
 maven-deploy-plugin-2.7.jar>central=
