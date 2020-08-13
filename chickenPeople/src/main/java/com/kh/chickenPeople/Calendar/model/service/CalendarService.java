@@ -17,5 +17,7 @@ public interface CalendarService {
 
 	int insertStoreReview(HashMap<String, String> map2);
 
+	ArrayList<Calendar> reviewList(HashMap<String, String> map);
+
 
 }

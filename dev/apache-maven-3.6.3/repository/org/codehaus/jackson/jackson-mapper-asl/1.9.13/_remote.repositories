@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Thu Aug 13 10:07:15 KST 2020
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+#Wed Aug 12 11:05:32 KST 2020
 jackson-mapper-asl-1.9.13.pom>central=
 jackson-mapper-asl-1.9.13.jar>central=
 >>>>>>>=refs/remotes/origin/master
@@ -7,3 +10,35 @@ jackson-mapper-asl-1.9.13-javadoc.jar>central=
 jackson-mapper-asl-1.9.13-sources.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+=======
+<<<<<<< HEAD
+#Wed Aug 12 10:01:18 GMT+09:00 2020
+jackson-mapper-asl-1.9.13.jar>central=
+jackson-mapper-asl-1.9.13.pom>central=
+=======
+#Wed Aug 12 09:25:05 GMT+09:00 2020
+=======
+#Thu Aug 13 10:07:15 KST 2020
+>>>>>>> refs/remotes/origin/dev960103
+jackson-mapper-asl-1.9.13.pom>central=
+jackson-mapper-asl-1.9.13.jar>central=
+>>>>>>>=refs/remotes/origin/master
+jackson-mapper-asl-1.9.13-javadoc.jar>central=
+jackson-mapper-asl-1.9.13-sources.jar>central=
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
+#Wed Aug 12 10:01:18 GMT+09:00 2020
+jackson-mapper-asl-1.9.13.jar>central=
+jackson-mapper-asl-1.9.13.pom>central=
+=======
+#Wed Aug 12 09:25:05 GMT+09:00 2020
+jackson-mapper-asl-1.9.13.pom>central=
+jackson-mapper-asl-1.9.13.jar>central=
+jackson-mapper-asl-1.9.13-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev960103

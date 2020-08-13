@@ -52,5 +52,9 @@
 	<!-- <update id="updatePwd" parameterType="Member">
 		UPDATE MEMBER SET USER_PWD = #{pwd} WHERE USER_ID = #{id}
 	</update> -->
+	
+	<select id="selectAllMemberList" resultMap="memberResultSet">
+		SELECT * FROM MEMBER
+	</select>
   
 </mapper>

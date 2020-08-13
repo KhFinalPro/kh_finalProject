@@ -148,7 +148,7 @@ body{
     display: block;
 }
 
-.wrapper .main_container{
+/* .wrapper .main_container{
 
     width:calc(100% - 120px);
 
@@ -157,9 +157,9 @@ body{
     padding:15px;
     transition: all 0.3s ease;
     overflow: hidden;
-}
+} */
 
-.wrapper .main_container .item{
+/* .wrapper .main_container .item{
 
     background:#fff;
     margin-bottom: 10px;
@@ -169,7 +169,7 @@ body{
     border-bottom-right-radius: 20px;
     overflow-y: scroll;
    
-}
+} */
 
 .wrapper.collapse .sidebar{
     width:70px;
@@ -231,7 +231,7 @@ body{
                         </span>
                         <span class="title">주문확인</span>
                     </a></li>
-                    <li class="salesBar"><a href="#">
+                    <li class="salesBar"><a href="storeAdminMain.do">
                         <span class="icon">
                             <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>

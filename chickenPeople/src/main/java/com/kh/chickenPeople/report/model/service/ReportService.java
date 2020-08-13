@@ -20,6 +20,12 @@ public interface ReportService {
 	ArrayList<Report> selectReportSearchList(SearchStatus searchStatus, PageInfo pi);
 
 	int insertReport(Report p);
+
+	int changeBungStatus(int brNum);
+
+	int changeReportStatus(int rptNum);
+
+	int changeMukStatus(int brNum);
 	
 
 }

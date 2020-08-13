@@ -16,7 +16,7 @@
 	       
     #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
 	
-	#order{width: 100%;s}
+	#order{width: 100%;}
 	
 	.store{width: 100%; height:250px;}
 	.store>table{width: 100%; height:200px;}
@@ -42,8 +42,8 @@
 	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
 	.imgLen{width:100px; height:100px; margin-top:10px;}
 	
-	#orderCheck{position: fixed; top: 200px; right:10px; width: 23%; background-color: white; border:1px solid black;}
-	.order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px;}
+	#orderCheck{position: fixed; top: 200px; right:10px; width: 23%; background-color: white; border:1px solid #2ac1bc;}
+	.order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px; background-color:#2ac1bc; color:white;}
 	
 	
 	/*메뉴상세 - 정보*/
@@ -51,13 +51,13 @@
 	.store_info_title{color: #d6d5d5;}
 	
 	/* Style the tab */
-	.tab {overflow: hidden; border: 1px solid #ccc; background-color: #f1f1f1;}
+	.tab {overflow: hidden; border-top: 1px solid #2ac1bc; border-bottom: 1px solid #2ac1bc; }
 	
 	/* Style the buttons inside the tab */
 	.tab button {margin:0 auto; width:33.3%; background-color: inherit; font-size: 25px; font-weight: 600; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; font-size: 17px;}
 	
 	/* Change background color of buttons on hover */
-	.tab button:hover {background-color: #ddd;}
+	.tab button:hover {color: #735949;}
 	
 	/* Create an active/current tablink class */
 	.tab button.active {background-color: #ccc;}

@@ -56,6 +56,15 @@ public class CalendarDao {
 	}
 
 
+	public ArrayList<Calendar> reviewList(HashMap<String, String> map) {
+		
+		ArrayList<Calendar> reviewList = new ArrayList<Calendar>();
+		reviewList = (ArrayList)sqlSessionTemplate.selectList("calendarMapper.reviewList",map);
+		
+		return reviewList;
+	}
+
+
 	
 	
 	

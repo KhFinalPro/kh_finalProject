@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.chickenPeople.reply.model.service.ReplyService;
+import com.kh.chickenPeople.reply.model.vo.ReReply;
 import com.kh.chickenPeople.reply.model.vo.Reply;
 
 @Controller
@@ -27,7 +28,8 @@ public class ReplyController {
 		int result = replyService.replyInsert(r);
 		JSONObject sendJson = new JSONObject();
 		if(result > 0) {
-			sendJson.put("msg", "성공");
+			int currval = replyService.selectCurrval(r.getB_num());
+			sendJson.put("currval", currval);
 		}
 		else {
 			sendJson.put("msg", "실패");
@@ -41,10 +43,9 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value="reReplyInsert.do", method=RequestMethod.POST)
-	public void reReplyInsert(HttpServletResponse response, @ModelAttribute Reply r) throws IOException
+	public void reReplyInsert(HttpServletResponse response, @ModelAttribute ReReply r) throws IOException
 	{
-		int currval = replyService.selectCurrval(r.getB_num());
-		r.setRep1_num(currval);
+		System.out.println(r);
 		int result = replyService.reReplyInsert(r);
 		JSONObject sendJson = new JSONObject();
 		if(result > 0) {

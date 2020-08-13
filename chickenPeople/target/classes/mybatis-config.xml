@@ -33,15 +33,17 @@
 		<typeAlias type="com.kh.chickenPeople.menu.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.chickenPeople.orderStatus.model.vo.OrderStatus" alias="OrderStatus"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.Review" alias="Review"/>
-		<typeAlias type="com.kh.chickenPeople.storeAdmin.model.vo.StoreReview" alias="StoreReview"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeReview.model.vo.StoreReview" alias="StoreReview"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLike" alias="StoreLike"/>
-		<typeAlias type="com.kh.chickenPeople.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeMenu.model.vo.StoreMenu" alias="StoreMenu"/>
+		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeOrder.model.vo.StoreOrder" alias="StoreOrder"/>
 		<typeAlias type="com.kh.chickenPeople.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.chickenPeople.chat.model.vo.ChattingRoom" alias="ChattingRoom"/>
 		<typeAlias type="com.kh.chickenPeople.chat.model.vo.ChattingMsg" alias="ChattingMsg"/>
 		<typeAlias type="com.kh.chickenPeople.board.model.vo.Picture" alias="Picture"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.MordNumCheck" alias="MordNumCheck"/>
 		<typeAlias type="com.kh.chickenPeople.reply.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.kh.chickenPeople.reply.model.vo.ReReply" alias="ReReply"/>
 	</typeAliases>
 	
 	<mappers>
@@ -66,6 +68,7 @@
 		<mapper resource="/mappers/storeMenu-mapper.xml"/>
 		<mapper resource="/mappers/report-mapper.xml"/>
 		<mapper resource="/mappers/payment-mapper.xml"/>
+		<mapper resource="/mappers/storeOrder-mapper.xml"/>
 		<mapper resource="/mappers/chat-mapper.xml"/>
 		<mapper resource="/mappers/mordNumCheck-mapper.xml"/>
 		<mapper resource="/mappers/reply-mapper.xml"/>

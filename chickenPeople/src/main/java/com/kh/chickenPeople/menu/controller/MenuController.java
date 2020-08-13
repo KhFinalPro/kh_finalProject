@@ -148,7 +148,6 @@ public class MenuController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(result);
 	
 		return null;
 	}

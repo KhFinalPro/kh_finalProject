@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Aug 13 10:11:22 KST 2020
+servlet-api-2.5.jar>central=
+servlet-api-2.5.pom>central=
+=======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Thu Aug 13 10:10:44 KST 2020
 servlet-api-2.5.jar>central=
 servlet-api-2.5.pom>central=
+>>>>>>> refs/remotes/origin/dev960103

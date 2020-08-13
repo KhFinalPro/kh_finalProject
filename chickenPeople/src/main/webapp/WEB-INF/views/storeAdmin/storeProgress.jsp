@@ -10,6 +10,35 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 <style>
+
+.wrapper .main_container{
+
+    width:94.8%;
+    margin-top:70px;
+    margin-left: 114px;
+    padding:15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.wrapper .main_container .item{
+
+   background: #fff; 
+   margin-bottom: 10px; 
+   padding: 15px; 
+   font-size: 14px; 
+   height: 873px; 
+   border-bottom-right-radius: 20px;
+   justify-content: center; 
+   align-items: center; 
+   margin-top: -30px;
+   overflow-y: scroll;
+   
+} 
+
+.item::-webkit-scrollbar {
+	display:none;
+}
 		.welcomeTitle{
 		    margin-top:20px;
 		    margin-left:48px;
