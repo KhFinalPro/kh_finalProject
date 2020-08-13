@@ -6,14 +6,14 @@
         <title></title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script src="/resources/js/addressapi.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
         <style>
             #storeJoinForm{
                 width: 700px;
                 margin: 0 auto;
                 margin-top: 120px;
             }
-            #logintable{
+            #storeJoin{
                 margin: 0;
                 padding:0;
                 width: 700px;
@@ -48,16 +48,7 @@
                 font: bold;
                 font-size: 15px;
             }
-            #checkAll{
-               zoom: 2.0;
-            }
-           /* div select{
-              height: 30px;
-              border-radius: 5px;
-              width: 80px;
-              float: left;
-              margin-left: 3px ;
-           } */
+            
            #h2{
                margin-left: 20px;
            }
@@ -70,31 +61,6 @@
                margin-bottom: 0;
                color: lightgray;
            }
-           #agr{
-               
-               margin-left: 20px;
-           }
-           .container {
-                width: 500px;
-                height: 200px;
-                overflow: auto;
-                border: 1px solid black;
-                border-radius: 10px;
-            }
-            .container::-webkit-scrollbar {
-                width: 10px;
-            }
-            .container::-webkit-scrollbar-thumb {
-                background-color: white;
-                border-radius: 10px;
-                background-clip: padding-box;
-                border: 2px solid transparent;
-            }
-            .container::-webkit-scrollbar-track {
-                background-color: black;
-                border-radius: 10px;
-                box-shadow: inset 0px 0px 5px white;
-            }
             input::-webkit-input-placeholder { 
                 color: lightgray; 
             }
@@ -105,13 +71,13 @@
     	<jsp:include page="../common/header.jsp"/>
         <form id="storeJoinForm" method="post" action="storeJoin.do">
             <h2 id="h2">신규점포 신청</h2>
-            <table id="logintable">
+            <table id="storeJoin">
                 <tr>
                     <td id="lab" class="ltd">
                         <label>식당 이름</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="stoName" name="stoName" required>
+                        <input type="text" id="stoName" name="sto_name" required>
                     </td>
                 </tr>
                 <tr>
@@ -119,7 +85,7 @@
                         <label>연락처</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="tel" name="tel" required placeholder="-제외 하고 입력">
+                        <input type="tel" id="tel" name="sto_tel" required placeholder="-제외 하고 입력">
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +93,15 @@
                         <label>사장님 성함</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="name" name="name" required placeholder="한글로 2글자 이상">
+                        <input type="text" id="name" name="ceo_name" required placeholder="한글로 2글자 이상">
+                    </td>
+                </tr>
+                 <tr>
+                    <td id="lab" class="ltd">
+                        <label>이메일</label>
+                    </td>
+                    <td id="inp" class="ltd">
+                        <input type="email" id="email" name="sto_email" required>
                     </td>
                 </tr>
                 <tr>
@@ -160,7 +134,7 @@
                         <label>브랜드명</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <select name="brand" required>
+                        <select name="brand_code" required>
                         	<option value="BB">비비큐</option>
                         	<option value="DD">또래오래</option>
                         	<option value="BH">BHC</option>
@@ -185,50 +159,28 @@
                         </select>
                     </td>
                 </tr>
+                <tr>
+                	<td id="lab" class="ltd">
+                		<label>사장님 한마디</label>
+                	</td>
+                	<td id="inp" class="ltd" rowspan="4">
+                		<textarea rows="4" cols="38" id="sto_intro" name="sto_intro" placeholder="한말씀만 써주세요~"></textarea>
+                	</td>
+                </tr>
             </table>
             <br><br>
             <div style="text-align: center;">
                 <input type="submit" value="점포신청" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
+                <input type="button" value="취소" id="cancel" onclick=cancel(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
-            
+            <div id="map" style="display:none"></div>
         </form>      
         <%@ include file="../common/footer.jsp"%>
         
     </body>
-     <script>
-        $( document ).ready( function() {
-          $( '#checkAll' ).click( function() {
-            $( '.infoBox' ).prop( 'checked', this.checked );
-          } );
-        } );
-      </script>
     
     <script>
-    	$(function(){
-    		// 이름
-    		 $("#name").change(function(){
-                 var value = $("#name").val();
-                 var reg = /^[가-힣]{2,6}$/;
-                 
-                 if(!reg.test(value)){
-                     alert("한글로 2글자 이상 입력해주세요.");
-                     $("#name").focus().val('');
-                 }
-             });
-    		 
-    		// 폰번호
-    		 $("#tel").change(function(){
-                 var value = $("#tel").val();
-                 var reg = /^[0-9]{11}$/;
-                 
-                 if(!reg.test(value)){
-                     alert("-를 제외한 11자리 숫자만 입력해 주세요.");
-                     $("#tel").focus().val('');
-                 }
-             });
-    		
     
 	    function execPostCode() {
 	        new daum.Postcode({
@@ -272,29 +224,94 @@
 	           }
 	        }).open();
 	    }
+    
+    	$(function(){
+    		// 가게이름
+    		 $("#stoName").change(function(){
+                 var value = $("#stoName").val();
+                 var reg = /^[가-힣]{2,6}$/;
+                 
+                 if(!reg.test(value)){
+                     alert("한글로 2글자 이상 입력해주세요.");
+                     $("#stoName").focus().val('');
+                 }
+             });
+    		
+    		
+    		// 이름
+    		 $("#name").change(function(){
+                 var value = $("#name").val();
+                 var reg = /^[가-힣]{2,6}$/;
+                 
+                 if(!reg.test(value)){
+                     alert("한글로 2글자 이상 입력해주세요.");
+                     $("#name").focus().val('');
+                 }
+             });
+    		 
+    		// 폰번호
+    		 $("#tel").change(function(){
+                 var value = $("#tel").val();
+                 var reg = /^[0-9]{11}$/;
+                 
+                 if(!reg.test(value)){
+                     alert("-를 제외한 11자리 숫자만 입력해 주세요.");
+                     $("#tel").focus().val('');
+                 }
+             })
+    	});
+    
 	    
 	    
+	    
+    		 $(function(){
+    		    	var latlng = "";
+    		    	var lat = "";
+    		    	var lng = "";
+    		    	
+    		    	$("#addr2").on("blur",function(){
+    		    		
+    		    		var addr1 = $("#addr1").val();
+    		    		
+    					var mapContainer = document.getElementById('map');
+    					var mapOption = {
+    					    center: new daum.maps.LatLng(37.450701, 126.570667),
+    					    level: 5
+    					};  
+    					
+    					var map = new daum.maps.Map(mapContainer, mapOption); 
+    					
+    					var geocoder = new daum.maps.services.Geocoder();
+    					var listData = [
+    						addr1
+    					];
+    					
+    					listData.forEach(function(addr, index) {
+    					    geocoder.addressSearch(addr, function(result, status) {
+    					        if (status === daum.maps.services.Status.OK) {
+    					            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+    					
+    								latlng = coords;
+    								lng = latlng.Ga;
+    								lat = latlng.Ha;
+    								console.log(latlng);
+    								
 
-	    $("#idChk").on("click",function(){
-	    	if($("#id").val()==""){
-	    		alert("아이디를 입력해주세요");
-	    	}else{
-	    	$.ajax({
-	    		url : "idChk.do",
-	    		type : "post",
-	    		dataType:"json",
-	    		data : {"id" : $("#id").val()},
-	    		success : function(data){
-	    			if(data == 1){
-	    				alert("중복된 아이디입니다.");
-	    			}else if(data==0){
-	    				$("#idChk").attr("value", "중복확인");
-	    				alert("사용가능한 아이디입니다.");
-	    			}
-	    		}
-	    	})
-	    	}
-	    })
+    			    		    	$("#sto_lat").remove();
+    			    		    	$("#sto_lng").remove();
+    								
+    								
+    								$("#storeJoinForm").append("<input type='hidden' id='sto_lat' name='sto_lat' value='"+lat+"'>");
+    								$("#storeJoinForm").append("<input type='hidden' id='sto_lng' name='sto_lng' value='"+lng+"'>");
+    					        } 
+    					    });
+    					});
+    		    		
+    		    	})
+    		    })
+	    
     </script>
+    
+    
     
 </html>

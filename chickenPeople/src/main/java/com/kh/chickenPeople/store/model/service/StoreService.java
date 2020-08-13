@@ -56,6 +56,8 @@ public interface StoreService {
 
 	int updateStatus(int storeNum);
 
+	int storeJoin(Store s);
+
 	
 
 	

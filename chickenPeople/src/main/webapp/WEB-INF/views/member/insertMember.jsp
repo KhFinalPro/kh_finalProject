@@ -6,7 +6,6 @@
         <title></title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<!-- <script src="/resources/js/addressapi.js"></script> -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
         <style>
             #memberJoin{
