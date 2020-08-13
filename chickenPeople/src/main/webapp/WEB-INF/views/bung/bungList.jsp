@@ -13,9 +13,9 @@ body, hmtl{background: #ecf0f1;}
 section{margin-top: 100px;}
 #main_section {margin: auto; width:90%; clear: both;}
 
-#main_section>.bungae_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
+#main_section>.bungae_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid black;}
 
-#main_section>.bungae_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
+#main_section>.bungae_area:hover{border:1px solid #2ac1bc; cursor:pointer;}
 
 #main_section>.bungae_area>.brand_logo {text-align:center; width: 30%; height: 180px; margin-left:30px;}
 
@@ -32,12 +32,12 @@ section{margin-top: 100px;}
 #main_section>.bungae_area>.second_line {float: left;}
 #month_selc{width:70px; height:25px; margin-right:20px;}
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
-#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
-#create_bung_area>input:hover{color: #735949;; border: 2px solid #735949; cursor:pointer;}
+#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
+#create_bung_area>input:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
 #msg_area{text-align:center;}
-#msg_area > img{width:20%; heigth:20%;}
+#msg_area > img{width:30%; heigth:30%;}
 </style>
 </head>
 <body>
