@@ -71,10 +71,6 @@
 		<mapper resource="/mappers/storeOrder-mapper.xml"/>
 		<mapper resource="/mappers/chat-mapper.xml"/>
 		<mapper resource="/mappers/mordNumCheck-mapper.xml"/>
-<<<<<<< HEAD
-
-=======
 		<mapper resource="/mappers/reply-mapper.xml"/>
->>>>>>> refs/remotes/origin/master
 	</mappers>
 </configuration>
