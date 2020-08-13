@@ -67,12 +67,9 @@
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
                 <a>조회수 : ${board.bCount } </a><a id="like"> 좋아요 : ${board.bHit }</a>
-<<<<<<< HEAD
-=======
                 <div id="report_area">
                 	<button id="report">신고</button>
                 </div>
->>>>>>> refs/remotes/origin/master
             </div>
         </div>
 
@@ -199,8 +196,7 @@
 			}
 		})
 	})
-<<<<<<< HEAD
-=======
+
 	
 	$("#report").on("click",function(){
 			$("#report_modal").css("display","block");
@@ -355,6 +351,5 @@
 		})
 		
 	})
->>>>>>> refs/remotes/origin/master
 </script>
 </html>
