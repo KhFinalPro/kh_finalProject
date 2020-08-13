@@ -1,7 +1,10 @@
 package com.kh.chickenPeople.chat.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,56 +79,76 @@ public class ChatController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getId();
 		String userName = loginUser.getName();
-		System.out.println("이름출력"+userName);
-		ArrayList<ChattingRoom> room_data = chatService.selectRoom_data(userId);
-		System.out.println("룸 데이터"+room_data);
+		ChattingRoom room_data = chatService.selectRoom_data(userId);
 		
 		String ChattingRoom_No =null;
 		String Client_Name = null;
 		String Client_Id = null;
 		
-		for(ChattingRoom chat : room_data) {
-			if(room_data==null||chat.getChat_status().equals("Y")) {
+			if(room_data==null) {
 				int result = chatService.createRoom_no(userId);
 				if(result>0) {
-					ArrayList<ChattingRoom> new_room_data = chatService.selectRoom_data(userId);
-					System.out.println(new_room_data);
-//					for(ChattingRoom newChat : new_room_data) {
-//				
-//						newChat.setClient_id(userId);
-//						newChat.setClient_name(userName);
-//						System.out.println(new_room_data);
-//						ChattingRoom_No = newChat.getChattingRoom_no();
-//						Client_Id = newChat.getClient_id();
-//						Client_Name = newChat.getClient_name();
-//						
-//						System.out.println(ChattingRoom_No+"/"+Client_Id+"/"+Client_Name);
-//						session.setAttribute("room_no", ChattingRoom_No);
-//						session.setAttribute("client_Name", Client_Name);
-//						session.setAttribute("client_id", Client_Id);
-//						
-//						mv.setViewName("chat/chatInquiry");
-//						
-//					}
+					ChattingRoom new_room_data = chatService.selectRoom_data(userId);
+					new_room_data.setClient_id(userId);
+					new_room_data.setClient_name(userName);
+					
+					ChattingRoom_No = new_room_data.getChattingRoom_no();
+					Client_Id = new_room_data.getClient_id();
+					Client_Name = new_room_data.getClient_name();
+					System.out.println(ChattingRoom_No+"/"+Client_Id+"/"+Client_Name);
+							
+						
+						
+					session.setAttribute("room_no", ChattingRoom_No);
+					session.setAttribute("client_Name", Client_Name);
+					session.setAttribute("client_id", Client_Id);
+					
+					mv.setViewName("chat/chatInquiry");
+						
+					}
 				}
+		
+			else {
+				room_data.setClient_id(userId);
+				room_data.setClient_name(userName);
+				
+				ChattingRoom_No = room_data.getChattingRoom_no();
+				Client_Id = room_data.getClient_id();
+				Client_Name = room_data.getClient_name();
+				
+				session.setAttribute("room_no", ChattingRoom_No);
+				session.setAttribute("client_Name", Client_Name);
+				session.setAttribute("client_id", Client_Id);
+	
+				mv.setViewName("chat/chatInquiry");
 			}
-//			else {
-//				room_data.setClient_id(userId);
-//				room_data.setClient_name(userName);
-//				
-//				ChattingRoom_No = room_data.getChattingRoom_no();
-//				Client_Id = room_data.getClient_id();
-//				Client_Name = room_data.getClient_name();
-//				
-//				session.setAttribute("room_no", ChattingRoom_No);
-//				session.setAttribute("client_Name", Client_Name);
-//				session.setAttribute("client_id", Client_Id);
-//	
-//				mv.setViewName("chat/chatInquiry");
-//			}
 			
-		}
+		
 		return mv;
+	}
+	
+	@RequestMapping(value="changeChatStatus.do", method=RequestMethod.GET)
+	public String chageChatStatus (ModelAndView mv, HttpServletResponse response,		
+										 @RequestParam(value="room_no", required=false) int room_no,
+										 @RequestParam(value="userId", required=false)String userId,
+										 @RequestParam(value="searchstatus", required=false)String searchStatus) {
+		
+		response.setContentType("text/html; charset=UTF-8");
+
+		int updateResult = chatService.updateChatStatus(room_no);
+		PrintWriter out;
+
+		if(updateResult>0) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('답변이 마감되었습니다.'); location.href='systemAdminChat.do?userId=no&chat_status=N';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return null;
 	}
 	
 }

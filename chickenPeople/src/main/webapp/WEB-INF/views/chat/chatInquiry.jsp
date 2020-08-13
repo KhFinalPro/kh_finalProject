@@ -12,7 +12,7 @@
 <style>
 	html{overflow:hidden;}
 	.siteLogo{font-size:24px; color:white; padding-top: 18px; padding-left: 14px;}
-	.chatHeader{background-color:#F7E600; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
+	.chatHeader{background-color:#1bc1a3; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
 	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	button{border:1px solid black; background-color:white; color:black; padding:8px;}

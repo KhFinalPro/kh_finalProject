@@ -98,9 +98,10 @@
 							<c:forEach var="member" items="${totalMemberData }">
 								<c:if test="${list.client_id eq member.id }">
 									<tr>
-										<c:url var="goChattingAdmin" value="goChattingAdmin">
+										<c:url var="chageChatStatus" value="changeChatStatus.do">
 											<c:param name="room_no" value="${list.chattingRoom_no}"/>
-											<c:param name="client_name" value="${list.client_id }"/>
+											<c:param name="userId" value="${searchStatus.searchName}"/>
+											<c:param name="searchstatus" value="${searhStatus.searchStatus}"/>
 										</c:url>
 										<td class="roomNo">${list.chattingRoom_no}</td>
 										<td class="userId">${list.client_id}</td>
@@ -110,9 +111,16 @@
 											<td class="status"><button>답변완료</button></td>
 										</c:if>
 										<c:if test="${list.chat_status eq 'N' }">
-											<td class="status"><button>답변대기</button></td>
+											<td class="status"><button onclick="location.href='${chageChatStatus}'" >답변대기</button></td>
 										</c:if>
-										<td><button class="message">채팅하러가기</button> 
+										<c:if test="${list.chat_status eq 'Y' }">
+											<td><button class="message">채팅기록</button>
+										</c:if>
+										<c:if test="${list.chat_status eq 'N' }">
+											<td><button class="message">입장</button>
+										</c:if>
+										
+										 
 									</tr>
 								</c:if>	
 							</c:forEach>							
@@ -129,6 +137,8 @@
 	                    <c:if test="${pi.currentPage gt 1}">
 	                    	<c:url var="blistBack" value="systemAdminChat.do">
 	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    		<c:param name="userId" value="${searchStatus.searchName }"/>
+	                    		<c:param name="chat_status" value="${searchStatus.searchStatus }"/>
 	                    	</c:url>
 	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
 	                    </c:if>
@@ -140,6 +150,8 @@
 	                    	<c:if test="${p ne pi.currentPage }">
 	                    		<c:url var="blistCheck" value="systemAdminChat.do">
 	                    			<c:param name="page" value="${p }"/>
+    				                <c:param name="userId" value="${searchStatus.searchName }"/>
+	                    			<c:param name="chat_status" value="${searchStatus.searchStatus }"/>
 	                    		</c:url>
 	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
 	                    	</c:if>
@@ -151,7 +163,8 @@
 						<c:if test="${pi.currentPage lt pi.maxPage }">
 							<c:url var="blistAfter" value="systemAdminChat.do">
 								<c:param name="page" value="${pi.currentPage+1 }"/>
-
+	                    		<c:param name="userId" value="${searchStatus.searchName }"/>
+	                    		<c:param name="chat_status" value="${searchStatus.searchStatus }"/>
 	                    	</c:url>
 							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 						</c:if>

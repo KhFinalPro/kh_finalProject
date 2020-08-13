@@ -19,8 +19,8 @@ public class ChatDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public ArrayList<ChattingRoom> selectRoom_data(String userId) {
-		return (ArrayList)sqlSessionTemplate.selectList("chatMapper.selectRoom_data",userId);
+	public ChattingRoom selectRoom_data(String userId) {
+		return sqlSessionTemplate.selectOne("chatMapper.selectRoom_data",userId);
 	}
 
 	public int createRoom_no(String userId) {
@@ -49,6 +49,10 @@ public class ChatDao {
 	public ArrayList<Member> selectAllMember_data() {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("memberMapper.selectAllMemberList");
+	}
+
+	public int updateChatStatus(int room_no) {
+		return sqlSessionTemplate.update("chatMapper.updateChatStatus",room_no);
 	}
 
 }

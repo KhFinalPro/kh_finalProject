@@ -70,6 +70,7 @@ public class MemberController {
 			if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
 				session.setAttribute("loginUser", member);
 				session.setAttribute("address", addrList);
+				session.setAttribute("loginUserId",member.getId());
 				return "redirect:/home.do?";
 			}else {
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");

@@ -10,7 +10,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 public interface ChatService {
 
-	ArrayList<ChattingRoom> selectRoom_data(String userId);
+	ChattingRoom selectRoom_data(String userId);
 
 	int createRoom_no(String userId);
 
@@ -23,5 +23,7 @@ public interface ChatService {
 	int getListCount(SearchStatus chatSearch);
 
 	ArrayList<Member> selectAllMember_data();
+
+	int updateChatStatus(int room_no);
 
 }

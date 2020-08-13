@@ -18,7 +18,7 @@ public class ChatServiceImpl implements ChatService{
 	@Autowired
 	ChatDao chatDao;
 	@Override
-	public ArrayList<ChattingRoom> selectRoom_data(String userId) {
+	public ChattingRoom selectRoom_data(String userId) {
 		return chatDao.selectRoom_data(userId);
 	}
 	@Override
@@ -57,6 +57,10 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public ArrayList<Member> selectAllMember_data() {
 		return chatDao.selectAllMember_data();
+	}
+	@Override
+	public int updateChatStatus(int room_no) {
+		return chatDao.updateChatStatus(room_no);
 	}
 
 }

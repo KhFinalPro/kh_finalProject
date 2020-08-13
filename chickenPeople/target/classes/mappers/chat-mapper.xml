@@ -27,7 +27,7 @@
   <select id="selectRoom_data" parameterType="String" resultMap="chattingResultSet">
   	SELECT *
   	FROM CHATTING_ROOM
-  	WHERE USER_ID=#{userId}
+  	WHERE USER_ID=#{userId} AND CHAT_STATUS='N'
   </select>
    <insert id="insertRoom_no" parameterType="ChattingRoom">
   	INSERT INTO CHATTING_ROOM 
@@ -49,5 +49,10 @@
   	SELECT * 
   	FROM CHAT_DETAIL
   </select> 
+  <update id="updateChatStatus" parameterType="_int">
+  	UPDATE CHATTING_ROOM 
+  	SET CHAT_STATUS='Y' 
+  	WHERE CHATTINGROOM_NO=#{room_no}
+  </update>
 
 </mapper>
