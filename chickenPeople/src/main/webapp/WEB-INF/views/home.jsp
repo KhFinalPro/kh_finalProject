@@ -17,11 +17,11 @@
 		
 		#wrapper{width: 88%;margin:0 auto;height:300px;position:relative;color:black; margin-top: 100px;}
 		
-		#slider-wrap{width:1000px;height:300px;position:relative;overflow:hidden;}
+		#slider-wrap{width:1200px;height:300px;position:relative;overflow:hidden;}
 		
 		#slider-wrap ul#slider{width:100%;height:100%;position:absolute;top:0;left:0;}
 		
-		#slider-wrap ul#slider li{float:left;position:relative;width:1000px;height:300px;}
+		#slider-wrap ul#slider li{float:left;position:relative;width:1200px;height:300px;}
 		
 		#slider-wrap ul#slider li > div{position:absolute;top:20px;left:35px;}
 		
@@ -68,7 +68,7 @@
 		/*ANIMATION*/
 		#slider-wrap ul, #pagination-wrap ul li{-webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1); -moz-transition: all 0.3s cubic-bezier(1,.01,.32,1); -o-transition: all 0.3s cubic-bezier(1,.01,.32,1); -ms-transition: all 0.3s cubic-bezier(1,.01,.32,1); transition: all 0.3s cubic-bezier(1,.01,.32,1); }
 		
-		#login_area{width: 330px; height: 300px; text-align: center;}
+		#login_area{width: 330px; height: 300px; text-align: center; margin-left:50px;}
 		.banner_login{float: left;}
 		.banner_login #login_title{font-family: Neucha, Arial, sans serif;font-size: 30px; font-weight: 600; margin-top: 5px; margin-bottom: 20px;}
 		.banner_login #login{font-family: Neucha, Arial, sans serif;font-size: 25px; font-weight: 600; color: black; margin-top: 20px;}
@@ -149,58 +149,58 @@
 	        <!--controls-->  
 	                
 	    </div>
-	        <c:if test="${!empty sessionScope.loginUser}">
-	        	<c:if test="${sessionScope.loginUser.uLvl == '관리자' }">
-	        		<div id="login_area" class="banner_login">
-				        <p id="login_title">치킨의민족 시작하기</p>
-				        
-				        <img src="resources/images/user1.png" alt="">
-				
-				        <p id="login">${sessionScope.loginUser.name }</p>
-				
-				        <button class="system_btn btn">System</button>
-				        <button class="logout_btn btn">LogOut</button>
-			        </div>
-	        	</c:if>
-	        	<c:if test="${sessionScope.loginUser.uLvl == '소비자' }">
-	        		<div id="login_area" class="banner_login">
-				        <p id="login_title">치킨의민족 시작하기</p>
-				        
-				        <img src="resources/images/user1.png" alt="">
-				
-				        <p id="login">${sessionScope.loginUser.name }</p>
-				
-				        <button class="my_btn btn">MyPage</button>
-				        <button class="logout_btn btn">LogOut</button>
-			        </div>
-	        	</c:if>
-	        	<c:if test="${sessionScope.loginUser.uLvl == '판매자' }">
-	        		<div id="login_area" class="banner_login">
-				        <p id="login_title">치킨의민족 시작하기</p>
-				        
-				        <img src="resources/images/user1.png" alt="">
-				
-				        <p id="login">${sessionScope.loginUser.name }</p>
-				
-				        <button class="store_btn btn">Store</button>
-				        <button class="logout_btn btn">LogOut</button>
-			        </div>
-	        	</c:if>
-			    
-			</c:if>
-			
-	        <c:if test="${empty sessionScope.loginUser}">
-		        <div id="login_area" class="banner_login">
+        <c:if test="${!empty sessionScope.loginUser}">
+        	<c:if test="${sessionScope.loginUser.uLvl == '관리자' }">
+        		<div id="login_area" class="banner_login">
 			        <p id="login_title">치킨의민족 시작하기</p>
 			        
 			        <img src="resources/images/user1.png" alt="">
 			
-			        <p id="login">로그인해주세여~</p>
+			        <p id="login">${sessionScope.loginUser.name }</p>
 			
-			        <button class="login_btn btn">Login</button>
-			        <button class="Join_btn btn">Join</button>
+			        <button class="system_btn btn">System</button>
+			        <button class="logout_btn btn">LogOut</button>
 		        </div>
-			</c:if>
+        	</c:if>
+        	<c:if test="${sessionScope.loginUser.uLvl == '소비자' }">
+        		<div id="login_area" class="banner_login">
+			        <p id="login_title">치킨의민족 시작하기</p>
+			        
+			        <img src="resources/images/user1.png" alt="">
+			
+			        <p id="login">${sessionScope.loginUser.name }</p>
+			
+			        <button class="my_btn btn">MyPage</button>
+			        <button class="logout_btn btn">LogOut</button>
+		        </div>
+        	</c:if>
+        	<c:if test="${sessionScope.loginUser.uLvl == '판매자' }">
+        		<div id="login_area" class="banner_login">
+			        <p id="login_title">치킨의민족 시작하기</p>
+			        
+			        <img src="resources/images/user1.png" alt="">
+			
+			        <p id="login">${sessionScope.loginUser.name }</p>
+			
+			        <button class="store_btn btn">Store</button>
+			        <button class="logout_btn btn">LogOut</button>
+		        </div>
+        	</c:if>
+		    
+		</c:if>
+		
+        <c:if test="${empty sessionScope.loginUser}">
+	        <div id="login_area" class="banner_login">
+		        <p id="login_title">치킨의민족 시작하기</p>
+		        
+		        <img src="resources/images/user1.png" alt="">
+		
+		        <p id="login">로그인해주세여~</p>
+		
+		        <button class="login_btn btn">Login</button>
+		        <button class="Join_btn btn">Join</button>
+	        </div>
+		</c:if>
 	        
 	    
 	

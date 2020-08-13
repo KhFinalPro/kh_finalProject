@@ -54,4 +54,9 @@
 	  AND USER_ID LIKE '%'||#{searchName}||'%'
 	 </if>
   </select>
+  
+  <insert id="insertReport" parameterType="Report">
+	INSERT INTO REPORT 
+	VALUES(SEQ_REPORT_NUM.NEXTVAL, #{br_Num}, #{rpt_Content}, SYSDATE, 'N', #{user_Id}, #{br_Code}, #{rpt_Code})  	
+  </insert>
 </mapper>
