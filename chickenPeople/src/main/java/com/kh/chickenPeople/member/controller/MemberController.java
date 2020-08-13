@@ -42,7 +42,7 @@ public class MemberController {
 	
 	@RequestMapping("loginView.do")
 	public ModelAndView loginMember(ModelAndView mv, String msg) {
-		System.out.println("login.do");
+//		System.out.println("login.do");
 		mv.setViewName("member/memberLogin");
 		
 		if(msg == null){

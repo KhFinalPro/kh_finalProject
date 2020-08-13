@@ -1,86 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-  
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<html lang='ko'>
+    <head>
+        <title>아이디 찾기!</title>
+        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <style>
-            
-            #h2{
+            body{
+                margin:0;
+                padding:0;
+                font-family:sans-serif;
+            }
+            .loginbox{
+                margin-top:500px;
+            	margin-bottom:-200px;
+                width:600px;
+                height:440px;
+                background: black;
+                color:#fff;
+                top:50%;
+                left:50%;
+                position:relative;
+                transform:translate(-50%, -50%);
+                box-sizing: border-box;
+                padding:70px 30px;
+            }
+            .avatar{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                position:absolute;
+                top:-50px;
+                left: calc(50% - 50px);
+            }
+            h1{
+                margin:0;
+                padding:0 0 20px;
                 text-align: center;
+                font-size: 22px;
             }
-            #logintable{
-                width: 600px;
-                /* text-align: center; */
+            .loginbox p{
+                margin:0;
+                padding:0;
+                font-weight:bold;
             }
-           .p{
-				    vertical-align: middle;
+            .loginbox input{
+                width: 100%;
+                margin-bottom: 20px;
             }
-            a{
-                text-decoration:none;
-                color: black;
-            }
-            input::-webkit-input-placeholder { 
-                color: lightgray; 
-            }
-            #div1{
-                padding: 20px; 
-                font-size: 25px; 
-                background: lightgray; 
-                margin: 0 auto; 
-                text-align: center;
-            }
-            .log1{
-                height: 30px;
-                width: 400px; 
-                border-radius: 8px;
-            }
-            #btn{
-                height: 100px; 
-                width: 180px; 
-                color: white; 
-                font-size: 25px; 
-                border-radius: 8px; 
-                background: #2ac1bc;
-                font-weight: bold;
+            .loginbox input[type="text"], input[type="password"]{
                 border:none;
+                border-bottom: 1px solid #fff;
+                background: transparent;
+                outline: none;
+                height: 40px;
+                color: #fff;
+                font-size: 16px;
             }
-            #check1{
-                float: left;
-            }
-            
-            #idsave{
-                color: lightgray;
-                float:left
-            }
-            
-            #memberJoin{
-                background: #2ac1bc; 
-                color: white; 
-                width: 600px; 
-                text-align: center; 
-                height: 80px; 
-                border-radius: 8px; 
-                font-size: 30px;
+            .loginbox input[type="submit"]{
+                border: none;
+                outline:none;
+                height: 40px;
+                background: #2ac1bc;
+                color:#fff;
+                font-size: 24px;
+                border-radius: 20px;
                 font-weight: bold;
             }
-            
-            
-            #loginform{
-				width: 600px;
-				margin: 0 auto;
-				margin-top: 200px;
-				/* border: 1px solid black; */
-				text-align: center;
+            .loginbox input[type="submit"]:hover{
+                cursor: pointer;
+                background: #ffc107;
+                color:#000;
             }
-            #memberJoin{
-            	border:none;
+            .loginbox a{
+                text-decoration: none;
+                font-size: 12px;
+                line-height: 20px;
+                color: darkgrey;
             }
-            
             #showMsg{
             position:fixed; top:200px; left:35%; width: 30%; height: 200px; z-index:100; border:3px solid black; background-color:white; text-align:center; border-radius:10px;
             }
@@ -94,73 +92,39 @@
      		#showMsg #home{
      		margin-right:150px;
      		}
-    </style>
-</head>
-<body>
-<jsp:include page="../common/header.jsp"/>
-	<c:if test="${!empty msg }">
-		<div id="showMsg">
-			<img src="resources/images/close.png" id="cancel">
-			<p class="msg">${msg }</p>
-			<input type="button" id="home" value="홈으로">
-			<input type="button" id="join" value="회원가입">
-		</div>
-	</c:if>
-	<c:if test="${empty sessionScope.loginUser }">
-	<form id="loginform" action="doLoginView.do" method="post">
-            <h1 id="h2">회원 로그인</h1>
-            <hr>
-            <br>
-            <table id="logintable">
-                <tr class="p">
-                    <td class = "p">
-                        <input type="text" class="log1" name="id" id="id" placeholder="아이디를 입력해주세요">
-                    </td>
-                    <td rowspan="2">
-                        <input type="submit" id="btn" value="LOGIN">
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td>
-                        <input type="password" class="log1" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
-                    </td>
-                </tr>
-            </table>
-            <div>
-                <input type="checkbox" id="check1">
-                <label id="idsave">아이디 저장</label>
+        </style>
+    </head>
+    <body>
+   <jsp:include page="../common/header.jsp"/>
+	   <c:if test="${!empty msg }">
+			<div id="showMsg">
+				<img src="resources/images/close.png" id="cancel">
+				<p class="msg">${msg }</p>
+				<input type="button" id="home" value="홈으로">
+				<input type="button" id="join" value="회원가입">
+			</div>
+		</c:if>
+		<c:if test="${empty sessionScope.loginUser }">
+        <div class="loginbox">
+            <img src="resources/images/avatar.png" class="avatar">
+            <h1>로그인이 하고싶니?</h1>
+            <form id="loginform" method="post" action="doLoginView.do">
+                <p>아이디를 써라!</p>
+                <input type="text" name="id" placeholder="아이디를 입력하여라">
+                <p>비밀번호를 써라!</p>
+                <input type="password" name="pwd" placeholder="비밀번호를 입력하여라">
+                <input type="submit" name="" value="로그인 해주세요">
+                <a href="memberJoinView.do">치민이 처음이니?</a><br>
+                <a href="findIdView.do">아이디를 찾고싶니?</a><br>
+                <a href="findPwdView.do">비밀번호를 찾고싶니?</a>
                 
-                <a href="findPwdView.do" style="float: right;">비밀번호찾기 </a>
-                <a href="findIdView.do" style="float: right; text-decoration: none">아이디찾기/&nbsp; </a>
-                
-            </div>
-            <br>
-            <hr>
-            <br>
-            <input type="button" id="memberJoin" value="회원가입" onclick="location.href='memberJoinView.do'">
-            
-            <br>
-            <br>
-            <hr>
-            <br>
-            <div style="text-align: center;">
-            	<label style="color:lightgray;">노력은 가상하나</label><br>
-                <label style="color:lightgray;">시작도 전에 포기</label>
-                <br>
-                <br>
-                <br>
-                <br>
-                <label style="color:lightgray;">카카오 아이디 로그인</label>
-                	
-            </div>
-
-        </form>
+            </form>
+        </div>
         </c:if>
-	<%@ include file="../common/footer.jsp"%>
-</body>
-
-<script>
+       <%@ include file="../common/footer.jsp"%>
+    </body>
+    
+    <script>
 
 	$("#cancel").on("click",function(){
 	    $("#showMsg").css('display','none');
@@ -169,6 +133,7 @@
 	$("#join").on("click",function(){
         location.href="memberJoinView.do";
     })
+    
 </script>
-
+    
 </html>
