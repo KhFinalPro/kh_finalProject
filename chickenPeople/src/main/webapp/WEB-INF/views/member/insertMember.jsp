@@ -175,8 +175,10 @@
                 	<td id="lab" class="ltd">
                 		<label>프로필 사진</label>
                 	</td>
-                	<td id="inp" class="ltd">
-                		<input type="file">
+                	<td id="inp" class="ltd" rowspan="3">
+                		<div id="propic">
+                			<img id="contentImg" src="" onerror="this.src='resources/images/profileSample.png'" width="225px" height="225px">
+                		</div>
                 	</td>
                 </tr>
             </table>
