@@ -1,8 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:18 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:42 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Thu Aug 13 10:06:44 KST 2020
 commons-beanutils-1.7.0.pom>central=
+>>>>>>>=refs/remotes/origin/master
+commons-beanutils-1.7.0-javadoc.jar>central=
 commons-beanutils-1.7.0.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

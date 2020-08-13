@@ -1,10 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:18 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:51 GMT+09:00 2020
+#Thu Aug 13 10:06:54 KST 2020
+>>>>>>>=refs/remotes/origin/master
 ezmorph-1.0.4-sources.jar>central=
-ezmorph-1.0.4.pom>central=
->>>>>>> refs/remotes/origin/master
+ezmorph-1.0.4-javadoc.jar>central=
 ezmorph-1.0.4.jar>central=
 ezmorph-1.0.4.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

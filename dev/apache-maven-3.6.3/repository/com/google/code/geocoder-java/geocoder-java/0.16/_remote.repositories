@@ -1,8 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:18 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:57 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Thu Aug 13 10:06:59 KST 2020
 geocoder-java-0.16.pom>central=
+>>>>>>>=refs/remotes/origin/master
+geocoder-java-0.16-javadoc.jar>central=
 geocoder-java-0.16.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
