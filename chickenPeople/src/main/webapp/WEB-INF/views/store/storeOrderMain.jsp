@@ -11,7 +11,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style>
-	#section{width:auto; background-color: white; display:block; margin-top:200px; }
+	#section{width:auto; background-color: white; display:block; margin-top:150px; }
 	#section>div{margin-left: 10%; width: 65%;}
 	       
     #footer {width: 100%;height: 100px; background-color: #2CBFB1; display:block;}
@@ -23,9 +23,9 @@
 	
 	#London{padding: 0; width:100%; float:left;}
 	#London ul{margin: 0 auto; padding: 0;}
-	#London ul li{margin:0 auto; width:100%; line-height: 50px; list-style: none; background-color: white; color: #2ac1bc; font-size: 25px; font-weight: 600;}
-	#London ul li a{margin-left: 20px;}
-	#London>ul>li>ul>li{margin-left: 40px; width:80%; color:#735949;}
+	#London ul li{margin:0 auto; width:100%; line-height: 50px; list-style: none; background-color: white; font-size: 25px; font-weight: 600;}
+	#London ul li>a{margin-left: 20px; color:#735949;}
+	#London>ul>li>ul>li{margin-left: 40px; width:80%; color: black;}
 	
 	/*메뉴 카테고리*/
 	.menu a{cursor:pointer;}
@@ -38,12 +38,12 @@
 	#reviewCount_titl{margin-left:20px; font-size:15px; font-weight:600;}
 	#reviewCount{font-size:15px; font-weight:600;}
 	
-	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:rgb(236, 235, 235);}
-	.main_menu{display: inline-block; border:1px solid black; border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
+	.mainmenu_area{text-align: center; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; width: 100%; height: 280px; background-color:#E0F8F7;}
+	.main_menu{display: inline-block;border-radius:10px; margin: 10px; margin-top: 20px; width:200px; background-color:white;}
 	.imgLen{width:100px; height:100px; margin-top:10px;}
 	
 	#orderCheck{position: fixed; top: 200px; right:10px; width: 23%; background-color: white; border:1px solid #2ac1bc;}
-	.order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px; background-color:#2ac1bc; color:white;}
+	.order_btn{margin: 0 auto; width: 100%; height: 50px; font-size: 25px; font-weight: 600; border:0px; background-color:#2ac1bc; color: white; }
 	
 	
 	/*메뉴상세 - 정보*/
@@ -60,7 +60,7 @@
 	.tab button:hover {color: #735949;}
 	
 	/* Create an active/current tablink class */
-	.tab button.active {background-color: #ccc;}
+	.tab button.active {background-color: #2ac1bc; color:white;}
 	
 	/*모달창*/
 	#modalReview{display:none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 100;}
@@ -77,7 +77,7 @@
 	#modal_ul li{list-style:none;}
 	#order_put{position: absolute; bottom:0px; right:0px; width:100%; height:50px;}
 	
-	#orderCheck{border:1px solid black;}
+	#orderCheck{border:1px solid #2ac1bc;}
 	#orderCheck>form>h3{text-align: center;}
 	#orderCheck>form>.total_price_area{width:90%; text-align: right;}
 	#orderCheck>form>.total_price_area>h4{float:right;}
@@ -107,6 +107,8 @@
 	
 	#showMsg{position:fixed; width:37%; height:300px; z-index:100; left:31.5%; top: 100px; text-align:center; font-size:25px; font_weight:600; background-color: white; display:none; border:2px solid black;}
 	.close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
+	
+	h2{color:#735949;}
 </style>
         
 </head>
@@ -156,7 +158,7 @@
         
         		<div> <!-- 가게 정보 box1 -->
 					<!-- 메뉴판  -->
-					<h1>메뉴판</h1>
+					<h2>메뉴판</h2>
 					<div class="mainmenu_area" id="test">						
 						<c:forEach var="mainM" items="${storeList }">
 							<!-- 메뉴명 줄이기 -->
