@@ -62,6 +62,9 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="storeSearch" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td colspan="2">
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -78,6 +81,7 @@
 									</c:forEach>
 								</select>
 							</td>
+								
 								<c:if test="${searchStatus.searchStatus eq 'Y' }">
 								
 									<td><b>판매 상태</b></td>
@@ -96,7 +100,7 @@
 								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
+							
 						</tr>
 					</table>
 				</form>

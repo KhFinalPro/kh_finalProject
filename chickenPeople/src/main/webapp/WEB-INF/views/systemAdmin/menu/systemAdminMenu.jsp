@@ -22,7 +22,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
+	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:6px;  width: 95px;}
 	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -61,6 +61,9 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td>
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -77,6 +80,7 @@
 									</c:forEach>
 								</select>
 							</td>
+							
 							<td><b>판매 상태</b></td>
 								<c:if test="${searchStatus.searchStatus eq 'N' }">
 									<td>
@@ -93,9 +97,7 @@
 								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4">
-								<button type="submit">검색</button>
-							</td>
+							
 						</tr>
 					</table>
 				</form>
@@ -105,7 +107,7 @@
 			<div class="menuResultTable">
 				<br><hr><br>
 				<div style="text-align:right;">
-					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
+					<button onclick="location.href='${goMenuInsert}'" style="margin-bottom: 20px;">메뉴 등록</button>
 				</div>
 				<c:if test="${listCount ne 300 }">
 					<p>게시글 검색 결과가 총 ${listCount }건 존재합니다.</p>

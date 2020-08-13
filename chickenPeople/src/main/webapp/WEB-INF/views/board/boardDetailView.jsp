@@ -196,7 +196,7 @@
 			}
 		})
 	})
-	
+
 	$("#report").on("click",function(){
 			$("#report_modal").css("display","block");
 		})
@@ -348,7 +348,7 @@
 			})
 			
 		})
-		
 	})
+
 </script>
 </html>

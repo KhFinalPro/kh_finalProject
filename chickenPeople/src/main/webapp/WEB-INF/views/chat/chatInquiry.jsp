@@ -98,7 +98,7 @@
 		});
 		
 		sock.onopen = function(){
-			
+
 
 		};
 		
@@ -119,7 +119,7 @@
 			var sessionId = null;
 			var message = null;
 			var room_no = null;
-			
+			console.log(e.data);
 			var strArray = data.split("|");
 			var date = new Date();
 			var currentUserSession = $("#clientName").val();
@@ -152,7 +152,7 @@
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){
-						printData = "<div class='my-chat-box'>"+"<div>"+sessionId+"<div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div></div>";
+						printData = "<div class='my-chat-box'>"+"<div>"+sessionId+"</div><div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
@@ -165,19 +165,7 @@
 				}
 				
 			}
-			if(strArray[0]=="leaveRoom"){
-				room_no = strArray[1];
-				sessionId = strArray[2];
-				
-				printData="<div>";
-				printData+="<div>";
-				printData+="<strong>"+strArray[1]+"님이 입장하셨습니다.</strong>";
-				printData+="</div>";
-				printData+="</div>";
-				console.log(data)
-				sessionList+=printData
-				$("#chat").append(sessionList);
-			}
+			
 
 		}
 		

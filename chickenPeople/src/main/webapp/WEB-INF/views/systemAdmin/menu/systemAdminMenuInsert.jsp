@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메뉴 등록</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
@@ -20,7 +20,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
-	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
+	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px; width:545px; height:50px;}
 	
 	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
 	
@@ -46,57 +46,12 @@
 		<div class="item">
 			<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">메뉴 관리</p>
-				<br><hr><br>
-				<form action="systemAdminMenu.do" method="post">
-					<table class="searchTable">
-						<tr>
-							<td><b>메뉴 검색</b></td>
-							<c:if test="${empty searchStatus.searchName}">
-								<td><input class="menuSearch" name="menuName" type="text" placeholder="메뉴명을 입력해주세요."></td>
-							</c:if>
-							<c:if test="${not empty searchStatus.searchName }">
-								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
-							</c:if>
-						</tr>
-						<tr>
-							<td><b>브랜드 검색</b></td>
-							<td>
-								<select id="menuCategory" class="menuCategory" name="menuCategory">
-									<option value="total">전체</option>
-									<c:forEach var="m" items="${brandList}">
-										<c:if test="${searchStatus.searchCategory eq m.brand_name }">
-											<option value="${m.brand_name }" selected>${m.brand_name }</option>
-										</c:if>
-										<c:if test="${searchStatus.searchCategory ne m.brand_name }">
-											<option value="${m.brand_name }">${m.brand_name }</option>
-										</c:if>
-									</c:forEach>
-								</select>
-							</td>
-							<td><b>판매 상태</b></td>
-									<td>
-										<label><input type="radio" name="status_s" value="N" checked/> 판매 중</label>
-										<label><input type="radio" name="status_s" value="Y"/> 판매 종료</label>
-									</td>
-								<c:if test="${searchStatus.searchStatus eq 'Y' }">
-									<td>
-										<label><input type="radio" name="status_s" value="N" /> 판매 중</label>
-										<label><input type="radio" name="status_s" value="Y" checked/> 판매 종료</label>
-									</td>
-								</c:if>
-						</tr>
-						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
-						</tr>
-					</table>
-				</form>
+				<p style="font-size:20px;">메뉴 등록</p>
+				
 			</div><!-- menuHeader end -->
 			<div class="menuResultTable">
-			<br><hr><br>
-				<div style="text-align:right;">
-					<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
-				</div>
+			<br><br><br>
+				
 				<br>
 				<form action="menuInsertData.do" method="post" enctype="multipart/form-data">
 				<table class="resultTable">
@@ -137,11 +92,11 @@
 					</tr>
 					<tr>
 						<td><b>메뉴 설명</b></td>
-						<td><textarea name="menu_Exp" cols="55" rows="6"></textarea></td>
+						<td><textarea name="menu_Exp" cols="63" rows="6"></textarea></td>
 					</tr>
 					<tr>	
-						<td>
-							<button id="insert" style="text-align:right;" type="submit"><b>판매처리</b></button>
+						<td colspan="2">
+							<button id="insert" type="submit"><b>판매처리</b></button>
 							
 						</td>
 					</tr>
@@ -176,4 +131,10 @@
 </div><!-- class Wrapper end -->
 
 </body>
+<script>
+$(function(){
+	$("#menu").children().addClass('active');
+})
+
+</script>
 </html>
