@@ -28,6 +28,23 @@
     .review ul li .number{font-size:30px; width:50px; height:50px;  border-radius:25px; background-color: #ffc000; color:white;}
     .review ul li div{float:left;}
     .review .review_content{font-size:40px;}
+    
+    #report_area{float:right;}
+    #report_area>#report{width:100px; height:25px;}
+    
+    #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+
+	#reply_area{margin:0 auto; width:100%; border-top:1px solid black;}
+	/* #reply_area .reply{margin-top:20px;}
+	#reply_area .reply>li{list-style:none; text-align:left;} */
+	#reply_area .reply>li>.re_reply{margin-left:70px; margin-top:20px;}
+	#reply_area .reply>li>.re_reply>li{list-style:none;}
+	#reply_area .reply>li>.re_reply>li>.re_reply_date{color:gray;}
+	
+	#content_insert{height:200px;}
+	#content_insert>button{ margin-bottom:5px;}
+	#content_insert>#replay_content{resize:none;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
      
@@ -48,6 +65,12 @@
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
                 <a>조회수 : ${board.bCount } </a><a id="like"> 좋아요 : ${board.bHit }</a>
+<<<<<<< HEAD
+=======
+                <div id="report_area">
+                	<button id="report">신고</button>
+                </div>
+>>>>>>> refs/remotes/origin/master
             </div>
         </div>
 
@@ -69,7 +92,67 @@
 		        <hr>
 	        </c:forEach>
         </div>
-        
+        <br clear="both">
+	    <div id="reply_area">
+	    	<!-- <ul class="reply">
+	    		<li>
+	    			<p><a class="reply_num">1. </a><a class="reply_id">짱구 : </a><a class="reply_content">가나다라마바사아자차카파타하</a></p>
+	    			
+	    			<ul class="re_reply">
+			    		<li>
+			    			<a class="re_reply_id">홍길동 : </a>
+			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
+							<a class="re_reply_date">2020/08/12</a>			    			
+			    		</li>
+			    	</ul>
+			    	<ul class="re_reply">
+			    		<li>
+			    			<a class="re_reply_id">홍길동 : </a>
+			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
+							<a class="re_reply_date">2020/08/12</a>			    			
+			    		</li>
+			    	</ul>
+	    		</li>
+	    	</ul> -->
+	    </div>
+    	<div id="content_insert">
+    		<textarea id="replay_content" cols="100" rows="11"></textarea>
+    		<button id="reply_btn">댓글 작성</button>
+    	</div>
+    </div>
+    
+    <!-- ----------------------------------------modal----------------------------------------------------- -->
+    <div id="report_modal">
+    	<div>
+	        <a href="javascript: $('#report_modal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+	            <img src="resources/images/close.png" style="width: 100%;"/>
+	        </a>
+	        <div style="position: absolute; top : 53px; left:35px;">
+		        <table id="reportMessage">
+		            <tr >
+		                <th style="width: 100px; height: 50px; font-size:22px;">category</th>
+		                <td>
+		                	<input type="hidden" id="br_code" name="br_code" value="B_MUK">
+		                	<select id="rpt_code" style="border:2px solid; border-radius:6px; height:30px;">
+		                		<option value="REPORT_01">타 서비스 홍보 / 광고 / 판매</option>
+		                		<option value="REPORT_02">음란물 유포, 요청</option>
+		                		<option value="REPORT_03">권리침해 (초상권,저작권,명예훼손)</option>
+		                		<option value="REPORT_04">공격적 / 비꼬기 / 비하</option>
+		                	</select>
+		                </td>
+		            </tr>
+		        </table>
+	    	</div>
+		    <div style="position: absolute; top : 100px; left:12px;">
+		        <ul style="list-style: none;">
+		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
+		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
+		
+		            </textarea>
+		        </ul>
+		        <button type="button" id="mukReport" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>신고하기</b></button>
+		    </div>
+	    </div>
     </div>
   	
   	<br clear="both">
@@ -99,5 +182,111 @@
 			}
 		})
 	})
+<<<<<<< HEAD
+=======
+	
+	$("#report").on("click",function(){
+			$("#report_modal").css("display","block");
+		})
+		
+	//신고하기버튼 ajax
+	$("#mukReport").on("click",function(){
+		$bNum = $("#bNum").val();
+		$rpt_content = $("#rpt_content").val();
+		$rpt_code = $("#rpt_code").val();
+		$br_code = $("#br_code").val();
+		$user_id = $("#id").val();
+
+		$.ajax({
+			url:"reportInsert.do",
+			data:{br_Num:$bNum, rpt_Content:$rpt_content, rpt_Code:$rpt_code, br_Code:$br_code, user_Id:$user_id},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				$("#report_modal").css("display","none");
+				console.log("성공");
+			},
+			error:function(request, status, errorData){
+           		alert("error code: " + request.status + "\n"
+                          +"message: " + request.responseText
+                          +"error: " + errorData);
+           	}
+		})
+	})
+	$("#reply_btn").on("click",function(){
+		$content = $("#replay_content").val();
+		console.log($content);
+		if($content != ""){
+			
+			$bNum = $("#bNum").val();
+			$id = $("#id").val();
+			$rep_cont = $content;
+			
+			$.ajax({	//댓글 등록 ajax
+				url:"replyInsert.do",
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					console.log("성공");
+					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
+					    						"<li style='list-style:none; text-align:left;'>"+
+					    							"<p><a class='reply_num'>1. </a><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
+		    									"</li>"+
+									    	"</ul>");
+				},
+				error:function(data){
+					
+				}
+			})
+		}
+		else{
+			alert("댓글을 작성해주세요");
+		}
+		
+	})
+	
+	$(function(){
+		$(document).on("click",".reply_content",function(){
+			$(this).parents("li").append("<div class='re_reply_content_area'>"+
+											"<textarea class='re_replt_content' cols='100' rows='11'>"+
+											"</textarea>"+
+											"<button class='re_reply_btn'>댓글달기</button>"+
+											"</div>");
+		})	
+		
+		$(document).on("click",".re_reply_btn",function(){
+			$bNum = $("#bNum").val();
+			$id = $("#id").val();
+			$rep_cont = $(".re_replt_content").val();
+			
+			$.ajax({
+				url:"reReplyInsert.do",
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					console.log("답글 성공");
+					$(this).parents(".re_reply_content_area").parents("li").append("ㅁㄴㅇ");
+					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
+									  								 "<li>"+
+									  								 "<p>"+
+						    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+						    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+						    										 "</p>"+
+						    										 "</li>"+
+						    										 "</ul>");
+						    										 
+					$(".re_reply_content_area").remove();
+				},
+				error:function(data){
+					
+				}
+			})
+			
+		})
+		
+	})
+>>>>>>> refs/remotes/origin/master
 </script>
 </html>

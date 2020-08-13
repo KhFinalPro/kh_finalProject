@@ -10,6 +10,7 @@
 	#write{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
 	#write:hover{color:white; background-color:#2e4ead;}
 	
+	
     .menuHeader{margin:0 auto; width:90%; margin-top:50px;}
 	.menuResultTable{margin:0 auto; width:90%;}
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}

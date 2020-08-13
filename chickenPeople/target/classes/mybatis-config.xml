@@ -42,6 +42,7 @@
 		<typeAlias type="com.kh.chickenPeople.chat.model.vo.ChattingMsg" alias="ChattingMsg"/>
 		<typeAlias type="com.kh.chickenPeople.board.model.vo.Picture" alias="Picture"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.MordNumCheck" alias="MordNumCheck"/>
+		<typeAlias type="com.kh.chickenPeople.reply.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<mappers>
@@ -69,6 +70,7 @@
 		<mapper resource="/mappers/storeOrder-mapper.xml"/>
 		<mapper resource="/mappers/chat-mapper.xml"/>
 		<mapper resource="/mappers/mordNumCheck-mapper.xml"/>
+		<mapper resource="/mappers/reply-mapper.xml"/>
 
 	</mappers>
 </configuration>

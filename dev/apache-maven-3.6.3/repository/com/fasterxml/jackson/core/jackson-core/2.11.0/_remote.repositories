@@ -1,5 +1,6 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Aug 12 11:05:57 KST 2020
 jackson-core-2.11.0-javadoc.jar>central=
 jackson-core-2.11.0-sources.jar>central=
@@ -10,6 +11,15 @@ jackson-core-2.11.0.pom>central=
 <<<<<<<=HEAD
 =======
 <<<<<<< HEAD
+#Wed Aug 12 10:01:18 GMT+09:00 2020
+=======
+#Wed Aug 12 09:25:14 GMT+09:00 2020
+jackson-core-2.11.0-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
+jackson-core-2.11.0.jar>central=
+jackson-core-2.11.0.pom>central=
+>>>>>>> refs/remotes/origin/master
+=======
 #Wed Aug 12 10:01:18 GMT+09:00 2020
 =======
 #Wed Aug 12 09:25:14 GMT+09:00 2020
