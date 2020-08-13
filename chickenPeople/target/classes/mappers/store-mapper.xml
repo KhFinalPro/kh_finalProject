@@ -161,7 +161,7 @@
 	
 	<insert id="storeJoin" parameterType="Store">
 		INSERT INTO STORE_INFO VALUES(
-		SEQ_STO_NUM.NEXTVAL, #{sto_name}, #{sto_tel}, NULL, NULL, #{sto_addr}, #{sto_intro}, NULL, NULL, NULL, NULL, #{ceo_name}, NULL, #{sto_email}, NULL, NULL, #{brand_code}, #{sto_lat}, #{sto_lng})
+		SEQ_STO_NUM.NEXTVAL, #{sto_name}, #{sto_tel}, NULL, NULL, #{sto_addr}, #{sto_intro}, NULL, NULL, NULL, NULL, #{ceo_name}, NULL, #{sto_email}, 'N', NULL, #{brand_code}, #{sto_lat}, #{sto_lng})
 	</insert>
 	
 </mapper>
