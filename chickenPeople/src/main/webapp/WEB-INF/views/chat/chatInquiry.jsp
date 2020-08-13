@@ -152,7 +152,7 @@
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){
-						printData = "<div class='my-chat-box'><div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+						printData = "<div class='my-chat-box'>"+"<div>"+sessionId+"<div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
