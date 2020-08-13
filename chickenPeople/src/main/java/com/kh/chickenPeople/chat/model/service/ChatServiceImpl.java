@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.kh.chickenPeople.chat.model.dao.ChatDao;
 import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
 import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
+import com.kh.chickenPeople.member.model.vo.Member;
+import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 
 @Service("chatService")
 public class ChatServiceImpl implements ChatService{
@@ -23,8 +26,8 @@ public class ChatServiceImpl implements ChatService{
 		return chatDao.createRoom_no(userId);
 	}
 	@Override
-	public ArrayList<ChattingRoom> selectAllRoom_data() {
-		return chatDao.selectAllRoom_data();
+	public ArrayList<ChattingRoom> selectAllRoom_data(SearchStatus chatSearch,PageInfo pi) {
+		return chatDao.selectAllRoom_data(chatSearch, pi);
 	}
 	@Override
 	public int saveMessage(String jsonStr) {
@@ -46,6 +49,18 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public ArrayList<ChattingMsg> selectAllMsgData(String chattingRoom_no) {
 		return chatDao.selectAllMsgData(chattingRoom_no);
+	}
+	@Override
+	public int getListCount(SearchStatus chatSearch) {
+		return chatDao.getListCount(chatSearch);
+	}
+	@Override
+	public ArrayList<Member> selectAllMember_data() {
+		return chatDao.selectAllMember_data();
+	}
+	@Override
+	public int updateChatStatus(int room_no) {
+		return chatDao.updateChatStatus(room_no);
 	}
 
 }

@@ -46,9 +46,10 @@ public class EchoHandler extends TextWebSocketHandler{
 			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
 			   
 			   sess.sendMessage(new TextMessage(userId));
+			   
 			   for(int j = 0 ; j < beforeDate.size(); j++) {
 				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
-					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg();
+					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
 					   sess.sendMessage(new TextMessage(beforeMsg));					   
 				   }
 			   }

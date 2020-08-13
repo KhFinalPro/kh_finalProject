@@ -105,6 +105,9 @@
 					<tbody>
 						<c:forEach var="i" items="${reportList }">
 							<tr>
+								<input type="hidden" value="${i.br_Code }"/>
+								<input type="hidden" value="${i.rpt_Code }"/>
+							
 								<td class="reportNum">${i.rpt_Num }</td>
 								<td>${i.br_Content }</td>
 								<td>${i.br_Num }</td>
@@ -115,12 +118,14 @@
 								<c:if test="${i.rpt_Status eq 'Y' }">
 									<td>처리</td>								
 								</c:if>
-								<c:url var="updateReport" value="reportUpdate.do">
+								<c:url var="updateReport" value="reportStatusUpdate.do">
 								<!-- 값을 가지고 뒤로 넘어가는 거 생각해보기 ***************************************** -->
-									<c:param name="" value=""/>
+									<c:param name="br_code" value="${i.br_Code }"/>
+									<c:param name="br_num" value="${i.br_Num }"/>
+									<c:param name="rpt_num" value="${i.rpt_Num }"/>
 								</c:url>
 								<c:if test="${i.rpt_Status eq 'N' }">
-									<td><button onclick="location.href=''">삭제</button></td>
+									<td><button onclick="location.href='${updateReport}'">삭제</button></td>
 								</c:if>
 							</tr>
 						</c:forEach>

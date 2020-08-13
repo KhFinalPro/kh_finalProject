@@ -43,6 +43,7 @@
 		<typeAlias type="com.kh.chickenPeople.board.model.vo.Picture" alias="Picture"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.MordNumCheck" alias="MordNumCheck"/>
 		<typeAlias type="com.kh.chickenPeople.reply.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.kh.chickenPeople.reply.model.vo.ReReply" alias="ReReply"/>
 	</typeAliases>
 	
 	<mappers>

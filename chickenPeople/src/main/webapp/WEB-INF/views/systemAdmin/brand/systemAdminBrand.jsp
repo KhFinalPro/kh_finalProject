@@ -33,6 +33,18 @@
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+    .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
+    .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
+    .pppp > ol > li:first-child { border-left : 1px solid black; }
+    .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
+    .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
+    .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
+    .page-list1 { background-color:rgb(46,78,178); }
+    .page-cur { font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
+    .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
+    .page-a:hover { color: black; text-decoration:none; }
+    
+    
     a:link{text-decoration:none; color:#646464;}
     a:visited{text-decoration:none; color:#646464;}
     a:active{text-decoration:none; color:#646464;}
@@ -50,7 +62,7 @@
 				<p style="font-size:20px;">브랜드 관리</p>
 				<br><hr><br>
 				<form action="systemAdminBrand.do" method="get">
-					<table class="searchTable">
+					<table class="resultTable">
 						<tr>
 							<td><b>브랜드 검색</b></td>
 							<c:if test="${empty searchStatus.searchName }">

@@ -44,8 +44,22 @@ public class ReportServiceImpl implements ReportService{
 
 	@Override
 	public int insertReport(Report p) {
-		// TODO Auto-generated method stub
 		return rDao.insertReport(p);
+	}
+
+	@Override
+	public int changeBungStatus(int brNum) {
+		return rDao.changeBungStatus(brNum);
+	}
+
+	@Override
+	public int changeReportStatus(int rptNum) {
+		return rDao.changeReportStatus(rptNum);
+	}
+
+	@Override
+	public int changeMukStatus(int brNum) {
+		return rDao.changeMukStatus(brNum);
 	}
 
 }

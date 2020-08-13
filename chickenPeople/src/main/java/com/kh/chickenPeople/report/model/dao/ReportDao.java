@@ -51,8 +51,22 @@ public class ReportDao {
 
 
 	public int insertReport(Report p) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.insert("reportMapper.insertReport", p);
+	}
+
+
+	public int changeBungStatus(int brNum) {
+		return sqlSessionTemplate.update("bungMapper.updateBungStatus",brNum);
+	}
+
+
+	public int changeReportStatus(int rptNum) {
+		return sqlSessionTemplate.update("reportMapper.updateReportStatus",rptNum);
+	}
+
+
+	public int changeMukStatus(int brNum) {
+		return sqlSessionTemplate.update("boardMapper.updateBoardStatus",brNum);
 	}
 
 }

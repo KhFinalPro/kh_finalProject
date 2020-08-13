@@ -17,17 +17,20 @@
 
 <style>
 	#bar_chart_div{height:50%; width:100%; margin:0 auto; margin-top:30px;}
-	.left-box {background: red; width: 50%;}
+	.left-box {width: 50%;}
 	.right-box { width: 50%;}
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; display: flex; justify-content: center; align-items: center; margin-top: -30px; }
 	.top_menu { width: calc(100% - 75px) !important;}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
-<body>
+<body onload="printClock()">
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
+			<div style="width:300px; height:10px; line-height:25px; color:#666;font-size:30px; text-align:center;" id="clock"></div>
+
+
 			<c:forEach var="i" items="${printTotalList}">
 				<input type="hidden" name="${i.brandCode }" value="${i.payTotal}"/>
 			</c:forEach>
@@ -216,6 +219,43 @@ var chartDrowFun = {
  	  chart.draw(data, barChartOption);
     }
     google.charts.setOnLoadCallback(schedulerSuccessAndFailChart); 
+
+</script>
+<script>
+
+	function printClock() {
+	    
+	    var clock = document.getElementById("clock");            // 출력할 장소 선택
+	    var currentDate = new Date();                                     // 현재시간
+	    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+	    var amPm = ''; // 초기값 AM
+	    var currentHours = addZeros(currentDate.getHours(),2); 
+	    var currentMinute = addZeros(currentDate.getMinutes() ,2);
+	    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+	    
+	    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+	    	amPm = '';
+	    	currentHours = addZeros(currentHours - 12,2);
+	    }
+	
+	    if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
+	       currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
+	    }
+	    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+	    
+	    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+	}
+	
+	function addZeros(num, digit) { // 자릿수 맞춰주기
+		  var zero = '';
+		  num = num.toString();
+		  if (num.length < digit) {
+		    for (i = 0; i < digit - num.length; i++) {
+		      zero += '0';
+		    }
+		  }
+		  return zero + num;
+	}
 
 </script>
 

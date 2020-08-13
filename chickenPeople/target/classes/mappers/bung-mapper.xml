@@ -128,6 +128,8 @@
 		ORDER BY BUNG_DATE ASC
 		]]>
 	</select>
-	
+	<update id="updateBungStatus" parameterType="_int">
+		DELETE FROM BUNG WHERE BUNG_NUM=#{brNum}
+	</update>
 	
 </mapper>

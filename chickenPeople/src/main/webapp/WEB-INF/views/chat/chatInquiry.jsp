@@ -12,7 +12,7 @@
 <style>
 	html{overflow:hidden;}
 	.siteLogo{font-size:24px; color:white; padding-top: 18px; padding-left: 14px;}
-	.chatHeader{background-color:#2ac1bc; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
+	.chatHeader{background-color:#1bc1a3; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
 	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	button{border:1px solid black; background-color:white; color:black; padding:8px;}
@@ -31,6 +31,42 @@
 	.scroll-test::-webkit-scrollbar-thumb { border-radius: 3px; background-color: gray; }
 	.scroll-test::-webkit-scrollbar-button { width: 0; height: 0; }
 
+	.chat-box{
+		text-align:left;
+	}
+	.chat{
+		font-size: 20px;
+		color:black;
+		margin: 5px;
+		min-height: 20px;
+		padding: 5px;
+		min-width: 50px;
+		text-align: left;
+        height:auto;
+        word-break : break-all;
+        background: #ffffff;
+        border:2px solid #F7E600;
+        width:auto;
+        display:inline-block;
+        border-radius: 10px 10px 10px 10px;
+	}
+	.my-chat{
+		text-align: right;
+		background: #F7E600;
+		border-radius: 10px 10px 10px 10px;
+	}
+	.my-chat-box{
+		margin-top:20px;
+		text-align: right;
+	}
+	.chat-info{
+		color:#556677;
+		font-size: 10px;
+		padding: 5px;
+		padding-top: 0px;
+
+	}
+	
 </style>
 </head>
 <body>
@@ -62,8 +98,8 @@
 		});
 		
 		sock.onopen = function(){
-			console.log("언제실행되지");
 			
+
 		};
 		
 		
@@ -85,7 +121,7 @@
 			var room_no = null;
 			
 			var strArray = data.split("|");
-			
+			var date = new Date();
 			var currentUserSession = $("#clientName").val();
 			var currentChattingRoom = $("#roomNo").val();
 			
@@ -108,15 +144,21 @@
 				sessionId = strArray[2];
 				message = strArray[3];
 				
+				if(strArray[4]==null){
+					time=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+				}else{
+					time=strArray[4];
+				}
+				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){
-						printData = "<div class='arrow_box_right'>"+message+"<br></div><br>";
+						printData = "<div class='my-chat-box'><div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
-						printData = "<div class='arrow_box_left'>"+message+"<br></div><br>";
-						$("#chat").append(printData);	
-						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
+						printData = "<div class='chat-box'><div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+						$("#chat").append(printData);
+						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);					
 					}
 				}else{
 					$("#chat").append("상대방의 대화를 불러오지 못했습니다.");

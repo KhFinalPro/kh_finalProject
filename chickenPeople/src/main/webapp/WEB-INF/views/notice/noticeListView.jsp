@@ -13,7 +13,7 @@
 	#section{margin: 0 auto; width: 80%; margin-top:150px;}
     #section #article{width: 100%;}
     #section #article .title{text-align:center;}
-    #section #article .title h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;;}
+    #section #article .title h1{height: 50px; line-height: 50px; font-size:30px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;;}
 
     #section #article ul{margin-left: 50px;}
     #section #article ul li{list-style: none;}
