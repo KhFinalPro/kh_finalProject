@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		*{margin:0; padding:0; list-style:none;}
-      	a{text-decoration:none; color:#666;}
+		/* *{margin:0; padding:0; list-style:none;}
+      	a{text-decoration:none; color:#666;} */
       	
 		header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 100;}
 		#header{margin: auto; width: 100%; height: 70px; background-color: white; border-bottom: 2px solid #2ac1bc; padding-top:20px;}

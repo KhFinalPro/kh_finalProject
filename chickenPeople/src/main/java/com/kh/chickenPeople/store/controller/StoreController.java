@@ -12,6 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -136,6 +137,29 @@ public class StoreController {
 	
 	return mv;
 		
+	}
+	
+	@RequestMapping("/storeJoin.do")
+	public String storeJoin(Store s, Model model,
+							@RequestParam("addr1") String address1,
+							@RequestParam("addr2") String address2,
+							@RequestParam("sto_lat") String sto_lat,
+							@RequestParam("sto_lng") String sto_lng) {
+		System.out.println(s);
+		s.setSto_addr(address1+" "+address2);
+		s.setSto_lat(Double.parseDouble(sto_lat));
+		s.setSto_lng(Double.parseDouble(sto_lng));
+		
+		
+		int result = storeService.storeJoin(s);
+		
+		if(result>0) {
+			return "redirect:/home.do";
+		}else {
+			
+		}
+		
+		return "redirect:/home.do";
 	}
 		
 	@RequestMapping("/order.do")
