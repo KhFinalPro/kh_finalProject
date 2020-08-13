@@ -1,15 +1,21 @@
 package com.kh.chickenPeople.reply.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Reply {
+public class Reply  implements Serializable{
 
-	public int rep1Num; 
-	public String userId; 
-	public String repCont;
-	public Date repDate;
-	public Date repUpDate;
-	public String repStatus;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2485726081396703170L;
+	public int rep1_num; 
+	public String user_id;
+	public int b_num;
+	public String rep_cont;
+	public String rep_date;
+	public Date rep_upDate;
+	public String rep_status;
 	
 	
 	
@@ -20,81 +26,140 @@ public class Reply {
 	}
 
 
-	public Reply(int rep1Num, String userId, String repCont, Date repDate, Date repUpDate, String repStatus) {
-		super();
-		this.rep1Num = rep1Num;
-		this.userId = userId;
-		this.repCont = repCont;
-		this.repDate = repDate;
-		this.repUpDate = repUpDate;
-		this.repStatus = repStatus;
+
+
+
+	public Reply(int rep1_num, String user_id, int b_num, String rep_cont, String rep_date, Date rep_upDate,
+			String rep_status) {
+		this.rep1_num = rep1_num;
+		this.user_id = user_id;
+		this.b_num = b_num;
+		this.rep_cont = rep_cont;
+		this.rep_date = rep_date;
+		this.rep_upDate = rep_upDate;
+		this.rep_status = rep_status;
 	}
 
 
-	public int getRep1Num() {
-		return rep1Num;
+
+
+
+	public int getRep1_num() {
+		return rep1_num;
 	}
 
 
-	public void setRep1Num(int rep1Num) {
-		this.rep1Num = rep1Num;
+
+
+
+	public void setRep1_num(int rep1_num) {
+		this.rep1_num = rep1_num;
 	}
 
 
-	public String getUserId() {
-		return userId;
+
+
+
+	public String getUser_id() {
+		return user_id;
 	}
 
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 
-	public String getRepCont() {
-		return repCont;
+
+
+
+	public int getB_num() {
+		return b_num;
 	}
 
 
-	public void setRepCont(String repCont) {
-		this.repCont = repCont;
+
+
+
+	public void setB_num(int b_num) {
+		this.b_num = b_num;
 	}
 
 
-	public Date getRepDate() {
-		return repDate;
+
+
+
+	public String getRep_cont() {
+		return rep_cont;
 	}
 
 
-	public void setRepDate(Date repDate) {
-		this.repDate = repDate;
+
+
+
+	public void setRep_cont(String rep_cont) {
+		this.rep_cont = rep_cont;
 	}
 
 
-	public Date getRepUpDate() {
-		return repUpDate;
+
+
+
+	public String getRep_date() {
+		return rep_date;
 	}
 
 
-	public void setRepUpDate(Date repUpDate) {
-		this.repUpDate = repUpDate;
+
+
+
+	public void setRep_date(String rep_date) {
+		this.rep_date = rep_date;
 	}
 
 
-	public String getRepStatus() {
-		return repStatus;
+
+
+
+	public Date getRep_upDate() {
+		return rep_upDate;
 	}
 
 
-	public void setRepStatus(String repStatus) {
-		this.repStatus = repStatus;
+
+
+
+	public void setRep_upDate(Date rep_upDate) {
+		this.rep_upDate = rep_upDate;
 	}
+
+
+
+
+
+	public String getRep_status() {
+		return rep_status;
+	}
+
+
+
+
+
+	public void setRep_status(String rep_status) {
+		this.rep_status = rep_status;
+	}
+
+
+
 
 
 	@Override
 	public String toString() {
-		return "Reply [rep1Num=" + rep1Num + ", userId=" + userId + ", repCont=" + repCont + ", repDate=" + repDate
-				+ ", repUpDate=" + repUpDate + ", repStatus=" + repStatus + "]";
+		return "Reply [rep1_num=" + rep1_num + ", user_id=" + user_id + ", b_num=" + b_num + ", rep_cont=" + rep_cont
+				+ ", rep_date=" + rep_date + ", rep_upDate=" + rep_upDate + ", rep_status=" + rep_status + "]";
 	}
 	
 	

@@ -36,6 +36,11 @@
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
+		#main_section>#head_area>#report>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: red; color: blue; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#report>h3:hover{background-color: blue; color: red; cursor:pointer;}
+		#main_section>#head_area>#chatting_status{margin-left: 10px;}
+		#main_section>#head_area>.head_tree_line{float: left;}
+		
 		/*시간 정보*/
 		#main_section>#date>img{width: 50px; height: 50px;}
 		#main_section>#date_info{margin-left: 10px; height: 25px; line-height: 25px;}
@@ -74,6 +79,8 @@
 		#msgReplyModal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
 		#msgReplyModal>div{width: 400px; height: 500px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 		
+		#report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
+		#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -119,6 +126,9 @@
             <c:if test="${!empty sessionScope.loginUser }">
 	            <div id="massage" class="head_tree_line">
 	            	<h3 id="massage_click">메세지</h3>
+	            </div>
+	            <div id="report" class="head_tree_line" style="float:right;">
+	            	<h3 id="report_click">신고</h3>
 	            </div>
             </c:if>
             <%-- <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div> --%>
@@ -190,6 +200,39 @@
 		            </textarea>
 		        </ul>
 		        <button type="button" id="bungMessage" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>보내기</b></button>
+		    </div>
+	    </div>
+    </div>
+    
+    <div id="report_modal">
+    	<div>
+	        <a href="javascript: $('#report_modal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+	            <img src="resources/images/close.png" style="width: 100%;"/>
+	        </a>
+	        <div style="position: absolute; top : 53px; left:35px;">
+		        <table id="reportMessage">
+		            <tr >
+		                <th style="width: 100px; height: 50px; font-size:22px;">category</th>
+		                <td>
+		                	<input type="hidden" id="br_code" name="br_code" value="B_BUNG">
+		                	<select id="rpt_code" style="border:2px solid; border-radius:6px; height:30px;">
+		                		<option value="REPORT_01">타 서비스 홍보 / 광고 / 판매</option>
+		                		<option value="REPORT_02">음란물 유포, 요청</option>
+		                		<option value="REPORT_03">권리침해 (초상권,저작권,명예훼손)</option>
+		                		<option value="REPORT_04">공격적 / 비꼬기 / 비하</option>
+		                	</select>
+		                </td>
+		            </tr>
+		        </table>
+	    	</div>
+		    <div style="position: absolute; top : 100px; left:12px;">
+		        <ul style="list-style: none;">
+		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
+		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
+		
+		            </textarea>
+		        </ul>
+		        <button type="button" id="bungReport" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>신고하기</b></button>
 		    </div>
 	    </div>
     </div>
@@ -298,7 +341,34 @@
 			})
 		})
 		
-
+		//신고
+		$("#report").on("click",function(){
+			$("#report_modal").css("display","block");
+		})
+		
+		//신고하기버튼 ajax
+		$("#bungReport").on("click",function(){
+			$bung_num = $("#bung_num").val();
+			$rpt_content = $("#rpt_content").val();
+			$rpt_code = $("#rpt_code").val();
+			$br_code = $("#br_code").val();
+			$user_id = $("#create_user_id").html();
+			$.ajax({
+				url:"reportInsert.do",
+				data:{br_Num:$bung_num, rpt_Content:$rpt_content, rpt_Code:$rpt_code, br_Code:$br_code, user_Id:$user_id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					$("#report_modal").css("display","none");
+					console.log("성공");
+				},
+				error:function(request, status, errorData){
+	           		alert("error code: " + request.status + "\n"
+	                          +"message: " + request.responseText
+	                          +"error: " + errorData);
+	           	}
+			})
+		})
 	})
 </script>
 </html>

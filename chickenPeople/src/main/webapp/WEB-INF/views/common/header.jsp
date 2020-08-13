@@ -7,17 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 6;}
-		#header{margin: auto; width: 100%; height: 70px; background-color: white; border-bottom: 2px solid #2ac1bc; padding-top:20px;}
+		header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 6; }
+		#header{margin: auto; width: 100%; height: 70px; background-color: white; border-bottom: 2px solid #2ac1bc;  padding-top:20px;}
 		#header>div{ display: inline-block;}
 		
-		#header_brandName{width: 15%; height: 90%; text-align: center; vertical-align: middle;}
+		#header_brandName{width: 15%; height: 90%; text-align: center; vertical-align: middle; }
 		#header_brandName #brandName{margin: 0;}
-		#header_brandName #brandName a{color: #735949; text-decoration: none;}
-		#header_brandName #brandName a:hover{color: black; cursor:pointer;}
+		#header_brandName #brandName a{color: #735949; text-decoration: none; color:#2ac1bc;}
+		/* #header_brandName #brandName a:hover{color: black; cursor:pointer;} */
 		
 		#header_address{width: 69%; height: 100%; text-align: center; vertical-align: middle;}
-		#header_address #address{width: 50%; height: 50px; border-radius: 20px;}
+		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px;}
 		
 		
 		#header_userArea{width: 15%; height: 80%;}

@@ -168,6 +168,10 @@
 	$("#join").on("click",function(){
         location.href="memberJoinView.do";
     })
+    
+    $("#home").on("click",function(){
+        location.href="home.do";
+    })
 </script>
 
 </html>
