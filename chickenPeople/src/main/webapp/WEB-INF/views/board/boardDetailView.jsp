@@ -34,6 +34,17 @@
     
     #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
 	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+
+	#reply_area{margin:0 auto; width:100%; border-top:1px solid black;}
+	/* #reply_area .reply{margin-top:20px;}
+	#reply_area .reply>li{list-style:none; text-align:left;} */
+	#reply_area .reply>li>.re_reply{margin-left:70px; margin-top:20px;}
+	#reply_area .reply>li>.re_reply>li{list-style:none;}
+	#reply_area .reply>li>.re_reply>li>.re_reply_date{color:gray;}
+	
+	#content_insert{height:200px;}
+	#content_insert>button{ margin-bottom:5px;}
+	#content_insert>#replay_content{resize:none;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
      
@@ -78,9 +89,36 @@
 		        <hr>
 	        </c:forEach>
         </div>
-        
+        <br clear="both">
+	    <div id="reply_area">
+	    	<!-- <ul class="reply">
+	    		<li>
+	    			<p><a class="reply_num">1. </a><a class="reply_id">짱구 : </a><a class="reply_content">가나다라마바사아자차카파타하</a></p>
+	    			
+	    			<ul class="re_reply">
+			    		<li>
+			    			<a class="re_reply_id">홍길동 : </a>
+			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
+							<a class="re_reply_date">2020/08/12</a>			    			
+			    		</li>
+			    	</ul>
+			    	<ul class="re_reply">
+			    		<li>
+			    			<a class="re_reply_id">홍길동 : </a>
+			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
+							<a class="re_reply_date">2020/08/12</a>			    			
+			    		</li>
+			    	</ul>
+	    		</li>
+	    	</ul> -->
+	    </div>
+    	<div id="content_insert">
+    		<textarea id="replay_content" cols="100" rows="11"></textarea>
+    		<button id="reply_btn">댓글 작성</button>
+    	</div>
     </div>
     
+    <!-- ----------------------------------------modal----------------------------------------------------- -->
     <div id="report_modal">
     	<div>
 	        <a href="javascript: $('#report_modal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
@@ -160,6 +198,7 @@
 			type:"post",
 			dataType:"json",
 			success:function(data){
+				$("#report_modal").css("display","none");
 				console.log("성공");
 			},
 			error:function(request, status, errorData){
@@ -168,6 +207,80 @@
                           +"error: " + errorData);
            	}
 		})
+	})
+	$("#reply_btn").on("click",function(){
+		$content = $("#replay_content").val();
+		console.log($content);
+		if($content != ""){
+			
+			$bNum = $("#bNum").val();
+			$id = $("#id").val();
+			$rep_cont = $content;
+			
+			$.ajax({	//댓글 등록 ajax
+				url:"replyInsert.do",
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					console.log("성공");
+					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
+					    						"<li style='list-style:none; text-align:left;'>"+
+					    							"<p><a class='reply_num'>1. </a><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
+		    									"</li>"+
+									    	"</ul>");
+				},
+				error:function(data){
+					
+				}
+			})
+		}
+		else{
+			alert("댓글을 작성해주세요");
+		}
+		
+	})
+	
+	$(function(){
+		$(document).on("click",".reply_content",function(){
+			$(this).parents("li").append("<div class='re_reply_content_area'>"+
+											"<textarea class='re_replt_content' cols='100' rows='11'>"+
+											"</textarea>"+
+											"<button class='re_reply_btn'>댓글달기</button>"+
+											"</div>");
+		})	
+		
+		$(document).on("click",".re_reply_btn",function(){
+			$bNum = $("#bNum").val();
+			$id = $("#id").val();
+			$rep_cont = $(".re_replt_content").val();
+			
+			$.ajax({
+				url:"reReplyInsert.do",
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					console.log("답글 성공");
+					$(this).parents(".re_reply_content_area").parents("li").append("ㅁㄴㅇ");
+					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
+									  								 "<li>"+
+									  								 "<p>"+
+						    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+						    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+						    										 "</p>"+
+						    										 "</li>"+
+						    										 "</ul>");
+						    										 
+					$(".re_reply_content_area").remove();
+				},
+				error:function(data){
+					
+				}
+			})
+			
+		})
+		
 	})
 </script>
 </html>

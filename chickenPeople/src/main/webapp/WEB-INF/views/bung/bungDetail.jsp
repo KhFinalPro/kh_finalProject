@@ -359,6 +359,7 @@
 				type:"post",
 				dataType:"json",
 				success:function(data){
+					$("#report_modal").css("display","none");
 					console.log("성공");
 				},
 				error:function(request, status, errorData){

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="replyMapper">
+	
+	<resultMap id="replyResultSet" type="Reply">
+		<id property="rep1_num" column="REP1_NUM"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="b_num" column="B_NUM"/>
+		<result property="rep_cont" column="REP_CONT"/>
+		<result property="rep_date" column="REP_DATE"/>
+		<result property="rep_update" column="REP_UPDATE"/>
+		<result property="rep_status" column="REP_STATUS"/>
+	</resultMap>
+	
+	
+	<insert id="replyInsert" parameterType="Reply">
+		INSERT INTO REPLY VALUES(SEQ_REP1_NUM.NEXTVAL, #{user_id}, #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+	</insert>
+	
+	<insert id="reReplyInsert" parameterType="Reply">
+		INSERT INTO RE_REPLY VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N')
+	</insert>
+	
+	<select id="selectCurrval" parameterType="_int" resultType="int">
+		SELECT REP1_NUM
+		FROM REPLY
+		WHERE B_NUM = #{b_num} AND ROWNUM = 1
+		ORDER BY REP1_NUM DESC
+	</select>
+	
+</mapper>
