@@ -12,6 +12,36 @@
 </head>
 
 <style>
+
+
+.wrapper .main_container{
+
+    width:94.8%;
+    margin-top:70px;
+    margin-left: 114px;
+    padding:15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.wrapper .main_container .item{
+
+   background: #fff; 
+   margin-bottom: 10px; 
+   padding: 15px; 
+   font-size: 14px; 
+   height: 873px; 
+   border-bottom-right-radius: 20px;
+   justify-content: center; 
+   align-items: center; 
+   margin-top: -30px;
+   overflow-y: scroll;
+   
+} 
+
+.item::-webkit-scrollbar {
+	display:none;
+}
 /******메뉴 리스트 *******/
 
 .searchCate{

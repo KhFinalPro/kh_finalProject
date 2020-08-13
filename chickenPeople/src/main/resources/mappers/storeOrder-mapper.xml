@@ -13,6 +13,9 @@
 	<result property="payMsg" column="PAY_MSG"/>
 	<result property="menuName" column="MANU_NAME"/>
 	<result property="realMenu" column="REAL_MENU"/>
+	<result property="payTotal" column="PAY_TOTAL"/>
+	<result property="customer" column="CUSTOMER"/>
+	<result property="stoName" column="STO_NAME"/>
 </resultMap>
 
 
@@ -88,6 +91,24 @@ SET
 ORD_STATUS = '주문취소'
 WHERE ORD_NUM = #{ordNum}
 </update>
+
+
+<!-- 날짜선택 매출전표 -->
+<select id="chooseDateTotalReciept" resultMap="orderResultSet">
+SELECT COUNT(J.ORD_NUM) AS "CUSTOMER",TO_CHAR(TO_DATE(PAY_DATE),'YYYY-MM') AS "PAY_DATE", SUM(PAY_TOAL) AS "PAY_TOTAL"
+FROM PAYMENT p
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND J.ORD_STATUS='배달완료' AND P.PAY_DATE>= TO_DATE(#{start},'YYYY-MM-DD') AND P.PAY_DATE  <![CDATA[ < ]]> TO_DATE(#{end},'YYYY-MM-DD')+1
+GROUP BY TO_CHAR(TO_DATE(PAY_DATE),'YYYY-MM')
+</select>
+
+<!-- <select id="stoName" resultMap="orderResultSet">
+SELECT STO_NAME
+FROM STORE_INFO
+WHERE USER_ID=#{userId}
+</select> -->
 
 
 

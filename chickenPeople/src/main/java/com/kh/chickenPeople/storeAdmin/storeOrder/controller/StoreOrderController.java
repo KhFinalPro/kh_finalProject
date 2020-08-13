@@ -2,7 +2,9 @@ package com.kh.chickenPeople.storeAdmin.storeOrder.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -349,4 +351,67 @@ public class StoreOrderController {
 		out.close();
 	}
 	
+	
+	//주문전표 (날짜선택)
+	@RequestMapping(value="chooseDateTotalReciept.do",method=RequestMethod.POST)
+	public void chooseDateTotalReciept(HttpServletRequest request, HttpServletResponse response,String start,String end) throws IOException {
+
+		 response.setContentType("application/json;charset=utf-8");
+
+	        HttpSession session = request.getSession();
+
+	        Member loginUser = (Member) session.getAttribute("loginUser");
+	        
+	        //날짜 String 형태로 바꾸기
+	        Date date = new Date();
+	        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        String today = transFormat.format(date);
+
+	        
+	        // 유저 아이디
+	        String userId = loginUser.getId();
+	       		
+
+	        HashMap<String,String> map = new HashMap<>();
+	        map.put("userId",userId);
+	        map.put("start",start);
+	        map.put("end",end);
+	        
+	        JSONObject obj = new JSONObject();
+	        
+	        
+	        ArrayList<StoreOrder> chooseDateTotalReciept = storeOrderService.chooseDateTotalReciept(map);
+
+	        //매장이름
+	        //int stoName = storeOrderService.stoName(userId);
+	        
+	        
+		
+	        JSONArray chooseDateTotalRecieptArr = new JSONArray();
+	        for(int i=0; i<chooseDateTotalReciept.size(); i++) {
+	        	JSONObject chooseDateTotal = new JSONObject();
+	        	
+	        	 chooseDateTotal.put("payDate",chooseDateTotalReciept.get(i).getPayDate());
+	        	 chooseDateTotal.put("customer",chooseDateTotalReciept.get(i).getCustomer());
+	        	 chooseDateTotal.put("payTotal",chooseDateTotalReciept.get(i).getPayTotal());
+	        	
+	        	 chooseDateTotalRecieptArr.add(chooseDateTotal);
+	        	 
+	        }
+	        
+	        System.out.println("날짜선택 매출전표"+chooseDateTotalRecieptArr);
+	        
+	        
+	        obj.put("chooseDateTotalReciept", chooseDateTotalRecieptArr);
+	        obj.put("today", today);
+	        //obj.put("stoName", stoName);
+	        
+	        PrintWriter out = response.getWriter();
+	        
+			out.print(obj);
+			out.flush();
+			out.close();
+	        
+	        
+	}
 }

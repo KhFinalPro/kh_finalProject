@@ -73,4 +73,19 @@ public class StoreOrderDao {
 		return sqlSessionTemplate.update("storeOrderMapper.updateOrderStatusCancel",ordNum);
 	
 	}
+
+	//날짜선택 매출전표
+	public ArrayList<StoreOrder> chooseDateTotalReciept(HashMap<String, String> map) {
+	
+		ArrayList<StoreOrder> chooseDateTotalReciept = new ArrayList<StoreOrder>();
+		
+		chooseDateTotalReciept = (ArrayList)sqlSessionTemplate.selectList("storeOrderMapper.chooseDateTotalReciept",map);
+		
+		return chooseDateTotalReciept;
+	}
+
+//	public int stoName(String userId) {
+//		
+//		return sqlSessionTemplate.selectOne("storeOrderMapper.stoName",userId);
+//	}
 }

@@ -50,6 +50,11 @@ public class StoreAdminController {
 		  return "storeAdmin/storeProgress";
 	  }
 	  
+	  @RequestMapping("storeAdminMain.do")
+	  public String storeAdminMain() {
+		  return "storeAdmin/storeAdminMain";
+	  }
+	  
 	  
 		/*
 		 * @RequestMapping(value="pagination.do",method=RequestMethod.GET) public void

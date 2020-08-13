@@ -64,6 +64,18 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		return storeOrderDao.updateOrderStatusCancel(ordNum); 
 	}
 
+	@Override
+	public ArrayList<StoreOrder> chooseDateTotalReciept(HashMap<String, String> map) {
+		
+		return  storeOrderDao.chooseDateTotalReciept(map); 
+	}
+
+	/*
+	 * @Override public int stoName(String userId) {
+	 * 
+	 * return storeOrderDao.stoName(userId); }
+	 */
+
 	
 	
 	

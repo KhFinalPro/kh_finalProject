@@ -10,6 +10,46 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 <style>
+.waitingMenuName{
+		display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+       	width: 260px;
+}
+
+
+.wrapper .main_container{
+
+    width:94.8%;
+    margin-top:70px;
+    margin-left: 114px;
+    padding:15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.wrapper .main_container .item{
+
+   background: #fff; 
+   margin-bottom: 10px; 
+   padding: 15px; 
+   font-size: 14px; 
+   height: 873px; 
+   border-bottom-right-radius: 20px;
+   justify-content: center; 
+   align-items: center; 
+   margin-top: -30px;
+   overflow-y: scroll;
+   
+} 
+.item::-webkit-scrollbar {
+	display:none;
+}
+
+
+
 /***********리뷰테이블**********/
 .orderTitle{
     margin-top:20px;
@@ -144,7 +184,7 @@
                         <div class="nowOrderStatus">
                             <button type="button" onclick="checkWaitingOrderList()" class="nowOrderStatusBtn" id="checkWaitingOrderList"><span id="nowOrderCount"></span></button>
                             <br>
-                            <button class="totalReceiptBtn">매출전표</button>
+                            <button type="button" onclick="showTotalRecieptList()" class="totalReceiptBtn" id="showTotalReciept">매출전표</button>
                         </div>
                         <br>
                         <br>
@@ -227,6 +267,62 @@
            <tbody>
            </tbody>
        </table>
+    </div>
+    
+    </div>
+ </div>
+ 
+ 
+ <!--! 주문전표 모달 -->
+  <div id="totalRecieptModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
+    <div style="width: 450px; height: 450px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+        <a href="javascript: $('#totalRecieptModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+            <img src="resources/images/close.png" style="width: 100%;"/></a>
+        <div style="position: absolute; top : 40px; left:40px;">
+        <h2>매출 현황</h2></div>
+         <div  style="position: absolute; top : 110px; left:14px; margin-bottom:10px">
+                <table id="orderSummaryTable1" >
+                    <tr>
+                        <th style="width: 140px; height: 25px; font-weight:normal;">매장명&nbsp;&nbsp;:</th>
+                        <td id="modalStoName">역삼스타점</td>
+                    </tr>
+                    <tr >
+                        <th style="width: 140px; height: 25px; font-weight:normal;">조회기간 :</th>
+                        <td id="calendarDate"></td>
+                    </tr>
+                </table>
+        </div>
+          <div style="position: absolute; top : 200px; left:8%;">
+                <table id="orderSummaryTable2" style="text-align: center; margin: auto 0;">
+                    <thead>
+                    <tr style="width: 140px; height: 25px; font-weight:normal; border-top:solid 1px black; border-bottom:solid 1px black">
+                        <th style="width: 120px; height: 25px; ">월</th>
+                        <th style="width: 120px; height: 25px; ">고객수</th>
+                        <th style="width: 120px; height: 25px; ">매출금액</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                 <table id="orderSummaryTable3" style="text-align: center; margin: auto 0;">
+                    <thead>
+                    <tr style="width: 140px; height: 25px; font-weight:normal; border-top:solid 1px black; border-bottom:solid 1px black">
+                        <th style="width: 120px; height: 25px; ">합계</th>
+                        <th style="width: 120px; height: 25px; ">200</th>
+                        <th style="width: 120px; height: 25px; ">4000,000</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div  style="position: absolute; bottom : 50px; left:15%; margin-bottom:10px">
+                <table id="orderSummaryTable4" >
+                    <tr>
+                        <th style="width: 110px; height: 25px;">출력일시&nbsp;&nbsp;:</th>
+                        <th id="printDate">2020년 8월 12일</th>
+                    </tr>
+                </table>
+        </div>
+     
     </div>
     
     </div>
@@ -334,8 +430,7 @@ function searchDate(){
 		 	$("#orderTotalPrice").empty();
 			$("#orderTotalPrice").html(sum);
 			
-			//console.log(orderList.length);
-			
+	
 			
 			$("#nowOrderCount").html("현재"+"&nbsp"+data.WAITING_CHECK+"&nbsp"+"건 접수중");
 		
@@ -345,6 +440,9 @@ function searchDate(){
                     +"error: " + errorData);
         } 
 	})
+	
+	
+	
 		
 }
 
@@ -504,7 +602,7 @@ function checkWaitingOrderList(){
 			 for(var i=0; i<selectWaitingList.length; i++){
 				 selectWaitingArr += '<tr>'+
 									'<td id="ordNum">'+selectWaitingList[i].ordNum+'</td>'+
-									'<td>'+selectWaitingList[i].menuName+'</td>'+
+									'<td class="waitingMenuName">'+selectWaitingList[i].menuName+'</td>'+
 									'<td>'+selectWaitingList[i].payDate+'</td>'+
 									'<td>'+selectWaitingList[i].payMethod+'</td>'+
 									'<td>'+selectWaitingList[i].ordStatus+'</td>'+
@@ -516,10 +614,6 @@ function checkWaitingOrderList(){
 			 $("#waitingOrderTable").find('tbody').empty();
 			 $("#waitingOrderTable").find('tbody').append(selectWaitingArr);
 			 
-			 
-			 //$("#nowOrderCount").empty();
-			/*  $("#nowOrderCount").html("현재"+"&nbsp"+selectWaitingList.length+"&nbsp"+"건 접수중");
-			 nowOrderCount=selectWaitingList.length; */
 			 
 		 },error:function(request, status, errorData){
              alert("error code: " + request.status + "\n"
@@ -560,7 +654,7 @@ function acceptOrder(ordNum){
 }
 
 
-
+//대기 주문 취소
 function cancelOrder(ordNum){
 
 	var ordNum = ordNum;
@@ -587,6 +681,88 @@ function cancelOrder(ordNum){
 	 })
 	
 	
+}
+
+//주문전표
+function showTotalRecieptList(){
+
+	
+
+	
+	
+	
+var start = $("#calendar").val();
+var end = $("#calendar2").val();
+
+var param = {'start':start,'end':end};
+
+
+if(start&&end != null){
+$("#totalRecieptModal").fadeIn(500);
+	
+$.ajax({
+	type:'POST',
+	url:'chooseDateTotalReciept.do',
+	data:param,
+	dataType:'JSON',
+	success:function(data){
+		
+		var chooseDateTotalReciept = data.chooseDateTotalReciept;
+		var chooseDateTotalRecieptArr='';
+		var summaryArr='';
+		var customerSum=0;
+		var payTotalSum=0;
+		
+		
+		for(var i=0; i<chooseDateTotalReciept.length; i++){
+			chooseDateTotalRecieptArr += '<tr>'+
+										'<td>'+chooseDateTotalReciept[i].payDate+'</td>'+
+										'<td>'+chooseDateTotalReciept[i].customer+'</td>'+
+										'<td>'+chooseDateTotalReciept[i].payTotal+'</td>'+
+										'</tr>';
+										
+			customerSum +=chooseDateTotalReciept[i].customer;
+			payTotalSum +=chooseDateTotalReciept[i].payTotal;
+		}
+		
+		//console.log('요약'+customerSum+payTotalSum);
+		
+		
+		//최종 요약 summary
+		summaryArr = '<tr>'+
+					'<th style="width: 120px; height: 25px; ">'+"합계"+'</th>'+
+					'<th style="width: 120px; height: 25px; ">'+customerSum+'</th>'+
+					'<th style="width: 120px; height: 25px; ">'+payTotalSum+'</th>'+
+					'</tr>';
+
+		 $("#calendarDate").empty();
+		 $("#calendarDate").append(start+"&nbsp;&nbsp;-&nbsp;&nbsp;"+end);
+		
+		 $("#orderSummaryTable2").find('tbody').empty();
+		 $("#orderSummaryTable2").find('tbody').append(chooseDateTotalRecieptArr);
+		 
+		 $("#orderSummaryTable3").find('thead').empty();
+		 $("#orderSummaryTable3").find('thead').append(summaryArr);
+		 
+		 $("#printDate").empty();
+		 $("#printDate").append(data.today); 
+		 
+		/*  $("#modalStoName").empty();
+		 $("#modalStoName").append(data.stoName);
+		 
+		 */
+		
+		
+		
+	},error:function(request, status, errorData){
+        alert("error code: " + request.status + "\n"
+                +"message: " + request.responseText
+                +"error: " + errorData);
+    } 
+})
+}else{
+	alert('조회하실 날짜를 먼저 선택해주세요!');
+}
 }
 
 

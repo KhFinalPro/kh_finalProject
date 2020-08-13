@@ -27,7 +27,10 @@ public class StoreOrder implements Serializable {
 	private String stoNum;
 	
 	private String realMenu; //메뉴리스트 합
-
+	private int payTotal; //매출전표 토탈
+	private int customer; //손님 수
+	
+	private String stoName;//매장이름
 	
 	
 
@@ -37,10 +40,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public StoreOrder(String ordNum, String payDate, String payRcv, String payMsg, int payToal, String userId,
 			String payMethod, int menuNum, String menuName, int menuPrice, String ordStatus, String stoNum,
-			String realMenu) {
+			String realMenu, int payTotal, int customer, String stoName) {
 		super();
 		this.ordNum = ordNum;
 		this.payDate = payDate;
@@ -55,8 +57,10 @@ public class StoreOrder implements Serializable {
 		this.ordStatus = ordStatus;
 		this.stoNum = stoNum;
 		this.realMenu = realMenu;
+		this.payTotal = payTotal;
+		this.customer = customer;
+		this.stoName = stoName;
 	}
-
 
 
 
@@ -66,11 +70,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setOrdNum(String ordNum) {
 		this.ordNum = ordNum;
 	}
-
 
 
 
@@ -80,11 +82,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setPayDate(String payDate) {
 		this.payDate = payDate;
 	}
-
 
 
 
@@ -94,11 +94,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setPayRcv(String payRcv) {
 		this.payRcv = payRcv;
 	}
-
 
 
 
@@ -108,11 +106,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setPayMsg(String payMsg) {
 		this.payMsg = payMsg;
 	}
-
 
 
 
@@ -122,11 +118,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setPayToal(int payToal) {
 		this.payToal = payToal;
 	}
-
 
 
 
@@ -136,11 +130,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 
 
@@ -150,11 +142,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setPayMethod(String payMethod) {
 		this.payMethod = payMethod;
 	}
-
 
 
 
@@ -164,11 +154,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setMenuNum(int menuNum) {
 		this.menuNum = menuNum;
 	}
-
 
 
 
@@ -178,11 +166,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-
 
 
 
@@ -192,11 +178,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setMenuPrice(int menuPrice) {
 		this.menuPrice = menuPrice;
 	}
-
 
 
 
@@ -206,11 +190,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setOrdStatus(String ordStatus) {
 		this.ordStatus = ordStatus;
 	}
-
 
 
 
@@ -220,11 +202,9 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setStoNum(String stoNum) {
 		this.stoNum = stoNum;
 	}
-
 
 
 
@@ -234,11 +214,45 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	public void setRealMenu(String realMenu) {
 		this.realMenu = realMenu;
 	}
 
+
+
+	public int getPayTotal() {
+		return payTotal;
+	}
+
+
+
+	public void setPayTotal(int payTotal) {
+		this.payTotal = payTotal;
+	}
+
+
+
+	public int getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(int customer) {
+		this.customer = customer;
+	}
+
+
+
+	public String getStoName() {
+		return stoName;
+	}
+
+
+
+	public void setStoName(String stoName) {
+		this.stoName = stoName;
+	}
 
 
 
@@ -248,19 +262,16 @@ public class StoreOrder implements Serializable {
 
 
 
-
 	@Override
 	public String toString() {
 		return "StoreOrder [ordNum=" + ordNum + ", payDate=" + payDate + ", payRcv=" + payRcv + ", payMsg=" + payMsg
 				+ ", payToal=" + payToal + ", userId=" + userId + ", payMethod=" + payMethod + ", menuNum=" + menuNum
 				+ ", menuName=" + menuName + ", menuPrice=" + menuPrice + ", ordStatus=" + ordStatus + ", stoNum="
-				+ stoNum + ", realMenu=" + realMenu + "]";
+				+ stoNum + ", realMenu=" + realMenu + ", payTotal=" + payTotal + ", customer=" + customer + ", stoName="
+				+ stoName + "]";
 	}
 
 
-
-
-	
 
 
 

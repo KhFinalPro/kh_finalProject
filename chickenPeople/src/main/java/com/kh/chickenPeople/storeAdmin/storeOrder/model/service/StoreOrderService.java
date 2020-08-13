@@ -24,5 +24,11 @@ public interface StoreOrderService {
 
 	int updateOrderStatusCancel(String ordNum);
 
+	//날짜선택 매출전표
+	ArrayList<StoreOrder> chooseDateTotalReciept(HashMap<String, String> map);
+
+	//매장이름
+	//int stoName(String userId);
+
 
 }
