@@ -136,6 +136,11 @@ public class StoreServiceImpl implements StoreService{
 		return storeDao.updateStatus(storeNum);
 	}
 
+	@Override
+	public int storeJoin(Store s) {
+		return storeDao.storeJoin(s);
+	}
+
 	
 
 	

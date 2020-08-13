@@ -6,7 +6,6 @@
         <title></title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<!-- <script src="/resources/js/addressapi.js"></script> -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
         <style>
             #memberJoin{
@@ -176,12 +175,15 @@
                 		<label>프로필 사진</label>
                 	</td>
                 	<td id="inp" class="ltd" rowspan="3">
-                		<div id="propic">
-                			<img id="contentImg" src="" onerror="this.src='resources/images/profileSample.png'" width="225px" height="225px">
+                		<div id="contentImgArea">
+                			<img id="profilePic" src="" onerror="this.src='resources/images/profileSample.png'" width="225px" height="225px">
                 		</div>
                 	</td>
                 </tr>
             </table>
+				<div id="fileArea">
+					<input type="file" id="thumbnailImg" name="thumbnailImg" onchange="LoadImg(this)">
+				</div>
             <br>
             <h5 id="agr">약관동의</h5>
             <hr>
@@ -697,6 +699,24 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    		
 	    	})
 	    })
+	    
+	    $(function(){
+						$("#fileArea").hide();
+						$("#contentImgArea").click(function(){
+							$("#thumbnailImg").click();
+						})
+					})
+					function LoadImg(value){
+						if(value.files && value.files[0]){
+				   			var reader = new FileReader();
+							reader.onload = function(e){
+								console.log("사진변경");
+								$("#contentImg").attr("src",e.target.result);
+								console.log("성공");
+							}
+							reader.readAsDataURL(value.files[0]);
+						}
+					}
 	    
     </script>
     

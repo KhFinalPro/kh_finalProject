@@ -119,6 +119,11 @@ public class StoreDao {
 		return sqlSessionTemplate.update("storeMapper.updateStatus",storeNum);
 	}
 
+	public int storeJoin(Store s) {
+		
+		return sqlSessionTemplate.insert("storeMapper.storeJoin", s);
+	}
+
 	
 
 	
