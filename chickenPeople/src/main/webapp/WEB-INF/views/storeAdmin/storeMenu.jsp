@@ -12,6 +12,36 @@
 </head>
 
 <style>
+
+
+.wrapper .main_container{
+
+    width:94.8%;
+    margin-top:70px;
+    margin-left: 114px;
+    padding:15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.wrapper .main_container .item{
+
+   background: #fff; 
+   margin-bottom: 10px; 
+   padding: 15px; 
+   font-size: 14px; 
+   height: 873px; 
+   border-bottom-right-radius: 20px;
+   justify-content: center; 
+   align-items: center; 
+   margin-top: -30px;
+   overflow-y: scroll;
+   
+} 
+
+.item::-webkit-scrollbar {
+	display:none;
+}
 /******메뉴 리스트 *******/
 
 .searchCate{
@@ -79,7 +109,10 @@
 .content-table tbody tr{
     border-bottom: 1px solid #dddddd;
 }
-
+.logo{
+   width:50px;
+   height:50px;
+}
 </style>
 
 <body>
@@ -98,28 +131,13 @@
                         <br>
                         <div class="searchMenu">
                             <ul>
-                                <li>
-                                    <select class="searchCate">
-                                        <option>종류</option>
-                                        <option>치킨</option>
-                                        <option>사이드</option>
-                                        <option>음료</option>
-                                    </select>
-                                </li>
-                                <li><input class="searchBox" type="search" value="메뉴명을 검색해주세요"></li>
-                                <li><button type="submit">조회</button></li>
+                                <li><input class="searchBox" id="searchName" type="search" placeholder="메뉴명을 검색해주세요"></li>
+                                <li><button type="button" onclick="searchName()">조회</button></li>
                             </ul>
                         </div>
                         <br>
                         <br>
                   
-                        <!-- <div class="clickButtons">
-                            <ul>
-                                <li><button id="rDelete">삭제하기</button></li>
-                                <li><button id="rModify">수정하기</button></li>
-                                <li><button id="rAnswer">답변하기</button></li>
-                            </ul>
-                        </div> -->
                     </div>
                         <table class="content-table" id="menuTable">
                             <thead>
@@ -127,30 +145,21 @@
                                     <th>번호</th>
                                     <th>브랜드</th>
                                     <th>사진</th>
-                                    <th>종류</th>
+                                    <th> 
+                                    <select class="searchCate" id="searchCate">
+                                        <option disabled>종류</option>
+                                        <option value="치킨">치킨</option>
+                                        <option value="사이드">사이드</option>
+                                        <option value="음료">음료</option>
+                                    </select>
+                                    </th>
                                     <th>메뉴명</th>
                                     <th>메뉴가격</th>
                                     <th>메뉴설명</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               <!--  <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A123</td>
-                                    <td>치킨</td>
-                                    <td>허니콤보</td>
-                                    <td>치즈맛, 중량 800g, 2019출시</td>
-                                    <td>N</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>A125</td>
-                                    <td>치킨</td>
-                                    <td>레드콤보</td>
-                                    <td>불닭치즈맛, 중량 900g, 2020출시</td>
-                                    <td>N</td>
-                                </tr> -->
-                                
+                              
                             </tbody>
                         </table>
                 </div>
@@ -163,12 +172,66 @@ $(function(){
 })
 
 
-
-
 //메뉴 데이터 조회
 $(document).ready(function(){
 	init();
+
+
 });
+
+
+$("#searchCate").change(function(){
+var v = this.value;
+console.log('종류'+v);
+
+var param = {
+        'category' : v,
+  }
+
+
+
+
+
+	$.ajax({
+	type:'POST',
+	url:'selectSearchCate.do',
+	data:param,
+	dataType:'json',
+	success:function(data){
+		var cateList = data.cateList;
+		
+		var cateListAppendStr = '';	
+		//메뉴 목록 개수만큼 반복
+		for(var i=0; i<cateList.length; i++){
+			cateListAppendStr += '<tr>'+
+								'<td>'+(i+1)+'</td>'+
+								'<td>'+cateList[i].brandName+'</td>'+
+								'<td><img class="logo" src="resources/menu/' + cateList[i].menuPic + '.jpg"></td>'+
+								/*'<td>'+menuList[i].menuPic+'</td>'+ */
+								'<td>'+cateList[i].catName+'</td>'+
+								'<td>'+cateList[i].menuName+'</td>'+
+								'<td>'+cateList[i].menuPrice+'</td>'+
+								'<td>'+cateList[i].menuExp+'</td>'+
+								'</tr>'
+								
+		}
+		
+		console.log(cateListAppendStr);
+		$("#menuTable").find('tbody').empty();
+		$("#menuTable").find('tbody').append(cateListAppendStr);
+		
+		
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+
+
+}); 
+
+
 
 
 function init(){
@@ -196,14 +259,14 @@ function searchData(){
 				menuListAppendStr += '<tr>'+
 									'<td>'+(i+1)+'</td>'+
 									'<td>'+menuList[i].brandName+'</td>'+
-									'<td>'+menuList[i].menuPic+'</td>'+
+									'<td><img class="logo" src="resources/menu/' + menuList[i].menuPic + '.jpg"></td>'+
+									/*'<td>'+menuList[i].menuPic+'</td>'+ */
 									'<td>'+menuList[i].catName+'</td>'+
 									'<td>'+menuList[i].menuName+'</td>'+
 									'<td>'+menuList[i].menuPrice+'</td>'+
 									'<td>'+menuList[i].menuExp+'</td>'+
 									'</tr>'
-									console.log(menuList[i].menuExp);
-									console.log(menuList[i].catName);
+									
 			}
 			$("#menuTable").find('tbody').empty();
 			$("#menuTable").find('tbody').append(menuListAppendStr);
@@ -217,7 +280,53 @@ function searchData(){
 }
 
 
-
+//메뉴이름조회
+function searchName(){
+	
+	var menuName = $("#searchName").val();
+	console.log(menuName);
+	
+	var param = {'menuName':menuName}
+	
+	$.ajax({
+		type:'POST',
+		url:'selectNameList.do',
+		data:param,
+		dataType:'json',
+		success:function(data){
+			
+			var nameList = data.nameList;
+			
+			var nameListAppendStr = '';
+			
+			for(var i=0; i<nameList.length; i++){
+				nameListAppendStr += '<tr>'+
+									'<td>'+(i+1)+'</td>'+
+									'<td>'+nameList[i].brandName+'</td>'+
+									'<td><img class="logo" src="resources/menu/' + nameList[i].menuPic + '.jpg"></td>'+
+									/*'<td>'+menuList[i].menuPic+'</td>'+ */
+									'<td>'+nameList[i].catName+'</td>'+
+									'<td>'+nameList[i].menuName+'</td>'+
+									'<td>'+nameList[i].menuPrice+'</td>'+
+									'<td>'+nameList[i].menuExp+'</td>'+
+									'</tr>'
+									
+			}
+			
+			console.log(nameListAppendStr);
+			$("#menuTable").find('tbody').empty();
+			$("#menuTable").find('tbody').append(nameListAppendStr);
+			
+			
+		
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+	
+}
 
 
 

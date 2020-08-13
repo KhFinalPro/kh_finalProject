@@ -37,12 +37,14 @@ public class Calendar implements Serializable{
 	private String revCont;		//리뷰내용
 	private String revRe;		//리뷰답변
 	
+
 	
 	
 	
 	public Calendar() {
 		super();
 	}
+
 
 
 
@@ -75,9 +77,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getOrdNum() {
 		return ordNum;
 	}
+
 
 
 
@@ -89,9 +93,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getOrdStatus() {
 		return ordStatus;
 	}
+
 
 
 
@@ -103,9 +109,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getOrdDate() {
 		return ordDate;
 	}
+
 
 
 
@@ -117,9 +125,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getUserId() {
 		return userId;
 	}
+
 
 
 
@@ -131,9 +141,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getStoNum() {
 		return stoNum;
 	}
+
 
 
 
@@ -145,9 +157,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getOrdPrice() {
 		return ordPrice;
 	}
+
 
 
 
@@ -159,9 +173,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getMenuNum() {
 		return menuNum;
 	}
+
 
 
 
@@ -173,9 +189,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getBrandCode() {
 		return brandCode;
 	}
+
 
 
 
@@ -187,9 +205,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getMordNum() {
 		return mordNum;
 	}
+
 
 
 
@@ -201,9 +221,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getMenuName() {
 		return menuName;
 	}
+
 
 
 
@@ -215,9 +237,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getMenuPrice() {
 		return menuPrice;
 	}
+
 
 
 
@@ -229,9 +253,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getBrandName() {
 		return brandName;
 	}
+
 
 
 
@@ -243,9 +269,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getStoName() {
 		return stoName;
 	}
+
 
 
 
@@ -257,9 +285,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getRevNum() {
 		return revNum;
 	}
+
 
 
 
@@ -271,9 +301,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public int getRevRate() {
 		return revRate;
 	}
+
 
 
 
@@ -285,9 +317,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getRevPic() {
 		return revPic;
 	}
+
 
 
 
@@ -299,9 +333,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getRevDate() {
 		return revDate;
 	}
+
 
 
 
@@ -313,9 +349,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getRevCont() {
 		return revCont;
 	}
+
 
 
 
@@ -327,9 +365,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public String getRevRe() {
 		return revRe;
 	}
+
 
 
 
@@ -341,9 +381,11 @@ public class Calendar implements Serializable{
 
 
 
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 
 
 
@@ -356,7 +398,8 @@ public class Calendar implements Serializable{
 				+ brandName + ", stoName=" + stoName + ", revNum=" + revNum + ", revRate=" + revRate + ", revPic="
 				+ revPic + ", revDate=" + revDate + ", revCont=" + revCont + ", revRe=" + revRe + "]";
 	}
-	
-	
+
+
+
 
 	}

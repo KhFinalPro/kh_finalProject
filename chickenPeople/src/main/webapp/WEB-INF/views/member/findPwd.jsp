@@ -15,7 +15,7 @@
             	margin-top:500px;
             	margin-bottom:-200px;
                 width:600px;
-                height:420px;
+                height:440px;
                 background: black;
                 color:#fff;
                 top:50%;
@@ -91,6 +91,7 @@
                 <p>이메일을 써라!</p>
                 <input type="password" name="" placeholder="이메일을 입력하여라">
                 <input type="submit" name="" value="비밀번호 보내주세요">
+                <a href="loginView.do">로그인이 하고싶니?</a><br>
                 <a href="findIdView.do">아이디를 까먹었니?</a><br>
                 <a href="memberJoinView.do">치민이 처음이니?</a>
             </form>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,9 @@ import com.kh.chickenPeople.board.model.vo.Picture;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.notice.model.exception.NoticeException;
+import com.kh.chickenPeople.reply.model.service.ReplyService;
+import com.kh.chickenPeople.reply.model.vo.ReReply;
+import com.kh.chickenPeople.reply.model.vo.Reply;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 
 @Controller
@@ -33,6 +37,9 @@ public class BoradContoller {
 	
 	@Autowired 
 	BoardService boardService;
+	
+	@Autowired
+	ReplyService replyService;
 	
 	@RequestMapping("boardList.do")
 	public ModelAndView boardList(ModelAndView mv,
@@ -74,22 +81,33 @@ public class BoradContoller {
 	public ModelAndView boardDetail(ModelAndView mv, int bNum, ArrayList<Picture> pList) {
 		
 	
-	//조회수
+		//조회수
 		int result= boardService.addReadCount(bNum);
-		if(result>0) {
-		Board board = boardService.selectOne(bNum);
-		
-		pList = boardService.selectPicture(bNum);
-		
-		System.out.println("b조회수"+board);
-		if(board !=null) {
-				mv.addObject("board",board);
-				mv.addObject("pList",pList);
-				mv.setViewName("board/boardDetailView");
-			}else {
+		if(result>0) 
+		{
+			Board board = boardService.selectOne(bNum);
+			
+			pList = boardService.selectPicture(bNum);
+			
+			ArrayList<Reply> replyList = replyService.selectReply(bNum);
+			ArrayList<ReReply> reReplyList = replyService.selectReReply(bNum);
+			
+			System.out.println("board : "+board);
+			if(board !=null) 
+			{
+					mv.addObject("board",board);
+					mv.addObject("pList",pList);
+					mv.addObject("replyList",replyList);
+					mv.addObject("reReplyList",reReplyList);
+					mv.setViewName("board/boardDetailView");
+			}
+			else 
+			{
 				throw new BoardException("게시판 조회 실패");
 			}
-		}else {
+		}
+		else 
+		{
 			throw new BoardException(" 공지사항 조회수 증가 실패");
 		}
 		

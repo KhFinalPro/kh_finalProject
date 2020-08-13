@@ -9,24 +9,17 @@ public class Reply  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -2485726081396703170L;
-	public int rep1_num; 
-	public String user_id;
-	public int b_num;
-	public String rep_cont;
-	public String rep_date;
-	public Date rep_upDate;
-	public String rep_status;
-	
-	
-	
+	private int rep1_num; 
+	private String user_id;
+	private int b_num;
+	private String rep_cont;
+	private String rep_date;
+	private Date rep_upDate;
+	private String rep_status;
 	
 	
 	public Reply() {
-		super();
 	}
-
-
-
 
 
 	public Reply(int rep1_num, String user_id, int b_num, String rep_cont, String rep_date, Date rep_upDate,
@@ -41,15 +34,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public int getRep1_num() {
 		return rep1_num;
 	}
-
-
-
 
 
 	public void setRep1_num(int rep1_num) {
@@ -57,15 +44,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public String getUser_id() {
 		return user_id;
 	}
-
-
-
 
 
 	public void setUser_id(String user_id) {
@@ -73,15 +54,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public int getB_num() {
 		return b_num;
 	}
-
-
-
 
 
 	public void setB_num(int b_num) {
@@ -89,15 +64,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public String getRep_cont() {
 		return rep_cont;
 	}
-
-
-
 
 
 	public void setRep_cont(String rep_cont) {
@@ -105,15 +74,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public String getRep_date() {
 		return rep_date;
 	}
-
-
-
 
 
 	public void setRep_date(String rep_date) {
@@ -121,15 +84,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public Date getRep_upDate() {
 		return rep_upDate;
 	}
-
-
-
 
 
 	public void setRep_upDate(Date rep_upDate) {
@@ -137,15 +94,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
-
-
 	public String getRep_status() {
 		return rep_status;
 	}
-
-
-
 
 
 	public void setRep_status(String rep_status) {
@@ -153,7 +104,9 @@ public class Reply  implements Serializable{
 	}
 
 
-
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 
 	@Override
@@ -161,6 +114,7 @@ public class Reply  implements Serializable{
 		return "Reply [rep1_num=" + rep1_num + ", user_id=" + user_id + ", b_num=" + b_num + ", rep_cont=" + rep_cont
 				+ ", rep_date=" + rep_date + ", rep_upDate=" + rep_upDate + ", rep_status=" + rep_status + "]";
 	}
+	
 	
 	
 	

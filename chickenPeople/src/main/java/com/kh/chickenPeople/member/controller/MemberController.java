@@ -62,9 +62,12 @@ public class MemberController {
 		//아이디를 잘못 입력후 로그인시 nullpointerException발생 해결해야함/
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
+
 		
+
 		if(member==null) {
 			model.addAttribute("msg", "아이디가 틀렸습니다.");
+
 			return "redirect:/loginView.do";
 		}else {
 			if(bcryptPasswordEncoder.matches(m.getPwd(), member.getPwd())) {
@@ -77,7 +80,9 @@ public class MemberController {
 			return "redirect:/loginView.do";
 			}
 		} 
+		
 	}
+	
 	
 	
 	
@@ -96,6 +101,7 @@ public class MemberController {
 		return mv;
 	}
 	
+
 	@RequestMapping("findIdView.do")	// 아이디찾기
 	public ModelAndView findId(ModelAndView mv) {
 //		System.out.println("findId.do");
@@ -155,7 +161,24 @@ public class MemberController {
 		return "redirect:/home.do";
 	}
 	
+	@RequestMapping("agreement.do")	// 이용약관 상세
+	public ModelAndView agreement(ModelAndView mv) {
+//		System.out.println("memberJoin.do");
+		mv.setViewName("member/agreement");
+		
+		return mv;
+	}
 	
+	@RequestMapping("agreement2.do")	// 이용약관 상세
+	public ModelAndView agreement2(ModelAndView mv) {
+//		System.out.println("memberJoin.do");
+		mv.setViewName("member/agreement2");
+		
+		return mv;
+	}
+	
+	
+		
 	
 	
 

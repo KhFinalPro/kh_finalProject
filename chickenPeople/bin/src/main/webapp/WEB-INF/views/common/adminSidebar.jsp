@@ -165,7 +165,7 @@ body{
     margin-bottom: 10px;
     padding:15px;
     font-size: 14px;
-    height: 510px;
+    height: 840px;
     border-bottom-right-radius: 20px;
     overflow-y: scroll;
    

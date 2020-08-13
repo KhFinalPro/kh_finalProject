@@ -72,7 +72,10 @@ public class LikeController {
 
 		// 내가 찜한 매장
 		ArrayList<Like> storelist = likeService.likeStoreList(userId);
-
+		System.out.println("-------- store data check ----------");
+		System.out.println(storelist.size());
+		System.out.println(storelist);
+		System.out.println("-------- store data end ----------");
 		// 내가 찜한 매장 JSONArray 로 만들기
 		JSONArray storeArr = new JSONArray();
 		for (int i = 0; i < storelist.size(); i++) {
@@ -168,15 +171,15 @@ public class LikeController {
 		int result = likeService.deleteStore(map);
 		
 	
-			JSONObject resultObj = new JSONObject();
-			resultObj.put("cd", "success");
-			resultObj.put("msg", "성공");
-	
-			PrintWriter out = response.getWriter();
-	
-			out.print(resultObj);
-			out.flush();
-			out.close();
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("cd", "success");
+		resultObj.put("msg", "성공");
+
+		PrintWriter out = response.getWriter();
+
+		out.print(resultObj);
+		out.flush();
+		out.close();
 		
 	}
 

@@ -45,6 +45,12 @@ public class CalendarServiceImpl implements CalendarService {
 		return calenderDao.insertStoreReview(map2);
 	}
 
+	@Override
+	public ArrayList<Calendar> reviewList(HashMap<String, String> map) {
+		
+		return calenderDao.reviewList(map);
+	}
+
 	
 	
 }

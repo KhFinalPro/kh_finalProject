@@ -16,6 +16,11 @@
    <result property="menuPrice" column="MENU_PRICE"/>
    <result property="brandName" column="BRAND_NAME"/>
    <result property="stoName" column="STO_NAME"/>
+   <result property="revNum" column="REV_NUM"/>
+   <result property="revRate" column="REV_RATE"/>
+   <result property="revCont" column="REV_CONT"/>
+   <result property="revRe" column="REV_RE"/>
+
 </resultMap>
 
 
@@ -28,9 +33,9 @@ WHERE USER_ID=#{userId}
 </select>
 
 <select id="orderDetailList" resultMap="orderListResult">
-SELECT ORD_NUM,ORD_STATUS,ORD_DATE,USER_ID,STO_NUM,ORD_PRICE,MORD_NUM,MENU_NAME,MENU_PRICE,BRAND_NAME,STO_NAME
-FROM ORDER_CALENDAR
-WHERE USER_ID=#{Id} AND ORD_NUM=#{orderNo}
+SELECT ORD_NUM,ORD_STATUS,ORD_DATE,USER_ID,STO_NUM,ORD_PRICE,MORD_NUM,MENU_NAME,MENU_PRICE,BRAND_NAME,STO_NAME 
+FROM ORDER_CALENDAR 
+WHERE USER_ID=#{Id} AND ORD_NUM=#{orderNo} 
 ORDER BY MENU_NUM ASC
 </select>
 
@@ -49,5 +54,12 @@ VALUES (#{sto_num},SEQ_REVIEW_NUM.CURRVAL,#{rate})
 </insert>
 
 
+
+<!-- 리뷰테이블 조회 -->
+<select id="reviewList" resultMap="orderListResult">
+SELECT REV_NUM,REV_RATE,REV_CONT,REV_RE,USER_ID,ORD_NUM
+FROM REVIEW
+WHERE USER_ID=#{Id} AND ORD_NUM=#{orderNo}
+</select>
 
 </mapper>
