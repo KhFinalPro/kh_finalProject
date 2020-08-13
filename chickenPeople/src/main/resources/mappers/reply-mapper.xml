@@ -12,13 +12,23 @@
 		<result property="rep_status" column="REP_STATUS"/>
 	</resultMap>
 	
+	<resultMap id="reReplyResultSet" type="ReReply">
+		<id property="rep2_num" column="REP2_NUM"/>
+		<result property="rep1_num" column="REP1_NUM"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="rep_cont" column="REP_CONT"/>
+		<result property="rep_date" column="REP_DATE"/>
+		<result property="rep_update" column="REP_UPDATE"/>
+		<result property="rep_status" column="REP_STATUS"/>
+		<result property="b_num" column="B_NUM"/>
+	</resultMap>
 	
 	<insert id="replyInsert" parameterType="Reply">
 		INSERT INTO REPLY VALUES(SEQ_REP1_NUM.NEXTVAL, #{user_id}, #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
 	</insert>
 	
 	<insert id="reReplyInsert" parameterType="Reply">
-		INSERT INTO RE_REPLY VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N')
+		INSERT INTO RE_REPLY VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
 	</insert>
 	
 	<select id="selectCurrval" parameterType="_int" resultType="int">
@@ -28,4 +38,14 @@
 		ORDER BY REP1_NUM DESC
 	</select>
 	
+	<select id="selectReply" parameterType="_int" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY
+		WHERE B_NUM = #{bNum}
+	</select>
+	<select id="selectReReply" parameterType="_int" resultMap="reReplyResultSet">
+		SELECT *
+		FROM RE_REPLY
+		WHERE B_NUM = #{bNum}
+	</select>
 </mapper>

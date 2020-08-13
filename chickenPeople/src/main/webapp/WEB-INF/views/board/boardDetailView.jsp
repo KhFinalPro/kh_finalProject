@@ -35,12 +35,14 @@
     #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
 	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 
-	#reply_area{margin:0 auto; width:100%; border-top:1px solid black;}
-	/* #reply_area .reply{margin-top:20px;}
-	#reply_area .reply>li{list-style:none; text-align:left;} */
+	#reply_title{color:#735949; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; border-top:1px solid #735949; border-bottom:1px solid #735949;}
+	#reply_area{margin:0 auto; width:100%; height:400px; overflow-y:auto;}
+	#tung{height:60%; widht:60%; margin-top:100px;}
+	#reply_area .reply{margin-top:20px;}
+	#reply_area .reply>li{list-style:none; text-align:left;}
 	#reply_area .reply>li>.re_reply{margin-left:70px; margin-top:20px;}
 	#reply_area .reply>li>.re_reply>li{list-style:none;}
-	#reply_area .reply>li>.re_reply>li>.re_reply_date{color:gray;}
+	/* #reply_area .reply>li>.re_reply>li>.re_reply_date{color:gray;} */
 	
 	#content_insert{height:200px;}
 	#content_insert>button{ margin-bottom:5px;}
@@ -56,7 +58,7 @@
 	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
 	<input type="hidden" id="bNum" value="${board.bNum}">
   	<div id="section">
-        <h1>맛잘알 리뷰</h1>
+        <!-- <h1>맛잘알 리뷰</h1> -->
         <div id="head">
             <div class="head_title">
                 <img src="resources/buploadFiles/${board.bThumbnail }" alt="">
@@ -72,7 +74,7 @@
         </div>
 
         <br clear="both">
-        <hr>
+        <p id="reply_title">review</p>
         <%int i = 0; %>
         <div class="review">
 	        <c:forEach var="p" items="${pList }">
@@ -90,27 +92,42 @@
 	        </c:forEach>
         </div>
         <br clear="both">
+        <p id="reply_title">reply</p>
 	    <div id="reply_area">
-	    	<!-- <ul class="reply">
-	    		<li>
-	    			<p><a class="reply_num">1. </a><a class="reply_id">짱구 : </a><a class="reply_content">가나다라마바사아자차카파타하</a></p>
-	    			
-	    			<ul class="re_reply">
+	    	<c:if test="${!empty replyList }">
+	    		<c:forEach var="r" items="${replyList }">
+			    	<ul class="reply">
 			    		<li>
-			    			<a class="re_reply_id">홍길동 : </a>
-			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
-							<a class="re_reply_date">2020/08/12</a>			    			
+			    			<p>
+			    				<input type="hidden" id="rep1_num" value="${r.rep1_num }">
+			    				<a class="reply_id">${r.user_id } : </a>
+			    				<a class="reply_content">${r.rep_cont }</a>
+		    				</p>
+		    				<c:if test="${!empty reReplyList }">
+		    					<c:forEach var="rr" items="${reReplyList}">
+		    						<c:if test="${r.rep1_num == rr.rep1_num }">
+			    						<ul class="re_reply">
+								    		<li class="re_reply_item">
+								    			<p>
+									    			<a class="re_reply_id">${rr.user_id } : </a>
+									    			<a class="re_reply_content">${rr.rep_cont }</a>
+												</p>			    			
+								    		</li>
+								    	</ul>
+							    	</c:if>
+		    					</c:forEach>
+		    				</c:if>
+		    				<c:if test="${empty reReplyList }">
+		    					
+		    				</c:if>
 			    		</li>
 			    	</ul>
-			    	<ul class="re_reply">
-			    		<li>
-			    			<a class="re_reply_id">홍길동 : </a>
-			    			<a class="re_reply_content">가나다라마바사아자차카파타하</a>
-							<a class="re_reply_date">2020/08/12</a>			    			
-			    		</li>
-			    	</ul>
-	    		</li>
-	    	</ul> -->
+			    	<hr>	    	
+	    		</c:forEach>
+	    	</c:if>
+	    	<c:if test="${empty replyList }">
+	    		<img id="tung" src="resources/images/tung.png">
+	    	</c:if>
 	    </div>
     	<div id="content_insert">
     		<textarea id="replay_content" cols="100" rows="11"></textarea>
@@ -208,7 +225,10 @@
            	}
 		})
 	})
+	
+	//댓글 ajax
 	$("#reply_btn").on("click",function(){
+		$("#tung").remove();
 		$content = $("#replay_content").val();
 		console.log($content);
 		if($content != ""){
@@ -226,7 +246,7 @@
 					console.log("성공");
 					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
 					    						"<li style='list-style:none; text-align:left;'>"+
-					    							"<p><a class='reply_num'>1. </a><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
+					    							"<p><input type='hidden' id='rep1_num' value="+ data.currval +"><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
 		    									"</li>"+
 									    	"</ul>");
 				},
@@ -240,36 +260,84 @@
 		}
 		
 	})
-	
+	//-------------------------------------------------------------------------------------------------------
 	$(function(){
+		
+		//댓글
 		$(document).on("click",".reply_content",function(){
+			console.log("댓글");
 			$(this).parents("li").append("<div class='re_reply_content_area'>"+
-											"<textarea class='re_replt_content' cols='100' rows='11'>"+
+											"<textarea class='re_reply_content' cols='100' rows='11'>"+
 											"</textarea>"+
 											"<button class='re_reply_btn'>댓글달기</button>"+
-											"</div>");
+										"</div>");
 		})	
 		
+		//대댓글 달기 ajax
 		$(document).on("click",".re_reply_btn",function(){
+			$rep1_num = $(this).parents(".re_reply_content_area").parents("li").children("p").children("#rep1_num").val()
+			$bNum = $("#bNum").val();
+			$id = $("#id").val();
+			$rep_cont = $(this).parents(".re_reply_content_area").children(".re_reply_content").val();
+			console.log($rep_cont);
+			$.ajax({
+				url:"reReplyInsert.do",
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont, rep1_num:$rep1_num},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					console.log("답글 성공");
+					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
+										  								 "<li class='re_reply_item'>"+
+											  								 "<p>"+
+									    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+								    										 "</p>"+
+							    										 "</li>"+
+						    										 "</ul>");
+						    										 
+					$(".re_reply_content_area").remove();
+				},
+				error:function(data){
+					
+				}
+			})
+			
+		})
+		
+		//---------------------------------------------------------------------------------------------------------------
+		//대댓글
+		$(document).on("click",".re_reply_content",function(){
+			console.log("대댓글");
+			$(this).parents("p").parents(".re_reply_item").append("<div class='re_reply_content_area'>"+
+																	"<textarea class='re_replt_content' cols='100' rows='11'>"+
+																	"</textarea>"+
+																	"<button class='re_re_reply_btn'>댓글달기</button>"+
+																	"</div>");
+		})	
+		
+		//대대댓글 달기 ajax
+		$(document).on("click",".re_re_reply_btn",function(){
+			$rep1_num = $(this).parents(".re_reply_content_area").parents("li").children("p").children("#rep1_num").val()
+			console.log($rep1_num);
 			$bNum = $("#bNum").val();
 			$id = $("#id").val();
 			$rep_cont = $(".re_replt_content").val();
 			
 			$.ajax({
 				url:"reReplyInsert.do",
-				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont},
+				data:{user_id:$id, b_num:$bNum, rep_cont:$rep_cont, rep1_num:$rep1_num},
 				type:"post",
 				dataType:"json",
 				success:function(data){
 					console.log("답글 성공");
-					$(this).parents(".re_reply_content_area").parents("li").append("ㅁㄴㅇ");
-					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
-									  								 "<li>"+
-									  								 "<p>"+
-						    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
-						    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
-						    										 "</p>"+
-						    										 "</li>"+
+					$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
+										  								 "<li class='re_reply_item'>"+
+											  								 "<p>"+
+									    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+								    										 "</p>"+
+							    										 "</li>"+
 						    										 "</ul>");
 						    										 
 					$(".re_reply_content_area").remove();
