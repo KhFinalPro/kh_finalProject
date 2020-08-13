@@ -77,46 +77,53 @@ public class ChatController {
 		String userId = loginUser.getId();
 		String userName = loginUser.getName();
 		System.out.println("이름출력"+userName);
-		ChattingRoom room_data = chatService.selectRoom_data(userId);
-		
+		ArrayList<ChattingRoom> room_data = chatService.selectRoom_data(userId);
+		System.out.println("룸 데이터"+room_data);
 		
 		String ChattingRoom_No =null;
 		String Client_Name = null;
 		String Client_Id = null;
 		
-		if(room_data==null) {
-			int result = chatService.createRoom_no(userId);
-			
-			if(result>0) {
-				ChattingRoom new_room_data = chatService.selectRoom_data(userId);
-				new_room_data.setClient_id(userId);
-				new_room_data.setClient_name(userName);
-				System.out.println(new_room_data);
-				ChattingRoom_No = new_room_data.getChattingRoom_no();
-				Client_Id = new_room_data.getClient_id();
-				Client_Name = new_room_data.getClient_name();
-				
-				System.out.println(ChattingRoom_No+"/"+Client_Id+"/"+Client_Name);
-				session.setAttribute("room_no", ChattingRoom_No);
-				session.setAttribute("client_Name", Client_Name);
-				session.setAttribute("client_id", Client_Id);
-
-				mv.setViewName("chat/chatInquiry");
+		for(ChattingRoom chat : room_data) {
+			if(room_data==null||chat.getChat_status().equals("Y")) {
+				int result = chatService.createRoom_no(userId);
+				if(result>0) {
+					ArrayList<ChattingRoom> new_room_data = chatService.selectRoom_data(userId);
+					System.out.println(new_room_data);
+//					for(ChattingRoom newChat : new_room_data) {
+//				
+//						newChat.setClient_id(userId);
+//						newChat.setClient_name(userName);
+//						System.out.println(new_room_data);
+//						ChattingRoom_No = newChat.getChattingRoom_no();
+//						Client_Id = newChat.getClient_id();
+//						Client_Name = newChat.getClient_name();
+//						
+//						System.out.println(ChattingRoom_No+"/"+Client_Id+"/"+Client_Name);
+//						session.setAttribute("room_no", ChattingRoom_No);
+//						session.setAttribute("client_Name", Client_Name);
+//						session.setAttribute("client_id", Client_Id);
+//						
+//						mv.setViewName("chat/chatInquiry");
+//						
+//					}
+				}
 			}
-		}
-		else {
-			room_data.setClient_id(userId);
-			room_data.setClient_name(userName);
+//			else {
+//				room_data.setClient_id(userId);
+//				room_data.setClient_name(userName);
+//				
+//				ChattingRoom_No = room_data.getChattingRoom_no();
+//				Client_Id = room_data.getClient_id();
+//				Client_Name = room_data.getClient_name();
+//				
+//				session.setAttribute("room_no", ChattingRoom_No);
+//				session.setAttribute("client_Name", Client_Name);
+//				session.setAttribute("client_id", Client_Id);
+//	
+//				mv.setViewName("chat/chatInquiry");
+//			}
 			
-			ChattingRoom_No = room_data.getChattingRoom_no();
-			Client_Id = room_data.getClient_id();
-			Client_Name = room_data.getClient_name();
-			
-			session.setAttribute("room_no", ChattingRoom_No);
-			session.setAttribute("client_Name", Client_Name);
-			session.setAttribute("client_id", Client_Id);
-
-			mv.setViewName("chat/chatInquiry");
 		}
 		return mv;
 	}

@@ -19,8 +19,8 @@ public class ChatDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public ChattingRoom selectRoom_data(String userId) {
-		return sqlSessionTemplate.selectOne("chatMapper.selectRoom_data",userId);
+	public ArrayList<ChattingRoom> selectRoom_data(String userId) {
+		return (ArrayList)sqlSessionTemplate.selectList("chatMapper.selectRoom_data",userId);
 	}
 
 	public int createRoom_no(String userId) {

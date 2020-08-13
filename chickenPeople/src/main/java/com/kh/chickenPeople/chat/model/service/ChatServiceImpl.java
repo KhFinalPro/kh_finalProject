@@ -18,7 +18,7 @@ public class ChatServiceImpl implements ChatService{
 	@Autowired
 	ChatDao chatDao;
 	@Override
-	public ChattingRoom selectRoom_data(String userId) {
+	public ArrayList<ChattingRoom> selectRoom_data(String userId) {
 		return chatDao.selectRoom_data(userId);
 	}
 	@Override

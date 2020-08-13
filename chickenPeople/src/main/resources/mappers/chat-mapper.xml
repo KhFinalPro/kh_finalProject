@@ -12,6 +12,7 @@
   	<result property="chat_msg" column="CHAT_MSG"/>
   	<result property="talker" column="TALKER"/>
   	<result property="send_time" column="SEND_TIME"/>
+  	<result property="read_yn" column="READ_YN"/>
   </resultMap>
  
   <select id="getListCount" resultType="_int" parameterType="SearchStatus">
@@ -42,7 +43,7 @@
   </select>
   <insert id="insertMessage" parameterType="ChattingMsg">
   	INSERT INTO CHAT_DETAIL
-  	VALUES(SEQ_CHAT_MSG_NUM.NEXTVAL,#{chattingRoom_no},#{chat_msg}, #{talker}, SYSDATE )
+  	VALUES(SEQ_CHAT_MSG_NUM.NEXTVAL,#{chattingRoom_no},#{chat_msg}, #{talker}, SYSDATE,'N' )
   </insert>
   <select id="selectAllMsg_data" resultMap="chattingMsgResultSet">
   	SELECT * 

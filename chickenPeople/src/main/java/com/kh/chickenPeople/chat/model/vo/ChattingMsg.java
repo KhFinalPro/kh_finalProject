@@ -14,18 +14,24 @@ public class ChattingMsg implements Serializable{
 	private String chat_msg;
 	private String talker;
 	private String send_time;
+	private String read_yn;
+	
 	public ChattingMsg() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ChattingMsg(String chatMsg_no, String chattingRoom_no, String chat_msg, String talker, String send_time) {
+
+	public ChattingMsg(String chatMsg_no, String chattingRoom_no, String chat_msg, String talker, String send_time,
+			String read_yn) {
 		super();
 		this.chatMsg_no = chatMsg_no;
 		this.chattingRoom_no = chattingRoom_no;
 		this.chat_msg = chat_msg;
 		this.talker = talker;
 		this.send_time = send_time;
+		this.read_yn = read_yn;
 	}
+
 	public String getChatMsg_no() {
 		return chatMsg_no;
 	}
@@ -56,14 +62,25 @@ public class ChattingMsg implements Serializable{
 	public void setSend_time(String send_time) {
 		this.send_time = send_time;
 	}
+	
+	protected String getRead_yn() {
+		return read_yn;
+	}
+
+	protected void setRead_yn(String read_yn) {
+		this.read_yn = read_yn;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	@Override
 	public String toString() {
 		return "ChattingMsg [chatMsg_no=" + chatMsg_no + ", chattingRoom_no=" + chattingRoom_no + ", chat_msg="
-				+ chat_msg + ", talker=" + talker + ", send_time=" + send_time + "]";
+				+ chat_msg + ", talker=" + talker + ", send_time=" + send_time + ", read_yn=" + read_yn + "]";
 	}
+
 	
 	
 }
