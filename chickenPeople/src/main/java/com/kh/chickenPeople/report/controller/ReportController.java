@@ -81,11 +81,51 @@ public class ReportController {
 		return mv;
 	}
 	
-	@RequestMapping(value="reportUpdate.do", method=RequestMethod.GET)
-	public ModelAndView reportUpdate(ModelAndView mv) {
+	@RequestMapping(value="reportStatusUpdate.do", method=RequestMethod.GET)
+	public String reportUpdate(ModelAndView mv,HttpServletResponse response,
+									 @RequestParam(value="br_code",required=false) String brCode,
+									 @RequestParam(value="br_num", required=false) int brNum,
+									 @RequestParam(value="rpt_num",required=false) int rptNum) {
+		response.setContentType("text/html; charset=UTF-8");
 		
 		
-		return mv;
+		if(brCode.equals("B_BUNG")) {
+			int changeBungStatus = rService.changeBungStatus(brNum);
+			if(changeBungStatus>0) {
+				int changeReportStatus = rService.changeReportStatus(rptNum);
+				PrintWriter out;
+				if(changeReportStatus>0) {
+					try {
+						out = response.getWriter();
+						out.println("<script>alert('신고처리되었습니다.'); location.href='systemAdminReport.do?rptCategory=total&searchId=&status_s=N';</script>");
+						out.flush();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+			
+		}
+		else if(brCode.equals("B_MUK")) {
+			int changeMukStatus = rService.changeMukStatus(brNum);
+			if(changeMukStatus>0) {
+				int changeReportStatus = rService.changeReportStatus(rptNum);
+				PrintWriter out;
+				if(changeReportStatus>0) {
+					try {
+						out = response.getWriter();
+						out.println("<script>alert('신고처리되었습니다.'); location.href='systemAdminReport.do?rptCategory=total&searchId=&status_s=N';</script>");
+						out.flush();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+			
+		}
+
+		
+		return null;
 	}
 	
 	@RequestMapping(value="reportInsert.do", method=RequestMethod.POST)

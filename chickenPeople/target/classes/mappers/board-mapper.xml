@@ -112,4 +112,9 @@
 	<update id="downBoardHit" parameterType="Board">
 		UPDATE BOARD SET B_HIT = B_HIT - 1 WHERE B_NUM = #{bNum}
 	</update>
+	<update id="updateBoardStatus" parameterType="_int">
+		UPDATE BOARD SET B_STATUS='Y' WHERE B_NUM = #{brNum}
+	</update>
+	
+
 </mapper>
