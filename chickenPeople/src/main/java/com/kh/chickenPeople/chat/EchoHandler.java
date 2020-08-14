@@ -47,20 +47,21 @@ public class EchoHandler extends TextWebSocketHandler{
 			   String inputData = "member"+"|"+name;
 			   sess.sendMessage(new TextMessage(inputData));
 			   
-			   System.out.println("테스트"+inputData);
-			   System.out.println("zzzzzzzzzzzzz"+name.equals(sess.getAttributes().get("loginUserId")));
 			   
 			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
 			   for(int j = 0 ; j < beforeDate.size(); j++) {
-				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
-					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
-					   if(name.equals(sess.getAttributes().get("loginUserId"))) {
+				   if(name.equals(sess.getAttributes().get("loginUserId"))) {
+					   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
+						   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
 						   sess.sendMessage(new TextMessage(beforeMsg));
-						   j++;
-					   }else {
 						   
-					   }
+					   	}else {
+					   	}
+				   }else {
+					   System.out.println("불일치");
+					   break;
 				   }
+				   
 			   }
 		   }
 		
@@ -90,9 +91,14 @@ public class EchoHandler extends TextWebSocketHandler{
 				   
 				   sess.sendMessage(new TextMessage(jsonStr));
 				   
-				   int result = chatService.saveMessage(jsonStr);
-				   if (result>0) {
-					   System.out.println("저장완료다 이녀석들아");
+				   System.out.println("first"+sess.getAttributes().get("loginUserId"));
+				   System.out.println("second"+userId);
+				   if(sess.getAttributes().get("loginUserId").equals(userId)) {
+					   int result = chatService.saveMessage(jsonStr);
+					   if (result>0) {
+						   System.out.println("저장완료다 이녀석들아");
+					   }
+					   
 				   }
 				   
 			   }
