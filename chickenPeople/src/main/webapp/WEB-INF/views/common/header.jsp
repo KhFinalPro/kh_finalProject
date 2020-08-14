@@ -21,7 +21,6 @@
 		
 		#header_address{width: 65%; height: 100%; text-align: center; vertical-align: middle;}
 		#header_address #address{width: 50%; height: 50px; border-radius: 20px;}
-
 		header{ position: fixed; top: 0px; left: 0px; width: 100%; margin: 0; padding: 0; z-index: 6; }
 		#header{margin: auto; width: 100%; height: 70px; background-color: white; border-bottom: 2px solid #2ac1bc;  padding-top:20px;}
 		/* #header>div{ display: inline-block;} */
@@ -33,11 +32,11 @@
 		/* #header_brandName #brandName a:hover{color: black; cursor:pointer;} */
 		
 		#header_address{width: 65%; height: 100%; text-align: center; vertical-align: middle;}
-		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px;}
-
+		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px; text-align:center;}
 		#header_nav{width: 19%;}
-		#header_nav>ul{}
+		#header_nav>ul{margin:0px;}
 		#header_nav>ul>li{float:left; list-style:none;}
+		#header_nav>ul>li>a{}
 		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px;}
 		
 		#delivery:hover{cursor:pointer;}
@@ -50,7 +49,6 @@
 		
 		#message{position:fixed; top:300px; right:10px; width:50px; height:50px; z-index:99;}
 		#message:hover{cursor:pointer;}
-
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>

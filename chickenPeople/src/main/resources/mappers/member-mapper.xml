@@ -31,6 +31,9 @@
 		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, #{lat}, #{lng})
 		SELECT * FROM DUAL
 	</insert>
+	<insert id="insertStoreMember" parameterType="Member">
+		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email},NULL,NULL,'BRONZE','판매자',0,'N')
+	</insert>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT *

@@ -37,6 +37,9 @@
     .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
+   
+    .enterNOBtn {left:175px; position:absolute; bottom:-95px; border-radius:10px; padding:5px; width: 170px;}
+    .enterOKBtn {left:0px; position:absolute; bottom:-95px; border-radius:10px; padding:5px; width: 170px;}
 </style>
 <body>
 <jsp:include page="../../common/systemAdminHeader.jsp"/>
@@ -109,19 +112,14 @@
 				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 				<c:param name="page" value="${pi.currentPage }"/>
 			</c:url>
-			<c:url var="storeStatusUpdate" value="storeStatusUpdate.do">
-				<c:param name="storeNum" value="${store.sto_num }"/>
-				<c:param name="storeSearch" value="${searchStatus.searchName }"/>
-				<c:param name="brandCategory" value="${searchStatus.searchCategory }"/>
-				<c:param name="status_s" value="${searchStatus.searchStatus }"/>
-				<c:param name="page" value="${pi.currentPage }"/>
-			</c:url>
+
 			<div class="menuResultTable">
 				<br><hr><br>
 				<div style="text-align:right;">
 					<button id="back" onclick="history.back(-1)"><b>목록</b></button>
+					<c:if test="${store.aprv_status eq 'N'}">
 					&nbsp;<button id="updateStatus"><b>승인확인</b></button>
-					
+					</c:if>
 					&nbsp;<button onclick="location.href='${goStoreUpdate}'"><b>정보 수정</b></button><!-- update는 후순위로 이동!! -->
 				</div>
 
@@ -179,35 +177,43 @@
         <div style="position: absolute; top : 50px; left:35px;">
 	        <table id="receiveMessageModalTable">
 	            <tr>
-	                <td style="width: 200px; height: 40px; font-size:18px;">${store.sto_name } &nbsp; &nbsp; &nbsp; ${store.ceo_name }&nbsp;사장님 </td>
+	                <td style="width: 200px; height: 40px; font-size:18px;"><b>${store.sto_name }</b> &nbsp; / &nbsp; ${brandName } </td>
 	            </tr>
 	            <tr>
-	                <td>${brandName }</td>
+	                <td>${store.ceo_name }&nbsp;사장님</td>
 	            </tr>
 	            <tr>
-	                <td style="width: 400px; height: 40px;" >${store.sto_addr }</td>
+	                <td style="width: 400px; height: 40px;" >${store.sto_addr } &nbsp; </td>
+	                
 	            </tr>
 	            <tr>
-	                <td style="width: 200px; height: 40px;" ><b>ID</b></td>
-	                <td></td>
+	            	<td><b>Tel)</b>${store.sto_tel }<br><b>E-mail)</b>${store.sto_email }</td>
+	            </tr>
+	            <tr>
+	                <td style="width: 400px; height: 40px;" ><b>${brandName }</b>브랜드의  <b>30</b>번째 점주님이십니다.</td>
 	            </tr>
 	        </table>
     	</div>
-	    <div style="position: absolute; top : 172px; left:12px;">
-	        <ul style="list-style: none;">
-	            <li style="margin-bottom: 12px;"><b>Message</b></li>
-	            <textarea style="width:300px; height:200px; border:2px solid; border-radius: 13px;" id="modal_msgContent"></textarea>
-	        </ul>
-	        <button type="button" onclick="wantToReply()" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>답장하기</b></button>
+    	<c:url var="enterStatusUpdate" value="enterStatusUpdate.do">
+    		<c:param name="sto_num" value="${store.sto_num }"/>
+    		<c:param name="brand_code" value="${store.brand_code }"/>
+    		<c:param name="sto_email" value="${store.sto_email}"/>
+    		<c:param name="ceo_name" value="${store.ceo_name}"/>
+    		<c:param name="sto_tel" value="${store.sto_tel}"/>
+    		
+    	</c:url>
+	    <div style="position: absolute; top : 200px; left:37px;">
+	        <button class="enterNOBtn" type="button" onclick="enterNO()" ><b>승인 거절</b></button>
+	        <button class="enterOKBtn" type="button" onclick="location.href='${enterStatusUpdate}'" ><b>승인</b></button>
 	    </div>
     </div>
  </div> 
 	<script>
 		
-		/* 
-	 	function updateStatus1(){
-	 		alert("zz");
-	 	} */
+		function enterNO(){
+			alert("거절되었습니다.");
+			$('#checkStore').fadeOut(100);
+		}
 		$(function(){
 			$("#store").children().addClass('active');
 			

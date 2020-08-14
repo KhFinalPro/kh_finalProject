@@ -11,6 +11,7 @@ import com.kh.chickenPeople.store.model.dao.StoreDao;
 import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLabel;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
@@ -139,6 +140,16 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public int storeJoin(Store s) {
 		return storeDao.storeJoin(s);
+	}
+
+	@Override
+	public StoreLabel selectStoreLabel(String brand_code) {
+		return storeDao.selectStoreLabel(brand_code);
+	}
+
+	@Override
+	public int enterStatusUpdate(Store newbie) {
+		return storeDao.enterStatusUpdate(newbie);
 	}
 
 	
