@@ -84,16 +84,16 @@
    <jsp:include page="../common/header.jsp"/>
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
-            <h1>아이디를 잊어버렸니?</h1>
+            <h1>아이디 찾기</h1>
             <form id="findId" method="post" action="findIdView.do">
-                <p>이름을 써라!</p>
-                <input type="text" name="" placeholder="이름을 입력하여라">
-                <p>이메일을 써라!</p>
-                <input type="password" name="" placeholder="이메일을 입력하여라">
-                <input type="submit" name="" value="아이디 보내주세요">
-                <a href="loginView.do">로그인이 하고싶니?</a><br>
-                <a href="findPwdView.do">비밀번호를 까먹었니?</a><br>
-                <a href="memberJoinView.do">치민이 처음이니?</a>
+                <p>Name</p>
+                <input type="text" name="" placeholder="이름을 입력하세요">
+                <p>E-mail</p>
+                <input type="password" name="" placeholder="이메일을 입력하세요">
+                <input type="submit" name="" value="이메일로 전송">
+                <a href="loginView.do">치킨의민족 로그인</a><br>
+                <a href="findPwdView.do">비밀번호 찾기</a><br>
+                <a href="memberJoinView.do">치킨의민족 회원가입</a>
             </form>
         </div>
        <%@ include file="../common/footer.jsp"%>

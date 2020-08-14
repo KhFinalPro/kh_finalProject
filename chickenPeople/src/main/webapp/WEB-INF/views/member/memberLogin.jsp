@@ -122,16 +122,16 @@
 		<c:if test="${empty sessionScope.loginUser }">
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
-            <h1>로그인이 하고싶니?</h1>
+            <h1>치킨의민족 로그인</h1>
             <form id="loginform" method="post" action="doLoginView.do">
-                <p>아이디를 써라!</p>
-                <input type="text" name="id" placeholder="아이디를 입력하여라">
-                <p>비밀번호를 써라!</p>
-                <input type="password" name="pwd" placeholder="비밀번호를 입력하여라">
-                <input type="submit" name="" value="로그인 해주세요">
-                <a href="memberJoinView.do">치민이 처음이니?</a><br>
-                <a href="findIdView.do">아이디를 찾고싶니?</a><br>
-                <a href="findPwdView.do">비밀번호를 찾고싶니?</a>
+                <p>ID</p>
+                <input type="text" name="id" placeholder="아이디를 입력하세요">
+                <p>Password</p>
+                <input type="password" name="pwd" placeholder="비밀번호를 입력하세요">
+                <input type="submit" name="" value="로그인">
+                <a href="memberJoinView.do">치킨의민족 회원가입</a><br>
+                <a href="findIdView.do">아이디 찾기</a><br>
+                <a href="findPwdView.do">비밀번호 찾기</a>
                 
                   </form>
         </div>
