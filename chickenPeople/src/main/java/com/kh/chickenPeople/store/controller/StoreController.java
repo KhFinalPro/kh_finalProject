@@ -331,6 +331,7 @@ public class StoreController {
 									@RequestParam(value="page", required=false)Integer page,
 									@RequestParam(value="storeSearch", required=false)String storeName,
 									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="brandName", required=false)String brandName,
 									@RequestParam(value="status_s",required=false)String status) {
 
 		int currentPage = 1;
@@ -350,6 +351,7 @@ public class StoreController {
 			mv.addObject("store",s);
 			mv.addObject("page",currentPage);
 			mv.addObject("searchStatus",searchStatus);
+			mv.addObject("brandName",brandName);
 			mv.setViewName("systemAdmin/storeManage/systemAdminStoreDetail");
 		}
 		return mv;
