@@ -33,11 +33,12 @@
 		/* #header_brandName #brandName a:hover{color: black; cursor:pointer;} */
 		
 		#header_address{width: 65%; height: 100%; text-align: center; vertical-align: middle;}
-		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px;}
+		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px; text-align:center;}
 
 		#header_nav{width: 19%;}
-		#header_nav>ul{}
+		#header_nav>ul{margin:0px;}
 		#header_nav>ul>li{float:left; list-style:none;}
+		#header_nav>ul>li>a{}
 		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px;}
 		
 		#delivery:hover{cursor:pointer;}
