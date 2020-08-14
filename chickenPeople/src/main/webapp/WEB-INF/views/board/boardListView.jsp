@@ -60,16 +60,16 @@
 	 
 	#section{margin: 0 auto; width: 90%; margin-top:150px;}
 	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
-	#main_section>.mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid #735949;}
-    #main_section>.mja_area:hover{border:2px solid #2ac1bc; cursor:pointer;}
+	#main_section>.mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid #735949;}
+    #main_section>.mja_area:hover{border:1px solid #2ac1bc; cursor:pointer;}
     #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
     #main_section>.mja_area>.mja_logo>img {width: 100%; height: 100%;}
     #main_section>.mja_area>.first_line {float: left; height: 90%;margin-top: 10px;}
     #main_section>.mja_area>.mja_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
 	
 	#btn_area{margin: auto; width: 90%; text-align: right;}
-	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:2px solid black; border-radius: 15px;}
-	#btn_area .wbutton:hover{color: #735949;; border: 2px solid #735949; cursor:pointer;}
+	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
+	#btn_area .wbutton:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}
 	
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
