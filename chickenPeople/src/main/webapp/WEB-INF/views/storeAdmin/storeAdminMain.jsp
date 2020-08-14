@@ -124,6 +124,25 @@ border:2px solid lightgray;
 border-radius:30px;
 }
 
+#storeLikes{
+position:fixed; 
+top:100px; 
+left:1230px;
+width:300px;
+height:150px;
+border:2px solid lightgray;
+border-radius:30px;
+}
+
+#last{
+position:fixed; 
+top:100px; 
+left:1580px;
+width:300px;
+height:150px;
+border:2px solid lightgray;
+border-radius:30px;
+}
 
 
 
@@ -162,7 +181,7 @@ border-radius:30px;
    					</thead>
    					<tbody>
    						<tr>
-   						<td>105건</td>
+   						<td>105 건</td>
    						</tr>
    					</tbody>
    				</table>
@@ -191,12 +210,30 @@ border-radius:30px;
    				<table style="position:absolute; top:30%; left:40%" >
    					<thead>
    						<tr>
-   						<th></th>
+   						<th>매장 좋아요</th>
    						</tr>
    					</thead>
    					<tbody>
    						<tr>
-   						<td>4.8</td>
+   						<td>34 likes</td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>
+   				
+   				
+   				<!-- ?? -->
+   				<div id="last">
+   				<i class="fas fa-heart fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th>무엇을하지?</th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td>ㅎㅎ</td>
    						</tr>
    					</tbody>
    				</table>
