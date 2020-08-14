@@ -9,7 +9,7 @@
 <title>치킨의 민족</title>
 	<style>
 		body, hmtl{background: #ecf0f1;}
-		#storeList{margin: 0 auto; width: 100%; margin-top: 150px; text-align: center;}
+		#storeList{margin: 0 auto; width: 90%; margin-top: 150px; text-align: center;}
 		#store_category{float: right; width: 100px; height: 30px; border: 1px solid black; margin-bottom: 10px; margin-right:20px;}
 
 		.store_area{margin:0 auto; margin-right:5px; margin-left:5px;  margin-bottom: 10px; width: 19.0%; height: 230px; border: 2px solid rgb(177, 175, 175); border-radius: 15px; float:left;}

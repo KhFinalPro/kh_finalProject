@@ -9,36 +9,37 @@
    <title>치킨의 민족</title>
    <style>
          /*GLOBALS*/
-      
+      a{text-decoration:none; color:#666;}
+      	
       a:hover{color:#1bc1a3;}
       body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
       
       
-      #wrapper{width: 88%;margin:0 auto;height:300px;position:relative;color:black; margin-top: 100px;}
+      #wrapper{width: 88%;margin:0 auto;height:300px;position:relative;color:black; margin-top: 100px;  }
       
-      #slider-wrap{width:1200px;height:300px;position:relative;overflow:hidden;}
+      #slider-wrap{width:1200px;height:300px;position:relative;overflow:hidden; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider{width:100%;height:100%;position:absolute;top:0;left:0;}
+      #slider-wrap ul#slider{width:100%;height:100%;position:absolute;top:0;left:0; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider li{float:left;position:relative;width:1200px;height:300px;}
+      #slider-wrap ul#slider li{float:left;position:relative;width:1200px;height:300px; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider li > div{position:absolute;top:20px;left:35px;}
+      #slider-wrap ul#slider li > div{position:absolute;top:20px;left:35px; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider li > div h3{font-size:36px;text-transform:uppercase;}
+      #slider-wrap ul#slider li > div h3{font-size:36px;text-transform:uppercase; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider li > div span{font-family: Neucha, Arial, sans serif;font-size:21px;}
+      #slider-wrap ul#slider li > div span{font-family: Neucha, Arial, sans serif;font-size:21px; margin:0; padding:0; list-style:none;}
       
-      #slider-wrap ul#slider li img{display:block; width:100%; height: 300px;}
+      #slider-wrap ul#slider li img{display:block; width:100%; height: 300px; margin:0; padding:0; list-style:none;}
       
       
       /*btns*/
-      .btns{position:absolute;width:50px;height:60px;top:50%;margin-top:-25px;line-height:57px;text-align:center;cursor:pointer; background:rgba(0,0,0,0.1);z-index:100;-webkit-user-select: none;  -moz-user-select: none; -khtml-user-select: none; -ms-user-select: none;-webkit-transition: all 0.1s ease;-moz-transition: all 0.1s ease;-o-transition: all 0.1s ease;-ms-transition: all 0.1s ease;transition: all 0.1s ease;}
+      .btns{position:absolute;width:50px;height:60px;top:50%;margin-top:-25px;line-height:57px;text-align:center;cursor:pointer; background:rgba(0,0,0,0.1);z-index:100;-webkit-user-select: none;  -moz-user-select: none; -khtml-user-select: none; -ms-user-select: none;-webkit-transition: all 0.1s ease;-moz-transition: all 0.1s ease;-o-transition: all 0.1s ease;-ms-transition: all 0.1s ease;transition: all 0.1s ease; margin:0; padding:0; list-style:none;}
       
       .btns:hover{background:rgba(0,0,0,0.3); }
       
-      #next{right:-50px; border-radius:7px 0px 0px 7px;}
-      #previous{left:-50px; border-radius:0px 7px 7px 7px;}
-      #counter{top: 30px; right:35px; width:auto; position:absolute;}
+      #next{right:-50px; border-radius:7px 0px 0px 7px; margin:0; padding:0; list-style:none;}
+      #previous{left:-50px; border-radius:0px 7px 7px 7px; margin:0; padding:0; list-style:none;}
+      #counter{top: 30px; right:35px; width:auto; position:absolute; margin:0; padding:0; list-style:none;}
       
       #slider-wrap.active #next{right:0px;}
       #slider-wrap.active #previous{left:0px;}
@@ -72,7 +73,7 @@
       .banner_login #login_title{font-family: Neucha, Arial, sans serif;font-size: 30px; font-weight: 600; margin-top: 5px; margin-bottom: 20px;}
       .banner_login #login{font-family: Neucha, Arial, sans serif;font-size: 25px; font-weight: 600; color: black; margin-top: 20px;}
       .banner_login img{width: 100px; height: 100px;}
-      .banner_login .btn{width: 49%; height: 50px; margin-top: 30px; border: 0px; background-color: #735949; color:white;  font-size: 15px; font-weight: 600;}
+      .banner_login .btn{width: 49%; height: 50px; margin-top: 1px; border: 0px; background-color: #735949; color:white;  font-size: 15px; font-weight: 600;}
       .banner_login ul li{margin-top: 10px;}
       .banner_login ul li a{font-size: 20px;}
       .contents{margin: 0 auto; width: 100%; height: 300px; z-index: 0; margin-top: 100px;}
