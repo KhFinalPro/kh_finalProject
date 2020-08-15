@@ -432,7 +432,6 @@ public class StoreController {
 		String brand_id = storeLabel.getMenuName();
 		
 		String finalId = brand_id+sto_num;
-		
 		newbie.setSto_num(sto_num);
 		newbie.setUser_id(finalId);
 		int updateStatus = storeService.enterStatusUpdate(newbie);
@@ -446,6 +445,7 @@ public class StoreController {
 		stoMem.setName(ceo_name);
 		stoMem.setEmail(sto_email);
 		stoMem.setTel(sto_tel);
+		
 		if(updateStatus>0) {
 			int insertMember = mService.insertStoreMember(stoMem);
 			if(insertMember>0) {
