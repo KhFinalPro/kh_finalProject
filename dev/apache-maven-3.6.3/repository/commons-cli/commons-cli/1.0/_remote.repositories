@@ -1,8 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:43 GMT+09:00 2020
-=======
-#Wed Aug 12 09:20:51 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-commons-cli-1.0.jar>central=
-commons-cli-1.0.pom>central=

@@ -3,7 +3,15 @@ package com.kh.chickenPeople.store.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -422,25 +430,69 @@ public class StoreController {
 								  @RequestParam(value="brand_code")String brand_code,
 								  @RequestParam(value="sto_email")String sto_email,
 								  @RequestParam(value="ceo_name")String ceo_name,
-								  @RequestParam(value="sto_tel")String sto_tel) {
+								  @RequestParam(value="sto_tel")String sto_tel) throws AddressException, MessagingException {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out;
+		
+		String host = "smtp.naver.com";
+		final String userName = "chickens_people";
+		final String password = "rngus3698";
+		int port = 465;
 
 		System.out.println(sto_num);
 		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);
-		
+
 		String brand_id = storeLabel.getMenuName();	
 		String finalId = brand_id+sto_num;
 		
 		newbie.setSto_num(sto_num);
 		newbie.setUser_id(finalId);
-		int updateStatus = storeService.enterStatusUpdate(newbie);
-		
 		stoMem.setId(finalId);
 		String originPwd = randomPassword(7);
 		System.out.println(originPwd);
 		String encPwd = bcryptPasswordEncoder.encode(originPwd);
+		
+
+		String recipient = sto_email;
+		String subject = "안녕하세요, 치킨의 민족입니다.";
+		
+		String body = "안녕하세요"+ceo_name+" 치킨의 민족입니다.\n"
+				+ "치킨의 민족 입점 허가가 되었음을 알려드립니다.\n"
+				+ "아래의 아이디와 비밀번호로 로그인하여 판매자 마이페이지에서 초기 정보 수정 부탁드립니다.\n"
+				+ "--------------------------------------------------------\n"
+				+ "아이디:"+finalId+"\n"
+				+ "비밀번호:"+originPwd+"\n"
+				+ "--------------------------------------------------------\n";
+				
+		Properties props = System.getProperties();
+		
+		//SMTP 정보 설정
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.ssl.enable", "true");
+		props.put("mail.smtp.ssl.trust", host);
+		
+		//Session 생성
+		Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+			String un = userName;
+			String pw = password;
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
+				return new javax.mail.PasswordAuthentication(un,pw);
+			}
+		});
+		session.setDebug(true);
+		/**/
+		Message mimeMessage = new MimeMessage(session);
+		mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+		
+		int updateStatus = storeService.enterStatusUpdate(newbie);
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+		
+		mimeMessage.setSubject(subject);
+		mimeMessage.setText(body);
+		Transport.send(mimeMessage);
 
 		stoMem.setPwd(encPwd);
 		stoMem.setName(ceo_name);
