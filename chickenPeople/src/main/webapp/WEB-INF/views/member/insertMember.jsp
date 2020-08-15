@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html lang='ko'>
     <head>
-        <title></title>
+        <title>회원가입</title>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<!-- <script src="/resources/js/addressapi.js"></script> -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
         <style>
             #memberJoin{
@@ -93,7 +92,7 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-        <form id="memberJoin" method="post" action="memberJoin.do">
+        <form id="memberJoin" method="post" action="memberJoin.do" enctype="multipart/form-data">
             <h2 id="h2">회원가입</h2>
             <table id="logintable">
                 <tr>
@@ -176,12 +175,16 @@
                 		<label>프로필 사진</label>
                 	</td>
                 	<td id="inp" class="ltd" rowspan="3">
-                		<div id="propic">
+                		<div id="contentImgArea">
                 			<img id="contentImg" src="" onerror="this.src='resources/images/profileSample.png'" width="225px" height="225px">
                 		</div>
+                		<div id="fileArea">
+							<input type="file" id="propic" name="propic" onchange="LoadImg(this)">
+						</div>
                 	</td>
                 </tr>
             </table>
+				
             <br>
             <h5 id="agr">약관동의</h5>
             <hr>
@@ -501,11 +504,11 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
             <div style="text-align: center;">
                 <input type="button" value="회원가입" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick=cancle(); style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
             </div>
             
         </form>
-        <div id="map"></div>
+        <div id="map" style="display:none"></div>
         <%@ include file="../common/footer.jsp"%>
     </body>
     
@@ -689,14 +692,40 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 							latlng = coords;
 							lng = latlng.Ga;
 							lat = latlng.Ha;
-							$("#memberJoin").append("<input type='hidden' name='lat' value='"+lat+"'>");
-							$("#memberJoin").append("<input type='hidden' name='lng' value='"+lng+"'>");
+							console.log(latlng);
+							
+							$("#lat").remove();
+							$("#lng").remove();
+							
+							$("#memberJoin").append("<input type='hidden' id='lat' name='lat' value='"+lat+"'>");
+							$("#memberJoin").append("<input type='hidden' id='lng' name='lng' value='"+lng+"'>");
 				        } 
 				    });
 				});
 	    		
 	    	})
 	    })
+	    
+	    $(function(){
+						$("#fileArea").hide();
+						$("#contentImgArea").click(function(){
+							$("#propic").click();
+						})
+					})
+					function LoadImg(value){
+						if(value.files && value.files[0]){
+							
+				   			var reader = new FileReader();
+							reader.onload = function(e){
+								console.log(e);
+								console.log("사진변경");
+								var src = $("#contentImg").attr("src",e.target.result);
+								
+								console.log(src)
+							}
+							reader.readAsDataURL(value.files[0]);
+						}
+					}
 	    
     </script>
     

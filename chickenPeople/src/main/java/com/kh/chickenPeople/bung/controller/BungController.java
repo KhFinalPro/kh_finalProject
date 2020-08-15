@@ -174,7 +174,7 @@ public class BungController {
 		return mv;
 	}
 	
-	@RequestMapping("myBung")
+	@RequestMapping("myBung.do")
 	public ModelAndView myBung(ModelAndView mv, String id)
 	{
 		System.out.println("myBung");
@@ -277,7 +277,31 @@ public class BungController {
 	
 	}
 	
-	
+	@RequestMapping(value="bungStatusUpdate.do")
+	public String bungStatusUpdate(@ModelAttribute("bung") Bung bung, String myPageStatus) throws IOException {
+//		response.setContentType("application/json;charset=utf-8");
+		System.out.println("bung : " + bung);
+		int result = bungService.bungStatusUpdate(bung);
+		String id=bung.getUser_id();
+		
+//		JSONObject sendJson = new JSONObject();
+		if(result > 0) {
+			if(myPageStatus.equals("y")) {
+				return "redirect:/myBung.do?id="+id;
+			}
+			else {
+				return "redirect:/bungList.do";
+			}
+		}
+		
+//		PrintWriter out = response.getWriter();
+//		out.print(sendJson);
+//		out.flush();
+//		out.close();
+
+		return "";
+		
+	}
 	
 	
 }

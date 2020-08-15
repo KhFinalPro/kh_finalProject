@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +47,14 @@ public class BoradContoller {
 	public ModelAndView boardList(ModelAndView mv,
 						@RequestParam(value="page",required=false)Integer page) { 
 		
+		
 		int currentPage=1;
 		if(page!=null) {
 			currentPage=page;
 		}
 		int listCount = boardService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		ArrayList<Board> selectTotalBoardList=boardService.selectTotalBoardList(pi);
 		
 //		System.out.println("selectTotalBoardList"+selectTotalBoardList);
@@ -78,9 +81,10 @@ public class BoradContoller {
 
 
 	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
-	public ModelAndView boardDetail(ModelAndView mv, int bNum, ArrayList<Picture> pList) {
+	public ModelAndView boardDetail(ModelAndView mv, int bNum,  HttpServletRequest request, ArrayList<Picture> pList) {
 		
-	
+		HttpSession session = request.getSession(false);
+		
 		//조회수
 		int result= boardService.addReadCount(bNum);
 		if(result>0) 
@@ -95,11 +99,11 @@ public class BoradContoller {
 			System.out.println("board : "+board);
 			if(board !=null) 
 			{
-					mv.addObject("board",board);
-					mv.addObject("pList",pList);
-					mv.addObject("replyList",replyList);
-					mv.addObject("reReplyList",reReplyList);
-					mv.setViewName("board/boardDetailView");
+				mv.addObject("board",board);
+				mv.addObject("pList",pList);
+				mv.addObject("replyList",replyList);
+				mv.addObject("reReplyList",reReplyList);
+				mv.setViewName("board/boardDetailView");
 			}
 			else 
 			{
@@ -110,6 +114,27 @@ public class BoradContoller {
 		{
 			throw new BoardException(" 공지사항 조회수 증가 실패");
 		}
+		
+		try {	//회원일때 좋아요 누른 여부 확인
+			
+			Member m = (Member)session.getAttribute("loginUser");
+			String id = m.getId();
+			Board b = new Board();
+			b.setbNum(bNum);
+			b.setId(id);
+			
+			Board selectBoardLike = boardService.selectBoardLike(b);
+			if(selectBoardLike != null) {
+				mv.addObject("msg", "싫어요");
+			}
+			else {
+				mv.addObject("msg", "좋아요");
+			}
+		}
+		catch(NullPointerException e){	//비회원
+			
+		}
+		
 		
 		return mv;
 		
@@ -263,7 +288,7 @@ public class BoradContoller {
 			{
 				int count = boardService.selectBoardLikeCount(b);
 				int hitUpdate = boardService.updateBoardHit(b);
-				sendJson.put("msg", "성공");
+				sendJson.put("msg", "좋아요");
 				sendJson.put("count", count);
 				
 			}
@@ -277,7 +302,7 @@ public class BoradContoller {
 			{
 				int count = boardService.selectBoardLikeCount(b);
 				int hitUpdate = boardService.downBoardHit(b);
-				sendJson.put("msg", "성공");
+				sendJson.put("msg", "싫어요");
 				sendJson.put("count", count);
 			}
 		}

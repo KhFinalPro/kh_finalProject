@@ -7,6 +7,7 @@ import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLabel;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
@@ -55,6 +56,12 @@ public interface StoreService {
 	String checkStatus(int storeNum);
 
 	int updateStatus(int storeNum);
+
+	int storeJoin(Store s);
+
+	StoreLabel selectStoreLabel(String brand_code);
+
+	int enterStatusUpdate(Store newbie);
 
 	
 

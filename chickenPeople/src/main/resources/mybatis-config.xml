@@ -45,6 +45,8 @@
 		<typeAlias type="com.kh.chickenPeople.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.kh.chickenPeople.reply.model.vo.ReReply" alias="ReReply"/>
 		<typeAlias type="com.kh.chickenPeople.storeAdmin.dashboard.model.vo.Dashboard" alias="Dashboard"/>
+		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLabel" alias="StoreLabel"/>
+
 	</typeAliases>
 	
 	<mappers>

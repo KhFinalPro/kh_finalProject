@@ -27,9 +27,12 @@
 	
 	<insert id="memberJoin" parameterType="Member">
 		INSERT ALL
-		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, NULL, 'BRONZE','소비자', 0, 'N')
+		INTO MEMBER VALUES(#{id}, #{name}, #{pwd}, #{tel}, #{email}, NULL, #{pic}, 'BRONZE','소비자', 0, 'N')
 		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, #{lat}, #{lng})
 		SELECT * FROM DUAL
+	</insert>
+	<insert id="insertStoreMember" parameterType="Member">
+		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email},NULL,NULL,'BRONZE','판매자',0,'N')
 	</insert>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
@@ -56,5 +59,9 @@
 	<select id="selectAllMemberList" resultMap="memberResultSet">
 		SELECT * FROM MEMBER
 	</select>
+	
+	<update id="memberOrderCount" parameterType="string">
+		UPDATE MEMBER SET ORD_CNT = ORD_CNT + 1 WHERE USER_ID = #{user_id}
+	</update>
   
 </mapper>

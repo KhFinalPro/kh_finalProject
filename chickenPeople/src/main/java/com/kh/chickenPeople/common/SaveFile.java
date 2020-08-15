@@ -87,7 +87,7 @@ public class SaveFile {
 	}
 	
 	// 배동곤
-	public static String saveFile3(MultipartFile files, HttpServletRequest request) {
+	public static String saveFile3(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 
 		String savePath = root + "\\propic";
@@ -102,14 +102,14 @@ public class SaveFile {
 
 		// 업로드 시간을 기준으로 파일명을 변경하자
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String originFileName = files.getOriginalFilename();
+		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
 				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 
 		String filePath = folder + "\\" + renameFileName;
 
 		try {
-			files.transferTo(new File(filePath));
+			file.transferTo(new File(filePath));
 
 		} catch (Exception e) {
 

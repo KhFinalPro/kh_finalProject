@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.geocoder.Geocoder;
@@ -25,6 +27,7 @@ import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
+import com.kh.chickenPeople.common.SaveFile;
 import com.kh.chickenPeople.member.model.service.MemberService;
 import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -129,15 +132,18 @@ public class MemberController {
 	
 	@RequestMapping("memberJoin.do")
 	public String memberJoin(Member m, Model model,
+							HttpServletRequest request,
+							HttpServletResponse response,
 							@RequestParam("post") String post,
 							@RequestParam("addr1") String address1,
 							@RequestParam("addr2") String address2,
 							@RequestParam("lat") String lat,
-							@RequestParam("lng") String lng) {
-		
+							@RequestParam("lng") String lng,
+							@RequestParam(value="propic", required=false) MultipartFile propic) {
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
-		
+		System.out.println(m);
+		System.out.println(propic);
 		System.out.println(post);
 		System.out.println(address1);
 		System.out.println(address2);
@@ -149,6 +155,21 @@ public class MemberController {
 		m.setAddress(address1+" "+address2);
 		m.setLat(Double.parseDouble(lat));
 		m.setLng(Double.parseDouble(lng));
+		
+		
+		if(!propic.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
+			
+			System.out.println("오리진 파일 : " + propic.getOriginalFilename());
+			
+			String renameFileName =  SaveFile.saveFile3(propic, request);
+			
+			System.out.println(renameFileName);
+			
+			m.setPic(renameFileName);
+			
+		}
+		
+		
 		int result = mService.memberJoin(m);
 
 		

@@ -40,7 +40,7 @@
 <script>
 	$(function(){
 		$(document).on("click","#home",function(){
-			location.href="loginHome.do?id="+$("#id").val();
+			location.href="home.do";
 		})
 		
 		$(document).on("click","#orderStatus",function(){

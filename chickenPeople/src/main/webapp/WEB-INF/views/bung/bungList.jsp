@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body, hmtl{background: #ecf0f1;}
+/* body, hmtl{background: #ecf0f1;} */
 section{margin-top: 100px;}
 #main_section {margin: auto; width:90%; clear: both;}
 
@@ -93,7 +93,7 @@ section{margin-top: 100px;}
 						<img src="resources/images/${b.bung_img }.png" alt="logo">
 					</div>
 					<div class="first_line bungae_title">
-						<h2>${b.bung_title }</h2>
+						<h2 style="color:#735949">${b.bung_title }</h2>
 						<h3>${b.bung_addr }</h3>
 						<h3>${b.bung_date }</h3>
 						<h4>${b.bung_p_no }명까지</h4>	

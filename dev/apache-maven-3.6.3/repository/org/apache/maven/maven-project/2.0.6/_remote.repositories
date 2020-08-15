@@ -1,8 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:43 GMT+09:00 2020
-=======
-#Wed Aug 12 09:20:50 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Sat Aug 15 21:52:46 GMT+09:00 2020
 maven-project-2.0.6.jar>central=
 maven-project-2.0.6.pom>central=
