@@ -229,7 +229,7 @@
     		// 가게이름
     		 $("#stoName").change(function(){
                  var value = $("#stoName").val();
-                 var reg = /^[가-힣a-zA-Z\s]{2,20}$/;
+                 var reg = /^[가-힣a-zA-Z0-9\s]{2,20}$/;
                  
                  if(!reg.test(value)){
                      alert("2글자 이상 20글자 이내로 입력해주세요.");
