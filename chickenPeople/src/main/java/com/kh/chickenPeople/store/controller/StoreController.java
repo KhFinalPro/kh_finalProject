@@ -437,8 +437,6 @@ public class StoreController {
 		PrintWriter out;
 		
 		String host = "smtp.naver.com";
-		//GMAIL이랑 동시에 받아서 해결할 수 있도록
-		
 		final String userName = "chickens_people";
 		final String password = "rngus3698";
 		int port = 465;

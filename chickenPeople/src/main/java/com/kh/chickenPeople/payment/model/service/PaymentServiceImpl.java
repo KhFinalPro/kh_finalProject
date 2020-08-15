@@ -38,4 +38,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentDao.selectPayment(user_id);
 	}
 
+	@Override
+	public int memberOrderCount(String user_id) {
+		// TODO Auto-generated method stub
+		return paymentDao.memberOrderCount(user_id);
+	}
+
 }
