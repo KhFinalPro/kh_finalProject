@@ -25,7 +25,7 @@
 	#London ul{margin: 0 auto; padding: 0;}
 	#London ul li{margin:0 auto; width:100%; line-height: 50px; list-style: none; background-color: white; font-size: 25px; font-weight: 600;}
 	#London ul li>a{margin-left: 20px; color:#735949;}
-	#London>ul>li>ul>li{margin-left: 40px; width:80%; color: black;}
+	#London>ul>li>ul>li{margin-left: 40px; width:80%; color: black; font-weight:600; font-size:20px;}
 	
 	/*메뉴 카테고리*/
 	.menu a{cursor:pointer;}
@@ -306,14 +306,14 @@
 									</li>
 									<li>
 										<c:if test="${r.rev_pic != null }">
-											<img class="rev_pic" src="resources/review/${r.rev_pic }" alt=""><!-- 리뷰 이미지 -->
+											<img class="rev_pic" src="resources/review/${r.rev_pic }" style="width:25%; height:25%;" alt=""><!-- 리뷰 이미지 -->
 										</c:if>
 									</li>
 									<li>
-										<c:if test="${empty r.rev_re }">
-											<p>답변 없습</p>
+										<c:if test="${r.rev_re == null}">
+											<p></p>
 										</c:if>
-										<c:if test="${!empty r.rev_re }">
+										<c:if test="${r.rev_re != null	}">
 											<p><b>사장님 답변 - </b>${r.rev_re }</p>
 										</c:if>
 									</li>
