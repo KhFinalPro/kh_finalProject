@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dashboardMapper">
+
+<resultMap id="dashboardResultMap" type="Dashboard">
+	<id property="stoNum" column="STO_NUM"/>
+	<result property="ordNum" column="ORD_NUM"/>
+	<result property="ordPrice" column="ORD_PRICE"/>
+	<result property="totalIncome" column="TOTAL_INCOME"/>
+	<result property="totalOrder" column="TOTAL_ORDER"/>
+	<result property="ageRate" column="AVG_RATE"/>
+	<result property="stoLikes" column="STO_LIKES"/>
+	<result property="totalChicken" column="TOTAL_CHICKEN"></result>
+	<result property="menuCount" column="MENU_COUNT"></result>
+	<result property="menuName" column="MENU_NAME"></result>
+	<result property="menuNum" column="MENU_NUM"></result>
+	<result property="customer" column="CUSTOMER"></result>
+	<result property="payDate" column="PAY_DATE"/>
+	<result property="payTotal" column="PAY_TOTAL"/>
+	<result property="vipCount" column="VIP_COUNT"/>
+	<result property="vipName" column="VIP_NAME"/>
+	<result property="rowNum" column="ROWNUM"></result>
+</resultMap>
+
+
+<select id="selectTotalncome" resultMap="dashboardResultMap" parameterType="String">
+SELECT SUM(OP.ORD_PRICE) AS "TOTAL_INCOME"
+FROM STORE_INFO SI
+JOIN ORDER_PRO OP ON (SI.STO_NUM=OP.STO_NUM)
+JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+WHERE SI.USER_ID=#{userId} AND J.ORD_STATUS='배달완료'
+
+</select>
+
+<select id="selectTotalOrder" resultMap="dashboardResultMap"  parameterType="String">
+SELECT COUNT(OP.ORD_PRICE) AS "TOTAL_ORDER"
+FROM STORE_INFO SI
+JOIN ORDER_PRO OP ON (SI.STO_NUM=OP.STO_NUM)
+JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+WHERE SI.USER_ID=#{userId} AND J.ORD_STATUS='배달완료'
+</select>
+
+<select id="selectaverageReview" resultMap="dashboardResultMap"  parameterType="String">
+SELECT AVG(SR.REV_RATE) AS "AVG_RATE"
+FROM STORE_INFO SI 
+JOIN STORE_REVIEW SR ON (SI.STO_NUM=SR.STO_NUM)
+WHERE SI.USER_ID=#{userId}
+</select>
+
+
+<select id="selectStoreLike" resultMap="dashboardResultMap"  parameterType="String">
+SELECT COUNT(SL.STO_NUM) AS "STO_LIKES"
+FROM STORE_INFO SI
+JOIN STORE_LIKE SL ON (SI.STO_NUM=SL.STO_NUM)
+WHERE SI.USER_ID=#{userId}
+</select>
+
+<select id="selectTotalChicken" resultMap="dashboardResultMap"  parameterType="String">
+SELECT COUNT(M.MENU_NUM) AS "TOTAL_CHICKEN"
+FROM STORE_INFO SI 
+JOIN ORDER_PRO OP ON (SI.STO_NUM=OP.STO_NUM)
+JOIN JUMUN_DETAIL JD ON (OP.ORD_NUM=JD.ORD_NUM)
+JOIN MENU M ON (JD.MENU_NUM=M.MENU_NUM)
+WHERE SI.USER_ID=#{userId} AND (M.CAT_CODE='1' OR M.CAT_CODE='2')
+</select>
+
+<select id="selectTopMenuList" resultMap="dashboardResultMap"  parameterType="String">
+SELECT ROWNUM R, N.MENU_NAME, T.MENU_COUNT
+FROM(SELECT COUNT(M.MENU_NUM) AS "MENU_COUNT", M.MENU_NUM
+            FROM MENU M
+            JOIN BRAND B ON (M.BRAND_CODE=B.BRAND_CODE)
+            JOIN STORE_INFO SI ON (B.BRAND_CODE=SI.BRAND_CODE)
+            JOIN JUMUN_DETAIL JD ON (M.MENU_NUM=JD.MENU_NUM)
+            WHERE SI.USER_ID=#{userId} AND (M.CAT_CODE='1' OR M.CAT_CODE='2')
+            GROUP BY M.MENU_NUM
+            ORDER BY MENU_COUNT DESC) T
+JOIN MENU N ON N.MENU_NUM = T.MENU_NUM
+WHERE ROWNUM<![CDATA[ < ]]>=3
+</select>
+
+
+<select id="monthlyTotalIncomeList" resultMap="dashboardResultMap"  parameterType="String">
+SELECT COUNT(J.ORD_NUM) AS "CUSTOMER",TO_CHAR(TO_DATE(PAY_DATE),'YYYY-MM') AS "PAY_DATE", SUM(PAY_TOAL) AS "PAY_TOTAL"
+FROM PAYMENT p
+JOIN JUMUN J ON (P.ORD_NUM= J.ORD_NUM)
+JOIN ORDER_PRO OP ON (J.ORD_NUM=OP.ORD_NUM)
+JOIN STORE_INFO SI ON (OP.STO_NUM=SI.STO_NUM)
+WHERE SI.USER_ID=#{userId} AND J.ORD_STATUS='배달완료' 
+GROUP BY TO_CHAR(TO_DATE(PAY_DATE),'YYYY-MM')
+</select>
+
+
+<select id="selectTopSideList" resultMap="dashboardResultMap"  parameterType="String">
+SELECT ROWNUM R, N.MENU_NAME, T.MENU_COUNT
+FROM( SELECT COUNT(M.MENU_NUM) AS "MENU_COUNT", M.MENU_NUM
+            FROM MENU M
+            JOIN BRAND B ON (M.BRAND_CODE=B.BRAND_CODE)
+            JOIN STORE_INFO SI ON (B.BRAND_CODE=SI.BRAND_CODE)
+            JOIN JUMUN_DETAIL JD ON (M.MENU_NUM=JD.MENU_NUM)
+            WHERE SI.USER_ID=#{userId} AND (M.CAT_CODE='4' OR M.CAT_CODE='5')
+            GROUP BY M.MENU_NUM
+            ORDER BY MENU_COUNT DESC) T 
+JOIN MENU N ON N.MENU_NUM = T.MENU_NUM
+WHERE ROWNUM<![CDATA[ < ]]>=3
+</select>
+
+<select id="vipCustoemrList" resultMap="dashboardResultMap"  parameterType="String">
+SELECT ROWNUM AS "ROWNUM",T.VIP_COUNT, T.VIP_NAME
+FROM(SELECT COUNT(J.USER_ID) AS "VIP_COUNT", J.USER_ID AS "VIP_NAME"
+FROM STORE_INFO SI
+JOIN ORDER_PRO OP ON (SI.STO_NUM=OP.STO_NUM)
+JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+WHERE SI.USER_ID='bbq1'
+GROUP BY J.USER_ID
+ORDER BY VIP_COUNT DESC) T
+WHERE ROWNUM<![CDATA[ < ]]>=5 
+</select>
+
+
+<!-- SELECT ROWNUM R,T.VIP_COUNT, T.VIP_NAME
+FROM(SELECT COUNT(J.USER_ID) AS "VIP_COUNT", J.USER_ID AS "VIP_NAME"
+FROM STORE_INFO SI
+JOIN ORDER_PRO OP ON (SI.STO_NUM=OP.STO_NUM)
+JOIN JUMUN J ON (OP.ORD_NUM=J.ORD_NUM)
+WHERE SI.USER_ID='bbq1'
+GROUP BY J.USER_ID
+ORDER BY VIP_COUNT DESC) T
+WHERE ROWNUM<![CDATA[ < ]]>=4 -->
+
+</mapper>
