@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.common.SaveFile;
+import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.systemAdmin.model.service.SystemService;
 import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 @Controller
@@ -30,9 +32,17 @@ public class SystemController {
 	@Autowired
 	SystemService sService;
 	
-	@RequestMapping(value="systemAdmin.do", method=RequestMethod.GET)
-	public String goSystemAdminMain() {
-		return "systemAdmin/systemAdminMain";
+
+	@RequestMapping(value="systemAdminMap.do",method=RequestMethod.GET)
+	public ModelAndView goStoreMapList(ModelAndView mv,SearchStatus searchStatus,
+									   @RequestParam(value="storeSearch",required=false) String storeSearchName) {
+		
+		ArrayList<Store> searchStoreList = sService.searchStoreList(storeSearchName);
+		
+		mv.addObject("searchStoreList",searchStoreList);
+		mv.addObject("searchStatus",searchStatus);
+		mv.setViewName("systemAdmin/systemAdminMap");
+		return mv;
 	}
 	
 	@RequestMapping(value="systemAdminCoupon.do", method=RequestMethod.GET)

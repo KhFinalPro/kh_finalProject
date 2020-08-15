@@ -51,7 +51,6 @@ public class Store implements Serializable{
 	public Store() {
 	}
 
-
 	//관리자 _ 점포 관리 생성자(계연)
 	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
 			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,

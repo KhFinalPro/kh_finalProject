@@ -174,5 +174,11 @@
 		UPDATE STORE_INFO SET APRV_STATUS='Y', USER_ID=#{user_id} WHERE STO_NUM=#{sto_num}
 	</update>
 	
+	<select id="searchStoreListforMap" resultMap="storeResultSet" parameterType="string">
+		SELECT *
+		FROM STORE_INFO
+		WHERE STO_ADDR LIKE '%'||#{sto_addr}||'%'
+	</select>
+	
 </mapper>
 

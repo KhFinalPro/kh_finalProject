@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.systemAdmin.model.dao.SystemDao;
 import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
@@ -51,6 +52,11 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public ArrayList<SiteTotal> selectSiteTotal() {
 		return sDao.selectSiteTotal();
+	}
+
+	@Override
+	public ArrayList<Store> searchStoreList(String storeSearchName) {
+		return sDao.searchStoreList(storeSearchName);
 	}
 	
 

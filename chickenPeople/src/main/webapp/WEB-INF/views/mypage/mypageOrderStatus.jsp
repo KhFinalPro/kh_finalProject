@@ -124,10 +124,9 @@
 	
 	
 	
-		var user_addr = $("#user_addr").text();
-	    var sto_addr = $("#sto_addr").val();
-
-	
+	   var user_addr = $("#user_addr").text();
+	   var sto_addr = $("#sto_addr").val();
+		
 	   var mapContainer = document.getElementById('map');
 	   var mapOption = {
 	       center: new daum.maps.LatLng(37.450701, 126.570667),

@@ -119,6 +119,12 @@ body{ background:#e1ecf2; overflow: hidden; }
                         </span>
                         <span class="title">공지사항</span>
                     </a></li>
+                    <li id="storeMap"><a href="systemAdminMap.do">
+                        <span class="icon">
+                            <i class="fas fa-store" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">추천받음(지도)</span>
+                    </a></li>
                 </ul>
             </div>
 

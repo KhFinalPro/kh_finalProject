@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.chickenPeople.store.model.vo.Store;
 import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
@@ -47,6 +48,10 @@ public class SystemDao {
 
 	public ArrayList<SiteTotal> selectSiteTotal() {
 		return (ArrayList)sqlSessionTemplate.selectList("systemMapper.selectSiteTotal");
+	}
+
+	public ArrayList<Store> searchStoreList(String storeSearchName) {
+		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.searchStoreListforMap",storeSearchName);
 	}
 
 

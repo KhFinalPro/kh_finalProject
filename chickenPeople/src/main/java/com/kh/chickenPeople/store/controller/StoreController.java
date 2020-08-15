@@ -427,6 +427,7 @@ public class StoreController {
 	public void enterStatusUpdate(ModelAndView mv,Store newbie, Member stoMem,
 								  HttpServletResponse response,
 								  @RequestParam(value="sto_num")int sto_num,
+								  @RequestParam(value="sto_name")String sto_name,
 								  @RequestParam(value="brand_code")String brand_code,
 								  @RequestParam(value="sto_email")String sto_email,
 								  @RequestParam(value="ceo_name")String ceo_name,
@@ -436,6 +437,8 @@ public class StoreController {
 		PrintWriter out;
 		
 		String host = "smtp.naver.com";
+		//GMAIL이랑 동시에 받아서 해결할 수 있도록
+		
 		final String userName = "chickens_people";
 		final String password = "rngus3698";
 		int port = 465;
@@ -486,7 +489,7 @@ public class StoreController {
 		/**/
 		Message mimeMessage = new MimeMessage(session);
 		mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
-		
+		mimeMessage.setContent("<h1>hello</h1>","text/html");
 		int updateStatus = storeService.enterStatusUpdate(newbie);
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 		
@@ -495,7 +498,7 @@ public class StoreController {
 		Transport.send(mimeMessage);
 
 		stoMem.setPwd(encPwd);
-		stoMem.setName(ceo_name);
+		stoMem.setName(sto_name);
 		stoMem.setEmail(sto_email);
 		stoMem.setTel(sto_tel);
 		
