@@ -59,5 +59,9 @@
 	<select id="selectAllMemberList" resultMap="memberResultSet">
 		SELECT * FROM MEMBER
 	</select>
+	
+	<update id="memberOrderCount" parameterType="string">
+		UPDATE MEMBER SET ORD_CNT = ORD_CNT + 1 WHERE USER_ID = #{user_id}
+	</update>
   
 </mapper>

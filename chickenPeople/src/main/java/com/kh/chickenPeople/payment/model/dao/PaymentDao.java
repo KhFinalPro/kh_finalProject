@@ -43,4 +43,9 @@ public class PaymentDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("paymentMapper.selectPaymentInfo", user_id);
 	}
+
+	public int memberOrderCount(String user_id) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("memberMapper.memberOrderCount", user_id);
+	}
 }

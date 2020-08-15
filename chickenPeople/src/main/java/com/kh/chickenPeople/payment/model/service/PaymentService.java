@@ -14,4 +14,6 @@ public interface PaymentService {
 
 	Payment selectPayment(String user_id);
 
+	int memberOrderCount(String user_id);
+
 }
