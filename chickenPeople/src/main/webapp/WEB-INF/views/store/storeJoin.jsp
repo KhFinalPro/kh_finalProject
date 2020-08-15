@@ -229,10 +229,10 @@
     		// 가게이름
     		 $("#stoName").change(function(){
                  var value = $("#stoName").val();
-                 var reg = /^[가-힣]{2,6}$/;
+                 var reg = /^[가-힣a-zA-Z\s]{2,20}$/;
                  
                  if(!reg.test(value)){
-                     alert("한글로 2글자 이상 입력해주세요.");
+                     alert("2글자 이상 20글자 이내로 입력해주세요.");
                      $("#stoName").focus().val('');
                  }
              });
