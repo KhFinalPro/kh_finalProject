@@ -58,8 +58,15 @@
 
         .btn{width:150px; height: 50px; font-size: 20px; font-weight:600; color:#2ac1bc; background-color: white; border-radius: 10px; border: 1px solid black;}
         #title{font-size:20px;}
-        #content_title{font-size:20px;}
         #titleDiv #bCont{margin-top:10px; font-size:15px;}
+        
+        #content_area{margin:0 auto; width:53%;}
+        #content_title{font-size:20px; height:100px; margin-top:25px; vertical-align:middle; margin-right:9px;}
+        .content_title{float:left;}
+        
+        #bContents{width:700px; height:500px; overflow-y:auto;}
+        
+        form{margin:0 auto; width:80%; border:1px solid black;}
 	</style>
 </head>
 <body>
@@ -93,11 +100,14 @@
                     <option value="꿀팁">꿀팁</option>
                 </select>
                 <br>
-                <a id="content_title">소개 : </a>
-                <textarea id="bCont" name="bCont" cols="50" rows="5" style="resize:none;"></textarea>
-				<!-- <input type="text" id="bCont" name="bCont" required> -->
+                <div id="content_area">
+	                <div id="content_title" class="content_title"><p>소개 : </p></div>
+	                <textarea id="bCont" class="content_title" name="bCont" cols="61" rows="5" style="resize:none;"></textarea>
+				</div>
             
             </div>
+            
+            <br clear="both">
             <div id="bContents">
             </div>
             
@@ -141,17 +151,18 @@
 	num = 0;
 	// 포스팅 관련 table 태그를 id가 contentDiv인 div로 추가 
 	function addContent(){
+		$(".submitBtn").remove();
 		$content =  
                     "<div id='j" + num + "' class='i" + num + "' style=' width:100%; margin-top:20px;' onclick='clickFile(this)'><p style='font-size:25px; color:#2CBFB1;'>클릭해서 이미지를 추가해주세요.</p><br>"+
                         // "<img name='i" + num + "' style='height:250px;width:80%;'>" +
                         "<img name='i" + num + "'>" +
                     "</div>" +
                     
-                    "<input type='file' class='j" + num + "' name='fileName' onchange='LoadImg(this, " + num + ")'><br>" +
+                    "<div class='input_file_div' style='overflow:hidden; display:none'><input type='file' class='j" + num + "' name='fileName' onchange='LoadImg(this, " + num + ")'></div><br>" +
 
-                    "<textarea class='i" + num + "' cols='130' rows='5' name='bContent' style='margin-top:20px;'>"+ num +"chapter</textarea>";
+                    "<textarea class='i" + num + "' cols='80' rows='5' name='bContent' placeholder='레시피를 소개해주세요.' style='margin-top:10px;'></textarea>";
                     
-        $("#btn_area").append("<input type='submit' class='btn' id='submitBtn' value='등록하기'>");
+        $("#btn_area").append("<input type='submit' class='btn submitBtn' id='submitBtn' value='등록하기'>");
 		$("#bContents").append($content);
 		
 	// 이미지 슬라이더인 id가 slider4인 div에 사진을 포함한 div를 추가
@@ -190,6 +201,9 @@
 	function removeTable(){
 		var dimNum = --num;			// 내용 추가 후 num가 증가했으므로 마지막 미리보기 사진이나 내용 table은 num(전역변수)을 하나 줄임 
 		
+		if(dimNum == 0){
+			$(".submitBtn").remove();
+		}
 		var idenD = ".i"+(dimNum);	// id가 i+num인 div
         var jdenD = ".j"+(dimNum);
         var deleteDiv = $(idenD);

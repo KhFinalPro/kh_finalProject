@@ -19,25 +19,30 @@
 		#main_section>#head_area>#title{width: 55%; height: 250px; line-height: 50px; font-size: 25px; color: black; word-break: break-all;}
 		#main_section>#head_area>#title>h2{margin-top: 100px;}
 		/*관심*/
-		#main_section>#head_area>#good>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#good>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #0070C0; color: white; line-height: 50px; text-align: center;}
 		#main_section>#head_area>#good>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#good_contents{margin-left: 10px;}
 		#main_section>#head_area>.head_second_line{float: left;}
 		
+		/*마감*/
+		#main_section>#head_area>#bung_status>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #0070C0; color: white; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#bung_status>h3:hover{color:black; cursor:pointer;}
+		/* #main_section>#head_area>#good_contents{margin-left: 10px;} */
+		#main_section>#head_area>.head_second_line{float: left;}
+		
 		/*채팅*/
-		#main_section>#head_area>#chatting>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#chatting>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #0070C0; color: white; line-height: 50px; text-align: center;}
 		#main_section>#head_area>#chatting>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
 		/*채팅*/
-		#main_section>#head_area>#massage>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #2ac1bc; color: white; line-height: 50px; text-align: center;}
+		#main_section>#head_area>#massage>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #0070C0; color: white; line-height: 50px; text-align: center;}
 		#main_section>#head_area>#massage>h3:hover{color:black; cursor:pointer;}
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
-		#main_section>#head_area>#report>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: red; color: blue; line-height: 50px; text-align: center;}
-		#main_section>#head_area>#report>h3:hover{background-color: blue; color: red; cursor:pointer;}
+		#main_section>#head_area>#report>h3{margin: 0 auto; width: 100px; height: 50px; border-radius: 15px; background-color: #0070C0; color: white; line-height: 50px; text-align: center;}
 		#main_section>#head_area>#chatting_status{margin-left: 10px;}
 		#main_section>#head_area>.head_tree_line{float: left;}
 		
@@ -92,6 +97,7 @@
 	
 	<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
 	<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
+	<input type="hidden" id="myPageStatus" value="${myPageStatus }">
     <section id="main_section">
     	<c:if test="${myPageStatus == 'y' }">
     		<button id="UpdateBung">번개 수정하기</button>
@@ -116,12 +122,17 @@
             		<h4>치킨민족 ${bung.bung_like }명이 관심있고, 총 ${bung.bung_hit }번 봤어요</h4>
             	</div>
             </div>
-            <br clear="both">
+            <c:if test="${sessionScope.loginUser.id == bung.user_id }">
+            	<div id="bung_status" class="head_second_line" style="float:right;">
+            		<c:if test="${bung.bung_status == '모집중' }">
+            			<h3>마감</h3>
+            		</c:if>
+            		<c:if test="${bung.bung_status == '마감' }">
+            			<h3>모집</h3>
+            		</c:if>
+           		</div>
+            </c:if>
 
-            <div id="chatting" class="head_tree_line">
-            	<h3 id="chatting_click">채팅참여</h3>
-            </div>
-            <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div>
             <br clear="both">
             <c:if test="${!empty sessionScope.loginUser }">
 	            <div id="massage" class="head_tree_line">
@@ -131,7 +142,7 @@
 	            	<h3 id="report_click">신고</h3>
 	            </div>
             </c:if>
-            <%-- <div id="chatting_status" class="head_tree_line"><h4>치킨민족 ${bung.bung_chat }명 참여중이에요</h4></div> --%>
+
             <br clear="both">
         </div>
 
@@ -368,6 +379,23 @@
 	                          +"error: " + errorData);
 	           	}
 			})
+		})
+		
+		//마감처리
+		$("#bung_status").on("click",function(){
+			$bung_num = $("#bung_num").val();
+			$user_id = $("#create_user_id").html();
+			$myPageStatus = $("#myPageStatus").val();
+			$bung_status = $("#bung_status").children("h3").text();
+			
+			if($bung_status == "모집"){
+				$bung_status = "모집중";
+				location.href="bungStatusUpdate.do?bung_num="+$bung_num+"&user_id="+$user_id+"&bung_status="+$bung_status+"&myPageStatus="+$myPageStatus;
+			}
+			else if($bung_status == "마감"){
+				$bung_status = "마감";
+				location.href="bungStatusUpdate.do?bung_num="+$bung_num+"&user_id="+$user_id+"&bung_status="+$bung_status+"&myPageStatus="+$myPageStatus;
+			}
 		})
 	})
 </script>

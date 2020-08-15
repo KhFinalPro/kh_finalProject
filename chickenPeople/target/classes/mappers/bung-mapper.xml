@@ -132,4 +132,8 @@
 		DELETE FROM BUNG WHERE BUNG_NUM=#{brNum}
 	</update>
 	
+	<update id="bungStatusUpdate" parameterType="Bung">
+		UPDATE BUNG SET BUNG_STATUS = #{bung_status} WHERE BUNG_NUM = #{bung_num} AND USER_ID = #{user_id}
+	</update>
+	
 </mapper>
