@@ -427,10 +427,12 @@ public class StoreController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out;
 
+		System.out.println(sto_num);
 		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);
-		String brand_id = storeLabel.getMenuName();
 		
+		String brand_id = storeLabel.getMenuName();	
 		String finalId = brand_id+sto_num;
+		
 		newbie.setSto_num(sto_num);
 		newbie.setUser_id(finalId);
 		int updateStatus = storeService.enterStatusUpdate(newbie);
@@ -446,7 +448,10 @@ public class StoreController {
 		stoMem.setTel(sto_tel);
 		
 		if(updateStatus>0) {
+			System.out.println("store_info update success");
 			int insertMember = mService.insertStoreMember(stoMem);
+			System.out.println("member update success");
+
 			if(insertMember>0) {
 				try {
 					out = response.getWriter();
