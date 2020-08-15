@@ -54,7 +54,7 @@ public class BoradContoller {
 		}
 		int listCount = boardService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		ArrayList<Board> selectTotalBoardList=boardService.selectTotalBoardList(pi);
 		
 //		System.out.println("selectTotalBoardList"+selectTotalBoardList);

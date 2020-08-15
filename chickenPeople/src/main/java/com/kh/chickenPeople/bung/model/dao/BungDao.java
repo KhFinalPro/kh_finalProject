@@ -98,6 +98,11 @@ public class BungDao {
 		return (ArrayList)sqlSessionTemplate.selectList("bungMapper.searchBung", month);
 	}
 
+	public int bungStatusUpdate(Bung bung) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("bungMapper.bungStatusUpdate", bung);
+	}
+
 
 	
 

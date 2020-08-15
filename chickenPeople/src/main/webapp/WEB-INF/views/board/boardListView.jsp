@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-	body, hmtl{background: #ecf0f1;}
+	/* body, hmtl{background: #ecf0f1;} */
 	.button{
 	  background:#2CBFB1;
 	  color:#fff;
@@ -58,14 +58,15 @@
 	  }
 	  
 	 
-	#section{margin: 0 auto; width: 90%; margin-top:150px;}
+	#section{margin: 0 auto; width: 90%; margin-top:100px;}
 	#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
-	#main_section>.mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid #735949;}
-    #main_section>.mja_area:hover{border:1px solid #2ac1bc; cursor:pointer;}
-    #main_section>.mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
-    #main_section>.mja_area>.mja_logo>img {width: 100%; height: 100%;}
-    #main_section>.mja_area>.first_line {float: left; height: 90%;margin-top: 10px;}
-    #main_section>.mja_area>.mja_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
+	#boardList_area{height:700px;}
+	#main_section .mja_area {border-radius: 10px; display: inline-block; background-color:white; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid #735949;}
+    #main_section .mja_area:hover{border:1px solid #2ac1bc; cursor:pointer;}
+    #main_section .mja_area>.mja_logo {text-align:center; width: 30%; height: 90%; margin-left:30px;}
+    #main_section .mja_area>.mja_logo>img {width: 100%; height: 100%;}
+    #main_section .mja_area>.first_line {float: left; height: 90%;margin-top: 10px;}
+    #main_section .mja_area>.mja_title {width: 60%; margin-left: 20px; margin-top: 15px; text-align: center;}
 	
 	#btn_area{margin: auto; width: 90%; text-align: right;}
 	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
@@ -87,7 +88,7 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"/>
-  
+  	<br clear="both">
 	<div id="section">
 
 		<div id="main_section">
@@ -106,24 +107,25 @@
 		</div> <!-- [bWrite/goHome]button end-->
 		<br clear="both">  
 	
-		<c:forEach var="b" items="${boardList }">
-			
-	 		<div class="mja_area">
-                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
-                <div class="mja_logo first_line">
-                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
-                </div>
-                <div class="first_line mja_title">
-                    <h2>제목 : ${b.bTitle }</h2>
-                    <h3>조회수 : ${b.bCount }</h3>
-                    <h3>추천수 : ${b.bHit }</h3>
-                    <h3>등록 날짜 : ${b.bDate }</h3>
-                </div>
-                <br clear="both">
-            </div>
-			
-		</c:forEach>
-
+		<div id="boardList_area">
+			<c:forEach var="b" items="${boardList }">
+				
+		 		<div class="mja_area">
+	                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
+	                <div class="mja_logo first_line">
+	                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
+	                </div>
+	                <div class="first_line mja_title">
+	                    <h2 style="color: #735949;">${b.bTitle }</h2>
+	                    <h3>조회수 : ${b.bCount }</h3>
+	                    <h3>추천수 : ${b.bHit }</h3>
+	                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
+	                </div>
+	                <br clear="both">
+	            </div>
+				
+			</c:forEach>
+		</div>
 		
 		
 		 <div class = "p-parents" style="margin:0 auto">

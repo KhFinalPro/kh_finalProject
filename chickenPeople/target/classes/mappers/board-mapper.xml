@@ -32,6 +32,7 @@
 	<select id ="selectBoardList" resultMap="boardResultSet">
 		SELECT *
 		FROM BOARD
+        WHERE B_STATUS = 'N'
 		ORDER BY B_NUM DESC
 	</select>
 	
