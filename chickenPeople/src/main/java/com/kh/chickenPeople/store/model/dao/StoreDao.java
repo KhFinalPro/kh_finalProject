@@ -12,6 +12,7 @@ import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLabel;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
@@ -122,6 +123,14 @@ public class StoreDao {
 	public int storeJoin(Store s) {
 		
 		return sqlSessionTemplate.insert("storeMapper.storeJoin", s);
+	}
+
+	public StoreLabel selectStoreLabel(String brand_code) {
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreLabel",brand_code);
+	}
+
+	public int enterStatusUpdate(Store newbie) {
+		return sqlSessionTemplate.update("storeMapper.enterStatusUpdate",newbie);
 	}
 
 	

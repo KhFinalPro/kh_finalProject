@@ -36,6 +36,10 @@ public  class MemberDao {
 		return sqlSessionTemplate.insert("memberMapper.memberJoin", m);
 	}
 
+	public int insertStoreMember(Member stoMem) {
+		return sqlSessionTemplate.insert("memberMapper.insertStoreMember",stoMem);
+	}
+
 	
 	
 //	@Transactional

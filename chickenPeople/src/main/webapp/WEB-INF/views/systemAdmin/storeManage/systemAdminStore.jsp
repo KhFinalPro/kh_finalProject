@@ -20,7 +20,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
+	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:6px; width:200px;}
 	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -58,6 +58,9 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="storeSearch" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td colspan="2">
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -93,9 +96,7 @@
 								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4">
-								<button type="submit">검색</button>
-							</td>
+							
 						</tr>
 					</table>
 				</form>
@@ -121,6 +122,7 @@
 						<c:forEach var="i" items="${storeList }">
  						 	<c:url var="storeDetail" value="systemAdminStoreDetail.do">
  						 		<c:param name="storeNum" value="${i.sto_num }"/>
+ 						 		<c:param name="brandName" value="${i.brand_name }"/>
  						 		<c:param name="page" value="${pi.currentPage }"/>
  						 		<c:param name="storeSearch" value="${searchStatus.searchName }"/>
  						 		<c:param name="brandCategory" value="${searchStatus.searchCategory}"/>
@@ -132,7 +134,12 @@
 								<td><a href="${storeDetail }" style="cursor:hand">${i.sto_name }</a></td>
 								<td><a style="cursor:hand">${i.ceo_name }</a></td>
 								<td>${i.sto_tel }</td>
-								<td>${i.deli_time }</td>
+								<c:if test="${i.aprv_status eq 'Y' }">
+									<td>${i.deli_time }</td>
+								</c:if>
+								<c:if test="${i.aprv_status eq 'N' }">
+									<td>입점 후 추후 수정</td>
+								</c:if>
 								<c:if test="${i.aprv_status eq 'Y' }">
 									<td>계약 중</td>
 								</c:if>

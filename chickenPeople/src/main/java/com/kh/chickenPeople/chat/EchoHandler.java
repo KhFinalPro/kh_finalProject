@@ -35,25 +35,34 @@ public class EchoHandler extends TextWebSocketHandler{
 		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
+		   String name = (String) session.getAttributes().get("loginUserId");
 		   
 		   sessionList.add(map);
 		   
+		   boolean check=false;
 		   for(int i = 0; i<sessionList.size(); i++) {
 			   Map<String,Object> temp = sessionList.get(i);
 			   WebSocketSession sess = (WebSocketSession)temp.get("session");
 			   
-			   String userId = "member"+"|"+session.getAttributes().get("loginUserId");
+			   String inputData = "member"+"|"+name;
+			   sess.sendMessage(new TextMessage(inputData));
+			   
+			   
 			   ArrayList<ChattingMsg> beforeDate = chatService.selectAllMsgData(ChattingRoom_no);
-			   
-			   sess.sendMessage(new TextMessage(userId));
-			   
 			   for(int j = 0 ; j < beforeDate.size(); j++) {
-				   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
-					   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
-					   sess.sendMessage(new TextMessage(beforeMsg));					   
+				   if(name.equals(sess.getAttributes().get("loginUserId"))) {
+					   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
+						   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
+						   sess.sendMessage(new TextMessage(beforeMsg));
+						   
+					   	}else {
+					   	}
+				   }else {
+					   System.out.println("불일치");
+					   break;
 				   }
+				   
 			   }
-			   
 		   }
 		
 	}
@@ -82,9 +91,14 @@ public class EchoHandler extends TextWebSocketHandler{
 				   
 				   sess.sendMessage(new TextMessage(jsonStr));
 				   
-				   int result = chatService.saveMessage(jsonStr);
-				   if (result>0) {
-					   System.out.println("저장완료다 이녀석들아");
+				   System.out.println("first"+sess.getAttributes().get("loginUserId"));
+				   System.out.println("second"+userId);
+				   if(sess.getAttributes().get("loginUserId").equals(userId)) {
+					   int result = chatService.saveMessage(jsonStr);
+					   if (result>0) {
+						   System.out.println("저장완료다 이녀석들아");
+					   }
+					   
 				   }
 				   
 			   }
@@ -110,7 +124,6 @@ public class EchoHandler extends TextWebSocketHandler{
 			Map<String,Object> outputMap = session.getAttributes();
 			String userId = (String)outputMap.get("session");
 			String leaveMsg = "leaveRoom"+"|"+room_no+"|"+userId+"|";
-			System.out.println(leaveMsg);
 			sess.sendMessage(new TextMessage(leaveMsg));
 
 		}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.chickenPeople.brand.model.vo.Brand;
 import com.kh.chickenPeople.common.Pagination;
 import com.kh.chickenPeople.coupon.model.service.CouponService;
+import com.kh.chickenPeople.member.model.service.MemberService;
 import com.kh.chickenPeople.member.model.vo.Member;
 import com.kh.chickenPeople.menu.model.vo.Menu;
 import com.kh.chickenPeople.store.model.service.StoreService;
 import com.kh.chickenPeople.store.model.vo.MordNumCheck;
 import com.kh.chickenPeople.store.model.vo.Review;
 import com.kh.chickenPeople.store.model.vo.Store;
+import com.kh.chickenPeople.store.model.vo.StoreLabel;
 import com.kh.chickenPeople.store.model.vo.StoreLike;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
@@ -40,6 +43,13 @@ public class StoreController {
 	
 	@Autowired
 	CouponService couponService;
+	
+	@Autowired
+	MemberService mService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;	
+	
 	
 	//상원 매장 상세페이진
 	@RequestMapping("storeDetail.do")
@@ -284,7 +294,6 @@ public class StoreController {
 		PageInfo pi = null;
 		ArrayList<Store> resultStoreList = null;
 		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
-		System.out.println(selectBrandList);
 		
 		if(page!=null) {
 			currentPage = page;
@@ -303,7 +312,6 @@ public class StoreController {
 			listCount = storeService.getSearchListCount(storeSearch);		//검색 결과 갯수 count
 			pi = Pagination.getPageInfo(currentPage, listCount, 8);
 			resultStoreList = storeService.selectStoreSearchList(storeSearch,pi);
-			System.out.println("검색:"+resultStoreList);
 			
 			mv.addObject("searchStatus",storeSearch);
 			mv.addObject("listCount",listCount);
@@ -312,7 +320,6 @@ public class StoreController {
 			listCount = storeService.getListCount();
 			pi = Pagination.getPageInfo(currentPage, listCount, 8);
 			resultStoreList = storeService.selectStoreList(pi);
-			System.out.println("전체:"+resultStoreList);
 			
 			mv.addObject("searchStatus",storeSearch);
 			mv.addObject("listCount",listCount);
@@ -331,6 +338,7 @@ public class StoreController {
 									@RequestParam(value="page", required=false)Integer page,
 									@RequestParam(value="storeSearch", required=false)String storeName,
 									@RequestParam(value="brandCategory", required=false)String storeCategory,
+									@RequestParam(value="brandName", required=false)String brandName,
 									@RequestParam(value="status_s",required=false)String status) {
 
 		int currentPage = 1;
@@ -343,13 +351,18 @@ public class StoreController {
 		
 		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
 		Store s = storeService.selectOneStore(storeNum);
-		System.out.println(s);
+		
+		
+		
+		
 		
 		if(s!=null) {
 			mv.addObject("brandList",selectBrandList);
 			mv.addObject("store",s);
 			mv.addObject("page",currentPage);
 			mv.addObject("searchStatus",searchStatus);
+			mv.addObject("brandName",brandName);
+			
 			mv.setViewName("systemAdmin/storeManage/systemAdminStoreDetail");
 		}
 		return mv;
@@ -375,7 +388,6 @@ public class StoreController {
 		searchStatus.setSearchStatus(status);
 		
 		Store s = storeService.selectOneStore(storeNum);
-		System.out.println(s);
 		
 		if(s!=null) {
 			mv.addObject("brandList",selectBrandList);
@@ -391,11 +403,8 @@ public class StoreController {
 									@RequestParam(value="storeSearch", required=false)String storeName,
 									@RequestParam(value="brandCategory", required=false)String storeCategory,
 									@RequestParam(value="status_s",required=false)String status)  {
-		System.out.println(storeName);
-		System.out.println(storeCategory);
-		System.out.println(status);
-		System.out.println(s);
-		
+
+		//미완성
 		ArrayList<Brand> selectBrandList = storeService.selectBrandList();
 //		Store updateStore = storeService.updateStore(storeNum);
 		
@@ -406,28 +415,61 @@ public class StoreController {
 		return mv;
 	}
 
-	@RequestMapping(value="storeStatusUpdate.do", method=RequestMethod.GET)
-	public void storeStatusUpdate(HttpServletResponse response, ModelAndView mv, SearchStatus searchStatus,	
-									@RequestParam(value="page", required=false)Integer page,
-									@RequestParam(value="storeNum", required=false)int storeNum,
-									@RequestParam(value="storeSearch", required=false)String storeName,
-									@RequestParam(value="brandCategory", required=false)String storeCategory,
-									@RequestParam(value="status_s",required=false)String status) {
+	@RequestMapping(value="enterStatusUpdate.do", method=RequestMethod.GET)
+	public void enterStatusUpdate(ModelAndView mv,Store newbie, Member stoMem,
+								  HttpServletResponse response,
+								  @RequestParam(value="sto_num")int sto_num,
+								  @RequestParam(value="brand_code")String brand_code,
+								  @RequestParam(value="sto_email")String sto_email,
+								  @RequestParam(value="ceo_name")String ceo_name,
+								  @RequestParam(value="sto_tel")String sto_tel) {
+		
 		response.setContentType("text/html; charset=UTF-8");
-
-		String checkStatus = storeService.checkStatus(storeNum);
 		PrintWriter out;
 
-		if(checkStatus.equals("Y")) {
-			
-		}else if(checkStatus.equals("N")) {
-			//모달창을 띄운다
-			int updateStatus = storeService.updateStatus(storeNum);
+		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);
+		String brand_id = storeLabel.getMenuName();
+		
+		String finalId = brand_id+sto_num;
+		newbie.setSto_num(sto_num);
+		newbie.setUser_id(finalId);
+		int updateStatus = storeService.enterStatusUpdate(newbie);
+		
+		stoMem.setId(finalId);
+		String originPwd = randomPassword(7);
+		System.out.println(originPwd);
+		String encPwd = bcryptPasswordEncoder.encode(originPwd);
 
+		stoMem.setPwd(encPwd);
+		stoMem.setName(ceo_name);
+		stoMem.setEmail(sto_email);
+		stoMem.setTel(sto_tel);
+		
+		if(updateStatus>0) {
+			int insertMember = mService.insertStoreMember(stoMem);
+			if(insertMember>0) {
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('입점처리 되었습니다.'); location.href='home.do';</script>");
+					out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+	}
+	public String randomPassword(int length) {
+		int index = 0; 
+		char[] charset = new char[] {
+			'1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i',
+			'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 		
-		
-		
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0 ;i<length;i++) {
+			index = (int)(charset.length * Math.random());
+			sb.append(charset[index]);
+		}
+		return sb.toString();
 	}
 
 

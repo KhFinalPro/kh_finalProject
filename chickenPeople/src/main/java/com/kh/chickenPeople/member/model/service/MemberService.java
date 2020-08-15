@@ -17,4 +17,6 @@ public interface MemberService {
 
 	int memberJoin(Member m);
 
+	int insertStoreMember(Member stoMem);
+
 }
