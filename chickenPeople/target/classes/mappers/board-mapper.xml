@@ -54,7 +54,7 @@
 	
 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO BOARD
-		VALUES (SEQ_B_NUM.NEXTVAL,#{bWriter},#{bCate},#{bTitle},'test1',0,0,SYSDATE,null,null,'N', NULL)
+		VALUES (SEQ_B_NUM.NEXTVAL,#{bWriter},#{bCate},#{bTitle}, #{bCont},0,0,SYSDATE,null,null,'N', NULL)
 	</insert>
 
 	

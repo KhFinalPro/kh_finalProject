@@ -165,13 +165,13 @@
 	
 	<insert id="storeJoin" parameterType="Store">
 		INSERT INTO STORE_INFO VALUES(
-		SEQ_STO_NUM.NEXTVAL, #{sto_name}, #{sto_tel}, NULL, NULL, #{sto_addr}, #{sto_intro}, NULL, NULL, NULL, NULL, #{ceo_name}, NULL, #{sto_email}, 'N', NULL, #{brand_code}, #{sto_lat}, #{sto_lng})
+		SEQ_STO_NUM.NEXTVAL, #{sto_name}, #{sto_tel}, NULL, NULL, #{sto_addr}, #{sto_intro}, NULL, NULL, 'N', 'N', #{ceo_name}, #{delivery}, #{sto_email}, 'N', NULL, #{brand_code}, #{sto_lat}, #{sto_lng})
 	</insert>
 	<select id="selectStoreLabel" resultMap="StoreLabelResultSet" parameterType="string">
 		SELECT * FROM GIVEID WHERE BRAND_CODE = #{brand_code}
 	</select>
 	<update id="enterStatusUpdate" parameterType="Store">
-		UPDATE STORE_INFO SET APRV_STATUS='Y', ENTER_YN='Y', USER_ID=#{user_id} WHERE STO_NUM=#{sto_num}
+		UPDATE STORE_INFO SET APRV_STATUS='Y', USER_ID=#{user_id} WHERE STO_NUM=#{sto_num}
 	</update>
 	
 </mapper>

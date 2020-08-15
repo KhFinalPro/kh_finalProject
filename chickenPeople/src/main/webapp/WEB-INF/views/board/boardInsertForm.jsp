@@ -48,15 +48,18 @@
 		  transform: translateY(-7px);
 		} 
 	
-		#section{margin: 0 auto; width:80%; text-align: center; margin-top:150px;}
-		#section h1{height: 100px; line-height: 100px; font-size:60px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
+		#section{margin: 0 auto; width:80%; text-align: center; margin-top:100px;}
+		#section h1{height: 100px; line-height: 100px; font-size:30px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;}
         #bContents{margin: 0 auto; width: 100%; text-align: center;}
 
-        #titleDiv #title{font-size: 30px; margin-top: 10px;}
+        #titleDiv #title{margin-top: 10px;}
         #bTitle{height: 40px; font-size: 20px; width: 500px;}
         #bCate{height: 45px;}
 
-        .btn{width:150px; height: 50px; font-size: 20px; font-weight:600; color:#2ac1bc; background-color: white; border-radius: 10px; border: 2px solid black;}
+        .btn{width:150px; height: 50px; font-size: 20px; font-weight:600; color:#2ac1bc; background-color: white; border-radius: 10px; border: 1px solid black;}
+        #title{font-size:20px;}
+        #content_title{font-size:20px;}
+        #titleDiv #bCont{margin-top:10px; font-size:15px;}
 	</style>
 </head>
 <body>
@@ -82,31 +85,34 @@
 
                 <a id="title">제목 : </a>
                 <input type="text" id="bTitle" name="bTitle" size="60" required>
-
+                
 
                 
                 <select name="bCate" id="bCate">
                     <option value="레시피">레시피</option>
                     <option value="꿀팁">꿀팁</option>
                 </select>
-                
-                
+                <br>
+                <a id="content_title">소개 : </a>
+                <textarea id="bCont" name="bCont" cols="50" rows="5" style="resize:none;"></textarea>
+				<!-- <input type="text" id="bCont" name="bCont" required> -->
             
             </div>
             <div id="bContents">
             </div>
             
             <br>
-            <div align="center">
+            <div align="center" id="btn_area">
                 <button type="button" class="btn" onclick="addContent()">내용추가</button>
                 <button type="button" class="btn" onclick="removeTable()">마지막꺼 삭제</button>
-                <input type="submit" class="btn" value="등록하기">&nbsp;
+                
+                <!-- <input type="button" class="btn" id="submitBtn" value="등록하기">&nbsp; -->
                 <!-- <a href="blist.do">목록으로</a> -->
             </div>
         </form>
     </div>
 
-	
+	<%@ include file="../common/footer.jsp"%>
 </body>
 
 <script>
@@ -116,6 +122,19 @@
 	
 	function toBlist(){
 		location.href="boardList.do";
+	}
+	
+	function submitEvent(){
+		if($("#bContents").text() != ""){
+			console.log("file : " + $(":file").val());
+			if($(":file").val() != ""){
+				
+				$("#submitBtn").submit();
+			}
+			
+			alert("내용을 입력해주세요");
+
+		}
 	}
 	
 	// 포스팅을 추가할 때마다 증가 할 전역변수
@@ -131,6 +150,8 @@
                     "<input type='file' class='j" + num + "' name='fileName' onchange='LoadImg(this, " + num + ")'><br>" +
 
                     "<textarea class='i" + num + "' cols='130' rows='5' name='bContent' style='margin-top:20px;'>"+ num +"chapter</textarea>";
+                    
+        $("#btn_area").append("<input type='submit' class='btn' id='submitBtn' value='등록하기'>");
 		$("#bContents").append($content);
 		
 	// 이미지 슬라이더인 id가 slider4인 div에 사진을 포함한 div를 추가
@@ -177,5 +198,9 @@
         deleteDiv.remove();
         deleteFile.remove();
 	}
+	
+	
+			
+
 </script>
 </html>

@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#main_section {margin: auto; clear: both;}
+#main_section {margin: auto; width: 90%; clear: both;}
 
-#main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 2px solid black;}
+#main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid black;}
 
-#main_section>.bungae_area:hover{border:2px solid #2ac1bc;}
+#main_section>.bungae_area:hover{border:1px solid #2ac1bc;}
 
 #main_section>.bungae_area>.brand_logo {text-align:center; width: 30%; height: 180px; margin-left:30px}
 

@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body, hmtl{background: #ecf0f1;}
+/* body, hmtl{background: #ecf0f1;} */
 section{margin-top: 100px;}
 #main_section {margin: auto; width:90%; clear: both;}
 

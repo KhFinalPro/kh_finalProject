@@ -33,6 +33,7 @@
 		
 		#header_address{width: 65%; height: 100%; text-align: center; vertical-align: middle;}
 		#header_address #address{width: 50%; height: 50px; border-radius: 15px; border:2px solid #2ac1bc; font-size:20px; text-align:center;}
+
 		#header_nav{width: 19%;}
 		#header_nav>ul{margin:0px;}
 		#header_nav>ul>li{float:left; list-style:none;}

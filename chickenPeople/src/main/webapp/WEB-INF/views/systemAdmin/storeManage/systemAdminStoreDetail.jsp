@@ -131,10 +131,13 @@
 								<button style="color:green; background-color:#A9F5A9; font-size:15px;"  ><b>영업중</b></button>
 							</c:if>
 							<c:if test="${store.open_yn eq 'N' }">
-								<button style="color:red; background-color:#F5A9A9; font-size:15px;"><b>영업 종료</b></button>
-							</c:if>
-							<c:if test="${store.aprv_status eq 'N' }">
-								<button style="color:orange; background-color:#F2F5A9; font-size:15px;"><b>영업대기</b></button>
+							
+								<c:if test="${store.aprv_status eq 'Y' }">
+									<button style="color:red; background-color:#F5A9A9; font-size:15px;"><b>영업 종료</b></button>
+								</c:if>
+								<c:if test="${store.aprv_status eq 'N' }">
+									<button style="color:orange; background-color:#F2F5A9; font-size:15px;"><b>영업대기</b></button>
+								</c:if>
 							</c:if>
 						</td>
 						<td><b>매장번호</b>&nbsp;&nbsp;&nbsp;${store.sto_num }</td>
@@ -190,7 +193,7 @@
 	            	<td><b>Tel)</b>${store.sto_tel }<br><b>E-mail)</b>${store.sto_email }</td>
 	            </tr>
 	            <tr>
-	                <td style="width: 400px; height: 40px;" ><b>${brandName }</b>브랜드의  <b>30</b>번째 점주님이십니다.</td>
+	                <td style="width: 400px; height: 40px;" ><b>${brandName }</b>브랜드의  <b>${store.sto_num }</b>번째 점주님이십니다.</td>
 	            </tr>
 	        </table>
     	</div>

@@ -20,14 +20,14 @@
     #section .head_title .content{margin-left: 50px; font-size: 25px;}
 	#section .head_title a{margin-left:20px;}
 	
-    .review{width: 80%%; height:300px;}
+    .review{margin: 0 auto; width: 70%; height:300px;}
     .review ul li{float:left; list-style:none; width:49%;}
     .review:nth-child(odd){margin-right:10px;}
     .review ul li img{width: 300px; height: 200px;}
     /* .review ul li .number{font-size:20px; width:100px; height:100px; border-radius:40px; background-color:white; border:1px solid black; text-align:center;} */
-    .review ul li .number{font-size:30px; width:50px; height:50px;  border-radius:25px; background-color: #ffc000; color:white;}
+    .review ul li .number{font-size:20px; width:30px; height:30px;  border-radius:15px; background-color: #ffc000; color:white;}
     .review ul li div{float:left;}
-    .review .review_content{font-size:40px;}
+    .review .review_content{font-size:20px;}
     
     #report_area{float:right;}
     #report_area>#report{width:100px; height:25px;}
@@ -35,8 +35,8 @@
     #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
 	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 
-	#reply_title{color:#735949; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; border-top:1px solid #735949; border-bottom:1px solid #735949;}
-	#reply_area{margin:0 auto; width:100%; height:400px; overflow-y:auto;}
+	#reply_title{color:#735949; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; background-color:#eed48e; border-top:1px solid #735949; border-bottom:1px solid #735949;}
+	#reply_area{margin:0 auto; width:70%; height:400px; overflow-y:auto;}
 	#tung{height:60%; widht:60%; margin-top:100px;}
 	#reply_area .reply{margin-top:20px;}
 	#reply_area .reply>li{list-style:none; text-align:left;}
@@ -66,7 +66,18 @@
             <div class="head_title">
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
-                <a>조회수 : ${board.bCount } </a><a id="like"> 좋아요 : ${board.bHit }</a>
+                <a>조회수 : ${board.bCount } </a>
+                <c:if test="${!empty sessionScope.loginUser}">
+                	<c:if test="${msg == '싫어요' }">
+                		<a id="like"><img id="likeBtn" src="resources/images/like.png" style='width:15px; height:15px;'>${board.bHit }</a>
+                	</c:if>
+                	<c:if test="${msg == '좋아요' }">
+                		<a id="like"><img id="likeBtn" src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+                	</c:if>
+                </c:if>
+                <c:if test="${empty sessionScope.loginUser}">
+                	<a id="like"><img src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+                </c:if>
                 <div id="report_area">
                 	<button id="report">신고</button>
                 </div>
@@ -81,7 +92,7 @@
 	        <% i++;%>
 	        	<ul>
 	        		<li>
-	            		<div class="number"><%=i %>.</div><div class="review_content">${p.bContent }</div>
+	            		<div class="number"><%=i %>.</div><div class="review_content"><pre>${p.bContent }</pre></div>
 	        		</li>
 	        		<li>
 	        			<img src="resources/buploadFiles/${p.upFileName}" alt="">
@@ -173,7 +184,7 @@
   	<jsp:include page="../common/footer.jsp"/>
 </body>
 <script>
-	$("#like").on("click",function(){
+	$(document).on("click","#likeBtn",function(){
 		$id = $("#id").val();
 		$bNum = $("#bNum").val();
 		console.log($id);
@@ -183,11 +194,16 @@
 			type:"post",
 			data:{id:$id, bNum:$bNum},
 			success:function(data){
-				if(data.msg == "성공"){
+				if(data.msg == "좋아요"){
+					$("#like").children("#likeBtn").remove();
 					$("#like").text("");
-					$("#like").text(" 좋아요 : " + data.count);
+					$("#like").append("<img id='likeBtn' src='resources/images/like.png' style='width:15px; height:15px;'>"+data.count);
+					
 				}
-				else{
+				else if(data.msg == "싫어요"){
+					$("#like").children("#likeBtn").remove();
+					$("#like").text("");
+					$("#like").append("<img id='likeBtn' src='resources/images/dislike.png' style='width:15px; height:15px;'>"+data.count);
 					
 				}
 			},
@@ -249,6 +265,8 @@
 					    							"<p><input type='hidden' id='rep1_num' value="+ data.currval +"><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
 		    									"</li>"+
 									    	"</ul>");
+					
+					$("#replay_content").val("");
 				},
 				error:function(data){
 					
