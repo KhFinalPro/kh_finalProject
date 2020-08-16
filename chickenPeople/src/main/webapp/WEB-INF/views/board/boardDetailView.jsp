@@ -21,7 +21,8 @@
 	#section .head_title a{margin-left:20px; margin-right:20px;}
 	.head_title_div{float:left;}
 	.head_like_good{margin: 0 auto; width:80%; margin-top:15px; text-align:right;}
-	
+	.head_like_good a{font-size:20px;}
+	.head_like_good a img{width:20px; height:20px;}
 	
     .review{margin: 0 auto; width: 70%; height:300px;}
     .review ul li{float:left; list-style:none; width:49%;}
@@ -39,6 +40,7 @@
 	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 
 	#reply_title{color:white; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; background-color:#EE5917; border-radius:15px;}
+	#reply_msg{text-align:right; color:black; width:100%; margin:0; margin-top:5px; height:20px; line-height:20px; font-size:15px;}
 	#reply_area{margin:0 auto; width:70%; height:400px; overflow-y:auto;}
 	#tung{height:60%; widht:60%; margin-top:100px;}
 	#reply_area .reply{margin-top:20px;}
@@ -75,14 +77,14 @@
 	                <a>조회수 : ${board.bCount } </a>
 	                <c:if test="${!empty sessionScope.loginUser}">
 	                	<c:if test="${msg == '싫어요' }">
-	                		<a id="like"><img id="likeBtn" src="resources/images/like.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                		<a id="like"><img id="likeBtn" src="resources/images/like.png" style='width:20px; height:20px;'>${board.bHit }</a>
 	                	</c:if>
 	                	<c:if test="${msg == '좋아요' }">
-	                		<a id="like"><img id="likeBtn" src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                		<a id="like"><img id="likeBtn" src="resources/images/dislike.png" style='width:20px; height:20px;'>${board.bHit }</a>
 	                	</c:if>
 	                </c:if>
 	                <c:if test="${empty sessionScope.loginUser}">
-	                	<a id="like"><img src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                	<a id="like"><img src="resources/images/dislike.png" style='width:20px; height:20px;'>${board.bHit }</a>
 	                </c:if>
                 </div>
                 <div id="report_area" class="head_title_div">
@@ -110,7 +112,9 @@
 	        </c:forEach>
         </div>
         <br clear="both">
+        
         <p id="reply_title">reply</p>
+        <P id="reply_msg">댓글을 클릭하여 댓글을 작성해주세요.</P>
 	    <div id="reply_area">
 	    	<c:if test="${!empty replyList }">
 	    		<c:forEach var="r" items="${replyList }">
@@ -204,13 +208,13 @@
 				if(data.msg == "좋아요"){
 					$("#like").children("#likeBtn").remove();
 					$("#like").text("");
-					$("#like").append("<img id='likeBtn' src='resources/images/like.png' style='width:15px; height:15px;'>"+data.count);
+					$("#like").append("<img id='likeBtn' src='resources/images/like.png' style='width:20px; height:20px;'>"+data.count);
 					
 				}
 				else if(data.msg == "싫어요"){
 					$("#like").children("#likeBtn").remove();
 					$("#like").text("");
-					$("#like").append("<img id='likeBtn' src='resources/images/dislike.png' style='width:15px; height:15px;'>"+data.count);
+					$("#like").append("<img id='likeBtn' src='resources/images/dislike.png' style='width:20px; height:20px;'>"+data.count);
 					
 				}
 			},
