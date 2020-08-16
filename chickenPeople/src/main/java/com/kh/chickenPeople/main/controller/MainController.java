@@ -18,6 +18,12 @@ public class MainController {
 	@Autowired
 	MainService mainService;
 	
+	@RequestMapping("mypage.do")
+	public String myPage()
+	{
+		return "mypage/mypageMain";
+	}
+	
 	@RequestMapping("searchStore.do")
 	public ModelAndView searchStore(ModelAndView mv, String brand_code, String menu_name) {
 		

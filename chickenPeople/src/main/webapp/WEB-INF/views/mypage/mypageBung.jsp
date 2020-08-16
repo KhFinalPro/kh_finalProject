@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style>
 
-#main_section {margin: auto; width: 90%; clear: both;}
+#main_section {margin: auto; width: 90%; clear: both; margin-top:100px;}
 
 
 #main_section>.bungae_area {border-radius: 10px; display: inline-block; margin: 0; margin-bottom: 10px; width: 49.4%; height: 230px; border: 1px solid black;}
@@ -41,7 +41,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
-	<jsp:include page="../common/sidebar.jsp"/>
+	
 	
 	<section>
 		<c:if test="${!empty bungList }">

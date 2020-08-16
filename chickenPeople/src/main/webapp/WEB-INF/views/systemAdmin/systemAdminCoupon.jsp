@@ -13,9 +13,9 @@
 	#coupon_nv #couponCreate{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
 	#coupon_nv #couponCreate:hover{color:white; background-color:#2e4ead;}
 	.coupon{width: 49.5%; height: 150px; margin-bottom:10px; display:inline-block;}
-	.coupon img{width:100%; height: 150px;}
+	.coupon img{width:100%; height: 200px; border-radius:20px;}
 	#coupon_area{margin:0 auto; width:90%; height: 500px; text-align:center;}
-	#page_area{margin:0 auto; width:50%; text-align:center;}
+	#page_area{position:fixed; top:800px; left:28.5%; margin:0 auto; width:50%; text-align:center;}
 	.page_btn{font-size:30px; font-weight:600; margin-right:5px;}
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
