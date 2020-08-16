@@ -110,6 +110,7 @@ $(document).ready(function(){
     max-width: 900px;
     margin: 40px auto;
     padding: 0 10px;
+    margin-top:60px;
   }
 
   .con{
@@ -129,7 +130,6 @@ $(document).ready(function(){
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
-<jsp:include page="../common/sidebar.jsp"/>
 
 <br>
 <br>

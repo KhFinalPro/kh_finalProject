@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:23 GMT+09:00 2020
 jackson-databind-2.11.0.jar>central=
 jackson-databind-2.11.0.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:28:30 GMT+09:00 2020
+jackson-databind-2.11.0.jar>central=
+jackson-databind-2.11.0.pom>central=
+jackson-databind-2.11.0-sources.jar>central=
+>>>>>>> refs/remotes/origin/master

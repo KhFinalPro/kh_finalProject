@@ -13,8 +13,8 @@
 	table .label{width:40%; text-align:right; font-size:25px; font-weight:600; color:#2e4ead;}
 	table .input{padding-left:15px;}
 	table input{width:50%; height:50px; font-size:25px;}
-	#coup_area{margin:0 auto; width:90%; height:300px;}
-	form{}
+	#coup_area{margin:0 auto; width:90%; height:300px; text-align:center;}
+	form{margin-top:150px;}
 	#create_coup_area{position:fixed; top: 110px; right:50px; width:150px; height:50px;}
 	#create_coup_btn{width: 100%; height:100%; font-size: 25px; font-weight:600; border:0px; color:#2e4ead;}
 	#create_coup_btn:hover{color:white; background-color:#2e4ead;}
@@ -31,23 +31,23 @@
 				<table>
 					<tr>
 						<td class="label">쿠폰 이름 : </td>
-						<td class="input"><input type="text" name="coup_name"></td>
+						<td class="input"><input type="text" name="coup_name" required></td>
 					</tr>
 					<tr>
 						<td class="label">쿠폰 내용 : </td>
-						<td class="input"><textarea name="coup_cont" cols="41" rows="5"></textarea></td>
+						<td class="input"><textarea name="coup_cont" cols="41" rows="5" required></textarea></td>
 					</tr>
 					<tr>
 						<td class="label">할인 금액 : </td>
-						<td class="input"><input type="number" name="coup_disc" min="0" step="100" style="text-align:right;"></td>
+						<td class="input"><input type="number" name="coup_disc" min="0" step="100" style="text-align:right;" required></td>
 					</tr>
 					<tr>
 						<td class="label">쿠폰 배너 : </td>
-						<td class="input"><input type="file" id="file" name="uploadFile"></td>
+						<td class="input"><input type="file" id="file" name="uploadFile" required></td>
 					</tr>
 					<tr>
 						<td class="label">유효기간(발급일로 몇일) : </td>
-						<td class="input"><input type="number" name="coup_term" min="1" value="1" style="text-align:right;">일</td>
+						<td class="input"><input type="number" name="coup_term" min="1" value="1" style="text-align:right;" required>일</td>
 					</tr>
 				</table>
 			

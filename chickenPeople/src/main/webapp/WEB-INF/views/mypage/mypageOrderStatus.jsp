@@ -9,7 +9,7 @@
 <title>배달현황</title>
 <style>
 	/* delivery section*/
-    #my_delivery{margin: 0 auto; margin-top:20px; width: 70%; height: 700px; overflow: auto;}
+    #my_delivery{margin: 0 auto; margin-top:20px; width: 70%; height: 700px; overflow: auto; margin-top:100px;}
     #my_delivery #my_delivery_head{margin: 0 auto; width: 100%; height: 80px; line-height: 40px; background-color: white; box-shadow: 0px 10px 5px rgb(235, 235, 232);}
     #my_delivery #my_delivery_head>h2{margin-left: 40px; float: left;}
 
@@ -46,7 +46,7 @@
 	<input type="hidden" id="sto_addr" value="${menuList.get(0).sto_addr }"/>
 	<jsp:include page="../common/header.jsp"/>
 	
-	<jsp:include page="../common/sidebar.jsp"/>
+	
 	
 	
 	<c:if test="${!empty paymentList }">

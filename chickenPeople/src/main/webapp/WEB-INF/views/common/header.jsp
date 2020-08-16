@@ -92,7 +92,7 @@
                 		<li>
                 			<c:if test="${!empty sessionScope.loginUser }">
                 				<c:if test="${sessionScope.loginUser.uLvl == '소비자'}">
-	                				<a href="calender.do"><img src="resources/images/hMypage.png"></a>
+	                				<a href="mypage.do"><img src="resources/images/hMypage.png"></a>
 	                			</c:if>                			
                 			</c:if>
                 		</li>
