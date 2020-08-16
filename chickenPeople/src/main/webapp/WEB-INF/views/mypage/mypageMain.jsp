@@ -89,6 +89,12 @@
 	            </div>
 	            <p>공지사항</p>
 	        </div>
+	        <div class="myPage_item" id="myPage_chatting">
+	            <div>
+	                <img src="resources/images/chatting.png" alt="">
+	            </div>
+	            <p>1:1 문의</p>
+	        </div>
 	    </div>
 	</section>
 	
@@ -140,6 +146,10 @@
 		$("#myPage_notice").on("click",function(){
 			$id = $("#id").val();
 			location.href="nList.do";
+		})
+		$("#myPage_chatting").on("click",function(){
+			var loginUser="<c:out value='${loginUser.id}'/>";
+    		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
 		})
 	})
 	

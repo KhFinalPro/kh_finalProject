@@ -68,6 +68,7 @@
         $(function(){
             $(".coupon").on("click",function(){
                 alert($(this).text());
+                
             })
         })
     </script>

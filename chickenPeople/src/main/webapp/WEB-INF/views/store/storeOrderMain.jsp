@@ -429,9 +429,14 @@
 				submenu.slideDown();
 			}
 		});
-		
+		var i = 0;
 		$(document).on("click",".menu_click",function(){
+			i++;
 			row = $("<div class='row' style='text-align:left;'></div");
+			var list_group = $("<ul class='list_group'>");
+			var list_group_item = $("<li class='list_group_item'></li>");
+			var col = $("<div class='price col' style='float:left; width: 100%; text-align:left;'>");
+			
 			
 			$menu_num = $(this).children("#menu_num").val();
 			$menu_name = $(this).children("#menu_name").val();
@@ -439,10 +444,25 @@
 			$brand_code = $("#brand_code").val();
 			$modal = $("#modalReview");
 
-			row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'><input type='hidden' name='price' value='"+$menu_price+"'> : ");
+			row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px; font-weight:600;'>"+
+						"<input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'>"+
+						"<input type='hidden' name='price' value='"+$menu_price+"'> : <br>");
 			
 			//금액
 			price += $menu_price;
+			
+			//메뉴명
+			list_group_item.append(row);
+			
+			
+			//금액
+			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' class='price"+i+"' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
+			col.append(item_price);
+			list_group_item.append(col);
+			
+			list_group.append(list_group_item);
+			list_group.append("<br clear='both'>");
+			$(".list_area").append(list_group);
 			
 			$("#modalReview").toggle(
 				function(){
@@ -461,7 +481,10 @@
 							var sideMenu_list = $("<ul id='modal_ul'></ul>");
 							
 							for(var i = 0; i<data.sideMenu.length; i++){
-								sideMenu_list.append("<li><input type='checkbox' id='side_menu' class='side_menu' name='menu_num' value='"+data.sideMenu[i].menu_num+"'><a>"+data.sideMenu[i].menu_name+"</a> +<span>"+data.sideMenu[i].menu_price+"</span>원</li>");	
+								sideMenu_list.append("<li>"+
+													"<input type='checkbox' id='side_menu"+i+"' class='side_menu' name='menu_num' value='"+data.sideMenu[i].menu_num+"'>"+
+													"<a>"+data.sideMenu[i].menu_name+"</a> +<span>"+data.sideMenu[i].menu_price+"</span>원"+
+													"</li>");	
 							}
 							$("#menu_option").append(sideMenu_list);
 						},
@@ -476,48 +499,50 @@
 			);
 		})
 		
-		
+
 		//사이드메뉴 체크박스
 		$(document).on("click",".side_menu",function(){
+			$sidemenu = $(this).attr("id");
 			$menu_name = $(this).parent("li").children("a").text();
 			$menu_num = $(this).val();
 			$menu_price = parseInt($(this).parent("li").children("span").text());
 			
-			if($("input[type='checkbox']").is(":checked") == true) {
-				row.append("<input type='text' class='menu_name' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'><input type='hidden' class='menu_name' name='menu_num' value='"+ $menu_num +"'><input type='hidden' name='price' value='"+$menu_price+"'> : ");
+			
+			
+			if($(this).is(":checked") == true) {
+				price += $menu_price; 
+				console.log("추가");
+				console.log($sidemenu);
+
+				row.append("<div class='"+$sidemenu+i+"'><input type='text' class='"+$sidemenu+"' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'>"+
+							"<input type='hidden' class='"+$sidemenu+"' name='menu_num' value='"+ $menu_num +"'>"+
+							"<input type='hidden' class='"+$sidemenu+"' name='price' value='"+$menu_price+"'><br></div>");
+				
+				
+
+			}
+			else if($(this).is(":checked") == false){
+				console.log("제거");
+				
+				price -= $menu_price;
+				$side_menu = "."+$sidemenu+i;
+				console.log($side_menu);
+
+				$(".row").children($side_menu).remove();
+
+
 			}
 			
-			price += $menu_price; 
 		})
 		
 		
 		
 		//담기버튼
 		$(document).on("click","#order_put",function(){
-			
-			/* for(var i = 0; i < $("input[type='checkbox']").filter(":checked").size(); i++){
-				console.log(i);	
-				
-			} */
-				
-			
+			$price = ".price"+i
 			$("#total_price").children("span").remove();
-			var list_group = $("<ul class='list_group'>");
-			var list_group_item = $("<li class='list_group_item'></li>");
-			var col = $("<div class='price col' style='float:left; width: 100%; text-align:left;'>");
 			
-			//메뉴명
-			list_group_item.append(row);
-									
-			
-			//금액
-			var item_price = $("<a><img class='menu_cancel' src='resources/images/close.png' style='width:20px; height:20px;'/></a><span><input type='text' value='"+price+"' style='border:0px; font-size:20px; width:100px; text-align:right;'>원</span>");
-			col.append(item_price);
-			list_group_item.append(col);
-			
-			list_group.append(list_group_item);
-			list_group.append("<br clear='both'>");
-			$(".list_area").append(list_group);
+			$($price).val(price);
 			$("#modalReview").css('display','none');
 			
 			total_price += price;
