@@ -368,7 +368,7 @@
 					$(".re_reply_content_area").children(".re_re_reply_btn").remove();
 					$(".br").remove();
 					$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
-										  								 "<li class='re_reply_item'>"+
+										  								 "<li class='re_reply_item' style='color:blue;'>"+
 											  								 "<p>"+
 									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
 									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+

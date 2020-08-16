@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
 	/* body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;} */
-	#coupon_area{margin: 0 auto; margin-top: 100px; width: 53%; text-align: center;}
-	#coupon_area p{margin: 0; width: 100%; height: 50px; line-height: 50px; text-align: center; font-size: 20px; font-weight: 600; color:#735949;}
+	#coupon_area{margin: 0 auto; margin-top: 150px; width: 53%; text-align: center;}
+	#coupon_area p{font-size:25px; font-weight:600; color: #735949; box-shadow: 0px 5px 5px rgb(226, 226, 226); height:40px; line-height:40px;}
 	/* #coupon_area .coupon{width: 1000px; height: 300px; margin-bottom: 10px; background-image: url("../workspace/images/coupon1.png");} */
 	#coupon_area .coupon{width: 1000px; height: 100%; margin-bottom: 10px;}
 	#coupon_area .coupon img{border-radius: 20px; transition: box-shadow 0.5s; border:1px solid black;}

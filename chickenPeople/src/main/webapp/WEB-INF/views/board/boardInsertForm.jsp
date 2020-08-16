@@ -56,7 +56,7 @@
         #bTitle{height: 40px; font-size: 20px; width: 500px;}
         #bCate{height: 45px;}
 
-        .btn{width:150px; height: 50px; font-size: 20px; font-weight:600; color:#2ac1bc; background-color: white; border-radius: 10px; border: 1px solid black;}
+        .btn{width:150px; height: 50px; font-size: 20px; font-weight:600; color:#2ac1bc; background-color: #735949; color:white; border-radius: 10px; border: 0px;}
         #title{font-size:20px;}
         #titleDiv #bCont{margin-top:10px; font-size:15px;}
         
@@ -66,7 +66,7 @@
         
         #bContents{width:700px; height:500px; overflow-y:auto;}
         
-        form{margin:0 auto; width:80%; border:1px solid black;}
+        form{margin:0 auto; width:80%;}
 	</style>
 </head>
 <body>
