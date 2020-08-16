@@ -32,6 +32,10 @@
 		<result property="cat_code" column="CAT_CODE"/>
 		<result property="cat_name" column="CAT_NAME"/>
 	</resultMap>
+	<resultMap type="StoreLabel" id="StoreLabelResultSet">
+		<id property="menuId" column="BRAND_CODE"/>
+		<result property="menuName" column="BRAND_ID"/>
+	</resultMap>
 	
 	<resultMap type="StoreLike" id="StoreLikeResultSet">
 		<id property="id" column="USER_ID"/>
@@ -163,6 +167,12 @@
 		INSERT INTO STORE_INFO VALUES(
 		SEQ_STO_NUM.NEXTVAL, #{sto_name}, #{sto_tel}, NULL, NULL, #{sto_addr}, #{sto_intro}, NULL, NULL, 'N', 'N', #{ceo_name}, #{delivery}, #{sto_email}, 'N', NULL, #{brand_code}, #{sto_lat}, #{sto_lng})
 	</insert>
+	<select id="selectStoreLabel" resultMap="StoreLabelResultSet" parameterType="string">
+		SELECT * FROM GIVEID WHERE BRAND_CODE = #{brand_code}
+	</select>
+	<update id="enterStatusUpdate" parameterType="Store">
+		UPDATE STORE_INFO SET APRV_STATUS='Y', USER_ID=#{user_id} WHERE STO_NUM=#{sto_num}
+	</update>
 	
 </mapper>
 

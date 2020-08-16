@@ -1,50 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Wed Aug 12 11:05:01 KST 2020
->>>>>>>=refs/remotes/origin/master
-=======
-<<<<<<< HEAD
-#Wed Aug 12 10:01:18 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:51 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-=======
-#Wed Aug 12 10:01:18 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:51 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-=======
-#Thu Aug 13 10:06:54 KST 2020
->>>>>>>=refs/remotes/origin/master
->>>>>>> refs/remotes/origin/dev960103
+#Sun Aug 16 17:28:02 GMT+09:00 2020
 ezmorph-1.0.4-sources.jar>central=
-<<<<<<< HEAD
-<<<<<<< HEAD
-ezmorph-1.0.4-javadoc.jar>central=
-=======
 ezmorph-1.0.4.pom>central=
->>>>>>> refs/remotes/origin/master
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
-ezmorph-1.0.4-javadoc.jar>central=
->>>>>>> refs/remotes/origin/dev960103
 ezmorph-1.0.4.jar>central=
-ezmorph-1.0.4.pom>central=
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>> refs/remotes/origin/dev960103

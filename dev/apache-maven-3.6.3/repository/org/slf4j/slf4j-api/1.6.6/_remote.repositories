@@ -1,43 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Wed Aug 12 11:03:17 KST 2020
->>>>>>>=refs/remotes/origin/master
-slf4j-api-1.6.6-javadoc.jar>central=
-=======
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/master
-#Wed Aug 12 10:01:17 GMT+09:00 2020
-=======
-#Wed Aug 12 09:23:54 GMT+09:00 2020
+#Sun Aug 16 17:26:36 GMT+09:00 2020
 slf4j-api-1.6.6-sources.jar>central=
 slf4j-api-1.6.6.pom>central=
->>>>>>> refs/remotes/origin/master
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
-#Thu Aug 13 10:05:45 KST 2020
->>>>>>>=refs/remotes/origin/master
-slf4j-api-1.6.6-javadoc.jar>central=
->>>>>>> refs/remotes/origin/dev960103
 slf4j-api-1.6.6.jar>central=
-slf4j-api-1.6.6.pom>central=
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-slf4j-api-1.6.6-sources.jar>central=
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
-slf4j-api-1.6.6-sources.jar>central=
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>> refs/remotes/origin/dev960103

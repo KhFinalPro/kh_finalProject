@@ -1,36 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Wed Aug 12 11:02:50 KST 2020
-=======
-<<<<<<< HEAD
-#Wed Aug 12 10:01:16 GMT+09:00 2020
-=======
-#Wed Aug 12 09:23:41 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-=======
-#Wed Aug 12 10:01:16 GMT+09:00 2020
-=======
-#Wed Aug 12 09:23:41 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
-=======
-#Thu Aug 13 10:05:20 KST 2020
->>>>>>> refs/remotes/origin/dev960103
+#Sun Aug 16 17:26:16 GMT+09:00 2020
 spring-core-5.2.7.RELEASE.jar>central=
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-spring-core-5.2.7.RELEASE-javadoc.jar>central=
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
-spring-core-5.2.7.RELEASE-javadoc.jar>central=
->>>>>>> refs/remotes/origin/dev960103
+spring-core-5.2.7.RELEASE-sources.jar>central=
 spring-core-5.2.7.RELEASE.pom>central=
->>>>>>>=refs/remotes/origin/master
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
