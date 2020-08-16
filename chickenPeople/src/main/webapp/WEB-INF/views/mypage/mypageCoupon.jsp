@@ -6,7 +6,7 @@
     <head>
         <style>
         	/* body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;} */
-            #coupon_area{margin: 0 auto; margin-top: 20px; width: 53%; text-align: center;}
+            #coupon_area{margin: 0 auto; margin-top: 100px; width: 53%; text-align: center;}
             #coupon_area>h1{font-size:100px; margin-top: 200px; margin-bottom:200px;}
             #coupon_area_title{margin: 0; width: 100%; height: 50px; line-height: 50px; text-align: center; font-size: 40px; font-weight: 600;}
             /* #coupon_area .coupon{width: 1000px; height: 300px; margin-bottom: 10px; background-image: url("../workspace/images/coupon1.png");} */
@@ -23,7 +23,7 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/> 
-    <jsp:include page="../common/sidebar.jsp"/> 
+   
     
         <section id="coupon_area">
 			<c:if test="${!empty myCoupon}">
