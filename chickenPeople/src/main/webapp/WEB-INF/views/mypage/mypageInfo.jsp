@@ -108,7 +108,7 @@
                         <label>비밀번호</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="pwd" name="pwd" placeholder="${sessionScope.loginUser.pwd }" required>
+                        <input type="password" id="pwd" name="pwd" value="${sessionScope.loginUser.pwd }" required>
                     </td>
                 </tr>
                 <tr>
@@ -116,7 +116,7 @@
                         <label>비밀번호 확인</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="pwd_check" name="pwd_check" placeholder="${sessionScope.loginUser.pwd }" required>
+                        <input type="password" id="pwd_check" name="pwd_check" value="${sessionScope.loginUser.pwd }" required>
                     </td>
                 </tr>
                 <tr>
@@ -124,7 +124,7 @@
                         <label>이름</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="name" name="name" placeholder="${sessionScope.loginUser.name }" required>
+                        <input type="text" id="name" name="name" value="${sessionScope.loginUser.name }" required>
                     </td>
                 </tr>
                 <tr>
@@ -132,7 +132,7 @@
                         <label>이메일</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="email" id="email" name="email" placeholder="${sessionScope.loginUser.email }" required>
+                        <input type="email" id="email" name="email" value="${sessionScope.loginUser.email }" required>
                     </td>
                 </tr>
                 <tr>
@@ -140,7 +140,7 @@
                         <label>휴대폰</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="tel" name="tel" placeholder="${sessionScope.loginUser.tel }"required>
+                        <input type="tel" id="tel" name="tel" value="${sessionScope.loginUser.tel }"required>
                     </td>
                 </tr>
                 <tr>
@@ -152,7 +152,7 @@
                 			<img id="contentImg" src="resources/propic/${sessionScope.loginUser.pic}" width="225px" height="225px">
                 		</div>
                 		<div id="fileArea">
-							<input type="file" id="pic" name="pic" onchange="LoadImg(this)">
+							<input type="file" id="propic" name="propic" onchange="LoadImg(this)">
 						</div>
                 	</td>
                 </tr>
@@ -222,53 +222,6 @@
             });
          
             
-	    
-
-	    
-	    
-	    
-	    $(function(){
-	    	var latlng = "";
-	    	var lat = "";
-	    	var lng = "";
-	    	$("#addr2").on("blur",function(){
-	    		
-	    		var addr1 = $("#addr1").val();
-	    		
-				var mapContainer = document.getElementById('map');
-				var mapOption = {
-				    center: new daum.maps.LatLng(37.450701, 126.570667),
-				    level: 5
-				};  
-				
-				var map = new daum.maps.Map(mapContainer, mapOption); 
-				
-				var geocoder = new daum.maps.services.Geocoder();
-				var listData = [
-					addr1
-				];
-				
-				listData.forEach(function(addr, index) {
-				    geocoder.addressSearch(addr, function(result, status) {
-				        if (status === daum.maps.services.Status.OK) {
-				            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-				
-							latlng = coords;
-							lng = latlng.Ga;
-							lat = latlng.Ha;
-							console.log(latlng);
-							
-							$("#lat").remove();
-							$("#lng").remove();
-							
-							$("#memberJoin").append("<input type='hidden' id='lat' name='lat' value='"+lat+"'>");
-							$("#memberJoin").append("<input type='hidden' id='lng' name='lng' value='"+lng+"'>");
-				        } 
-				    });
-				});
-	    		
-	    	})
-	    })
 	    
 	    $(function(){
 						$("#fileArea").hide();
