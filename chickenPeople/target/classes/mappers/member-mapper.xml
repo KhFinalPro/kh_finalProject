@@ -68,4 +68,9 @@
 		FROM MEMBER
 	</select>
   
+  	<update id="mypageUpdate" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_NAME = #{name}, USER_PWD = #{pwd}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
+		WHERE USER_ID = #{id};
+	</update>
 </mapper>

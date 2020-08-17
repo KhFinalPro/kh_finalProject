@@ -122,12 +122,10 @@
 		<div class="main_container">
                 <div class="item">
                     <div class="wrapper1">
-                        <br>
+                        
                         
                         <div class="MenuTitle">메뉴리스트</div>
-                        <br>
-                        <br>
-                        <br>
+                      
                         <br>
                         <div class="searchMenu">
                             <ul>

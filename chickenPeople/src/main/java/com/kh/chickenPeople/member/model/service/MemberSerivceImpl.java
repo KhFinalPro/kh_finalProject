@@ -49,5 +49,11 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.insertStoreMember(stoMem);
 	}
 
+	@Override
+	public int mypageUpdate(Member m) {
+		
+		return mDao.mypageUpdate(m);
+	}
+
 
 }

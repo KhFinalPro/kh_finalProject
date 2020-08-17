@@ -19,4 +19,6 @@ public interface MemberService {
 
 	int insertStoreMember(Member stoMem);
 
+	int mypageUpdate(Member m);
+
 }

@@ -40,6 +40,11 @@ public  class MemberDao {
 		return sqlSessionTemplate.insert("memberMapper.insertStoreMember",stoMem);
 	}
 
+	public int mypageUpdate(Member m) {
+		
+		return sqlSessionTemplate.update("memberMapper.mypageUpdate", m);
+	}
+
 	
 	
 //	@Transactional

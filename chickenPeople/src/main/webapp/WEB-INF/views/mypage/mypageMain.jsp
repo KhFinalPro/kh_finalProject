@@ -111,7 +111,7 @@
 	$(function(){
 		$("#member").on("click",function(){
 			$id = $("#id").val();
-			location.href="";
+			location.href="mypageInfo.do?id="+$id;
 		})
 		
 		$("#my_address").on("click",function(){

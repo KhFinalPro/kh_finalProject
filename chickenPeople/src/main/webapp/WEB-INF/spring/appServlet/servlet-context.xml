@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -45,6 +46,14 @@
 		</websocket:handshake-interceptors>
 		<websocket:sockjs/>
 	</websocket:handlers>
+	
+	<!-- 중복로그인 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="doLoginView.do" />
+			<beans:bean class="com.kh.chickenPeople.common.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
    
 	
 </beans:beans>

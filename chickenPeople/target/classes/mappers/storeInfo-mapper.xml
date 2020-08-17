@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="storeInfoMapper">
+
+<resultMap id="storeInfoResultMap" type="StoreInfo">
+	<id property="userId" column="USER_ID"/>
+	<result property="stoNum" column="STO_NUM"/>
+	<result property="stoName" column="STO_NAME"/>
+	<result property="stoTel" column="STO_TEL"/>
+	<result property="stoOpen" column="STO_OPEN"/>
+	<result property="stoClose" column="STO_CLOSE"/>
+	<result property="stoAddr" column="STO_ADDR"/>
+	<result property="stoIntro" column="STO_INTRO"/>
+	<result property="ordLimit" column="ORD_LIMIT"/>
+	<result property="enterYN" column="ENTER_YN"/>
+	<result property="openYN" column="OPEN_YN"/>
+	<result property="ceoName" column="CEO_NAME"/>
+	<result property="stoEmail" column="STO_EMAIL"/>
+	<result property="applyStatus" column="APRV_STATUS"/>
+	<result property="brandCode" column="BRAND_CODE"/>
+	<result property="brandName" column="BRAND_NAME"/>
+	<result property="brandPic" column="BRAND_PIC"/>
+</resultMap>
+
+
+<select id="storeInfoList" resultMap="storeInfoResultMap"  parameterType="String">
+SELECT B.BRAND_PIC,B.BRAND_NAME,SI.STO_NUM,SI.STO_NAME,SI.STO_TEL,SI.STO_OPEN,SI.STO_CLOSE,SI.STO_ADDR,SI.STO_INTRO,SI.ORD_LIMIT,SI.ENTER_YN,SI.OPEN_YN,SI.CEO_NAME,SI.DELIVERY,SI.STO_EMAIL,SI.APRV_STATUS,SI.USER_ID,SI.BRAND_CODE
+FROM STORE_INFO SI
+JOIN BRAND B ON (SI.BRAND_CODE=B.BRAND_CODE)
+WHERE USER_ID=#{userId}
+</select>
+
+<!-- <update id="modifyInfo" parameterType="hashmap">
+UPDATE STORE_INFO
+SET
+STO_INTRO = #{stoInfoNotice}
+WHERE  USER_ID=#{userId}
+</update> -->
+
+<update id="modifyInfo" parameterType="StoreInfo">
+UPDATE STORE_INFO
+SET
+STO_TEL=#{stoTel},STO_OPEN=#{stoOpen},STO_CLOSE=#{stoClose},STO_INTRO = #{stoIntro}
+WHERE  USER_ID=#{userId}
+</update>
+
+</mapper>
