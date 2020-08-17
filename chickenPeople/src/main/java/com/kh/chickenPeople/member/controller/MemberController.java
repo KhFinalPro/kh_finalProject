@@ -240,10 +240,10 @@ public class MemberController {
 			
 		}
 		
+		System.out.println("M"+ m);
 		
 		int result = mService.mypageUpdate(m);
-
-		
+		System.out.println("RESULT" + result);
 		if(result > 0) {
 			return "redirect:/home.do";
 		}else {

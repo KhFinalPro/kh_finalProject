@@ -1,24 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sat Aug 15 21:52:22 GMT+09:00 2020
+#Mon Aug 17 16:03:09 KST 2020
 mybatis-3.4.6.jar>central=
-mybatis-3.4.6.pom>central=
-=======
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sun Aug 16 17:27:06 GMT+09:00 2020
-mybatis-3.4.6.jar>central=
+>>>>>>>=refs/remotes/origin/dev22222222222222
 mybatis-3.4.6-sources.jar>central=
 mybatis-3.4.6.pom>central=
->>>>>>> refs/remotes/origin/master
-=======
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:35:19 KST 2020
-=======
-#Sun Aug 16 17:27:06 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-mybatis-3.4.6.jar>central=
-mybatis-3.4.6-sources.jar>central=
-mybatis-3.4.6.pom>central=
->>>>>>> refs/remotes/origin/dev22222222222222
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

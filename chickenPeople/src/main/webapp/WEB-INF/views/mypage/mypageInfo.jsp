@@ -149,7 +149,7 @@
                 	</td>
                 	<td id="inp" class="ltd" rowspan="3">
                 		<div id="contentImgArea">
-                			<img id="contentImg" src="resources/propic/${sessionScope.loginUser.pic}" width="225px" height="225px">
+                			<img id="contentImg" src="resources/propic/${loginUser.pic}" width="225px" height="225px">
                 		</div>
                 		<div id="fileArea">
 							<input type="file" id="propic" name="propic" onchange="LoadImg(this)">
