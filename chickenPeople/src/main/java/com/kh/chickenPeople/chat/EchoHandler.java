@@ -16,6 +16,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.chickenPeople.chat.model.service.ChatService;
 import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
+import com.kh.chickenPeople.member.model.vo.Member;
 
 @Controller
 public class EchoHandler extends TextWebSocketHandler{
@@ -35,7 +36,10 @@ public class EchoHandler extends TextWebSocketHandler{
 		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
-		   String name = (String) session.getAttributes().get("loginUserId");
+		   Member member =(Member) session.getAttributes().get("loginUser");
+		   System.out.println(member);
+		   String name = member.getId();
+		   String pic = member.getPic();
 		   
 		   sessionList.add(map);
 		   
@@ -52,7 +56,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			   for(int j = 0 ; j < beforeDate.size(); j++) {
 				   if(name.equals(sess.getAttributes().get("loginUserId"))) {
 					   if(ChattingRoom_no.equals(beforeDate.get(j).getChattingRoom_no())) {		//그동안 불러온 대화목록에서 방번호가 일치할 경우 대화내용 불러오기
-						   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time();
+						   String beforeMsg = "msg"+"|"+beforeDate.get(j).getChattingRoom_no()+"|"+beforeDate.get(j).getTalker()+"|"+beforeDate.get(j).getChat_msg()+"|"+beforeDate.get(j).getSend_time()+"|"+pic;
 						   sess.sendMessage(new TextMessage(beforeMsg));
 						   
 					   	}else {
