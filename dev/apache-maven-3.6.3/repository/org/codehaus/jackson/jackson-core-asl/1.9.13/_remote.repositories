@@ -1,9 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:36:45 KST 2020
-=======
-#Sun Aug 16 17:28:27 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Mon Aug 17 14:37:54 KST 2020
 jackson-core-asl-1.9.13.jar>central=
 jackson-core-asl-1.9.13.pom>central=
+>>>>>>>=refs/remotes/origin/master
 jackson-core-asl-1.9.13-sources.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

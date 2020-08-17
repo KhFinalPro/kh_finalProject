@@ -41,11 +41,23 @@
 	<select id="selectReply" parameterType="_int" resultMap="replyResultSet">
 		SELECT *
 		FROM REPLY
-		WHERE B_NUM = #{bNum}
+		WHERE B_NUM = #{bNum} AND REP_STATUS = 'N'
 	</select>
 	<select id="selectReReply" parameterType="_int" resultMap="reReplyResultSet">
 		SELECT *
 		FROM RE_REPLY
-		WHERE B_NUM = #{bNum}
+		WHERE B_NUM = #{bNum} AND REP_STATUS = 'N'
 	</select>
+	
+	<update id="replyDelResult" parameterType="_int">
+		UPDATE REPLY SET REP_STATUS = 'Y' WHERE REP1_NUM = #{rep1_num}
+	</update>
+	
+	<update id="reReplyDelResult" parameterType="_int">
+		UPDATE RE_REPLY SET REP_STATUS = 'Y' WHERE REP1_NUM = #{rep1_num}
+	</update>
+	
+	<update id="reReReplyDelResult" parameterType="_int">
+		UPDATE RE_REPLY SET REP_STATUS = 'Y' WHERE REP2_NUM = #{rep2_num}
+	</update>
 </mapper>

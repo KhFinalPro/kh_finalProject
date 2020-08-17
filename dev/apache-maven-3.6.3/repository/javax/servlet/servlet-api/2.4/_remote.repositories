@@ -1,9 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:36:22 KST 2020
-=======
-#Sun Aug 16 17:28:05 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Mon Aug 17 14:37:48 KST 2020
 servlet-api-2.4.jar>central=
 servlet-api-2.4.pom>central=
+>>>>>>>=refs/remotes/origin/master
 servlet-api-2.4-sources.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

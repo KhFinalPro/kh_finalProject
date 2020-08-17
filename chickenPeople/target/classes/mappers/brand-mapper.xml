@@ -40,4 +40,9 @@
   	SELECT * 
   	FROM ADMIN_TOTAL_BRAND
   </select>
+  <select id="selectProfile" parameterType="String" resultType="String">
+  	SELECT BRAND_PIC
+  	FROM BRAND
+  	WHERE BRAND_CODE=#{brand_code}
+  </select>
 </mapper>

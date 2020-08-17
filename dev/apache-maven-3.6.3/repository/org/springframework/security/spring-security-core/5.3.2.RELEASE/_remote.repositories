@@ -1,9 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:35:40 KST 2020
-=======
-#Sun Aug 16 17:27:25 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Mon Aug 17 14:37:32 KST 2020
 spring-security-core-5.3.2.RELEASE.pom>central=
+>>>>>>>=refs/remotes/origin/master
 spring-security-core-5.3.2.RELEASE-sources.jar>central=
 spring-security-core-5.3.2.RELEASE.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 section{margin-top:150px;}
 #main_section {margin: auto; width: 90%; clear: both; margin-top:100px;}
 

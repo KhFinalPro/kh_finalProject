@@ -40,4 +40,18 @@ public class ReplyDao {
 		return (ArrayList)sqlSessionTemplate.selectList("replyMapper.selectReReply", bNum);
 	}
 
+	public int replyDelResult(int rep1_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("replyMapper.replyDelResult", rep1_num);
+	}
+
+	public int reReplyDelResult(int rep1_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("replyMapper.reReplyDelResult", rep1_num);
+	}
+
+	public int reReReplyDelResult(int rep2_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("replyMapper.reReReplyDelResult", rep2_num);
+	}
 }

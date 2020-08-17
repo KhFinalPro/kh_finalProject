@@ -1,9 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:35:36 KST 2020
-=======
-#Sun Aug 16 17:27:22 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-commons-pool-1.5.4-sources.jar>central=
+#Mon Aug 17 14:37:32 KST 2020
 commons-pool-1.5.4.jar>central=
+commons-pool-1.5.4-sources.jar>central=
 commons-pool-1.5.4.pom>central=
+>>>>>>>=refs/remotes/origin/master
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
