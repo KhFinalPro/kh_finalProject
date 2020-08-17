@@ -217,14 +217,18 @@ body{
             <div class="top_menu">
                 <div class="logo">Admin page</div>
                 <ul>
-                    <li><a href="#"><i class="fas fa-user"></i></a></li>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
                     <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
                 </ul>
             </div>
         </div>
             <div class="sidebar">
                 <ul>
+                	<li class="InfoBar"><a href="storeInfo.do">
+                        <span class="icon">
+                            <i class="fas fas fa-user" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">매장정보</span>
+                    </a></li>
                     <li class="orderBar"><a href="storeOrder.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>

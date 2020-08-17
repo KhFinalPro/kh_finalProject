@@ -24,10 +24,6 @@ public class DashboardController {
 	
 	
 
-	/*
-	 * @RequestMapping("storeAdminMain.do") public String storeAdminMain() { return
-	 * "storeAdmin/storeAdminMain"; }
-	 */
 	  
 	  
 	  
