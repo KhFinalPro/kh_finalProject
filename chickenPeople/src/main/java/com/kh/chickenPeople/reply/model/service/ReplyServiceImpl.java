@@ -44,4 +44,22 @@ public class ReplyServiceImpl implements ReplyService {
 		// TODO Auto-generated method stub
 		return replyDao.selectReReply(bNum);
 	}
+
+	@Override
+	public int replyDelResult(int rep1_num) {
+		// TODO Auto-generated method stub
+		return replyDao.replyDelResult(rep1_num);
+	}
+	
+	@Override
+	public int reReplyDelResult(int rep1_num) {
+		// TODO Auto-generated method stub
+		return replyDao.reReplyDelResult(rep1_num);
+	}
+
+	@Override
+	public int reReReplyDelResult(int rep2_num) {
+		// TODO Auto-generated method stub
+		return replyDao.reReReplyDelResult(rep2_num);
+	}
 }

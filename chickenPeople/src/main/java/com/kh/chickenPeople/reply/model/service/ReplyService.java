@@ -17,4 +17,10 @@ public interface ReplyService {
 
 	ArrayList<ReReply> selectReReply(int bNum);
 
+	int replyDelResult(int rep1_num);
+
+	int reReplyDelResult(int rep1_num);
+
+	int reReReplyDelResult(int rep2_num);
+
 }
