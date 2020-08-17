@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Wed Aug 12 02:49:01 KST 2020
+#Sun Aug 16 17:25:59 GMT+09:00 2020
 xbean-reflect-3.4.jar>central=
 xbean-reflect-3.4.pom>central=
-=======
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Wed Aug 12 09:23:20 GMT+09:00 2020
-xbean-reflect-3.4.jar>central=
-xbean-reflect-3.4.pom>central=
->>>>>>> refs/remotes/origin/master

@@ -18,7 +18,10 @@
     /* #section .head_title:nth-child(1){margin-right:30px;} */
     #section .head_title #title{margin-left: 50px; font-size: 50px; font-weight: 600; margin-top: 90px;}
     #section .head_title .content{margin-left: 50px; font-size: 25px;}
-	#section .head_title a{margin-left:20px;}
+	#section .head_title a{margin-left:20px; margin-right:20px;}
+	.head_title_div{float:left;}
+	.head_like_good{margin: 0 auto; width:80%; margin-top:15px; text-align:right;}
+	
 	
     .review{margin: 0 auto; width: 70%; height:300px;}
     .review ul li{float:left; list-style:none; width:49%;}
@@ -30,12 +33,12 @@
     .review .review_content{font-size:20px;}
     
     #report_area{float:right;}
-    #report_area>#report{width:100px; height:25px;}
+    #report_area>#report{width:80px; height: 40px; background:#EE5917; border:0px; color:white; border-radius:15px; font-weight:600;}
     
     #report_modal{position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;}
 	#report_modal>div{width: 400px; height: 550px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 
-	#reply_title{color:#735949; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; background-color:#eed48e; border-top:1px solid #735949; border-bottom:1px solid #735949;}
+	#reply_title{color:white; width:100%; margin:0; margin-top:50px; height:50px; line-height:50px; font-size:20px; font-weight:600; background-color:#EE5917; border-radius:15px;}
 	#reply_area{margin:0 auto; width:70%; height:400px; overflow-y:auto;}
 	#tung{height:60%; widht:60%; margin-top:100px;}
 	#reply_area .reply{margin-top:20px;}
@@ -44,8 +47,9 @@
 	#reply_area .reply>li>.re_reply>li{list-style:none;}
 	/* #reply_area .reply>li>.re_reply>li>.re_reply_date{color:gray;} */
 	
-	#content_insert{height:200px;}
-	#content_insert>button{ margin-bottom:5px;}
+	#content_insert{height:200px; margin:0 auto; width:54%; margin-top:30px;}
+	#content_insert>.content_insert_item{float:left;}
+	#content_insert>button{margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;}
 	#content_insert>#replay_content{resize:none;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -66,19 +70,22 @@
             <div class="head_title">
                 <p id="title">${board.bTitle }</p>
                 <p class="content">${board.bCont }</p>
-                <a>조회수 : ${board.bCount } </a>
-                <c:if test="${!empty sessionScope.loginUser}">
-                	<c:if test="${msg == '싫어요' }">
-                		<a id="like"><img id="likeBtn" src="resources/images/like.png" style='width:15px; height:15px;'>${board.bHit }</a>
-                	</c:if>
-                	<c:if test="${msg == '좋아요' }">
-                		<a id="like"><img id="likeBtn" src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
-                	</c:if>
-                </c:if>
-                <c:if test="${empty sessionScope.loginUser}">
-                	<a id="like"><img src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
-                </c:if>
-                <div id="report_area">
+                
+                <div class="head_title_div head_like_good">
+	                <a>조회수 : ${board.bCount } </a>
+	                <c:if test="${!empty sessionScope.loginUser}">
+	                	<c:if test="${msg == '싫어요' }">
+	                		<a id="like"><img id="likeBtn" src="resources/images/like.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                	</c:if>
+	                	<c:if test="${msg == '좋아요' }">
+	                		<a id="like"><img id="likeBtn" src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                	</c:if>
+	                </c:if>
+	                <c:if test="${empty sessionScope.loginUser}">
+	                	<a id="like"><img src="resources/images/dislike.png" style='width:15px; height:15px;'>${board.bHit }</a>
+	                </c:if>
+                </div>
+                <div id="report_area" class="head_title_div">
                 	<button id="report">신고</button>
                 </div>
             </div>
@@ -111,7 +118,7 @@
 			    		<li>
 			    			<p>
 			    				<input type="hidden" id="rep1_num" value="${r.rep1_num }">
-			    				<a class="reply_id">${r.user_id } : </a>
+			    				<a class="reply_id"><b>${r.user_id }</b> : </a>
 			    				<a class="reply_content">${r.rep_cont }</a>
 		    				</p>
 		    				<c:if test="${!empty reReplyList }">
@@ -120,7 +127,7 @@
 			    						<ul class="re_reply">
 								    		<li class="re_reply_item">
 								    			<p>
-									    			<a class="re_reply_id">${rr.user_id } : </a>
+									    			<a class="re_reply_id"><b>${rr.user_id }</b> : </a>
 									    			<a class="re_reply_content">${rr.rep_cont }</a>
 												</p>			    			
 								    		</li>
@@ -141,8 +148,8 @@
 	    	</c:if>
 	    </div>
     	<div id="content_insert">
-    		<textarea id="replay_content" cols="100" rows="11"></textarea>
-    		<button id="reply_btn">댓글 작성</button>
+    		<textarea id="replay_content" class="content_insert_item" cols="100" rows="5"></textarea>
+    		<button id="reply_btn" class="content_insert_item">댓글 작성</button>
     	</div>
     </div>
     
@@ -208,7 +215,7 @@
 				}
 			},
 			error:function(data){
-				
+				alert("회원만 이용가능");
 			}
 		})
 	})
@@ -261,20 +268,21 @@
 				success:function(data){
 					console.log("성공");
 					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
-					    						"<li style='list-style:none; text-align:left;'>"+
-					    							"<p><input type='hidden' id='rep1_num' value="+ data.currval +"><a class='reply_id'>"+ $id +" : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
+					    						"<li style='list-style:none; text-align:left; color:blue;'>"+
+					    							"<p><input type='hidden' id='rep1_num' value="+ data.currval +"><a class='reply_id'><b>"+ $id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
 		    									"</li>"+
 									    	"</ul>");
 					
 					$("#replay_content").val("");
 				},
 				error:function(data){
-					
+					alert("회원만 이용가능합니다.");
 				}
 			})
 		}
 		else{
 			alert("댓글을 작성해주세요");
+			$("#reply_area").append("<img id='tung' src='resources/images/tung.png'>");
 		}
 		
 	})
@@ -285,10 +293,10 @@
 		$(document).on("click",".reply_content",function(){
 			console.log("댓글");
 			$(this).parents("li").append("<div class='re_reply_content_area'>"+
-											"<textarea class='re_reply_content' cols='100' rows='11'>"+
+											"<textarea class='re_reply_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
 											"</textarea>"+
-											"<button class='re_reply_btn'>댓글달기</button>"+
-										"</div>");
+											"<button class='re_reply_btn content_insert_item' style='float:left; margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;'>댓글달기</button>"+
+										"</div><br class='br' clear='both'>");
 		})	
 		
 		//대댓글 달기 ajax
@@ -305,16 +313,19 @@
 				dataType:"json",
 				success:function(data){
 					console.log("답글 성공");
+					$(".re_reply_content_area").children(".re_reply_content").remove();
+					$(".re_reply_content_area").children(".re_reply_btn").remove();
+					$(".br").remove();
 					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
-										  								 "<li class='re_reply_item'>"+
+										  								 "<li class='re_reply_item' style='color:blue;'>"+
 											  								 "<p>"+
-									    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
 									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
 								    										 "</p>"+
 							    										 "</li>"+
 						    										 "</ul>");
 						    										 
-					$(".re_reply_content_area").remove();
+					
 				},
 				error:function(data){
 					
@@ -328,10 +339,10 @@
 		$(document).on("click",".re_reply_content",function(){
 			console.log("대댓글");
 			$(this).parents("p").parents(".re_reply_item").append("<div class='re_reply_content_area'>"+
-																	"<textarea class='re_replt_content' cols='100' rows='11'>"+
+																	"<textarea class='re_replt_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
 																	"</textarea>"+
-																	"<button class='re_re_reply_btn'>댓글달기</button>"+
-																	"</div>");
+																	"<button class='re_re_reply_btn content_insert_item' style='float:left; margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;'>댓글달기</button>"+
+																	"</div><br class='br' clear='both'>");
 		})	
 		
 		//대대댓글 달기 ajax
@@ -349,16 +360,19 @@
 				dataType:"json",
 				success:function(data){
 					console.log("답글 성공");
+					$(".re_reply_content_area").children(".re_replt_content").remove();
+					$(".re_reply_content_area").children(".re_re_reply_btn").remove();
+					$(".br").remove();
 					$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
 										  								 "<li class='re_reply_item'>"+
 											  								 "<p>"+
-									    										 "<a class='re_reply_id'>"+ $id +" : </a>"+
+									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
 									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
 								    										 "</p>"+
 							    										 "</li>"+
 						    										 "</ul>");
 						    										 
-					$(".re_reply_content_area").remove();
+					
 				},
 				error:function(data){
 					

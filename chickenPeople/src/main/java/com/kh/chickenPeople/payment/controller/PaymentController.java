@@ -63,6 +63,7 @@ public class PaymentController {
 		
 		if(resultInsertJumunDetail > 0) //결제 성공
 		{
+			int payCount = paymentService.memberOrderCount(payment.getUser_id());
 			Payment pay = paymentService.selectPayment(payment.getUser_id());
 			if(!payment.getCoup_num().isEmpty())	//사용한 쿠폰이 있으면
 			{

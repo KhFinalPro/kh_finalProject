@@ -9,8 +9,8 @@
    <title>치킨의 민족</title>
    <style>
          /*GLOBALS*/
+
       a{text-decoration:none; color:#666;}
-      	
       a:hover{color:#1bc1a3;}
       body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
       
@@ -351,7 +351,7 @@
    })
    
    $(".my_btn").on("click",function(){         //마이페이지
-      location.href="msgList.do";
+      location.href="mypage.do";
    })
    
    $(".logout_btn").on("click",function(){      //로그아웃

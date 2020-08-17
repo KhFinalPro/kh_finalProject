@@ -44,6 +44,8 @@ public interface BungService {
 
 	ArrayList<Bung> searchBung(String month);
 
+	int bungStatusUpdate(Bung bung);
+
 	
 
 

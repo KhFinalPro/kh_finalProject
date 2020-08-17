@@ -44,5 +44,10 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.memberJoin(m);
 	}
 
+	@Override
+	public int insertStoreMember(Member stoMem) {
+		return mDao.insertStoreMember(stoMem);
+	}
+
 
 }

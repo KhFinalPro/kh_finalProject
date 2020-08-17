@@ -1,8 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Wed Aug 12 10:01:17 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:06 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
+#Sun Aug 16 17:26:54 GMT+09:00 2020
 jsp-api-2.1.jar>central=
 jsp-api-2.1.pom>central=
+jsp-api-2.1-sources.jar>central=

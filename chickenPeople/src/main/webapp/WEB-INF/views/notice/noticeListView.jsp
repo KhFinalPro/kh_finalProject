@@ -14,7 +14,7 @@
     #section #article{width: 100%;}
     #section #article .title{text-align:center;}
     #section #article .title h1{height: 50px; line-height: 50px; font-size:30px; box-shadow: 0px 5px 5px rgb(226, 226, 226); color: #735949;;}
-
+	#notice_area{height:500px;}
     #section #article ul{margin-left: 50px;}
     #section #article ul li{list-style: none;}
     #section #article ul li .content{font-size:30px; font-weight: 600; color: black; margin:0;}
@@ -48,19 +48,20 @@
 	            <h1>공지사항</h1>
 	        </div>
 	
-	        
-	        <ul>
-	        	<c:forEach var="n" items="${noticeList }">
-		            <li class="notice">
-		            	<input type="hidden" id="nNum" value="${n.nNum }"/>
-		                <p class="content">${n.nTitle }</p>
-		                <p class="notice_date">${n.nDate }</p>
-		            </li>
-	            </c:forEach>
-	        </ul>
+	        <div id="notice_area">
+		        <ul>
+		        	<c:forEach var="n" items="${noticeList }">
+			            <li class="notice">
+			            	<input type="hidden" id="nNum" value="${n.nNum }"/>
+			                <p class="content">${n.nTitle }</p>
+			                <p class="notice_date">${n.nDate }</p>
+			            </li>
+		            </c:forEach>
+		        </ul>
+	        </div>
 		 
 		 <!-- 커서 올렸을때  --> 
-		 
+		 	<br clear="both">
 		 
 			<div class = "p-parents" style="margin:0 auto">
 			    <div class="pppp">

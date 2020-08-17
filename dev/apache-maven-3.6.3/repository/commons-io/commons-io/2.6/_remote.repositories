@@ -1,37 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Wed Aug 12 11:04:07 KST 2020
-=======
-<<<<<<< HEAD
-#Wed Aug 12 10:01:17 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:36 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-=======
-#Wed Aug 12 10:01:17 GMT+09:00 2020
-=======
-#Wed Aug 12 09:24:36 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
-=======
-#Thu Aug 13 10:06:35 KST 2020
->>>>>>> refs/remotes/origin/dev960103
+#Sun Aug 16 17:27:39 GMT+09:00 2020
 commons-io-2.6.pom>central=
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>>=refs/remotes/origin/master
-commons-io-2.6-javadoc.jar>central=
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>>=refs/remotes/origin/master
-commons-io-2.6-javadoc.jar>central=
->>>>>>> refs/remotes/origin/dev960103
+commons-io-2.6-sources.jar>central=
 commons-io-2.6.jar>central=
-=\=\=\=\=\=\=
-<<<<<<<=HEAD

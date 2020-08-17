@@ -114,6 +114,12 @@ public class BungServiceImpl implements BungService {
 		return bungDao.searchBung(month);
 	}
 
+	@Override
+	public int bungStatusUpdate(Bung bung) {
+		// TODO Auto-generated method stub
+		return bungDao.bungStatusUpdate(bung);
+	}
+
 
 	
 	
