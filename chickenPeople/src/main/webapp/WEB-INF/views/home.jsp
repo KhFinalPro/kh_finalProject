@@ -95,6 +95,10 @@
       
       .showMsg{position:fixed; width:30%; height:200px; z-index:100; left:35%; top: 100px; text-align:center; font-size:30px; font_weight:600; background-color: white; display:none;}
       .close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
+      
+      /*프로필 이미지 둥글게*/
+      .imagebox {margin: 0 auto; width: 100px; height: 100px; border-radius: 70%; overflow: hidden; }
+	  .profile { width: 100%; height: 100%; object-fit: cover;}
    </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
@@ -154,8 +158,9 @@
               <div id="login_area" class="banner_login">
                  <p id="login_title">치킨의민족 시작하기</p>
                  
-                 <img src="resources/images/user1.png" alt="">
-         
+				 <c:if test="${empty loginUser.pic}">
+	                 <img src="resources/images/user1.png" alt="">
+				 </c:if>         
                  <p id="login">${sessionScope.loginUser.name }</p>
          
                  <button class="system_btn btn">System</button>
@@ -165,9 +170,14 @@
            <c:if test="${sessionScope.loginUser.uLvl == '소비자' }">
               <div id="login_area" class="banner_login">
                  <p id="login_title">치킨의민족 시작하기</p>
-                 
-                 <img src="resources/images/user1.png" alt="">
-         
+                 <c:if test="${!empty loginUser.pic}">
+	                 <div class='imagebox'>
+	                 	<img class="profile" src="resources/propic/${loginUser.pic }" alt="">
+	         		 </div>
+         		 </c:if>
+                 <c:if test="${empty loginUser.pic}">
+ 		                 <img src="resources/images/user1.png" alt="">
+				 </c:if>         		 
                  <p id="login">${sessionScope.loginUser.name }</p>
          
                  <button class="my_btn btn">MyPage</button>
@@ -178,7 +188,14 @@
               <div id="login_area" class="banner_login">
                  <p id="login_title">치킨의민족 시작하기</p>
                  
-                 <img src="resources/images/user1.png" alt="">
+                  <c:if test="${!empty loginUser.pic}">
+	                 <div class='imagebox'>
+	                 	<img class="profile" src="resources/images/${loginUser.pic }.png" alt="">
+	         		 </div>
+         		 </c:if>
+                 <c:if test="${empty loginUser.pic}">
+ 		                 <img src="resources/images/user1.png" alt="">
+				 </c:if>
          
                  <p id="login">${sessionScope.loginUser.name }</p>
          

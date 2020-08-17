@@ -177,9 +177,9 @@ public class MemberController {
 			
 		}
 		
-		
 		int result = mService.memberJoin(m);
-
+		System.out.println(m);
+		
 		
 		if(result > 0) {
 			return "redirect:/home.do";

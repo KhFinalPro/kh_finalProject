@@ -31,6 +31,9 @@
 	.scroll-test::-webkit-scrollbar-thumb { border-radius: 3px; background-color: gray; }
 	.scroll-test::-webkit-scrollbar-button { width: 0; height: 0; }
 
+  	  .chatImgBox {margin: 0 auto; width: 30px; height: 30px; border-radius: 70%; overflow: hidden; }
+	  .chatImg { width: 100%; height: 100%; object-fit: cover;}
+  
 	.chat-box{
 		text-align:left;
 	}
@@ -149,14 +152,21 @@
 				}else{
 					time=strArray[4];
 				}
+				if(strArray[5]==null){
+					pic = "<src id='chatImg' img='resources/images/user1.png'>"
+				}else{
+					pic = "<src id='chatImg' img='resources/propic/"+strArray[5]+"'>"
+				}
+				console.log(pic);
 				
 				if(room_no==currentChattingRoom){
-					if(sessionId==currentUserSession){
-						printData = "<div class='my-chat-box'>"+"<div>"+sessionId+"</div><div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+					if(sessionId==currentUserSession){//상대방
+ 						printData = "<div class='chatImgBox'>"+pic+"</div>"
+ 						printData += "<div class='my-chat-box'>"+"<div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
-						printData = "<div class='chat-box'><div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+						printData = "<div class='chat-box'>"+"<div>"+sessionId+"</div>"+"<div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);					
 					}

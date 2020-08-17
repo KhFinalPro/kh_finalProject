@@ -152,6 +152,11 @@ public class StoreServiceImpl implements StoreService{
 		return storeDao.enterStatusUpdate(newbie);
 	}
 
+	@Override
+	public String selectProfile(String brand_code) {
+		return storeDao.selectProfile(brand_code);
+	}
+
 	
 
 	

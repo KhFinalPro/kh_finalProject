@@ -172,9 +172,6 @@
     
     <script>
       
-            
-         	
-         	console.log(post_code);
          	
          	// 비밀번호 정규화
             $("#pwd").change(function(){

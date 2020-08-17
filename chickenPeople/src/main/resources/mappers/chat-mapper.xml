@@ -54,5 +54,10 @@
   	SET CHAT_STATUS='Y' 
   	WHERE CHATTINGROOM_NO=#{room_no}
   </update>
+  <select id="selectChattingCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM CHATTING_ROOM
+  	WHERE CHAT_STATUS='N'
+  </select>
 
 </mapper>
