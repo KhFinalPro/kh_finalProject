@@ -151,12 +151,13 @@
 				}
 				
 				if(room_no==currentChattingRoom){
-					if(sessionId==currentUserSession){
-						printData = "<div class='my-chat-box'>"+"<div>"+sessionId+"</div><div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+					if(sessionId==currentUserSession){//상대방
+						printData = "<div class='chatImage'>"++"</div>"
+						printData += "<div class='my-chat-box'>"+"<div>"+sessionId+"</div>"+"<div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
-						printData = "<div class='chat-box'><div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+						printData = "<div class='chat-box'>"+"<div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);					
 					}

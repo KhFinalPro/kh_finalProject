@@ -441,14 +441,13 @@ public class StoreController {
 		final String password = "rngus3698";
 		int port = 465;
 
-		System.out.println(sto_num);
-		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);
-
+		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);			//아이디 불러오기
 		String brand_id = storeLabel.getMenuName();	
 		String finalId = brand_id+sto_num;
 		
 		newbie.setSto_num(sto_num);
 		newbie.setUser_id(finalId);
+		
 		stoMem.setId(finalId);
 		String originPwd = randomPassword(7);
 		System.out.println(originPwd);
@@ -494,7 +493,10 @@ public class StoreController {
 		mimeMessage.setSubject(subject);
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage);
-
+		
+		String proPicName = storeService.selectProfile(newbie.getBrand_code());
+		System.out.println(proPicName);
+		stoMem.setPic(proPicName);
 		stoMem.setPwd(encPwd);
 		stoMem.setName(sto_name);
 		stoMem.setEmail(sto_email);

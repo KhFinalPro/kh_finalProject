@@ -32,7 +32,7 @@
 		SELECT * FROM DUAL
 	</insert>
 	<insert id="insertStoreMember" parameterType="Member">
-		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email},NULL,NULL,'BRONZE','판매자',0,'N')
+		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email}, NULL, #{pic},'BRONZE','판매자',0,'N')
 	</insert>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
