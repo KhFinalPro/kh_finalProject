@@ -97,7 +97,7 @@
       .close{width:50px; height:50px; margin-left:85%; margin-top:20px;}
       
       /*프로필 이미지 둥글게*/
-      .imagebox {margin: 0 auto; width: 150px; height: 100px; border-radius: 70%; overflow: hidden; }
+      .imagebox {margin: 0 auto; width: 100px; height: 100px; border-radius: 70%; overflow: hidden; }
 	  .profile { width: 100%; height: 100%; object-fit: cover;}
    </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
