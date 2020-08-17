@@ -25,11 +25,22 @@ public class ReplyController {
 	@RequestMapping(value="replyInsert.do", method=RequestMethod.POST)
 	public void replyInsert(HttpServletResponse response, @ModelAttribute Reply r) throws IOException
 	{
-		int result = replyService.replyInsert(r);
+		response.setContentType("application/json;charset=utf-8");
+		int result = 0;
+		System.out.println("r : " + r);
+		if(!r.getUser_id().isEmpty()) {
+			result = replyService.replyInsert(r);
+		}
+		else {
+			r.setUser_id("비회원");
+			result = replyService.replyInsert(r);
+		}
+		
 		JSONObject sendJson = new JSONObject();
 		if(result > 0) {
 			int currval = replyService.selectCurrval(r.getB_num());
 			sendJson.put("currval", currval);
+			sendJson.put("id", r.getUser_id());
 		}
 		else {
 			sendJson.put("msg", "실패");
@@ -45,12 +56,23 @@ public class ReplyController {
 	@RequestMapping(value="reReplyInsert.do", method=RequestMethod.POST)
 	public void reReplyInsert(HttpServletResponse response, @ModelAttribute ReReply r) throws IOException
 	{
+		response.setContentType("application/json;charset=utf-8");
+		int result = 0;
 		System.out.println(r);
-		int result = replyService.reReplyInsert(r);
+		
+		if(!r.getUser_id().isEmpty()) {
+			result = replyService.reReplyInsert(r);
+		}
+		else {
+			r.setUser_id("비회원");
+			result = replyService.reReplyInsert(r);
+		}
+		
 		JSONObject sendJson = new JSONObject();
 		if(result > 0) {
 //			int currval = replyService.selectReCurrval(r.getB_num());
 			sendJson.put("msg", "성공");
+			sendJson.put("id", r.getUser_id());
 		}
 		else {
 			sendJson.put("msg", "실패");

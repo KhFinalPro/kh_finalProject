@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:22 GMT+09:00 2020
 json-lib-ext-spring-1.0.2.jar>central=
@@ -35,4 +36,14 @@ json-lib-ext-spring-1.0.2-sources.jar>central=
 json-lib-ext-spring-1.0.2.jar>central=
 json-lib-ext-spring-1.0.2.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
+>>>>>>> refs/remotes/origin/master
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 22:37:04 GMT+09:00 2020
+json-lib-ext-spring-1.0.2-sources.jar>central=
+>>>>>>>=refs/remotes/origin/dev22222222222222
+json-lib-ext-spring-1.0.2.jar>central=
+json-lib-ext-spring-1.0.2.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
 >>>>>>> refs/remotes/origin/master

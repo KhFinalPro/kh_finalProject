@@ -67,21 +67,42 @@
 	        <br clear="both">
 	        <hr style="color: gray;">       
 			<c:forEach var="d" items="${deliveryList }">
-		        <div class="store_area">
-		        	<input type="hidden" id="sto_num" name="sto_num" value="${d.sto_num }"/>
-		            <ul class="store">
-		                <li>
-		                    <div class="store_img">
-		                        <img src="resources/images/${d.brand_pic }.png" alt="${d.brand_pic }">
-		                    </div>
-		                    <ul>
-		                        <li class="store_name"><b>${d.sto_name }</b></li>
-		                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
-		                        <li class="store_delivery_time">40~50분</li>
-		                    </ul>
-		                </li>
-		            </ul>
-		        </div>
+				<c:if test="${d.open_yn == 'Y' }">
+					<div class="store_area">
+			        	<input type="hidden" id="sto_num" name="sto_num" value="${d.sto_num }"/>
+			            <ul class="store">
+			                <li>
+			                    <div class="store_img">
+			                        <img src="resources/images/${d.brand_pic }.png" alt="${d.brand_pic }">
+			                    </div>
+			                    <ul>
+			                        <li class="store_name"><b>${d.sto_name }</b></li>
+			                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
+			                        <li class="store_delivery_time">40~50분</li>
+			                        <li>정상영업</li>
+			                    </ul>
+			                </li>
+			            </ul>
+			        </div>
+				</c:if>
+		        <c:if test="${d.open_yn == 'N' }">
+					<div class="store_area" style="background-color:lightgray;">
+			        	<input type="hidden" id="sto_num" name="sto_num" value="${d.sto_num }"/>
+			            <ul class="store">
+			                <li>
+			                    <div class="store_img">
+			                        <img src="resources/images/${d.brand_pic }.png" alt="${d.brand_pic }">
+			                    </div>
+			                    <ul>
+			                        <li class="store_name"><b>${d.sto_name }</b></li>
+			                        <li class="store_minPrice"><img src="resources/images/start.png" alt="start"><fmt:formatNumber value="${d.rev_rate }" maxFractionDigits="2"/> 최소주문 ${d.ord_limit }원</li>
+			                        <li class="store_delivery_time">40~50분</li>
+			                        <li><b>준비중</b></li>
+			                    </ul>
+			                </li>
+			            </ul>
+			        </div>
+				</c:if>
 			</c:forEach>
 		</c:if>
         

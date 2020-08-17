@@ -62,4 +62,16 @@ public class ReplyServiceImpl implements ReplyService {
 		// TODO Auto-generated method stub
 		return replyDao.reReReplyDelResult(rep2_num);
 	}
+
+	@Override
+	public int replyDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return replyDao.replyDelete(bNum);
+	}
+
+	@Override
+	public int reReplyDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return replyDao.reReplyDelete(bNum);
+	}
 }
