@@ -63,19 +63,14 @@
 	<update id="memberOrderCount" parameterType="string">
 		UPDATE MEMBER SET ORD_CNT = ORD_CNT + 1 WHERE USER_ID = #{user_id}
 	</update>
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/remotes/origin/dev960103
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 	</select>
-	
-	<update id="mypageUpdate" parameterType="Member">
+  
+  	<update id="mypageUpdate" parameterType="Member">
 		UPDATE MEMBER
 		SET USER_NAME = #{name}, USER_PWD = #{pwd}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
 		WHERE USER_ID = #{id};
 	</update>
-  
 </mapper>

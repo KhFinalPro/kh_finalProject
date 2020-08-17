@@ -85,7 +85,7 @@ public class MemberController {
 				String userId = SessionConfig.getSessionidCheck("loginUserId", member.getId());
 //				System.out.println("튕겨나온거 : " + userId);
 				
-				return "redirect:/home.do?";
+				return "home";
 			}else {
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 			return "redirect:/loginView.do";
