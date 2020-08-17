@@ -9,6 +9,8 @@ public interface StoreInfoService {
 
 	ArrayList<StoreInfo> storeInfoList(String userId);
 
-	int modifyInfo(HashMap<String, String> map);
+	//int modifyInfo(HashMap<String, String> map);
+
+	int modifyInfo(StoreInfo newInfo);
 
 }

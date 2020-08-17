@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Sun Aug 16 02:33:16 KST 2020
+=======
+#Sun Aug 16 17:25:38 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 maven-shared-components-19.pom>central=

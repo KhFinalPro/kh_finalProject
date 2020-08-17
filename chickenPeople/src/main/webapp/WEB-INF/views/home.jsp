@@ -351,7 +351,7 @@
    })
    
    $(".my_btn").on("click",function(){         //마이페이지
-      location.href="msgList.do";
+      location.href="mypage.do";
    })
    
    $(".logout_btn").on("click",function(){      //로그아웃

@@ -1,5 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Sun Aug 16 02:36:41 KST 2020
+=======
+#Sun Aug 16 17:28:24 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 jackson-mapper-asl-1.9.13.pom>central=
 jackson-mapper-asl-1.9.13.jar>central=
 jackson-mapper-asl-1.9.13-sources.jar>central=

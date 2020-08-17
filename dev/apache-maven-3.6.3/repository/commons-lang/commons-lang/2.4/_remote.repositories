@@ -1,5 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Sun Aug 16 02:36:13 KST 2020
+=======
+#Sun Aug 16 17:27:57 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 commons-lang-2.4.jar>central=
 commons-lang-2.4-sources.jar>central=
 commons-lang-2.4.pom>central=

@@ -11,6 +11,7 @@
 <title>메세지</title>
 <style>
 
+.main_container{margin-top:100px;}
 .wrapper1 .clickButtons ul li select{
     position: relative;
     width:100%;
@@ -82,7 +83,7 @@
 <body>
 
    <jsp:include page="../common/header.jsp"/>
-   <jsp:include page="../common/sidebar.jsp"/>
+   
    <br>
    <br>
    <br>

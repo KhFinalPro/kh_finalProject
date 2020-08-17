@@ -1,5 +1,9 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Sun Aug 16 02:36:38 KST 2020
+=======
+#Sun Aug 16 17:28:20 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 spring-websocket-5.2.7.RELEASE.jar>central=
 spring-websocket-5.2.7.RELEASE.pom>central=
 spring-websocket-5.2.7.RELEASE-sources.jar>central=

@@ -271,30 +271,35 @@
 				      
 				   
 				        <br>
+				        <form action="modifyInfo.do" method="post">
 				        <div class="form">
 				        <div class="input_field">
 				            <label>브랜드</label>
-				             <input type="text" class="brandName" value="${storeInfoList.get(0).brandName }"readonly>
+				             <input type="text" id="brandName" class="brandName" value="${storeInfoList.get(0).brandName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				        	<label style="display:none" id="labelBrandName">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
 				            <label>매장 이름</label>
-				            <input type="text" class="name" value="${storeInfoList.get(0).stoName }"readonly>
+				            <input type="text" id="storeName" class="name" value="${storeInfoList.get(0).stoName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            <label style="display:none">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
 				            <label>사장님 이름</label>
-				            <input type="text" class="ceoName" value="${storeInfoList.get(0).ceoName }" readonly>
+				            <input type="text" id="ceoName" class="ceoName" value="${storeInfoList.get(0).ceoName }" readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            <label style="display:none">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
 				        
 				        
 				            <label>매장 전화번호</label>
-				            <input type="text" class="input" value="${phone1 }"> 
-				            -<input type="text" class="input" value="${phone2 }">-<input type="text" class="input" value="${phone3 }"> 
+				            <input type="text" class="input" value="${phone1 }" name="tel1"> 
+				            -<input type="text" class="input" value="${phone2 }" name="tel2">-<input type="text" class="input" value="${phone3 }" name="tel3"> 
 				        </div>
 				        <div class="input_field">
 				            <label>매장 주소</label>
 				            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }">&nbsp;
-				            <button class="addressBtn">주소검색</button>
+				            <button class="addressBtn">주소검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            <label style="display:none">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
 				            <label>배달 여부</label>
@@ -303,17 +308,20 @@
 				        </div>
 				        <div class="input_field">
 				            <label>운영 시간</label>
-				            <input type="text" class="input" value="${storeInfoList.get(0).stoOpen }">-<input type="text" class="input" value="${storeInfoList.get(0).stoClose }">
+				            <input type="text" class="input" value="${storeInfoList.get(0).stoOpen }" name="stoOpen">-<input type="text" class="input" value="${storeInfoList.get(0).stoClose }" name="stoClose">
 				        </div>
 				        <div class="input_field">
 				            <label>사장님 한마디 / 공지사항</label>
-				            <textarea cols="10" rows="4" class="textarea" id="stoInfoNotice">${storeInfoList.get(0).stoIntro }</textarea>
+				            <textarea cols="10" rows="4" class="textarea" id="stoInfoNotice" name="stoIntro">${storeInfoList.get(0).stoIntro }</textarea>
 				        </div>
 				        <div class="input_field">
 				         <!--    <input type="submit" vaue="modify" class="btn"> -->
-				            <button id="modifyInfoBtn" onclick="modifyInfo()" class="btn">수정하기</button>
+				        	<button type="submit" class="btn"><b>수정하기</b></button>&nbsp;
+				            <!-- <button id="modifyInfoBtn" onclick="modifyInfo()" class="btn">수정하기</button> -->
 				        </div>
 				        </div>
+				        </form>
+				        
 				    </div>
    				</div>
    		</div>
@@ -321,11 +329,15 @@
 
 </body>
 <script>
-$('#stoInfoNotice').change(function() {
-   var stoInfoNotice = $(this).val();
-   modifyInfo(stoInfoNotice);
+<!-- $(function () { 	
+$('#brandName').toggle(function() {
+  $("#labelBrandName").css("display","block");
+  $("#labelBrandName").css("display","none");
+})
 });
-
+</script> -->
+ 
+<!-- <script>
 function modifyInfo(stoInfoNotice){
 /* 	alert('gg'); */
 	var test = stoInfoNotice;
@@ -349,6 +361,15 @@ function modifyInfo(stoInfoNotice){
 	
 	
 }
+</script>  -->
+
+<script>
+$(function(){
+    var responseMessage = "<c:out value="${message}" />";
+    if(responseMessage != ""){
+        alert(responseMessage);
+    }
+}) 
 </script>
 
 </html>

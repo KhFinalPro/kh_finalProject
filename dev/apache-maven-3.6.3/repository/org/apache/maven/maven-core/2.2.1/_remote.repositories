@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Sun Aug 16 02:33:18 KST 2020
+=======
+#Sun Aug 16 17:25:39 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 maven-core-2.2.1.pom>central=

@@ -27,9 +27,15 @@ public class StoreInfoDao {
 		return storeInfoList;
 	}
 
-	public int modifyInfo(HashMap<String, String> map) {
+	/*
+	 * public int modifyInfo(HashMap<String, String> map) {
+	 * 
+	 * return sqlSessionTemplate.update("storeInfoMapper.modifyInfo",map); }
+	 */
+
+	public int modifyInfo(StoreInfo newInfo) {
 	
-		return sqlSessionTemplate.update("storeInfoMapper.modifyInfo",map);
+		return sqlSessionTemplate.update("storeInfoMapper.modifyInfo",newInfo);
 	}
 
 }

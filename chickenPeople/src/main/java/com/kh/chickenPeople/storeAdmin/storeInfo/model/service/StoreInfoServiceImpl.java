@@ -22,9 +22,16 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 	}
 
 	@Override
-	public int modifyInfo(HashMap<String, String> map) {
+	public int modifyInfo(StoreInfo newInfo) {
 		
-		return storeInfoDao.modifyInfo(map);
+		return storeInfoDao.modifyInfo(newInfo);
 	}
 
+	/*
+	 * @Override public int modifyInfo(HashMap<String, String> map) {
+	 * 
+	 * return storeInfoDao.modifyInfo(map); }
+	 */
+
+	
 }
