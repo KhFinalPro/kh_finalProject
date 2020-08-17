@@ -179,6 +179,17 @@
 		FROM STORE_INFO
 		WHERE STO_ADDR LIKE '%'||#{sto_addr}||'%'
 	</select>
+	<select id="selectStoreListCountForMap" resultType="_int" parameterType="string">
+		SELECT COUNT(*)
+		FROM (SELECT *
+	   		  FROM STORE_INFO
+		      WHERE STO_ADDR LIKE '%'||#{storeSearchName}||'%')
+	</select>
 	
+	<select id="selectStoreMemCoount" resultType="_int">
+		SELECT COUNT(*)
+		FROM STORE_INFO
+		WHERE APRV_STATUS='N'
+	</select>
 </mapper>
 

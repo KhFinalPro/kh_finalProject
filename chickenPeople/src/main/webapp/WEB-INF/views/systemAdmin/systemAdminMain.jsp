@@ -13,6 +13,8 @@
 <title>관리자 _ 메인</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
 <style>
@@ -21,6 +23,12 @@
 	.right-box { width: 50%;}
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; display: flex; justify-content: center; align-items: center; margin-top: -30px; }
 	.top_menu { width: calc(100% - 75px) !important;}
+	#totalMember{ position:fixed; top:100px; left:200px; width:300px; height:150px; border:2px solid lightgray; border-radius:30px; }
+	#totalReport{ position:fixed; top:100px; left:540px; width:300px; height:150px; border:2px solid lightgray; border-radius:30px; }
+	#totalChatting{ position:fixed; top:100px; left:890px; width:300px; height:150px; border:2px solid lightgray; border-radius:30px; }
+	#storeLikes{ position:fixed; top:100px; left:1240px; width:300px; height:150px; border:2px solid lightgray; border-radius:30px; }
+	#nonamedarea{position:fixed; top:100px; left:1590px; width:300px; height:150px; border:2px solid lightgray; border-radius:30px;}
+	tr{font-size:20px;}
 </style>
 </head>
 <jsp:include page="../common/systemAdminHeader.jsp"/>
@@ -29,22 +37,99 @@
 	<div class="main_container">
 		<div class="item"> 
 			<div style="width:300px; height:10px; line-height:25px; color:#666;font-size:30px; text-align:center;" id="clock"></div>
-
-
-			<c:forEach var="i" items="${printTotalList}">
-				<input type="hidden" name="${i.brandCode }" value="${i.payTotal}"/>
-			</c:forEach>
-			<div class='left-box'>
-				<div id="Line_Controls_Chart">
-				      <!-- 라인 차트 생성할 영역 -->
-				          <div id="lineChartArea" style="height:450px;"></div>
-				      <!-- 컨트롤바를 생성할 영역 -->
+			   	<!-- 전체 매출 -->
+   				<div id="totalMember">
+   				<i class="fas fa-wallet fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th>회원</th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td><b>${totalMemberCount }</b>명</td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>
+   				
+   				<div id="totalReport">
+   				<i class="fas fa-list-ol fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th>신고</th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td><b>${reportCount }</b>건 접수 </td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>
+   				
+   				
+   				<div id="totalChatting">
+   				<i class="fas fa-star fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th>1:1 문의</th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td><b>${chattingCount }</b>건 접수</td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>
+   				
+   				<!-- 찜 카운트 -->
+   				<div id="storeLikes">
+   				<i class="fas fa-heart fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th>입점신청</th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td><b>${storeMemCount }</b>건</td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>
+   				<!-- 찜 카운트 -->
+   				<div id="nonamedarea">
+   				<i class="fas fa-heart fa-2x" style="position:absolute; color:darkgray; top:36%; left:15%"></i>
+   				<table style="position:absolute; top:30%; left:40%" >
+   					<thead>
+   						<tr>
+   						<th></th>
+   						</tr>
+   					</thead>
+   					<tbody>
+   						<tr>
+   						<td>4.8</td>
+   						</tr>
+   					</tbody>
+   				</table>
+   				</div>   				
+   				
+   			
+<!-- 			<div class='left-box'>
+					<div id="Line_Controls_Chart">
+   				          <div id="lineChartArea" style="height:450px;"></div>
 				          <div id="controlsArea" style="height:150px"></div>
-		        </div>
-			</div>
-			<div class='right-box'>
-					<div id="bar_chart_div" style="height:40%"></div>
+			        </div>
 				</div>
+				<div class='right-box'>
+					<div id="bar_chart_div" style="height:40%"></div>
+				</div> -->
 			</div>			
 		</div><!-- class item end -->
 	</div><!-- class main_container end -->
@@ -76,7 +161,7 @@ var chartDrowFun = {
 	          var dataRow = [];
 
 	          var man = new Array();
-	          for(var i = 1; i <= 12; i++){ //랜덤 데이터 생성
+	          for(var i = 0; i < 12; i++){ //랜덤 데이터 생성
 	             var total = 0;
 	        	  <%for(SiteTotal st : printSiteTotal){%>
 	        	  		var n = "<%=st.getPay_Date()%>"
@@ -90,7 +175,7 @@ var chartDrowFun = {
 	        	  	<%}%>
 	        	  	  
 		              
-	        	  	  dataRow = [new Date('2020', i), total];
+	        	  	  dataRow = [new Date('2020', i+1), total];
 		              total=0;
 	        	  	  data.addRow(dataRow);
 		              

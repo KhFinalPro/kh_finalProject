@@ -62,4 +62,9 @@
   <update id="updateReportStatus" parameterType="_int">
   	UPDATE REPORT SET RPT_STATUS='Y' WHERE RPT_NUM=#{rptNum}
   </update>
+  <select id="selectReportCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM REPORT
+  	WHERE RPT_STATUS='N'
+  </select>
 </mapper>

@@ -12,6 +12,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 @Repository("sDao")
@@ -52,6 +53,26 @@ public class SystemDao {
 
 	public ArrayList<Store> searchStoreList(String storeSearchName) {
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.searchStoreListforMap",storeSearchName);
+	}
+
+	public int selectMemberCount() {
+		return sqlSessionTemplate.selectOne("memberMapper.selectMemberCount");
+	}
+
+	public int selectReportCount() {
+		return sqlSessionTemplate.selectOne("reportMapper.selectReportCount");
+	}
+
+	public int selectChattingCount() {
+		return sqlSessionTemplate.selectOne("chatMapper.selectChattingCount");
+	}
+
+	public int selectStoreMemCount() {
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreMemCoount");
+	}
+
+	public int selectMapStoreList(String storeSearchName) {
+		return sqlSessionTemplate.selectOne("storeMapper.selectStoreListCountForMap",storeSearchName);
 	}
 
 

@@ -9,6 +9,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.BrandTotal;
 import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
+import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
 
 public interface SystemService {
@@ -28,6 +29,16 @@ public interface SystemService {
 	ArrayList<SiteTotal> selectSiteTotal();
 
 	ArrayList<Store> searchStoreList(String storeSearchName);
+
+	int selectMemberCount();
+
+	int selectReportCount();
+
+	int selectChattingCount();
+
+	int selectStoreMemCount();
+
+	int selectMapStoreList(String storeSearchName);
 
 
 	

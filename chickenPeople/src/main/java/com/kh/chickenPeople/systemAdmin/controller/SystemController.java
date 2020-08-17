@@ -34,12 +34,17 @@ public class SystemController {
 	
 
 	@RequestMapping(value="systemAdminMap.do",method=RequestMethod.GET)
-	public ModelAndView goStoreMapList(ModelAndView mv,SearchStatus searchStatus,
+	public ModelAndView goStoreMapList(ModelAndView mv,SearchStatus searchStatus, HttpServletRequest request,
 									   @RequestParam(value="storeSearch",required=false) String storeSearchName) {
-		
+		int getListCount = sService.selectMapStoreList(storeSearchName);
 		ArrayList<Store> searchStoreList = sService.searchStoreList(storeSearchName);
+		String []storeNameList = new String[getListCount];
+		for(int i = 0 ; i<searchStoreList.size();i++) {
+			storeNameList[i]=searchStoreList.get(i).getSto_name();
+			System.out.println(storeNameList[i]);
+		}
+		mv.addObject("searchStoreList", storeNameList);
 		
-		mv.addObject("searchStoreList",searchStoreList);
 		mv.addObject("searchStatus",searchStatus);
 		mv.setViewName("systemAdmin/systemAdminMap");
 		return mv;
@@ -132,10 +137,17 @@ public class SystemController {
 		
 		ArrayList<BrandTotal> selectBrandTotal = sService.selectBrandTotal();
 		ArrayList<SiteTotal> selectSiteTotal = sService.selectSiteTotal();
-		System.out.println(selectSiteTotal);
-		
+		int totalMemberCount = sService.selectMemberCount();
+		int reportCount = sService.selectReportCount();
+		int chattingCount = sService.selectChattingCount();
+		int storeMemCount = sService.selectStoreMemCount();
 		request.setAttribute("printTotalList",selectBrandTotal);
 		request.setAttribute("printSiteTotalList", selectSiteTotal);
+		
+		mv.addObject("storeMemCount",storeMemCount);
+		mv.addObject("chattingCount",chattingCount);
+		mv.addObject("reportCount",reportCount);
+		mv.addObject("totalMemberCount",totalMemberCount);
 		mv.addObject("citeTotalList",selectSiteTotal);
 		mv.setViewName("systemAdmin/systemAdminMain");
 		return mv;

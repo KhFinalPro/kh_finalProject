@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.chickenPeople.store.model.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
     
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,8 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">멘트추천받습니다</p>
 				<br><hr><br>
+				<input type="hidden" id="storeAddrList" value="${searchStoreList }"/>
+				
 				<form action="systemAdminMap.do" method="get">
 					<table class="searchTable">
 						<tr>
@@ -66,10 +69,13 @@
 </div><!-- class wrapper end -->
 <script>
 $(function(){
+	var user_addr = new Array();
+	user_addr = $("#storeList").html();
+	console.log(user_addr);
 	
-	var user_addr = "서울시 강남구 역삼동 선릉 이스타빌 507호";
-
-
+	var searchStoreList = new Array();
+	
+	
    var mapContainer = document.getElementById('map');
    var mapOption = {
        center: new daum.maps.LatLng(37.450701, 126.570667),
@@ -79,12 +85,14 @@ $(function(){
    var map = new daum.maps.Map(mapContainer, mapOption); 
 
    var geocoder = new daum.maps.services.Geocoder();
-   var listData = [
-	  
-   ];
-   var listName = ["매장"];
+   var listData = [];
+   var listName = [];
+   
+   
+
 
    listData.forEach(function(addr, index) {
+	   console.log(addr);
        geocoder.addressSearch(addr, function(result, status) {
            if (status === daum.maps.services.Status.OK) {
                var coords = new daum.maps.LatLng(result[0].y, result[0].x);
