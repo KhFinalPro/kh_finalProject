@@ -87,10 +87,10 @@
             <h1>아이디 찾기</h1>
             <form id="findId" method="post" action="findIdView.do">
                 <p>Name</p>
-                <input type="text" name="" placeholder="이름을 입력하세요">
+                <input type="text" name="name" placeholder="이름을 입력하세요">
                 <p>E-mail</p>
-                <input type="password" name="" placeholder="이메일을 입력하세요">
-                <input type="submit" name="" value="이메일로 전송">
+                <input type="text" name="email" placeholder="이메일을 입력하세요">
+                <input type="submit"  value="이메일로 전송">
                 <a href="loginView.do">치킨의민족 로그인</a><br>
                 <a href="findPwdView.do">비밀번호 찾기</a><br>
                 <a href="memberJoinView.do">치킨의민족 회원가입</a>
