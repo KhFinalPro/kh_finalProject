@@ -32,6 +32,7 @@
     .review ul li .number{font-size:20px; width:30px; height:30px;  border-radius:15px; background-color: #ffc000; color:white;}
     .review ul li div{float:left;}
     .review .review_content{font-size:20px;}
+    .content{height:40; line-height:40px;}
     
     #report_area{float:right;}
     #report_area>#report{width:80px; height: 40px; background:#EE5917; border:0px; color:white; border-radius:15px; font-weight:600;}
@@ -120,7 +121,8 @@
 	    		<c:forEach var="r" items="${replyList }">
 			    	<ul class="reply">
 			    		<li>
-			    			<p>
+			    			<p class="content">
+			    				<input type="hidden" id="${r.rep1_num }" value="${r.rep1_num }">
 			    				<input type="hidden" id="rep1_num" value="${r.rep1_num }">
 			    				<a class="reply_id"><b>${r.user_id }</b> : </a>
 			    				<a class="reply_content">${r.rep_cont }</a>
@@ -130,7 +132,9 @@
 		    						<c:if test="${r.rep1_num == rr.rep1_num }">
 			    						<ul class="re_reply">
 								    		<li class="re_reply_item">
-								    			<p>
+								    			<p class="re_content">
+								    				<input type="hidden" id="${rr.rep2_num }" value="${rr.rep2_num }">
+								    				<input type="hidden" id="rep1_num" value="${rr.rep2_num }">
 									    			<a class="re_reply_id"><b>${rr.user_id }</b> : </a>
 									    			<a class="re_reply_content">${rr.rep_cont }</a>
 												</p>			    			
@@ -143,8 +147,8 @@
 		    					
 		    				</c:if>
 			    		</li>
+				    	<hr>	    	
 			    	</ul>
-			    	<hr>	    	
 	    		</c:forEach>
 	    	</c:if>
 	    	<c:if test="${empty replyList }">
@@ -273,7 +277,10 @@
 					console.log("성공");
 					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
 					    						"<li style='list-style:none; text-align:left; color:blue;'>"+
-					    							"<p><input type='hidden' id='rep1_num' value="+ data.currval +"><a class='reply_id'><b>"+ $id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a></p>"+
+					    							"<p class='content' style='height:40; line-height:40px;'>"+
+					    							"<input type='hidden' id='rep1_num' value="+ data.currval +">"+
+					    							"<a class='reply_id'><b>"+ $id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a>"+
+					    							"</p>"+
 		    									"</li>"+
 									    	"</ul>");
 					
@@ -296,6 +303,7 @@
 		//댓글
 		$(document).on("click",".reply_content",function(){
 			console.log("댓글");
+			//$(".re_reply_content_area").remove();
 			$(this).parents("li").append("<div class='re_reply_content_area'>"+
 											"<textarea class='re_reply_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
 											"</textarea>"+
@@ -306,6 +314,7 @@
 		//대댓글 달기 ajax
 		$(document).on("click",".re_reply_btn",function(){
 			$rep1_num = $(this).parents(".re_reply_content_area").parents("li").children("p").children("#rep1_num").val()
+			
 			$bNum = $("#bNum").val();
 			$id = $("#id").val();
 			$rep_cont = $(this).parents(".re_reply_content_area").children(".re_reply_content").val();
@@ -322,7 +331,7 @@
 					$(".br").remove();
 					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
 										  								 "<li class='re_reply_item' style='color:blue;'>"+
-											  								 "<p>"+
+											  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
 									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
 									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
 								    										 "</p>"+
@@ -342,6 +351,7 @@
 		//대댓글
 		$(document).on("click",".re_reply_content",function(){
 			console.log("대댓글");
+			//$(".re_reply_content_area").remove();
 			$(this).parents("p").parents(".re_reply_item").append("<div class='re_reply_content_area'>"+
 																	"<textarea class='re_replt_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
 																	"</textarea>"+
@@ -351,7 +361,8 @@
 		
 		//대대댓글 달기 ajax
 		$(document).on("click",".re_re_reply_btn",function(){
-			$rep1_num = $(this).parents(".re_reply_content_area").parents("li").children("p").children("#rep1_num").val()
+			$rep1_num = $(this).parents(".re_reply_content_area").parents(".re_reply_item").parents(".re_reply").parents("li").children(".content").children("#rep1_num").val()
+			//$rep1_num = $(this).parents(".content").children("#rep1_num").val();
 			console.log($rep1_num);
 			$bNum = $("#bNum").val();
 			$id = $("#id").val();
@@ -369,7 +380,7 @@
 					$(".br").remove();
 					$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
 										  								 "<li class='re_reply_item' style='color:blue;'>"+
-											  								 "<p>"+
+											  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
 									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
 									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
 								    										 "</p>"+
@@ -385,6 +396,61 @@
 			
 		})
 		
+		$(document).on("mouseenter",".content",function(){
+			if($(this).children(".reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
+				$(this).append("<img class='content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");	
+			}
+		})
+		
+		$(document).on("mouseleave",".content",function(){
+			$(this).children("img").remove();
+		})
+		
+		
+		$(document).on("mouseenter",".re_content",function(){
+			if($(this).children(".re_reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
+				$(this).append("<img class='re_content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+			}
+		})
+		
+		$(document).on("mouseleave",".re_content",function(){
+			$(this).children("img").remove();
+		})
+		//댓글 석제
+		$(document).on("click",".content_del",function(){
+			$rep1_num = $(this).parents("p").children("input").val();
+			$reply_id = "#"+$rep1_num;
+			$.ajax({
+				url:"replyDel.do",
+				data:{rep1_num:$rep1_num},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					$($reply_id).parents(".content").parents(".reply").remove();
+				},
+				error:function(data){
+					alert("실패");
+				}
+			})
+		})
+		
+		//대댓글 석제
+		$(document).on("click",".re_content_del",function(){
+			$rep2_num = $(this).parents("p").children("input").val();
+			$re_reply_id = "#"+$rep2_num;
+			$.ajax({
+				url:"reReplyDel.do",
+				data:{rep2_num:$rep2_num},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					$($re_reply_id).parents(".re_content").parents(".re_reply").remove();
+				},
+				error:function(data){
+					alert("실패");
+				}
+			})
+		})
 	})
 
 </script>
