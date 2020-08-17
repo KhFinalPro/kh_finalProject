@@ -117,5 +117,20 @@
 		UPDATE BOARD SET B_STATUS='Y' WHERE B_NUM = #{brNum}
 	</update>
 	
+	<update id="boardDelete" parameterType="_int">
+		UPDATE BOARD SET B_STATUS = 'Y'
+		WHERE B_NUM = #{bNum}
+	</update>
+	
+	<select id="selectMyBoard" parameterType="string" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE B_WRITER = #{bWriter}
+	</select>
+	
+	<update id="boardBackup" parameterType="_int">
+		UPDATE BOARD SET B_STATUS = 'N'
+		WHERE B_NUM = #{bNum}
+	</update>
 
 </mapper>

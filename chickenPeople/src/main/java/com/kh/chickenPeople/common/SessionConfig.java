@@ -32,8 +32,8 @@ public class SessionConfig implements HttpSessionListener {
 //		System.out.println("remove userId : " + userId);
 		if(userId != null && userId.length() > 0){
 //			System.out.println("나 나오니?");
-			sessions.get(userId).invalidate();
-			sessions.remove(userId);    		
+//			sessions.get(userId).invalidate();
+//			sessions.remove(userId);    		
 		}
 	}
 	

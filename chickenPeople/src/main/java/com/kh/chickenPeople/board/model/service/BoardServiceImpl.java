@@ -108,6 +108,24 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.downBoardHit(b);
 	}
 
+	@Override
+	public int boardDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return bDao.boardDelete(bNum);
+	}
+
+	@Override
+	public ArrayList<Board> selectMyBoard(String bWriter) {
+		// TODO Auto-generated method stub
+		return bDao.selectMyBoard(bWriter);
+	}
+
+	@Override
+	public int boardBackup(int bNum) {
+		// TODO Auto-generated method stub
+		return bDao.boardBackup(bNum);
+	}
+
 	
 
 
