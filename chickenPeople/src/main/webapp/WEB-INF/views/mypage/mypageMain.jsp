@@ -35,6 +35,12 @@
 	            </div>
 	            <p>회원정보</p>
 	        </div>
+	        <div class="myPage_item" id="my_address">
+	            <div>
+	                <img src="resources/images/myPage_address.png" alt="">
+	            </div>
+	            <p>주소지변경</p>
+	        </div>
 	        <div class="myPage_item" id="coupMe">
 	            <div>
 	                <img src="resources/images/myPage_coupMe.png" alt="">
@@ -106,6 +112,10 @@
 		$("#member").on("click",function(){
 			$id = $("#id").val();
 			location.href="mypageInfo.do?id="+$id;
+		})
+		
+		$("#my_address").on("click",function(){
+			
 		})
 		
 		$("#coupMe").on("click",function(){

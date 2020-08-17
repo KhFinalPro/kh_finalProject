@@ -49,6 +49,7 @@ public class ReplyController {
 		int result = replyService.reReplyInsert(r);
 		JSONObject sendJson = new JSONObject();
 		if(result > 0) {
+//			int currval = replyService.selectReCurrval(r.getB_num());
 			sendJson.put("msg", "성공");
 		}
 		else {
@@ -57,6 +58,36 @@ public class ReplyController {
 		
 		PrintWriter out = response.getWriter();
 		
+		out.print(sendJson);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="replyDel.do", method=RequestMethod.POST)
+	public void replyDel(HttpServletResponse response, int rep1_num) throws IOException {
+		System.out.println("댓글 삭제");
+		int reReplyDelResult = replyService.reReplyDelResult(rep1_num);
+		int replyDelResult = replyService.replyDelResult(rep1_num);
+		
+		PrintWriter out = response.getWriter();
+		JSONObject sendJson = new JSONObject();
+		
+		sendJson.put("msg", "성공");
+		out.print(sendJson);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="reReplyDel.do", method=RequestMethod.POST)
+	public void reReplyDel(HttpServletResponse response, int rep2_num) throws IOException {
+		System.out.println("댓글 삭제");
+		int reReplyDelResult = replyService.reReReplyDelResult(rep2_num);
+//		int replyDelResult = replyService.replyDelResult(rep1_num);
+		
+		PrintWriter out = response.getWriter();
+		JSONObject sendJson = new JSONObject();
+		
+		sendJson.put("msg", "성공");
 		out.print(sendJson);
 		out.flush();
 		out.close();
