@@ -114,7 +114,7 @@ $(function(){
                });
                infowindow.open(map, marker);
 
-               //map.setCenter(coords);
+               map.setCenter(coords);
            } 
        });
    });
