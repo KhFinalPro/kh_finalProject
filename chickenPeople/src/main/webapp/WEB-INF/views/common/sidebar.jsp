@@ -120,7 +120,7 @@
 <body>
 <div id="mypage_nav">
 	    <nav>
-	        <a class="mypage_item" href="#">회원정보</a>
+	        <a class="mypage_item" href="mypageInfo.do?id=${sessionScope.loginUser.id }">회원정보</a>
 	        <a class="mypage_item" href="myCoupon.do?id=${sessionScope.loginUser.id }">쿠폰</a>
 	        <a class="mypage_item" href="couponAccept.do?id=${sessionScope.loginUser.id }">쿠폰받아가기</a>
 	        <a class="mypage_item" href="orderStatus.do?id=${sessionScope.loginUser.id }">주문현황</a>

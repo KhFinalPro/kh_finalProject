@@ -266,10 +266,12 @@ public class BungController {
 		
 		if(!list.isEmpty())
 		{
+			mv.addObject("month", month);
 			mv.addObject("list", list);
 		}
 		else
 		{
+			mv.addObject("month", month);
 			mv.addObject("msg", "텅");
 		}
 		mv.setViewName("bung/bungList");

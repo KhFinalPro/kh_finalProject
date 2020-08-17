@@ -63,5 +63,12 @@
 	<update id="memberOrderCount" parameterType="string">
 		UPDATE MEMBER SET ORD_CNT = ORD_CNT + 1 WHERE USER_ID = #{user_id}
 	</update>
+	
+	<update id="mypageUpdate" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_NAME = #{name}, USER_PWD = #{pwd}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
+		WHERE USER_ID = ${id};
+	</update>
+	
   
 </mapper>

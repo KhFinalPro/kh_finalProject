@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 	<style>
 		#main_section{margin: auto; width: 80%; margin-top: 100px; clear: both;}
+		#main_section>h2{color:#0070C0;}
 		#main_section>#head_area{margin: auto; width: 90%; height: 100%; z-index: 0;}
 		
 		#main_section>#head_area>.head_line{float: left; text-align: center;}
@@ -75,7 +76,8 @@
 		
 		/*번개 내용 / 소개 */
 		#main_section>#text_area{margin: auto; width: 90%;}
-		#main_section>#text_area>textarea{margin: auto; width: 100%; font-size: 20px; font-weight: 600; resize:none;}
+		#main_section>#text_area>p{font-size:20px; font-weight:600;}
+		#main_section>#text_area>pre{margin: auto; width: 100%; font-size: 15px; font-weight: 600; resize:none;}
 		
 		/*번개 수정하기 버튼*/
 		#UpdateBung{float:right; height: 50px; width: 200px; font-size:25px; font-weight:600; border: 0px;}
@@ -147,7 +149,7 @@
         </div>
 
         <hr>
-        <h3>치킨번개 정보</h3>
+        <h2>치킨번개 정보</h2>
 
         <div id="date" class="info_first_area"><img src="resources/images/date.png" alt=""></div>
         <div id="date_info" class="info_first_area"><h4>${bung.bung_date }</h4></div>
@@ -180,8 +182,8 @@
         </div>
 
         <div id="text_area">
-            <h4>치킨번개 모집 내용 / 소개</h4>
-            <textarea name="contents" id="contents" cols="127" rows="10" readonly>${bung.bung_int }</textarea>
+            <p>치킨번개 모집 내용 / 소개</p>
+            <pre>${bung.bung_int }</pre>
         </div>
     </section>
 
@@ -317,7 +319,6 @@
 		
 		$("#UpdateBung").on("click",function(){
 			$bung_num = $("#bung_num").val();
-			alert($bung_num);
 			location.href="bungUpdateView.do?bung_num=" + $bung_num;
 		})
 		

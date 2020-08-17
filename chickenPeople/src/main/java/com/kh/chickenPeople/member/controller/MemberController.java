@@ -68,6 +68,7 @@ public class MemberController {
 		
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
+		System.out.println(m);
 		
 
 		if(member==null) {
@@ -203,6 +204,54 @@ public class MemberController {
 		mv.setViewName("member/agreement2");
 		
 		return mv;
+	}
+	
+	@RequestMapping("mypageInfo.do")
+	public ModelAndView mypageInfo(ModelAndView mv) {
+		mv.setViewName("mypage/mypageInfo");
+		
+		return mv;
+	}
+	
+	@RequestMapping("mypageUpdate.do")
+	public String mypageUpdate(Member m, Model model,
+								HttpServletRequest request,
+								HttpServletResponse response,
+								@RequestParam(value="propic", required=false) MultipartFile propic)  {
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		System.out.println(m);
+		System.out.println(propic);
+		
+		
+		
+		m.setPwd(encPwd);
+		
+		
+		if(!propic.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
+			
+			System.out.println("오리진 파일 : " + propic.getOriginalFilename());
+			
+			String renameFileName =  SaveFile.saveFile3(propic, request);
+			
+			System.out.println(renameFileName);
+			
+			m.setPic(renameFileName);
+			
+		}
+		
+		
+		int result = mService.mypageUpdate(m);
+
+		
+		if(result > 0) {
+			return "redirect:/home.do";
+		}else {
+			
+		}
+		
+		return "redirect:/home.do";
+		
 	}
 	
 	
