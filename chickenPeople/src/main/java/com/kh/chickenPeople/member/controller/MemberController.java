@@ -68,7 +68,7 @@ public class MemberController {
 		
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
-		System.out.println(m);
+//		System.out.println(m);
 		
 
 		if(member==null) {
@@ -85,7 +85,7 @@ public class MemberController {
 				String userId = SessionConfig.getSessionidCheck("loginUserId", member.getId());
 //				System.out.println("튕겨나온거 : " + userId);
 				
-				return "redirect:/home.do?";
+				return "redirect:/home.do";
 			}else {
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 			return "redirect:/loginView.do";
@@ -222,6 +222,7 @@ public class MemberController {
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		System.out.println(m);
 		System.out.println(propic);
+		System.out.println(encPwd);
 		
 		
 		
@@ -243,7 +244,7 @@ public class MemberController {
 		
 		int result = mService.mypageUpdate(m);
 
-		
+		System.out.println("다 담겼니?" +result);
 		if(result > 0) {
 			return "redirect:/home.do";
 		}else {
