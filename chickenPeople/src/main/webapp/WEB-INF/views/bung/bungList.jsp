@@ -30,7 +30,7 @@ section{margin-top: 100px;}
 #main_section>.bungae_area>.status {width: 100px; margin-left: 20px; height: 50; line-height: 50px;}
 
 #main_section>.bungae_area>.second_line {float: left;}
-#month_selc{width:70px; height:25px; margin-right:20px;}
+#month_selc{width:70px; height:50px; margin-right:20px; font-size:18px; border:0px;}
 #create_bung_area{margin: auto; width: 90%; text-align: right;}
 #create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
 #create_bung_area>input:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}

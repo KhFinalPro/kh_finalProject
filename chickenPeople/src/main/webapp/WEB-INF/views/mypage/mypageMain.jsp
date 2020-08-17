@@ -9,9 +9,10 @@
 	<style>
            
 	    body, hmtl{font-family: 'Anton', sans-serif;}
-	    #myPage{margin: 0 auto; width: 90%; margin-top: 150px;}
+	    #myPage{margin: 0 auto; width: 90%; margin-top: 150px; text-align:center;}
+	    #myPage>p{font-size:25px; font-weight:600; color: #735949; box-shadow: 0px 5px 5px rgb(226, 226, 226); height:40px; line-height:40px;}
 	    #myPage_nav{margin:0 auto; width: 100%; text-align: center;}
-	    .myPage_item{float:left; width:22%; margin: 24px;; height:350px;  border-radius: 130px;}
+	    .myPage_item{float:left; width:22%; margin: 24px;; height:250px; margin-bottom:100px;  border-radius: 130px;}
 	    .myPage_item div{margin: 0 auto; width:50%; height:200px; border: 1px solid black; border-radius: 130px; box-shadow: 0px 10px 10px rgb(226, 226, 226);}
 	    .myPage_item div img{width: 60%; height: 60%; margin-top:45px;}
 	    .myPage_item p{font-size:20px; font-weight:600;}
@@ -26,6 +27,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="myPage">
+		<p>My치민</p>
 	    <div id="myPage_nav">
 	        <div class="myPage_item" id="member">
 	            <div>
@@ -55,7 +57,7 @@
 	            <div>
 	                <img src="resources/images/myPage_review.png" alt="">
 	            </div>
-	            <p>주문달력/리뷰</p>
+	            <p>주문달력⊙리뷰</p>
 	        </div>
 	        <div class="myPage_item" id="my_message">
 	            <div>
@@ -67,13 +69,31 @@
 	            <div>
 	                <img src="resources/images/myPage_good.png" alt="">
 	            </div>
-	            <p>찜한매장/글</p>
+	            <p>찜한매장⊙글</p>
 	        </div>
 	        <div class="myPage_item" id="bung">
 	            <div>
 	                <img src="resources/images/hBung.png" alt="">
 	            </div>
 	            <p>번개</p>
+	        </div>
+	        <div class="myPage_item" id="myPage_mat">
+	            <div>
+	                <img src="resources/images/mat.png" alt="">
+	            </div>
+	            <p>맛잘알</p>
+	        </div>
+	        <div class="myPage_item" id="myPage_notice">
+	            <div>
+	                <img src="resources/images/myPage_notice.png" alt="">
+	            </div>
+	            <p>공지사항</p>
+	        </div>
+	        <div class="myPage_item" id="myPage_chatting">
+	            <div>
+	                <img src="resources/images/chatting.png" alt="">
+	            </div>
+	            <p>1:1 문의</p>
 	        </div>
 	    </div>
 	</section>
@@ -118,6 +138,18 @@
 		$("#bung").on("click",function(){
 			$id = $("#id").val();
 			location.href="myBung.do?id="+$id;
+		})
+		$("#myPage_mat").on("click",function(){
+			$id = $("#id").val();
+			location.href="boardList.do";
+		})
+		$("#myPage_notice").on("click",function(){
+			$id = $("#id").val();
+			location.href="nList.do";
+		})
+		$("#myPage_chatting").on("click",function(){
+			var loginUser="<c:out value='${loginUser.id}'/>";
+    		window.open("chatting.do?loginUserName="+loginUser,"","width=400, height=600","menubar=1","status=0");
 		})
 	})
 	

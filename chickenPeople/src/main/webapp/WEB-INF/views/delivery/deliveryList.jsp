@@ -33,6 +33,8 @@
 		#store_count{font-size: 30px;}
 		#store_count>b{font-size:50px;}
 		
+		#store_category{width:100px; height:50px; font-size:20px; font-weight:600; border:0px; background-color:#735949; color:white; border-radius:15px;}
+		
 		#msg{font-size:25px; font-weight:600;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
