@@ -55,4 +55,8 @@ public class ChatDao {
 		return sqlSessionTemplate.update("chatMapper.updateChatStatus",room_no);
 	}
 
+	public String selectPic(String userId) {
+		return sqlSessionTemplate.selectOne("memberMapper.selectPic",userId);
+	}
+
 }
