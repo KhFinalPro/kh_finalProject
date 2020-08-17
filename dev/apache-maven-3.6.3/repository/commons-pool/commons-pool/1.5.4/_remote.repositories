@@ -1,5 +1,12 @@
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+commons-pool-1.5.4.jar>central=
+commons-pool-1.5.4.pom>central=
+=======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sun Aug 16 17:27:22 GMT+09:00 2020
 commons-pool-1.5.4-sources.jar>central=
 commons-pool-1.5.4.jar>central=
 commons-pool-1.5.4.pom>central=
+>>>>>>> refs/remotes/origin/master

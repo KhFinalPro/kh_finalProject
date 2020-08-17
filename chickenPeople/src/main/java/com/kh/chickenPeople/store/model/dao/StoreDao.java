@@ -133,6 +133,10 @@ public class StoreDao {
 		return sqlSessionTemplate.update("storeMapper.enterStatusUpdate",newbie);
 	}
 
+	public String selectProfile(String brand_code) {
+		return sqlSessionTemplate.selectOne("brandMapper.selectProfile",brand_code);
+	}
+
 	
 
 	

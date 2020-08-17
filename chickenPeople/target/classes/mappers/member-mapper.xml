@@ -32,7 +32,7 @@
 		SELECT * FROM DUAL
 	</insert>
 	<insert id="insertStoreMember" parameterType="Member">
-		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email},NULL,NULL,'BRONZE','판매자',0,'N')
+		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email}, NULL, #{pic},'BRONZE','판매자',0,'N')
 	</insert>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
@@ -63,5 +63,9 @@
 	<update id="memberOrderCount" parameterType="string">
 		UPDATE MEMBER SET ORD_CNT = ORD_CNT + 1 WHERE USER_ID = #{user_id}
 	</update>
+	<select id="selectMemberCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
   
 </mapper>

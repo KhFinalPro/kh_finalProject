@@ -63,6 +63,8 @@ public interface StoreService {
 
 	int enterStatusUpdate(Store newbie);
 
+	String selectProfile(String brand_code);
+
 	
 
 	

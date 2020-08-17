@@ -199,6 +199,7 @@
     	</div>
     	<c:url var="enterStatusUpdate" value="enterStatusUpdate.do">
     		<c:param name="sto_num" value="${store.sto_num }"/>
+    		<c:param name="sto_name" value="${store.sto_name }"/>
     		<c:param name="brand_code" value="${store.brand_code }"/>
     		<c:param name="sto_email" value="${store.sto_email}"/>
     		<c:param name="ceo_name" value="${store.ceo_name}"/>

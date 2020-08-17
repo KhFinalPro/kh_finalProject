@@ -1,5 +1,12 @@
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+log4j-1.2.15.pom>central=
+log4j-1.2.15.jar>central=
+=======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sun Aug 16 17:26:44 GMT+09:00 2020
 log4j-1.2.15.pom>central=
 log4j-1.2.15-sources.jar>central=
 log4j-1.2.15.jar>central=
+>>>>>>> refs/remotes/origin/master
