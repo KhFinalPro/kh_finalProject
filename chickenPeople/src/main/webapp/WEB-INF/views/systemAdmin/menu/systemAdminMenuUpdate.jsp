@@ -46,7 +46,7 @@
 			<div class="menuHeader">
 				<p style="font-size:20px;">메뉴 관리</p>
 				<br><hr><br>
-				<form action="systemAdminMenu.do" method="get">
+			
 					<table class="searchTable">
 						<tr>
 							<td><b>메뉴 검색</b></td>

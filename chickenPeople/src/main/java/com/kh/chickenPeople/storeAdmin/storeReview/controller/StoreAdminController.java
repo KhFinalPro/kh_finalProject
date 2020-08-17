@@ -50,10 +50,10 @@ public class StoreAdminController {
 		  return "storeAdmin/storeProgress";
 	  }
 	  
-	  @RequestMapping("storeAdminMain.do")
-	  public String storeAdminMain() {
-		  return "storeAdmin/storeAdminMain";
-	  }
+		/*
+		 * @RequestMapping("storeAdminMain.do") public String storeAdminMain() { return
+		 * "storeAdmin/storeAdminMain"; }
+		 */
 	  
 	  
 		/*

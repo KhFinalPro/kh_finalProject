@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:23 GMT+09:00 2020
 commons-httpclient-3.1.jar>central=
@@ -10,3 +11,14 @@ commons-httpclient-3.1-sources.jar>central=
 commons-httpclient-3.1.jar>central=
 commons-httpclient-3.1.pom>central=
 >>>>>>> refs/remotes/origin/master
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Sun Aug 16 02:36:32 KST 2020
+=======
+#Sun Aug 16 17:28:15 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
+commons-httpclient-3.1-sources.jar>central=
+commons-httpclient-3.1.jar>central=
+commons-httpclient-3.1.pom>central=
+>>>>>>> refs/remotes/origin/dev22222222222222
