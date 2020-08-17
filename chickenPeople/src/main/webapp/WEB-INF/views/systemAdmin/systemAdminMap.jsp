@@ -35,11 +35,11 @@
 	<div class="main_container">
 		<div class="item"> 
 		<br clear="both">
+			
 			<input type="hidden" id="storeList" value="${searchStoreList }"/>
 			<div class="menuHeader">
 				<p style="font-size:20px;">멘트추천받습니다</p>
 				<br><hr><br>
-				<input type="hidden" id="storeAddrList" value="${searchStoreList }"/>
 				
 				<form action="systemAdminMap.do" method="get">
 					<table class="searchTable">
@@ -69,11 +69,20 @@
 </div><!-- class wrapper end -->
 <script>
 $(function(){
-	var user_addr = new Array();
-	user_addr = $("#storeList").html();
-	console.log(user_addr);
+	/* var user_addr1 = new Array();
+	var user_addr2 = new Array();
+	user_addr1 = $("#storeList").val();
+	 */
+	//user_addr2 = "<c:out value='${searchStoreList[0]}'/>"
 	
-	var searchStoreList = new Array();
+	
+    var addrList = new Array();
+	var nameList = new Array();
+	
+	<c:forEach var="addr" items="${searchStoreList }">
+		addrList.push("${addr.sto_addr}");
+		nameList.push("${addr.sto_name}");
+	</c:forEach>
 	
 	
    var mapContainer = document.getElementById('map');
@@ -85,13 +94,11 @@ $(function(){
    var map = new daum.maps.Map(mapContainer, mapOption); 
 
    var geocoder = new daum.maps.services.Geocoder();
-   var listData = [];
-   var listName = [];
-   
+/*    var listData = [];
+   var listName = []; */
    
 
-
-   listData.forEach(function(addr, index) {
+   addrList.forEach(function(addr, index) {
 	   console.log(addr);
        geocoder.addressSearch(addr, function(result, status) {
            if (status === daum.maps.services.Status.OK) {
@@ -102,7 +109,7 @@ $(function(){
                    position: coords
                });
                var infowindow = new daum.maps.InfoWindow({
-                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listName[index] + '</div>',
+                   content: '<div style="width:150px;text-align:center;padding:6px 0;">' + nameList[index] + '</div>',
                    disableAutoPan: true
                });
                infowindow.open(map, marker);

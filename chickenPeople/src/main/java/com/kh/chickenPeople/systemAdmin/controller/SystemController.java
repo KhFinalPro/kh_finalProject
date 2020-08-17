@@ -38,12 +38,13 @@ public class SystemController {
 									   @RequestParam(value="storeSearch",required=false) String storeSearchName) {
 		int getListCount = sService.selectMapStoreList(storeSearchName);
 		ArrayList<Store> searchStoreList = sService.searchStoreList(storeSearchName);
-		String []storeNameList = new String[getListCount];
-		for(int i = 0 ; i<searchStoreList.size();i++) {
-			storeNameList[i]=searchStoreList.get(i).getSto_name();
-			System.out.println(storeNameList[i]);
-		}
-		mv.addObject("searchStoreList", storeNameList);
+		
+//		String []storeNameList = new String[getListCount];
+//		for(int i = 0 ; i<searchStoreList.size();i++) {
+//			storeNameList[i]=searchStoreList.get(i).getSto_name();
+//			System.out.println(storeNameList[i]);
+//		}
+		mv.addObject("searchStoreList", searchStoreList);
 		
 		mv.addObject("searchStatus",searchStatus);
 		mv.setViewName("systemAdmin/systemAdminMap");
