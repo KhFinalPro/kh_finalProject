@@ -72,6 +72,8 @@
 	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
 	#btn_area .wbutton:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}
 	
+	#msg{text-align:center;}
+	
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -108,38 +110,46 @@
 			<br clear="both">  
 		
 			<div id="boardList_area">
-				<c:forEach var="b" items="${boardList }">
-					<c:if test="${b.bStatus =='Y' }">
-						<div class="mja_area" style="background-color:lightgray;">
-		                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
-		                <div class="mja_logo first_line">
-		                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
-		                </div>
-		                <div class="first_line mja_title">
-		                    <h2 style="color: #735949;">${b.bTitle }(삭제된 게시물)</h2>
-		                    <h3>조회수 : ${b.bCount }</h3>
-		                    <h3>추천수 : ${b.bHit }</h3>
-		                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
-		                </div>
-		                <br clear="both">
-		            </div>
-					</c:if>
-					<c:if test="${b.bStatus =='N' }">
-						<div class="mja_area">
-		                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
-		                <div class="mja_logo first_line">
-		                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
-		                </div>
-		                <div class="first_line mja_title">
-		                    <h2 style="color: #735949;">${b.bTitle }</h2>
-		                    <h3>조회수 : ${b.bCount }</h3>
-		                    <h3>추천수 : ${b.bHit }</h3>
-		                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
-		                </div>
-		                <br clear="both">
-		            </div>
-					</c:if>
-				</c:forEach>
+				<c:if test="${!empty boardList }">
+					<c:forEach var="b" items="${boardList }">
+						<c:if test="${b.bStatus =='Y' }">
+							<div class="mja_area" style="background-color:lightgray;">
+			                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
+			                <div class="mja_logo first_line">
+			                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
+			                </div>
+			                <div class="first_line mja_title">
+			                    <h2 style="color: #735949;">${b.bTitle }(삭제된 게시물)</h2>
+			                    <h3>조회수 : ${b.bCount }</h3>
+			                    <h3>추천수 : ${b.bHit }</h3>
+			                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
+			                </div>
+			                <br clear="both">
+			            </div>
+						</c:if>
+						<c:if test="${b.bStatus =='N' }">
+							<div class="mja_area">
+			                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
+			                <div class="mja_logo first_line">
+			                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
+			                </div>
+			                <div class="first_line mja_title">
+			                    <h2 style="color: #735949;">${b.bTitle }</h2>
+			                    <h3>조회수 : ${b.bCount }</h3>
+			                    <h3>추천수 : ${b.bHit }</h3>
+			                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
+			                </div>
+			                <br clear="both">
+			            </div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty boardList }">
+					<div id="msg">
+						<img src="resources/images/tung.png">					
+					</div>
+				</c:if>
+				
 			</div>
 		</div>
 	</div>

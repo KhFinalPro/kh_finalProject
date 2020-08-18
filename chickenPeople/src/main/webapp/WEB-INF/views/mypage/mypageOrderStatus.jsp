@@ -34,7 +34,7 @@
     
     #delivery_status{color:blue;}
     
-    #msg_area{text-align:center;}
+    #msg_area{text-align:center; margin-top:150px;}
 	#msg_area > img{width:20%; heigth:20%;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42ae5ba7b91c000e8dd51ef7b13009b4&libraries=services,clusterer,drawing"></script>
