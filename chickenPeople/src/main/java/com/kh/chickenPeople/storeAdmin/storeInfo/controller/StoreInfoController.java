@@ -1,11 +1,14 @@
 package com.kh.chickenPeople.storeAdmin.storeInfo.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -139,6 +142,60 @@ public class StoreInfoController {
 		return mv;
 	
 	
+	}
+	
+	@RequestMapping(value="updateOpenStatus.do",method=RequestMethod.GET)
+	public void updateOpenStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		 response.setContentType("application/json;charset=utf-8");
+
+	        HttpSession session = request.getSession();
+
+	        Member loginUser = (Member) session.getAttribute("loginUser");
+	        
+	        // 유저 아이디
+	        String userId = loginUser.getId();
+	        
+	        System.out.println("알유데어?");
+	        
+	        int updateOpenStatus = storeInfoService.updateOpenStatus(userId);
+	        
+	        JSONObject obj = new JSONObject();
+	        //obj.put("gg", "서엉공");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print(obj);
+			out.flush();
+			out.close();
+	        
+	}
+	
+	
+	
+	@RequestMapping(value="updateOpenStatusYes.do",method=RequestMethod.GET)
+	public void updateOpenStatusYes(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		 response.setContentType("application/json;charset=utf-8");
+
+	        HttpSession session = request.getSession();
+
+	        Member loginUser = (Member) session.getAttribute("loginUser");
+	        
+	        // 유저 아이디
+	        String userId = loginUser.getId();
+	        
+	        System.out.println("알유데어?");
+	        
+	        int updateOpenStatus = storeInfoService.updateOpenStatusYes(userId);
+	        
+	        JSONObject obj = new JSONObject();
+	        //obj.put("gg", "서엉공");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print(obj);
+			out.flush();
+			out.close();
+	        
 	}
 	
 	

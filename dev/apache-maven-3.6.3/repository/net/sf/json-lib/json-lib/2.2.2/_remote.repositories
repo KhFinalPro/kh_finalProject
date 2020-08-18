@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Mon Aug 17 14:37:42 KST 2020
+=======
 #Mon Aug 17 22:37:04 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 json-lib-2.2.2-jdk15.jar>central=
 json-lib-2.2.2.pom>central=

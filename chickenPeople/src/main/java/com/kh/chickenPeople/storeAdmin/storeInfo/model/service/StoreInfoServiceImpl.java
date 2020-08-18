@@ -27,6 +27,18 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 		return storeInfoDao.modifyInfo(newInfo);
 	}
 
+	@Override
+	public int updateOpenStatus(String userId) {
+	
+		return storeInfoDao.updateOpenStatus(userId);
+	}
+
+	@Override
+	public int updateOpenStatusYes(String userId) {
+		// TODO Auto-generated method stub
+		return storeInfoDao.updateOpenStatusYes(userId);
+	}
+
 	/*
 	 * @Override public int modifyInfo(HashMap<String, String> map) {
 	 * 

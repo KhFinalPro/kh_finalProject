@@ -1,4 +1,14 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 14:37:22 KST 2020
+log4j-1.2.15.pom>central=
+log4j-1.2.15-sources.jar>central=
+>>>>>>>=refs/remotes/origin/master
+log4j-1.2.15.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -37,6 +47,8 @@ log4j-1.2.15-sources.jar>central=
 log4j-1.2.15.jar>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:36:47 GMT+09:00 2020
@@ -46,4 +58,5 @@ log4j-1.2.15-sources.jar>central=
 =\=\=\=\=\=\=
 log4j-1.2.15.jar>central=
 <<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

@@ -1,4 +1,14 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 14:37:49 KST 2020
+gson-2.8.5-sources.jar>central=
+gson-2.8.5.pom>central=
+>>>>>>>=refs/remotes/origin/master
+gson-2.8.5.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -37,6 +47,8 @@ gson-2.8.5.pom>central=
 gson-2.8.5.jar>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:37:11 GMT+09:00 2020
@@ -46,4 +58,5 @@ gson-2.8.5.pom>central=
 =\=\=\=\=\=\=
 gson-2.8.5.jar>central=
 <<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

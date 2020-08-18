@@ -1,4 +1,14 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 14:37:32 KST 2020
+commons-pool-1.5.4.jar>central=
+commons-pool-1.5.4-sources.jar>central=
+commons-pool-1.5.4.pom>central=
+>>>>>>>=refs/remotes/origin/master
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -37,6 +47,8 @@ commons-pool-1.5.4.jar>central=
 commons-pool-1.5.4.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:36:56 GMT+09:00 2020
@@ -46,4 +58,5 @@ commons-pool-1.5.4.pom>central=
 >>>>>>>=refs/remotes/origin/dev22222222222222
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
