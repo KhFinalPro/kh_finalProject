@@ -141,20 +141,22 @@ public class SystemController {
 		ArrayList<SiteTotal> selectSiteTotal = sService.selectSiteTotal();
 		ArrayList<StoreTotal> selectStoreTotal = sService.selectStoreTotal();
 		
-		int totalMemberCount = sService.selectMemberCount();
+		int memberCount = sService.selectMemberCount();
+		int storeMemberCount = sService.selectStoreMemberCount();
 		int reportCount = sService.selectReportCount();
 		int chattingCount = sService.selectChattingCount();
 		int storeMemCount = sService.selectStoreMemCount();
 		
-		System.out.println(selectStoreTotal);
 		mv.addObject("printTotalList",selectBrandTotal);
 		mv.addObject("printSiteTotalList", selectSiteTotal);
 		mv.addObject("storeTotalList",selectStoreTotal);
 		mv.addObject("storeMemCount",storeMemCount);
 		mv.addObject("chattingCount",chattingCount);
 		mv.addObject("reportCount",reportCount);
-		mv.addObject("totalMemberCount",totalMemberCount);
+		mv.addObject("totalMemberCount",memberCount);
+		mv.addObject("storeMemberCount",storeMemberCount);
 		mv.addObject("citeTotalList",selectSiteTotal);
+		System.out.println(selectSiteTotal);
 		mv.setViewName("systemAdmin/systemAdminMain");
 		return mv;
 		

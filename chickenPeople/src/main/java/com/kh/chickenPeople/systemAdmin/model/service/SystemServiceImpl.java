@@ -90,6 +90,11 @@ public class SystemServiceImpl implements SystemService{
 	public ArrayList<StoreTotal> selectStoreTotal() {
 		return sDao.selectStoreTotal();
 	}
+
+	@Override
+	public int selectStoreMemberCount() {
+		return sDao.selectStoreMemberCount();
+	}
 	
 
 

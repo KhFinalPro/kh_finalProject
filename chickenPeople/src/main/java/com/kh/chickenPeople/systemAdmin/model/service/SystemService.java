@@ -43,6 +43,8 @@ public interface SystemService {
 
 	ArrayList<StoreTotal> selectStoreTotal();
 
+	int selectStoreMemberCount();
+
 
 	
 
