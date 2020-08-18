@@ -34,9 +34,12 @@ section{margin-top:150px;}
 
 #tag_name{margin:0 auto; width:50%; font-size:40px; font-weight:600; text-align:center;}
 
+#create_bung_area{margin: auto; width: 90%; text-align: right;}
+#create_bung_area>input{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
+#create_bung_area>input:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}
 
 #msg_area{text-align:center;}
-#msg_area > img{width:20%; heigth:20%;}
+/* #msg_area > img{width:20%; heigth:20%;} */
 </style>
 </head>
 <body>
@@ -44,8 +47,11 @@ section{margin-top:150px;}
 	
 	
 	<section>
-		<c:if test="${!empty bungList }">
-			<div id="main_section">
+		<div id="main_section">
+			<div id="create_bung_area">
+				<input type="button" id="create_bung" value="번개 개설하기"/>	
+			</div>
+			<c:if test="${!empty bungList }">
 				<br>
 				<c:forEach var="b" items="${bungList }">
 					<c:if test="${b.bung_status == '모집중' }">
@@ -83,8 +89,8 @@ section{margin-top:150px;}
 					</div>
 					</c:if>
 				</c:forEach>		
-			</div>
-		</c:if>
+			</c:if>
+		</div>
 		<c:if test="${!empty msg }">
 			<div id="msg_area">
 					<img src="resources/images/tung.png">

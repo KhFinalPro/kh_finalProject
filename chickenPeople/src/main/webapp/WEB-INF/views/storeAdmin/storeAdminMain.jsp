@@ -295,7 +295,20 @@ box-shadow: 1px 1px 89px rgba(1,1,1,0.125);
    					</tbody>
    				</table>
    				</div>
-   				
+   				                
+   				<!-- 시작하기 모달 -->
+<!-- <div id="startModal" style="position: fixed; display:block; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.75); z-index: 9999;">
+  <div style="width: 380px; height: 300px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+  <a href="home.do;" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+ <img src="resources/images/close.png" style="width: 100%;"/></a> 
+  <div style="position: absolute; top : 100px; left:80px;">
+         <b style="font-size:20px;">장사를 시작하시겠습니까?</b>
+  </div>
+      <button type="button" onclick="start()" style="position:absolute; left:140px; background:#587be4; color:#fff; padding:10px; bottom:70px; border:none; border-radius:10px;"><b>확인</b></button>
+      <button type="button" onclick="exit()" style="position:absolute; left:190px; background:#efefef; color:#21232b;  padding:10px; bottom:70px; border:none; border-radius:10px;"><b>취소</b></button>
+  </div>
+</div> 
+     -->
    				
    				
    				<canvas id="myChart1" height="350" width="600" ></canvas>
@@ -312,7 +325,45 @@ box-shadow: 1px 1px 89px rgba(1,1,1,0.125);
 </body>
 
 
+
+
 <script> 
+
+/* $("#exit").click(function(){
+	//alert('장사를 종료하시겠습니까?');
+	$('#startModal').fadeIn(500);
+	
+}); */
+
+/* function start(){
+	
+	
+	$.ajax({
+		type:'GET',
+		url:'updateOpenStatusYes.do',
+		dataType:'JSON',
+		success:function(){
+			alert('장사를 시작합니다!');
+			$('#startModal').fadeOut(500);
+			
+			
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+}
+
+
+function exit(){
+
+	$('#startModal').fadeOut(500);
+	
+}
+ */
+
+
 
 
 var customer=[]

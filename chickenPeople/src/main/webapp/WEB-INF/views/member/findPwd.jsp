@@ -77,7 +77,7 @@
                 font-size: 12px;
                 line-height: 20px;
                 color: darkgrey;
-            }
+            }o1
         </style>
     </head>
     <body>
@@ -85,12 +85,12 @@
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
             <h1>비밀번호 찾기</h1>
-            <form id="findPwd" method="post" action="findPwdView.do">
+            <form id="findPwd" method="get" action="findPwd.do">
                 <p>ID</p>
-                <input type="text" name="" placeholder="아이디를 입력하세요">
+                <input type="text" name="id" placeholder="아이디를 입력하세요">
                 <p>E-mail</p>
-                <input type="password" name="" placeholder="이메일을 입력하세요">
-                <input type="submit" name="" value="이메일로 전송">
+                <input type="text" name="email" placeholder="이메일을 입력하세요">
+                <input type="submit" value="이메일로 전송">
                 <a href="loginView.do">치킨의민족 로그인</a><br>
                 <a href="findIdView.do">아이디 찾기</a><br>
                 <a href="memberJoinView.do">치킨의민족 회원가입</a>

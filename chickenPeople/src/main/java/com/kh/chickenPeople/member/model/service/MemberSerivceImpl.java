@@ -55,5 +55,24 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.mypageUpdate(m);
 	}
 
+	@Override
+	public Member findPwd(String id) {
+		
+		return mDao.findPwd(id);
+	}
+
+	@Override
+	public int deletePwd(Member member) {
+		
+		return mDao.deletePwd(member);
+	}
+
+	@Override
+	public Member findId(Member m) {
+		
+		return mDao.findId(m);
+	}
+
+
 
 }

@@ -26,4 +26,6 @@ public interface ChatService {
 
 	int updateChatStatus(int room_no);
 
+	String selectPic(String userId);
+
 }

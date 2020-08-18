@@ -1,3 +1,11 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+<<<<<<< HEAD
+#Mon Aug 17 16:03:52 KST 2020
+=======
+#Mon Aug 17 14:37:49 KST 2020
+>>>>>>> refs/remotes/origin/master
+=======
 #Mon Aug 17 22:37:11 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 gson-parent-2.8.5.pom>central=

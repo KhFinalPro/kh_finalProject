@@ -217,29 +217,23 @@ body{
             <div class="top_menu">
                 <div class="logo">Admin page</div>
                 <ul>
-                    <li><a href="home.do"><i class="fas fa-times"></i></i></a></li>
+                    <li><a href="#"><i class="fas fa-times" id="exit"></i></i></a></li>
                 </ul>
             </div>
         </div>
             <div class="sidebar">
                 <ul>
-                	<li class="InfoBar"><a href="storeInfo.do">
+                    <li class="salesBar"><a href="storeAdminMain.do">
                         <span class="icon">
-                            <i class="fas fas fa-user" aria-hidden="store"></i>
+                            <i class="fas fa-won-sign" aria-hidden="true"></i>
                         </span>
-                        <span class="title">매장정보</span>
+                        <span class="title">매출관리</span>
                     </a></li>
                     <li class="orderBar"><a href="storeOrder.do">
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
                         <span class="title">주문확인</span>
-                    </a></li>
-                    <li class="salesBar"><a href="storeAdminMain.do">
-                        <span class="icon">
-                            <i class="fas fa-won-sign" aria-hidden="true"></i>
-                        </span>
-                        <span class="title">매출관리</span>
                     </a></li>
                     <li class="menuBar"><a href="storeMenu.do">
                         <span class="icon">
@@ -253,15 +247,70 @@ body{
                         </span>
                         <span class="title">리뷰관리</span>
                     </a></li>
-                    <li class="storeBar"><a href="storeProgress.do">
+                   <!--  <li class="storeBar"><a href="storeProgress.do">
                         <span class="icon">
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
                         <span class="title">매장운영</span>
+                    </a></li> -->
+                	<li class="InfoBar"><a href="storeInfo.do">
+                        <span class="icon">
+                            <i class="fas fas fa-user" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">매장정보</span>
                     </a></li>
                 </ul>
             </div>
 
     </div>
+    
+                 <!-- 종료하기 모달 -->
+<div id="exitModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.75); z-index: 9999;">
+  <div style="width: 380px; height: 300px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+  <a href="home.do;" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+ <img src="resources/images/close.png" style="width: 100%;"/></a> 
+  <div style="position: absolute; top : 100px; left:80px;">
+         <b style="font-size:20px;">장사를 종료하시겠습니까?</b>
+  </div>
+      <button type="button" onclick="finishStore()" style="position:absolute; left:140px; background:#587be4; color:#fff; padding:10px; bottom:70px; border:none; border-radius:10px;"><b>확인</b></button>
+      <button type="button" onclick="exitStore()" style="position:absolute; left:190px; background:#efefef; color:#21232b;  padding:10px; bottom:70px; border:none; border-radius:10px;"><b>취소</b></button>
+  </div>
+</div> 
+    
 </body>
+
+<script>
+$("#exit").click(function(){
+	//alert('장사를 종료하시겠습니까?');
+	$('#exitModal').fadeIn(500);
+	
+	
+	
+});
+
+function finishStore(){
+	//alert('zzz');
+	
+	$.ajax({
+		type:'GET',
+		url:'updateOpenStatus.do',
+		dataType:'JSON',
+		success:function(){
+			alert('마감되었습니다. 감사합니다!');
+			location.href="home.do";
+			
+			
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+}
+function exitStore(){
+	
+	$('#exitModal').fadeOut(500);
+	location.href("homde.do");
+}
+</script>
 </html>

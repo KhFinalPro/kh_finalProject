@@ -11,6 +11,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
+import com.kh.chickenPeople.systemAdmin.model.vo.StoreTotal;
 
 public interface SystemService {
 
@@ -39,6 +40,8 @@ public interface SystemService {
 	int selectStoreMemCount();
 
 	int selectMapStoreList(String storeSearchName);
+
+	ArrayList<StoreTotal> selectStoreTotal();
 
 
 	

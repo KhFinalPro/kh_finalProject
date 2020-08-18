@@ -21,4 +21,10 @@ public interface MemberService {
 
 	int mypageUpdate(Member m);
 
+	Member findPwd(String id);
+
+	int deletePwd(Member member);
+
+	Member findId(Member m);
+
 }

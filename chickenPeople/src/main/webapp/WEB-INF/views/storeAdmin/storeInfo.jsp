@@ -298,7 +298,7 @@
 				        <div class="input_field">
 				            <label>매장 주소</label>
 				            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }">&nbsp;
-				            <button class="addressBtn">주소검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            <!-- <button class="addressBtn">주소검색</button> -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				            <label style="display:none">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
@@ -328,15 +328,13 @@
  </div>
 
 </body>
+<!--
 <script>
-<!-- $(function () { 	
 $('#brandName').toggle(function() {
   $("#labelBrandName").css("display","block");
   $("#labelBrandName").css("display","none");
 })
-});
-</script> -->
- 
+</script> --> 
 <!-- <script>
 function modifyInfo(stoInfoNotice){
 /* 	alert('gg'); */

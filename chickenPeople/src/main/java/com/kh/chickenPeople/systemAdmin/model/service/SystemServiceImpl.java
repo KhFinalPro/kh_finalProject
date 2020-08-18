@@ -13,6 +13,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
+import com.kh.chickenPeople.systemAdmin.model.vo.StoreTotal;
 
 @Service("sService")
 public class SystemServiceImpl implements SystemService{
@@ -83,6 +84,11 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public int selectMapStoreList(String storeSearchName) {
 		return sDao.selectMapStoreList(storeSearchName);
+	}
+
+	@Override
+	public ArrayList<StoreTotal> selectStoreTotal() {
+		return sDao.selectStoreTotal();
 	}
 	
 

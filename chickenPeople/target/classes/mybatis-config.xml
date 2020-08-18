@@ -47,6 +47,8 @@
 		<typeAlias type="com.kh.chickenPeople.storeAdmin.dashboard.model.vo.Dashboard" alias="Dashboard"/>
 		<typeAlias type="com.kh.chickenPeople.store.model.vo.StoreLabel" alias="StoreLabel"/>
 		<typeAlias type="com.kh.chickenPeople.storeAdmin.storeInfo.model.vo.StoreInfo" alias="StoreInfo"/>
+		<typeAlias type="com.kh.chickenPeople.systemAdmin.model.vo.StoreTotal" alias="StoreTotal"/>
+		
 	</typeAliases>
 	
 	<mappers>

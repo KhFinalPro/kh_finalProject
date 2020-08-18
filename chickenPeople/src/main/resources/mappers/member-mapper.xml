@@ -71,6 +71,30 @@
   	<update id="mypageUpdate" parameterType="Member">
 		UPDATE MEMBER
 		SET USER_NAME = #{name}, USER_PWD = #{pwd}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
-		WHERE USER_ID = #{id};
+		WHERE USER_ID = #{id}
 	</update>
+	
+	<select id="findPwd" parameterType="String" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID =#{id}
+	</select>
+	
+	<update id="deletePwd" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_PWD = #{pwd}
+		WHERE USER_ID = #{id}
+	</update>
+	
+	<select id="findId" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_NAME = #{name} AND USER_EMAIL = #{email}
+	</select>
+	
+	<select id="selectPic" parameterType="string" resultType="string">
+		SELECT PROPIC
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
 </mapper>
