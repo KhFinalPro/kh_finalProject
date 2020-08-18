@@ -155,7 +155,7 @@ $(document).ready(function(){
             <h2>주문내역</h2>
             </div>
             <div style="position: absolute; top:120px; left:50px;">
-                            배달이 완료되었어요
+                <span>현재&nbsp;&nbsp;<span style="margin-top: 5px;" id="modal_sto_status"></span>입니다</span>
                 <h2 style="margin-top: 5px;" id="modal_sto_name"></h2>
                 <input type="hidden" id="hidden_sto_num" name="hidden_sto_num">
       
@@ -169,8 +169,11 @@ $(document).ready(function(){
                     <tr >
                         <th style="width: 140px; height: 25px; font-weight:normal;">주문번호 :</th>
                         <td id="modal_order_num"></td>
-                        
                     </tr>
+                	<!-- <tr>
+                        <th style="width: 140px; height: 25px; font-weight:normal;">주문상태 :</th>
+                        <td id="modal_order_status"></td>
+                    </tr> -->
                 </table>
             </div>
             <div style="position: absolute; top : 275px; left:10%;">
@@ -223,7 +226,7 @@ $(document).ready(function(){
             </div>
             <div id="review_content" style=" position: absolute; top:130px; left:60px;">
                 <p style="font-size: 18px; font-weight: bold; margin-bottom: -10px;">리뷰 작성<p>
-                <textarea id="textarea_review_content"style="width: 330px; height: 100px; border-radius: 10px; border: solid 2px black;"></textarea>
+                <textarea id="textarea_review_content"style="width: 330px; height: 100px; border-radius: 10px; border: solid 2px black; required"></textarea>
             </div>  
             <div id="review_photo_area" style=" position: absolute; top:280px; left:60px;">
                 <p style="font-size: 18px; font-weight: bold; margin-bottom: -10px;">사진 등록<p>
@@ -328,7 +331,6 @@ function showOrderDetail(id){
 			 var orderDetailList =data.orderDetailList;
         	 var orderDetailListAppendStr = '';
 			 var stoName='';
-        	 
 			 //매장번호
 			 stoNum = orderDetailList[0].stoNum;
 			 console.log('스토어번호'+stoNum);
@@ -341,6 +343,20 @@ function showOrderDetail(id){
         	 $('#modal_sto_name').html(stoName);
         	 
 			 
+			 
+			 //주문상태
+		
+			  ordStatus = orderDetailList[0].ordStatus;
+			  console.log('스토어네임'+ordStatus);
+	          $('#modal_sto_status').html(ordStatus);
+			 
+			/*  ordStatus = '<td>'+orderDetailList[0].ordStatus+'</td>';
+        	 console.log(ordStatus);
+        	 $("#orderDetailTable1").find('tr').find('td').empty();
+        	 $("#orderDetailTable1").find('tr').find('#modal_order_status').append(ordStatus); */
+        	 
+        	 
+        	 
         	 //주문일시
         	 ordDate = '<td>'+orderDetailList[0].ordDate+'</td>';
         	 console.log(ordDate);
@@ -391,10 +407,23 @@ function showOrderDetail(id){
 }
 
 function goReview(type){
+	
+    var order_status = $("#modal_sto_status").text(); 	
+	console.log(order_status);
+    
+	if(order_status=='배달완료'){
+		$("#modalOrderHistory").fadeOut(500);
+		$("#modalReview").fadeIn(500);	
+	}else{
+		alert('리뷰작성은 배달완료 이후 가능합니다.');
+		location.reload();
+	}
+	 
+	
 	if(type == 1){
 		$("#modalOrderHistory").fadeOut(500);
 		$("#modalReview").fadeIn(500);	
-	} else {
+	}else {
 		alert('이미 리뷰를 작성했습니다');
 		return false;
 	}
@@ -427,12 +456,18 @@ function test5(){
 function reveiw_done_btn(){
 
 
+	var order_status = $("#modal_sto_status").text(); 	
 	var files = $("input[name=uploadFile]:file")[0].files; 				//파일은 어레이 형태라서 첫번째걸 보낸다.
 	var order_num = $("#modal_order_num").text(); 						//주문번호													
 	var textarea_review_content = $("#textarea_review_content").val();	//리뷰내용
 	var sto_num = $("#hidden_sto_num").val();							//매장번호
 	
+	console.log('상태체크'+order_status);
 	
+	
+	
+	if(order_status=='배달완료'){
+		
 	var formData = new FormData();
 	if(files.length > 0){
 		formData.append('files',files[0]); //key,value 형태로 보내기!	
@@ -468,6 +503,11 @@ function reveiw_done_btn(){
 	
 	//리뷰등록하고 다시 모달창 켰을때 지난 사진 남기지 않기
 	//$("#review_photo").attr("src","");
+ 	
+	}else{
+		alert('리뷰작성은 배달완료이후 가능합니다!');
+	}
+	
 }
 </script>
 
