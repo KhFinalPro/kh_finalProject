@@ -60,6 +60,10 @@ public  class MemberDao {
 		return sqlSessionTemplate.selectOne("memberMapper.findId", m);
 	}
 
+	public int noPwd(Member m) {
+		return sqlSessionTemplate.update("memberMapper.noPwd", m);
+	}
+
 	
 	
 //	@Transactional

@@ -223,23 +223,31 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("mypageAddress.do")
+	public ModelAndView mypageAddress(ModelAndView mv) {
+		mv.setViewName("mypage/mypageAddress");
+		
+		return mv;
+	}
+	
 	@RequestMapping("mypageUpdate.do")
 	public String mypageUpdate(Member m, Model model, 
 			HttpServletRequest request,
 			HttpServletResponse response,
 			SessionStatus session, 
+			@RequestParam("pwd") String pwd,
+			@RequestParam("orgPropic") String orgPropic,
 			@RequestParam(value="propic", required=false) MultipartFile propic) throws IOException  {
 		response.setContentType("text/html; charset=UTF-8");
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		System.out.println(m);
-		System.out.println(propic);
-		
+		System.out.println("프로픽은?" + propic.getOriginalFilename());
+		int result = 0;
 		
 		
 		m.setPwd(encPwd);
 		
-		
-		if(!propic.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
+		if(!propic.getOriginalFilename().equals("")) {	// 파일 변경시
 			
 			System.out.println("오리진 파일 : " + propic.getOriginalFilename());
 			
@@ -249,22 +257,43 @@ public class MemberController {
 			
 			m.setPic(renameFileName);
 			
-		}
-		
-		System.out.println("M"+ m);
-		
-		int result = mService.mypageUpdate(m);
-		System.out.println("RESULT" + result);
-		if(result > 0) {
-			PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('다시 로그인해주세요.'); location.href='home.do';</script>");
-			out.flush();
-			session.setComplete();
-		}else {
+		}else {	// 파일 변경 안할시
+			m.setPic(orgPropic);
 			
 		}
 		
+		if(pwd.isEmpty()) {
+			System.out.println("M"+ m);
+			
+			result = mService.noPwd(m);
+			System.out.println("RESULT" + result);
+			if(result > 0) {
+				PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('정보수정 완료. 다시 로그인해주세요.'); location.href='home.do';</script>");
+				out.flush();
+				session.setComplete();
+			}else {
+				
+			}
+			
+		}else {
+			System.out.println("M"+ m);
+			
+			result = mService.mypageUpdate(m);
+			System.out.println("RESULT" + result);
+			if(result > 0) {
+				PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('정보수정 완료. 다시 로그인해주세요.'); location.href='home.do';</script>");
+				out.flush();
+				session.setComplete();
+			}else {
+				
+			}
+			
+			
+		}
 		return "redirect:/home.do";
 		
 	}

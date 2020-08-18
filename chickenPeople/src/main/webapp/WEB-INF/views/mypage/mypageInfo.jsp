@@ -108,7 +108,7 @@
                         <label>비밀번호</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="pwd" name="pwd" value="${sessionScope.loginUser.pwd }" required>
+                        <input type="password" id="pwd" name="pwd" value="">
                     </td>
                 </tr>
                 <tr>
@@ -116,7 +116,7 @@
                         <label>비밀번호 확인</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="pwd_check" name="pwd_check" value="${sessionScope.loginUser.pwd }" required>
+                        <input type="password" id="pwd_check" name="pwd_check" value="">
                     </td>
                 </tr>
                 <tr>
@@ -149,14 +149,15 @@
                 	</td>
                 	<td id="inp" class="ltd" rowspan="3">
                 		<div id="contentImgArea">
-                			<img id="contentImg" src="resources/propic/${loginUser.pic}" width="225px" height="225px">
+                			<img id="contentImg" src="resources/propic/${loginUser.pic}" onerror="this.src='resources/images/profileSample.png'" width="225px" height="225px">
                 		</div>
                 		<div id="fileArea">
-							<input type="file" id="propic" name="propic" onchange="LoadImg(this)">
+							<input type="file" id="propic" name="propic"  onchange="LoadImg(this)">
 						</div>
                 	</td>
                 </tr>
             </table>
+            <input type="hidden" name = "orgPropic" value="${loginUser.pic}">
 				
             <br><br><br><br><br>
             <div style="text-align: center;">

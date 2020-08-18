@@ -74,6 +74,12 @@
 		WHERE USER_ID = #{id}
 	</update>
 	
+	<update id="noPwd" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_NAME = #{name}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
+		WHERE USER_ID = #{id}
+	</update>
+	
 	<select id="findPwd" parameterType="String" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER

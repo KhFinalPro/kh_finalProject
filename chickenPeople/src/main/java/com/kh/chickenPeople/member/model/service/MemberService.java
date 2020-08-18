@@ -27,4 +27,6 @@ public interface MemberService {
 
 	Member findId(Member m);
 
+	int noPwd(Member m);
+
 }
