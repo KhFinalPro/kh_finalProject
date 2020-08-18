@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.code.geocoder.Geocoder;
 import com.google.code.geocoder.GeocoderRequestBuilder;
@@ -28,6 +29,7 @@ import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
 import com.kh.chickenPeople.common.SaveFile;
+import com.kh.chickenPeople.common.SessionConfig;
 import com.kh.chickenPeople.member.model.service.MemberService;
 import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -60,12 +62,13 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="doLoginView.do", method=RequestMethod.POST)
-	public String doLoginMember(Member m, Model model, HttpServletRequest request, HttpSession session) {
+	public String doLoginMember(Member m, Model model, HttpServletRequest request, HttpSession session, 
+							    RedirectAttributes rttr) {
 		
-		//아이디를 잘못 입력후 로그인시 nullpointerException발생 해결해야함/
+		
 		Member member = mService.loginMember(m);
 		ArrayList<Address> addrList = mService.selectAddress(member);
-
+		System.out.println(m);
 		
 
 		if(member==null) {
@@ -77,7 +80,12 @@ public class MemberController {
 				session.setAttribute("loginUser", member);
 				session.setAttribute("address", addrList);
 				session.setAttribute("loginUserId",member.getId());
-				return "redirect:/home.do?";
+//				System.out.println("dddd"+session.getAttribute("loginUserId"));
+//				System.out.println("zzz"+member.getId());
+				String userId = SessionConfig.getSessionidCheck("loginUserId", member.getId());
+//				System.out.println("튕겨나온거 : " + userId);
+				
+				return "redirect:/home.do";
 			}else {
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 			return "redirect:/loginView.do";
@@ -196,6 +204,54 @@ public class MemberController {
 		mv.setViewName("member/agreement2");
 		
 		return mv;
+	}
+	
+	@RequestMapping("mypageInfo.do")
+	public ModelAndView mypageInfo(ModelAndView mv) {
+		mv.setViewName("mypage/mypageInfo");
+		
+		return mv;
+	}
+	
+	@RequestMapping("mypageUpdate.do")
+	public String mypageUpdate(Member m, Model model,
+								HttpServletRequest request,
+								HttpServletResponse response,
+								@RequestParam(value="propic", required=false) MultipartFile propic)  {
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		System.out.println(m);
+		System.out.println(propic);
+		
+		
+		
+		m.setPwd(encPwd);
+		
+		
+		if(!propic.getOriginalFilename().equals("")) {	// 파일이 잘 넘어온 경우
+			
+			System.out.println("오리진 파일 : " + propic.getOriginalFilename());
+			
+			String renameFileName =  SaveFile.saveFile3(propic, request);
+			
+			System.out.println(renameFileName);
+			
+			m.setPic(renameFileName);
+			
+		}
+		
+		
+		int result = mService.mypageUpdate(m);
+
+		
+		if(result > 0) {
+			return "redirect:/home.do";
+		}else {
+			
+		}
+		
+		return "redirect:/home.do";
+		
 	}
 	
 	

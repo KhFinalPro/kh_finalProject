@@ -38,4 +38,14 @@ public class StoreInfoDao {
 		return sqlSessionTemplate.update("storeInfoMapper.modifyInfo",newInfo);
 	}
 
+	public int updateOpenStatus(String userId) {
+		
+		return sqlSessionTemplate.update("storeInfoMapper.updateOpenStatus",userId);
+	}
+
+	public int updateOpenStatusYes(String userId) {
+		
+		return sqlSessionTemplate.update("storeInfoMapper.updateOpenStatusYes",userId);
+	}
+
 }
