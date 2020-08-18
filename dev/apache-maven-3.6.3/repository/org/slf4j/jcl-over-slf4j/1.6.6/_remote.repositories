@@ -10,6 +10,20 @@ jcl-over-slf4j-1.6.6.pom>central=
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+jcl-over-slf4j-1.6.6.jar>central=
+jcl-over-slf4j-1.6.6.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:26:38 GMT+09:00 2020
+jcl-over-slf4j-1.6.6-sources.jar>central=
+jcl-over-slf4j-1.6.6.jar>central=
+jcl-over-slf4j-1.6.6.pom>central=
+>>>>>>> refs/remotes/origin/master
+=======
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:22 GMT+09:00 2020
 jcl-over-slf4j-1.6.6.jar>central=
@@ -32,4 +46,17 @@ jcl-over-slf4j-1.6.6-sources.jar>central=
 jcl-over-slf4j-1.6.6.jar>central=
 jcl-over-slf4j-1.6.6.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
+>>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 22:36:46 GMT+09:00 2020
+jcl-over-slf4j-1.6.6-sources.jar>central=
+jcl-over-slf4j-1.6.6.jar>central=
+>>>>>>>=refs/remotes/origin/dev22222222222222
+jcl-over-slf4j-1.6.6.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

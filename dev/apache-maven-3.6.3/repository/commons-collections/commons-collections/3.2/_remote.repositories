@@ -10,6 +10,20 @@ commons-collections-3.2-sources.jar>central=
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:23 GMT+09:00 2020
+commons-collections-3.2.jar>central=
+commons-collections-3.2.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:27:54 GMT+09:00 2020
+commons-collections-3.2.jar>central=
+commons-collections-3.2-sources.jar>central=
+commons-collections-3.2.pom>central=
+>>>>>>> refs/remotes/origin/master
+=======
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:23 GMT+09:00 2020
 commons-collections-3.2.jar>central=
@@ -32,4 +46,17 @@ commons-collections-3.2.jar>central=
 commons-collections-3.2-sources.jar>central=
 commons-collections-3.2.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
+>>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 22:37:05 GMT+09:00 2020
+>>>>>>>=refs/remotes/origin/dev22222222222222
+commons-collections-3.2.jar>central=
+commons-collections-3.2-sources.jar>central=
+=\=\=\=\=\=\=
+commons-collections-3.2.pom>central=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

@@ -61,6 +61,7 @@ public class BoradContoller {
 		
 		if(selectTotalBoardList!=null) {
 			mv.addObject("boardList",selectTotalBoardList);
+			mv.addObject("mypageStatus","n");
 			mv.addObject("pi",pi);
 			mv.setViewName("board/boardListView");
 			
@@ -71,6 +72,22 @@ public class BoradContoller {
 		return mv;
 	}
 	
+	@RequestMapping("myBoardList.do")
+	public ModelAndView myBoardList(ModelAndView mv, String bWriter) { 
+
+		ArrayList<Board> myBoardList = boardService.selectMyBoard(bWriter);
+		
+		if(myBoardList!=null) {
+			mv.addObject("boardList",myBoardList);
+			mv.addObject("mypageStatus","y");
+		
+		}else {
+			mv.addObject("boardList",myBoardList);
+			mv.addObject("mypageStatus","y");
+		}
+		mv.setViewName("mypage/mypageBoardList");
+		return mv;
+	}
 	
 	@RequestMapping("bdetail.do")
 	public String boardDetail() {
@@ -81,7 +98,7 @@ public class BoradContoller {
 
 
 	@RequestMapping(value="bdetail.do",method=RequestMethod.GET)
-	public ModelAndView boardDetail(ModelAndView mv, int bNum,  HttpServletRequest request, ArrayList<Picture> pList) {
+	public ModelAndView boardDetail(ModelAndView mv, int bNum,  HttpServletRequest request, ArrayList<Picture> pList, String mypageStatus) {
 		
 		HttpSession session = request.getSession(false);
 		
@@ -103,6 +120,7 @@ public class BoradContoller {
 				mv.addObject("pList",pList);
 				mv.addObject("replyList",replyList);
 				mv.addObject("reReplyList",reReplyList);
+				mv.addObject("mypageStatus",mypageStatus);
 				mv.setViewName("board/boardDetailView");
 			}
 			else 
@@ -312,5 +330,62 @@ public class BoradContoller {
 		out.flush();
 		out.close();
 	}
-//}
+	
+	@RequestMapping("boardDelete.do")
+	public String boardDelete(int bNum, String mypageStatus, String bWriter) {
+		
+		int result = boardService.boardDelete(bNum);	//게시판 삭제
+		if(result > 0) 
+		{
+			int replyDeleteResult = replyService.replyDelete(bNum);	//해당 게시글 댓글 삭제
+
+			int reReplyDeleteResult = replyService.reReplyDelete(bNum);	//해당 게시글 대댓글 삭제
+
+			if(mypageStatus.equals("y"))
+			{
+				return "redirect:/myBoardList.do?bWriter="+bWriter;
+			}
+			else 
+			{
+				return "redirect:/boardList.do";
+			}
+		}
+		else
+		{
+			if(mypageStatus.equals("y")) {
+				return "redirect:/myBoardList.do?bWriter="+bWriter;
+			}
+			else {
+				return "redirect:/boardList.do";
+			}
+		}
+	}
+	
+	@RequestMapping("boardBackUp.do")
+	public String boardBackUp(int bNum, String mypageStatus, String bWriter) {
+		
+		int result = boardService.boardBackup(bNum);
+		
+		if(result > 0) {
+			if(mypageStatus.equals("y"))
+			{
+				return "redirect:/myBoardList.do?bWriter="+bWriter;
+			}
+			else 
+			{
+				return "redirect:/boardList.do";
+			}
+		}
+		else {
+			if(mypageStatus.equals("y"))
+			{
+				return "redirect:/myBoardList.do?bWriter="+bWriter;
+			}
+			else 
+			{
+				return "redirect:/boardList.do";
+			}
+		}
+
+	}
 }

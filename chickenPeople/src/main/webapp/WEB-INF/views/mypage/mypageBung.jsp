@@ -48,7 +48,8 @@ section{margin-top:150px;}
 			<div id="main_section">
 				<br>
 				<c:forEach var="b" items="${bungList }">
-					<div class="bungae_area">
+					<c:if test="${b.bung_status == '모집중' }">
+						<div class="bungae_area">
 						<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
 						<div class="brand_logo first_line">
 							<img src="resources/images/${b.bung_img }.png" alt="logo">
@@ -63,6 +64,24 @@ section{margin-top:150px;}
 						<div class="brand_name second_line ">${b.bung_brd }</div>
 						<div class="status second_line">${b.bung_status }</div>
 					</div>
+					</c:if>
+					<c:if test="${b.bung_status == '마감' }">
+						<div class="bungae_area" style="background-color:lightgray;">
+						<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
+						<div class="brand_logo first_line">
+							<img src="resources/images/${b.bung_img }.png" alt="logo">
+						</div>
+						<div class="first_line bungae_title">
+							<h2>${b.bung_title }(마감)</h2>
+							<h3>${b.bung_addr }</h3>
+							<h3>${b.bung_date }</h3>
+							<h4>${b.bung_p_no }명까지</h4>	
+						</div>
+						<br clear="both">
+						<div class="brand_name second_line ">${b.bung_brd }</div>
+						<div class="status second_line">${b.bung_status }</div>
+					</div>
+					</c:if>
 				</c:forEach>		
 			</div>
 		</c:if>

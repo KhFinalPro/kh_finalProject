@@ -73,4 +73,9 @@
 		SET USER_NAME = #{name}, USER_PWD = #{pwd}, USER_TEL = #{tel}, USER_EMAIL = #{email}, PROPIC = #{pic}
 		WHERE USER_ID = #{id};
 	</update>
+	<select id="selectPic" parameterType="string" resultType="string">
+		SELECT PROPIC
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
 </mapper>

@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 14:38:36 KST 2020
+=======
+#Mon Aug 17 22:37:51 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 plexus-utils-1.5.6.pom>central=

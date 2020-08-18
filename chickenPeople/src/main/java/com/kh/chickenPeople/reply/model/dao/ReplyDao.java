@@ -54,4 +54,14 @@ public class ReplyDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.update("replyMapper.reReReplyDelResult", rep2_num);
 	}
+
+	public int replyDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("replyMapper.replyDelete", bNum);
+	}
+
+	public int reReplyDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("replyMapper.reReplyDelete", bNum);
+	}
 }

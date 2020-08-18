@@ -16,6 +16,7 @@
 		<result property="bung_img" column="BUNG_IMG"/>
 		<result property="bung_brd" column="BUNG_BRD"/>
 		<result property="bung_status" column="BUNG_STATUS"/>
+		<result property="pic" column="PROPIC"/>
 	</resultMap>
 	<resultMap type="Brand" id="brandResultSet">
 		<id property="brand_code" column="BRAND_CODE"/>
@@ -33,8 +34,9 @@
 	</select>
 	
 	<select id="selectBung" parameterType="_int" resultMap="bungResultSet">
-		SELECT BUNG_NUM, USER_ID, BUNG_TITLE, TO_CHAR(BUNG_DATE,'YYYY/MM/DD HH24:MM') AS BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
-		FROM BUNG
+		SELECT BUNG_NUM, M.USER_ID, M.PROPIC, BUNG_TITLE, TO_CHAR(BUNG_DATE,'YYYY/MM/DD HH24:MM') AS BUNG_DATE, BUNG_ADDR, BUNG_P_NO, BUNG_INT, BUNG_HIT, BUNG_LIKE, BUNG_CHAT, BUNG_IMG, BUNG_BRD, BUNG_STATUS
+		FROM BUNG B
+        JOIN MEMBER M ON B.USER_ID = M.USER_ID
 		WHERE BUNG_NUM = #{bung_num}
 	</select>
 	

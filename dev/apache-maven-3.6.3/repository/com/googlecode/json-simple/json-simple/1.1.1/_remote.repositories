@@ -10,6 +10,20 @@ json-simple-1.1.1.pom>central=
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+json-simple-1.1.1.jar>central=
+json-simple-1.1.1.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:27:42 GMT+09:00 2020
+json-simple-1.1.1.jar>central=
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+>>>>>>> refs/remotes/origin/master
+=======
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Sat Aug 15 21:52:22 GMT+09:00 2020
 json-simple-1.1.1.jar>central=
@@ -32,4 +46,17 @@ json-simple-1.1.1.jar>central=
 json-simple-1.1.1-sources.jar>central=
 json-simple-1.1.1.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
+>>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 22:37:02 GMT+09:00 2020
+>>>>>>>=refs/remotes/origin/dev22222222222222
+json-simple-1.1.1.jar>central=
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

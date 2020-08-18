@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 14:38:01 KST 2020
+=======
+#Mon Aug 17 22:37:21 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 maven-compiler-plugin-3.1.jar>central=
 maven-compiler-plugin-3.1.pom>central=

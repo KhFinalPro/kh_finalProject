@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 14:37:42 KST 2020
+=======
+#Mon Aug 17 22:37:05 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 commons-logging-1.0.3.pom>central=

@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>1:1문의 채팅방</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
 	html{overflow:hidden;}
-	.siteLogo{font-size:24px; color:white; padding-top: 18px; padding-left: 14px;}
+	.siteLogo{font-size:24px; white; padding-top: 18px; padding-left: 14px;}
 	.chatHeader{background-color:#1bc1a3; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
 	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
@@ -31,7 +31,7 @@
 	.scroll-test::-webkit-scrollbar-thumb { border-radius: 3px; background-color: gray; }
 	.scroll-test::-webkit-scrollbar-button { width: 0; height: 0; }
 
-  	  .chatImgBox {margin: 0 auto; width: 30px; height: 30px; border-radius: 70%; overflow: hidden; }
+  	  .chatImgBox {width: 30px; height: 30px; border-radius: 70%; overflow: hidden; }
 	  .chatImg { width: 100%; height: 100%; object-fit: cover;}
   
 	.chat-box{
@@ -147,28 +147,40 @@
 				sessionId = strArray[2];
 				message = strArray[3];
 				
-				if(strArray[4]==null){
+				if(strArray[4]=="noImage"){
 					time=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 				}else{
 					time=strArray[4];
 				}
-				if(strArray[5]==null){
-					pic = "<src id='chatImg' img='resources/images/user1.png'>"
+				if(strArray[5]=="null"){
+					pic = "<img id='chatImg' src='resources/images/user1.png'>"
 				}else{
-					pic = "<src id='chatImg' img='resources/propic/"+strArray[5]+"'>"
+					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"'>"
 				}
 				console.log(pic);
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){//상대방
- 						printData = "<div class='chatImgBox'>"+pic+"</div>"
- 						printData += "<div class='my-chat-box'>"+"<div class='chat my-chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+ 						printData = "<div class='my-chat-box'>"
+ 								       +"<div class='chatImgBox'>"+pic+"</div>"
+ 								       +"<div class='chat my-chat'>"+message+"</div>"
+ 								       +"<div class='chat-info'>"+ time +"</div>"
+ 								   +"</div>";
 						$("#chat").append(printData);
+						console.log("1"+printData);
+
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
-						printData = "<div class='chat-box'>"+"<div>"+sessionId+"</div>"+"<div class='chat'>"+message+"</div><div class='chat-info'>"+ time +"</div></div>";
+						printData = "<div class='chat-box'>"
+			   						  +"<div class='chatImgBox'>"+pic+"</div>"
+									  +"<div>"+sessionId+"</div>"
+									  +"<div class='chat'>"+message+"</div>"
+									  +"<div class='chat-info'>"+ time +"</div>"
+								 +"</div>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);					
+						console.log("2"+printData);
+
 					}
 				}else{
 					$("#chat").append("상대방의 대화를 불러오지 못했습니다.");

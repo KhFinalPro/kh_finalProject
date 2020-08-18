@@ -25,6 +25,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
+import com.kh.chickenPeople.systemAdmin.model.vo.StoreTotal;
 
 @Controller
 public class SystemController {
@@ -138,13 +139,17 @@ public class SystemController {
 		
 		ArrayList<BrandTotal> selectBrandTotal = sService.selectBrandTotal();
 		ArrayList<SiteTotal> selectSiteTotal = sService.selectSiteTotal();
+		ArrayList<StoreTotal> selectStoreTotal = sService.selectStoreTotal();
+		
 		int totalMemberCount = sService.selectMemberCount();
 		int reportCount = sService.selectReportCount();
 		int chattingCount = sService.selectChattingCount();
 		int storeMemCount = sService.selectStoreMemCount();
-		request.setAttribute("printTotalList",selectBrandTotal);
-		request.setAttribute("printSiteTotalList", selectSiteTotal);
 		
+		System.out.println(selectStoreTotal);
+		mv.addObject("printTotalList",selectBrandTotal);
+		mv.addObject("printSiteTotalList", selectSiteTotal);
+		mv.addObject("storeTotalList",selectStoreTotal);
 		mv.addObject("storeMemCount",storeMemCount);
 		mv.addObject("chattingCount",chattingCount);
 		mv.addObject("reportCount",reportCount);

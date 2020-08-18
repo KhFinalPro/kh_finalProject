@@ -23,4 +23,8 @@ public interface ReplyService {
 
 	int reReReplyDelResult(int rep2_num);
 
+	int replyDelete(int bNum);
+
+	int reReplyDelete(int bNum);
+
 }

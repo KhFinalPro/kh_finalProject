@@ -87,21 +87,40 @@ section{margin-top: 100px;}
 				</div>
 			</c:if>
 			<c:forEach var="b" items="${list }">
-				<div class="bungae_area">
-					<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
-					<div class="brand_logo first_line">
-						<img src="resources/images/${b.bung_img }.png" alt="logo">
+				<c:if test="${b.bung_status == '모집중'}">
+					<div class="bungae_area">
+						<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
+						<div class="brand_logo first_line">
+							<img src="resources/images/${b.bung_img }.png" alt="logo">
+						</div>
+						<div class="first_line bungae_title">
+							<h2 style="color:#735949">${b.bung_title }</h2>
+							<h3>${b.bung_addr }</h3>
+							<h3>${b.bung_date }</h3>
+							<h4>${b.bung_p_no }명까지</h4>	
+						</div>
+						<br clear="both">
+						<div class="brand_name second_line ">${b.bung_brd }</div>
+						<div class="status second_line">${b.bung_status }</div>
 					</div>
-					<div class="first_line bungae_title">
-						<h2 style="color:#735949">${b.bung_title }</h2>
-						<h3>${b.bung_addr }</h3>
-						<h3>${b.bung_date }</h3>
-						<h4>${b.bung_p_no }명까지</h4>	
+				</c:if>
+				<c:if test="${b.bung_status == '마감'}">
+					<div class="bungae_area" style="background-color:lightgray;">
+						<input type="hidden" id="bung_num" name="bung_num" value="${b.bung_num }"/>
+						<div class="brand_logo first_line">
+							<img src="resources/images/${b.bung_img }.png" alt="logo">
+						</div>
+						<div class="first_line bungae_title">
+							<h2 style="color:#735949">${b.bung_title }(마감)</h2>
+							<h3>${b.bung_addr }</h3>
+							<h3>${b.bung_date }</h3>
+							<h4>${b.bung_p_no }명까지</h4>	
+						</div>
+						<br clear="both">
+						<div class="brand_name second_line ">${b.bung_brd }</div>
+						<div class="status second_line">${b.bung_status }</div>
 					</div>
-					<br clear="both">
-					<div class="brand_name second_line ">${b.bung_brd }</div>
-					<div class="status second_line">${b.bung_status }</div>
-				</div>
+				</c:if>
 			</c:forEach>
 	
 	

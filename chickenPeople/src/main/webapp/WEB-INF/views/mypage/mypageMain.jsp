@@ -151,7 +151,7 @@
 		})
 		$("#myPage_mat").on("click",function(){
 			$id = $("#id").val();
-			location.href="boardList.do";
+			location.href="myBoardList.do?bWriter="+$id;
 		})
 		$("#myPage_notice").on("click",function(){
 			$id = $("#id").val();

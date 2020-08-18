@@ -163,9 +163,6 @@
 						</c:if>
 	           </div>
 	        </div><!-- pagination class p-parents end --> 
-	
-			
-		 
 		</div> 
 	</div>
     <jsp:include page="../common/footer.jsp"/>
@@ -182,7 +179,7 @@
 	$(function() {
 		$(".mja_area").on("click",function(){
 			var bNum = $(this).children("#bNum").val();
-			location.href="bdetail.do?bNum="+bNum;
+			location.href="bdetail.do?bNum="+bNum+"&mypageStatus=${mypageStatus}";
 		})
 		
 	
