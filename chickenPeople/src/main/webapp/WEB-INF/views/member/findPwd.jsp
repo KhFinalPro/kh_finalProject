@@ -77,7 +77,7 @@
                 font-size: 12px;
                 line-height: 20px;
                 color: darkgrey;
-            }
+            }o1
         </style>
     </head>
     <body>
@@ -89,7 +89,7 @@
                 <p>ID</p>
                 <input type="text" name="id" placeholder="아이디를 입력하세요">
                 <p>E-mail</p>
-                <input type="email" name="email" placeholder="이메일을 입력하세요">
+                <input type="text" name="email" placeholder="이메일을 입력하세요">
                 <input type="submit" value="이메일로 전송">
                 <a href="loginView.do">치킨의민족 로그인</a><br>
                 <a href="findIdView.do">아이디 찾기</a><br>

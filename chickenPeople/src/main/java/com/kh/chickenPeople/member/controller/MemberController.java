@@ -267,7 +267,7 @@ public class MemberController {
 	@RequestMapping(value="findPwd.do", method=RequestMethod.GET)
 	public void findPwd(ModelAndView mv, Member m, Member member, HttpServletResponse response,
 			@RequestParam(value="id")String id,
-			@RequestParam(value="email")String email) throws AddressException, MessagingException {
+			@RequestParam(value="email")String email) throws AddressException, MessagingException, IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		String host = "smtp.naver.com";
@@ -279,8 +279,8 @@ public class MemberController {
 //		System.out.println(email);
 		
 		m = mService.findPwd(id);
-//		System.out.println(m);
-		if(m.getEmail().equals(email)) {
+		System.out.println(m);
+		if(m!=null) {
 			String originPwd = randomPassword(7);
 			String encPwd = bcryptPasswordEncoder.encode(originPwd);
 			System.out.println(originPwd);
@@ -343,8 +343,84 @@ public class MemberController {
 				e.printStackTrace();
 			}
 			}
+		}else {
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('아이디와 이메일을 확인해주세요.'); location.href='findPwdView.do';</script>");
 		}
 		
+	}
+	
+	@RequestMapping(value="findId.do", method=RequestMethod.GET)
+	public void findid(ModelAndView mv, Member m, Member member, HttpServletResponse response,
+			@RequestParam(value="name")String name,
+			@RequestParam(value="email")String email) throws AddressException, MessagingException, IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		String host = "smtp.naver.com";
+		final String userName = "chickens_people";
+		final String password = "rngus3698";
+		int port = 465;
+		
+		
+		member = mService.findId(m);
+		System.out.println(member);
+		
+		if(member!=null) {
+			String recipient = email;
+			String subject = "안녕하세요, 치킨의 민족입니다.";
+			
+			String body = "안녕하세요"+member.getName()+" 치킨의 민족입니다.\n"
+					+ "치킨의 민족 입점 허가가 되었음을 알려드립니다.\n"
+					+ "아래의 아이디와 비밀번호로 로그인하여 판매자 마이페이지에서 초기 정보 수정 부탁드립니다.\n"
+					+ "--------------------------------------------------------\n"
+					+ "아이디:"+member.getId()+"\n"
+					+ "--------------------------------------------------------\n";
+			
+			
+			Properties props = System.getProperties();
+			
+			//SMTP 정보 설정
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", port);
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.enable", "true");
+			props.put("mail.smtp.ssl.trust", host);
+			
+			//Session 생성
+			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+				String un = userName;
+				String pw = password;
+				protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
+					return new javax.mail.PasswordAuthentication(un,pw);
+				}
+			});
+			session.setDebug(true);
+			/**/
+			Message mimeMessage = new MimeMessage(session);
+			mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+			mimeMessage.setContent("<h1>hello</h1>","text/html");
+			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+			
+			mimeMessage.setSubject(subject);
+			mimeMessage.setText(body);
+			Transport.send(mimeMessage);
+			
+			PrintWriter out;
+			
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('이메일보냄.'); location.href='home.do';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}else {
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('이름과 이메일을 다시 확인해주세요.'); location.href='findIdView.do';</script>");
+		}
 	}
 	
 	public String randomPassword(int length) {

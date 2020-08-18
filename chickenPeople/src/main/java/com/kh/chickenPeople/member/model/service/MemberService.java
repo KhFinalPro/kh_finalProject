@@ -25,4 +25,6 @@ public interface MemberService {
 
 	int deletePwd(Member member);
 
+	Member findId(Member m);
+
 }

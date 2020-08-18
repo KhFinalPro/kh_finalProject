@@ -67,5 +67,11 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.deletePwd(member);
 	}
 
+	@Override
+	public Member findId(Member m) {
+		
+		return mDao.findId(m);
+	}
+
 
 }

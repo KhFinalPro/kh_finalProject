@@ -55,6 +55,11 @@ public  class MemberDao {
 		return sqlSessionTemplate.update("memberMapper.deletePwd", member);
 	}
 
+	public Member findId(Member m) {
+		
+		return sqlSessionTemplate.selectOne("memberMapper.findId", m);
+	}
+
 	
 	
 //	@Transactional

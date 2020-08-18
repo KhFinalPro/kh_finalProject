@@ -85,7 +85,7 @@
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
             <h1>아이디 찾기</h1>
-            <form id="findId" method="post" action="findIdView.do">
+            <form id="findId" method="get" action="findId.do">
                 <p>Name</p>
                 <input type="text" name="name" placeholder="이름을 입력하세요">
                 <p>E-mail</p>
@@ -96,6 +96,6 @@
                 <a href="memberJoinView.do">치킨의민족 회원가입</a>
             </form>
         </div>
-       <jsp:include page="../common/footer.jsp">
+       <jsp:include page="../common/footer.jsp"/>
     </body>
 </html>
