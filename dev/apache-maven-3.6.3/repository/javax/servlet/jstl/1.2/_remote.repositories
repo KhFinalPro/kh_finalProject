@@ -1,9 +1,16 @@
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:05 KST 2020
 jstl-1.2.jar>central=
 >>>>>>>=refs/remotes/origin/dev22222222222222
 jstl-1.2.pom>central=
+=======
+#Mon Aug 17 14:37:24 KST 2020
+jstl-1.2.jar>central=
+jstl-1.2.pom>central=
+>>>>>>>=refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
 jstl-1.2-sources.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
@@ -47,6 +54,8 @@ jstl-1.2.pom>central=
 jstl-1.2-sources.jar>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:36:49 GMT+09:00 2020

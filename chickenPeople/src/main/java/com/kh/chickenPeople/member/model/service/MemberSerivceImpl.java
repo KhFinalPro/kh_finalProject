@@ -74,4 +74,5 @@ public class MemberSerivceImpl implements MemberService {
 	}
 
 
+
 }

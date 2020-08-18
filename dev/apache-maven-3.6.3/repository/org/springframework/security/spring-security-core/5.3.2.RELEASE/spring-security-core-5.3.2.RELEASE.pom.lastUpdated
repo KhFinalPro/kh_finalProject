@@ -1,12 +1,18 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Mon Aug 17 16:03:16 KST 2020
 https\://repo.maven.apache.org/maven2/.lastUpdated=1597647796126
 http\://www.datanucleus.org/downloads/maven2/.lastUpdated=1597647795809
 http\://www.datanucleus.org/downloads/maven2/.error=
 =======
+#Mon Aug 17 14:37:32 KST 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1597642652991
+>>>>>>> refs/remotes/origin/master
+=======
 #Mon Aug 17 22:36:56 GMT+09:00 2020
 https\://repo.maven.apache.org/maven2/.lastUpdated=1597671416426
+>>>>>>> refs/remotes/origin/master
 http\://www.datanucleus.org/downloads/maven2/.error=
 http\://www.datanucleus.org/downloads/maven2/.lastUpdated=1597495869698
 >>>>>>> refs/remotes/origin/master

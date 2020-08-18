@@ -44,4 +44,19 @@ STO_TEL=#{stoTel},STO_OPEN=#{stoOpen},STO_CLOSE=#{stoClose},STO_INTRO = #{stoInt
 WHERE  USER_ID=#{userId}
 </update>
 
+
+<update id="updateOpenStatus" parameterType="StoreInfo">
+UPDATE STORE_INFO
+SET
+OPEN_YN='N'
+WHERE  USER_ID=#{userId}
+</update>
+
+
+<update id="updateOpenStatusYes" parameterType="StoreInfo">
+UPDATE STORE_INFO
+SET
+OPEN_YN='Y'
+WHERE  USER_ID=#{userId}
+</update>
 </mapper>

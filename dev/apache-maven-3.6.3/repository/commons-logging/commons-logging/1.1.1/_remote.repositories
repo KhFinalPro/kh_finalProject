@@ -1,9 +1,16 @@
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:40 KST 2020
 commons-logging-1.1.1-sources.jar>central=
 commons-logging-1.1.1.jar>central=
 >>>>>>>=refs/remotes/origin/dev22222222222222
+=======
+#Mon Aug 17 14:37:44 KST 2020
+commons-logging-1.1.1-sources.jar>central=
+commons-logging-1.1.1.jar>central=
+>>>>>>>=refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
 commons-logging-1.1.1.pom>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
@@ -47,6 +54,8 @@ commons-logging-1.1.1.jar>central=
 commons-logging-1.1.1.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:37:06 GMT+09:00 2020

@@ -1,10 +1,18 @@
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:39 KST 2020
 >>>>>>>=refs/remotes/origin/dev22222222222222
 commons-lang-2.4.jar>central=
 commons-lang-2.4-sources.jar>central=
 commons-lang-2.4.pom>central=
+=======
+#Mon Aug 17 14:37:43 KST 2020
+>>>>>>>=refs/remotes/origin/master
+commons-lang-2.4.jar>central=
+commons-lang-2.4.pom>central=
+commons-lang-2.4-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 =======
@@ -47,6 +55,8 @@ commons-lang-2.4-sources.jar>central=
 commons-lang-2.4.pom>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:37:05 GMT+09:00 2020

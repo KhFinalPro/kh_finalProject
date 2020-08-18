@@ -199,7 +199,7 @@
          
                  <p id="login">${sessionScope.loginUser.name }</p>
          
-                 <button class="store_btn btn">Store</button>
+                 <button class="store_btn btn" id="storeModal">Store</button>
                  <button class="logout_btn btn">LogOut</button>
               </div>
            </c:if>
@@ -288,7 +288,71 @@
        <img class="close" src="resources/images/close.png"/>
        
       </div>   
+      
+      <!-- 다슬 판매자시작하기 모달 -->
+	<div id="startModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.75); z-index: 9999;">
+	  <div style="width: 380px; height: 300px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+	  <a href="home.do;" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
+	 <img src="resources/images/close.png" style="width: 100%;"/></a> 
+	  <div style="position: absolute; top : 100px; left:80px;">
+	         <b style="font-size:20px;">장사를 시작하시겠습니까?</b>
+	  </div>
+	      <button type="button" onclick="start()" style="position:absolute; left:140px; background:#587be4; color:#fff; padding:10px; bottom:70px; border:none; border-radius:10px;"><b>확인</b></button>
+	      <button type="button" onclick="exit()" style="position:absolute; left:190px; background:#efefef; color:#21232b;  padding:10px; bottom:70px; border:none; border-radius:10px;"><b>취소</b></button>
+	  </div>
+	</div>
+	
+	 
 </body>
+
+
+<!-- 다슬스크립트 -->
+<script>
+
+$("#storeModal").click(function(){
+	//alert('장사를 종료하시겠습니까?');
+	$('#startModal').fadeIn(500);
+	
+});
+
+function start(){
+	
+	
+	$.ajax({
+		type:'GET',
+		url:'updateOpenStatusYes.do',
+		dataType:'JSON',
+		success:function(){
+			alert('장사를 시작합니다!');
+			$('#startModal').fadeOut(500);
+			location.href="storeAdminMain.do";
+			
+			
+		},error:function(request, status, errorData){
+            alert("error code: " + request.status + "\n"
+                    +"message: " + request.responseText
+                    +"error: " + errorData);
+        } 
+	})
+}
+
+
+function exit(){
+
+	$('#startModal').fadeOut(500);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
 <script language="JavaScript">
 
    $(document).ready(function() {
@@ -320,6 +384,9 @@
        }
    }); 
 </script>
+
+
+
 
 
 <script>
@@ -379,9 +446,9 @@
       location.href="brandTotalGraph.do";
    })
    
-   $(".store_btn").on("click",function(){
-      location.href="storeOrder.do";
-   })
+/*    $(".store_btn").on("click",function(){
+      location.href="storeAdminMain.do";
+   }) */
    
     var pos = 0;
    //number of slides

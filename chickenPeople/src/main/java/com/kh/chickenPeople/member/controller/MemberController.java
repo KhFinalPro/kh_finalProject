@@ -224,11 +224,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mypageUpdate.do")
-	public String mypageUpdate(Member m, Model model,
+	public String mypageUpdate(Member m, Model model, 
 			HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam(value="propic", required=false) MultipartFile propic)  {
-		
+			SessionStatus session, 
+			@RequestParam(value="propic", required=false) MultipartFile propic) throws IOException  {
+		response.setContentType("text/html; charset=UTF-8");
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		System.out.println(m);
 		System.out.println(propic);
@@ -255,7 +256,11 @@ public class MemberController {
 		int result = mService.mypageUpdate(m);
 		System.out.println("RESULT" + result);
 		if(result > 0) {
-			return "redirect:/home.do";
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('다시 로그인해주세요.'); location.href='home.do';</script>");
+			out.flush();
+			session.setComplete();
 		}else {
 			
 		}
@@ -346,6 +351,7 @@ public class MemberController {
 			PrintWriter out;
 			out = response.getWriter();
 			out.println("<script>alert('아이디와 이메일을 확인해주세요.'); location.href='findPwdView.do';</script>");
+			out.flush();
 		}
 		
 	}
@@ -419,6 +425,7 @@ public class MemberController {
 			PrintWriter out;
 			out = response.getWriter();
 			out.println("<script>alert('이름과 이메일을 다시 확인해주세요.'); location.href='findIdView.do';</script>");
+			out.flush();
 		}
 	}
 	

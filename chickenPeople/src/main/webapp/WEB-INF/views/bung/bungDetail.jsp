@@ -169,8 +169,12 @@
         </div>
 
         <br><br>
-        
-        <div id="my" class="info_four_area"><img src="resources/propic/${bung.pic }" alt=""></div>
+        <c:if test="${!empty bung.pic }">
+        	<div id="my" class="info_four_area"><img src="resources/propic/${bung.pic }" alt=""></div>
+        </c:if>
+        <c:if test="${empty bung.pic }">
+        	<div id="my" class="info_four_area"><img src="resources/images/hMypage.png" alt=""></div>
+        </c:if>
         <div id="my_info" class="info_four_area"><h4 id="create_user_id">${bung.user_id }</h4></div>
 
         <br clear="both">

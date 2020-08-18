@@ -13,4 +13,8 @@ public interface StoreInfoService {
 
 	int modifyInfo(StoreInfo newInfo);
 
+	int updateOpenStatus(String userId);
+
+	int updateOpenStatusYes(String userId);
+
 }

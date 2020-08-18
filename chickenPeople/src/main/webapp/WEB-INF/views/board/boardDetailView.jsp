@@ -325,10 +325,11 @@
 			console.log("댓글");
 			//$(".re_reply_content_area").remove();
 			$(this).parents("li").append("<div class='re_reply_content_area'>"+
-											"<textarea class='re_reply_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
+											"<textarea class='re_reply_content content_insert_item' style='float:left;' cols='100' rows='5 resize:none;'>"+
 											"</textarea>"+
-											"<button class='re_reply_btn content_insert_item' style='float:left; margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;'>댓글달기</button>"+
-										"</div><br class='br' clear='both'>");
+											"<button class='re_reply_btn content_insert_item' style='float:left; margin-left: 10px; margin-bottom:5px; width:80px; height:80px; color:white; background-color:#EE5917; border:0px;'>댓글달기</button>"+
+											"<button class='re_reply_cancel_btn' style='float:left; margin-left: 10px; margin-bottom:5px; width:80px; height:80px; color:white; background-color:#EE5917; border:0px;'>취소</button>"+
+										"<br class='br' clear='both'></div>");
 		})	
 		
 		//대댓글 달기 ajax
@@ -346,6 +347,7 @@
 				dataType:"json",
 				success:function(data){
 					console.log("답글 성공");
+					$(".re_reply_content_area").children(".re_reply_cancel_btn").remove();
 					$(".re_reply_content_area").children(".re_reply_content").remove();
 					$(".re_reply_content_area").children(".re_reply_btn").remove();
 					$(".br").remove();
@@ -389,7 +391,8 @@
 																	"<textarea class='re_replt_content content_insert_item' style='float:left;' cols='100' rows='5'>"+
 																	"</textarea>"+
 																	"<button class='re_re_reply_btn content_insert_item' style='float:left; margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;'>댓글달기</button>"+
-																	"</div><br class='br' clear='both'>");
+																	"<button class='re_reply_cancel_btn' style='float:left; margin-left: 10px; margin-bottom:5px; width:80px; height:80px; color:white; background-color:#EE5917; border:0px;'>취소</button>"+
+																	"<br class='br' clear='both'></div>");
 		})	
 		
 		//대대댓글 달기 ajax
@@ -408,6 +411,7 @@
 				dataType:"json",
 				success:function(data){
 					console.log("답글 성공");
+					$(".re_reply_content_area").children(".re_reply_cancel_btn").remove();
 					$(".re_reply_content_area").children(".re_replt_content").remove();
 					$(".re_reply_content_area").children(".re_re_reply_btn").remove();
 					$(".br").remove();
@@ -439,12 +443,17 @@
 			
 		})
 		
+		//댓글 취소 버튼
+		$(document).on("click",".re_reply_cancel_btn", function(){
+			$(".re_reply_content_area").remove();
+		})
+		
 		$(document).on("mouseenter",".content",function(){
 			if($(this).children(".reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
-				$(this).append("<img class='content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");	
+				$(this).append("<img class='content_del' src='resources/images/delete.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");	
 			}
 			else if($(this).children(".reply_id").children("b").text() == "비회원"){
-				$(this).append("<img class='content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+				$(this).append("<img class='content_del' src='resources/images/delete.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
 			}
 		})
 		
@@ -455,10 +464,10 @@
 		
 		$(document).on("mouseenter",".re_content",function(){
 			if($(this).children(".re_reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
-				$(this).append("<img class='re_content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+				$(this).append("<img class='re_content_del' src='resources/images/delete.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
 			}
 			else if($(this).children(".re_reply_id").children("b").text() == "비회원"){
-				$(this).append("<img class='re_content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+				$(this).append("<img class='re_content_del' src='resources/images/delete.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
 			}
 		})
 		

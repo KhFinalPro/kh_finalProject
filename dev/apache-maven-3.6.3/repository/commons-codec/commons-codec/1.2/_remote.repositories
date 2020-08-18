@@ -1,9 +1,16 @@
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:59 KST 2020
 >>>>>>>=refs/remotes/origin/dev22222222222222
 commons-codec-1.2.pom>central=
 commons-codec-1.2.jar>central=
+=======
+#Mon Aug 17 14:37:53 KST 2020
+>>>>>>>=refs/remotes/origin/master
+commons-codec-1.2.jar>central=
+commons-codec-1.2.pom>central=
+>>>>>>> refs/remotes/origin/master
 commons-codec-1.2-javadoc.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
@@ -47,6 +54,8 @@ commons-codec-1.2.jar>central=
 commons-codec-1.2-javadoc.jar>central=
 >>>>>>> refs/remotes/origin/dev22222222222222
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 22:37:14 GMT+09:00 2020
