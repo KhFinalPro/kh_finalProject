@@ -89,7 +89,7 @@
 		FROM(
 		    SELECT MENU_NUM, MENU_NAME, MENU_PRICE, CAT_CODE
 		    FROM MENU
-		    WHERE BRAND_CODE = #{brand_code}
+		    WHERE BRAND_CODE = #{brand_code} AND MENU_YN = 'N'
 		    )
 		WHERE CAT_CODE = 4 OR CAT_CODE = 5 OR CAT_CODE = 6
 	</select>

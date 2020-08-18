@@ -293,6 +293,7 @@
 	    							"</p>"+
 								"</li>"+
 					    	"</ul>");
+						
 					}
 					else{
 						$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
@@ -304,7 +305,8 @@
 			    									"</li>"+
 										    	"</ul>");
 					}
-					$("#replay_content").val("");
+					//$("#replay_content").val("");
+					location.reload();
 				},
 				error:function(data){
 					alert("회원만 이용가능합니다.");
@@ -372,12 +374,13 @@
 							 "</ul>");
 					}
 					
-						    										 
+					location.reload();    										 
 					
 				},
 				error:function(data){
 					
 				}
+				
 			})
 			
 		})
@@ -435,6 +438,8 @@
 								 "</li>"+
 							 "</ul>");
 					}
+					
+					location.reload();
 				},
 				error:function(data){
 					
