@@ -62,5 +62,9 @@ public class ChatServiceImpl implements ChatService{
 	public int updateChatStatus(int room_no) {
 		return chatDao.updateChatStatus(room_no);
 	}
+	@Override
+	public String selectPic(String userId) {
+		return chatDao.selectPic(userId);
+	}
 
 }

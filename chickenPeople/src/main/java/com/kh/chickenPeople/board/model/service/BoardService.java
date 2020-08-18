@@ -40,6 +40,12 @@ public interface BoardService {
 
 	int downBoardHit(Board b);
 
+	int boardDelete(int bNum);
+
+	ArrayList<Board> selectMyBoard(String bWriter);
+
+	int boardBackup(int bNum);
+
 
 	
 

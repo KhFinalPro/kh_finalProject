@@ -36,7 +36,10 @@
 		<id property="menuId" column="BRAND_CODE"/>
 		<result property="menuName" column="BRAND_ID"/>
 	</resultMap>
-	
+	<resultMap type="StoreTotal" id="StoreTotalResultSet">
+		<id property="sto_name" column="STO_NAME"/>
+		<result property="total_price" column="TOTAL_PRICE"/>
+	</resultMap>
 	<resultMap type="StoreLike" id="StoreLikeResultSet">
 		<id property="id" column="USER_ID"/>
 		<result property="sto_num" column="STO_NUM"/>
@@ -190,6 +193,15 @@
 		SELECT COUNT(*)
 		FROM STORE_INFO
 		WHERE APRV_STATUS='N'
+	</select>
+	<select id="selectStoreTotal" resultMap="StoreTotalResultSet">
+		SELECT SI.STO_NAME AS "STO_NAME", COUNT(OP.STO_NUM) AS "TOTAL_PRICE"
+	    FROM ORDER_PRO OP
+	    JOIN JUMUN J ON OP.ORD_NUM = J.ORD_NUM
+	    JOIN STORE_INFO SI ON SI.STO_NUM = OP.STO_NUM
+	    WHERE J.ORD_STATUS='배달완료'
+	    GROUP BY SI.STO_NAME
+	    ORDER BY 2 DESC	
 	</select>
 </mapper>
 

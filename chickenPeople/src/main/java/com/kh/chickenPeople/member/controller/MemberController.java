@@ -296,13 +296,12 @@ public class MemberController {
 			String recipient = email;
 			String subject = "안녕하세요, 치킨의 민족입니다.";
 			
-			String body = "안녕하세요"+m.getName()+" 치킨의 민족입니다.\n"
-					+ "치킨의 민족 입점 허가가 되었음을 알려드립니다.\n"
-					+ "아래의 아이디와 비밀번호로 로그인하여 판매자 마이페이지에서 초기 정보 수정 부탁드립니다.\n"
+			String body = "안녕하세요 "+m.getName()+"님 치킨의 민족입니다.\n"
+					+ "임시 비밀번호를 보내드립니다.\n"
 					+ "--------------------------------------------------------\n"
-					+ "아이디:"+m.getId()+"\n"
 					+ "비밀번호:"+originPwd+"\n"
-					+ "--------------------------------------------------------\n";
+					+ "--------------------------------------------------------\n"
+					+ "로그인하여 변경하셔 주십시오.\n";
 			
 			
 			Properties props = System.getProperties();
@@ -337,7 +336,7 @@ public class MemberController {
 			
 			try {
 				out = response.getWriter();
-				out.println("<script>alert('이메일보냄.'); location.href='home.do';</script>");
+				out.println("<script>alert('해당 이메일주소로 임시 비밀번호 발송 완료.'); location.href='home.do';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -370,12 +369,12 @@ public class MemberController {
 			String recipient = email;
 			String subject = "안녕하세요, 치킨의 민족입니다.";
 			
-			String body = "안녕하세요"+member.getName()+" 치킨의 민족입니다.\n"
-					+ "치킨의 민족 입점 허가가 되었음을 알려드립니다.\n"
-					+ "아래의 아이디와 비밀번호로 로그인하여 판매자 마이페이지에서 초기 정보 수정 부탁드립니다.\n"
+			String body = "안녕하세요 "+member.getName()+"님 치킨의 민족입니다.\n"
+					+ "요청하신 아이디는\n"
 					+ "--------------------------------------------------------\n"
 					+ "아이디:"+member.getId()+"\n"
-					+ "--------------------------------------------------------\n";
+					+ "--------------------------------------------------------\n"
+					+ "입니다.\n";
 			
 			
 			Properties props = System.getProperties();
@@ -410,7 +409,7 @@ public class MemberController {
 			
 			try {
 				out = response.getWriter();
-				out.println("<script>alert('이메일보냄.'); location.href='home.do';</script>");
+				out.println("<script>alert('해당 이메일주소로 아이디 발송 완료.'); location.href='home.do';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -104,6 +104,21 @@ public class BoardDao {
 		return sqlSessionTemplate.update("boardMapper.downBoardHit", b);
 	}
 
+	public int boardDelete(int bNum) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.boardDelete", bNum);
+	}
+
+	public ArrayList<Board> selectMyBoard(String bWriter) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSessionTemplate.selectList("boardMapper.selectMyBoard", bWriter);
+	}
+
+	public int boardBackup(int bNum) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("boardMapper.boardBackup", bNum);
+	}
+
 	
 	
 	

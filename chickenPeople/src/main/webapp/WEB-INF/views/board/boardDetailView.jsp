@@ -24,9 +24,9 @@
 	.head_like_good a{font-size:20px;}
 	.head_like_good a img{width:20px; height:20px;}
 	
-    .review{margin: 0 auto; width: 70%; height:300px;}
+    .review{margin: 0 auto; width: 70%; height:300px; text-align:center;}
     .review ul li{float:left; list-style:none; width:49%;}
-    .review:nth-child(odd){margin-right:10px;}
+    
     .review ul li img{width: 300px; height: 200px;}
     /* .review ul li .number{font-size:20px; width:100px; height:100px; border-radius:40px; background-color:white; border:1px solid black; text-align:center;} */
     .review ul li .number{font-size:20px; width:30px; height:30px;  border-radius:15px; background-color: #ffc000; color:white;}
@@ -54,6 +54,8 @@
 	#content_insert>.content_insert_item{float:left;}
 	#content_insert>button{margin-left: 10px; margin-bottom:5px; height:80px; color:white; background-color:#EE5917; border:0px;}
 	#content_insert>#replay_content{resize:none;}
+	
+	#mat_del_btn{float:right; width:100px; height:50px; color:white; background-color:#EE5917; border:0px; border-radius:15px; font-size:20px;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
      
@@ -65,7 +67,14 @@
 	<input type="hidden" id="id" value="${sessionScope.loginUser.id }">
 	<input type="hidden" id="bNum" value="${board.bNum}">
   	<div id="section">
-        <!-- <h1>맛잘알 리뷰</h1> -->
+        <c:if test="${sessionScope.loginUser.id == board.bWriter }">
+        	<c:if test="${board.bStatus == 'N'}">
+        		<button id="mat_del_btn">삭제</button>
+        	</c:if>
+        	<c:if test="${board.bStatus == 'Y'}">
+        		<button id="mat_del_btn">복구</button>
+        	</c:if>
+        </c:if>
         <div id="head">
             <div class="head_title">
                 <img src="resources/buploadFiles/${board.bThumbnail }" alt="">
@@ -275,15 +284,26 @@
 				dataType:"json",
 				success:function(data){
 					console.log("성공");
-					$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
-					    						"<li style='list-style:none; text-align:left; color:blue;'>"+
-					    							"<p class='content' style='height:40; line-height:40px;'>"+
-					    							"<input type='hidden' id='rep1_num' value="+ data.currval +">"+
-					    							"<a class='reply_id'><b>"+ $id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a>"+
-					    							"</p>"+
-		    									"</li>"+
-									    	"</ul>");
-					
+					if(data.id != '비회원'){
+						$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
+	    						"<li style='list-style:none; text-align:left; color:blue;'>"+
+	    							"<p class='content' style='height:40; line-height:40px;'>"+
+	    							"<input type='hidden' id='rep1_num' value="+ data.currval +">"+
+	    							"<a class='reply_id'><b>"+ $id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a>"+
+	    							"</p>"+
+								"</li>"+
+					    	"</ul>");
+					}
+					else{
+						$("#reply_area").append("<ul class='reply' style='margin-top:20px;'>"+
+						    						"<li style='list-style:none; text-align:left; color:blue;'>"+
+						    							"<p class='content' style='height:40; line-height:40px;'>"+
+						    							"<input type='hidden' id='rep1_num' value="+ data.currval +">"+
+						    							"<a class='reply_id'><b>"+ data.id +"</b> : </a><a class='reply_content'>"+$rep_cont+"</a>"+
+						    							"</p>"+
+			    									"</li>"+
+										    	"</ul>");
+					}
 					$("#replay_content").val("");
 				},
 				error:function(data){
@@ -293,7 +313,7 @@
 		}
 		else{
 			alert("댓글을 작성해주세요");
-			$("#reply_area").append("<img id='tung' src='resources/images/tung.png'>");
+			
 		}
 		
 	})
@@ -329,14 +349,27 @@
 					$(".re_reply_content_area").children(".re_reply_content").remove();
 					$(".re_reply_content_area").children(".re_reply_btn").remove();
 					$(".br").remove();
-					$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
-										  								 "<li class='re_reply_item' style='color:blue;'>"+
-											  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
-									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
-									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
-								    										 "</p>"+
-							    										 "</li>"+
-						    										 "</ul>");
+					if(data.id != '비회원'){
+						$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
+ 								 "<li class='re_reply_item' style='color:blue;'>"+
+	  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
+										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
+										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+									 "</p>"+
+								 "</li>"+
+							 "</ul>");
+					}
+					else{
+						$(".re_reply_content_area").parents("li").append("<ul class='re_reply'>"+
+ 								 "<li class='re_reply_item' style='color:blue;'>"+
+	  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
+										 "<a class='re_reply_id'><b>"+ data.id +"</b> : </a>"+
+										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+									 "</p>"+
+								 "</li>"+
+							 "</ul>");
+					}
+					
 						    										 
 					
 				},
@@ -378,16 +411,26 @@
 					$(".re_reply_content_area").children(".re_replt_content").remove();
 					$(".re_reply_content_area").children(".re_re_reply_btn").remove();
 					$(".br").remove();
-					$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
-										  								 "<li class='re_reply_item' style='color:blue;'>"+
-											  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
-									    										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
-									    										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
-								    										 "</p>"+
-							    										 "</li>"+
-						    										 "</ul>");
-						    										 
-					
+					if(data.id != '비회원'){
+						$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
+ 								 "<li class='re_reply_item' style='color:blue;'>"+
+	  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
+										 "<a class='re_reply_id'><b>"+ $id +"</b> : </a>"+
+										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+									 "</p>"+
+								 "</li>"+
+							 "</ul>");
+					}
+					else{
+						$(".re_reply_content_area").parents("li").parents("li").append("<ul class='re_reply'>"+
+ 								 "<li class='re_reply_item' style='color:blue;'>"+
+	  								 "<p class='re_content' style='height:40; line-height:40px;'>"+
+										 "<a class='re_reply_id'><b>"+ data.id +"</b> : </a>"+
+										 "<a class='re_reply_content'>"+ $rep_cont +"</a>"+
+									 "</p>"+
+								 "</li>"+
+							 "</ul>");
+					}
 				},
 				error:function(data){
 					
@@ -400,6 +443,9 @@
 			if($(this).children(".reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
 				$(this).append("<img class='content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");	
 			}
+			else if($(this).children(".reply_id").children("b").text() == "비회원"){
+				$(this).append("<img class='content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+			}
 		})
 		
 		$(document).on("mouseleave",".content",function(){
@@ -409,6 +455,9 @@
 		
 		$(document).on("mouseenter",".re_content",function(){
 			if($(this).children(".re_reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
+				$(this).append("<img class='re_content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
+			}
+			else if($(this).children(".re_reply_id").children("b").text() == "비회원"){
 				$(this).append("<img class='re_content_del' src='resources/images/close.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");
 			}
 		})
@@ -450,6 +499,17 @@
 					alert("실패");
 				}
 			})
+		})
+		
+		//게시물 삭제
+		$("#mat_del_btn").on("click",function(){
+			$bNum = $("#bNum").val();
+			if($("#mat_del_btn").text() == '삭제'){
+				location.href="boardDelete.do?bNum="+$bNum+"&mypageStatus=${mypageStatus}&bWriter=${board.bWriter}";
+			}
+			else if($("#mat_del_btn").text() == '복구'){
+				location.href="boardBackUp.do?bNum="+$bNum+"&mypageStatus=${mypageStatus}&bWriter=${board.bWriter}";
+			}
 		})
 	})
 

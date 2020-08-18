@@ -14,6 +14,7 @@ import com.kh.chickenPeople.systemAdmin.model.vo.Coupon;
 import com.kh.chickenPeople.systemAdmin.model.vo.PageInfo;
 import com.kh.chickenPeople.systemAdmin.model.vo.SearchStatus;
 import com.kh.chickenPeople.systemAdmin.model.vo.SiteTotal;
+import com.kh.chickenPeople.systemAdmin.model.vo.StoreTotal;
 
 @Repository("sDao")
 public class SystemDao {
@@ -73,6 +74,10 @@ public class SystemDao {
 
 	public int selectMapStoreList(String storeSearchName) {
 		return sqlSessionTemplate.selectOne("storeMapper.selectStoreListCountForMap",storeSearchName);
+	}
+
+	public ArrayList<StoreTotal> selectStoreTotal() {
+		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreTotal");
 	}
 
 

@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:16 KST 2020
+=======
+#Mon Aug 17 22:36:56 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 spring-aop-5.2.6.RELEASE.pom>central=

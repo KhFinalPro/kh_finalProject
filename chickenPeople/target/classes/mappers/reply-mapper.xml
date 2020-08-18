@@ -24,11 +24,42 @@
 	</resultMap>
 	
 	<insert id="replyInsert" parameterType="Reply">
-		INSERT INTO REPLY VALUES(SEQ_REP1_NUM.NEXTVAL, #{user_id}, #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+		INSERT INTO REPLY 
+		<choose>
+			<when test="user_id.equals('비회원')">
+				VALUES(SEQ_REP1_NUM.NEXTVAL, '비회원', #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+			</when>
+			<otherwise>
+				VALUES(SEQ_REP1_NUM.NEXTVAL, #{user_id}, #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+			</otherwise>
+		</choose>
+		
+		
+		<!-- <if test="user_id != null  and user_id != ''">
+			VALUES(SEQ_REP1_NUM.NEXTVAL, #{user_id}, #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+		</if>
+		<if test="user_id == null and user_id == ''">
+			VALUES(SEQ_REP1_NUM.NEXTVAL, '비회원', #{b_num}, #{rep_cont}, SYSDATE, NULL, 'N')
+		</if> -->
 	</insert>
 	
 	<insert id="reReplyInsert" parameterType="Reply">
-		INSERT INTO RE_REPLY VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
+		INSERT INTO RE_REPLY 
+		<choose>
+			<when test="user_id.equals('비회원')">
+				VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, '비회원', #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
+			</when>
+			<otherwise>
+				VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
+			</otherwise>
+		</choose>
+		<!-- <if test="user_id != null and user_id != ''">
+			VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, #{user_id}, #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
+		</if>
+		<if test="user_id == null and user_id == ''">
+			VALUES(SEQ_REP2_NUM.NEXTVAL, #{rep1_num}, '비회원', #{rep_cont}, SYSDATE, NULL, 'N', #{b_num})
+		</if> -->
+		
 	</insert>
 	
 	<select id="selectCurrval" parameterType="_int" resultType="int">
@@ -60,4 +91,14 @@
 	<update id="reReReplyDelResult" parameterType="_int">
 		UPDATE RE_REPLY SET REP_STATUS = 'Y' WHERE REP2_NUM = #{rep2_num}
 	</update>
+	
+	<delete id="replyDelete" parameterType="_int">
+		DELETE FROM REPLY
+		WHERE B_NUM = #{bNum}
+	</delete>
+	
+	<delete id="reReplyDelete" parameterType="_int">
+		DELETE FROM RE_REPLY
+		WHERE B_NUM = #{bNum}
+	</delete>
 </mapper>

@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Aug 17 16:03:48 KST 2020
+=======
+#Mon Aug 17 22:37:09 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
 spring-context-support-2.5.4.pom>central=

@@ -66,7 +66,7 @@
 		#main_section>#map{width: 100%; height: 400px; border: 1px solid black;}
 		
 		/*게시글 등록자*/
-		#main_section>#my>img{width: 50px; height: 50px;}
+		#main_section>#my>img{width: 50px; height: 50px; border-radius:25px; border:1px solid black;}
 		#main_section>#my_info{margin-left: 10px; height: 25px; line-height: 25px;}
 		#main_section>.info_four_area{float: left;}
 		
@@ -170,7 +170,7 @@
 
         <br><br>
         
-        <div id="my" class="info_four_area"><img src="resources/images/userIcon.png" alt=""></div>
+        <div id="my" class="info_four_area"><img src="resources/propic/${bung.pic }" alt=""></div>
         <div id="my_info" class="info_four_area"><h4 id="create_user_id">${bung.user_id }</h4></div>
 
         <br clear="both">

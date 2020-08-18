@@ -92,5 +92,9 @@
 		WHERE USER_NAME = #{name} AND USER_EMAIL = #{email}
 	</select>
 	
-	
+	<select id="selectPic" parameterType="string" resultType="string">
+		SELECT PROPIC
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
 </mapper>

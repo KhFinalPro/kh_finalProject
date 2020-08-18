@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 17 16:02:53 KST 2020
 spring-jcl-5.2.7.RELEASE.jar>central=
@@ -6,3 +7,54 @@ spring-jcl-5.2.7.RELEASE.pom>central=
 spring-jcl-5.2.7.RELEASE-sources.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+spring-jcl-5.2.7.RELEASE.jar>central=
+spring-jcl-5.2.7.RELEASE.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:26:18 GMT+09:00 2020
+spring-jcl-5.2.7.RELEASE.jar>central=
+spring-jcl-5.2.7.RELEASE.pom>central=
+spring-jcl-5.2.7.RELEASE-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
+=======
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Aug 15 21:52:22 GMT+09:00 2020
+spring-jcl-5.2.7.RELEASE.jar>central=
+spring-jcl-5.2.7.RELEASE.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Aug 16 17:26:18 GMT+09:00 2020
+spring-jcl-5.2.7.RELEASE.jar>central=
+spring-jcl-5.2.7.RELEASE.pom>central=
+spring-jcl-5.2.7.RELEASE-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Sun Aug 16 02:34:20 KST 2020
+=======
+#Sun Aug 16 17:26:18 GMT+09:00 2020
+>>>>>>> refs/remotes/origin/master
+spring-jcl-5.2.7.RELEASE.jar>central=
+spring-jcl-5.2.7.RELEASE.pom>central=
+spring-jcl-5.2.7.RELEASE-sources.jar>central=
+>>>>>>> refs/remotes/origin/dev22222222222222
+>>>>>>> refs/remotes/origin/master
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 17 22:36:44 GMT+09:00 2020
+spring-jcl-5.2.7.RELEASE.jar>central=
+>>>>>>>=refs/remotes/origin/dev22222222222222
+spring-jcl-5.2.7.RELEASE.pom>central=
+spring-jcl-5.2.7.RELEASE-sources.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
