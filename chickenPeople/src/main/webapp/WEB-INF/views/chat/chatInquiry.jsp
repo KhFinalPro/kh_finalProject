@@ -153,16 +153,16 @@
 					time=strArray[4];
 				}
 				if(strArray[5]=="null"){
-					pic = "<img id='chatImg' src='resources/images/user1.png'>"
+					pic = "<img id='chatImg' src='resources/images/user1.png' width='30px' height='30px'>"
 				}else{
-					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"'>"
+					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"' style='width:30px; height:30px'>"
 				}
 				console.log(pic);
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){//상대방
  						printData = "<div class='my-chat-box'>"
- 								       +"<div class='chatImgBox'>"+pic+"</div>"
+// 								       +"<div class='chatImgBox'>"+pic+"</div>"
  								       +"<div class='chat my-chat'>"+message+"</div>"
  								       +"<div class='chat-info'>"+ time +"</div>"
  								   +"</div>";

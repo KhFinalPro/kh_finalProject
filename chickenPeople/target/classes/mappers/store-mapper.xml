@@ -106,7 +106,7 @@
 		JOIN BRAND B ON SI.BRAND_CODE = B.BRAND_CODE
 		JOIN MENU M ON B.BRAND_CODE = M.BRAND_CODE
         
-		WHERE SI.STO_NUM = #{sto_num}
+		WHERE SI.STO_NUM = #{sto_num}  AND MENU_YN = 'N'
 	</select>
 	
 
