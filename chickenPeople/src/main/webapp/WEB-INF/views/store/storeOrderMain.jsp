@@ -354,7 +354,9 @@
 						
 					</div>
 					<div class="total_price_area">
-						<h4 id="total_price"></h4>
+						<h4 id="total_price">
+							<span><input type='text' class='total_price' name='total_price' value='0' style='width:100px; text-align:right; font-size:20px; border:0px;'>원</span>
+						</h4>
 						<h4>합계: </h4>
 					</div>
 					<br clear="both">
@@ -412,17 +414,17 @@
 <!-- 메뉴 카테고리 -->
 	// html dom 이 다 로딩된 후 실행된다.
 	$(document).ready(function(){
-		
 		var row;
 		
 		var total_price = 0;
 		var price = 0;
 		
+		
 		// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
 		$(".menu>a").click(function(){
 			var submenu = $(this).next("ul");
 	
-			// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+			// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 부드랍게 펼치기
 			if( submenu.is(":visible") ){
 				submenu.slideUp();
 			}else{
@@ -433,10 +435,9 @@
 		$(document).on("click",".menu_click",function(){
 			i++;
 			row = $("<div class='row' style='text-align:left;'></div");
-			var list_group = $("<ul class='list_group'>");
+			var list_group = $("<ul class='list_group"+i+"'>");
 			var list_group_item = $("<li class='list_group_item'></li>");
-			var col = $("<div class='price col' style='float:left; width: 100%; text-align:left;'>");
-			
+			var col = $("<div class='price col' style='float:left; width: 100%; text-align:left;'>");			
 			
 			$menu_num = $(this).children("#menu_num").val();
 			$menu_name = $(this).children("#menu_name").val();
@@ -450,6 +451,7 @@
 			
 			//금액
 			price += $menu_price;
+			
 			
 			//메뉴명
 			list_group_item.append(row);
@@ -510,21 +512,20 @@
 			
 			
 			if($(this).is(":checked") == true) {
-				price += $menu_price; 
+				price += $menu_price;
+				
 				console.log("추가");
 				console.log($sidemenu);
 
 				row.append("<div class='"+$sidemenu+i+"'><input type='text' class='"+$sidemenu+"' name='menu_name' value='"+ $menu_name +"' style='border: 0px;'>"+
 							"<input type='hidden' class='"+$sidemenu+"' name='menu_num' value='"+ $menu_num +"'>"+
 							"<input type='hidden' class='"+$sidemenu+"' name='price' value='"+$menu_price+"'><br></div>");
-				
-				
-
 			}
 			else if($(this).is(":checked") == false){
 				console.log("제거");
 				
 				price -= $menu_price;
+				
 				$side_menu = "."+$sidemenu+i;
 				console.log($side_menu);
 
@@ -540,13 +541,13 @@
 		//담기버튼
 		$(document).on("click","#order_put",function(){
 			$price = ".price"+i
-			$("#total_price").children("span").remove();
+			/* $("#total_price").children("span").remove(); */
 			
 			$($price).val(price);
 			$("#modalReview").css('display','none');
 			
 			total_price += price;
-			$("#total_price").append("<span><input type='text' name='total_price' value='"+ total_price +"' style='width:100px; text-align:right; font-size:20px; border:0px;'>원</span>")
+			$(".total_price").val(total_price);
 			
 			price = 0;
 			
@@ -554,18 +555,25 @@
 		
 		//취소버튼
 		$(document).on("click",".menu_cancel",function(){
-			$(this).parent("a").parent(".col").parent(".list_group_item").parent(".list_group").remove();
+			$(this).parent("a").parent(".col").parent(".list_group_item").parent("ul").remove();
 			
 			//total_price
 			$price = $(this).parent("a").parent(".col").children("span").children("input").val();
 			total_price -= $price;
 			
-			$("#total_price").children("span").remove();
-			$("#total_price").append("<span><input type='text' name='total_price' value='"+ total_price +"' style='width:100px; text-align:right; font-size:20px; border:0px;'>원</span>")
+			$(".total_price").val(total_price);
 		})
 		
+		//사이드 메뉴 선택 모달창
 		$("#shoppingBag_cancel").on("click",function(){
+	
+			$(".total_price").val(total_price);
+			
+			$list_group = ".list_group" + i;
+			$($list_group).remove();
+			
 			price = 0;
+			
 		})
 		
 		//결제 페이지 이동
@@ -608,6 +616,7 @@
 		//모달 창 닫기
 		$(document).on("click",".close",function(){
         	$("#showMsg").css('display','none');
+        	
         })
         
         //마이페이지의 찜한 매장 보러가기

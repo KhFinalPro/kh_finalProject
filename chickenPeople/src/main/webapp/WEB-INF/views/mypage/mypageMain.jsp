@@ -115,7 +115,8 @@
 		})
 		
 		$("#my_address").on("click",function(){
-			
+			$id = $("#id").val();
+			location.href="mypageAddress.do?id="+$id;
 		})
 		
 		$("#coupMe").on("click",function(){

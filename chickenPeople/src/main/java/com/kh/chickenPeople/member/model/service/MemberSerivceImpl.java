@@ -73,6 +73,11 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.findId(m);
 	}
 
+	@Override
+	public int noPwd(Member m) {
+		return mDao.noPwd(m);
+	}
+
 
 
 }

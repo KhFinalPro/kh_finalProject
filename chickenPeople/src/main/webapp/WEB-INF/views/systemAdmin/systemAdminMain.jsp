@@ -275,21 +275,23 @@ var myChart = new Chart(ctx, {
 
 var month=[] ;
 var totalIncome=[];
-
+var total;
+var month;
 for(var i=0; i<12;i++){
 		
+	
 	<c:forEach var= "t" items="${citeTotalList}">
 		var temp = "${t.pay_Date}";
 		var split = temp.split("-");
 		var month1 = split[1]
 		if(month1 == i){
-			month.push("${t.pay_Date}");
-			totalIncome.push("${t.pay_Total}");
-		}else{
+			total = "${t.pay_Total}"
+			//month.push("${t.pay_Date}");
 		}
-			month.push("2020-"+i);
-			totalIncome.push("0");
 	</c:forEach>
+	totalIncome.push(total);
+	total = 0;
+	month.push("2020-"+(i+1));
 	
 }
 
@@ -300,6 +302,7 @@ var myChart = new Chart(ctx, {
 	data: { 
 		labels: month, 
 		datasets: [{ 
+			label:'사이트 별 매출 통계',
 			data: totalIncome, 
 			backgroundColor: [ 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ], 
 			borderColor: [ 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ], 

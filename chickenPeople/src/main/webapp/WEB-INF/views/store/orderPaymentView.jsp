@@ -79,7 +79,7 @@
 	                <p id="info" class="title">배달정보</p>
 	                <p id="pay_addr">${address }</p>
 	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input type="text" id="detail_address" name="detail_address" required></div>
-					<a>받으실분 : </a><span class="pay_rcv"><input type="text" id="pay_rcv"></span><br>
+					<a>받으실분 : </a><span class="pay_rcv"><input type="text" id="pay_rcv" required></span><br>
 	                <a>전화번호 : </a><span id="phone">${sessionScope.loginUser.tel }</span>
 	            </div>
 	                
