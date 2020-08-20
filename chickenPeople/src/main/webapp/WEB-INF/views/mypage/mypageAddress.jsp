@@ -82,12 +82,12 @@
     		}
     	}
     	function delete_btn(){
-    		if($("#addr_num").is(":checked") == false){
-    			console.log("#addr_num")
+    		if($(".addr_num").is(":checked") == false){
+    			console.log(".addr_num")
     			alert("삭제할 주소지를 선택해주세요.");
     		}else{
 	    		var chknum="";
-	    	    $("input[name=addr_num]:checkbox:checked").each(function() { 
+	    	    $("input[class=addr_num]:checkbox:checked").each(function() { 
 	                chknum += $(this).val() + ",";
 	            })
 	            location.href="deleteAddress.do?addr_num="+chknum;
