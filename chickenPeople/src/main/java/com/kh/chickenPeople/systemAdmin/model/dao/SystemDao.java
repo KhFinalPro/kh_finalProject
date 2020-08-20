@@ -80,6 +80,10 @@ public class SystemDao {
 		return (ArrayList)sqlSessionTemplate.selectList("storeMapper.selectStoreTotal");
 	}
 
+	public int selectStoreMemberCount() {
+		return sqlSessionTemplate.selectOne("memberMapper.selectStoreMemberCount");
+	}
+
 
 
 }

@@ -11,19 +11,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
 	html{overflow:hidden;}
-	.siteLogo{font-size:24px; white; padding-top: 18px; padding-left: 14px;}
-	.chatHeader{background-color:#1bc1a3; width:400px; height:70px; margin-top: -25px; margin-left: -8px;}
-	.sendArea{position: fixed; bottom: 10px;; width: 100%;}
+	.siteLogo{font-size:24px; color:white; padding-top: 18px; padding-left: 14px;}
+	.chatHeader{background-color:#2ac1bc; width:100%; height:70px; margin-top: -25px; margin-left: -8px;}
+	.sendArea{position: fixed; bottom: 10px; width: 100%;}
 	.inputText { width: 270px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	button{border:1px solid black; background-color:white; color:black; padding:8px;}
-	.arrow_box_right {position: relative; background: #88b7d5; border: 3px solid #88b7d5; width:65%; margin-top:10px; height:40px; margin-left: 115px;}
-	.arrow_box_right:after, .arrow_box:before { left: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
-	.arrow_box_right:after { border-color: rgba(136, 183, 213, 0); border-left-color: #88b7d5; border-width: 13px; margin-top: -13px;}
-	.arrow_box_right:before { border-color: rgba(136, 183, 213, 0); border-left-color: #88b7d5; border-width: 13px; margin-top: -13px; }
-	.arrow_box_left { position: relative; background: #88b7d5; border: 3px solid #88b7d5;width:65%; margin-top:10px; height:40px; }
-	.arrow_box_left:after, .arrow_box:before { right: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
-	.arrow_box_left:after { border-color: rgba(136, 183, 213, 0);border-right-color: #88b7d5;border-width: 13px;margin-top: -13px;}
-	.arrow_box_left:before { border-color: rgba(136, 183, 213, 0); border-right-color: #88b7d5; border-width: 9px; margin-top: -9px; }
 	
 	#chat{height:500px;overflow-y:scroll;overflow-x:hidden;}
 	.scroll-test::-webkit-scrollbar { width: 6px; }
@@ -48,14 +40,14 @@
         height:auto;
         word-break : break-all;
         background: #ffffff;
-        border:2px solid #F7E600;
+        border:2px solid #2ac1bc;
         width:auto;
         display:inline-block;
         border-radius: 10px 10px 10px 10px;
 	}
 	.my-chat{
 		text-align: right;
-		background: #F7E600;
+		background: #2ac1bc;
 		border-radius: 10px 10px 10px 10px;
 	}
 	.my-chat-box{
@@ -153,16 +145,16 @@
 					time=strArray[4];
 				}
 				if(strArray[5]=="null"){
-					pic = "<img id='chatImg' src='resources/images/user1.png'>"
+					pic = "<img id='chatImg' src='resources/images/user1.png' width='30px' height='30px'>"
 				}else{
-					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"'>"
+					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"' style='width:30px; height:30px'>"
 				}
 				console.log(pic);
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){//상대방
  						printData = "<div class='my-chat-box'>"
- 								       +"<div class='chatImgBox'>"+pic+"</div>"
+// 								       +"<div class='chatImgBox'>"+pic+"</div>"
  								       +"<div class='chat my-chat'>"+message+"</div>"
  								       +"<div class='chat-info'>"+ time +"</div>"
  								   +"</div>";
