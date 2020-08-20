@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_맛잘알</title>
 </head>
 <style>
 	/* body, hmtl{background: #ecf0f1;} */

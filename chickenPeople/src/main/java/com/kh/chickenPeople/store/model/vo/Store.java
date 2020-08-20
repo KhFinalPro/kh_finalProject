@@ -13,8 +13,8 @@ public class Store implements Serializable{
 	private int sto_num;		//매장번호
 	private String sto_name;	//매장이름
 	private String sto_tel;		//매장전화번호
-	private Date sto_open;		//오픈시간
-	private Date sto_close;		//마감시간
+	private String sto_open;		//오픈시간
+	private String sto_close;		//마감시간
 	private String sto_addr;	//매장주소
 	private String sto_intro;	//매장소개
 	private String ord_limit;	//최소주문금액
@@ -52,7 +52,7 @@ public class Store implements Serializable{
 	}
 
 	//관리자 _ 점포 관리 생성자(계연)
-	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
+	public Store(int sto_num, String sto_name, String sto_tel, String sto_open, String sto_close, String sto_addr,
 			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,
 			String delivery, String sto_email, String aprv_status, String brand_code, String user_id,
 			String brand_name) {
@@ -78,7 +78,7 @@ public class Store implements Serializable{
 	}
 
 
-	public Store(int sto_num, String sto_name, String sto_tel, Date sto_open, Date sto_close, String sto_addr,
+	public Store(int sto_num, String sto_name, String sto_tel, String sto_open, String sto_close, String sto_addr,
 			String sto_intro, String ord_limit, String deli_time, String enter_yn, String open_yn, String ceo_name,
 			String delivery, String sto_email, String aprv_status, String brand_code, String user_id, double sto_lat,
 			double sto_lng, String brand_pic, String brand_name, double rev_rate, int menu_num, String menu_name,
@@ -146,22 +146,22 @@ public class Store implements Serializable{
 	}
 
 
-	public Date getSto_open() {
+	public String getSto_open() {
 		return sto_open;
 	}
 
 
-	public void setSto_open(Date sto_open) {
+	public void setSto_open(String sto_open) {
 		this.sto_open = sto_open;
 	}
 
 
-	public Date getSto_close() {
+	public String getSto_close() {
 		return sto_close;
 	}
 
 
-	public void setSto_close(Date sto_close) {
+	public void setSto_close(String sto_close) {
 		this.sto_close = sto_close;
 	}
 

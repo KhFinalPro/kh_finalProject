@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의민족</title>
 	<style>
            
 	    body, hmtl{font-family: 'Anton', sans-serif;}
