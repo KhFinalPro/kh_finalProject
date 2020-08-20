@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민 결제</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -22,7 +22,7 @@
             #payment_title{width:100%; height:50px; text-align: center; line-height: 50px; font-size:30px;}
           
             .title{height: 50px; line-height: 50px; font-size: 25px; font-weight: 600; border-top: 1px solid black; color:#735949;}
-            .order_info #info{font-size: 25px; font-weight: 600;}
+            .order_info #info{font-size: 25px; font-weight: 600; height: 50px; line-height: 50px; font-size: 25px; font-weight: 600; color:#735949;}
             .order_info #pay_addr{font-size: 35px; font-weight: 600; color:#2CBFB1;}
             .order_info #detail_address_area{margin-top: 10px; height:60px; line-height: 60px; font-size: 20px; background-color: rgb(238, 236, 236); vertical-align:middle;}
             .order_info #detail_address_area #detail_address{margin-bottom:5px; background-color: white; border:0px; height:30px; margin:0px; width:400px;}
@@ -76,10 +76,10 @@
 	            <div class="order_info">
 	                
 	
-	                <p id="info" class="title">배달정보</p>
+	                <p id="info" class="">배달정보</p>
 	                <p id="pay_addr">${address }</p>
-	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;상세주소 : <input type="text" id="detail_address" name="detail_address" required></div>
-					<a>받으실분 : </a><span class="pay_rcv"><input type="text" id="pay_rcv" required></span><br>
+	                <div id="detail_address_area">&nbsp;&nbsp;&nbsp;*상세주소 : <input type="text" id="detail_address" name="detail_address" placeholder="상세주소를 입력해주세요." required></div>
+					<a>*받으실분 : </a><span class="pay_rcv"><input type="text" id="pay_rcv" value="" placeholder="받으실분 성함." required></span><br>
 	                <a>전화번호 : </a><span id="phone">${sessionScope.loginUser.tel }</span>
 	            </div>
 	                
@@ -204,53 +204,58 @@
             	var pay_method = $("input[name='method']:checked").val();   
             	var pay_rcv = $("#pay_rcv").val();
             	
-            	
-            	if($("input[name='method']:checked").val() == 'kakao'){
-            		IMP.request_pay({
-                        pg : 'kakaopay',
-                        pay_method : 'card',
-                        merchant_uid : 'merchant_' + new Date().getTime(),
-                        name : '치킨의 민족',
-                        amount : $(".resultPrice").children("a").text(),
-                        buyer_name : '최상원',
-                        buyer_tel : $("#phone").text(),
-                        buyer_addr : address,
-                        buyer_postcode : '123-456',
-                        //m_redirect_url : 'http://www.naver.com'
-                    }, function(rsp) {
-                        if ( rsp.success ) {
-                        	alert("결제 성공");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
-                        	$("#paymentForm").append("<input type='hidden' name='pay_rcv' value='"+ pay_rcv +"'</input>");
-                        	$("#paymentForm").submit();
-                        	
-                        	
-                        } else {
-                            msg = '결제에 실패하였습니다.';
-                            msg += '에러내용 : ' + rsp.error_msg;
-                            //실패시 이동할 페이지
-                            
-                        }
-                    });
-            		//카카오결제 진행후 insert
+            	if($("#detail_address").val() != "" && $("#pay_rcv").val() != ""){
+            		
+	            	if($("input[name='method']:checked").val() == 'kakao'){
+	            		IMP.request_pay({
+	                        pg : 'kakaopay',
+	                        pay_method : 'card',
+	                        merchant_uid : 'merchant_' + new Date().getTime(),
+	                        name : '치킨의 민족',
+	                        amount : $(".resultPrice").children("a").text(),
+	                        buyer_name : '최상원',
+	                        buyer_tel : $("#phone").text(),
+	                        buyer_addr : address,
+	                        buyer_postcode : '123-456',
+	                        //m_redirect_url : 'http://www.naver.com'
+	                    }, function(rsp) {
+	                        if ( rsp.success ) {
+	                        	alert("결제 성공");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
+	                        	$("#paymentForm").append("<input type='hidden' name='pay_rcv' value='"+ pay_rcv +"'</input>");
+	                        	$("#paymentForm").submit();
+	                        	
+	                        	
+	                        } else {
+	                            msg = '결제에 실패하였습니다.';
+	                            msg += '에러내용 : ' + rsp.error_msg;
+	                            //실패시 이동할 페이지
+	                            
+	                        }
+	                    });
+	            		//카카오결제 진행후 insert
+	            	}
+	            	else{
+	            		$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
+	                	$("#paymentForm").append("<input type='hidden' name='pay_rcv' value='"+ pay_rcv +"'</input>");
+	            		$("#paymentForm").submit();
+		            }
             	}
             	else{
-            		$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='pay_toal' value='"+ pay_toal +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='coup_num' value='"+ coup_num +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='user_id' value='"+ id +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='pay_method' value='"+ pay_method +"'</input>");
-                	$("#paymentForm").append("<input type='hidden' name='pay_rcv' value='"+ pay_rcv +"'</input>");
-            		$("#paymentForm").submit();
-	            }
+            		alert("필수 항목을 입력해주세요.")
+            	}
             })
             
             //쿠폰 적용

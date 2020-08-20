@@ -87,7 +87,7 @@ $(function(){
 	
    var mapContainer = document.getElementById('map');
    var mapOption = {
-       center: new daum.maps.LatLng(37.450701, 126.570667),
+       center: new daum.maps.LatLng(37.33, 127.01),
        level: 5
    };  
 
@@ -113,11 +113,11 @@ $(function(){
                    disableAutoPan: true
                });
                infowindow.open(map, marker);
-
-               map.setCenter(coords);
+			   var center = coords;
            } 
        });
    });
+      //         map.setCenter(center);
 })
 </script>
 </html>

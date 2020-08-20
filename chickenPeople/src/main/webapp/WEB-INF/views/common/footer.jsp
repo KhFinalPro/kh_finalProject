@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의민족</title>
 	<style>
 	    footer{margin: 0; padding: 0; margin-top: 50px; width: 100%; background-color: white; border-top:1px solid #2ac1bc; }
 	    footer>#footer_nav{margin:0 auto; padding: 0; width: 100%; height: 50px; background-color: #2ac1bc;}

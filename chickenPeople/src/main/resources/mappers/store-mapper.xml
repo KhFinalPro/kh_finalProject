@@ -106,7 +106,7 @@
 		JOIN BRAND B ON SI.BRAND_CODE = B.BRAND_CODE
 		JOIN MENU M ON B.BRAND_CODE = M.BRAND_CODE
         
-		WHERE SI.STO_NUM = #{sto_num}
+		WHERE SI.STO_NUM = #{sto_num}  AND MENU_YN = 'N'
 	</select>
 	
 
@@ -195,13 +195,13 @@
 		WHERE APRV_STATUS='N'
 	</select>
 	<select id="selectStoreTotal" resultMap="StoreTotalResultSet">
-		SELECT SI.STO_NAME AS "STO_NAME", COUNT(OP.STO_NUM) AS "TOTAL_PRICE"
+		SELECT SI.STO_NAME AS "STO_NAME", SUM(OP.ORD_PRICE) AS "TOTAL_PRICE"
 	    FROM ORDER_PRO OP
 	    JOIN JUMUN J ON OP.ORD_NUM = J.ORD_NUM
 	    JOIN STORE_INFO SI ON SI.STO_NUM = OP.STO_NUM
 	    WHERE J.ORD_STATUS='배달완료'
 	    GROUP BY SI.STO_NAME
-	    ORDER BY 2 DESC	
+	    ORDER BY 2 DESC
 	</select>
 </mapper>
 
