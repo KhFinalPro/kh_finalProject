@@ -67,6 +67,12 @@
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
+		WHERE USER_LEVEL='소비자'
+	</select>
+	<select id="selectStoreMemberCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_LEVEL='판매자'
 	</select>
   
   	<update id="mypageUpdate" parameterType="Member">

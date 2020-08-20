@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_공지사항</title>
 </head>
 <style>
 	#section{margin: 0 auto; width: 80%; margin-top:150px;}

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_번개</title>
  <style>
  	
 	/*지도 api*/

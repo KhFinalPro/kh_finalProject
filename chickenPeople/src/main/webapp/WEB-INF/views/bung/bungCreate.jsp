@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_번개</title>
  <style>
  	body, hmtl{background: #ecf0f1;}
 	/*지도 api*/
@@ -235,6 +235,9 @@
 	            	
 	            	location.href="bungCreate.do?bung_title="+$bung_title+"&user_id="+ $user_id +"&bung_brd="+$bung_brand+"&bung_addr="+$bung_addr+
 	            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;            		
+            	}
+            	else{
+            		alert("빈칸을 다 채워주세요");
             	}
             	
             })

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_번개</title>
 	<style>
 		#main_section{margin: auto; width: 80%; margin-top: 100px; clear: both;}
 		#main_section>h2{color:#0070C0;}
