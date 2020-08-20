@@ -269,7 +269,7 @@
     		    	var lat = "";
     		    	var lng = "";
     		    	
-    		    	$("#addr2").on("blur",function(){
+    		    	$("#addr2").on("keyup",function(){
     		    		
     		    		var addr1 = $("#addr1").val();
     		    		

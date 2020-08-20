@@ -31,6 +31,7 @@
 		INTO ADDRESS VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, #{lat}, #{lng})
 		SELECT * FROM DUAL
 	</insert>
+	
 	<insert id="insertStoreMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{id},#{name},#{pwd},#{tel},#{email}, NULL, #{pic},'BRONZE','판매자',0,'N')
 	</insert>
@@ -103,4 +104,21 @@
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
 	</select>
+	
+	<insert id="addAddress" parameterType="Member">
+		INSERT INTO ADDRESS
+		VALUES(SEQ_ADDR_NUM.NEXTVAL, #{id}, #{post_code}, #{address}, #{lat}, #{lng})
+	</insert>
+	
+	<select id="myAddress" parameterType="string" resultMap="addressResultSet">
+		SELECT *
+		FROM ADDRESS
+		WHERE USER_ID = #{id}
+	</select>
+	
+	<delete id="deleteAddress" parameterType="_int">
+		DELETE FROM ADDRESS
+		WHERE ADDR_NUM = #{aa}
+	</delete>
+	
 </mapper>

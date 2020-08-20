@@ -563,11 +563,22 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    }
 	    
 	    function check(){
-       	 if($("#check1").prop('checked') == false || $("#check2").prop("checked") == false || $("#check3").prop("checked") != true){
-                alert("필수 약관에 동의 하셔야 합니다.");
-       	 }else{
-       		 $("#memberJoin").submit();
-       	 }
+	    	
+	    	if($("#id").val()=="" || $("#pwd").val()=="" || $("#pwd_chk").val()=="" || $("#name").val()=="" || $("#email").val()=="" || $("#tel").val()=="" || $("#addr").val()=="" || $("#post").val()=="" ||$("#addr2").val()==""){
+	    		alert("공백없이 입력해 주세요.");
+	    	}else{
+	    	
+		    	var ccVal = $("#checkCheck").val();
+				if(ccVal == "N"){
+						alert("중복확인 버튼을 눌러주세요.");
+				}else{
+			       	if($("#check1").prop('checked') == false || $("#check2").prop("checked") == false || $("#check3").prop("checked") != true){
+			                alert("필수 약관에 동의 하셔야 합니다.");
+			       	}else{
+			       		 $("#memberJoin").submit();
+			       	}
+				}
+			}
        }
 	    
 	    $(function(){
@@ -635,6 +646,8 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                     $("#tel").focus().val('');
                 }
             });
+            
+           
          
             
         });
@@ -654,6 +667,7 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    				alert("중복된 아이디입니다.");
 	    			}else if(data==0){
 	    				$("#idChk").attr("value", "중복확인");
+	    				$("#checkCheck").attr("value",'Y');
 	    				alert("사용가능한 아이디입니다.");
 	    			}
 	    		}
@@ -663,11 +677,13 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
 	    
 	    
 	    
+	    
+	    
 	    $(function(){
 	    	var latlng = "";
 	    	var lat = "";
 	    	var lng = "";
-	    	$("#addr2").on("blur",function(){
+	    	$("#addr2").on("keyup",function(){
 	    		
 	    		var addr1 = $("#addr1").val();
 	    		

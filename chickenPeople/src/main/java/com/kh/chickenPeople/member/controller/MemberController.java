@@ -148,6 +148,8 @@ public class MemberController {
 		return result;
 	}
 	
+	
+	
 	@RequestMapping("memberJoin.do")
 	public String memberJoin(Member m, Model model,
 			HttpServletRequest request,
@@ -223,12 +225,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("mypageAddress.do")
-	public ModelAndView mypageAddress(ModelAndView mv) {
-		mv.setViewName("mypage/mypageAddress");
-		
-		return mv;
-	}
 	
 	@RequestMapping("mypageUpdate.do")
 	public String mypageUpdate(Member m, Model model, 
@@ -281,6 +277,7 @@ public class MemberController {
 			System.out.println("M"+ m);
 			
 			result = mService.mypageUpdate(m);
+			
 			System.out.println("RESULT" + result);
 			if(result > 0) {
 				PrintWriter out;
@@ -298,6 +295,8 @@ public class MemberController {
 		
 	}
 	
+	
+	
 	@RequestMapping(value="findPwd.do", method=RequestMethod.GET)
 	public void findPwd(ModelAndView mv, Member m, Member member, HttpServletResponse response,
 			@RequestParam(value="id")String id,
@@ -314,7 +313,8 @@ public class MemberController {
 		
 		m = mService.findPwd(id);
 		System.out.println(m);
-		if(m!=null) {
+		if(m!=null && m.getEmail().equals(member.getEmail())) {
+			
 			String originPwd = randomPassword(7);
 			String encPwd = bcryptPasswordEncoder.encode(originPwd);
 			System.out.println(originPwd);
@@ -471,6 +471,66 @@ public class MemberController {
 		}
 		return sb.toString();
 	}
+	
+	
+	
+	@RequestMapping("mypageAddress.do")
+	public ModelAndView mypageAddress(ModelAndView mv, String id) {
+		ArrayList<Address> myAddress = mService.myAdddress(id);
+		
+		mv.addObject("myAddress",myAddress);
+		mv.setViewName("mypage/mypageAddress");
+		
+		return mv;
+	}
+	
+	
+	
+	@RequestMapping("addAddress.do")
+	public String addAddress(Member m, Model model,
+							HttpSession session,
+							@RequestParam("post") String post,
+							@RequestParam("addr1") String address1,
+							@RequestParam("addr2") String address2,
+							@RequestParam("lat") String lat,
+							@RequestParam("lng") String lng) {
+		
+		m.setId((String)session.getAttribute("loginUserId"));
+		m.setPost_code(post);
+		m.setAddress(address1+" "+address2);
+		m.setLat(Double.parseDouble(lat));
+		m.setLng(Double.parseDouble(lng));
+		System.out.println("m은??????"+ m);
+		int result = mService.addAddress(m);
+		
+		System.out.println("리저트는?"+result);
+		if(result>0) {
+			return "redirect:/mypageAddress.do?id="+(String)session.getAttribute("loginUserId");
+		}else {
+			return "redirect:/mypageAddress.do?id="+(String)session.getAttribute("loginUserId");
+		}
+	}
+	
+	
+	@RequestMapping("deleteAddress.do")		// 컨트롤러에서 split 사용
+	public String deleteAddress(String addr_num,
+								HttpSession session) {
+//		System.out.println(addr_num[0]);
+//		System.out.println(addr_num[1]);
+		
+		String [] addr_array = addr_num.split(",");
+		
+		for(int i = 0 ;  i < addr_array.length;  i++) {
+			int aa = Integer.parseInt(addr_array[i]);
+			int result = mService.deleteAddress(aa);
+		
+		}
+		
+		return "redirect:/mypageAddress.do?id="+(String)session.getAttribute("loginUserId");
+	}
+	
+	
+	
 	
 	
 	

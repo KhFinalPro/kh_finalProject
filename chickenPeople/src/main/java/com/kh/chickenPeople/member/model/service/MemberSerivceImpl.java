@@ -78,6 +78,22 @@ public class MemberSerivceImpl implements MemberService {
 		return mDao.noPwd(m);
 	}
 
+	@Override
+	public int addAddress(Member m) {
+		return mDao.addAddress(m);
+	}
+
+	@Override
+	public ArrayList<Address> myAdddress(String id) {
+		
+		return mDao.myAddress(id);
+	}
+
+	@Override
+	public int deleteAddress(int aa) {
+		return mDao.deleteAddress(aa);
+	}
+
 
 
 }

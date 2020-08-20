@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,12 +15,15 @@
             #myPage_address_area #add_address #addr1{width:99%; margin-bottom: 10px; height:30px; line-height:30px; font-size: 20px;}
             #myPage_address_area #add_address #post{width:30%; height:30px; line-height:30px; font-size: 20px;}
             #myPage_address_area #add_address #addr2{width:68%; height:30px; line-height:30px; font-size: 20px;}
-            #myPage_address_area #add_address button{width:100%; height:50px; border: 0px; background-color: #2ac1bc; color:white; font-size:20px; font-weight:600;}
+            #myPage_address_area #add_address button{width:49.5%; height:50px; padding:0px; border: 0px; background-color: #2ac1bc; color:white; font-size:20px; font-weight:600;}
             #myPage_address_area #address_list{margin: 0 auto; width: 80%; height: 100%; text-align: left; vertical-align: middle;}
 		    #myPage_address_area #address_list input{width: 20px; height:20px; border-radius: 15px; border:2px solid #2ac1bc;}
             #myPage_address_area #address_list label{height: 50px; line-height: 50px; font-size: 20px; font-weight:550;}
-			#h2{margin-top: 20px; margin-left:20px;}
-        </style>
+			#h1{margin-top: 20px; margin-left:20px;}
+			#tung{text-align:center}
+			#myPage_address_area #address_list button{width:150px; height: 50px; float:right; border: 0px; background-color:#EE5917	; color:white; font-size:20px; font-weight:600;}
+       		#addr_list{width:100%; height:400px; overflow-y:auto;}
+		</style>
     </head>
     
     <body>
@@ -29,22 +33,38 @@
 		
         <section id="myPage_address_area">
             <div id="add_address">
-        	<h2 id="h2">주소지변경</h2>
+        	<h1 id="h1">주소지변경</h1>
                 <input type="text" id="addr1" name="addr1" readonly>
                 <input type="text" id="post" name="post" readonly>
-                <input type="text" id="addr2" value="addr2">
+                <input type="text" id="addr2" name="addr2">
                 <br><br>
-                <button type="button" onclick="execPostCode();">주소추가</button>
+                <button type="button" class="address_btn" onclick="execPostCode();">주소검색</button>
+                <button type="button" class="address_btn" onclick="add();">주소추가</button>
             </div>
             
             <div id="address_list">
-                <hr>
-                <h2>최근 주소</h2>
-                <input type="checkbox" id="address1" value="주소"><label for="address1">서울특별시 강남구 테헤란로4길 6 (역삼동, 강남역 센트럴 푸르지오 시티)</label><br>
-                <input type="checkbox" id="address1" value="주소"><label for="address1">서울특별시 강남구 테헤란로4길 6 (역삼동, 강남역 센트럴 푸르지오 시티)</label><br>
-                <input type="checkbox" id="address1" value="주소"><label for="address1">서울특별시 강남구 테헤란로4길 6 (역삼동, 강남역 센트럴 푸르지오 시티)</label><br>
-                <input type="checkbox" id="address1" value="주소"><label for="address1">서울특별시 강남구 테헤란로4길 6 (역삼동, 강남역 센트럴 푸르지오 시티)</label><br>
-                <p style="float:right">삭제시 주소를 선택해서 삭제해주세요.</p>
+            
+                <br><hr>
+
+       		<h2 style="margin::0px;">최근 주소</h2>
+            <c:if test="${!empty myAddress}">
+           		<button type="button" onclick="delete_btn();">삭제하기</button>
+           		
+	            	<c:forEach var="c" items="${myAddress }">
+		            	<input type="checkbox" name="addr_num" class="addr_num" id="addr_num" value="${c.addr_num }"><label>${c.address }</label>
+		            	<br>
+	            	</c:forEach>           		
+           		<!-- <div class="addr_list"></div> -->
+            </c:if>
+            
+            <c:if test="${empty myAddress }">
+            	<div id="tung">
+            	<br>
+            	<h2>주소가 없네요 ㅠㅠ 추가해주세요</h2>
+            		<img src="resources/images/tung.png">
+            	</div>
+            </c:if>
+                
                 <br clear="both">
             </div>
         </section>
@@ -53,6 +73,27 @@
         <%@ include file="../common/footer.jsp"%>
     </body>
     <script>
+    	function add() {
+    		if($("#addr1").val()=="" || $("#post").val()=="" || $("#addr2")==""){
+    			alert("주소지를 입력해주세요.");
+    			
+    		}else{
+    			$("#mypageAddress").submit();
+    		}
+    	}
+    	function delete_btn(){
+    		if($("#addr_num").is(":checked") == false){
+    			console.log("#addr_num")
+    			alert("삭제할 주소지를 선택해주세요.");
+    		}else{
+	    		var chknum="";
+	    	    $("input[name=addr_num]:checkbox:checked").each(function() { 
+	                chknum += $(this).val() + ",";
+	            })
+	            location.href="deleteAddress.do?addr_num="+chknum;
+    		}
+    	};
+    	
 	    function execPostCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -100,7 +141,7 @@
 	    	var latlng = "";
 	    	var lat = "";
 	    	var lng = "";
-	    	$("#addr2").on("blur",function(){
+	    	$("#addr2").on("keyup",function(){
 	    		
 	    		var addr1 = $("#addr1").val();
 	    		
@@ -130,8 +171,10 @@
 							$("#lat").remove();
 							$("#lng").remove();
 							
-							$("#memberJoin").append("<input type='hidden' id='lat' name='lat' value='"+lat+"'>");
-							$("#memberJoin").append("<input type='hidden' id='lng' name='lng' value='"+lng+"'>");
+							$("#mypageAddress").append("<input type='hidden' id='lat' name='lat' value='"+lat+"'>");
+							$("#mypageAddress").append("<input type='hidden' id='lng' name='lng' value='"+lng+"'>");
+				        	console.log(lat);
+				        	console.log(lng);
 				        } 
 				    });
 				});
