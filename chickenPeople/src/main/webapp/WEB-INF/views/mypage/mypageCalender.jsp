@@ -20,7 +20,7 @@ $(document).ready(function(){
         center: 'title',
         right: 'dayGridMonth'
       },
-      initialDate: '2020-06-12',
+      initialDate: new Date,
       editable: true,
       navLinks: true, // can click day/week names to navigate views
       displayEventTime: false,
@@ -170,10 +170,6 @@ $(document).ready(function(){
                         <th style="width: 140px; height: 25px; font-weight:normal;">주문번호 :</th>
                         <td id="modal_order_num"></td>
                     </tr>
-                	<!-- <tr>
-                        <th style="width: 140px; height: 25px; font-weight:normal;">주문상태 :</th>
-                        <td id="modal_order_status"></td>
-                    </tr> -->
                 </table>
             </div>
             <div style="position: absolute; top : 275px; left:10%;">
@@ -411,21 +407,24 @@ function goReview(type){
     var order_status = $("#modal_sto_status").text(); 	
 	console.log(order_status);
     
-	if(order_status=='배달완료'){
-		$("#modalOrderHistory").fadeOut(500);
-		$("#modalReview").fadeIn(500);	
-	}else{
-		alert('리뷰작성은 배달완료 이후 가능합니다.');
-		location.reload();
-	}
-	 
+	  
 	
 	if(type == 1){
 		$("#modalOrderHistory").fadeOut(500);
-		$("#modalReview").fadeIn(500);	
+		$("#modalReview").fadeIn(500);
+
+		if(order_status=='배달완료'){
+			$("#modalOrderHistory").fadeOut(500);
+			$("#modalReview").fadeIn(500);	
+		}else{
+			alert('리뷰작성은 배달완료 이후 가능합니다.');
+			$("#modalOrderHistory").css("display","none");
+			$("#modalReview").css("display","none");
+		}
 	}else {
 		alert('이미 리뷰를 작성했습니다');
-		return false;
+		$("#modalOrderHistory").css("display","none");
+		$("#modalReview").css("display","none");
 	}
 	
 }
