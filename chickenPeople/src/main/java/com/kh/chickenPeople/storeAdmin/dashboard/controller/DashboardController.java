@@ -47,7 +47,10 @@ public class DashboardController {
 			
 	        //전체 매출
 		    Dashboard dahsBoard = dashboardService.selectTotalncome(userId);
-		    int totalIncome =dahsBoard.getTotalIncome();
+		
+			 int totalIncome =dahsBoard.getTotalIncome(); String formatOrdPrice =
+			 String.format("%,d", totalIncome);
+			
 		    
 		    
 		    //총 주문수
@@ -57,7 +60,8 @@ public class DashboardController {
 		    
 		    //리뷰평균
 		    dahsBoard = dashboardService.selectaverageReview(userId);
-		    Double ageRate = dahsBoard.getAgeRate();
+		    Double ageRate2 = dahsBoard.getAgeRate();
+		    String ageRate = String.format("%.2f", ageRate2);
 		
 			
 			//매장 좋아요 카운트
@@ -88,17 +92,33 @@ public class DashboardController {
 		    System.out.println("단골"+vipCustoemrList);
 		    
 		    
+		    if(!topMenuList.isEmpty()||!topSideList.isEmpty()||!monthlyTotalIncomeList.isEmpty()||!vipCustoemrList.isEmpty()) {
+		    	
+		    	request.setAttribute("topMenuList", topMenuList);
+		    	request.setAttribute("topSideList", topSideList);
+		    	request.setAttribute("monthlyTotalIncomeList", monthlyTotalIncomeList);
+		    	request.setAttribute("vipCustoemrList", vipCustoemrList);
+		    }else {
+		    	 request.setAttribute("topMenuList", topMenuList);
+				 request.setAttribute("topSideList", topSideList);
+				 request.setAttribute("monthlyTotalIncomeList", monthlyTotalIncomeList);
+				 request.setAttribute("vipCustoemrList", vipCustoemrList);
+		    }
 		    
-		    request.setAttribute("topMenuList", topMenuList);
-		    request.setAttribute("topSideList", topSideList);
-		    request.setAttribute("monthlyTotalIncomeList", monthlyTotalIncomeList);
-		    request.setAttribute("vipCustoemrList", vipCustoemrList);
-		    
-			mv.addObject("totalIncome",totalIncome);
-			mv.addObject("totalOrder",totalOrder);
-			mv.addObject("ageRate",ageRate);
-			mv.addObject("stoLikes",stoLikes);
-			mv.addObject("totalChicken",totalChicken);
+		    if(totalOrder!=0||!ageRate.isEmpty()||stoLikes!=0||totalChicken!=0) {
+		    	
+		    	mv.addObject("totalIncome",formatOrdPrice);
+		    	mv.addObject("totalOrder",totalOrder);
+		    	mv.addObject("ageRate",ageRate);
+		    	mv.addObject("stoLikes",stoLikes);
+		    	mv.addObject("totalChicken",totalChicken);
+		    }else {
+		    	mv.addObject("totalIncome",formatOrdPrice);
+		    	mv.addObject("totalOrder",totalOrder);
+		    	mv.addObject("ageRate",ageRate);
+		    	mv.addObject("stoLikes",stoLikes);
+		    	mv.addObject("totalChicken",totalChicken);
+		    }
 			
 			mv.setViewName("storeAdmin/storeAdminMain");
 			

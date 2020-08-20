@@ -503,8 +503,9 @@
              data:param,
              dataType:'JSON',
              success:function(data){
-            	 searchData();
+            	 //searchData();
             	 $("#msgReplyModal").fadeOut(500);
+            	 location.reload();
             	 
              },error:function(request, status, errorData){
                  alert("error code: " + request.status + "\n"

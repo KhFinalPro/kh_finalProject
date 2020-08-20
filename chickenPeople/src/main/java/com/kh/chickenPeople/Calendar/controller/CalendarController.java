@@ -110,21 +110,25 @@ public class CalendarController {
 			
 		
 
+			String formatOrdPrice = String.format("%,d", Integer.parseInt(orderDetailList.get(i).getOrdPrice()));
+			String formatMenuPrice = String.format("%,d", Integer.parseInt(orderDetailList.get(i).getMenuPrice()));
+
 			orderDetail.put("ordNum", orderDetailList.get(i).getOrdNum());
 			orderDetail.put("ordStatus", orderDetailList.get(i).getOrdStatus());
 			orderDetail.put("ordDate", orderDetailList.get(i).getOrdDate());
 			orderDetail.put("userId", orderDetailList.get(i).getUserId());
 			orderDetail.put("stoNum", orderDetailList.get(i).getStoNum());
-			orderDetail.put("ordPrice", orderDetailList.get(i).getOrdPrice());
+			orderDetail.put("ordPrice", formatOrdPrice);
 			orderDetail.put("mordNum", orderDetailList.get(i).getMordNum());
 			orderDetail.put("menuName", orderDetailList.get(i).getMenuName());
-			orderDetail.put("menuPrice", orderDetailList.get(i).getMenuPrice());
+			orderDetail.put("menuPrice", formatMenuPrice);
 			orderDetail.put("brandName", orderDetailList.get(i).getBrandName());
 			orderDetail.put("stoName", orderDetailList.get(i).getStoName());
 
 			orderDetailArr.add(orderDetail);
 
 		}
+		
 		
 		
 		
