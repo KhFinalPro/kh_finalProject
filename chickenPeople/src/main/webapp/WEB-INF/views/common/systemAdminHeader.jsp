@@ -85,13 +85,13 @@ body{ background:#FAFAFA; overflow: hidden; }
                     </a></li>
                     <li id="store"><a href="systemAdminStore.do?storeSearch=&brandCategory=total&status_s=Y">
                         <span class="icon">
-                            <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
+                            <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
                         <span class="title">점포 관리</span>
                     </a></li>
                     <li id="menu" ><a href="systemAdminMenu.do?menuName=&menuCategory=total&status_s=N">
                         <span class="icon">
-                            <i class="far fa-edit" aria-hidden="true"></i>
+                           <i class="fas fa-ellipsis-h"></i>
                         </span>
                         <span class="title">메뉴 관리</span>
                     </a></li>
@@ -103,25 +103,25 @@ body{ background:#FAFAFA; overflow: hidden; }
                     </a></li>
                     <li id="report"><a href="systemAdminReport.do?rptCategory=total&searchId=&status_s=N">
                         <span class="icon">
-                            <i class="fas fa-store" aria-hidden="store"></i>
+                            <i class="fas fa-bug" aria-hidden="store"></i>
                         </span>
                         <span class="title">신고 관리</span>
                     </a></li>
                     <li id="chat"><a href="systemAdminChat.do?userId=no&chat_status=N">
                         <span class="icon">
-                            <i class="fas fa-store" aria-hidden="store"></i>
+                            <i class="fas fa-comments" aria-hidden="store"></i>
                         </span>
                         <span class="title">1:1 문의</span>
                     </a></li>
                      <li id="notice"><a href="adminNoticeList.do">
                         <span class="icon">
-                            <i class="fas fa-store" aria-hidden="store"></i>
+                            <i class="fas fas fa-bullhorn" aria-hidden="store"></i>
                         </span>
                         <span class="title">공지사항</span>
                     </a></li>
                     <li id="storeMap"><a href="systemAdminMap.do">
                         <span class="icon">
-                            <i class="fas fa-store" aria-hidden="store"></i>
+                            <i class="fas fa-map-marked-alt" aria-hidden="store"></i>
                         </span>
                         <span class="title">추천받음(지도)</span>
                     </a></li>
