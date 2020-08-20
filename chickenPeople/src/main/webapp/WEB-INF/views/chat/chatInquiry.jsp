@@ -159,19 +159,19 @@
  								       +"<div class='chat-info'>"+ time +"</div>"
  								   +"</div>";
 						$("#chat").append(printData);
-						console.log("1"+printData);
 
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);
 					}else{
 						printData = "<div class='chat-box'>"
-			   						  +"<div class='chatImgBox'>"+pic+"</div>"
+			   						  +"<div class='chatImgBox' style='float:left; margin-right:10px;'>"+pic+"</div>"
+			   						  +"<div style='float:left;'>"
 									  +"<div>"+sessionId+"</div>"
 									  +"<div class='chat'>"+message+"</div>"
 									  +"<div class='chat-info'>"+ time +"</div>"
-								 +"</div>";
+									  +"</div>"
+								 +"</div><br clear='both'>";
 						$("#chat").append(printData);
 						$("#chat").stop().animate({scrollTop:$("#chat")[0].scrollHeight},1000);					
-						console.log("2"+printData);
 
 					}
 				}else{
