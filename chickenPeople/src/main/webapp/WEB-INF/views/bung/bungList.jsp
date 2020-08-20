@@ -48,6 +48,9 @@ section{margin-top: 100px;}
 		<c:if test="${tagName != null}">
 			<h2 id="tag_name">#${tagName.tag_name }</h2>
 		</c:if>
+		<c:if test="${month != null }">
+			<h2 id="tag_name">${month }월</h2>
+		</c:if>
 		
 		<div id="main_section">
 			<c:if test="${!empty sessionScope.loginUser }">

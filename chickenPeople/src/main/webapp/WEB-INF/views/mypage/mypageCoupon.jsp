@@ -29,17 +29,17 @@
         <section id="coupon_area">
         	<p>My쿠폰</p>
 			<c:if test="${!empty myCoupon}">
-			<c:forEach var="c" items="${myCoupon}">
-		            
-		            <div class="coupon" >
-		                
-		                <p class="create_date">
-		                    <b>발급일 : </b> ${c.coup_c_date}
-		                </p>
-		                <img src="resources/coupon/${c.coup_pic}" alt="">
-		                
-		            </div>
-		    </c:forEach>
+				<c:forEach var="c" items="${myCoupon}">
+			            
+			            <div class="coupon" >
+			                
+			                <p class="create_date">
+			                    <b>발급일 : </b> ${c.coup_c_date}
+			                </p>
+			                <img src="resources/coupon/${c.coup_pic}" alt="">
+			                
+			            </div>
+			    </c:forEach>
 			</c:if>
  
  
