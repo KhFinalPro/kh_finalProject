@@ -64,6 +64,18 @@ public  class MemberDao {
 		return sqlSessionTemplate.update("memberMapper.noPwd", m);
 	}
 
+	public int addAddress(Member m) {
+		return sqlSessionTemplate.insert("memberMapper.addAddress", m);
+	}
+
+	public ArrayList<Address> myAddress(String id) {
+		return (ArrayList)sqlSessionTemplate.selectList("memberMapper.myAddress", id);
+	}
+
+	public int deleteAddress(int aa) {
+		return sqlSessionTemplate.delete("memberMapper.deleteAddress", aa);
+	}
+
 	
 	
 //	@Transactional

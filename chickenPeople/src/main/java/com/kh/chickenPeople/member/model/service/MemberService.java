@@ -29,4 +29,10 @@ public interface MemberService {
 
 	int noPwd(Member m);
 
+	int addAddress(Member m);
+
+	ArrayList<Address> myAdddress(String id);
+
+	int deleteAddress(int aa);
+
 }
