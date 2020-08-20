@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치민_맛잘알</title>
 	<style>
 		.wrapper{
             width: 300px;

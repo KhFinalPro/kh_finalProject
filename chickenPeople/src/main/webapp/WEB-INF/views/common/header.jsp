@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>치킨의민족</title>
 	<style>
 		/* *{margin:0; padding:0; list-style:none;}
       	a{text-decoration:none; color:#666;} */
