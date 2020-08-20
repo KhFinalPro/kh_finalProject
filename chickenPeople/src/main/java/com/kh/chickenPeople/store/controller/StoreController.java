@@ -220,7 +220,7 @@ public class StoreController {
 	//주문버튼 클릭시
 	@RequestMapping(value="paymentView.do", method=RequestMethod.GET)
 	public ModelAndView paymentView(ModelAndView mv, HttpServletRequest request, @RequestParam(value="menu_num") int[] menu_num_arr,
-			@RequestParam(value="price") int[] price_arr, @RequestParam(value="menu_name") String[] menu_name_arr, int total_price, int sto_num, String address, String latlng, String brand_code)
+			@RequestParam(value="price") int[] price_arr, @RequestParam(value="menu_name") String[] menu_name_arr, String total_price, int sto_num, String address, String latlng, String brand_code)
 	{
 		HttpSession session = request.getSession();
 
