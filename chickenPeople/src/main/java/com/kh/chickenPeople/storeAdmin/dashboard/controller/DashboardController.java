@@ -47,9 +47,11 @@ public class DashboardController {
 			
 	        //전체 매출
 		    Dashboard dahsBoard = dashboardService.selectTotalncome(userId);
-		
-			 int totalIncome =dahsBoard.getTotalIncome(); String formatOrdPrice =
-			 String.format("%,d", totalIncome);
+		    String formatOrdPrice = null;
+		    if(dahsBoard!=null) {
+				 int totalIncome =dahsBoard.getTotalIncome(); 
+				 formatOrdPrice=String.format("%,d", totalIncome);
+		    }
 			
 		    
 		    
@@ -105,7 +107,7 @@ public class DashboardController {
 				 request.setAttribute("vipCustoemrList", vipCustoemrList);
 		    }
 		    
-		    if(totalOrder!=0||!ageRate.isEmpty()||stoLikes!=0||totalChicken!=0) {
+		    if(formatOrdPrice!=null||totalOrder!=0||!ageRate.isEmpty()||stoLikes!=0||totalChicken!=0) {
 		    	
 		    	mv.addObject("totalIncome",formatOrdPrice);
 		    	mv.addObject("totalOrder",totalOrder);

@@ -87,6 +87,8 @@ public class StoreInfoController {
 			 						@RequestParam(value="tel1")String tel1,
 			 						@RequestParam(value="tel2")String tel2,
 			 						@RequestParam(value="tel3")String tel3,
+			 						@RequestParam(value="addr1")String addr1,
+			 						@RequestParam(value="addr2")String addr2,
 			 						@RequestParam(value="stoOpen")String stoOpen,
 			 						@RequestParam(value="stoClose")String stoClose,
 			 						@RequestParam(value="stoIntro")String stoIntro) {
@@ -98,13 +100,16 @@ public class StoreInfoController {
         // 유저 아이디
         String userId = loginUser.getId();
         
-		System.out.println("뭐받았늬"+tel1+"="+tel2+"="+tel3+"="+stoOpen+stoClose+stoIntro);
+		//System.out.println("뭐받았늬"+tel1+"="+tel2+"="+tel3+"="+stoOpen+stoClose+stoIntro);
 		
 		String finalTel = tel1+"-"+tel2+"-"+tel3;
-		//System.out.println(finalTel);
+		String finalAddr = addr1+" "+addr2;
+	
+		
 		
 		newInfo.setUserId(userId);
 		newInfo.setStoTel(finalTel);
+		newInfo.setStoAddr(finalAddr);
 		newInfo.setStoOpen(stoOpen);
 		newInfo.setStoClose(stoClose);
 		newInfo.setStoIntro(stoIntro);
@@ -126,6 +131,18 @@ public class StoreInfoController {
 		    	phone3 = telArray[2];
 		    	
 		    }
+		    
+		    System.out.println( phone1+ phone2+ phone3);
+		 String addr = storeInfoList.get(0).getStoAddr();
+		 
+		  String[] addrArray = addr.split(" ");
+		  String realAddr1="";
+		  String realAddr2="";
+		 
+		  realAddr1=addr.substring(addr.lastIndexOf(" ")-1);
+		  
+		  realAddr2=addr.substring(addr.lastIndexOf(" ")+1);
+		  System.out.println(realAddr1+","+realAddr2);
 		
 		
 		mv.addObject("userId",userId);
