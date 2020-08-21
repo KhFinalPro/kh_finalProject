@@ -197,7 +197,7 @@
                  dataType:'JSON',
                  success:function(data){
                     
-                	 console.log("값 : " + data.storeList[7].avgRate);
+                	 //console.log("값 : " + data.storeList[7].avgRate);
                     // 내가 찜한 매장 목록
                      var storeList = data.storeList;
                     
