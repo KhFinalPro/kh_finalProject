@@ -405,6 +405,10 @@ function searchDate(){
 			var finalSum =0;
 			for(var i=0; i<orderList.length; i++){
 				
+				if(orderList[i].payMsg==null){
+					orderList[i].payMsg = '없음';
+				
+				}
 				
 				
 				oderListAppendStr += '<tr>'+
