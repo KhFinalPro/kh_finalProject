@@ -145,7 +145,11 @@
 </body>
 
 <script> 
-
+$(function(){
+	$("#main").children().addClass('active');
+	
+	
+})
 
 
 var brandCodeList = []
