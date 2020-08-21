@@ -39,7 +39,7 @@
 		#header_nav>ul{margin:0px;}
 		#header_nav>ul>li{float:left; list-style:none;}
 		#header_nav>ul>li>a{}
-		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px; border-radius:70%;}
+		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px;}
 		
 		#delivery:hover{cursor:pointer;}
 		
@@ -93,7 +93,7 @@
                 			<c:if test="${!empty sessionScope.loginUser }">
                 				<c:if test="${sessionScope.loginUser.uLvl == '소비자'}">
                 					<c:if test="${!empty sessionScope.loginUser.pic }">
-                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }"></a>
+                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }" style="border-radius:70%;"></a>
                 					</c:if>
                 					<c:if test="${empty sessionScope.loginUser.pic }">
 		                				<a href="mypage.do"><img src="resources/images/hMypage.png"></a>                					
