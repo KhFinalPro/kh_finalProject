@@ -93,7 +93,7 @@
                 			<c:if test="${!empty sessionScope.loginUser }">
                 				<c:if test="${sessionScope.loginUser.uLvl == '소비자'}">
                 					<c:if test="${!empty sessionScope.loginUser.pic }">
-                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }"></a>
+                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }" style="border-radius:70%;"></a>
                 					</c:if>
                 					<c:if test="${empty sessionScope.loginUser.pic }">
 		                				<a href="mypage.do"><img src="resources/images/hMypage.png"></a>                					
