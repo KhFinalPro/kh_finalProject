@@ -39,7 +39,7 @@
 		#header_nav>ul{margin:0px;}
 		#header_nav>ul>li{float:left; list-style:none;}
 		#header_nav>ul>li>a{}
-		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px;}
+		#header_nav>ul>li>a>img{width:50px; height: 50px;margin-left:15px; border-radius:70%;}
 		
 		#delivery:hover{cursor:pointer;}
 		

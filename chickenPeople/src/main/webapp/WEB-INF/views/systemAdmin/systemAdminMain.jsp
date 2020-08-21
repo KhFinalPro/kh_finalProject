@@ -154,8 +154,9 @@ var printTotalList = []
 
 
 <c:forEach var="t" items="${printTotalList}">
+	var total = "${t.payTotal}"
 	brandCodeList.push("${t.brandCode}")
-	printTotalList.push("${t.payTotal}")
+	printTotalList.push(total.toLocaleString());
 </c:forEach>
 
 
@@ -211,8 +212,9 @@ options: {
 var storeNameList= []
 var storeTotalCount= []
 <c:forEach var= "t" items="${storeTotalList}">
+	count = "${t.total_price}";
 	storeNameList.push("${t.sto_name}");
-	storeTotalCount.push("${t.total_price}");
+	storeTotalCount.push(count.toLocaleString());
 </c:forEach>
 
 
@@ -276,10 +278,11 @@ var myChart = new Chart(ctx, {
 var month=[] ;
 var totalIncome=[];
 var total;
-var month;
+
 for(var i=0; i<12;i++){
 		
 	
+	total = 0;
 	<c:forEach var= "t" items="${citeTotalList}">
 		var temp = "${t.pay_Date}";
 		var split = temp.split("-");
@@ -289,9 +292,8 @@ for(var i=0; i<12;i++){
 			//month.push("${t.pay_Date}");
 		}
 	</c:forEach>
-	totalIncome.push(total);
-	total = 0;
-	month.push("2020-"+(i+1));
+	totalIncome.push(total.toLocaleString());
+	month.push("2020-"+(i));
 	
 }
 
