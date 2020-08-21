@@ -16,7 +16,7 @@ public class Calendar implements Serializable{
 	private String userId;		//주문한 사람
 	
 	private int stoNum; 		//매장번호
-	private int ordPrice; 		//주문 전체금액
+	private String ordPrice; 		//주문 전체금액
 	
 	private int menuNum; 		//메뉴코드
 	private String brandCode;	//브랜드코드
@@ -49,7 +49,7 @@ public class Calendar implements Serializable{
 
 
 
-	public Calendar(String ordNum, String ordStatus, String ordDate, String userId, int stoNum, int ordPrice,
+	public Calendar(String ordNum, String ordStatus, String ordDate, String userId, int stoNum, String ordPrice,
 			int menuNum, String brandCode, int mordNum, String menuName, String menuPrice, String brandName,
 			String stoName, int revNum, int revRate, String revPic, String revDate, String revCont, String revRe) {
 		super();
@@ -158,7 +158,7 @@ public class Calendar implements Serializable{
 
 
 
-	public int getOrdPrice() {
+	public String getOrdPrice() {
 		return ordPrice;
 	}
 
@@ -166,7 +166,7 @@ public class Calendar implements Serializable{
 
 
 
-	public void setOrdPrice(int ordPrice) {
+	public void setOrdPrice(String ordPrice) {
 		this.ordPrice = ordPrice;
 	}
 

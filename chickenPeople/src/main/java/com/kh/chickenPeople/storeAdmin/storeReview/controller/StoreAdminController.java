@@ -140,10 +140,15 @@ public class StoreAdminController {
 	        	for(int j=0; j<menuList.size(); j++) {
 	        		if(reviewList.get(i).getOrdNum().equals(menuList.get(j).getOrdNum())) {
 	        			
+	        			
 	        			JSONObject listObj = new JSONObject();
+	        			
+	        			String formatOrdPrice = String.format("%,d", reviewList.get(i).getOrdPrice());
+	        			
+	        			listObj.put("revRe",reviewList.get(i).getRevRe());
 	        			listObj.put("ordNum",reviewList.get(i).getOrdNum());
 	        			listObj.put("menuName",menuList.get(j).getRealMenu());
-	        			listObj.put("ordPrice",reviewList.get(i).getOrdPrice());
+	        			listObj.put("ordPrice",formatOrdPrice);
 	                    listObj.put("ordDate",reviewList.get(i).getOrdDate());
 	                    listObj.put("revDate",reviewList.get(i).getRevDate());
 	                    listObj.put("revRate",reviewList.get(i).getRevRate());
@@ -156,7 +161,7 @@ public class StoreAdminController {
 	        }
 	        
 	        
-	        
+	        System.out.println("리뷰배열"+reviewMenuArr);
 	        //리뷰 조회하기
 	        
 	        

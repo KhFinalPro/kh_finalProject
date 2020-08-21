@@ -74,7 +74,7 @@
     </body>
     <script>
     	function add() {
-    		if($("#addr1").val()=="" || $("#post").val()=="" || $("#addr2")==""){
+    		if($("#addr1").val()=="" || $("#post").val()=="" || $("#addr2").val()==""){
     			alert("주소지를 입력해주세요.");
     			
     		}else{

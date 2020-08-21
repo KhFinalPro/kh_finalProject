@@ -218,8 +218,7 @@
   <div style="position: absolute; top : 40px; left:50px;">
       <ul style="list-style: none;">
           <li style="margin-bottom: 10px;  font-size:20px;"><b>고객님께 답장하기</b></li>
-          <textarea id="modal_reply_review" style="width:300px; height:200px; border:2px solid; border-radius: 13px;">
-          </textarea>
+          <textarea id="modal_reply_review" style="width:300px; height:200px; border:2px solid; border-radius: 13px;"></textarea>
       </ul>
       <button type="button" onclick="replyReview()" style="position:absolute; left:120px; bottom:-40px; border-radius:10px; padding:5px"><b>보내기</b></button>
   </div>
@@ -246,7 +245,7 @@ $(document).ready(function(){
 });
 
 $(document).on('click','#goReplyReview',function(){
-	$("#replyReviewModal").fadeIn(500);
+	//$("#replyReviewModal").fadeIn(500);
 	wantReplyReview(this);
 });
 
@@ -310,9 +309,11 @@ function searchData(){
 								/* '<td class="replyYN">'+'N'+'</td>'+ */
 								'<td>' + '<button type="button" id="goReplyReview">'+'답장하기'+'</button>'+'</td>' +
 								'<input type="hidden" value="' + reviewMenu[i].revNum + '" name="revNum">' + 
+								'<input type="hidden" value="' + reviewMenu[i].revRe + '" name="revRe">' + 
 								'</tr>'
-								
+							
 			}
+			
 			console.log(reviewMenuArr);
 			$("#reviewTable").find('tbody').empty();
 			$("#reviewTable").find('tbody').append(reviewMenuArr);
@@ -332,10 +333,20 @@ function searchData(){
  
  
 var revNum;
+var revRe; 
  function wantReplyReview(obj){
 	
 	 revNum = $(obj).parents('tr').find('input[name=revNum]').val();
-	 console.log(revNum);
+	 revRe = $(obj).parents('tr').find('input[name=revRe]').val().trim();
+	 console.log('리뷰답변'+revRe.length);
+	 console.log('리뷰넘버'+revNum);
+	
+	 if(revRe=='null'){ 					//ajax는 toString으로 넘기기때문에 문자열로바뀜.
+		 $("#replyReviewModal").fadeIn(500);	 	
+	 }else{
+		 alert('이미 리뷰 답변을 하셨습니다!');
+	 } 
+	 
 	 
  }
 
@@ -343,6 +354,9 @@ var revNum;
  
  //리뷰 답장하기
  function replyReview(){
+	 
+	 
+	
 	 
 	 var modal_reply_review = $("#modal_reply_review").val();
 	 console.log(modal_reply_review);
@@ -359,10 +373,8 @@ var revNum;
 		success:function(data){
 			alert('정상적으로 답변처리 되었습니다!');
 			$("#replyReviewModal").fadeOut(500);
-			//modal_reply_review = '';
-			/* $("#reviewTable").find('tr').find(".replyYN").empty();
-			$("#reviewTable").find('tr').find(".replyYN").html('Y'); */
-			
+			location.reload();
+			//$("#modal_reply_review").text("");
 			
 		},error:function(request, status, errorData){
             alert("error code: " + request.status + "\n"
@@ -370,6 +382,10 @@ var revNum;
                     +"error: " + errorData);
         } 
 	 });
+	
+	 
+	 
+	 
  }
 
 

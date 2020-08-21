@@ -271,8 +271,12 @@
             	else{
             		$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
 	            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
-	            	var total_price = parseInt($("#price").children("a").text()) - parseInt($("#coup_price").children("a").text());
-	            	$(".resultPrice").children("a").text(total_price);            		
+	            	var price1 = $("#price").children("a").text().split(",")[0];
+            		var price2 = $("#price").children("a").text().split(",")[1];
+            		var price = price1 + price2;
+            		console.log(price);
+	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());
+	            	$(".resultPrice").children("a").text(total_price.toLocaleString());            		
             	}
             })
         });
