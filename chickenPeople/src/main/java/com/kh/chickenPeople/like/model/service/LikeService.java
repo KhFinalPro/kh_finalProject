@@ -23,6 +23,9 @@ public interface LikeService {
 	//찜한 매장 삭제
 	int deleteStore(HashMap<String, String> map) throws Exception;
 
+	//평점
+	ArrayList<Like> likeRatelist();
+
 
 
 	

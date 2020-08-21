@@ -173,6 +173,7 @@
 	            <tr>
 	                <td class="orderCheck_item_title">최종 결제 금액</td>
 	                <td class="resultPrice"><a>${total_price }</a>원</td>
+	                <input type="hidden" id="pay_toal" value="${total_price }">
 	            </tr>
 	        </table>
 	        <button id="payment_btn">결제하기</button>
@@ -188,6 +189,10 @@
     </body>
     <script>
         $(function() {
+        	var price1 = $("#price").children("a").text().split(",")[0];
+    		var price2 = $("#price").children("a").text().split(",")[1];
+    		var price = price1 + price2;
+    		$("#pay_toal").val(price);
         	var IMP = window.IMP;
         	IMP.init('imp33962000');
         	var msg;
@@ -198,7 +203,8 @@
             	var address = $("#pay_addr").text() + " " + $("#detail_address").val();
             	var tel = $("#phone").text();
             	var pay_msg = $("#msg").val();
-            	var pay_toal = $(".resultPrice").children("a").text();
+            	//var pay_toal = $(".resultPrice").children("a").text();
+            	var pay_toal = $("#pay_toal").val();
             	var coup_num = $("#coupon_choice option:selected").val();
             	var id = $("#id").val();
             	var pay_method = $("input[name='method']:checked").val();   
@@ -271,12 +277,14 @@
             	else{
             		$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
 	            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
-	            	var price1 = $("#price").children("a").text().split(",")[0];
-            		var price2 = $("#price").children("a").text().split(",")[1];
+	            	/* var price1 = $("#price").children("a").text().split(",")[0];
+            		var price2 = $("#price").children("a").text().split(",")[1]; */
             		var price = price1 + price2;
             		console.log(price);
 	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());
-	            	$(".resultPrice").children("a").text(total_price.toLocaleString());            		
+	            	$(".resultPrice").children("a").text(total_price.toLocaleString());   
+	            	console.log(total_price);
+	            	$("#pay_toal").val(total_price);
             	}
             })
         });

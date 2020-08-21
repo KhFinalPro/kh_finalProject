@@ -17,7 +17,7 @@ public class Like implements Serializable{
 	private String stoName;		//매장이름
 	private String ordLimit; 	//최소금액
 	private int revRate;		//별점
-	private double dailyTReview;   //1일평점
+	private double avgRate;   //1일평점
 	private String brandCode; 	//브랜드코드
 	
 	//찜한 글
@@ -35,8 +35,8 @@ public class Like implements Serializable{
 
 
 	public Like(String userId, int storeNo, String brandPic, String stoBrand, String stoName, String ordLimit,
-			int revRate, double dailyTReview, String brandCode, String bNum, String bWriter, String bTitle,
-			String bCont, String bDate) {
+			int revRate, double avgRate, String brandCode, String bNum, String bWriter, String bTitle, String bCont,
+			String bDate) {
 		super();
 		this.userId = userId;
 		this.storeNo = storeNo;
@@ -45,7 +45,7 @@ public class Like implements Serializable{
 		this.stoName = stoName;
 		this.ordLimit = ordLimit;
 		this.revRate = revRate;
-		this.dailyTReview = dailyTReview;
+		this.avgRate = avgRate;
 		this.brandCode = brandCode;
 		this.bNum = bNum;
 		this.bWriter = bWriter;
@@ -125,13 +125,13 @@ public class Like implements Serializable{
 	}
 
 
-	public double getDailyTReview() {
-		return dailyTReview;
+	public double getAvgRate() {
+		return avgRate;
 	}
 
 
-	public void setDailyTReview(double dailyTReview) {
-		this.dailyTReview = dailyTReview;
+	public void setAvgRate(double avgRate) {
+		this.avgRate = avgRate;
 	}
 
 
@@ -203,20 +203,13 @@ public class Like implements Serializable{
 	@Override
 	public String toString() {
 		return "Like [userId=" + userId + ", storeNo=" + storeNo + ", brandPic=" + brandPic + ", stoBrand=" + stoBrand
-				+ ", stoName=" + stoName + ", ordLimit=" + ordLimit + ", revRate=" + revRate + ", dailyTReview="
-				+ dailyTReview + ", brandCode=" + brandCode + ", bNum=" + bNum + ", bWriter=" + bWriter + ", bTitle="
-				+ bTitle + ", bCont=" + bCont + ", bDate=" + bDate + "]";
+				+ ", stoName=" + stoName + ", ordLimit=" + ordLimit + ", revRate=" + revRate + ", avgRate=" + avgRate
+				+ ", brandCode=" + brandCode + ", bNum=" + bNum + ", bWriter=" + bWriter + ", bTitle=" + bTitle
+				+ ", bCont=" + bCont + ", bDate=" + bDate + "]";
 	}
-	
-	
-	
-	
-	
-	
- 
-	
-	
 
+
+	
 	
 	
 	
