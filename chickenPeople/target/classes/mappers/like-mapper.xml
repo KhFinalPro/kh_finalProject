@@ -11,7 +11,7 @@
       <result property="stoName" column="STO_NAME"/>
       <result property="ordLimit" column="ORD_LIMIT"/>
       <result property="revRate" column="REV_RATE"/>
-      <result property="dailyTReview" column="DAILY_T_REVIEW"/>
+      <result property="avgRate" column="AVG_RATE"/>
       <result property="brandCode" column="BRAND_CODE"/>
    </resultMap>
    
@@ -26,14 +26,20 @@
  
     <!-- 찜한 매장 -->
    <select id="likeStoreList" resultMap="storelikeResult">
-    SELECT BRD.BRAND_PIC, SI.STO_NAME, DAILY_T_REVIEW, SI.ORD_LIMIT, SI.STO_NUM  
+    SELECT BRD.BRAND_PIC, SI.STO_NAME, SI.ORD_LIMIT, SI.STO_NUM  
 	FROM STORE_LIKE SL 
 	LEFT JOIN STORE_INFO SI ON SL.STO_NUM= SI.STO_NUM
 	LEFT JOIN BRAND BRD ON SI.BRAND_CODE = BRD.BRAND_CODE
-	LEFT JOIN STORE_DAILY SD ON SI.USER_ID = SD.USER_ID
 	WHERE SL.USER_ID=#{userId}
    </select>
    
+   
+   <!-- 찜한 매장 리뷰 -->
+   <select id="likeRatelist" resultMap="storelikeResult">
+   SELECT AVG(REV_RATE) AS "AVG_RATE", STO_NUM
+	FROM STORE_REVIEW
+	GROUP BY STO_NUM
+   </select>
    
    <!-- 찜한 글 -->
    <select id="likeWriteList" resultMap="writelikeResult">
