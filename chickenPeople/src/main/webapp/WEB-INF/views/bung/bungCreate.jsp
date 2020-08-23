@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>치민_번개</title>
  <style>
- 	body, hmtl{background: #ecf0f1;}
+ 	/* body, hmtl{background: #ecf0f1;} */
 	/*지도 api*/
 	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -49,20 +49,20 @@
 	
 	
 	
-	#bungCreate_area{margin: auto; width: 50%; text-align: center; margin-top:200px;}
+	#bungCreate_area{margin: auto; width: 50%; text-align: center; margin-top:150px;}
 	#bungCreate_area table{width: 100%; text-align: left;}
 	#bungCreate_area table tr{margin-bottom: 20px;}
-	td:first-child{width: 150px; text-align: center; font-size: 25px; font-weight: 600;}
-	#bungCreate_area table #bung_title{height: 50px; width: 515px; font-size: 20px; font-weight: 600;}
-	#bungCreate_area table #bung_brand{height: 50px; width: 100px; font-size: 20px; font-weight: 600;}
-	#bungCreate_area table .date{height: 50px; font-size: 20px; font-weight: 600;}
-	#bungCreate_area table #bung_int{font: 15px; font-weight: 500;}
-	#bungCreate_area table #bung_p_no{height: 30px; width: 50px; font-size: 20px; font-weight: 600;}
-	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: black; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
-	#bungCreate_btn:hover{color:white; cursor:pointer;}
+	td:first-child{width: 40%; text-align: center; font-size: 20px; font-weight: 600;}
+	#bungCreate_area table #bung_title{height: 50px; width: 100%; font-size: 20px; font-weight: 600;}
+	#bungCreate_area table #bung_brand{height: 50px; width: 100%; font-size: 20px; font-weight: 600;}
+	#bungCreate_area table .date{height: 50px; font-size: 20px; width:48%; font-weight: 600;}
+	#bungCreate_area table #bung_int{font: 15px; font-weight: 500; resize:none;}
+	#bungCreate_area table #bung_p_no{height: 30px; width: 100%; font-size: 20px; font-weight: 600;}
+	#bungCreate_btn{width: 300px; height: 100px; margin-top: 50px; background-color: #2bc1ac; color: white; border: 0px; border-radius:15px; font-size: 25px; font-weight: 600;}
+	#bungCreate_btn:hover{color:black; cursor:pointer;}
 	.map{border:1px solid black;}
 	#detail_address{width:100%;}
-	#bung_addr{heigth:50px; width:50%; text-align:center; border:0px; font-size:25px; font-weight:600;}
+	#bung_addr{heigth:50px; width:50%; text-align:center; font-size:25px; font-weight:600;}
 	</style>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -76,12 +76,12 @@
 		<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
         <table>
             <tr>
-                <td><label>번개 제목</label></td>
+                <td><label>*번개 제목</label></td>
                 <td><input type="text" id="bung_title" name="bung_title" placeholder="제목을 입력해주세요" required></td>
             </tr>
             <tr>
                 <td>
-                    <label for="">번개 브랜드</label>
+                    <label for="">*번개 브랜드</label>
                 </td>
                 <td>
                     <select name="bung_brand" id="bung_brand" required>                    
@@ -93,7 +93,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="">번개 시간</label>
+                    <label for="">*번개 시간</label>
                 </td>
                 <td>
                     <input type="date" name="bung_date" id="bung_date" class="date" required>&nbsp;<input type="time" name="bung_time" id="bung_time" class="date" required>
@@ -101,15 +101,15 @@
             </tr>
             <tr>
                 <td>                    
-                    <label for="">소개글</label>
+                    <label for="">*소개글</label>
                 </td>
                 <td>
-                    <textarea name="bung_int" id="bung_int" cols="70" rows="5" required></textarea>
+                    <textarea name="bung_int" id="bung_int" cols="100" rows="5" required></textarea>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="">인원수</label>
+                    <label for="">*인원수</label>
                 </td>
                 <td>
                     <input type="number" name="bung_p_no" id="bung_p_no" min="0" value="0" required>
@@ -120,7 +120,7 @@
                     <label for="">태그</label>
                 </td>
                 <td id="tag_area_td">
-                    <textarea class="tag_area" cols="30" rows="1" style="resize: none; height: 25px; font-size: 20px; font-weight: 600;"></textarea>
+                    <textarea class="tag_area" cols="60" rows="1" style="resize: none; height: 25px; font-size: 20px; font-weight: 600;"></textarea>
                 </td>
             </tr>
             <tr>
@@ -134,6 +134,7 @@
             </tr>
             <tr>
                 <td colspan="2">
+	            	<p style="font-size:18px; color:#2bc1ac;">*선택할 주소는 왼쪽리스트에서 클릭하여 선택해주세요.*</p>            	
                     <div class="map_wrap">
                         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
                     
@@ -154,7 +155,7 @@
                 </td>
             </tr>
             <tr>
-            	<td colspan="2"><div id="detail_address"><input type="text" name="bung_addr" id="bung_addr"  readonly required></div></td>
+            	<td colspan="2"><div id="detail_address"><input type="text" name="bung_addr" id="bung_addr"  readonly required placeholder="선택한 주소"></div></td>
             </tr>
         </table>
 
@@ -237,7 +238,7 @@
 	            								"&bung_date="+$bung_date+"&bung_int="+$bung_int+"&bung_p_no="+$bung_p_no + "&tag_num=" + $tagNumArr;            		
             	}
             	else{
-            		alert("빈칸을 다 채워주세요");
+            		alert("필수항목을 입력해주세요.");
             	}
             	
             })
