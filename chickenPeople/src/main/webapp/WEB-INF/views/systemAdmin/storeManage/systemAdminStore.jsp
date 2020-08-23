@@ -108,7 +108,7 @@
 				<br><hr><br>
 				
 				<c:if test="${listCount ne 300 }">
-					<p>게시글 검색 결과가 총 ${listCount }건 존재합니다.</p>
+					<p>총 ${listCount }건 존재합니다.</p>
 				</c:if>
 				<table class="resultTable">
 					<thead>

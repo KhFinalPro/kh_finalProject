@@ -19,7 +19,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
+	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto; margin-top:15px;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	
 	
@@ -40,6 +40,8 @@
     a:visited{text-decoration:none; color:#646464;}
     a:active{text-decoration:none; color:#646464;}
     a:hover{text-decoration:none; color:#646464;}
+    
+    #preview{z-index:1; position:absolute; background:#999999; padding:2px;}
 </style>
 </head>
 <body>
@@ -62,6 +64,9 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td>
+								<button type="submit">검색</button>
+							</td>
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -94,9 +99,7 @@
 								</c:if>
 						</tr>
 						<tr>
-							<td colspan="4">
-								<button type="submit">검색</button>
-							</td>
+							
 						</tr>
 					</table>
 				</form>
@@ -135,7 +138,7 @@
 							<td class="menuNum">${i.menu_Num }</td>
 							<td>${i.brand_Name }</td>
 							<td>${i.cat_Name }</td>
-							<td><img src="resources/menu/${i.menu_Pic }.jpg" width="40px" height="40px"></td>
+							<td><a class="thumbnail" href="resources/menu/${i.menu_Pic }.jpg"><img src="resources/menu/${i.menu_Pic }.jpg" width="40px" height="40px"></a></td>
 							<td><a href="${menuDetail}" style="cursor:hand">${i.menu_Name }</a></td>
 							<td>${i.menu_Price }</td>
 							<td>${i.menu_Exp }</td>
@@ -200,6 +203,29 @@
 <script>
 $(function(){
 	$("#menu").children().addClass('active');
+
+	var xOffset = 10;
+	var yOffset = 30;
+	
+	$(document).on("mouseover",".thumbnail",function(e){
+		var div = $("<div>",{id:"preview"});
+		var img = $("<img>",{src:$(this).attr("href")});
+		div.append(img);
+		
+		$("body").append(div);
+		
+		$("#preview").css("top",(e.pageY-xOffset)+"px")
+					 .css("left",(e.pageX+yOffset)+"px")
+					 .fadeIn("fast");
+	});
+	$(document).on("mousemove",".thumbnail",function(e){
+		$("#preview").css("top",(e.pageY-xOffset)+"px")
+		             .css("left",(e.pageX+yOffset)+"px");
+	});
+	
+	$(document).on("mouseout",".thumbnail",function(){
+		$("#preview").remove();
+	})
 })
 
 </script>

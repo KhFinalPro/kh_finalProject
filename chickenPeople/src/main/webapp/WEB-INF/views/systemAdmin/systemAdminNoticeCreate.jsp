@@ -48,4 +48,10 @@
 	
 	</div>
 </body>
+<script>
+ $(function(){
+		$("#notice").children().addClass('active');   //왼쪽 메뉴바 상태 고정시키는 용(계연이가추가했음)
+
+ })
+</script>
 </html>

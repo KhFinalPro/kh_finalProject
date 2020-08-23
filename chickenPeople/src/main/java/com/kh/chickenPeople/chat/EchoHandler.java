@@ -34,6 +34,14 @@ public class EchoHandler extends TextWebSocketHandler{
 		   String ChattingRoom_no = (String)sessionMap.get("room_no");
 		   Map<String,Object> map = new HashMap<String,Object>();
 		   
+		   //방번호 , 아이디
+		   Map<String,Object> readMsg = new HashMap<String,Object>();
+		   
+		   readMsg.put("room_no",ChattingRoom_no);
+		   readMsg.put("user_id",session.getAttributes().get("loginUserId"));
+		   
+		   
+		   
 		   map.put("room_no", ChattingRoom_no);
 		   map.put("session",session);
 		   Member member =(Member) session.getAttributes().get("loginUser");
@@ -69,6 +77,7 @@ public class EchoHandler extends TextWebSocketHandler{
 				   
 			   }
 		   }
+		   int update = chatService.updateReadStatus(readMsg);
 		
 	}
 	

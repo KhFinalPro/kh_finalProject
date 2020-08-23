@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.chat.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,10 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public String selectPic(String userId) {
 		return chatDao.selectPic(userId);
+	}
+	@Override
+	public int updateReadStatus(Map<String, Object> readMsg) {
+		return chatDao.udpateReadStatus(readMsg);
 	}
 
 }

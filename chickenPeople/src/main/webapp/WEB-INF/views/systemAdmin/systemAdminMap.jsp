@@ -20,8 +20,9 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:6px; width:200px;}
 	
+	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
+		
 	#map{margin: 0 auto; margin-top: 20px; width: 100%; height: 600px; border: 1px solid black;}
 	
 </style>
@@ -38,7 +39,7 @@
 			
 			<input type="hidden" id="storeList" value="${searchStoreList }"/>
 			<div class="menuHeader">
-				<p style="font-size:20px;">멘트추천받습니다</p>
+				<p style="font-size:20px;">지도</p>
 				<br><hr><br>
 				
 				<form action="systemAdminMap.do" method="get">
@@ -69,6 +70,8 @@
 </div><!-- class wrapper end -->
 <script>
 $(function(){
+	$("#storeMap").children().addClass('active');
+
 	/* var user_addr1 = new Array();
 	var user_addr2 = new Array();
 	user_addr1 = $("#storeList").val();
