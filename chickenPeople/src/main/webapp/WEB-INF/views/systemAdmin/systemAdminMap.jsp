@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>지도 _ 관리자</title>
 <style>
  	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
@@ -21,7 +21,7 @@
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
 	
-	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 		
 	#map{margin: 0 auto; margin-top: 20px; width: 100%; height: 600px; border: 1px solid black;}
 	

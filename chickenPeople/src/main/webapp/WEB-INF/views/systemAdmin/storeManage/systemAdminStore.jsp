@@ -21,7 +21,7 @@
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
 	
-	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 	
 	
     .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }

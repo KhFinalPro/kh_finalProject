@@ -254,7 +254,7 @@ var myChart = new Chart(ctx, {
 			display:true,
 			position:'bottom',
 			labels:{
-				fontSize:15,
+				fontSize:20,
 				fontStyle:'bold'
 			}
 		}

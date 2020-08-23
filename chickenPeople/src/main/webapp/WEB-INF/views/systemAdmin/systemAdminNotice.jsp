@@ -18,7 +18,7 @@
 	.resultTable th{height:80px;}
 	.resultTable td{height:50px;}
 	
-	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 	
 	
     .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -41,7 +41,6 @@
 	
 	<jsp:include page="../common/systemAdminHeader.jsp"/>
 	
-	<button id="write">글 쓰기</button>
 	<div class="wrapper">
 		<div class="main_container">
 			<div class="item">
@@ -83,6 +82,7 @@
 					</table><!-- class resultTable end -->
 				</div><!-- class menuResultTable end -->
 	                		
+				<button id="write">글 쓰기</button>
 
 			 	<div class = "p-parents" style="margin:0 auto">
 				    <div class="pppp">
