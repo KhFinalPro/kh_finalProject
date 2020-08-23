@@ -70,7 +70,7 @@ public class MenuController {
 			menuSearch.setSearchStatus(status_s);						//검색상태를 menuSearch객체에 저장해서 보관
 			
 			listCount = menuService.getSearchListCount(menuSearch);		//검색 결과의 갯수 count
-			pi = Pagination.getPageInfo(currentPage, listCount,5);		
+			pi = Pagination.getPageInfo(currentPage, listCount,7);		
 			resultMenuList = menuService.selectMenuSearchList(menuSearch,pi);
 			System.out.println("검색:"+resultMenuList);
 			mv.addObject("searchStatus",menuSearch);
@@ -80,7 +80,7 @@ public class MenuController {
 		}else {
 		
 			listCount=menuService.getListCount();						//전체 게시글 갯수 count
-			pi = Pagination.getPageInfo(currentPage, listCount,5);
+			pi = Pagination.getPageInfo(currentPage, listCount,7);
 			resultMenuList = menuService.selectMenuList(pi);
 			System.out.println("전체:"+resultMenuList);
 			mv.addObject("searchStatus",menuSearch);

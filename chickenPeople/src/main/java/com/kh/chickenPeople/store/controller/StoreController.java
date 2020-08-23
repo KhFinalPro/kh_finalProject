@@ -318,7 +318,7 @@ public class StoreController {
 			storeSearch.setSearchStatus(status);
 			
 			listCount = storeService.getSearchListCount(storeSearch);		//검색 결과 갯수 count
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 10);
 			resultStoreList = storeService.selectStoreSearchList(storeSearch,pi);
 			
 			mv.addObject("searchStatus",storeSearch);
@@ -326,7 +326,7 @@ public class StoreController {
 			mv.addObject("storeList",resultStoreList);
 		}else {
 			listCount = storeService.getListCount();
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 10);
 			resultStoreList = storeService.selectStoreList(pi);
 			
 			mv.addObject("searchStatus",storeSearch);

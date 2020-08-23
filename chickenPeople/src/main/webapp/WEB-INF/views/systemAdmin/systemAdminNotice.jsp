@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#write{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
-	#write:hover{color:white; background-color:#2e4ead;}
+	#write{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#1ac2bc;}
+	#write:hover{color:white; background-color:#1ac2bc;}
 	
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	
     .menuHeader{margin:0 auto; width:90%; margin-top:50px;}
 	.menuResultTable{margin:0 auto; width:90%;}
@@ -19,7 +20,7 @@
 	.resultTable td{height:50px;}
 	
 	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
-	
+	#write {margin-right:10px; margin-left: 1540px; margin-top: 10px;}
 	
     .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
