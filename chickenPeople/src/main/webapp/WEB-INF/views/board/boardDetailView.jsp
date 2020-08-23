@@ -453,6 +453,7 @@
 			$(".re_reply_content_area").remove();
 		})
 		
+		//댓글 삭제 버튼
 		$(document).on("mouseenter",".content",function(){
 			if($(this).children(".reply_id").children("b").text() == "${sessionScope.loginUser.id}"){
 				$(this).append("<img class='content_del' src='resources/images/delete.png' alt='삭제' style='width:2%; height:2%; margin:0px;'>");	

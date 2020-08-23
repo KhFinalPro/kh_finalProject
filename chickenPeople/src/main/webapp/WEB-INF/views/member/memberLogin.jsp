@@ -40,11 +40,10 @@
                 top:-50px;
                 left: calc(50% - 50px);
             }
-            h1{
+            #title{
                 margin:0;
                 padding:0 0 20px;
                 text-align: center;
-                font-size: 22px;
             }
               .loginbox p{
                 margin:0;
@@ -122,7 +121,7 @@
 		<c:if test="${empty sessionScope.loginUser }">
         <div class="loginbox">
             <img src="resources/images/avatar.png" class="avatar">
-            <h1>치킨의민족 로그인</h1>
+            <h1 id="title">치킨의민족 로그인</h1>
             <form id="loginform" method="post" action="doLoginView.do">
                 <p>ID</p>
                 <input type="text" name="id" placeholder="아이디를 입력하세요">
