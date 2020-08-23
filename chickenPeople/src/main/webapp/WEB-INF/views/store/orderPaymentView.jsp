@@ -179,11 +179,6 @@
 	        <button id="payment_btn">결제하기</button>
 	    </div><!-- orderCheck end-->
 
-    
-
-
-<!-- script [주문시 요청사항 글자수 카운트]-->
-
 	
     	<jsp:include page="../common/footer.jsp"/>
     </body>
@@ -226,7 +221,6 @@
 	                        //m_redirect_url : 'http://www.naver.com'
 	                    }, function(rsp) {
 	                        if ( rsp.success ) {
-	                        	alert("결제 성공");
 	                        	$("#paymentForm").append("<input type='hidden' name='pay_addr' value='"+ address +"'</input>");
 	                        	$("#paymentForm").append("<input type='hidden' name='pay_tel' value='"+ tel +"'</input>");
 	                        	$("#paymentForm").append("<input type='hidden' name='pay_msg' value='"+ pay_msg +"'</input>");
