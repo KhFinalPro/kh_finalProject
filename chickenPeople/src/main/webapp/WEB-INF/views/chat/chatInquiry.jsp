@@ -101,6 +101,8 @@
 				event.preventDefault();
 				sendMessage();
 				$("#message").val('').focus();
+				$("#sendBtn").attr("disabled",true);
+
 			});
 		});
 		
