@@ -17,15 +17,16 @@
                 margin: 0;
                 padding:0;
                 width: 700px;
-                border-top: 1px solid #444444;
+                border-top: 1px solid lightgray;
                 border-collapse: collapse;
             }
             .ltd {
-                border-bottom: 1px solid #444444;
-                padding: 10px;
+                border-bottom: 1px solid lightgray;
+                /* padding: 10px; */
             }
+            .ltd label{color: #2ac1bc; font-weight:600; font-size:18px;}
             #lab{
-                background-color: #2ac1bc;
+                background-color: white;
                 color: black;
                 text-align: center;
                 padding: 10px;   
@@ -33,10 +34,11 @@
             #inp{
                padding: 10px;
                padding-left: 110px;
-               padding-right: 100px;
+               /*padding-right: 100px; */
             }
             tr td input{
                 border-radius: 5px;
+                border:1px solid gray;
                 height: 30px;
                 width: 280px;
             }
@@ -502,9 +504,9 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
             </ul>
             <br><br><br><br><br>
             <div style="text-align: center;">
-                <input type="button" value="회원가입" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
+                <input type="button" value="회원가입" id="submit_btn" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
             </div>
             
         </form>

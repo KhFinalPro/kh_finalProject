@@ -34,7 +34,9 @@
 			            <div class="coupon" >
 			                
 			                <p class="create_date">
-			                    <b>발급일 : </b> ${c.coup_c_date}
+			                    <b>발급일 : </b><a id="date">${c.coup_c_date}</a>
+			                    <input type="hidden" id="price" value="${c.coup_disc }">
+			                    <input type="hidden" id="term" value="${c.coup_term }">
 			                </p>
 			                <img src="resources/coupon/${c.coup_pic}" alt="">
 			                
@@ -67,7 +69,7 @@
     <script>
         $(function(){
             $(".coupon").on("click",function(){
-                alert($(this).text());
+                alert("발급일 : " + $("#date").text() + "\n" + "할인금액 : " + parseInt($("#price").val()).toLocaleString() + "원" +"\n" + "유효기간 : " + $("#term").val() + "일");
                 
             })
         })

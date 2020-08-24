@@ -300,8 +300,8 @@ public class MemberController {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		String host = "smtp.naver.com";
-		final String userName = "chickens_people";
-		final String password = "rngus3698";
+		final String userName = "kim0124_bb";
+		final String password = "97ygmik!";
 		int port = 465;
 		
 //		System.out.println(id);
@@ -354,7 +354,7 @@ public class MemberController {
 			session.setDebug(true);
 			/**/
 			Message mimeMessage = new MimeMessage(session);
-			mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("kim0124_bb@naver.com"));
 			mimeMessage.setContent("<h1>hello</h1>","text/html");
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			
@@ -382,30 +382,35 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="findId.do", method=RequestMethod.GET)
-	public void findid(ModelAndView mv, Member m, Member member, HttpServletResponse response,
+	public void findid(ModelAndView mv, Member m, HttpServletResponse response,
 			@RequestParam(value="name")String name,
 			@RequestParam(value="email")String email) throws AddressException, MessagingException, IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		String host = "smtp.naver.com";
-		final String userName = "chickens_people";
-		final String password = "rngus3698";
+		final String userName = "kim0124_bb";
+		final String password = "97ygmik!";
 		int port = 465;
 		
+		ArrayList<Member> member = mService.findId(m);
 		
-		member = mService.findId(m);
 		System.out.println(member);
 		
-		if(member!=null) {
+		if(!member.isEmpty()) {
 			String recipient = email;
 			String subject = "안녕하세요, 치킨의 민족입니다.";
 			
-			String body = "안녕하세요 "+member.getName()+"님 치킨의 민족입니다.\n"
+			String body = "안녕하세요 "+member.get(0).getName()+"님 치킨의 민족입니다.\n"
 					+ "요청하신 아이디는\n"
-					+ "--------------------------------------------------------\n"
-					+ "아이디:"+member.getId()+"\n"
-					+ "--------------------------------------------------------\n"
-					+ "입니다.\n";
+					+ "--------------------------------------------------------\n";
+			for(int i = 0; i< member.size(); i++) {
+				body+="아이디:"+member.get(i).getId()+"\n";
+			}
+					
+			body+= "--------------------------------------------------------\n"
+				+ "입니다.\n";
+			
+			
 			
 			
 			Properties props = System.getProperties();
@@ -428,7 +433,7 @@ public class MemberController {
 			session.setDebug(true);
 			/**/
 			Message mimeMessage = new MimeMessage(session);
-			mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("kim0124_bb@naver.com"));
 			mimeMessage.setContent("<h1>hello</h1>","text/html");
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			

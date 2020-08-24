@@ -1,17 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Mon Aug 17 09:07:42 KST 2020
-=======
-<<<<<<< HEAD
-#Sun Aug 16 02:33:48 KST 2020
+#Mon Aug 24 14:44:22 GMT+09:00 2020
 maven-clean-plugin-2.5.jar>central=
 maven-clean-plugin-2.5.pom>central=
-=======
-#Sun Aug 16 17:25:28 GMT+09:00 2020
->>>>>>> refs/remotes/origin/dev22222222222222
-maven-clean-plugin-2.5.jar>central=
-<<<<<<< HEAD
-maven-clean-plugin-2.5.pom>central=
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/dev22222222222222

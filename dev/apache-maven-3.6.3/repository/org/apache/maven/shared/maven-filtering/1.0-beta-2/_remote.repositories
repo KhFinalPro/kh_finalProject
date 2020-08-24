@@ -1,12 +1,3 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Mon Aug 17 16:04:16 KST 2020
-=======
-#Mon Aug 17 14:38:35 KST 2020
->>>>>>> refs/remotes/origin/master
-=======
-#Mon Aug 17 22:37:50 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-maven-filtering-1.0-beta-2.jar>central=
+#Mon Aug 24 17:32:10 GMT+09:00 2020
 maven-filtering-1.0-beta-2.pom>central=

@@ -12,7 +12,7 @@
                 /* font-family:sans-serif; */
             }
             .loginbox{
-                margin-top:500px;
+                margin-top:400px;
             	margin-bottom:-200px;
                 width:600px;
                 height:440px;
