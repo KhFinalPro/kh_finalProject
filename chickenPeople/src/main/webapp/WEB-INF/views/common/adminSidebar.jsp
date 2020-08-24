@@ -217,6 +217,7 @@ body{
             <div class="top_menu">
                 <div class="logo">Admin page</div>
                 <ul>
+                 	<li><a href="home.do"><i class="fas fa-home"></i></i></i></a></li>
                     <li><a href="#"><i class="fas fa-times" id="exit"></i></i></a></li>
                 </ul>
             </div>
