@@ -8,16 +8,20 @@
 <meta charset="UTF-8">
 <title>관리자 _ 쿠폰</title>
 <style>
-	.item{ width:100%;}
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	table{margin:0 auto; width:80%;}
 	table .label{width:40%; text-align:right; font-size:25px; font-weight:600; color:#2e4ead;}
 	table .input{padding-left:15px;}
 	table input{width:50%; height:50px; font-size:25px;}
 	#coup_area{margin:0 auto; width:90%; height:300px; text-align:center;}
-	form{margin-top:150px;}
+	form{margin-top:50px;}
 	#create_coup_area{position:fixed; top: 110px; right:50px; width:150px; height:50px;}
-	#create_coup_btn{width: 100%; height:100%; font-size: 25px; font-weight:600; border:0px; color:#2e4ead;}
+	/* #create_coup_btn{width: 100%; height:100%; font-size: 25px; font-weight:600; border:0px; color:#2e4ead;} */
 	#create_coup_btn:hover{color:white; background-color:#2e4ead;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
+	
+	.couponHeader{margin:0 auto; width:90%; margin-top:50px;}
+	
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -27,6 +31,10 @@
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
+		<div class="couponHeader">
+			<p style="font-size:20px;">쿠폰발행</p>
+			<br><hr><br>
+		</div><!-- couponHeader end -->
 			<form action="couponCreate.do" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
@@ -60,7 +68,7 @@
 				</div>
 				
 				<div id="create_coup_area">
-					<input type="submit" id="create_coup_btn" value="쿠폰 만들기">
+					<button type="submit" id="create_coup_btn">쿠폰 발행</button>
 				</div>
 				
 			

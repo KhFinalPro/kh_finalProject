@@ -9,6 +9,9 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
+
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
+
  	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	 select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
@@ -19,7 +22,7 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	
-	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 	
 	
     .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
@@ -54,7 +57,10 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="searchId" type="text" value="${searchStatus.searchName }"></td>
 							</c:if>
+							<td><button type="submit">검색</button></td>
+							
 						</tr>
+						
 						<tr>
 							<td><b>신고사유 검색</b></td>
 							<td>
@@ -85,7 +91,6 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
 						</tr>
 					</table>
 				</form>

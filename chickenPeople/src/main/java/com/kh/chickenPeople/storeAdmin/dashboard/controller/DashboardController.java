@@ -19,20 +19,17 @@ import com.kh.chickenPeople.storeAdmin.dashboard.model.vo.Dashboard;
 @Controller
 public class DashboardController {
 
-	@Autowired
-	DashboardService dashboardService;
-	
-	
+   @Autowired
+   DashboardService dashboardService;
+   
+   
+     @RequestMapping(value="storeAdminMain.do", method=RequestMethod.GET)
+     public ModelAndView totalIncome(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
+        
+        response.setContentType("application/json;charset=utf-8");
 
-	  
-	  
-	  
-	  @RequestMapping(value="storeAdminMain.do", method=RequestMethod.GET)
-	  public ModelAndView totalIncome(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) {
-		  
-		  response.setContentType("application/json;charset=utf-8");
+           HttpSession session = request.getSession();
 
-	        HttpSession session = request.getSession();
 
 	        Member loginUser = (Member) session.getAttribute("loginUser");
 	       
@@ -135,9 +132,6 @@ public class DashboardController {
 			return mv;
 		}
 	  
-	  
 
-	  
-	  
-	  
+     
 }

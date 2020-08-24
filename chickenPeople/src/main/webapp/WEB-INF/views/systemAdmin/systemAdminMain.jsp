@@ -23,11 +23,11 @@
 	.right-box { width: 50%;}
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; display: flex; justify-content: center; align-items: center; margin-top: -30px; }
 	.top_menu { width: calc(100% - 75px) !important;}
-	#normalMember{ position:fixed; top:100px; left:220px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 50px rgba(1,1,1,0.125); }
-	#storeMember{ position:fixed; top:100px; left:540px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 50px rgba(1,1,1,0.125);}
-	#totalChatting{ position:fixed; top:100px; left:860px; width:300px; height:150px; /* border:2px solid lightgray;  */border-radius:30px; box-shadow: 1px 1px 50px rgba(1,1,1,0.125);}
-	#totalReport{position:fixed; top:100px; left:1180px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px;box-shadow: 1px 1px 50px rgba(1,1,1,0.125);}
-	#insertStore{ position:fixed; top:100px; left:1500px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 50px rgba(1,1,1,0.125);}
+	#normalMember{ position:fixed; top:100px; left:220px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 35px rgba(1,1,1,0.125); }
+	#storeMember{ position:fixed; top:100px; left:540px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 35px rgba(1,1,1,0.125);}
+	#totalChatting{ position:fixed; top:100px; left:860px; width:300px; height:150px; /* border:2px solid lightgray;  */border-radius:30px; box-shadow: 1px 1px 35px rgba(1,1,1,0.125);}
+	#totalReport{position:fixed; top:100px; left:1180px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px;box-shadow: 1px 1px 35px rgba(1,1,1,0.125);}
+	#insertStore{ position:fixed; top:100px; left:1500px; width:300px; height:150px; /* border:2px solid lightgray; */ border-radius:30px; box-shadow: 1px 1px 35px rgba(1,1,1,0.125);}
 	tr{font-size:20px;}
 	
 	#myChart1{ position:fixed; top:300px; left:200px; }
@@ -145,7 +145,11 @@
 </body>
 
 <script> 
-
+$(function(){
+	$("#main").children().addClass('active');
+	
+	
+})
 
 
 var brandCodeList = []
@@ -250,7 +254,7 @@ var myChart = new Chart(ctx, {
 			display:true,
 			position:'bottom',
 			labels:{
-				fontSize:15,
+				fontSize:20,
 				fontStyle:'bold'
 			}
 		}

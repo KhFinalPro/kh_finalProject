@@ -49,7 +49,7 @@
 		#modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
 		#modal #search_category{height: 60px;}
 		
-		#message{position:fixed; top:300px; right:10px; width:50px; height:50px; z-index:99;}
+		#message{position:fixed; top:150px; right:10px; width:50px; height:50px; z-index:99;}
 		#message:hover{cursor:pointer;}
 
 	</style>

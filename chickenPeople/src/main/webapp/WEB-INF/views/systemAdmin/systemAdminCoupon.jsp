@@ -8,15 +8,20 @@
 <meta charset="UTF-8">
 <title>관리자 _ 쿠폰</title>
 <style>
-	.item{ width:100%; text-align:center;}
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	#coupon_nv{margin:0 auto; width:80%; text-align: right; margin-bottom: 20px;}
-	#coupon_nv #couponCreate{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
-	#coupon_nv #couponCreate:hover{color:white; background-color:#2e4ead;}
+	#coupon_nv #couponCreate {position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2ac1bc;}
+	#coupon_nv #couponCreate:hover{color:white; background-color:#2ac1bc;}
 	.coupon{width: 49.5%; height: 150px; margin-bottom:10px; display:inline-block;}
 	.coupon img{width:100%; height: 200px; border-radius:20px; border:1px solid black;}
 	#coupon_area{margin:0 auto; width:90%; height: 500px; text-align:center;}
 	#page_area{position:fixed; top:800px; left:28.5%; margin:0 auto; width:50%; text-align:center;}
 	.page_btn{font-size:30px; font-weight:600; margin-right:5px;}
+	
+	.couponHeader{margin:0 auto; width:90%; margin-top:50px;}
+	#couponCreate{margin-right:70px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
+	
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -26,9 +31,13 @@
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
-		
+			<div class="couponHeader">
+				<p style="font-size:20px;">쿠폰발행</p>
+				<br><hr><br>
+			</div><!-- couponHeader end -->
+			
 			<div id="coupon_nv">
-				<button id="couponCreate">쿠폰 만들기</button>
+				<button id="couponCreate">쿠폰 생성</button>
 			</div>
 			<br clear="both"><br><br>
 			<div id="coupon_area">

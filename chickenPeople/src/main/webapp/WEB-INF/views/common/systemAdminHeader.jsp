@@ -75,7 +75,7 @@ body{ background:#FAFAFA; overflow: hidden; }
                         <span class="icon">
                             <i class="fas fa-clipboard-list" aria-hidden="true"></i></i>
                         </span>
-                        <span class="title">관리자 메인</span>
+                        <span class="title">메인</span>
                     </a></li>
                     <li id="brand" ><a href="systemAdminBrand.do?brandName=no&brandStatus=입점" >
                         <span class="icon">
@@ -88,6 +88,12 @@ body{ background:#FAFAFA; overflow: hidden; }
                             <i class="fas fa-store" aria-hidden="store"></i>
                         </span>
                         <span class="title">점포 관리</span>
+                    </a></li>
+                    <li id="storeMap"><a href="systemAdminMap.do">
+                        <span class="icon">
+                            <i class="fas fa-map-marked-alt" aria-hidden="store"></i>
+                        </span>
+                        <span class="title">지도</span>
                     </a></li>
                     <li id="menu" ><a href="systemAdminMenu.do?menuName=&menuCategory=total&status_s=N">
                         <span class="icon">
@@ -118,12 +124,6 @@ body{ background:#FAFAFA; overflow: hidden; }
                             <i class="fas fas fa-bullhorn" aria-hidden="store"></i>
                         </span>
                         <span class="title">공지사항</span>
-                    </a></li>
-                    <li id="storeMap"><a href="systemAdminMap.do">
-                        <span class="icon">
-                            <i class="fas fa-map-marked-alt" aria-hidden="store"></i>
-                        </span>
-                        <span class="title">추천받음(지도)</span>
                     </a></li>
                 </ul>
             </div>

@@ -75,7 +75,7 @@
 			<input type="hidden" value="${room_no }" id="roomNo"/>
 			<div class="sendArea">
 				<input class="inputText" type="text" id="message"/>
-				<button>send</button>
+				<button id="sendBtn">send</button>
 			</div>
 		</form>
 		
@@ -85,15 +85,29 @@
 	<script>
 		var sock = new SockJS("<c:url value="/echo"/>");
 		$(document).ready(function(){
+			$("#sendBtn").attr("disabled",true);
+				$("#message").on("keyup",function(){
+					
+					if($("#message").val().length>0){
+						$("#sendBtn").attr('disabled',false)
+						console.log("true");
+					}else{
+						$("#sendBtn").attr('disabled',true)
+						console.log("false");
+					}					
+				})
 			$("#chatForm").submit(function(event){
+
 				event.preventDefault();
 				sendMessage();
 				$("#message").val('').focus();
+				$("#sendBtn").attr("disabled",true);
+
 			});
 		});
 		
 		sock.onopen = function(){
-
+			
 
 		};
 		
@@ -149,7 +163,6 @@
 				}else{
 					pic = "<img id='chatImg' src='resources/propic/"+strArray[5]+"' style='width:30px; height:30px'>"
 				}
-				console.log(pic);
 				
 				if(room_no==currentChattingRoom){
 					if(sessionId==currentUserSession){//상대방

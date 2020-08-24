@@ -59,5 +59,10 @@
   	FROM CHATTING_ROOM
   	WHERE CHAT_STATUS='N'
   </select>
+  <update id="updateReadStatus" parameterType="map" >
+  	UPDATE CHAT_DETAIL
+	SET READ_YN='Y'
+	WHERE CHATTINGROOM_NO = #{room_no} AND TALKER != #{user_id}
+  </update>
 
 </mapper>

@@ -39,7 +39,6 @@ import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
 import com.kh.chickenPeople.common.SaveFile;
-import com.kh.chickenPeople.common.SessionConfig;
 import com.kh.chickenPeople.member.model.service.MemberService;
 import com.kh.chickenPeople.member.model.vo.Address;
 import com.kh.chickenPeople.member.model.vo.Member;
@@ -72,8 +71,7 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="doLoginView.do", method=RequestMethod.POST)
-	public String doLoginMember(Member m, Model model, HttpServletRequest request, HttpSession session, 
-			RedirectAttributes rttr) {
+	public String doLoginMember(Member m, Model model, HttpServletRequest request, HttpSession session) {
 		
 		
 		Member member = mService.loginMember(m);
@@ -90,9 +88,7 @@ public class MemberController {
 				session.setAttribute("loginUser", member);
 				session.setAttribute("address", addrList);
 				session.setAttribute("loginUserId",member.getId());
-//				System.out.println("dddd"+session.getAttribute("loginUserId"));
 //				System.out.println("zzz"+member.getId());
-				String userId = SessionConfig.getSessionidCheck("loginUserId", member.getId());
 //				System.out.println("튕겨나온거 : " + userId);
 				
 				return "redirect:/home.do";
