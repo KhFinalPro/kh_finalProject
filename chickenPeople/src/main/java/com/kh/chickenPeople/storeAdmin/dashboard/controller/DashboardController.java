@@ -46,14 +46,17 @@ public class DashboardController {
 	        System.out.println("유저아이디"+userId);
 			
 	        //전체 매출
-		    Dashboard dahsBoard = dashboardService.selectTotalncome(userId);
+		   // Dashboard dahsBoard = dashboardService.selectTotalncome(userId);
+		    Dashboard dahsBoard = new Dashboard();
+		    
+		    dahsBoard = dashboardService.selectTotalncome(userId);
 		    String formatOrdPrice = null;
 		    if(dahsBoard!=null) {
 				 int totalIncome =dahsBoard.getTotalIncome(); 
 				 formatOrdPrice=String.format("%,d", totalIncome);
 		    }
 			
-		    
+		    System.out.println("전체매출"+formatOrdPrice);
 		    
 		    //총 주문수
 		    dahsBoard = dashboardService.selectTotalOrder(userId);
@@ -62,8 +65,12 @@ public class DashboardController {
 		    
 		    //리뷰평균
 		    dahsBoard = dashboardService.selectaverageReview(userId);
-		    Double ageRate2 = dahsBoard.getAgeRate();
-		    String ageRate = String.format("%.2f", ageRate2);
+		    
+		    String ageRate = null;
+		    if(dahsBoard!=null) {		    	
+		    	Double ageRate2 = dahsBoard.getAgeRate();
+		    	ageRate = String.format("%.2f", ageRate2);
+		    }
 		
 			
 			//매장 좋아요 카운트
@@ -107,7 +114,7 @@ public class DashboardController {
 				 request.setAttribute("vipCustoemrList", vipCustoemrList);
 		    }
 		    
-		    if(formatOrdPrice!=null||totalOrder!=0||!ageRate.isEmpty()||stoLikes!=0||totalChicken!=0) {
+		    if(formatOrdPrice!=null||totalOrder!=0||ageRate!=null||stoLikes!=0||totalChicken!=0) {
 		    	
 		    	mv.addObject("totalIncome",formatOrdPrice);
 		    	mv.addObject("totalOrder",totalOrder);

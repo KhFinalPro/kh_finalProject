@@ -210,7 +210,7 @@
                                 <tr>
                                     <th></th>
                                     <th>주문번호</th>
-                                    <th>주문메뉴</th>
+                                    <th style="width:500px">주문메뉴</th>
                                     <th>주문일시</th>
                                     <th>주문자</th>
                                     <th>주문금액</th>
