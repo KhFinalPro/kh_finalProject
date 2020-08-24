@@ -25,7 +25,7 @@ public interface MemberService {
 
 	int deletePwd(Member member);
 
-	Member findId(Member m);
+	ArrayList<Member> findId(Member m);
 
 	int noPwd(Member m);
 
