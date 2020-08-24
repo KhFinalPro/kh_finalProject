@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#write{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2e4ead;}
-	#write:hover{color:white; background-color:#2e4ead;}
+	#write{position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#1ac2bc;}
+	#write:hover{color:white; background-color:#1ac2bc;}
 	
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	
     .menuHeader{margin:0 auto; width:90%; margin-top:50px;}
 	.menuResultTable{margin:0 auto; width:90%;}
@@ -18,8 +19,8 @@
 	.resultTable th{height:80px;}
 	.resultTable td{height:50px;}
 	
-	button{border:1px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px;}
-	
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
+	#write {margin-right:10px; margin-left: 1540px; margin-top: 10px;}
 	
     .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -41,7 +42,6 @@
 	
 	<jsp:include page="../common/systemAdminHeader.jsp"/>
 	
-	<button id="write">글 쓰기</button>
 	<div class="wrapper">
 		<div class="main_container">
 			<div class="item">
@@ -83,6 +83,7 @@
 					</table><!-- class resultTable end -->
 				</div><!-- class menuResultTable end -->
 	                		
+				<button id="write">글 쓰기</button>
 
 			 	<div class = "p-parents" style="margin:0 auto">
 				    <div class="pppp">
@@ -130,6 +131,8 @@
 </body>
 <script>
 	$(function(){
+		$("#notice").children().addClass('active');   //왼쪽 메뉴바 상태 고정시키는 용(계연이가추가했음)
+
 		$("#write").on("click",function(){
 			location.href="nInsertView.do";
 		})

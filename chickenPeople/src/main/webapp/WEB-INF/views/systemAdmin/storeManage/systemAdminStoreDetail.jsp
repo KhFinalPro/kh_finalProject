@@ -24,7 +24,7 @@
 	.resultTable tr{height:70px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	#back{margin:0 auto}
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:5px;}
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 	
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
