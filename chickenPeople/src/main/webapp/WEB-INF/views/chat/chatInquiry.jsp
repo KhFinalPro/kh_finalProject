@@ -100,7 +100,7 @@
 						$("#sendBtn").attr("disabled",flag)
 					}else{
 						$("#sendBtn").attr("disabled",flag)
-					}					
+					}
 				})
 			})
 			$("#chatForm").submit(function(event){
