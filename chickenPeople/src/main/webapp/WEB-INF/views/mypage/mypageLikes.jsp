@@ -18,18 +18,18 @@
     float:left; 
     /* margin-left: 50px; */
     margin-bottom: 7px;
-    height:30px;
-
+	height:44px;
+    font-size:15px;
 }
 
 .content-table{
     /* position: absolute; */
     /* align-items: center; */
-    width:60%;
+    width:75%;
     border-collapse: collapse;
     margin: 0 auto;
     /* margin:25px 0; */
-    font-size:12px;
+    font-size:15px;
     min-width: 500px;
 }
 
@@ -56,7 +56,7 @@
     width:100%;
     float:right; 
     /* margin:0 auto; */
-    margin-right: 370px;
+    margin-right: 230px;
     margin-bottom: 7px;
     
 }

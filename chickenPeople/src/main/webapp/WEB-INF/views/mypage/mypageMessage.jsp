@@ -14,23 +14,24 @@
 .main_container{margin-top:100px;}
 .wrapper1 .clickButtons ul li select{
     position: relative;
-    width:100%;
+    width:120px;
     float:left; 
     /* margin-left: 50px; */
     margin-bottom: 7px;
-    height:30px;
+    height:44px;
+    font-size:15px;
 
 }
 
 .content-table{
     /* position: absolute; */
     /* align-items: center; */
-    width:60%;
+    width:75%;
     border-collapse: collapse;
     margin: 0 auto;
     /* margin:25px 0; */
-    font-size:12px;
-    min-width: 500px;
+    font-size:15px;
+   /*  min-width: 500px; */
 }
 
 .content-table thead tr{
@@ -39,12 +40,14 @@
     border-bottom: 1px solid black;
     text-align: left;
     font-weight: bold;
+    line-height:30px;
+   
 }
 
 .content-table th,
 .content-table td{
     padding:12px 15px;
-    
+    line-height:30px;
 }
 .content-table tbody tr{
     border-bottom: 1px solid #dddddd;
@@ -53,9 +56,9 @@
 .wrapper1 .clickButtons ul{
     display: inline;
     width:100%;
-    float:right; 
+	float:right;
     /* margin:0 auto; */
-    margin-right: 370px;
+    margin-right: 230px;
     margin-bottom: 7px;
     
 }
@@ -64,12 +67,13 @@
     display: inline-block;
     float:right; 
     margin:2px;
+
    
 }
 
 .wrapper1 .clickButtons ul li button{
-    padding:5px;
-    font-size: 12px;
+    padding:10px;
+    font-size: 15px;
 
 }
 /* .reply{
