@@ -300,8 +300,8 @@ public class MemberController {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		String host = "smtp.naver.com";
-		final String userName = "chickens_people";
-		final String password = "rngus3698";
+		final String userName = "kim0124_bb";
+		final String password = "97ygmik!";
 		int port = 465;
 		
 //		System.out.println(id);
@@ -354,7 +354,7 @@ public class MemberController {
 			session.setDebug(true);
 			/**/
 			Message mimeMessage = new MimeMessage(session);
-			mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("kim0124_bb@naver.com"));
 			mimeMessage.setContent("<h1>hello</h1>","text/html");
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			
@@ -388,8 +388,8 @@ public class MemberController {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		String host = "smtp.naver.com";
-		final String userName = "chickens_people";
-		final String password = "rngus3698";
+		final String userName = "kim0124_bb";
+		final String password = "97ygmik!";
 		int port = 465;
 		
 		
@@ -428,7 +428,7 @@ public class MemberController {
 			session.setDebug(true);
 			/**/
 			Message mimeMessage = new MimeMessage(session);
-			mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("kim0124_bb@naver.com"));
 			mimeMessage.setContent("<h1>hello</h1>","text/html");
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			
