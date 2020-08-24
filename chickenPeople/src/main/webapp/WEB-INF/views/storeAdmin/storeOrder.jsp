@@ -113,10 +113,10 @@
 
 .wrapper1 .nowOrderStatus .nowOrderStatusBtn{
     border:solid;
-    border-radius: 5px;
+    border-radius: 7px;
     color:#fff;
     background-color:#587be4; 
-    width:180px;
+    width:183px;
     padding:5px;
     font-size:14px;
 }
