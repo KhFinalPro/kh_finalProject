@@ -310,7 +310,7 @@
 <script>
 
 $("#storeModal").click(function(){
-	//alert('장사를 종료하시겠습니까?');
+	
 	$('#startModal').fadeIn(500);
 	
 });

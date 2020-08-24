@@ -85,29 +85,24 @@
 	<script>
 		var sock = new SockJS("<c:url value="/echo"/>");
 		$(document).ready(function(){
-			/* $("#message").on("keyup",function(){
-				var flag = true;
-				flag = $(this).val().length>0?false:true;
-				console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-				$("#sendBtn").attr("disabled",flag);
-			}) */
-			
-			$("#sendBtn").click(function(){
-				var flag = true;
+			$("#sendBtn").attr("disabled",true);
 				$("#message").on("keyup",function(){
-					flag = $("#message").val().length>0 ? false:true;
-					if(flag==false){
-						$("#sendBtn").attr("disabled",flag)
+					
+					if($("#message").val().length>0){
+						$("#sendBtn").attr('disabled',false)
+						console.log("true");
 					}else{
-						$("#sendBtn").attr("disabled",flag)
+						$("#sendBtn").attr('disabled',true)
+						console.log("false");
 					}					
 				})
-			})
 			$("#chatForm").submit(function(event){
 
 				event.preventDefault();
 				sendMessage();
 				$("#message").val('').focus();
+				$("#sendBtn").attr("disabled",true);
+
 			});
 		});
 		

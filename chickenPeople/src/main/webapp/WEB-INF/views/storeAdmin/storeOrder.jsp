@@ -210,7 +210,7 @@
                                 <tr>
                                     <th></th>
                                     <th>주문번호</th>
-                                    <th>주문메뉴</th>
+                                    <th style="width:500px">주문메뉴</th>
                                     <th>주문일시</th>
                                     <th>주문자</th>
                                     <th>주문금액</th>
@@ -405,6 +405,10 @@ function searchDate(){
 			var finalSum =0;
 			for(var i=0; i<orderList.length; i++){
 				
+				if(orderList[i].payMsg==null){
+					orderList[i].payMsg = '없음';
+				
+				}
 				
 				
 				oderListAppendStr += '<tr>'+

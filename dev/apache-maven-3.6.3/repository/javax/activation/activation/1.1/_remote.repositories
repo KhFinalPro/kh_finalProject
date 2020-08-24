@@ -1,9 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-<<<<<<< HEAD
-#Sun Aug 16 02:37:02 KST 2020
-=======
-#Sun Aug 16 17:28:43 GMT+09:00 2020
->>>>>>> refs/remotes/origin/master
-activation-1.1.jar>central=
+#Mon Aug 24 17:31:29 GMT+09:00 2020
 activation-1.1-sources.jar>central=
 activation-1.1.pom>central=

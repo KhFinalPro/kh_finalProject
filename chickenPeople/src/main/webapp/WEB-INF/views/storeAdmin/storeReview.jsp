@@ -161,7 +161,7 @@
                             
                             </tbody>
                         </table>
-                          <div class = "p-parents" style="margin:0 auto">
+                         <%--  <div class = "p-parents" style="margin:0 auto">
 	            <div class="pppp">
 	            <!-- 요기 내용 ajax로 만들어보기 -->
 		                    <c:if test="${pi.currentPage eq 1}">
@@ -196,11 +196,16 @@
 								<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
 							</c:if>
 	           </div>
-	        </div><!-- pagination class p-parents end -->
+	        </div><!-- pagination class p-parents end --> --%>
                         
                         
                 </div>
-
+                <br>
+                <br>
+                <br>
+				<br>
+                <br>
+                <br>
             </div>
             </div>
             
