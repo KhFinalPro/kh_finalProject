@@ -55,9 +55,9 @@ public  class MemberDao {
 		return sqlSessionTemplate.update("memberMapper.deletePwd", member);
 	}
 
-	public Member findId(Member m) {
+	public ArrayList<Member> findId(Member m) {
 		
-		return sqlSessionTemplate.selectOne("memberMapper.findId", m);
+		return (ArrayList)sqlSessionTemplate.selectList("memberMapper.findId", m);
 	}
 
 	public int noPwd(Member m) {

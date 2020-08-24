@@ -68,7 +68,7 @@ public class MemberSerivceImpl implements MemberService {
 	}
 
 	@Override
-	public Member findId(Member m) {
+	public ArrayList<Member> findId(Member m) {
 		
 		return mDao.findId(m);
 	}
