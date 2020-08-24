@@ -437,8 +437,8 @@ public class StoreController {
 		PrintWriter out;
 		
 		String host = "smtp.naver.com";
-		final String userName = "chickens_people";
-		final String password = "rngus3698";
+		final String userName = "kim0124_bb";
+		final String password = "97ygmik!";
 		int port = 465;
 
 		StoreLabel storeLabel = storeService.selectStoreLabel(brand_code);			//아이디 불러오기
@@ -485,7 +485,7 @@ public class StoreController {
 		session.setDebug(true);
 		/**/
 		Message mimeMessage = new MimeMessage(session);
-		mimeMessage.setFrom(new InternetAddress("chickens_people@naver.com"));
+		mimeMessage.setFrom(new InternetAddress("kim0124_bb@naver.com"));
 		mimeMessage.setContent("<h1>hello</h1>","text/html");
 		int updateStatus = storeService.enterStatusUpdate(newbie);
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
