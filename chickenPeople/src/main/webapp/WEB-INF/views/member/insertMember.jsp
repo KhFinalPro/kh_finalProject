@@ -144,7 +144,7 @@
                         <label>휴대폰</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="tel" name="tel" required placeholder="-포함 13자리">
+                        <input type="tel" id="tel" name="tel" required placeholder="-포함 12~13자리">
                     </td>
                 </tr>
                 <tr>
@@ -644,7 +644,7 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                 var reg = /^\d{3}-\d{3,4}-\d{4}$/;
                 
                 if(!reg.test(value)){
-                    alert("-를 제외한 11자리 숫자만 입력해 주세요.");
+                    alert("-를 포함한 휴대폰 번호를 입력해 주세요.");
                     $("#tel").focus().val('');
                 }
             });
