@@ -85,28 +85,17 @@
 	<script>
 		var sock = new SockJS("<c:url value="/echo"/>");
 		$(document).ready(function(){
-			/* $("#message").on("keyup",function(){
-				var flag = true;
-				flag = $(this).val().length>0?false:true;
-				console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-				$("#sendBtn").attr("disabled",flag);
-			}) */
-			
-			$("#sendBtn").click(function(){
-				var flag = false;
-				console.log("sendBtn click");
-				$("#message").on("blur",function(){
-					flag = $("#message").val().length>0 ? false:true;
-					console.log("message keyup");
-					if(flag==false){
-						$("#sendBtn").attr("disabled",flag)
-						console.log("flag false");
+			$("#sendBtn").attr("disabled",true);
+				$("#message").on("keyup",function(){
+					
+					if($("#message").val().length>0){
+						$("#sendBtn").attr('disabled',false)
+						console.log("true");
 					}else{
-						$("#sendBtn").attr("disabled",flag)
-						console.log("flag true");
+						$("#sendBtn").attr('disabled',true)
+						console.log("false");
 					}					
 				})
-			})
 			$("#chatForm").submit(function(event){
 
 				event.preventDefault();
