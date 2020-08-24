@@ -93,13 +93,17 @@
 			}) */
 			
 			$("#sendBtn").click(function(){
-				var flag = true;
-				$("#message").on("keyup",function(){
+				var flag = false;
+				console.log("sendBtn click");
+				$("#message").on("blur",function(){
 					flag = $("#message").val().length>0 ? false:true;
+					console.log("message keyup");
 					if(flag==false){
 						$("#sendBtn").attr("disabled",flag)
+						console.log("flag false");
 					}else{
 						$("#sendBtn").attr("disabled",flag)
+						console.log("flag true");
 					}					
 				})
 			})
