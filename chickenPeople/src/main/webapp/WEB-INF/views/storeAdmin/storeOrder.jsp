@@ -215,8 +215,8 @@
                                     <th>주문자</th>
                                     <th>주문금액</th>
                                     <th>결제방법</th>
-                                    <th>요청사항</th>
                                     <th>주문상태</th>
+                                    <th>요청사항</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -402,8 +402,11 @@ function searchDate(){
 			//주문 목록 개수만큼 반복
 			//메뉴 목록 개수만큼 반복
 			
-			var sum =0;
+			var finalSum =0;
 			for(var i=0; i<orderList.length; i++){
+				
+				
+				
 				oderListAppendStr += '<tr>'+
 									'<td>'+(i+1)+'</td>'+
 									'<td id="ordNum">'+orderList[i].ordNum+'</td>'+
@@ -414,10 +417,14 @@ function searchDate(){
 									'<td>'+orderList[i].payMethod+'</td>'+
 									'<td>'+orderList[i].payMsg+'</td>'+
 									'<td id="ordStatus">'+orderList[i].ordStatus+'</td>'+
+									'<input type="hidden" value="' + orderList[i].sum + '" id="sum" name="sum">' + 
 									'<td>'+'<button type="button" id="deliveryBtn">'+'배송시작'+'</button>'+'</td>'
 									'</tr>'
 									
-				sum += orderList[i].payToal;
+								
+				//sum += orderList[i].payToal;
+				finalSum=orderList[orderList.length-1].sum;
+				
 			}
 			$("#orderTable").find('tbody').empty();
 			$("#orderTable").find('tbody').append(oderListAppendStr);
@@ -428,7 +435,7 @@ function searchDate(){
 			
 			
 		 	$("#orderTotalPrice").empty();
-			$("#orderTotalPrice").html(sum);
+			$("#orderTotalPrice").html(finalSum+"&nbsp"+"원");
 			
 	
 			
@@ -470,8 +477,14 @@ var param = {'start':start,'end':end};
 			//선택날짜 주문개수만큼
 			//메뉴개수만큼 반복
 			
-			var sum =0;
+			var finalSum =0;
 			for(var i=0; i<chooseOrder.length; i++){
+			
+				
+				if(chooseOrder[i].payMsg==null){
+					chooseOrder[i].payMsg = '없음';
+				
+				}
 				
 				chooseOrderAppendStr += '<tr>'+
 									'<td>'+(i+1)+'</td>'+
@@ -483,11 +496,12 @@ var param = {'start':start,'end':end};
 									'<td>'+chooseOrder[i].ordStatus+'</td>'+
 									'<td>'+chooseOrder[i].payMethod+'</td>'+
 									'<td>'+chooseOrder[i].payMsg+'</td>'+
+									'<input type="hidden" value="' + chooseOrder[i].sum2 + '" name="sum">' + 
 									'</tr>'
 									
-			 	sum += chooseOrder[i].payToal;
+				finalSum=chooseOrder[chooseOrder.length-1].sum2;
 			}
-			console.log(sum);
+			
 			$("#orderTable").find('tbody').empty();
 			$("#orderTable").find('tbody').append(chooseOrderAppendStr);
 			
@@ -497,7 +511,7 @@ var param = {'start':start,'end':end};
 			
 			
 		 	$("#orderTotalPrice").empty();
-			$("#orderTotalPrice").html(sum);
+			$("#orderTotalPrice").html(finalSum+"&nbsp"+"원");
 			
 		},error:function(request, status, errorData){
             alert("error code: " + request.status + "\n"
@@ -719,10 +733,12 @@ $.ajax({
 										'<td>'+chooseDateTotalReciept[i].payDate+'</td>'+
 										'<td>'+chooseDateTotalReciept[i].customer+'</td>'+
 										'<td>'+chooseDateTotalReciept[i].payTotal+'</td>'+
+										'<input type="hidden" value="' + chooseDateTotalReciept[i].sum3 + '" name="sum">' + 
 										'</tr>';
 										
 			customerSum +=chooseDateTotalReciept[i].customer;
-			payTotalSum +=chooseDateTotalReciept[i].payTotal;
+			payTotalSum=chooseDateTotalReciept[chooseDateTotalReciept.length-1].sum3;
+			//payTotalSum +=chooseDateTotalReciept[i].payTotal;
 		}
 		
 		//console.log('요약'+customerSum+payTotalSum);

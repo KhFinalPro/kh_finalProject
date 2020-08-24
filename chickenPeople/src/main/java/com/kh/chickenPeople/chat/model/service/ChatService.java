@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.chat.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.chickenPeople.chat.model.vo.ChattingMsg;
 import com.kh.chickenPeople.chat.model.vo.ChattingRoom;
@@ -27,5 +28,7 @@ public interface ChatService {
 	int updateChatStatus(int room_no);
 
 	String selectPic(String userId);
+
+	int updateReadStatus(Map<String, Object> readMsg);
 
 }

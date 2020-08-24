@@ -50,11 +50,13 @@ public class StoreMenuController {
 	        for(int i=0; i<menuList.size(); i++) {
 	        	JSONObject menu = new JSONObject();
 	        	
+	        	String formatMenuPrice = String.format("%,d", menuList.get(i).getMenuPrice());
+	        	
 	        	menu.put("brandName", menuList.get(i).getBrandName());
 	        	menu.put("menuPic",menuList.get(i).getMenuPic());
 	        	menu.put("catName",menuList.get(i).getCatName());
 	        	menu.put("menuName", menuList.get(i).getMenuName());
-	        	menu.put("menuPrice", menuList.get(i).getMenuPrice());
+	        	menu.put("menuPrice", formatMenuPrice);
 	        	menu.put("menuExp",menuList.get(i).getMenuExp());
 	        	
 	        	
@@ -108,11 +110,13 @@ public class StoreMenuController {
 	        for(int i=0; i<cateList.size(); i++) {
 	        	JSONObject menu = new JSONObject();
 	        	
+	        	String formatMenuPrice = String.format("%,d", cateList.get(i).getMenuPrice());
+	        	
 	        	menu.put("brandName", cateList.get(i).getBrandName());
 	        	menu.put("menuPic",cateList.get(i).getMenuPic());
 	        	menu.put("catName",cateList.get(i).getCatName());
 	        	menu.put("menuName", cateList.get(i).getMenuName());
-	        	menu.put("menuPrice", cateList.get(i).getMenuPrice());
+	        	menu.put("menuPrice", formatMenuPrice);
 	        	menu.put("menuExp",cateList.get(i).getMenuExp());
 	        	
 	        	
@@ -163,11 +167,13 @@ public class StoreMenuController {
         for(int i=0; i<nameList.size(); i++) {
         	JSONObject menu = new JSONObject();
         	
+        	String formatMenuPrice = String.format("%,d", nameList.get(i).getMenuPrice());
+        	
         	menu.put("brandName", nameList.get(i).getBrandName());
         	menu.put("menuPic",nameList.get(i).getMenuPic());
         	menu.put("catName",nameList.get(i).getCatName());
         	menu.put("menuName", nameList.get(i).getMenuName());
-        	menu.put("menuPrice", nameList.get(i).getMenuPrice());
+        	menu.put("menuPrice", formatMenuPrice);
         	menu.put("menuExp",nameList.get(i).getMenuExp());
         	
         	

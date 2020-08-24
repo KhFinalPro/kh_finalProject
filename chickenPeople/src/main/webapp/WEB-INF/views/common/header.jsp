@@ -49,7 +49,7 @@
 		#modal #submit{height: 60px; width: 100px; opacity: 1; font-size: 15px; font-weight: 600; border:2px solid black;}
 		#modal #search_category{height: 60px;}
 		
-		#message{position:fixed; top:300px; right:10px; width:50px; height:50px; z-index:99;}
+		#message{position:fixed; top:150px; right:10px; width:50px; height:50px; z-index:99;}
 		#message:hover{cursor:pointer;}
 
 	</style>
@@ -93,7 +93,7 @@
                 			<c:if test="${!empty sessionScope.loginUser }">
                 				<c:if test="${sessionScope.loginUser.uLvl == '소비자'}">
                 					<c:if test="${!empty sessionScope.loginUser.pic }">
-                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }"></a>
+                						<a href="mypage.do"><img src="resources/propic/${sessionScope.loginUser.pic }" style="border-radius:70%;"></a>
                 					</c:if>
                 					<c:if test="${empty sessionScope.loginUser.pic }">
 		                				<a href="mypage.do"><img src="resources/images/hMypage.png"></a>                					

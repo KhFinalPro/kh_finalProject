@@ -1,6 +1,7 @@
 package com.kh.chickenPeople.chat.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -57,6 +58,10 @@ public class ChatDao {
 
 	public String selectPic(String userId) {
 		return sqlSessionTemplate.selectOne("memberMapper.selectPic",userId);
+	}
+
+	public int udpateReadStatus(Map<String, Object> readMsg) {
+		return sqlSessionTemplate.update("chatMapper.updateReadStatus",readMsg);
 	}
 
 }

@@ -43,6 +43,12 @@ public class LikeServiceImpl implements LikeService{
 		return  likeDao.deleteStore(map);
 	}
 
+	@Override
+	public ArrayList<Like> likeRatelist() {
+		
+		return likeDao.likeRatelist();
+	}
+
 
 
 	

@@ -8,16 +8,19 @@
 <meta charset="UTF-8">
 <title>관리자 _ 쿠폰</title>
 <style>
-	.item{ width:100%;}
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	table{margin:0 auto; width:80%;}
-	table .label{width:40%; text-align:right; font-size:25px; font-weight:600; color:#2e4ead;}
+	table .label{width:40%; text-align:right; font-size:25px; font-weight:600; color:#000;}
 	table .input{padding-left:15px;}
 	table input{width:50%; height:50px; font-size:25px;}
 	#coup_area{margin:0 auto; width:80%; height:300px; text-align:center;}
 	form{}
-	#create_coup_area{position:fixed; top: 110px; right:50px; width:200px; height:50px;}
-	#create_coup_btn{width: 100%; height:100%; font-size: 25px; font-weight:600; border:0px; color:#2e4ead;}
-	#create_coup_btn:hover{color:white; background-color:#2e4ead;}
+	#create_coup_area{position:fixed; top: 200px; right:130px; width:200px; height:50px;}
+	#create_coup_btn{width: 100%; height:100%; font-size: 25px; font-weight:600; border:0px; color:#2ac1bc; }
+	
+	#create_coup_btn:hover{color:white; background-color:#2ac1bc;}
+	.couponHeader{margin:0 auto; width:90%; margin-top:50px;}
+
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -27,6 +30,10 @@
 <div class="wrapper">
 	<div class="main_container">
 		<div class="item"> 
+			<div class="couponHeader">	
+				<p style="font-size:20px;">쿠폰발행</p>
+				<br><hr><br>
+			</div><!-- couponHeader end -->
 			<form action="couponUpdate.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="coup_serial" value="${coupon.coup_serial }">
 				<table>
@@ -60,8 +67,8 @@
 				</div>
 				
 				<div id="create_coup_area">
-					<input type="submit" id="create_coup_btn" value="쿠폰 수정하기"><br>
-					<input type="button" class="coup_delete_btn" id="create_coup_btn" value="쿠폰 삭제하기">
+					<input type="submit" id="create_coup_btn" value="쿠폰 수정하기"><br> 
+					<input type="button" class="coup_delete_btn" id="create_coup_btn" value="쿠폰 삭제하기"> 
 				</div>
 				
 			</form>

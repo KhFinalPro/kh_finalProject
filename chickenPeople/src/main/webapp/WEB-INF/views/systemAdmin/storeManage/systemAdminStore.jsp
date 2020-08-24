@@ -10,6 +10,8 @@
 <!-- 끝! -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px; /* display: flex;  */justify-content: center; align-items: center; margin-top: -30px; }
+
     .menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	 select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
@@ -20,17 +22,19 @@
 	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444; margin:0 auto;} .resultTable td{text-align:center;} .resultTable th,td{padding:7px;}
 	.resultTable td .resultTable th{ height:30px; border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
 	.resultTable tr{height:40px;}
-	button{border:1px solid rgb(46,78,173); background-color:white; color:rgb(46,78,173); padding:6px; width:200px;}
 	
-	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
+	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
+	
+	
+    .p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
     .pppp > ol > li:first-child { border-left : 1px solid black; }
     .pppp > a { display: inline-flex; justify-content: center; align-items: center; padding: 7px 12px; font-size: 13px; font-weight: 500; color:#9c9c9c; text-decoration: none; }
     .pppp > ol { display: inline-flex; list-style: none; justify-content: center; align-items: center; }
     .pppp > ol > li { display: inline-flex; list-style: none; justify-content: center; align-items: center;  border-right: 1px solid; vertical-align: middle; list-style: none; width: 36px; height: 34px; text-decoration: none; }
-    .page-list1 { background-color:rgb(46,78,178); }
+    .page-list1 { background-color:#2ac1bc; }
     .page-cur { font-size : 14px; background:none; color: white; padding : 0; border-style : none; }
-    .page-nocur { font-size: 14px; background:none; color: rgb(46,78,178); padding : 0; border-style : none; }
+    .page-nocur { font-size: 14px; background:none; color: #2ac1bc; padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
     a:link{text-decoration:none; color:#646464;}
@@ -106,7 +110,7 @@
 				<br><hr><br>
 				
 				<c:if test="${listCount ne 300 }">
-					<p>게시글 검색 결과가 총 ${listCount }건 존재합니다.</p>
+					<p>총 ${listCount }건 존재합니다.</p>
 				</c:if>
 				<table class="resultTable">
 					<thead>

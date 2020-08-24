@@ -66,20 +66,31 @@ public class StoreOrderController {
 	        
 	        //주문목록  JSONArray만들기
 	        JSONArray orderArr = new JSONArray();
+	        int sum = 0;
 	        for(int i=0; i<orderList.size(); i++) {
 	        	
 	        	for(int j=0; j<menuList.size(); j++) {
 	        		if(orderList.get(i).getOrdNum().equals(menuList.get(j).getOrdNum())) {
 	        			
 	        			JSONObject order = new JSONObject();
+	        			
+	        			String formatTotalPrice = String.format("%,d", orderList.get(i).getPayToal());
+	        			
+	        			sum += orderList.get(i).getPayToal();
+	        			
+	        			String formatSum = String.format("%,d", sum);
+	        			
 	        			order.put("ordNum",orderList.get(i).getOrdNum());
 	        			order.put("menuName",menuList.get(j).getRealMenu());
 	        			order.put("payDate",orderList.get(i).getPayDate());
 	        			order.put("userId",orderList.get(i).getUserId());
-	        			order.put("payToal",orderList.get(i).getPayToal());
+	        			order.put("payToal",formatTotalPrice);
+	        			order.put("sum",formatSum);
 	        			order.put("ordStatus",orderList.get(i).getOrdStatus());
 	        			order.put("payMethod",orderList.get(i).getPayMethod());
 	        			order.put("payMsg",orderList.get(i).getPayMsg());
+	        			
+	        			
 	        			
 	        			orderArr.add(order);
 	        		}
@@ -145,18 +156,25 @@ public class StoreOrderController {
 	        
 	        //날짜선택 주문목록 list array 만들기
 	        JSONArray chooseOrderArr = new JSONArray();
-	        
+	        int sum2=0;
 	        for(int i=0; i<chooseOrderList.size(); i++) {
 	        	for(int j=0; j<menuList.size(); j++) {
 	        		if(chooseOrderList.get(i).getOrdNum().equals(menuList.get(j).getOrdNum())) {
 	        			
 	        			JSONObject listObj = new JSONObject();
 	        			
+	        			String formatTotalPrice = String.format("%,d", chooseOrderList.get(i).getPayToal());
+	        			
+	        			sum2 += chooseOrderList.get(i).getPayToal();
+	        			
+	        			String formatSum = String.format("%,d", sum2);
+	        			
 	        			listObj.put("ordNum",chooseOrderList.get(i).getOrdNum());
 	        			listObj.put("menuName",menuList.get(j).getRealMenu());
 	        			listObj.put("payDate",chooseOrderList.get(i).getPayDate());
 	        			listObj.put("userId",chooseOrderList.get(i).getUserId());
-	        			listObj.put("payToal",chooseOrderList.get(i).getPayToal());
+	        			listObj.put("payToal",formatTotalPrice);
+	        			listObj.put("sum2",formatSum);
 	        			listObj.put("ordStatus",chooseOrderList.get(i).getOrdStatus());
 	        			listObj.put("payMethod",chooseOrderList.get(i).getPayMethod());
 	        			listObj.put("payMsg",chooseOrderList.get(i).getPayMsg());
@@ -388,14 +406,23 @@ public class StoreOrderController {
 	        
 		
 	        JSONArray chooseDateTotalRecieptArr = new JSONArray();
+	        int sum3=0;
 	        for(int i=0; i<chooseDateTotalReciept.size(); i++) {
 	        	JSONObject chooseDateTotal = new JSONObject();
 	        	
+	        	String formatMenuPrice = String.format("%,d", chooseDateTotalReciept.get(i).getPayTotal());
+	        	
+	        	sum3 += chooseDateTotalReciept.get(i).getPayTotal();
+	        	System.out.println("합계"+sum3);
+    			
+    			String formatSum = String.format("%,d", sum3);
+	        	
 	        	 chooseDateTotal.put("payDate",chooseDateTotalReciept.get(i).getPayDate());
 	        	 chooseDateTotal.put("customer",chooseDateTotalReciept.get(i).getCustomer());
-	        	 chooseDateTotal.put("payTotal",chooseDateTotalReciept.get(i).getPayTotal());
-	        	
+	        	 chooseDateTotal.put("payTotal",formatMenuPrice);
+	        	 chooseDateTotal.put("sum3",formatSum);
 	        	 chooseDateTotalRecieptArr.add(chooseDateTotal);
+	        	 
 	        	 
 	        }
 	        

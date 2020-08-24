@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 <style>
 /***폼****/
@@ -124,27 +125,20 @@
     width: 310px;
 }
 
+.wrapper2 .form .input_field .postcode{
+  	outline:none;
+    border:1px solid lightgrey;
+    font-size: 15px;
+    padding: 5px 7px;
+    border-radius: 3px;
+    transition :all 0.3s ease;
+    width: 210px;
+}
+
 .wrapper2 .form .input_field .textarea{
     width: 350px;
     height:130px;
 }
-
-/* .wrapper2 .form .input_field .brand_select{
-    position: relative;
-    height:20px;
-}
-
-.wrapper2 .form .input_field .brand_select select{
-    -webkit-appearance:none;
-    appearance: none;
-    border:1px solid lightgrey;
-    position: relative;
-    height:28px;
-    width:210px;
-    padding: 5px 7px;
-    border-radius: 3px;
-    outline:none;
-} */
 
 
 
@@ -168,6 +162,7 @@
 .wrapper2 .form .input_field .input:focus,
 .wrapper2 .form .input_field .textarea:focus,
 .wrapper2 .form .input_field .address:focus,
+.wrapper2 .form .input_field .postcode:focus,
 .wrapper2 .form .input_field select:focus
 {
     border :1px solid #2e4ead;
@@ -289,17 +284,22 @@
 				            <label style="display:none">수정불가 항목입니다.</label>
 				        </div>
 				        <div class="input_field">
-				        
-				        
 				            <label>매장 전화번호</label>
 				            <input type="text" class="input" value="${phone1 }" name="tel1"> 
 				            -<input type="text" class="input" value="${phone2 }" name="tel2">-<input type="text" class="input" value="${phone3 }" name="tel3"> 
 				        </div>
+				         <div class="input_field">
+				            <label>우편 번호</label>
+				            <input type="text" class="postcode" name=post>&nbsp;
+				            <button type="button" class="addressBtn" onclick="execPostCode()">우편번호검색</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				        </div>
 				        <div class="input_field">
 				            <label>매장 주소</label>
-				            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }">&nbsp;
-				            <!-- <button class="addressBtn">주소검색</button> -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            <label style="display:none">수정불가 항목입니다.</label>
+				            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }" name=addr1>&nbsp;
+				        </div>
+				        <div class="input_field">
+				            <label>상세 주소</label>
+				            <input type="text" class="address"  name=addr2>&nbsp;
 				        </div>
 				        <div class="input_field">
 				            <label>배달 여부</label>
@@ -328,38 +328,7 @@
  </div>
 
 </body>
-<!--
-<script>
-$('#brandName').toggle(function() {
-  $("#labelBrandName").css("display","block");
-  $("#labelBrandName").css("display","none");
-})
-</script> --> 
-<!-- <script>
-function modifyInfo(stoInfoNotice){
-/* 	alert('gg'); */
-	var test = stoInfoNotice;
-	console.log('입력한거가져와봐'+test);
-	
-	var param = {'stoInfoNotice':stoInfoNotice};
-	
-	$.ajax({
-		type:'POST',
-		url:'modifyInfo.do',
-		data:param,
-		success:function(data){
-			alert('성공적으로 수정되었습니다!');
-			
-		},error:function(request, status, errorData){
-            alert("error code: " + request.status + "\n"
-                    +"message: " + request.responseText
-                    +"error: " + errorData);
-        } 
-	})
-	
-	
-}
-</script>  -->
+
 
 <script>
 $(function(){
@@ -368,6 +337,49 @@ $(function(){
         alert(responseMessage);
     }
 }) 
+
+ function execPostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+	
+	               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	               if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                   extraRoadAddr += data.bname;
+	               }
+	               // 건물명이 있고, 공동주택일 경우 추가한다.
+	               if(data.buildingName !== '' && data.apartment === 'Y'){
+	                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	               }
+	               // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	               if(extraRoadAddr !== ''){
+	                   extraRoadAddr = ' (' + extraRoadAddr + ')';
+	               }
+	               // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	               if(fullRoadAddr !== ''){
+	                   fullRoadAddr += extraRoadAddr;
+	               }
+	
+	               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	               console.log(data.zonecode);
+	               console.log(fullRoadAddr);
+	               
+	               
+	               $("[name=post]").val(data.zonecode);
+	               $("[name=addr1]").val(fullRoadAddr);
+	               
+	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+	               document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+	           }
+	        }).open();
+	    }
 </script>
 
 </html>

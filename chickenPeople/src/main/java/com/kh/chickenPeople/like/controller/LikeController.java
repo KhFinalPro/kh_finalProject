@@ -70,25 +70,64 @@ public class LikeController {
 
 		JSONObject obj = new JSONObject();
 
-		// 내가 찜한 매장
+		// 내가 찜한 매장정보
 		ArrayList<Like> storelist = likeService.likeStoreList(userId);
+		ArrayList<Like> ratelist = likeService.likeRatelist();
+		
 		System.out.println("-------- store data check ----------");
 		System.out.println(storelist.size());
 		System.out.println(storelist);
 		System.out.println("-------- store data end ----------");
+		
 		// 내가 찜한 매장 JSONArray 로 만들기
 		JSONArray storeArr = new JSONArray();
+		
+		for (int i = 0; i < storelist.size(); i++) {
+			Like test1 = storelist.get(i);
+			for(int j=0; j<ratelist.size(); j++) {
+				Like test2 = ratelist.get(j);
+				if(test1.getStoreNo() == test2.getStoreNo()) {
+					storelist.get(i).setAvgRate(test2.getAvgRate());
+				}
+			}
+			
+		}
+		//System.out.println("storelist : " + storelist);
+		//System.out.println("ratelist : " + ratelist);
+		
 		for (int i = 0; i < storelist.size(); i++) {
 			JSONObject store = new JSONObject();
-
+			
+			String aveRate = String.format("%.1f",storelist.get(i).getAvgRate());
+			
 			store.put("brandPic", storelist.get(i).getBrandPic());
 			store.put("stoName", storelist.get(i).getStoName());
-			store.put("dailyTReview", storelist.get(i).getDailyTReview());
+			store.put("avgRate",aveRate);
 			store.put("ordLimit", storelist.get(i).getOrdLimit());
 			store.put("storeNo", storelist.get(i).getStoreNo());
-
 			storeArr.add(store);
+			
 		}
+		
+		
+		
+		/*
+		 * for (int i = 0; i < storelist.size(); i++) { for(int j=0; j<ratelist.size();
+		 * j++) { if(storelist.get(i).getStoreNo()==(ratelist.get(j).getStoreNo())) {
+		 * JSONObject store = new JSONObject();
+		 * 
+		 * 
+		 * store.put("brandPic", storelist.get(i).getBrandPic()); store.put("stoName",
+		 * storelist.get(i).getStoName());
+		 * store.put("avgRate",ratelist.get(j).getAvgRate()); store.put("ordLimit",
+		 * storelist.get(i).getOrdLimit()); store.put("storeNo",
+		 * storelist.get(i).getStoreNo()); storeArr.add(store); }
+		 * 
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
 
 		// 오브젝트에 매장 JSONArray 넣기
 		obj.put("storeList", storeArr);

@@ -48,6 +48,15 @@ public class LikeDao {
 		return sqlSessionTemplate.delete("likeMapper.deleteStore",map);
 	}
 
+	//평점리스트
+	public ArrayList<Like> likeRatelist() {
+		
+		ArrayList<Like> likeRatelist = new ArrayList<Like>();
+		likeRatelist = (ArrayList)sqlSessionTemplate.selectList("likeMapper.likeRatelist");
+		
+		return likeRatelist;
+	}
+
 	
 }
 	

@@ -547,7 +547,7 @@
 			$("#modalReview").css('display','none');
 			
 			total_price += price;
-			$(".total_price").val(total_price);
+			$(".total_price").val(total_price.toLocaleString());
 			
 			price = 0;
 			
@@ -560,14 +560,16 @@
 			//total_price
 			$price = $(this).parent("a").parent(".col").children("span").children("input").val();
 			total_price -= $price;
+			console.log($price);
+			console.log(total_price);
 			
-			$(".total_price").val(total_price);
+			$(".total_price").val(total_price.toLocaleString());
 		})
 		
 		//사이드 메뉴 선택 모달창
 		$("#shoppingBag_cancel").on("click",function(){
 	
-			$(".total_price").val(total_price);
+			$(".total_price").val(total_price.toLocaleString());
 			
 			$list_group = ".list_group" + i;
 			$($list_group).remove();

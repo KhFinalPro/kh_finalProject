@@ -197,6 +197,7 @@
                  dataType:'JSON',
                  success:function(data){
                     
+                	 //console.log("값 : " + data.storeList[7].avgRate);
                     // 내가 찜한 매장 목록
                      var storeList = data.storeList;
                     
@@ -208,7 +209,7 @@
                                            '<td>' + (i+1) + '</td>' +
                                            '<td><img class="logo" src="resources/images/' + storeList[i].brandPic + '.png"></td>' +
                                            '<td>' + storeList[i].stoName + '</td>' + 
-                                           '<td>' + storeList[i].dailyTReview + '</td>' + 
+                                           '<td>' + storeList[i].avgRate + '</td>' + 
                                            '<td>' + storeList[i].ordLimit + '</td>' + 
                                            '<td><img class="like" name="storeLike" src="resources/images/blackHeart.png">' +
                                               '<input type="hidden" value="' + storeList[i].storeNo + '" name="storeNo">' +

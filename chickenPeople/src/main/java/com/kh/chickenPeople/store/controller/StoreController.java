@@ -220,7 +220,7 @@ public class StoreController {
 	//주문버튼 클릭시
 	@RequestMapping(value="paymentView.do", method=RequestMethod.GET)
 	public ModelAndView paymentView(ModelAndView mv, HttpServletRequest request, @RequestParam(value="menu_num") int[] menu_num_arr,
-			@RequestParam(value="price") int[] price_arr, @RequestParam(value="menu_name") String[] menu_name_arr, int total_price, int sto_num, String address, String latlng, String brand_code)
+			@RequestParam(value="price") int[] price_arr, @RequestParam(value="menu_name") String[] menu_name_arr, String total_price, int sto_num, String address, String latlng, String brand_code)
 	{
 		HttpSession session = request.getSession();
 
@@ -318,7 +318,7 @@ public class StoreController {
 			storeSearch.setSearchStatus(status);
 			
 			listCount = storeService.getSearchListCount(storeSearch);		//검색 결과 갯수 count
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 10);
 			resultStoreList = storeService.selectStoreSearchList(storeSearch,pi);
 			
 			mv.addObject("searchStatus",storeSearch);
@@ -326,7 +326,7 @@ public class StoreController {
 			mv.addObject("storeList",resultStoreList);
 		}else {
 			listCount = storeService.getListCount();
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 10);
 			resultStoreList = storeService.selectStoreList(pi);
 			
 			mv.addObject("searchStatus",storeSearch);
