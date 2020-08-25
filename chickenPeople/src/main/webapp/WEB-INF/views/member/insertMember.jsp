@@ -102,7 +102,7 @@
                         <label>아이디</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="text" id="id" name="id" required placeholder="4글자 이상 12글자 이하 영문자(소문자)와 숫자">
+                        <input type="text" id="id" name="id" required placeholder="영어 소문자로 시작 하는 4~12자 소문자와 숫자">
                         <input type="button" id="idChk" value="중복확인" style="width: 70px; background: #2ac1bc; color: white; border: none;">
                         <input type="hidden" value="N" id="checkCheck">
                     </td>
@@ -112,7 +112,7 @@
                         <label>비밀번호</label>
                     </td>
                     <td id="inp" class="ltd"> 
-                        <input type="password" id="pwd" name="pwd" required placeholder="6글자 이상 18글자 이하 영문자(소문자)와 숫자">
+                        <input type="password" id="pwd" name="pwd" required placeholder="특수문자, 숫자, 문자를 포함한 8~15자리">
                     </td>
                 </tr>
                 <tr>
@@ -136,7 +136,7 @@
                         <label>이메일</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required placeholder="이메일 형식에 맞게">
                     </td>
                 </tr>
                 <tr>
@@ -597,9 +597,9 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
          	// 아이디 정규화
             $("#id").change(function(){
                 var value = $("#id").val();
-                var reg = /^[a-z0-9]{4,12}$/;
+                var reg = /^[a-z]+[a-z0-9]{4,12}$/g;
                 if(!reg.test(value)){
-                    alert("영문자와 숫자로 4글자 이상 12글자 이하여야 합니다.");
+                    alert("영어 소문자로 시작하는 4글자 이상 12글자 이하여야 합니다.");
                     $("#id").focus().val('');
                 }
             });
@@ -607,9 +607,10 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
          	// 비밀번호 정규화
             $("#pwd").change(function(){
                 var value = $("#pwd").val();
-                var reg = /^[a-z0-9]{6,18}$/;
+                var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
                 if(!reg.test(value)){
-                    alert("영문자와 숫자로 6글자 이상 12글자 이하여야 합니다.");
+                    alert("특수문자, 숫자, 문자를 포함한 8~15자리여야합니다.");
                     $("#pwd").focus().val('');
                 }
             });
@@ -626,6 +627,19 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                     $("#pwd_check").focus().val('');
                 }
             });
+         	
+         	// 이메일 체크 정규식
+         	$("#email").change(function(){
+         		var value = $("#email").val();
+         		var reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+         		
+         		if(!reg.test(value)){
+                    alert("이메일 형식에 맞게 적어주세요");
+                    $("#email").focus().val('');
+                }
+
+         	
+         	})
          	
          	// 이름 정규화
             $("#name").change(function(){
