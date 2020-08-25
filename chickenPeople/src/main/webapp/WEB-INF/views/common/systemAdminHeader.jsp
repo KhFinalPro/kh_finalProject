@@ -23,7 +23,7 @@ body{ background:#FAFAFA; overflow: hidden; }
 .wrapper .top_navbar .top_menu .logo{ color:#000; font-size:20px; font-weight:700; letter-spacing: 3px; }
 .wrapper .top_navbar .top_menu ul{ display:flex;}
 .wrapper .top_navbar .top_menu ul li a{ display:block; margin:0 10px; width:35px; height:35px; border:1px solid #000; text-align: center; border-radius:50%; color: #000; }
-.wrapper .top_navbar .top_menu ul li a i{ margin-top: 10px; }
+.wrapper .top_navbar .top_menu ul li a i{ margin-top: 5px; }
 .wrapper .top_navbar .top_menu ul li a:hover{ background: #2ac1bc; color:#fff; }
 .wrapper .sidebar{ position: fixed; top:70px; left:10px; background:#000; height:calc(100% - 80px); border-bottom-left-radius: 20px; transition: all 0.3s ease; }
 .wrapper .sidebar ul li a{ display:block; padding:20px; position: relative; margin-bottom: 1px; color: #fff; font-size: 14px; white-space:nowrap; }

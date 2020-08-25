@@ -21,7 +21,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
+	.resultTable { width:100%; border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
 	.resultTable tr{height:70px;}
@@ -103,12 +103,11 @@
 			</div><!-- menuHeader end -->
 			
 			<div class="menuResultTable">
-				<br><hr><br>
+			<hr><br>
 			<form action="storeUpdate.do" method="get">
 				<div style="text-align:right;">
 					<button type="submit"><b>수정완료</b></button>
 				</div>
-				<br>
 				
 				<table class="resultTable" >
 					<tr style="height:100px;">

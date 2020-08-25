@@ -19,7 +19,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
+	.resultTable { width:100%;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
@@ -103,7 +103,7 @@
 				<div style="text-align:right;">
 					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
 				</div>
-				<br>
+				
 				<table class="resultTable">
 					<tr>
 						<td rowspan="5"><img src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px"></td>
