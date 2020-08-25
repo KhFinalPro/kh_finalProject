@@ -1,3 +1,11 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Tue Aug 25 15:51:13 KST 2020
+=======
+<<<<<<< HEAD
+#Tue Aug 25 12:57:12 KST 2020
+=======
+#Tue Aug 25 15:33:40 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
+>>>>>>> refs/remotes/origin/master
 classworlds-1.1-alpha-2.pom>central=

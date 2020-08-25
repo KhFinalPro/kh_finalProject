@@ -1,4 +1,12 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Tue Aug 25 15:53:15 KST 2020
+=======
+<<<<<<< HEAD
+#Tue Aug 25 12:57:30 KST 2020
+=======
+#Tue Aug 25 15:34:06 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
+>>>>>>> refs/remotes/origin/master
 maven-surefire-plugin-2.12.4.jar>central=
 maven-surefire-plugin-2.12.4.pom>central=

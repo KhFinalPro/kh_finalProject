@@ -163,6 +163,14 @@
                 </tr>
                 <tr>
                 	<td id="lab" class="ltd">
+                		<label>최소주문금액</label>
+                	</td>
+                	<td id="inp" class="ltd">
+                		<input type="min" id="min" name="ord_limit" required placeholder="">
+                	</td>
+                </tr>
+                <tr>
+                	<td id="lab" class="ltd">
                 		<label>사장님 한마디</label>
                 	</td>
                 	<td id="inp" class="ltd" rowspan="4">
@@ -174,7 +182,7 @@
             <div style="text-align: center;">
                 <input type="submit" value="점포신청" id="submit_btn" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;"  onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: white; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
             </div>
             <div id="map" style="display:none"></div>
         </form>      

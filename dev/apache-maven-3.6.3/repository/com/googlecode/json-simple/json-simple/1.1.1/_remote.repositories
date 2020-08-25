@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Tue Aug 25 15:52:26 KST 2020
 >>>>>>>=refs/remotes/origin/master
@@ -6,3 +7,64 @@ json-simple-1.1.1.pom>central=
 json-simple-1.1.1-javadoc.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 15:32:58 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+json-simple-1.1.1-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+>>>>>>> refs/remotes/origin/dev990103
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:31:05 GMT+09:00 2020
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:43:21 KST 2020
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+json-simple-1.1.1-javadoc.jar>central=
+=======
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:31:05 GMT+09:00 2020
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 19:46:32 KST 2020
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+json-simple-1.1.1-javadoc.jar>central=
+>>>>>>> refs/remotes/origin/dev990103
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+>>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 12:56:45 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+json-simple-1.1.1-sources.jar>central=
+json-simple-1.1.1.pom>central=
+json-simple-1.1.1-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev990103
+>>>>>>> refs/remotes/origin/master

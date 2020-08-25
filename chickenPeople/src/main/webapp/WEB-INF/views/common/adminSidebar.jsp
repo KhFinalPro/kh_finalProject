@@ -14,6 +14,7 @@
 
 
 *{
+	font-size:22px;
     margin:0;
     list-style:none;
     padding:0;
@@ -90,7 +91,7 @@ body{
 }
 
 .wrapper .top_navbar .top_menu ul li a i{
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .wrapper .top_navbar .top_menu ul li a:hover{

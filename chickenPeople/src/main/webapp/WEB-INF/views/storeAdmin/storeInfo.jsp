@@ -25,6 +25,8 @@
     padding:0px;
    /*  box-shadow: 1px 1px 89px rgba(1,1,1,0.125); */
 }
+.wrapper2 .title{position:fixed; top:100px; right:200px;}
+
 .wrapper2 .title .name,
 .wrapper2 .title .ceoName,
 .wrapper2 .title .brandName,{
@@ -79,7 +81,7 @@
     width:200px;
     color: #757575;
     margin-right:10px;
-    font-size:13px;
+    font-size:22px;
 }
 
 .wrapper2 .form .input_field{
@@ -104,7 +106,9 @@
 
 .wrapper2 .form .input_field .name,
 .wrapper2 .form .input_field .brandName,
-.wrapper2 .form .input_field .ceoName{
+.wrapper2 .form .input_field .ceoName,
+.wrapper2 .form .input_field .pwd,
+.wrapper2 .form .input_field .pwd_check{
     outline:none;
     border:1px solid lightgrey;
     font-size: 15px;
@@ -115,6 +119,8 @@
     
 }
 
+
+input{height:45px; font-size:22px;}
 .wrapper2 .form .input_field .address{
   	outline:none;
     border:1px solid lightgrey;
@@ -123,6 +129,16 @@
     border-radius: 3px;
     transition :all 0.3s ease;
     width: 310px;
+}
+
+.wrapper2 .form .input_field .address2{
+  	outline:none;
+    border:1px solid lightgrey;
+    font-size: 15px;
+    padding: 5px 7px;
+    border-radius: 3px;
+    transition :all 0.3s ease;
+    width: 200px;
 }
 
 .wrapper2 .form .input_field .postcode{
@@ -138,6 +154,7 @@
 .wrapper2 .form .input_field .textarea{
     width: 350px;
     height:130px;
+    resize:none;
 }
 
 
@@ -163,13 +180,15 @@
 .wrapper2 .form .input_field .textarea:focus,
 .wrapper2 .form .input_field .address:focus,
 .wrapper2 .form .input_field .postcode:focus,
+.wrapper2 .form .input_field .pwd:focus,
+.wrapper2 .form .input_field .pwd_check:focus,
 .wrapper2 .form .input_field select:focus
 {
     border :1px solid #2e4ead;
 }
 
 .addressBtn{
-    width:100px;
+    width:200px;
     padding:8px 10px;
     font-size: 15;
     border:0;
@@ -180,7 +199,7 @@
     outline:none;
 }
 .wrapper2 .form .input_field .btn{
-    width:100px;
+    width:200px;
     padding:8px 10px;
     font-size: 15;
     border:0;
@@ -267,59 +286,63 @@
 				   
 				        <br>
 				        <form action="modifyInfo.do" method="post">
-				        <div class="form">
-				        <div class="input_field">
-				            <label>브랜드</label>
-				             <input type="text" id="brandName" class="brandName" value="${storeInfoList.get(0).brandName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				        	<label style="display:none" id="labelBrandName">수정불가 항목입니다.</label>
-				        </div>
-				        <div class="input_field">
-				            <label>매장 이름</label>
-				            <input type="text" id="storeName" class="name" value="${storeInfoList.get(0).stoName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            <label style="display:none">수정불가 항목입니다.</label>
-				        </div>
-				        <div class="input_field">
-				            <label>사장님 이름</label>
-				            <input type="text" id="ceoName" class="ceoName" value="${storeInfoList.get(0).ceoName }" readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            <label style="display:none">수정불가 항목입니다.</label>
-				        </div>
-				        <div class="input_field">
-				            <label>매장 전화번호</label>
-				            <input type="text" class="input" value="${phone1 }" name="tel1"> 
-				            -<input type="text" class="input" value="${phone2 }" name="tel2">-<input type="text" class="input" value="${phone3 }" name="tel3"> 
-				        </div>
-				         <div class="input_field">
-				            <label>우편 번호</label>
-				            <input type="text" class="postcode" name=post>&nbsp;
-				            <button type="button" class="addressBtn" onclick="execPostCode()">우편번호검색</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				        </div>
-				        <div class="input_field">
-				            <label>매장 주소</label>
-				            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }" name=addr1>&nbsp;
-				        </div>
-				        <div class="input_field">
-				            <label>상세 주소</label>
-				            <input type="text" class="address"  name=addr2>&nbsp;
-				        </div>
-				        <div class="input_field">
-				            <label>배달 여부</label>
-				            <input type="radio" class="deliver" checked>&nbsp;배달가능 &nbsp;
-				          <!--   <input type="radio" class="deliver" checked>배달+테이크아웃 가능 -->
-				        </div>
-				        <div class="input_field">
-				            <label>운영 시간</label>
-				            <input type="text" class="input" value="${storeInfoList.get(0).stoOpen }" name="stoOpen">-<input type="text" class="input" value="${storeInfoList.get(0).stoClose }" name="stoClose">
-				        </div>
-				        <div class="input_field">
-				            <label>사장님 한마디 / 공지사항</label>
-				            <textarea cols="10" rows="4" class="textarea" id="stoInfoNotice" name="stoIntro">${storeInfoList.get(0).stoIntro }</textarea>
-				        </div>
-				        <div class="input_field">
-				         <!--    <input type="submit" vaue="modify" class="btn"> -->
-				        	<button type="submit" class="btn"><b>수정하기</b></button>&nbsp;
-				            <!-- <button id="modifyInfoBtn" onclick="modifyInfo()" class="btn">수정하기</button> -->
-				        </div>
-				        </div>
+					        <div class="form">
+						        <div class="input_field">
+						            <label>브랜드</label>
+						             <input type="text" id="brandName" class="brandName" value="${storeInfoList.get(0).brandName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						        	<label style="display:none" id="labelBrandName">수정불가 항목입니다.</label>
+						        </div>
+						        <div class="input_field">
+						            <label>비밀번호</label>
+						             <input type="password" id="pwd" class="pwd" name="pwd" value=""<%-- value="${storeInfoList.get(0).userPwd }" --%>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						        </div>
+						          <div class="input_field">
+						            <label>비밀번호 확인</label>
+						             <input type="password" id="pwd_check" class="pwd_check" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						        </div>
+						        <div class="input_field">
+						            <label>매장 이름</label>
+						            <input type="text" id="storeName" class="name" value="${storeInfoList.get(0).stoName }"readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						            <label style="display:none">수정불가 항목입니다.</label>
+						        </div>
+						        <div class="input_field">
+						            <label>사장님 이름</label>
+						            <input type="text" id="ceoName" class="ceoName" value="${storeInfoList.get(0).ceoName }" readonly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						            <label style="display:none">수정불가 항목입니다.</label>
+						        </div>
+						        <div class="input_field">
+						            <label>매장 전화번호</label>
+						            <input type="text" class="input" value="${phone1 }" name="tel1"> 
+						            -<input type="text" class="input" value="${phone2 }" name="tel2">-<input type="text" class="input" value="${phone3 }" name="tel3"> 
+						        </div>
+						         <div class="input_field">
+						            <label>우편 번호</label>
+						            <input type="text" class="postcode" name=post>&nbsp;
+						            <button type="button" class="addressBtn" onclick="execPostCode()">우편번호검색</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						        </div>
+						        <div class="input_field">
+						            <label>매장 주소</label>
+						            <input type="text" class="address"  value="${storeInfoList.get(0).stoAddr }" name=addr1>&nbsp;<input type="text" class="address2" placeholder="상세주소를 입력해주세요" name=addr2>&nbsp;
+						        </div>
+						        <div class="input_field">
+						            <label>최소 주문금액</label>
+						           <input type="text" class="address"  value="${storeInfoList.get(0).ordLimit }원" name=ordLimit>
+						          <!--   <input type="radio" class="deliver" checked>배달+테이크아웃 가능 -->
+						        </div>
+						        <div class="input_field">
+						            <label>운영 시간</label>
+						            <input type="text" class="input" value="${storeInfoList.get(0).stoOpen }" name="stoOpen">-<input type="text" class="input" value="${storeInfoList.get(0).stoClose }" name="stoClose">
+						        </div>
+						        <div class="input_field">
+						            <label>사장님 한마디 / 공지사항</label>
+						            <textarea cols="10" rows="4" class="textarea" id="stoInfoNotice" name="stoIntro">${storeInfoList.get(0).stoIntro }</textarea>
+						        </div>
+						        <div class="input_field">
+						         <!--    <input type="submit" vaue="modify" class="btn"> -->
+						        	<button type="submit" class="btn"><b>수정하기</b></button>&nbsp;
+						            <!-- <button id="modifyInfoBtn" onclick="modifyInfo()" class="btn">수정하기</button> -->
+						        </div>
+					        </div>
 				        </form>
 				        
 				    </div>
@@ -380,6 +403,33 @@ $(function(){
 	           }
 	        }).open();
 	    }
+	    
+	    
+
+
+	
+	// 비밀번호 정규화
+$("#pwd").change(function(){
+    var value = $("#pwd").val();
+    var reg = /^[a-z0-9]{6,18}$/;
+    if(!reg.test(value)){
+        alert("영문자와 숫자로 6글자 이상 12글자 이하여야 합니다.");
+        $("#pwd").focus().val('');
+    }
+});
+	
+	// 비밀번호 체크 정규화
+$("#pwd_check").change(function(){
+    var pw1 = $("#pwd").val();
+    var pw2 = $("#pwd_check").val();
+    
+    if(pw1 == pw2){
+        $("#pwd_check").val();
+    }else{
+        alert("비밀번호가 일치하지 않습니다.");
+        $("#pwd_check").focus().val('');
+    }
+});
 </script>
 
 </html>

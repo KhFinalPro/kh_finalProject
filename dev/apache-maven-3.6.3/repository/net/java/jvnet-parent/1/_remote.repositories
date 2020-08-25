@@ -1,3 +1,11 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Tue Aug 25 15:51:53 KST 2020
+=======
+<<<<<<< HEAD
+#Tue Aug 25 12:56:31 KST 2020
+=======
+#Tue Aug 25 15:32:37 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
+>>>>>>> refs/remotes/origin/master
 jvnet-parent-1.pom>central=
