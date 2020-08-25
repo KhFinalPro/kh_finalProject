@@ -6,6 +6,7 @@ public class StoreInfo implements Serializable {
 
 	
 	private int stoNum;
+	private String userPwd;
 	private String stoName;
 	private String stoTel;
 	private String stoOpen;
@@ -35,12 +36,13 @@ public class StoreInfo implements Serializable {
 
 
 
-	public StoreInfo(int stoNum, String stoName, String stoTel, String stoOpen, String stoClose, String stoAddr,
-			String stoIntro, String ordLimit, String deliTime, String enterYN, String ceoName, String deliver,
-			String stoEmail, String applyStatus, String userId, String brandCode, String openYN, String brandName,
-			String brandPic) {
+	public StoreInfo(int stoNum, String userPwd, String stoName, String stoTel, String stoOpen, String stoClose,
+			String stoAddr, String stoIntro, String ordLimit, String deliTime, String enterYN, String ceoName,
+			String deliver, String stoEmail, String applyStatus, String userId, String brandCode, String openYN,
+			String brandName, String brandPic) {
 		super();
 		this.stoNum = stoNum;
+		this.userPwd = userPwd;
 		this.stoName = stoName;
 		this.stoTel = stoTel;
 		this.stoOpen = stoOpen;
@@ -73,6 +75,20 @@ public class StoreInfo implements Serializable {
 
 	public void setStoNum(int stoNum) {
 		this.stoNum = stoNum;
+	}
+
+
+
+
+	public String getUserPwd() {
+		return userPwd;
+	}
+
+
+
+
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
 
 
@@ -332,13 +348,14 @@ public class StoreInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "StoreInfo [stoNum=" + stoNum + ", stoName=" + stoName + ", stoTel=" + stoTel + ", stoOpen=" + stoOpen
-				+ ", stoClose=" + stoClose + ", stoAddr=" + stoAddr + ", stoIntro=" + stoIntro + ", ordLimit="
-				+ ordLimit + ", deliTime=" + deliTime + ", enterYN=" + enterYN + ", ceoName=" + ceoName + ", deliver="
-				+ deliver + ", stoEmail=" + stoEmail + ", applyStatus=" + applyStatus + ", userId=" + userId
-				+ ", brandCode=" + brandCode + ", openYN=" + openYN + ", brandName=" + brandName + ", brandPic="
-				+ brandPic + "]";
+		return "StoreInfo [stoNum=" + stoNum + ", userPwd=" + userPwd + ", stoName=" + stoName + ", stoTel=" + stoTel
+				+ ", stoOpen=" + stoOpen + ", stoClose=" + stoClose + ", stoAddr=" + stoAddr + ", stoIntro=" + stoIntro
+				+ ", ordLimit=" + ordLimit + ", deliTime=" + deliTime + ", enterYN=" + enterYN + ", ceoName=" + ceoName
+				+ ", deliver=" + deliver + ", stoEmail=" + stoEmail + ", applyStatus=" + applyStatus + ", userId="
+				+ userId + ", brandCode=" + brandCode + ", openYN=" + openYN + ", brandName=" + brandName
+				+ ", brandPic=" + brandPic + "]";
 	}
+
 
 
 

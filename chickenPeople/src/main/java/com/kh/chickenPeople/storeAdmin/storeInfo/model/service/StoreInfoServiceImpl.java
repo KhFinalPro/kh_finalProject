@@ -35,8 +35,14 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 
 	@Override
 	public int updateOpenStatusYes(String userId) {
-		// TODO Auto-generated method stub
+	
 		return storeInfoDao.updateOpenStatusYes(userId);
+	}
+
+	@Override
+	public int modifyPwd(StoreInfo newInfo) {
+		
+		return storeInfoDao.modifyPwd(newInfo);
 	}
 
 	/*

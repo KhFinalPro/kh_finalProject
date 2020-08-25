@@ -4,6 +4,7 @@
 
 <resultMap id="storeInfoResultMap" type="StoreInfo">
 	<id property="userId" column="USER_ID"/>
+	<result property="userPwd" column="USER_PWD"/>
 	<result property="stoNum" column="STO_NUM"/>
 	<result property="stoName" column="STO_NAME"/>
 	<result property="stoTel" column="STO_TEL"/>
@@ -24,10 +25,11 @@
 
 
 <select id="storeInfoList" resultMap="storeInfoResultMap"  parameterType="String">
-SELECT B.BRAND_PIC,B.BRAND_NAME,SI.STO_NUM,SI.STO_NAME,SI.STO_TEL,SI.STO_OPEN,SI.STO_CLOSE,SI.STO_ADDR,SI.STO_INTRO,SI.ORD_LIMIT,SI.ENTER_YN,SI.OPEN_YN,SI.CEO_NAME,SI.DELIVERY,SI.STO_EMAIL,SI.APRV_STATUS,SI.USER_ID,SI.BRAND_CODE
+SELECT B.BRAND_PIC,B.BRAND_NAME,M.USER_PWD,SI.STO_NUM,SI.STO_NAME,SI.STO_TEL,SI.STO_OPEN,SI.STO_CLOSE,SI.STO_ADDR,SI.STO_INTRO,SI.ORD_LIMIT,SI.ENTER_YN,SI.OPEN_YN,SI.CEO_NAME,SI.DELIVERY,SI.STO_EMAIL,SI.APRV_STATUS,SI.USER_ID,SI.BRAND_CODE
 FROM STORE_INFO SI
 JOIN BRAND B ON (SI.BRAND_CODE=B.BRAND_CODE)
-WHERE USER_ID=#{userId}
+JOIN MEMBER M ON (SI.USER_ID=M.USER_ID)
+WHERE SI.USER_ID=#{userId}
 </select>
 
 
@@ -35,9 +37,18 @@ WHERE USER_ID=#{userId}
 <update id="modifyInfo" parameterType="StoreInfo">
 UPDATE STORE_INFO
 SET
-STO_TEL=#{stoTel},STO_OPEN=#{stoOpen},STO_CLOSE=#{stoClose},STO_INTRO = #{stoIntro},STO_ADDR=#{stoAddr}
+STO_TEL=#{stoTel},STO_OPEN=#{stoOpen},STO_CLOSE=#{stoClose},STO_INTRO = #{stoIntro},STO_ADDR=#{stoAddr},ORD_LIMIT=#{ordLimit}
 WHERE  USER_ID=#{userId}
 </update>
+
+
+<update id="modifyPwd" parameterType="StoreInfo">
+UPDATE MEMBER
+SET
+USER_PWD=#{userPwd}
+WHERE  USER_ID=#{userId}
+</update>
+
 
 
 <update id="updateOpenStatus" parameterType="StoreInfo">

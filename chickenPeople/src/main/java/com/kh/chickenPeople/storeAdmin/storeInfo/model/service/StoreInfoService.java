@@ -17,4 +17,6 @@ public interface StoreInfoService {
 
 	int updateOpenStatusYes(String userId);
 
+	int modifyPwd(StoreInfo newInfo);
+
 }

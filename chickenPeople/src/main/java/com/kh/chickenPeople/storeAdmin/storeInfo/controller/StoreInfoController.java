@@ -80,15 +80,17 @@ public class StoreInfoController {
 	
 	
 	
-	@RequestMapping(value="modifyInfo.do")
+	@RequestMapping(value="modifyInfo.do",method=RequestMethod.POST)
 	public ModelAndView modifyInfo(HttpServletResponse response,												
 			 						HttpServletRequest request,
 			 						ModelAndView mv, StoreInfo newInfo,
+			 						@RequestParam(value="pwd")String pwd,
 			 						@RequestParam(value="tel1")String tel1,
 			 						@RequestParam(value="tel2")String tel2,
 			 						@RequestParam(value="tel3")String tel3,
 			 						@RequestParam(value="addr1")String addr1,
 			 						@RequestParam(value="addr2")String addr2,
+			 						@RequestParam(value="ordLimit")String ordLimit,
 			 						@RequestParam(value="stoOpen")String stoOpen,
 			 						@RequestParam(value="stoClose")String stoClose,
 			 						@RequestParam(value="stoIntro")String stoIntro) {
@@ -106,16 +108,20 @@ public class StoreInfoController {
 		String finalAddr = addr1+" "+addr2;
 	
 		
-		
+		newInfo.setUserPwd(pwd);
 		newInfo.setUserId(userId);
 		newInfo.setStoTel(finalTel);
 		newInfo.setStoAddr(finalAddr);
 		newInfo.setStoOpen(stoOpen);
 		newInfo.setStoClose(stoClose);
 		newInfo.setStoIntro(stoIntro);
+		newInfo.setOrdLimit(ordLimit);
 		System.out.println("객체"+newInfo);
 		
+		
+		int modifyPwd = storeInfoService.modifyPwd(newInfo);
 		int modifyInfo = storeInfoService.modifyInfo(newInfo);
+		
 		ArrayList<StoreInfo> storeInfoList = storeInfoService.storeInfoList(userId);
 		 String tel = storeInfoList.get(0).getStoTel();
 		    
