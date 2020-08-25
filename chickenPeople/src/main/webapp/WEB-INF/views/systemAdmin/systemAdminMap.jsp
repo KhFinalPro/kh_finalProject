@@ -25,7 +25,7 @@
 	
 	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 		
-	#map{margin: 0 auto; margin-top: 20px; width: 100%; height: 600px; border: 1px solid black;}
+	#map{margin: 0 auto; margin-top: 20px; width: 100%; height: 500px; border: 1px solid black;}
 	
 </style>
 </head>

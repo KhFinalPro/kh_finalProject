@@ -50,7 +50,7 @@ public class ChatController {
 		chatSearch.setSearchStatus(chat_status);
 		
 		listCount = chatService.getListCount(chatSearch);
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 7);
 		
 		ArrayList<ChattingRoom> totalRoomData = chatService.selectAllRoom_data(chatSearch, pi);
 		ArrayList<Member> totalMemberData = chatService.selectAllMember_data();
