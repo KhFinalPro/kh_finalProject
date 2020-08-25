@@ -17,15 +17,16 @@
                 margin: 0;
                 padding:0;
                 width: 700px;
-                border-top: 1px solid #444444;
+                border-top: 1px solid lightgray;
                 border-collapse: collapse;
             }
             .ltd {
-                border-bottom: 1px solid #444444;
+                border-bottom: 1px solid lightgray;
                 padding: 10px;
             }
+            .ltd label{color: #2ac1bc; font-weight:600; font-size:18px;}
             #lab{
-                background-color: #2ac1bc;
+                background-color: white;
                 color: black;
                 text-align: center;
                 padding: 10px;   
@@ -37,6 +38,7 @@
             }
             tr td input{
                 border-radius: 5px;
+                border:1px solid gray;
                 height: 30px;
                 width: 280px;
             }
@@ -85,7 +87,7 @@
                         <label>연락처</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="tel" name="sto_tel" required placeholder="-제외 하고 입력">
+                        <input type="tel" id="tel" name="sto_tel" required placeholder="-포함한 연락처">
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +103,7 @@
                         <label>이메일</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="email" id="email" name="sto_email" required>
+                        <input type="email" id="email" name="sto_email" required placeholder="이메일 형식에 맞게">
                     </td>
                 </tr>
                 <tr>
@@ -170,9 +172,9 @@
             </table>
             <br><br>
             <div style="text-align: center;">
-                <input type="submit" value="점포신청" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
+                <input type="submit" value="점포신청" id="submit_btn" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;"  onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
             </div>
             <div id="map" style="display:none"></div>
         </form>      
@@ -237,6 +239,19 @@
                  }
              });
     		
+    		// 이메일 체크 정규식
+          	$("#email").change(function(){
+          		var value = $("#email").val();
+          		var reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+          		
+          		if(!reg.test(value)){
+                     alert("이메일 형식에 맞게 적어주세요");
+                     $("#email").focus().val('');
+                 }
+
+          	
+          	})
+    		
     		
     		// 이름
     		 $("#name").change(function(){
@@ -249,16 +264,16 @@
                  }
              });
     		 
-    		// 폰번호
-    		 $("#tel").change(function(){
-                 var value = $("#tel").val();
-                 var reg = /^[0-9]{11}$/;
-                 
-                 if(!reg.test(value)){
-                     alert("-를 제외한 11자리 숫자만 입력해 주세요.");
-                     $("#tel").focus().val('');
-                 }
-             })
+          	 // 휴대폰 정규화
+            $("#tel").change(function(){
+                var value = $("#tel").val();
+                var reg = /^\d{2,3}-\d{3,4}-\d{4}$/;
+                
+                if(!reg.test(value)){
+                    alert("-를 포함한 연락처를 입력해 주세요.");
+                    $("#tel").focus().val('');
+                }
+            });
     	});
     
 	    
