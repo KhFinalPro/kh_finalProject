@@ -120,9 +120,9 @@ $(function(){
                infowindow.open(map, marker);
 			   var center = coords;
            } 
+               map.setCenter(center);
        });
    });
-      //         map.setCenter(center);
 })
 </script>
 </html>
