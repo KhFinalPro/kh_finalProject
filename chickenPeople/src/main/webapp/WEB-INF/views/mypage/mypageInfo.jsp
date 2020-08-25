@@ -17,15 +17,16 @@
                 margin: 0;
                 padding:0;
                 width: 700px;
-                border-top: 1px solid #444444;
+                border-top: 1px solid lightgray;
                 border-collapse: collapse;
             }
             .ltd {
-                border-bottom: 1px solid #444444;
-                padding: 10px;
+                border-bottom: 1px solid lightgray;
+                /* padding: 10px; */
             }
+            .ltd label{color: #2ac1bc; font-weight:600; font-size:18px;}
             #lab{
-                background-color: #2ac1bc;
+                background-color: white;
                 color: black;
                 text-align: center;
                 padding: 10px;   
@@ -33,10 +34,11 @@
             #inp{
                padding: 10px;
                padding-left: 110px;
-               padding-right: 100px;
+               /* padding-right: 100px; */
             }
             tr td input{
                 border-radius: 5px;
+                border:1px solid gray;
                 height: 30px;
                 width: 280px;
             }
@@ -140,7 +142,7 @@
                         <label>휴대폰</label>
                     </td>
                     <td id="inp" class="ltd">
-                        <input type="tel" id="tel" name="tel" value="${sessionScope.loginUser.tel }"required>
+                        <input type="tel" id="tel" name="tel" value="${sessionScope.loginUser.tel }"required >
                     </td>
                 </tr>
                 <tr>
@@ -159,11 +161,11 @@
             </table>
             <input type="hidden" name = "orgPropic" value="${loginUser.pic}">
 				
-            <br><br><br><br><br>
+            <br><br>
             <div style="text-align: center;">
-                <input type="submit" value="수정" id="submit_btn" style="width: 90px; height: 40px; color: white; background: #2ac1bc; border-radius: 7px;" onclick="check();">
+                <input type="submit" value="수정" id="submit_btn" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 90px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
             </div>
             
         </form>
@@ -174,15 +176,16 @@
     <script>
       
          	
-         	// 비밀번호 정규화
-            $("#pwd").change(function(){
-                var value = $("#pwd").val();
-                var reg = /^[a-z0-9]{6,18}$/;
-                if(!reg.test(value)){
-                    alert("영문자와 숫자로 6글자 이상 12글자 이하여야 합니다.");
-                    $("#pwd").focus().val('');
-                }
-            });
+		 	// 비밀번호 정규화
+		    $("#pwd").change(function(){
+		        var value = $("#pwd").val();
+		        var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		
+		        if(!reg.test(value)){
+		            alert("특수문자, 숫자, 문자를 포함한 8~15자리여야합니다.");
+		            $("#pwd").focus().val('');
+		        }
+		    });
          	
          	// 비밀번호 체크 정규화
             $("#pwd_check").change(function(){
@@ -197,6 +200,19 @@
                 }
             });
          	
+         	// 이메일 체크 정규식
+         	$("#email").change(function(){
+         		var value = $("#email").val();
+         		var reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+         		
+         		if(!reg.test(value)){
+                    alert("이메일 형식에 맞게 적어주세요");
+                    $("#email").focus().val('');
+                }
+
+         	
+         	})
+         	
          	// 이름 정규화
             $("#name").change(function(){
                 var value = $("#name").val();
@@ -208,13 +224,13 @@
                 }
             });
          	
-            // 휴대폰 정규화
+         	// 휴대폰 정규화
             $("#tel").change(function(){
                 var value = $("#tel").val();
-                var reg = /^[0-9]{11}$/;
+                var reg = /^\d{3}-\d{3,4}-\d{4}$/;
                 
                 if(!reg.test(value)){
-                    alert("-를 제외한 11자리 숫자만 입력해 주세요.");
+                    alert("-를 포함한 휴대폰 번호를 입력해 주세요.");
                     $("#tel").focus().val('');
                 }
             });

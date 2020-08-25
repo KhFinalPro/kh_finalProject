@@ -226,7 +226,8 @@ public class MemberController {
 	public String mypageUpdate(Member m, Model model, 
 			HttpServletRequest request,
 			HttpServletResponse response,
-			SessionStatus session, 
+			SessionStatus session,
+			HttpSession hs,
 			@RequestParam("pwd") String pwd,
 			@RequestParam("orgPropic") String orgPropic,
 			@RequestParam(value="propic", required=false) MultipartFile propic) throws IOException  {
@@ -253,7 +254,7 @@ public class MemberController {
 			m.setPic(orgPropic);
 			
 		}
-		
+	   //pwd	
 		if(pwd.isEmpty()) {
 			System.out.println("M"+ m);
 			
@@ -262,10 +263,19 @@ public class MemberController {
 			if(result > 0) {
 				PrintWriter out;
 				out = response.getWriter();
-				out.println("<script>alert('정보수정 완료. 다시 로그인해주세요.'); location.href='home.do';</script>");
+				out.println("<script>alert('정보수정 완료.'); location.href='home.do';</script>");
 				out.flush();
-				session.setComplete();
-			}else {
+				//에욱
+				//session.setComplete();
+				Member loginm = (Member)hs.getAttribute("loginUser");
+				
+				loginm.setName(m.getName());
+				loginm.setEmail(m.getEmail());
+				loginm.setTel(m.getTel());
+				loginm.setPic(m.getPic());
+				
+				hs.setAttribute("loginUser", loginm);
+				
 				
 			}
 			
@@ -486,9 +496,8 @@ public class MemberController {
 	}
 	
 	
-	
 	@RequestMapping("addAddress.do")
-	public String addAddress(Member m, Model model,
+	public String addAddress(Member m, Model model, Address addr,
 							HttpSession session,
 							@RequestParam("post") String post,
 							@RequestParam("addr1") String address1,
@@ -504,6 +513,12 @@ public class MemberController {
 		System.out.println("m은??????"+ m);
 		int result = mService.addAddress(m);
 		
+		//에욱
+		ArrayList<Address> addressList= new ArrayList<Address>();
+		Member loginm =(Member)session.getAttribute("loginUser");
+				addressList = mService.selectAddress(loginm);
+				
+				session.setAttribute("address", addressList);
 		System.out.println("리저트는?"+result);
 		if(result>0) {
 			return "redirect:/mypageAddress.do?id="+(String)session.getAttribute("loginUserId");
@@ -526,6 +541,10 @@ public class MemberController {
 			int result = mService.deleteAddress(aa);
 		
 		}
+		ArrayList<Address> addressList = new ArrayList<Address>();
+		Member loginm=(Member)session.getAttribute("loginUser");
+			addressList = mService.selectAddress(loginm);
+			session.setAttribute("address", addressList);
 		
 		return "redirect:/mypageAddress.do?id="+(String)session.getAttribute("loginUserId");
 	}

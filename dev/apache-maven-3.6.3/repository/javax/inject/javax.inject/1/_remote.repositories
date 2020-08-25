@@ -1,25 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 24 17:42:22 KST 2020
+#Tue Aug 25 15:32:36 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
 javax.inject-1.pom>central=
 javax.inject-1-sources.jar>central=
 javax.inject-1-javadoc.jar>central=
-=======
->>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 24 17:30:43 GMT+09:00 2020
-javax.inject-1.pom>central=
-javax.inject-1-sources.jar>central=
-<<<<<<< HEAD
-=======
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 24 19:45:33 KST 2020
-javax.inject-1.pom>central=
-javax.inject-1-sources.jar>central=
-javax.inject-1-javadoc.jar>central=
->>>>>>> refs/remotes/origin/dev990103
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
