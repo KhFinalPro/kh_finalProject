@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 14:42:02 GMT+09:00 2020
 maven-deploy-plugin-2.7.jar>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 19:44:07 KST 2020
+maven-deploy-plugin-2.7.jar>central=
+>>>>>>> refs/remotes/origin/dev990103

@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 14:42:47 GMT+09:00 2020
 jsr305-2.0.1.jar>central=
 jsr305-2.0.1.pom>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 19:44:13 KST 2020
+jsr305-2.0.1.jar>central=
+jsr305-2.0.1.pom>central=
+>>>>>>> refs/remotes/origin/dev990103
