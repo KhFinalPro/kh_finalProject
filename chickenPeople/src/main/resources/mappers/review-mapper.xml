@@ -21,6 +21,7 @@
 		FROM REVIEW R
 		JOIN STORE_REVIEW SR ON R.REV_NUM = SR.REV_NUM
 		WHERE STO_NUM = #{sto_num}
+		ORDER BY REV_DATE DESC
 	</select>
 	
 	<select id="selectReviewAvg" parameterType="_int" resultType="Double">
