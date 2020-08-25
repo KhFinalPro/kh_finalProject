@@ -54,7 +54,7 @@ WHERE SI.USER_ID=#{userId} AND P.PAY_DATE>= TO_DATE(#{start},'YYYY-MM-DD') AND P
 <update id="updateOrderStatus">
 UPDATE JUMUN
 SET
-ORD_STATUS='배달중'
+ORD_STATUS='배달중' , DELIVERY_TIME = SYSDATE
 WHERE ORD_NUM=#{ordNum}
 </update>
 

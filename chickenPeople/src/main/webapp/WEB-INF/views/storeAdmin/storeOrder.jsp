@@ -113,10 +113,10 @@
 
 .wrapper1 .nowOrderStatus .nowOrderStatusBtn{
     border:solid;
-    border-radius: 5px;
+    border-radius: 7px;
     color:#fff;
     background-color:#587be4; 
-    width:180px;
+    width:183px;
     padding:5px;
     font-size:14px;
 }
@@ -252,7 +252,7 @@
             <img src="resources/images/close.png" style="width: 100%;"/></a>
         <div style="position: absolute; top : 40px; left:40px;">
         <h2>접수 대기내역</h2></div>
-        <div style="position: absolute; top : 100px; /* left:70px; */">
+        <div style="position: absolute; top : 100px; width:100%;">
        <table class="content-table" id="waitingOrderTable" style="width:100%">
            <thead>
               <tr>

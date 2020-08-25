@@ -15,7 +15,7 @@
 	.coupon{width: 49.5%; height: 150px; margin-bottom:10px; display:inline-block;}
 	.coupon img{width:100%; height: 200px; border-radius:20px; border:1px solid black;}
 	#coupon_area{margin:0 auto; width:90%; height: 500px; text-align:center;}
-	#page_area{position:fixed; top:800px; left:28.5%; margin:0 auto; width:50%; text-align:center;}
+	#page_area{position:fixed; top:880px; left:28.5%; margin:0 auto; width:50%; text-align:center; font-size:30px; font-weight:600; margin-right:5px;}
 	.page_btn{font-size:30px; font-weight:600; margin-right:5px;}
 	
 	.couponHeader{margin:0 auto; width:90%; margin-top:50px;}
