@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Tue Aug 25 12:56:36 KST 2020
+=======
+#Tue Aug 25 15:32:42 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
 ojdbc6-11.2.0.3.pom>Datanucleus=

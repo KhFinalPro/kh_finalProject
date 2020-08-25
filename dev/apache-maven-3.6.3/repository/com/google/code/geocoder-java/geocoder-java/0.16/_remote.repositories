@@ -1,5 +1,17 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 15:33:13 KST 2020
+geocoder-java-0.16.pom>central=
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+geocoder-java-0.16-sources.jar>central=
+geocoder-java-0.16-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+>>>>>>> refs/remotes/origin/dev990103
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:31:19 GMT+09:00 2020
 geocoder-java-0.16.pom>central=
@@ -31,6 +43,7 @@ geocoder-java-0.16-sources.jar>central=
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
 >>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Tue Aug 25 12:56:54 KST 2020
@@ -41,3 +54,6 @@ geocoder-java-0.16-javadoc.jar>central=
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev990103

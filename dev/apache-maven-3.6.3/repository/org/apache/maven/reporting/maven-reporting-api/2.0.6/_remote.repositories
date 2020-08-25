@@ -1,3 +1,7 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Tue Aug 25 12:57:15 KST 2020
+=======
+#Tue Aug 25 15:33:44 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
 maven-reporting-api-2.0.6.pom>central=
