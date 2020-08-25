@@ -166,7 +166,7 @@
                 		<label>최소주문금액</label>
                 	</td>
                 	<td id="inp" class="ltd">
-                		<input type="min" id="min" name="ord_limit" required placeholder="">
+                		<input type="min" id="min" name="ord_limit" required placeholder="최소금액을 적어주세요"> 원
                 	</td>
                 </tr>
                 <tr>
