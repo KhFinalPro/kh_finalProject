@@ -1,11 +1,23 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:41:17 KST 2020
+plexus-container-default-1.5.5.jar>central=
+plexus-container-default-1.5.5.pom>central=
+=======
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 14:42:47 GMT+09:00 2020
 plexus-container-default-1.5.5.jar>central=
 plexus-container-default-1.5.5.pom>central=
+<<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 19:44:32 KST 2020
 plexus-container-default-1.5.5.jar>central=
 plexus-container-default-1.5.5.pom>central=
 >>>>>>> refs/remotes/origin/dev990103
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111

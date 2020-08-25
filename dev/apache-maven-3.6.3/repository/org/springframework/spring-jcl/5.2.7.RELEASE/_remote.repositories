@@ -1,8 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:41:51 KST 2020
+spring-jcl-5.2.7.RELEASE.pom>central=
+spring-jcl-5.2.7.RELEASE-javadoc.jar>central=
+spring-jcl-5.2.7.RELEASE-sources.jar>central=
+=======
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:30:37 GMT+09:00 2020
 spring-jcl-5.2.7.RELEASE.pom>central=
 spring-jcl-5.2.7.RELEASE-sources.jar>central=
+<<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 19:45:01 KST 2020
@@ -10,3 +20,6 @@ spring-jcl-5.2.7.RELEASE.pom>central=
 spring-jcl-5.2.7.RELEASE-javadoc.jar>central=
 spring-jcl-5.2.7.RELEASE-sources.jar>central=
 >>>>>>> refs/remotes/origin/dev990103
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111

@@ -255,14 +255,14 @@ function searchData(){
 			//메뉴 목록 개수만큼 반복
 			for(var i=0; i<menuList.length; i++){
 				menuListAppendStr += '<tr>'+
-									'<td>'+(i+1)+'</td>'+
-									'<td>'+menuList[i].brandName+'</td>'+
-									'<td><img class="logo" src="resources/menu/' + menuList[i].menuPic + '.jpg"></td>'+
+									'<td style="width: 129px;">'+(i+1)+'</td>'+
+									'<td style="width: 157px;">'+menuList[i].brandName+'</td>'+
+									'<td style="width: 191px;"><img class="logo" src="resources/menu/' + menuList[i].menuPic + '.jpg"></td>'+
 									/*'<td>'+menuList[i].menuPic+'</td>'+ */
-									'<td>'+menuList[i].catName+'</td>'+
-									'<td>'+menuList[i].menuName+'</td>'+
-									'<td>'+menuList[i].menuPrice+'</td>'+
-									'<td>'+menuList[i].menuExp+'</td>'+
+									'<td style="width: 225px;">'+menuList[i].catName+'</td>'+
+									'<td style="width: 244px;">'+menuList[i].menuName+'</td>'+
+									'<td style="width: 187px;">'+menuList[i].menuPrice+'</td>'+
+									'<td style="width: 434px;">'+menuList[i].menuExp+'</td>'+
 									'</tr>'
 									
 			}
@@ -299,14 +299,14 @@ function searchName(){
 			
 			for(var i=0; i<nameList.length; i++){
 				nameListAppendStr += '<tr>'+
-									'<td>'+(i+1)+'</td>'+
-									'<td>'+nameList[i].brandName+'</td>'+
-									'<td><img class="logo" src="resources/menu/' + nameList[i].menuPic + '.jpg"></td>'+
+									'<td style="width: 129px;>'+(i+1)+'</td>'+
+									'<td style="width: 157px;">'+nameList[i].brandName+'</td>'+
+									'<td style="width: 191px;"><img class="logo" src="resources/menu/' + nameList[i].menuPic + '.jpg"></td>'+
 									/*'<td>'+menuList[i].menuPic+'</td>'+ */
-									'<td>'+nameList[i].catName+'</td>'+
-									'<td>'+nameList[i].menuName+'</td>'+
-									'<td>'+nameList[i].menuPrice+'</td>'+
-									'<td>'+nameList[i].menuExp+'</td>'+
+									'<td style="width: 225px;">'+nameList[i].catName+'</td>'+
+									'<td style="width: 244px;">'+nameList[i].menuName+'</td>'+
+									'<td style="width: 187px;">'+nameList[i].menuPrice+'</td>'+
+									'<td style="width: 434px;">'+nameList[i].menuExp+'</td>'+
 									'</tr>'
 									
 			}
