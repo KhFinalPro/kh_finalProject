@@ -23,14 +23,16 @@
             	margin-bottom:-200px;
                 width:600px;
                 height:440px;
-                background: black;
-                color:#fff;
+                background: white;
+                color:darkgray;
                 top:50%;
                 left:50%;
                 position:relative;
                 transform:translate(-50%, -50%);
                 box-sizing: border-box;
                 padding:70px 30px;
+                border: 2px solid lightgray;
+    			border-radius: 20px;
             }
             .avatar{
                 width: 100px;
@@ -50,9 +52,15 @@
                 padding:0;
                 font-weight:bold;
             }
+            #submit_box{
+            	margin:auto;
+            	width:50%;
+            	text-align:center;
+            }
              .loginbox input{
                 width: 100%;
                 margin-bottom: 20px;
+    			width: 100%;
             }
               #memberJoin{
                 border-bottom: 1px solid #fff;
@@ -64,12 +72,13 @@
             }
             .loginbox input[type="text"], input[type="password"]{
                 border:none;
-                border-bottom: 1px solid #fff;
+                border-bottom: 1px solid lightgray;
                 background: transparent;
                 outline: none;
                 height: 40px;
-                color: #fff;
+                color: black;
                 font-size: 16px;
+                box-shadow: 0px 0px;
             }
             .loginbox input[type="submit"]{
                 border: none;
@@ -101,7 +110,7 @@
             width:30px; height:30px; margin-left:95%;
             }
             #showMsg input{
-            width:120px; height:60px; background-color:#735949; border:0px; font-size:20px; color:white; font-weight:600; border-radius:10px;
+            width:120px; height:60px; background-color:#735949; border:0px; font-size:20px; color:black; font-weight:600; border-radius:10px;
             }
      		#showMsg #home{
      		margin-right:150px;
@@ -120,14 +129,16 @@
 		</c:if>
 		<c:if test="${empty sessionScope.loginUser }">
         <div class="loginbox">
-            <img src="resources/images/avatar.png" class="avatar">
-            <h1 id="title">치킨의민족 로그인</h1>
+            <img src="resources/images/avatar1.png" class="avatar">
+            <h1 id="title">치킨의 민족</h1>
             <form id="loginform" method="post" action="doLoginView.do">
                 <p>ID</p>
                 <input type="text" name="id" placeholder="아이디를 입력하세요">
                 <p>Password</p>
                 <input type="password" name="pwd" placeholder="비밀번호를 입력하세요">
-                <input type="submit" name="" value="로그인">
+                <div id="submit_box">
+                	<input type="submit" name="" value="로그인">
+                </div>
                 <a href="memberJoinView.do">치킨의민족 회원가입</a><br>
                 <a href="findIdView.do">아이디 찾기</a><br>
                 <a href="findPwdView.do">비밀번호 찾기</a>
