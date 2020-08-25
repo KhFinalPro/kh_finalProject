@@ -9,6 +9,7 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
+	*{font-size:22px;}
 
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 
@@ -45,7 +46,7 @@
 			<div class="item">
 				<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">신고 관리</p>
+				<p style="font-size:30px;">신고 관리</p>
 				<br><hr><br>
 				<form action="systemAdminReport.do" method="get">
 					<table class="searchTable">

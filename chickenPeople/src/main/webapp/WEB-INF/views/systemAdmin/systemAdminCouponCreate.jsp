@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>관리자 _ 쿠폰</title>
 <style>
+	*{font-size:22px;}
+
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	table{margin:0 auto; width:80%;}
 	table .label{width:40%; text-align:right; font-size:25px; font-weight:600; color:#2e4ead;}
@@ -32,7 +34,7 @@
 	<div class="main_container">
 		<div class="item"> 
 		<div class="couponHeader">
-			<p style="font-size:20px;">쿠폰발행</p>
+			<p style="font-size:30px;">쿠폰발행</p>
 			<br><hr><br>
 		</div><!-- couponHeader end -->
 			<form action="couponCreate.do" method="post" enctype="multipart/form-data">

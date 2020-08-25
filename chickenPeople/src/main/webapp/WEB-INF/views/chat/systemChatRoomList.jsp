@@ -48,7 +48,7 @@
 		<div class="item"> 
 			<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">1:1 문의</p>
+				<p style="font-size:30px;">1:1 문의</p>
 				<br><hr><br>
 				<form action="systemAdminChat.do" method="get">
 					<table class="searchTable">
