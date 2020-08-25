@@ -61,6 +61,7 @@
 	            <div id="my_delivery_info" class="my_delivery">
 	                <h2 class="delivery_info_title">주문정보</h2>
 	                <img class="brand_logo delivery_info" src="resources/images/${menuList.get(0).brand_pic }.png">
+	                
 	                <p id="order_num" class="delivery_info">주문번호:</p>
 	                <p class="order_num delivery_info_detail">${paymentList.ord_num }</p>
 	                <p id="delivery_time" class="delivery_info">배달 시간:</p>
