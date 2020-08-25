@@ -17,7 +17,7 @@
     #section .head_title{float:left; margin:0 auto; width:49%; text-align:center;}
     /* #section .head_title:nth-child(1){margin-right:30px;} */
     #section .head_title #title{margin-left: 50px; font-size: 50px; font-weight: 600; margin-top: 90px;}
-    #section .head_title .content{margin-left: 50px; font-size: 25px;}
+    #section .head_title .title_content{margin-left: 50px; font-size: 25px;}
 	#section .head_title a{margin-left:20px; margin-right:20px;}
 	.head_title_div{float:left;}
 	.head_like_good{margin: 0 auto; width:80%; margin-top:15px; text-align:right;}
@@ -25,7 +25,10 @@
 	.head_like_good a img{width:20px; height:20px;}
 	
     .review{margin: 0 auto; width: 70%; height:300px; text-align:center;}
-    .review ul li{float:left; list-style:none; width:49%;}
+    .review ul li{float:left; list-style:none;}
+    .review ul #r_content{width:58%;}
+    .review ul #image{width: 30%; float:right;}
+    .review ul #r_content .review_content{width:100%;}
     
     .review ul li img{width: 300px; height: 200px;}
     /* .review ul li .number{font-size:20px; width:100px; height:100px; border-radius:40px; background-color:white; border:1px solid black; text-align:center;} */
@@ -81,7 +84,7 @@
             </div>
             <div class="head_title">
                 <p id="title">${board.bTitle }</p>
-                <p class="content">${board.bCont }</p>
+                <p class="title_content">${board.bCont }</p>
                 
                 <div class="head_title_div head_like_good">
 	                <a>조회수 : ${board.bCount } </a>
@@ -110,10 +113,10 @@
 	        <c:forEach var="p" items="${pList }">
 	        <% i++;%>
 	        	<ul>
-	        		<li>
-	            		<div class="number"><%=i %>.</div><div class="review_content"><pre>${p.bContent }</pre></div>
+	        		<li id="r_content">
+	            		<div class="number"><%=i %>.</div><div class="review_content"><div>${p.bContent }</div></div>
 	        		</li>
-	        		<li>
+	        		<li id="image">
 	        			<img src="resources/buploadFiles/${p.upFileName}" alt="">
 	        		</li>
 	        	</ul>

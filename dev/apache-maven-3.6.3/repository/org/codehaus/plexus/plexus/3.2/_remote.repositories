@@ -1,4 +1,9 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 14:42:38 GMT+09:00 2020
+plexus-3.2.pom>central=
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -18,3 +23,4 @@ plexus-3.2.pom>central=
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+>>>>>>> refs/remotes/origin/master

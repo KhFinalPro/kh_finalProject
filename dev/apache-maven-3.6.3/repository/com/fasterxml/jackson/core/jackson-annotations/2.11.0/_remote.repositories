@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:31:27 GMT+09:00 2020
+jackson-annotations-2.11.0.pom>central=
+jackson-annotations-2.11.0-sources.jar>central=
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -23,3 +29,4 @@ jackson-annotations-2.11.0-sources.jar>central=
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+>>>>>>> refs/remotes/origin/master

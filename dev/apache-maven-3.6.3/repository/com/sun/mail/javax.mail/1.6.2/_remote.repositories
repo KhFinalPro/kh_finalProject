@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:31:28 GMT+09:00 2020
+javax.mail-1.6.2-sources.jar>central=
+javax.mail-1.6.2.pom>central=
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
@@ -23,3 +29,4 @@ javax.mail-1.6.2.pom>central=
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+>>>>>>> refs/remotes/origin/master
