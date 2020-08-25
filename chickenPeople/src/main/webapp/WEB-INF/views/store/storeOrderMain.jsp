@@ -298,9 +298,9 @@
 									<li>
 										<img class="rev_rate_area" src="resources/images/start.png" alt="" style="width: 25px; height: 25px;"><a class="rev_rate rev_rate_area">${r.user_rev_rate }</a>
 									</li>
-									<li>
+									<!-- <li>
 										<p class="order_product">치킨 / 음료</p>
-									</li>
+									</li> -->
 									<li>
 										<p class="rev_cont">${r.rev_cont }</p>
 									</li>

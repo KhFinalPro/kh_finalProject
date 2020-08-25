@@ -106,7 +106,7 @@
 			                        <a>${m.mord_num }</a>
 			                    </li>
 			                    <li class="price">
-			                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.price }" pattern=""/>">원</p>
+			                        <p><input type="text" class="order_price" readonly value="<fmt:formatNumber value="${m.price }" pattern=""/>">원</p>
 			                    </li>
 			                    <br clear="both">
 			                </ul>

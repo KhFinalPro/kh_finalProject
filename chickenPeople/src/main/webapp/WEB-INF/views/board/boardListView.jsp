@@ -160,6 +160,7 @@
 							</c:if>
 			           </div>
 		        	</div><!-- pagination class p-parents end --> 
+		        	<br clear="both"/>
 				</div>
 			</c:if>
 			<c:if test="${empty boardList }">
