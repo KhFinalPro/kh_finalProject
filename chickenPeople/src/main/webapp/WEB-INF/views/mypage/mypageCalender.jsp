@@ -464,8 +464,12 @@ function reveiw_done_btn(){
 	console.log('상태체크'+order_status);
 	
 	
+	if(rate==null){
+		alert('별점을 선택해주세요!');
+		return false;
+	}
 	
-	if(order_status=='배달완료'){
+	if(order_status=='배달완료'&&rate!=null){
 		
 	var formData = new FormData();
 	if(files.length > 0){

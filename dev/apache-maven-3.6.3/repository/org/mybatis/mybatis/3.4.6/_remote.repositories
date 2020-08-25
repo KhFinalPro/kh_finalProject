@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:30:49 GMT+09:00 2020
 mybatis-3.4.6.pom>central=
@@ -30,3 +31,13 @@ mybatis-3.4.6-javadoc.jar>central=
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
 >>>>>>> refs/remotes/origin/master
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 12:56:36 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+mybatis-3.4.6.pom>central=
+mybatis-3.4.6-sources.jar>central=
+mybatis-3.4.6-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
