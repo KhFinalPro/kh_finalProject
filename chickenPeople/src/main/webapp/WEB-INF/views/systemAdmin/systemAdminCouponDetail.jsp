@@ -31,7 +31,7 @@
 	<div class="main_container">
 		<div class="item"> 
 			<div class="couponHeader">	
-				<p style="font-size:20px;">쿠폰발행</p>
+				<p style="font-size:30px;">쿠폰발행</p>
 				<br><hr><br>
 			</div><!-- couponHeader end -->
 			<form action="couponUpdate.do" method="post" enctype="multipart/form-data">

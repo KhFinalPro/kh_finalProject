@@ -47,7 +47,7 @@
 			<div class="item">
 				<br clear="both">
 				<div class="menuHeader">
-					<p style="font-size:20px;">공지사항</p>
+					<p style="font-size:30px;">공지사항</p>
 					<br><br>
 				
 				</div><!-- menuHeader end -->

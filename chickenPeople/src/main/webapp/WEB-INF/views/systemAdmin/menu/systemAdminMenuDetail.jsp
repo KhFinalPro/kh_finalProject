@@ -10,6 +10,8 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <style>
+	*{font-size:22px;}
+
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
 	 select { -webkit-appearance: none;  -moz-appearance: none; appearance: none; background: "lowerArrow.png" no-repeat 95% 50%; /* 화살표 모양의 이미지 */ }
@@ -45,7 +47,7 @@
 		<div class="item">
 			<br clear="both">
 			<div class="menuHeader">
-				<p style="font-size:20px;">메뉴 관리</p>
+				<p style="font-size:30px;">메뉴 관리</p>
 				<br><hr><br>
 				<form action="systemAdminMenu.do" method="get">
 					<table class="searchTable">
