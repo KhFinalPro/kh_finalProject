@@ -72,6 +72,7 @@
 	#btn_area .wbutton{width: 200px; height: 50px; font-size:25px; font-weight:600; background-color:white; border:1px solid black; border-radius: 15px;}
 	#btn_area .wbutton:hover{color: #735949;; border: 1px solid #735949; cursor:pointer;}
 	
+	#tung{text-align:center;}
 	  /* 페이징 처리 */
 	.p-parents { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto; }
     .pppp { display: flex; text-align: center; margin : 50px auto; background: rgb(255, 255, 255); height: 36px; border : 1px solid black; border-radius: 5px; justify-content: center; align-items: center; }
@@ -97,73 +98,76 @@
 		<!-- <h1 align="center">맛잘알 리뷰</h1> -->
 
 		  
-	  	<c:if test="${empty loginUser }">
-		 	회원가입이 필요한 서비스 입니다.
-		</c:if>
-		<div id="btn_area">
-			<c:if test ="${!empty loginUser }">
-	  			<button class="wbutton" onclick ="bWrite()">글쓰기</button>
-		  	</c:if>			  
-		</div> <!-- [bWrite/goHome]button end-->
-		<br clear="both">  
-	
-		<div id="boardList_area">
-			<c:forEach var="b" items="${boardList }">
-				
-		 		<div class="mja_area">
-	                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
-	                <div class="mja_logo first_line">
-	                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
-	                </div>
-	                <div class="first_line mja_title">
-	                    <h2 style="color: #735949;">${b.bTitle }</h2>
-	                    <h3>조회수 : ${b.bCount }</h3>
-	                    <h3>추천수 : ${b.bHit }</h3>
-	                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
-	                </div>
-	                <br clear="both">
-	            </div>
-				
-			</c:forEach>
+		  	<c:if test="${empty loginUser }">
+			 	회원가입이 필요한 서비스 입니다.
+			</c:if>
+			<div id="btn_area">
+				<c:if test ="${!empty loginUser }">
+		  			<button class="wbutton" onclick ="bWrite()">글쓰기</button>
+			  	</c:if>			  
+			</div> <!-- [bWrite/goHome]button end-->
+			<br clear="both">  
+		
+			<c:if test="${!empty boardList }">
+				<div id="boardList_area">
+					<c:forEach var="b" items="${boardList }">
+				 		<div class="mja_area">
+			                <input type="hidden" id="bNum" name="bNum" value="${b.bNum }"/> <!--게시판 번호-->
+			                <div class="mja_logo first_line">
+			                    <img src="resources/buploadFiles/${b.bThumbnail }" alt="logo">  <!--썸네일-->
+			                </div>
+			                <div class="first_line mja_title">
+			                    <h2 style="color: #735949;">${b.bTitle }</h2>
+			                    <h3>조회수 : ${b.bCount }</h3>
+			                    <h3>추천수 : ${b.bHit }</h3>
+			                    <h3 style="font-size:15px; font-weight:400;">등록 날짜 : ${b.bDate }</h3>
+			                </div>
+			                <br clear="both">
+			            </div>
+					</c:forEach>
+					 <div class = "p-parents" style="margin:0 auto">
+			            <div class="pppp">
+		                    <c:if test="${pi.currentPage eq 1}">
+			                    <a style = "color:#9c9c9c; " disabled>Previous</a>
+		                    </c:if>
+		                    <c:if test="${pi.currentPage gt 1}">
+		                    	<c:url var="blistBack" value="boardList.do">
+		                    		<c:param name="page" value="${pi.currentPage-1} "/>
+		                    	</c:url>
+		                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
+		                    </c:if>
+		                    <ol>
+		                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+		                    	<c:if test="${p eq pi.currentPage }">
+		           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
+		                    	</c:if>
+		                    	<c:if test="${p ne pi.currentPage }">
+		                    		<c:url var="blistCheck" value="boardList.do">
+		                    			<c:param name="page" value="${p }"/>
+		                    		</c:url>
+		                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
+		                    	</c:if>
+		                    </c:forEach>
+		                    </ol>
+		                    <c:if test="${pi.currentPage eq pi.maxPage }">
+			                    <a style = "color:#9c9c9c"  disabled>Next</a>
+		                    </c:if>
+							<c:if test="${pi.currentPage lt pi.maxPage }">
+								<c:url var="blistAfter" value="boardList.do">
+									<c:param name="page" value="${pi.currentPage+1 }"/>
+								</c:url>
+								<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
+							</c:if>
+			           </div>
+		        	</div><!-- pagination class p-parents end --> 
+				</div>
+			</c:if>
+			<c:if test="${empty boardList }">
+				<div id="tung">
+					<img src="resources/images/tung.png">
+				</div>
+			</c:if>
 		</div>
-		
-		
-		 <div class = "p-parents" style="margin:0 auto">
-	            <div class="pppp">
-	                    <c:if test="${pi.currentPage eq 1}">
-		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
-	                    </c:if>
-	                    <c:if test="${pi.currentPage gt 1}">
-	                    	<c:url var="blistBack" value="boardList.do">
-	                    		<c:param name="page" value="${pi.currentPage-1} "/>
-	                    	</c:url>
-	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
-	                    </c:if>
-	                    <ol>
-	                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
-	                    	<c:if test="${p eq pi.currentPage }">
-	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
-	                    	</c:if>
-	                    	<c:if test="${p ne pi.currentPage }">
-	                    		<c:url var="blistCheck" value="boardList.do">
-	                    			<c:param name="page" value="${p }"/>
-	                    		</c:url>
-	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
-	                    	</c:if>
-	                    </c:forEach>
-	                    </ol>
-	                    <c:if test="${pi.currentPage eq pi.maxPage }">
-		                    <a style = "color:#9c9c9c"  disabled>Next</a>
-	                    </c:if>
-						<c:if test="${pi.currentPage lt pi.maxPage }">
-							<c:url var="blistAfter" value="boardList.do">
-								<c:param name="page" value="${pi.currentPage+1 }"/>
-							</c:url>
-							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
-						</c:if>
-	           </div>
-	        </div><!-- pagination class p-parents end --> 
-		</div> 
 	</div>
     <jsp:include page="../common/footer.jsp"/>
 </body>
