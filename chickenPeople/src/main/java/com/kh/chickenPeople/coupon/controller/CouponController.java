@@ -48,7 +48,7 @@ public class CouponController {
 		else
 		{
 			mv.addObject("couponList", couponList);
-			mv.addObject("msg", "이미 쿠폰이 등록되었습니다.");
+			mv.addObject("msg", "이미 발급 완료된 쿠폰입니다.");
 			mv.setViewName("mypage/mypageCouponAccept");
 		}
 		return mv;
