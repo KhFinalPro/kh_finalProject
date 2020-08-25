@@ -41,7 +41,7 @@
 			
 			<input type="hidden" id="storeList" value="${searchStoreList }"/>
 			<div class="menuHeader">
-				<p style="font-size:20px;">지도</p>
+				<p style="font-size:30px;">지도</p>
 				<br><hr><br>
 				
 				<form action="systemAdminMap.do" method="get">
@@ -92,7 +92,7 @@ $(function(){
 	
    var mapContainer = document.getElementById('map');
    var mapOption = {
-       center: new daum.maps.LatLng(37.33, 127.01),
+       center: new daum.maps.LatLng(37.4981646510326, 127.028307900881),
        level: 5
    };  
 
@@ -119,8 +119,8 @@ $(function(){
                });
                infowindow.open(map, marker);
 			   var center = coords;
-           } 
                map.setCenter(center);
+           } 
        });
    });
 })

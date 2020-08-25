@@ -22,6 +22,7 @@
 		<result property="lng" column="LNG"/>
 		<result property="sto_addr" column="STO_ADDR"/>
 		<result property="delivery_time" column="DELIVERY_TIME"/>
+		<result property="sto_name" column="STO_NAME"/>
 	</resultMap>
 	
 	<select id="paymentInfoSelect" parameterType="string" resultMap="orderStatusResultSet">
@@ -33,7 +34,7 @@
 	</select>
 	
 	<select id="menuInfoSelect" parameterType="string" resultMap="orderStatusResultSet">
-		SELECT OP.STO_NUM, M.MENU_NUM, B.BRAND_CODE, MORD_NUM, MENU_NAME, MENU_PRICE, MENU_PIC, BRAND_PIC, STO_LAT, STO_LNG, STO_ADDR
+		SELECT OP.STO_NUM, M.MENU_NUM, B.BRAND_CODE, MORD_NUM, MENU_NAME, MENU_PRICE, MENU_PIC, BRAND_PIC, STO_LAT, STO_LNG, STO_ADDR, STO_NAME
 		FROM ORDER_PRO OP
 		JOIN STORE_INFO SI ON OP.STO_NUM = SI.STO_NUM
 		JOIN JUMUN_DETAIL JD ON OP.ORD_NUM = JD.ORD_NUM

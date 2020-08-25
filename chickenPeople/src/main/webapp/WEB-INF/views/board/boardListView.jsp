@@ -125,42 +125,43 @@
 			                <br clear="both">
 			            </div>
 					</c:forEach>
-					 <div class = "p-parents" style="margin:0 auto">
-			            <div class="pppp">
-		                    <c:if test="${pi.currentPage eq 1}">
-			                    <a style = "color:#9c9c9c; " disabled>Previous</a>
-		                    </c:if>
-		                    <c:if test="${pi.currentPage gt 1}">
-		                    	<c:url var="blistBack" value="boardList.do">
-		                    		<c:param name="page" value="${pi.currentPage-1} "/>
-		                    	</c:url>
-		                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
-		                    </c:if>
-		                    <ol>
-		                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
-		                    	<c:if test="${p eq pi.currentPage }">
-		           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
-		                    	</c:if>
-		                    	<c:if test="${p ne pi.currentPage }">
-		                    		<c:url var="blistCheck" value="boardList.do">
-		                    			<c:param name="page" value="${p }"/>
-		                    		</c:url>
-		                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
-		                    	</c:if>
-		                    </c:forEach>
-		                    </ol>
-		                    <c:if test="${pi.currentPage eq pi.maxPage }">
-			                    <a style = "color:#9c9c9c"  disabled>Next</a>
-		                    </c:if>
-							<c:if test="${pi.currentPage lt pi.maxPage }">
-								<c:url var="blistAfter" value="boardList.do">
-									<c:param name="page" value="${pi.currentPage+1 }"/>
-								</c:url>
-								<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
-							</c:if>
-			           </div>
-		        	</div><!-- pagination class p-parents end --> 
 				</div>
+				<div class = "p-parents" style="margin:0 auto">
+	            	<div class="pppp">
+	                    <c:if test="${pi.currentPage eq 1}">
+		                    <a style = "color:#9c9c9c; " disabled>Previous</a>
+	                    </c:if>
+	                    <c:if test="${pi.currentPage gt 1}">
+	                    	<c:url var="blistBack" value="boardList.do">
+	                    		<c:param name="page" value="${pi.currentPage-1} "/>
+	                    	</c:url>
+	                        <a class="page-a" href="${blistBack }" style="color:#9c9c9c" >Previous</a>	
+	                    </c:if>
+	                    <ol>
+	                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+	                    	<c:if test="${p eq pi.currentPage }">
+	           					<li class = "page-list1"><button disabled class = "page-cur" >${p }</button></li>		
+	                    	</c:if>
+	                    	<c:if test="${p ne pi.currentPage }">
+	                    		<c:url var="blistCheck" value="boardList.do">
+	                    			<c:param name="page" value="${p }"/>
+	                    		</c:url>
+	                    		<li class = "page-list2"><button class="page-nocur" onclick="location.href='${blistCheck}'">${p }</button></li>
+	                    	</c:if>
+	                    </c:forEach>
+	                    </ol>
+	                    <c:if test="${pi.currentPage eq pi.maxPage }">
+		                    <a style = "color:#9c9c9c"  disabled>Next</a>
+	                    </c:if>
+						<c:if test="${pi.currentPage lt pi.maxPage }">
+							<c:url var="blistAfter" value="boardList.do">
+								<c:param name="page" value="${pi.currentPage+1 }"/>
+							</c:url>
+							<a class="page-a" href="${blistAfter }" style = "color:#9c9c9c">Next</a>
+						</c:if>
+		           </div>
+	        	</div><!-- pagination class p-parents end --> 
+	        	
 			</c:if>
 			<c:if test="${empty boardList }">
 				<div id="tung">

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>관리자 _ 쿠폰</title>
 <style>
+
 	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
 	#coupon_nv{margin:0 auto; width:80%; text-align: right; margin-bottom: 20px;}
 	#coupon_nv #couponCreate {position:fixed; top:100px; right:50px; width:150px; height:50px; border:0; font-size:25px; font-weight:600; color:#2ac1bc;}
@@ -32,7 +33,7 @@
 	<div class="main_container">
 		<div class="item"> 
 			<div class="couponHeader">
-				<p style="font-size:20px;">쿠폰발행</p>
+				<p style="font-size:30px;">쿠폰발행</p>
 				<br><hr><br>
 			</div><!-- couponHeader end -->
 			

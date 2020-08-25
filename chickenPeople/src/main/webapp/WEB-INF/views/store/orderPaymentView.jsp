@@ -57,7 +57,7 @@
             #orderCheck .orderCheck_item{text-align: right; font-size: 20px;} 
             #orderCheck .resultPrice{text-align: right; font-size: 30px; font-weight: 600;}
 			
-            #payment_btn{width: 80%; height: 70px; margin-top: 10px; font-size: 25px; font-weight: 600; border: 0px; color: #735949; background-color: #20ebd6;}
+            #payment_btn{width: 80%; height: 70px; margin-top: 10px; font-size: 25px; font-weight: 600; border: 0px; color: white; background-color: #2ac1bc;}
         </style>
         
     </head>
@@ -103,10 +103,10 @@
 			                        
 			                    </li>
 			                    <li class="text">
-			                        <a>${m.mord_num }</a>
+			                        <a>${m.mord_num }개</a>
 			                    </li>
 			                    <li class="price">
-			                        <p><input type="text" class="order_price" value="<fmt:formatNumber value="${m.price }" pattern=""/>">원</p>
+			                        <p><input type="text" class="order_price" readonly value="<fmt:formatNumber value="${m.price }" pattern=""/>">원</p>
 			                    </li>
 			                    <br clear="both">
 			                </ul>

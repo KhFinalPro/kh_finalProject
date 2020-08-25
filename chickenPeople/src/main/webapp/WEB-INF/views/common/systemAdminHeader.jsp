@@ -13,7 +13,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
  */
 
-*{ margin:0; list-style:none; padding:0; text-decoration: none; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+*{ margin:0; list-style:none; padding:0; text-decoration: none; font-size:22px;box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 body{ background:#FAFAFA; overflow: hidden; }
 .wrapper{ margin:10px; }
 .wrapper .top_navbar{ width:calc(100% - 20px); height:60px; display: flex;  position: fixed; top:10px; }
