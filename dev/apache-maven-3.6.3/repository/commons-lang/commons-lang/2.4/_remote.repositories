@@ -1,5 +1,28 @@
 <<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 15:52:35 KST 2020
+>>>>>>>=refs/remotes/origin/master
+commons-lang-2.4-javadoc.jar>central=
+commons-lang-2.4-sources.jar>central=
+commons-lang-2.4.pom>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 15:33:02 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+commons-lang-2.4.pom>central=
+commons-lang-2.4-sources.jar>central=
+commons-lang-2.4-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+=======
+>>>>>>> refs/remotes/origin/dev990103
+<<<<<<< HEAD
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:31:09 GMT+09:00 2020
 commons-lang-2.4.pom>central=
 commons-lang-2.4-sources.jar>central=
@@ -29,4 +52,19 @@ commons-lang-2.4.pom>central=
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+>>>>>>> refs/remotes/origin/master
+<<<<<<< HEAD
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 25 12:56:48 KST 2020
+>>>>>>>=refs/remotes/origin/dev1111111111111111111111111111111
+commons-lang-2.4.pom>central=
+commons-lang-2.4-sources.jar>central=
+commons-lang-2.4-javadoc.jar>central=
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>> refs/remotes/origin/dev1111111111111111111111111111111
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/dev990103
 >>>>>>> refs/remotes/origin/master

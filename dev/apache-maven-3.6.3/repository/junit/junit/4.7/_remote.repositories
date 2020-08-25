@@ -1,4 +1,12 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 24 17:30:45 GMT+09:00 2020
+<<<<<<< HEAD
+#Tue Aug 25 15:51:56 KST 2020
+=======
+<<<<<<< HEAD
+#Tue Aug 25 12:56:32 KST 2020
+=======
+#Tue Aug 25 15:32:38 KST 2020
+>>>>>>> refs/remotes/origin/dev990103
+>>>>>>> refs/remotes/origin/master
 junit-4.7-sources.jar>central=
 junit-4.7.pom>central=

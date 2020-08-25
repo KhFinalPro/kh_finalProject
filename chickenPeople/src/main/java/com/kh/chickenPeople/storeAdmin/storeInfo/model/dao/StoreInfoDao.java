@@ -48,4 +48,9 @@ public class StoreInfoDao {
 		return sqlSessionTemplate.update("storeInfoMapper.updateOpenStatusYes",userId);
 	}
 
+	public int modifyPwd(StoreInfo newInfo) {
+	
+		return sqlSessionTemplate.update("storeInfoMapper.modifyPwd",newInfo);
+	}
+
 }

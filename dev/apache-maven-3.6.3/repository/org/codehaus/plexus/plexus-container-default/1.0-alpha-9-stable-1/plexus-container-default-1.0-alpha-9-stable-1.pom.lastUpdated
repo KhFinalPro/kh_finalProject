@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
+#Tue Aug 25 15:51:11 KST 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1598338271521
+=======
+#Tue Aug 25 12:57:10 KST 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1598327830597
+>>>>>>> refs/remotes/origin/master

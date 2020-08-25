@@ -502,11 +502,11 @@ a. 회원 정보: 회원탈퇴 후 90 일까지
                     <dev style="font-size: 10px; color: lightgray;">*선택 약관 미동의시 포인트, 할인 혜택 등 추가 정보 수신 불가</dev>
                 </ul>
             </ul>
-            <br><br><br><br><br>
+            <br><br>
             <div style="text-align: center;">
                 <input type="button" value="회원가입" id="submit_btn" style="width: 150px; height: 40px; color: white; border:0px; background: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;" onclick="check();">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: black; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
+                <input type="button" value="취소" id="cancel" onclick="location.href='home.do'" style="width: 150px; border:0px; height: 40px; color: white; background-color: #2ac1bc; border-radius: 7px; font-size:20px; font-weight:600;">
             </div>
             
         </form>
