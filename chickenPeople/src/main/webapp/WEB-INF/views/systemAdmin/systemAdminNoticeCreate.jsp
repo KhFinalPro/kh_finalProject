@@ -38,7 +38,7 @@
 				</tr>
 				<tr >
 					<td  colspan="2">
-						<textarea rows="20" cols="92" id="nCont" name="nCont" required></textarea>
+						<textarea rows="18" cols="92" id="nCont" name="nCont" required></textarea>
 					</td>
 				</tr>
 				

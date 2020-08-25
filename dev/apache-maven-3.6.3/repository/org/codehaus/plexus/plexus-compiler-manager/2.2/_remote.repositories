@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:41:08 KST 2020
 plexus-compiler-manager-2.2.pom>central=
 plexus-compiler-manager-2.2.jar>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 14:42:47 GMT+09:00 2020
+plexus-compiler-manager-2.2.jar>central=
+plexus-compiler-manager-2.2.pom>central=
+>>>>>>> refs/remotes/origin/master

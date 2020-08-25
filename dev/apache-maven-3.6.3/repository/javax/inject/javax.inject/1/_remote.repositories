@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
 #Mon Aug 24 17:42:22 KST 2020
 javax.inject-1.pom>central=
 javax.inject-1-sources.jar>central=
 javax.inject-1-javadoc.jar>central=
+=======
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Aug 24 17:30:43 GMT+09:00 2020
+javax.inject-1.pom>central=
+javax.inject-1-sources.jar>central=
+>>>>>>> refs/remotes/origin/master
