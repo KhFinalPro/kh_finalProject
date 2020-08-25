@@ -9,7 +9,6 @@
 <title></title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
-	*{font-size:22px;}
 
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
     .menuSearch { width: 400px; background-color:white; padding:7px 25px;  font-family: inherit;  -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #999; border-radius: 0px; }
@@ -18,10 +17,10 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
+	.resultTable { width:100%; /* border-top:1px solid #444444; */ border-bottom:1px solid #444444;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
-	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
+	.resultTable td .resultTable th{border-bottom:1px solid #444444;/*  border-top:1px solid #444444; */ padding:10px;}
 	
 	button{border:2px solid #2ac1bc; background-color:white; color:#2ac1bc; padding:5px; font-weight:bold}
 	
@@ -58,6 +57,8 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td colspan="4"><button type="submit">검색</button></td>
+							
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -81,7 +82,6 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
 						</tr>
 					</table>
 				</form>
@@ -90,15 +90,13 @@
 			
 			<div class="menuResultTable">
 				<br><hr><br>
-				<div style="text-align:right;">
-					<button onclick="location.href='${goMenuInsert}'">메뉴 등록</button>
-				</div>
+				
 				<form action="goUpdateMenuPage.do" method="post" enctype="Multipart/form-data">
 					<table class="resultTable">
 						<tr>
 							<td rowspan="5">
 								<div id="contentImgArea">
-									<img id="contentImg" src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px">
+									<img id="contentImg" src="resources/menu/${menu.menu_Pic }.jpg" width="450px" height="450px" style="margin-top: -290px">
 									<input type="hidden" name="menu_Pic" value="${menu.menu_Pic }">
 								</div>
 							</td>
