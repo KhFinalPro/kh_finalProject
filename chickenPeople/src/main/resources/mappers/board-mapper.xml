@@ -39,6 +39,7 @@
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD
+		WHERE B_STATUS = 'N'
 	</select>
 	
 	<select id ="selectOne" resultMap="boardResultSet">
