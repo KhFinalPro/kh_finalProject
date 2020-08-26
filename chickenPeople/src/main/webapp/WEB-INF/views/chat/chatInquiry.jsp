@@ -145,7 +145,7 @@
 				printData+="</div>";
 				console.log(data)
 				sessionList+=printData
-				$("#chat").append(sessionList);
+				//$("#chat").append(sessionList);
 				
 			}
 			if(strArray[0]=="msg"){

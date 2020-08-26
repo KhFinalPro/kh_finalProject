@@ -133,7 +133,7 @@
  						 		<c:param name="brandCategory" value="${searchStatus.searchCategory}"/>
  						 		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
  						 	</c:url>
-							<tr>
+							<tr onclick="location.href='${storeDetail }'">
 								<td class="storeNum">${i.sto_num }</td>
 								<td><a style="cursor:hand">${i.brand_name }</a></td>
 								<td><a href="${storeDetail }" style="cursor:hand">${i.sto_name }</a></td>

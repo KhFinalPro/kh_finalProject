@@ -112,7 +112,23 @@
 					</thead>
 					<tbody>
 						<c:forEach var="i" items="${reportList }">
-							<tr>
+							<c:url var="updateReport" value="reportStatusUpdate.do">
+								<c:param name="br_code" value="${i.br_Code }"/>
+								<c:param name="br_num" value="${i.br_Num }"/>
+								<c:param name="rpt_num" value="${i.rpt_Num }"/>
+							</c:url>
+							<c:url var="detailReport" value="reportDetail.do">
+								<c:param name="br_code" value="${i.br_Code }"/>
+								<c:param name="br_num" value="${i.br_Num }"/>
+								<c:param name="rpt_num" value="${i.rpt_Num }"/>
+							</c:url>
+							<c:if test="${i.rpt_Status eq 'Y' }">
+								<tr>
+							</c:if>
+							<c:if test="${i.rpt_Status eq 'N' }">
+								<tr onclick="location.href='${detailReport}'">
+							</c:if>
+
 								<input type="hidden" value="${i.br_Code }"/>
 								<input type="hidden" value="${i.rpt_Code }"/>
 							
@@ -120,18 +136,13 @@
 								<td>${i.br_Content }</td>
 								<td>${i.br_Num }</td>
 								<td>${i.rpt_Content }</td>
+								
 								<td>${i.content }</td>
 								<td>${i.rpt_Date }</td>
 								<td>${i.user_Id }</td>
 								<c:if test="${i.rpt_Status eq 'Y' }">
 									<td>처리</td>								
 								</c:if>
-								<c:url var="updateReport" value="reportStatusUpdate.do">
-								<!-- 값을 가지고 뒤로 넘어가는 거 생각해보기 ***************************************** -->
-									<c:param name="br_code" value="${i.br_Code }"/>
-									<c:param name="br_num" value="${i.br_Num }"/>
-									<c:param name="rpt_num" value="${i.rpt_Num }"/>
-								</c:url>
 								<c:if test="${i.rpt_Status eq 'N' }">
 									<td><button onclick="location.href='${updateReport}'">삭제</button></td>
 								</c:if>
@@ -190,7 +201,7 @@
 			</div>
 		</div>
 	</div>
-    </body>
+  </body>
     <script>
     $(function(){
 		$("#report").children().addClass('active');

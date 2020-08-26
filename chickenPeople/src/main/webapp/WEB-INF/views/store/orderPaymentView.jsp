@@ -261,18 +261,16 @@
             //쿠폰 적용
             $("#coupon_choice").on("change",function(){
             	var coup_content = $("#coupon_choice option:selected").text();
-            	var coup_disc = coup_content.split(" ");
+            	var coup_disc = coup_content.split(" ");	//쿠폰 옵션의 text값을 띄어쓰기 기준으로 잘라 배열로 받는다
             	$("#coup_price").children("a").remove();
             	
-            	if(coup_disc[1] == null){
+            	if(coup_disc[1] == null){	// 배열로 받은 거에서 index 1번째 요소의 값이 null이면 할인금액이 0
             		$("#coup_price").append("<a>0원</a>");
             		$(".resultPrice").children("a").text($("#price").children("a").text());
             	}
-            	else{
+            	else{						// else는 값이 있고 그값이 쿠폰의 할인 금액
             		$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
-	            	/* $("#coup_price").append("<a><input type='text' name='coup_disc' value='"+ coup_disc[1] +"'>원</a>") */
-	            	/* var price1 = $("#price").children("a").text().split(",")[0];
-            		var price2 = $("#price").children("a").text().split(",")[1]; */
+	            	
             		var price = price1 + price2;
             		console.log(price);
 	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());

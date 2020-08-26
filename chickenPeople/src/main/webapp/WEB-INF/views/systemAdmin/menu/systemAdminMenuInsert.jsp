@@ -10,6 +10,8 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
+	.item {background: #fff; margin-bottom: 10px; padding: 15px; font-size: 14px; height: 873px; border-bottom-right-radius: 20px;justify-content: center; align-items: center; margin-top: -30px; }
+
 	*{font-size:22px;}
 
 	.menuSearch { -webkit-appearance: none;  -moz-appearance: none; appearance: none; }
@@ -19,7 +21,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
-	.resultTable { width:100%; border-top:1px solid #444444; border-bottom:1px solid #444444;} 
+	.resultTable { width:100%; /* border-top:1px solid #444444; border-bottom:1px solid #444444; */} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}
 	.resultTable td .resultTable th{border-bottom:1px solid #444444; border-top:1px solid #444444; padding:10px;}
@@ -60,6 +62,8 @@
 							<c:if test="${not empty searchStatus.searchName }">
 								<td><input class="menuSearch" name="menuName" type="text" value="${searchStatus.searchName}"></td>
 							</c:if>
+							<td colspan="4"><button type="submit">검색</button></td>
+						
 						</tr>
 						<tr>
 							<td><b>브랜드 검색</b></td>
@@ -88,17 +92,13 @@
 									</td>
 								</c:if>
 						</tr>
-						<tr>
-							<td colspan="4"><button type="submit">검색</button></td>
-						</tr>
+						
 					</table>
 				</form>
 			</div><!-- menuHeader end -->
 			<div class="menuResultTable">
 			<br><hr><br>
-				<div style="text-align:right;">
-					<button onclick="${contextPath}/${goMenuInsert}">메뉴 등록</button>
-				</div>
+				
 				<br>
 				<form action="menuInsertData.do" method="post" enctype="multipart/form-data">
 				<table class="resultTable">
@@ -154,6 +154,8 @@
 					</form>
 				<script>
 					$(function(){
+						$("#menu").children().addClass('active');
+
 						$("#fileArea").hide();
 						$("#contentImgArea").click(function(){
 							$("#thumbnailImg").click();

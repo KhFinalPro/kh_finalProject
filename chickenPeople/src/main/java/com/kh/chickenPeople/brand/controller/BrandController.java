@@ -46,7 +46,7 @@ public class BrandController {
 
 		
 		listCount = brandService.getListCount(brandSearch);
-		pi = Pagination.getPageInfo(currentPage, listCount,7);
+		pi = Pagination.getPageInfo(currentPage, listCount,6);
 		
 		selectTotalBrandList = brandService.selectBrandList(brandSearch,pi);
 		
