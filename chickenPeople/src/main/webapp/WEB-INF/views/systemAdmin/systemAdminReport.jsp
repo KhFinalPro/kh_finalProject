@@ -122,7 +122,12 @@
 								<c:param name="br_num" value="${i.br_Num }"/>
 								<c:param name="rpt_num" value="${i.rpt_Num }"/>
 							</c:url>
-							<tr onclick="location.href='${detailReport}'">
+							<c:if test="${i.rpt_Status eq 'Y' }">
+								<tr>
+							</c:if>
+							<c:if test="${i.rpt_Status eq 'N' }">
+								<tr onclick="location.href='${detailReport}'">
+							</c:if>
 								<input type="hidden" value="${i.br_Code }"/>
 								<input type="hidden" value="${i.rpt_Code }"/>
 							

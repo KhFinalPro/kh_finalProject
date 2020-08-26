@@ -135,7 +135,7 @@
 	                    		<c:param name="menuCategory" value="${searchStatus.searchCategory }"/>
 	                    		<c:param name="status_s" value="${searchStatus.searchStatus }"/>
 							</c:url>
-						<tr>
+						<tr onclick="location.href='${menuDetail}'">
 							<td class="menuNum">${i.menu_Num }</td>
 							<td>${i.brand_Name }</td>
 							<td>${i.cat_Name }</td>

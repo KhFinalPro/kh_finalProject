@@ -109,76 +109,80 @@
 			<div class="item">
 			<br clear="both">
 				<div class="menuHeader">
-				
+					<c:url var="updateReport" value="reportStatusUpdate.do">
+						<c:param name="br_code" value="${brCode}"/>
+						<c:param name="br_num" value="${brNum}"/>
+						<c:param name="rpt_num" value="${rptNum}"/>
+					</c:url>	
 					<p style="font-size:30px;">신고 상세</p>
 					<br><hr><br>
 						<button id="deleteBtn" onclick="location.href='${updateReport}'">삭제</button>
 						<br clear="both">
-	
-	<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
-	<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
-	<input type="hidden" id="myPageStatus" value="${myPageStatus }">
-    <section id="main_section">
-        <div id="head_area">
-            <div id="brand_logo" class="head_line">
-                <img src="resources/images/${bung.bung_img }.png">
-            </div>
-            <div id="title" class="head_line">
-                <h2>${bung.bung_title }</h2>
-            </div>
-            <br clear="both">
-            
-            <div id="good_contents" class="head_second_line">
-            	<div id="bung_like">
-            		<h4>치킨민족 ${bung.bung_like }명이 관심있고, 총 ${bung.bung_hit }번 봤어요</h4>
-            	</div>
-            </div>
-            <br clear="both">
-        </div><!-- id head_area end -->
+				</div><!-- class menuHeader End -->
+				<input type="hidden" id="bung_num" name="bung_num" value="${bung.bung_num }"/>
+				<input type="hidden" id="user_id" value="${sessionScope.loginUser.id }"/>
+				<input type="hidden" id="myPageStatus" value="${myPageStatus }">
+    			<section id="main_section">
+			        <div id="head_area">
+			            <div id="brand_logo" class="head_line">
+			                <img src="resources/images/${bung.bung_img }.png">
+			            </div>
+			            <div id="title" class="head_line">
+			                <h2>${bung.bung_title }</h2>
+			            </div>
+			            <br clear="both">
+			            
+			            <div id="good_contents" class="head_second_line">
+			            	<div id="bung_like">
+			            		<h4>치킨민족 ${bung.bung_like }명이 관심있고, 총 ${bung.bung_hit }번 봤어요</h4>
+			            	</div>
+			            </div>
+			            <br clear="both">
+			        </div><!-- id head_area end -->
 			
-        <h4>치킨번개 정보</h4>
+       				 <h3>치킨번개 정보</h4>
 
-        <div id="date" class="info_first_area"><img src="resources/images/date.png" alt=""></div>
-        <div id="date_info" class="info_first_area"><h4>${bung.bung_date }</h4></div>
-        <br clear="both">
-
-        <div id="location" class="info_second_area"><img src="resources/images/location.png" alt=""></div>
-        <div id="location_info" class="info_second_area"><h4>${bung.bung_addr }</h4></div>
-        <br clear="both">
-
-        <div id="user" class="info_tree_area"><img src="resources/images/userIcon.png" alt=""></div>
-        <div id="user_info" class="info_tree_area"><h4>${bung.bung_p_no }명까지</h4></div>
-
-        <br clear="both"><br>
-
-        <div id="map">
-        	<input type="text" id="address" name="address" value="${bung.bung_addr }"/>  
-        </div>
-
-        <br><br>
-        <c:if test="${!empty bung.pic }">
-        	<div id="my" class="info_four_area"><img src="resources/propic/${bung.pic }" alt=""></div>
-        </c:if>
-        <c:if test="${empty bung.pic }">
-        	<div id="my" class="info_four_area"><img src="resources/images/hMypage.png" alt=""></div>
-        </c:if>
-        <div id="my_info" class="info_four_area"><h4 id="create_user_id">${bung.user_id }</h4></div>
-
-        <br clear="both">
-
-        <div id="tag_area">
-        	<c:forEach var="t" items="${tagList }">
-            	<a class="tagBtn" value="${t.tag_num }">#${t.tag_name }</a>&nbsp;
-            </c:forEach>
-        </div>
-
-        <div id="text_area">
-            <p>치킨번개 모집 내용 / 소개</p>
-            <pre>${bung.bung_int }</pre>
-        </div>
-    </section>
-
-    <br clear="both">
+			        <div id="date" class="info_first_area"><img src="resources/images/date.png" alt=""></div>
+			        <div id="date_info" class="info_first_area"><h4>${bung.bung_date }</h4></div>
+			        <br clear="both">
+			
+			        <div id="location" class="info_second_area"><img src="resources/images/location.png" alt=""></div>
+			        <div id="location_info" class="info_second_area"><h4>${bung.bung_addr }</h4></div>
+			        <br clear="both">
+			
+			        <div id="user" class="info_tree_area"><img src="resources/images/userIcon.png" alt=""></div>
+			        <div id="user_info" class="info_tree_area"><h4>${bung.bung_p_no }명까지</h4></div>
+			
+			        <br clear="both"><br>
+			
+			        <div id="map">
+			        	<input type="text" id="address" name="address" value="${bung.bung_addr }"/>  
+			        </div>
+			
+			        <br><br>
+			        <c:if test="${!empty bung.pic }">
+			        	<div id="my" class="info_four_area"><img src="resources/propic/${bung.pic }" alt=""></div>
+			        </c:if>
+			        <c:if test="${empty bung.pic }">
+			        	<div id="my" class="info_four_area"><img src="resources/images/hMypage.png" alt=""></div>
+			        </c:if>
+			        <div id="my_info" class="info_four_area"><h4 id="create_user_id">${bung.user_id }</h4></div>
+			
+			        <br clear="both">
+			
+			        <div id="tag_area">
+			        	<c:forEach var="t" items="${tagList }">
+			            	<a class="tagBtn" value="${t.tag_num }">#${t.tag_name }</a>&nbsp;
+			            </c:forEach>
+			        </div>
+			
+			        <div id="text_area">
+			            <p>치킨번개 모집 내용 / 소개</p>
+			            <pre>${bung.bung_int }</pre>
+			        </div>
+			    </section>
+			
+			    <br clear="both">
 					
 				</div><!-- class menuHeader End -->
 			</div><!-- class item end -->
