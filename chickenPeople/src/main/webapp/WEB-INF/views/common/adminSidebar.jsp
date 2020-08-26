@@ -274,8 +274,8 @@ body{
   <div style="position: absolute; top : 100px; left:80px;">
          <b style="font-size:20px;">장사를 종료하시겠습니까?</b>
   </div>
-      <button type="button" onclick="finishStore()" style="position:absolute; left:140px; background:#587be4; color:#fff; padding:10px; bottom:70px; border:none; border-radius:10px;"><b>확인</b></button>
-      <button type="button" onclick="exitStore()" style="position:absolute; left:190px; background:#efefef; color:#21232b;  padding:10px; bottom:70px; border:none; border-radius:10px;"><b>취소</b></button>
+      <button type="button" onclick="finishStore()" style="position:absolute; left:120px; background:#587be4; color:#fff; padding:10px; bottom:70px; border:none; border-radius:10px; font-size:20px;"><b>확인</b></button>
+      <button type="button" onclick="exitStore()" style="position:absolute; left:190px; background:#efefef; color:#21232b;  padding:10px; bottom:70px; border:none; border-radius:10px; font-size:20px;"><b>취소</b></button>
   </div>
 </div> 
     

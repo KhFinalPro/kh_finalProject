@@ -217,15 +217,15 @@
             
              <!-- 쪽지 답장하기 모달 -->
 <div id="replyReviewModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
-  <div style="width: 400px; height: 350px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+  <div style="width: 400px; height: 400px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
       <a href="javascript: $('#replyReviewModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
           <img src="resources/images/close.png" style="width: 100%;"/></a>
   <div style="position: absolute; top : 40px; left:50px;">
       <ul style="list-style: none;">
           <li style="margin-bottom: 10px;  font-size:20px;"><b>고객님께 답장하기</b></li>
-          <textarea id="modal_reply_review" style="width:300px; height:200px; border:2px solid; border-radius: 13px;"></textarea>
+          <textarea id="modal_reply_review" style="width:300px; height:250px; border:2px solid; border-radius: 13px;"></textarea>
       </ul>
-      <button type="button" onclick="replyReview()" style="position:absolute; left:120px; bottom:-40px; border-radius:10px; padding:5px"><b>보내기</b></button>
+      <button type="button" onclick="replyReview()" style="position:absolute; left:110px; bottom:-50px; border-radius:10px; padding:5px"><b>보내기</b></button>
   </div>
   </div>
 </div> 
@@ -258,6 +258,7 @@ $(document).on('click','#goReplyReview',function(){
 $('#rDelete').click(function(){
 	deleteReviewList();
 });
+
 
 
 function init(){
