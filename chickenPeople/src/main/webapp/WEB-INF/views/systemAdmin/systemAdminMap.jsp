@@ -102,7 +102,6 @@ $(function(){
 /*    var listData = [];
    var listName = []; */
    
-
    addrList.forEach(function(addr, index) {
 	   console.log(addr);
        geocoder.addressSearch(addr, function(result, status) {
@@ -119,7 +118,8 @@ $(function(){
                });
                infowindow.open(map, marker);
 			   var center = coords;
-               map.setCenter(center);
+               
+			   map.setCenter(center);
            } 
        });
    });

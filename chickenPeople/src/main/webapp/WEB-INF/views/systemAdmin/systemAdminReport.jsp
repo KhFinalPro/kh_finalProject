@@ -128,6 +128,7 @@
 							<c:if test="${i.rpt_Status eq 'N' }">
 								<tr onclick="location.href='${detailReport}'">
 							</c:if>
+
 								<input type="hidden" value="${i.br_Code }"/>
 								<input type="hidden" value="${i.rpt_Code }"/>
 							

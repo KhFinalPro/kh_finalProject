@@ -212,9 +212,7 @@
 		    <div style="position: absolute; top : 100px; left:12px;">
 		        <ul style="list-style: none;">
 		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
-		            <textarea id="modal_reply_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
-		
-		            </textarea>
+		            <textarea id="modal_reply_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;"></textarea>
 		        </ul>
 		        <button type="button" id="bungMessage" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>보내기</b></button>
 		    </div>
@@ -245,9 +243,7 @@
 		    <div style="position: absolute; top : 100px; left:12px;">
 		        <ul style="list-style: none;">
 		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
-		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
-		
-		            </textarea>
+		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;"></textarea>
 		        </ul>
 		        <button type="button" id="bungReport" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>신고하기</b></button>
 		    </div>
@@ -348,6 +344,7 @@
 					else{
 						console.log("실패");
 					}
+					location.reload();
 				},
 				error:function(request, status, errorData){
 	            	alert("error code: " + request.status + "\n"
