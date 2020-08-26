@@ -69,7 +69,7 @@
     <script>
         $(function(){
             $(".coupon").on("click",function(){
-                alert("발급일 : " + $("#date").text() + "\n" + "할인금액 : " + parseInt($("#price").val()).toLocaleString() + "원" +"\n" + "유효기간 : " + $("#term").val() + "일");
+                alert("발급일 : " + $(this).children(".create_date").children("#date").text() + "\n" + "할인금액 : " + $(this).children(".create_date").children("#price").val().toLocaleString() + "원" +"\n" + "유효기간 : " + $(this).children(".create_date").children("#term").val() + "일");
                 
             })
         })

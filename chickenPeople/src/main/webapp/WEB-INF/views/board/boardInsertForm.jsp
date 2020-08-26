@@ -114,7 +114,7 @@
             <br>
             <div align="center" id="btn_area">
                 <button type="button" class="btn" onclick="addContent()">내용추가</button>
-                <button type="button" class="btn" onclick="removeTable()">마지막꺼 삭제</button>
+                <button type="button" class="btn" onclick="removeTable()">마지막글 삭제</button>
                 
                 <!-- <input type="button" class="btn" id="submitBtn" value="등록하기">&nbsp; -->
                 <!-- <a href="blist.do">목록으로</a> -->
