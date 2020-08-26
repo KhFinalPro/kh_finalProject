@@ -215,8 +215,8 @@
                                     <th>주문자</th>
                                     <th>주문금액</th>
                                     <th>결제방법</th>
-                                    <th>주문상태</th>
                                     <th>요청사항</th>
+                                    <th>주문상태</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -247,7 +247,7 @@
           
            <!-- 현재 접수중 모달 --> 
  <div id="waitingModal" style="position: fixed; display:none; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 9999;">
-    <div style="width: 800px; height: 500px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+    <div style="width: 1080px; height: 600px; background-color: #fff; border-radius: 20px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
         <a href="javascript: $('#waitingModal').fadeOut(500);" style="width: 25px; height: 25px; position: absolute; top: 30px; right: 35px; display: block;">
             <img src="resources/images/close.png" style="width: 100%;"/></a>
         <div style="position: absolute; top : 40px; left:40px;">
