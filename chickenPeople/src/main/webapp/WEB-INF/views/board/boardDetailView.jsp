@@ -198,9 +198,7 @@
 		    <div style="position: absolute; top : 100px; left:12px;">
 		        <ul style="list-style: none;">
 		            <li style="margin-bottom: 12px;  font-size:20px;"><b>Message</b></li>
-		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;">
-		
-		            </textarea>
+		            <textarea id="rpt_content" style="width:300px; height:260px; border:2px solid; border-radius: 13px;"></textarea>
 		        </ul>
 		        <button type="button" id="mukReport" style="position:absolute; left:155px; bottom:-30px; border-radius:10px; padding:5px"><b>신고하기</b></button>
 		    </div>
