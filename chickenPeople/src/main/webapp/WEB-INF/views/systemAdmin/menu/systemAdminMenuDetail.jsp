@@ -21,6 +21,7 @@
      select::-ms-expand { /* for IE 11 */ display: none; }
     .menuHeader{margin:0 auto; width:90%; margin-top:30px;}
 	.menuResultTable{margin:0 auto; width:90%;}
+
 	.resultTable { width:100%;} 
 	.resultTable td{/* text-align:center; */} .resultTable th,td{padding:3px;}
 	.resultTable{font-size:20px;}

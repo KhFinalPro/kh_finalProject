@@ -74,7 +74,7 @@ public class ReportController {
 			searchStatus.setSearchStatus(status);
 			
 			listCount = rService.getSearchListCount(searchStatus);
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 6);
 			resultReportList=  rService.selectReportSearchList(searchStatus,pi);
 			for(Report r : resultReportList) {
 				if(r.getContent().trim().length()>8) {
@@ -89,7 +89,7 @@ public class ReportController {
 			mv.addObject("reportList",resultReportList);
 		}else {
 			listCount = rService.getListCount();
-			pi = Pagination.getPageInfo(currentPage, listCount, 8);
+			pi = Pagination.getPageInfo(currentPage, listCount, 6);
 			resultReportList = rService.selectReportList(pi);
 			
 			mv.addObject("searchStatus",searchStatus);
