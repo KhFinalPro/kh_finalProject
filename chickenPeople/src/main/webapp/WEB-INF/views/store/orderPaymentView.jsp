@@ -269,14 +269,27 @@
             		$(".resultPrice").children("a").text($("#price").children("a").text());
             	}
             	else{						// else는 값이 있고 그값이 쿠폰의 할인 금액
-            		$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
-	            	
-            		var price = price1 + price2;
-            		console.log(price);
-	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());
-	            	$(".resultPrice").children("a").text(total_price.toLocaleString());   
-	            	console.log(total_price);
-	            	$("#pay_toal").val(total_price);
+            		if(coup_disc[coup_disc.length-1]>2){
+            			console.log(coup_disc[coup_disc.length-1]);
+            			$("#coup_price").append("<a>"+ coup_disc[coup_disc.length-1] +"원</a>")
+    	            	
+                		var price = price1 + price2;
+                		console.log(price);
+    	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());
+    	            	$(".resultPrice").children("a").text(total_price.toLocaleString());   
+    	            	console.log(total_price);
+    	            	$("#pay_toal").val(total_price);
+            		}
+            		else{
+            			$("#coup_price").append("<a>"+ coup_disc[1] +"원</a>")
+    	            	
+                		var price = price1 + price2;
+                		console.log(price);
+    	            	var total_price = parseInt(price) - parseInt($("#coup_price").children("a").text());
+    	            	$(".resultPrice").children("a").text(total_price.toLocaleString());   
+    	            	console.log(total_price);
+    	            	$("#pay_toal").val(total_price);	
+            		}
             	}
             })
         });
