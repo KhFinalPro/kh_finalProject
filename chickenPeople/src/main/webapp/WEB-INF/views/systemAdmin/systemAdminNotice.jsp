@@ -33,7 +33,7 @@
     .page-nocur { font-size: 14px; background:none; color: #2ac1bc; padding : 0; border-style : none; }
     .page-a:hover { color: black; text-decoration:none; }
     
-    #modal{position:fixed; top:200px; right:30%; width:600px; height:550px; border:1px solid black; background-color:white; display:none; border-radius:20px;}
+    #modal{position:fixed; top:200px; right:30%; width:600px; height:650px; border:1px solid black; background-color:white; display:none; border-radius:20px;}
     #modal img{width:50px; height:50px; float:right;}
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -179,12 +179,12 @@
 									"<input type='hidden' name='nNum' value='"+ data.nNum +"'>"+
 									"<input type='text' name='nDate' value='"+ data.date +"' style='border:0px;'>"+
 									"</div>"+
-									"<div style='margin:0 auto; width:80%; height:300px; margin-top:30px; overflow-y:scroll;'>"+
+									"<div style='margin:0 auto; width:80%; height:350px; margin-top:30px;'>"+
 									//"<input type='text' name='nCont' value='"+ data.content +"' style='width:100%; height:100%;'>"+
 									"<textarea name='nCont' style='width:100%; height:100%;'>"+ data.content + "</textarea>"+
 									"</div>"+
 									"<div style='margin:0 auto; width:80%; text-align:center; margin-top:20px;'>"+
-									"<button id='update_btn' style='width:100px; height:30px;'>수정하기</button>"+									
+									"<button id='update_btn' style='width:150px; height:50px;'>수정하기</button>"+									
 									"</div>"+
 									"</form>"
 									)
